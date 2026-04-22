@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,13 +8,19 @@ const inter = Inter({
   display: "swap",
 });
 
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
-    default: "Immigration & Housing Solicitors London | Abrahams Solicitors",
+    default: "Immigration Solicitors London | Housing Law | Abrahams Solicitors",
     template: "%s | Abrahams Solicitors",
   },
   description:
-    "Expert immigration and housing law solicitors in London. 5-star rated legal team specialising in visa applications, housing disrepair claims.",
+    "UK immigration & housing solicitors. Fixed fees, direct solicitor access nationwide. Spouse visas, citizenship, disrepair claims. Free consultation.",
   metadataBase: new URL("https://abrahamssolicitors.co.uk"),
   openGraph: {
     type: "website",
@@ -107,7 +113,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <script
           type="application/ld+json"

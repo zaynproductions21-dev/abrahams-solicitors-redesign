@@ -7,8 +7,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-heading: var(--font-sans);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-playfair), "Playfair Display", Georgia, "Times New Roman", serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -46,15 +46,15 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* Abrahams brand colors */
+  /* Abrahams brand — prestige palette */
   --color-brand-red: #db4042;
   --color-brand-red-light: #e66366;
   --color-brand-red-dark: #b73335;
   --color-brand-gold: #ca9c5e;
   --color-brand-gold-light: #d4ad7a;
   --color-brand-gold-dark: #b8894a;
-  --color-brand-navy: #2c3e50;
-  --color-brand-navy-light: #34495e;
+  --color-brand-navy: #0f172a;
+  --color-brand-navy-light: #1e293b;
 }
 
 :root {
@@ -70,18 +70,18 @@
   --secondary-foreground: #ffffff;
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.45 0.01 250);
-  --accent: #2c3e50;
+  --accent: #0f172a;
   --accent-foreground: #ffffff;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.91 0 0);
-  --input: oklch(0.91 0 0);
+  --border: oklch(0.92 0 0);
+  --input: oklch(0.92 0 0);
   --ring: #db4042;
   --chart-1: #db4042;
   --chart-2: #ca9c5e;
-  --chart-3: #2c3e50;
-  --chart-4: #34495e;
+  --chart-3: #0f172a;
+  --chart-4: #1e293b;
   --chart-5: #e66366;
-  --radius: 0.5rem;
+  --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: #db4042;
@@ -101,5 +101,9 @@
   }
   html {
     @apply font-sans scroll-smooth;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
   }
 }
