@@ -1,9 +1,9 @@
-import { Sora } from "next/font/google";
+import { Poppins } from "next/font/google";
 import { V6Header } from "@/components/v6/header";
 import { V6Footer } from "@/components/v6/footer";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 
-const sora = Sora({
+const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
@@ -11,7 +11,7 @@ const sora = Sora({
 
 export default function V6Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className={sora.className}>
+    <div className={poppins.className}>
       <V6Header />
       <main className="flex-1">{children}</main>
       <V6Footer />
