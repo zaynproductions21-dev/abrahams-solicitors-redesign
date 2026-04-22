@@ -63,12 +63,12 @@ function ConsultationForm({ dark = false }: { dark?: boolean }) {
           Get Started
         </Button>
       </form>
-      <div className="flex items-center justify-center gap-6 mt-5 pt-4 border-t border-slate-100">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 mt-5 pt-4 border-t border-slate-100">
         <a href="mailto:info@abrahamssolicitors.co.uk" className="flex items-center gap-2 text-xs text-slate-400 hover:text-brand-red transition-colors">
-          <Mail className="h-3.5 w-3.5" />info@abrahamssolicitors.co.uk
+          <Mail className="h-3.5 w-3.5 shrink-0" />info@abrahamssolicitors.co.uk
         </a>
         <a href="tel:02034880512" className="flex items-center gap-2 text-xs text-slate-400 hover:text-brand-red transition-colors">
-          <Phone className="h-3.5 w-3.5" />020 3488 0512
+          <Phone className="h-3.5 w-3.5 shrink-0" />020 3488 0512
         </a>
       </div>
     </div>
@@ -82,8 +82,8 @@ export default function V6HomePage() {
     <>
       {/* ─── Hero with Form ─── Porto-style split: bold heading left, form right */}
       <section className="relative bg-white overflow-hidden">
-        {/* Ghost background text */}
-        <div className="absolute top-1/2 right-0 -translate-y-1/2 text-[10rem] lg:text-[14rem] font-black text-slate-100/60 leading-none tracking-tight select-none pointer-events-none whitespace-nowrap" aria-hidden="true">
+        {/* Ghost background text — hidden on mobile */}
+        <div className="absolute top-1/2 right-0 -translate-y-1/2 hidden lg:block text-[14rem] font-black text-slate-100/60 leading-none tracking-tight select-none pointer-events-none whitespace-nowrap" aria-hidden="true">
           IMMIGRATION<br />LAW
         </div>
         {/* Orange/red diagonal accent */}
@@ -93,7 +93,7 @@ export default function V6HomePage() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: headline */}
             <div>
-              <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-black text-slate-900 leading-[1.08] tracking-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-[3.25rem] xl:text-[3.75rem] font-black text-slate-900 leading-[1.1] tracking-tight">
                 Expert Legal Support for{" "}
                 <span className="text-brand-red">Immigration, Housing</span>{" "}
                 &amp; Citizenship.
@@ -122,15 +122,15 @@ export default function V6HomePage() {
       {/* ─── Features row ─── clean icons like Porto "Online 24/7" */}
       <section className="border-y border-slate-100 py-12 bg-slate-50/50">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {[
               { icon: Headset, title: "Direct Solicitor Access", desc: "Speak to your lawyer directly" },
               { icon: PoundSterling, title: "Fixed Fees", desc: "Clear pricing, no surprises" },
               { icon: Shield, title: "SRA Regulated", desc: "Solicitors Regulation Authority" },
               { icon: Users, title: "Nationwide Coverage", desc: "Yorkshire base, video consultations UK-wide" },
             ].map((item) => (
-              <div key={item.title} className="flex items-start gap-4">
-                <div className="w-11 h-11 rounded-lg bg-brand-red/8 flex items-center justify-center shrink-0">
+              <div key={item.title} className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-lg bg-brand-red/8 flex items-center justify-center shrink-0">
                   <item.icon className="h-5 w-5 text-brand-red" />
                 </div>
                 <div>
@@ -150,7 +150,7 @@ export default function V6HomePage() {
             <div key={service.title} className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${i % 2 === 1 ? "lg:[direction:rtl]" : ""}`}>
               <div className={i % 2 === 1 ? "lg:[direction:ltr]" : ""}>
                 <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">{service.price}</p>
-                <h2 className="text-3xl lg:text-4xl font-black text-slate-900 leading-tight tracking-tight">{service.title}</h2>
+                <h2 className="text-2xl sm:text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 leading-tight tracking-tight">{service.title}</h2>
                 <p className="mt-4 text-base text-slate-500 leading-relaxed">{service.description}</p>
                 <Button asChild className="mt-6 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide">
                   <Link href={service.href}>Learn More<ArrowRight className="h-4 w-4 ml-2" /></Link>
@@ -168,7 +168,7 @@ export default function V6HomePage() {
       <section className="py-20 lg:py-28 bg-slate-50/60">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">Clients We&rsquo;ve Helped</h2>
+            <h2 className="text-2xl sm:text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">Clients We&rsquo;ve Helped</h2>
             <p className="mt-3 text-base text-slate-400">Real cases. Real results. Real reviews.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -202,7 +202,7 @@ export default function V6HomePage() {
             {/* Left: heading */}
             <div>
               <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">Common Questions</p>
-              <h2 className="text-3xl lg:text-4xl font-black text-slate-900 leading-tight tracking-tight">Frequently Asked Questions</h2>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 leading-tight tracking-tight">Frequently Asked Questions</h2>
               <p className="mt-4 text-base text-slate-500 leading-relaxed">Plain-English answers to the questions we hear most often about immigration, housing, and fees.</p>
               <Button asChild className="mt-6 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide">
                 <Link href="/v6/contact-us/">Ask Us Anything</Link>
@@ -230,7 +230,7 @@ export default function V6HomePage() {
       {/* ─── Locations ─── */}
       <section className="border-t border-slate-100 py-20 lg:py-28 bg-slate-50/60">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <h2 className="text-3xl lg:text-4xl font-black text-slate-900 tracking-tight text-center mb-14">Our Offices</h2>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight text-center mb-14">Our Offices</h2>
           <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {[
               { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU", phone: "020 3488 0512", transport: "Bank, Mansion House, Cannon Street" },
@@ -255,7 +255,7 @@ export default function V6HomePage() {
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
-              <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight tracking-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight tracking-tight">
                 Ready to Discuss Your Case?
               </h2>
               <p className="mt-4 text-white/50 text-base leading-relaxed">

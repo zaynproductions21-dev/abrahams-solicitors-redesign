@@ -12,6 +12,22 @@ const poppins = Poppins({
 export default function V6Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className={poppins.className}>
+      <style>{`
+        .${poppins.className} h1,
+        .${poppins.className} h2,
+        .${poppins.className} h3,
+        .${poppins.className} h4,
+        .${poppins.className} h5,
+        .${poppins.className} h6,
+        .${poppins.className} p,
+        .${poppins.className} a,
+        .${poppins.className} span,
+        .${poppins.className} button,
+        .${poppins.className} input,
+        .${poppins.className} label {
+          font-family: ${poppins.style.fontFamily} !important;
+        }
+      `}</style>
       <V6Header />
       <main className="flex-1">{children}</main>
       <V6Footer />
