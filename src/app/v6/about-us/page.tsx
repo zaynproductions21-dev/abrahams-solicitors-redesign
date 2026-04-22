@@ -107,7 +107,7 @@ export default function V1AboutPage() {
           <p className="mt-6 text-white/40 text-lg max-w-xl mx-auto">Contact us today for a free consultation.</p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Button asChild size="lg" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-xl text-base h-13 px-8">
-              <Link href="/v1/contact-us/">Book a Consultation</Link>
+              <Link href="/v6/contact-us/">Book a Consultation</Link>
             </Button>
             <Button asChild variant="outline-light" size="lg" className="rounded-xl text-base h-13">
               <a href="tel:02034880512"><Phone className="h-4 w-4 mr-2" />020 3488 0512</a>

@@ -8,7 +8,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/s
 import { Phone, Menu, ChevronDown, ArrowRight } from "lucide-react";
 
 function DesktopDropdown({ item }: { item: NavItem }) {
-  const href = item.href === "/" ? "/v6/" : `/v5${item.href}`;
+  const href = item.href === "/" ? "/v6/" : `/v6${item.href}`;
   return (
     <div className="relative group">
       <Link
@@ -24,7 +24,7 @@ function DesktopDropdown({ item }: { item: NavItem }) {
             {item.children.map((child) => (
               <Link
                 key={child.href}
-                href={`/v5${child.href}`}
+                href={`/v6${child.href}`}
                 className="block px-4 py-2.5 text-sm text-brand-navy/70 hover:bg-slate-50 hover:text-brand-red rounded-xl transition-colors"
               >
                 {child.label}
@@ -39,7 +39,7 @@ function DesktopDropdown({ item }: { item: NavItem }) {
 
 function MobileNavItem({ item }: { item: NavItem }) {
   const [open, setOpen] = useState(false);
-  const href = item.href === "/" ? "/v6/" : `/v5${item.href}`;
+  const href = item.href === "/" ? "/v6/" : `/v6${item.href}`;
 
   if (!item.children) {
     return (
@@ -69,7 +69,7 @@ function MobileNavItem({ item }: { item: NavItem }) {
           {item.children.map((child) => (
             <Link
               key={child.href}
-              href={`/v5${child.href}`}
+              href={`/v6${child.href}`}
               className="block px-8 py-2.5 text-sm text-brand-navy/70 hover:text-brand-red"
             >
               {child.label}
