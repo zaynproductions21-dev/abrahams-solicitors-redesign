@@ -1,0 +1,3172 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "next-env.d.ts",
+      "file_type": "code",
+      "source_file": "next-env.d.ts",
+      "source_location": "L1",
+      "id": "next_env_d_ts",
+      "community": 69,
+      "norm_label": "next-env.d.ts"
+    },
+    {
+      "label": "next.config.ts",
+      "file_type": "code",
+      "source_file": "next.config.ts",
+      "source_location": "L1",
+      "id": "next_config_ts",
+      "community": 70,
+      "norm_label": "next.config.ts"
+    },
+    {
+      "label": "robots.ts",
+      "file_type": "code",
+      "source_file": "src/app/robots.ts",
+      "source_location": "L1",
+      "id": "src_app_robots_ts",
+      "community": 7,
+      "norm_label": "robots.ts"
+    },
+    {
+      "label": "robots()",
+      "file_type": "code",
+      "source_file": "src/app/robots.ts",
+      "source_location": "L3",
+      "id": "robots_robots",
+      "community": 7,
+      "norm_label": "robots()"
+    },
+    {
+      "label": "sitemap.ts",
+      "file_type": "code",
+      "source_file": "src/app/sitemap.ts",
+      "source_location": "L1",
+      "id": "src_app_sitemap_ts",
+      "community": 8,
+      "norm_label": "sitemap.ts"
+    },
+    {
+      "label": "sitemap()",
+      "file_type": "code",
+      "source_file": "src/app/sitemap.ts",
+      "source_location": "L5",
+      "id": "sitemap_sitemap",
+      "community": 8,
+      "norm_label": "sitemap()"
+    },
+    {
+      "label": "layout.tsx",
+      "file_type": "code",
+      "source_file": "src/app/layout.tsx",
+      "source_location": "L1",
+      "id": "src_app_layout_tsx",
+      "community": 71,
+      "norm_label": "layout.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_page_tsx",
+      "community": 72,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "not-found.tsx",
+      "file_type": "code",
+      "source_file": "src/app/not-found.tsx",
+      "source_location": "L1",
+      "id": "src_app_not_found_tsx",
+      "community": 9,
+      "norm_label": "not-found.tsx"
+    },
+    {
+      "label": "NotFound()",
+      "file_type": "code",
+      "source_file": "src/app/not-found.tsx",
+      "source_location": "L5",
+      "id": "not_found_notfound",
+      "community": 9,
+      "norm_label": "notfound()"
+    },
+    {
+      "label": "layout.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v1/layout.tsx",
+      "source_location": "L1",
+      "id": "src_app_v1_layout_tsx",
+      "community": 10,
+      "norm_label": "layout.tsx"
+    },
+    {
+      "label": "V1Layout()",
+      "file_type": "code",
+      "source_file": "src/app/v1/layout.tsx",
+      "source_location": "L5",
+      "id": "layout_v1layout",
+      "community": 10,
+      "norm_label": "v1layout()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v1/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v1_page_tsx",
+      "community": 73,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v1/our-fees/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v1_our_fees_page_tsx",
+      "community": 74,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v1/about-us/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v1_about_us_page_tsx",
+      "community": 75,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v1/contact-us/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v1_contact_us_page_tsx",
+      "community": 76,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v1/[slug]/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v1_slug_page_tsx",
+      "community": 0,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "generateStaticParams()",
+      "file_type": "code",
+      "source_file": "src/app/our-team/[slug]/page.tsx",
+      "source_location": "L10",
+      "id": "page_generatestaticparams",
+      "community": 0,
+      "norm_label": "generatestaticparams()"
+    },
+    {
+      "label": "generateMetadata()",
+      "file_type": "code",
+      "source_file": "src/app/our-team/[slug]/page.tsx",
+      "source_location": "L14",
+      "id": "page_generatemetadata",
+      "community": 0,
+      "norm_label": "generatemetadata()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/uk-ancestry-visa/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_uk_ancestry_visa_page_tsx",
+      "community": 11,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "UkAncestryVisaPage()",
+      "file_type": "code",
+      "source_file": "src/app/uk-ancestry-visa/page.tsx",
+      "source_location": "L12",
+      "id": "page_ukancestryvisapage",
+      "community": 11,
+      "norm_label": "ukancestryvisapage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/car-accidents-claims/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_car_accidents_claims_page_tsx",
+      "community": 12,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "CarAccidentsClaimsPage()",
+      "file_type": "code",
+      "source_file": "src/app/car-accidents-claims/page.tsx",
+      "source_location": "L12",
+      "id": "page_caraccidentsclaimspage",
+      "community": 12,
+      "norm_label": "caraccidentsclaimspage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/british-citizenship-services/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_british_citizenship_services_page_tsx",
+      "community": 77,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/passenger-claims/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_passenger_claims_page_tsx",
+      "community": 13,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "PassengerClaimsPage()",
+      "file_type": "code",
+      "source_file": "src/app/passenger-claims/page.tsx",
+      "source_location": "L12",
+      "id": "page_passengerclaimspage",
+      "community": 13,
+      "norm_label": "passengerclaimspage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/civil-partnership-visa/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_civil_partnership_visa_page_tsx",
+      "community": 14,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "CivilPartnershipVisaPage()",
+      "file_type": "code",
+      "source_file": "src/app/civil-partnership-visa/page.tsx",
+      "source_location": "L12",
+      "id": "page_civilpartnershipvisapage",
+      "community": 14,
+      "norm_label": "civilpartnershipvisapage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/immigration/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_immigration_page_tsx",
+      "community": 15,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "ImmigrationPage()",
+      "file_type": "code",
+      "source_file": "src/app/immigration/page.tsx",
+      "source_location": "L12",
+      "id": "page_immigrationpage",
+      "community": 15,
+      "norm_label": "immigrationpage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/our-fees/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_our_fees_page_tsx",
+      "community": 16,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "OurFeesPage()",
+      "file_type": "code",
+      "source_file": "src/app/our-fees/page.tsx",
+      "source_location": "L58",
+      "id": "page_ourfeespage",
+      "community": 16,
+      "norm_label": "ourfeespage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/free-consultation/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_free_consultation_page_tsx",
+      "community": 78,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/housing-disrepair-claims/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_housing_disrepair_claims_page_tsx",
+      "community": 79,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/asylum-applications/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_asylum_applications_page_tsx",
+      "community": 17,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "AsylumApplicationsPage()",
+      "file_type": "code",
+      "source_file": "src/app/asylum-applications/page.tsx",
+      "source_location": "L12",
+      "id": "page_asylumapplicationspage",
+      "community": 17,
+      "norm_label": "asylumapplicationspage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/website-legal-notice/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_website_legal_notice_page_tsx",
+      "community": 18,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "WebsiteLegalNoticePage()",
+      "file_type": "code",
+      "source_file": "src/app/website-legal-notice/page.tsx",
+      "source_location": "L11",
+      "id": "page_websitelegalnoticepage",
+      "community": 18,
+      "norm_label": "websitelegalnoticepage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/serious-injury-claims/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_serious_injury_claims_page_tsx",
+      "community": 19,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "SeriousInjuryClaimsPage()",
+      "file_type": "code",
+      "source_file": "src/app/serious-injury-claims/page.tsx",
+      "source_location": "L12",
+      "id": "page_seriousinjuryclaimspage",
+      "community": 19,
+      "norm_label": "seriousinjuryclaimspage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/employers-duty-of-care/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_employers_duty_of_care_page_tsx",
+      "community": 20,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "EmployersDutyOfCarePage()",
+      "file_type": "code",
+      "source_file": "src/app/employers-duty-of-care/page.tsx",
+      "source_location": "L12",
+      "id": "page_employersdutyofcarepage",
+      "community": 20,
+      "norm_label": "employersdutyofcarepage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/uk-unmarried-partner-visa/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_uk_unmarried_partner_visa_page_tsx",
+      "community": 21,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "UkUnmarriedPartnerVisaPage()",
+      "file_type": "code",
+      "source_file": "src/app/uk-unmarried-partner-visa/page.tsx",
+      "source_location": "L12",
+      "id": "page_ukunmarriedpartnervisapage",
+      "community": 21,
+      "norm_label": "ukunmarriedpartnervisapage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/fall-from-height-claims/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_fall_from_height_claims_page_tsx",
+      "community": 22,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "FallFromHeightClaimsPage()",
+      "file_type": "code",
+      "source_file": "src/app/fall-from-height-claims/page.tsx",
+      "source_location": "L12",
+      "id": "page_fallfromheightclaimspage",
+      "community": 22,
+      "norm_label": "fallfromheightclaimspage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/about-us/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_about_us_page_tsx",
+      "community": 23,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "AboutUsPage()",
+      "file_type": "code",
+      "source_file": "src/app/about-us/page.tsx",
+      "source_location": "L135",
+      "id": "page_aboutuspage",
+      "community": 23,
+      "norm_label": "aboutuspage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/eu-settlement-scheme/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_eu_settlement_scheme_page_tsx",
+      "community": 24,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "EuSettlementSchemePage()",
+      "file_type": "code",
+      "source_file": "src/app/eu-settlement-scheme/page.tsx",
+      "source_location": "L12",
+      "id": "page_eusettlementschemepage",
+      "community": 24,
+      "norm_label": "eusettlementschemepage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/uk-spouse-visa/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_uk_spouse_visa_page_tsx",
+      "community": 25,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "UkSpouseVisaPage()",
+      "file_type": "code",
+      "source_file": "src/app/uk-spouse-visa/page.tsx",
+      "source_location": "L12",
+      "id": "page_ukspousevisapage",
+      "community": 25,
+      "norm_label": "ukspousevisapage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/cookie-policy/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_cookie_policy_page_tsx",
+      "community": 26,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "CookiePolicyPage()",
+      "file_type": "code",
+      "source_file": "src/app/cookie-policy/page.tsx",
+      "source_location": "L11",
+      "id": "page_cookiepolicypage",
+      "community": 26,
+      "norm_label": "cookiepolicypage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/privacy-policy/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_privacy_policy_page_tsx",
+      "community": 27,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "PrivacyPolicyPage()",
+      "file_type": "code",
+      "source_file": "src/app/privacy-policy/page.tsx",
+      "source_location": "L11",
+      "id": "page_privacypolicypage",
+      "community": 27,
+      "norm_label": "privacypolicypage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/uk-visit-visa/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_uk_visit_visa_page_tsx",
+      "community": 28,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "UkVisitVisaPage()",
+      "file_type": "code",
+      "source_file": "src/app/uk-visit-visa/page.tsx",
+      "source_location": "L12",
+      "id": "page_ukvisitvisapage",
+      "community": 28,
+      "norm_label": "ukvisitvisapage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/loss-of-sight-claims/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_loss_of_sight_claims_page_tsx",
+      "community": 29,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "LossOfSightClaimsPage()",
+      "file_type": "code",
+      "source_file": "src/app/loss-of-sight-claims/page.tsx",
+      "source_location": "L12",
+      "id": "page_lossofsightclaimspage",
+      "community": 29,
+      "norm_label": "lossofsightclaimspage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/motorcycle-accident-claims/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_motorcycle_accident_claims_page_tsx",
+      "community": 30,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "MotorcycleAccidentClaimsPage()",
+      "file_type": "code",
+      "source_file": "src/app/motorcycle-accident-claims/page.tsx",
+      "source_location": "L12",
+      "id": "page_motorcycleaccidentclaimspage",
+      "community": 30,
+      "norm_label": "motorcycleaccidentclaimspage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/terms-of-business/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_terms_of_business_page_tsx",
+      "community": 31,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "TermsOfBusinessPage()",
+      "file_type": "code",
+      "source_file": "src/app/terms-of-business/page.tsx",
+      "source_location": "L11",
+      "id": "page_termsofbusinesspage",
+      "community": 31,
+      "norm_label": "termsofbusinesspage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/personal-injury/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_personal_injury_page_tsx",
+      "community": 32,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "PersonalInjuryPage()",
+      "file_type": "code",
+      "source_file": "src/app/personal-injury/page.tsx",
+      "source_location": "L12",
+      "id": "page_personalinjurypage",
+      "community": 32,
+      "norm_label": "personalinjurypage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/blog/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_blog_page_tsx",
+      "community": 33,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "BlogPage()",
+      "file_type": "code",
+      "source_file": "src/app/blog/page.tsx",
+      "source_location": "L11",
+      "id": "page_blogpage",
+      "community": 33,
+      "norm_label": "blogpage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/careers/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_careers_page_tsx",
+      "community": 34,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "CareersPage()",
+      "file_type": "code",
+      "source_file": "src/app/careers/page.tsx",
+      "source_location": "L11",
+      "id": "page_careerspage",
+      "community": 34,
+      "norm_label": "careerspage()"
+    },
+    {
+      "label": "layout.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v2/layout.tsx",
+      "source_location": "L1",
+      "id": "src_app_v2_layout_tsx",
+      "community": 35,
+      "norm_label": "layout.tsx"
+    },
+    {
+      "label": "V2Layout()",
+      "file_type": "code",
+      "source_file": "src/app/v2/layout.tsx",
+      "source_location": "L5",
+      "id": "layout_v2layout",
+      "community": 35,
+      "norm_label": "v2layout()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v2/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v2_page_tsx",
+      "community": 80,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v2/our-fees/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v2_our_fees_page_tsx",
+      "community": 81,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v2/about-us/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v2_about_us_page_tsx",
+      "community": 82,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v2/contact-us/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v2_contact_us_page_tsx",
+      "community": 83,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v2/[slug]/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v2_slug_page_tsx",
+      "community": 0,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "layout.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v5/layout.tsx",
+      "source_location": "L1",
+      "id": "src_app_v5_layout_tsx",
+      "community": 36,
+      "norm_label": "layout.tsx"
+    },
+    {
+      "label": "V5Layout()",
+      "file_type": "code",
+      "source_file": "src/app/v5/layout.tsx",
+      "source_location": "L13",
+      "id": "layout_v5layout",
+      "community": 36,
+      "norm_label": "v5layout()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v5/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v5_page_tsx",
+      "community": 84,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v5/our-fees/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v5_our_fees_page_tsx",
+      "community": 85,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v5/about-us/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v5_about_us_page_tsx",
+      "community": 86,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v5/contact-us/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v5_contact_us_page_tsx",
+      "community": 87,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v5/[slug]/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v5_slug_page_tsx",
+      "community": 0,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/spinal-injury-claims/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_spinal_injury_claims_page_tsx",
+      "community": 37,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "SpinalInjuryClaimsPage()",
+      "file_type": "code",
+      "source_file": "src/app/spinal-injury-claims/page.tsx",
+      "source_location": "L12",
+      "id": "page_spinalinjuryclaimspage",
+      "community": 37,
+      "norm_label": "spinalinjuryclaimspage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/back-injury-claims/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_back_injury_claims_page_tsx",
+      "community": 38,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "BackInjuryClaimsPage()",
+      "file_type": "code",
+      "source_file": "src/app/back-injury-claims/page.tsx",
+      "source_location": "L12",
+      "id": "page_backinjuryclaimspage",
+      "community": 38,
+      "norm_label": "backinjuryclaimspage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/pedestrian-claims/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_pedestrian_claims_page_tsx",
+      "community": 39,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "PedestrianClaimsPage()",
+      "file_type": "code",
+      "source_file": "src/app/pedestrian-claims/page.tsx",
+      "source_location": "L12",
+      "id": "page_pedestrianclaimspage",
+      "community": 39,
+      "norm_label": "pedestrianclaimspage()"
+    },
+    {
+      "label": "layout.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v4/layout.tsx",
+      "source_location": "L1",
+      "id": "src_app_v4_layout_tsx",
+      "community": 40,
+      "norm_label": "layout.tsx"
+    },
+    {
+      "label": "V4Layout()",
+      "file_type": "code",
+      "source_file": "src/app/v4/layout.tsx",
+      "source_location": "L5",
+      "id": "layout_v4layout",
+      "community": 40,
+      "norm_label": "v4layout()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v4/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v4_page_tsx",
+      "community": 88,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v4/our-fees/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v4_our_fees_page_tsx",
+      "community": 89,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v4/about-us/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v4_about_us_page_tsx",
+      "community": 90,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v4/contact-us/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v4_contact_us_page_tsx",
+      "community": 91,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v4/[slug]/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v4_slug_page_tsx",
+      "community": 0,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "layout.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v3/layout.tsx",
+      "source_location": "L1",
+      "id": "src_app_v3_layout_tsx",
+      "community": 41,
+      "norm_label": "layout.tsx"
+    },
+    {
+      "label": "V3Layout()",
+      "file_type": "code",
+      "source_file": "src/app/v3/layout.tsx",
+      "source_location": "L5",
+      "id": "layout_v3layout",
+      "community": 41,
+      "norm_label": "v3layout()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v3/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v3_page_tsx",
+      "community": 92,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v3/our-fees/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v3_our_fees_page_tsx",
+      "community": 93,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v3/about-us/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v3_about_us_page_tsx",
+      "community": 42,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "V3AboutPage()",
+      "file_type": "code",
+      "source_file": "src/app/v3/about-us/page.tsx",
+      "source_location": "L19",
+      "id": "page_v3aboutpage",
+      "community": 42,
+      "norm_label": "v3aboutpage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v3/contact-us/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v3_contact_us_page_tsx",
+      "community": 94,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/v3/[slug]/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_v3_slug_page_tsx",
+      "community": 0,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/uk-dependent-child-visa/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_uk_dependent_child_visa_page_tsx",
+      "community": 43,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "UkDependentChildVisaPage()",
+      "file_type": "code",
+      "source_file": "src/app/uk-dependent-child-visa/page.tsx",
+      "source_location": "L12",
+      "id": "page_ukdependentchildvisapage",
+      "community": 43,
+      "norm_label": "ukdependentchildvisapage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/uk-visa-extensions-renewals/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_uk_visa_extensions_renewals_page_tsx",
+      "community": 44,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "UkVisaExtensionsRenewalsPage()",
+      "file_type": "code",
+      "source_file": "src/app/uk-visa-extensions-renewals/page.tsx",
+      "source_location": "L12",
+      "id": "page_ukvisaextensionsrenewalspage",
+      "community": 44,
+      "norm_label": "ukvisaextensionsrenewalspage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/refer-a-friend/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_refer_a_friend_page_tsx",
+      "community": 45,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "ReferAFriendPage()",
+      "file_type": "code",
+      "source_file": "src/app/refer-a-friend/page.tsx",
+      "source_location": "L11",
+      "id": "page_referafriendpage",
+      "community": 45,
+      "norm_label": "referafriendpage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/housing-disrepair/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_housing_disrepair_page_tsx",
+      "community": 46,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "HousingDisrepairPage()",
+      "file_type": "code",
+      "source_file": "src/app/housing-disrepair/page.tsx",
+      "source_location": "L10",
+      "id": "page_housingdisrepairpage",
+      "community": 46,
+      "norm_label": "housingdisrepairpage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/contact-us/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_contact_us_page_tsx",
+      "community": 47,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "ContactUsPage()",
+      "file_type": "code",
+      "source_file": "src/app/contact-us/page.tsx",
+      "source_location": "L23",
+      "id": "page_contactuspage",
+      "community": 47,
+      "norm_label": "contactuspage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/uk-fiance-visa/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_uk_fiance_visa_page_tsx",
+      "community": 48,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "UkFianceVisaPage()",
+      "file_type": "code",
+      "source_file": "src/app/uk-fiance-visa/page.tsx",
+      "source_location": "L12",
+      "id": "page_ukfiancevisapage",
+      "community": 48,
+      "norm_label": "ukfiancevisapage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/our-team/[slug]/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_our_team_slug_page_tsx",
+      "community": 0,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/uk-dependent-parent-visa/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_uk_dependent_parent_visa_page_tsx",
+      "community": 49,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "UkDependentParentVisaPage()",
+      "file_type": "code",
+      "source_file": "src/app/uk-dependent-parent-visa/page.tsx",
+      "source_location": "L12",
+      "id": "page_ukdependentparentvisapage",
+      "community": 49,
+      "norm_label": "ukdependentparentvisapage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/fatal-accident-claims/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_fatal_accident_claims_page_tsx",
+      "community": 50,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "FatalAccidentClaimsPage()",
+      "file_type": "code",
+      "source_file": "src/app/fatal-accident-claims/page.tsx",
+      "source_location": "L12",
+      "id": "page_fatalaccidentclaimspage",
+      "community": 50,
+      "norm_label": "fatalaccidentclaimspage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/spouse-visa-solicitors/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_spouse_visa_solicitors_page_tsx",
+      "community": 95,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/uk-partner-visa-extension/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_uk_partner_visa_extension_page_tsx",
+      "community": 51,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "UkPartnerVisaExtensionPage()",
+      "file_type": "code",
+      "source_file": "src/app/uk-partner-visa-extension/page.tsx",
+      "source_location": "L12",
+      "id": "page_ukpartnervisaextensionpage",
+      "community": 51,
+      "norm_label": "ukpartnervisaextensionpage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/immigration-lawyers/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_immigration_lawyers_page_tsx",
+      "community": 52,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "ImmigrationLawyersPage()",
+      "file_type": "code",
+      "source_file": "src/app/immigration-lawyers/page.tsx",
+      "source_location": "L71",
+      "id": "page_immigrationlawyerspage",
+      "community": 52,
+      "norm_label": "immigrationlawyerspage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/slips-and-trips/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_slips_and_trips_page_tsx",
+      "community": 53,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "SlipsAndTripsPage()",
+      "file_type": "code",
+      "source_file": "src/app/slips-and-trips/page.tsx",
+      "source_location": "L12",
+      "id": "page_slipsandtripspage",
+      "community": 53,
+      "norm_label": "slipsandtripspage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/accidents-at-work/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_accidents_at_work_page_tsx",
+      "community": 54,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "AccidentsAtWorkPage()",
+      "file_type": "code",
+      "source_file": "src/app/accidents-at-work/page.tsx",
+      "source_location": "L12",
+      "id": "page_accidentsatworkpage",
+      "community": 54,
+      "norm_label": "accidentsatworkpage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/immigration-solicitors-london/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_immigration_solicitors_london_page_tsx",
+      "community": 55,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "ImmigrationSolicitorsLondonPage()",
+      "file_type": "code",
+      "source_file": "src/app/immigration-solicitors-london/page.tsx",
+      "source_location": "L148",
+      "id": "page_immigrationsolicitorslondonpage",
+      "community": 55,
+      "norm_label": "immigrationsolicitorslondonpage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/head-and-brain-injury/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_head_and_brain_injury_page_tsx",
+      "community": 56,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "HeadAndBrainInjuryPage()",
+      "file_type": "code",
+      "source_file": "src/app/head-and-brain-injury/page.tsx",
+      "source_location": "L12",
+      "id": "page_headandbraininjurypage",
+      "community": 56,
+      "norm_label": "headandbraininjurypage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/indefinite-leave-to-remain-ilr/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_indefinite_leave_to_remain_ilr_page_tsx",
+      "community": 57,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "IndefiniteLeaveToRemainIlrPage()",
+      "file_type": "code",
+      "source_file": "src/app/indefinite-leave-to-remain-ilr/page.tsx",
+      "source_location": "L12",
+      "id": "page_indefiniteleavetoremainilrpage",
+      "community": 57,
+      "norm_label": "indefiniteleavetoremainilrpage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/british-citizenship/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_british_citizenship_page_tsx",
+      "community": 58,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "BritishCitizenshipPage()",
+      "file_type": "code",
+      "source_file": "src/app/british-citizenship/page.tsx",
+      "source_location": "L12",
+      "id": "page_britishcitizenshippage",
+      "community": 58,
+      "norm_label": "britishcitizenshippage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/uk-private-life-visa-ilr/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_uk_private_life_visa_ilr_page_tsx",
+      "community": 59,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "UkPrivateLifeVisaIlrPage()",
+      "file_type": "code",
+      "source_file": "src/app/uk-private-life-visa-ilr/page.tsx",
+      "source_location": "L12",
+      "id": "page_ukprivatelifevisailrpage",
+      "community": 59,
+      "norm_label": "ukprivatelifevisailrpage()"
+    },
+    {
+      "label": "site-layout.tsx",
+      "file_type": "code",
+      "source_file": "src/components/site-layout.tsx",
+      "source_location": "L1",
+      "id": "src_components_site_layout_tsx",
+      "community": 60,
+      "norm_label": "site-layout.tsx"
+    },
+    {
+      "label": "SiteLayout()",
+      "file_type": "code",
+      "source_file": "src/components/site-layout.tsx",
+      "source_location": "L4",
+      "id": "site_layout_sitelayout",
+      "community": 60,
+      "norm_label": "sitelayout()"
+    },
+    {
+      "label": "whatsapp-button.tsx",
+      "file_type": "code",
+      "source_file": "src/components/whatsapp-button.tsx",
+      "source_location": "L1",
+      "id": "src_components_whatsapp_button_tsx",
+      "community": 61,
+      "norm_label": "whatsapp-button.tsx"
+    },
+    {
+      "label": "WhatsAppButton()",
+      "file_type": "code",
+      "source_file": "src/components/whatsapp-button.tsx",
+      "source_location": "L5",
+      "id": "whatsapp_button_whatsappbutton",
+      "community": 61,
+      "norm_label": "whatsappbutton()"
+    },
+    {
+      "label": "footer.tsx",
+      "file_type": "code",
+      "source_file": "src/components/footer.tsx",
+      "source_location": "L1",
+      "id": "src_components_footer_tsx",
+      "community": 96,
+      "norm_label": "footer.tsx"
+    },
+    {
+      "label": "header.tsx",
+      "file_type": "code",
+      "source_file": "src/components/header.tsx",
+      "source_location": "L1",
+      "id": "src_components_header_tsx",
+      "community": 97,
+      "norm_label": "header.tsx"
+    },
+    {
+      "label": "page-hero.tsx",
+      "file_type": "code",
+      "source_file": "src/components/page-hero.tsx",
+      "source_location": "L1",
+      "id": "src_components_page_hero_tsx",
+      "community": 98,
+      "norm_label": "page-hero.tsx"
+    },
+    {
+      "label": "service-page-template.tsx",
+      "file_type": "code",
+      "source_file": "src/components/service-page-template.tsx",
+      "source_location": "L1",
+      "id": "src_components_service_page_template_tsx",
+      "community": 99,
+      "norm_label": "service-page-template.tsx"
+    },
+    {
+      "label": "footer.tsx",
+      "file_type": "code",
+      "source_file": "src/components/v1/footer.tsx",
+      "source_location": "L1",
+      "id": "src_components_v1_footer_tsx",
+      "community": 100,
+      "norm_label": "footer.tsx"
+    },
+    {
+      "label": "header.tsx",
+      "file_type": "code",
+      "source_file": "src/components/v1/header.tsx",
+      "source_location": "L1",
+      "id": "src_components_v1_header_tsx",
+      "community": 101,
+      "norm_label": "header.tsx"
+    },
+    {
+      "label": "card.tsx",
+      "file_type": "code",
+      "source_file": "src/components/ui/card.tsx",
+      "source_location": "L1",
+      "id": "src_components_ui_card_tsx",
+      "community": 6,
+      "norm_label": "card.tsx"
+    },
+    {
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "src/components/ui/card.tsx",
+      "source_location": "L14",
+      "id": "card_cn",
+      "community": 6,
+      "norm_label": "cn()"
+    },
+    {
+      "label": "CardAction()",
+      "file_type": "code",
+      "source_file": "src/components/ui/card.tsx",
+      "source_location": "L59",
+      "id": "card_cardaction",
+      "community": 6,
+      "norm_label": "cardaction()"
+    },
+    {
+      "label": "sheet.tsx",
+      "file_type": "code",
+      "source_file": "src/components/ui/sheet.tsx",
+      "source_location": "L1",
+      "id": "src_components_ui_sheet_tsx",
+      "community": 2,
+      "norm_label": "sheet.tsx"
+    },
+    {
+      "label": "Sheet()",
+      "file_type": "code",
+      "source_file": "src/components/ui/sheet.tsx",
+      "source_location": "L9",
+      "id": "sheet_sheet",
+      "community": 2,
+      "norm_label": "sheet()"
+    },
+    {
+      "label": "SheetTrigger()",
+      "file_type": "code",
+      "source_file": "src/components/ui/sheet.tsx",
+      "source_location": "L13",
+      "id": "sheet_sheettrigger",
+      "community": 2,
+      "norm_label": "sheettrigger()"
+    },
+    {
+      "label": "SheetClose()",
+      "file_type": "code",
+      "source_file": "src/components/ui/sheet.tsx",
+      "source_location": "L17",
+      "id": "sheet_sheetclose",
+      "community": 2,
+      "norm_label": "sheetclose()"
+    },
+    {
+      "label": "SheetPortal()",
+      "file_type": "code",
+      "source_file": "src/components/ui/sheet.tsx",
+      "source_location": "L21",
+      "id": "sheet_sheetportal",
+      "community": 2,
+      "norm_label": "sheetportal()"
+    },
+    {
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "src/components/ui/sheet.tsx",
+      "source_location": "L54",
+      "id": "sheet_cn",
+      "community": 2,
+      "norm_label": "cn()"
+    },
+    {
+      "label": "SheetDescription()",
+      "file_type": "code",
+      "source_file": "src/components/ui/sheet.tsx",
+      "source_location": "L108",
+      "id": "sheet_sheetdescription",
+      "community": 2,
+      "norm_label": "sheetdescription()"
+    },
+    {
+      "label": "label.tsx",
+      "file_type": "code",
+      "source_file": "src/components/ui/label.tsx",
+      "source_location": "L1",
+      "id": "src_components_ui_label_tsx",
+      "community": 62,
+      "norm_label": "label.tsx"
+    },
+    {
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "src/components/ui/label.tsx",
+      "source_location": "L11",
+      "id": "label_cn",
+      "community": 62,
+      "norm_label": "cn()"
+    },
+    {
+      "label": "navigation-menu.tsx",
+      "file_type": "code",
+      "source_file": "src/components/ui/navigation-menu.tsx",
+      "source_location": "L1",
+      "id": "src_components_ui_navigation_menu_tsx",
+      "community": 3,
+      "norm_label": "navigation-menu.tsx"
+    },
+    {
+      "label": "NavigationMenu()",
+      "file_type": "code",
+      "source_file": "src/components/ui/navigation-menu.tsx",
+      "source_location": "L7",
+      "id": "navigation_menu_navigationmenu",
+      "community": 3,
+      "norm_label": "navigationmenu()"
+    },
+    {
+      "label": "NavigationMenuList()",
+      "file_type": "code",
+      "source_file": "src/components/ui/navigation-menu.tsx",
+      "source_location": "L29",
+      "id": "navigation_menu_navigationmenulist",
+      "community": 3,
+      "norm_label": "navigationmenulist()"
+    },
+    {
+      "label": "NavigationMenuItem()",
+      "file_type": "code",
+      "source_file": "src/components/ui/navigation-menu.tsx",
+      "source_location": "L45",
+      "id": "navigation_menu_navigationmenuitem",
+      "community": 3,
+      "norm_label": "navigationmenuitem()"
+    },
+    {
+      "label": "NavigationMenuTrigger()",
+      "file_type": "code",
+      "source_file": "src/components/ui/navigation-menu.tsx",
+      "source_location": "L62",
+      "id": "navigation_menu_navigationmenutrigger",
+      "community": 3,
+      "norm_label": "navigationmenutrigger()"
+    },
+    {
+      "label": "NavigationMenuContent()",
+      "file_type": "code",
+      "source_file": "src/components/ui/navigation-menu.tsx",
+      "source_location": "L79",
+      "id": "navigation_menu_navigationmenucontent",
+      "community": 3,
+      "norm_label": "navigationmenucontent()"
+    },
+    {
+      "label": "NavigationMenuLink()",
+      "file_type": "code",
+      "source_file": "src/components/ui/navigation-menu.tsx",
+      "source_location": "L124",
+      "id": "navigation_menu_navigationmenulink",
+      "community": 3,
+      "norm_label": "navigationmenulink()"
+    },
+    {
+      "label": "accordion.tsx",
+      "file_type": "code",
+      "source_file": "src/components/ui/accordion.tsx",
+      "source_location": "L1",
+      "id": "src_components_ui_accordion_tsx",
+      "community": 4,
+      "norm_label": "accordion.tsx"
+    },
+    {
+      "label": "Accordion()",
+      "file_type": "code",
+      "source_file": "src/components/ui/accordion.tsx",
+      "source_location": "L6",
+      "id": "accordion_accordion",
+      "community": 4,
+      "norm_label": "accordion()"
+    },
+    {
+      "label": "AccordionItem()",
+      "file_type": "code",
+      "source_file": "src/components/ui/accordion.tsx",
+      "source_location": "L16",
+      "id": "accordion_accordionitem",
+      "community": 4,
+      "norm_label": "accordionitem()"
+    },
+    {
+      "label": "AccordionTrigger()",
+      "file_type": "code",
+      "source_file": "src/components/ui/accordion.tsx",
+      "source_location": "L26",
+      "id": "accordion_accordiontrigger",
+      "community": 4,
+      "norm_label": "accordiontrigger()"
+    },
+    {
+      "label": "AccordionContent()",
+      "file_type": "code",
+      "source_file": "src/components/ui/accordion.tsx",
+      "source_location": "L49",
+      "id": "accordion_accordioncontent",
+      "community": 4,
+      "norm_label": "accordioncontent()"
+    },
+    {
+      "label": "badge.tsx",
+      "file_type": "code",
+      "source_file": "src/components/ui/badge.tsx",
+      "source_location": "L1",
+      "id": "src_components_ui_badge_tsx",
+      "community": 5,
+      "norm_label": "badge.tsx"
+    },
+    {
+      "label": "Badge()",
+      "file_type": "code",
+      "source_file": "src/components/ui/badge.tsx",
+      "source_location": "L30",
+      "id": "badge_badge",
+      "community": 5,
+      "norm_label": "badge()"
+    },
+    {
+      "label": "separator.tsx",
+      "file_type": "code",
+      "source_file": "src/components/ui/separator.tsx",
+      "source_location": "L1",
+      "id": "src_components_ui_separator_tsx",
+      "community": 63,
+      "norm_label": "separator.tsx"
+    },
+    {
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "src/components/ui/separator.tsx",
+      "source_location": "L16",
+      "id": "separator_cn",
+      "community": 63,
+      "norm_label": "cn()"
+    },
+    {
+      "label": "button.tsx",
+      "file_type": "code",
+      "source_file": "src/components/ui/button.tsx",
+      "source_location": "L1",
+      "id": "src_components_ui_button_tsx",
+      "community": 102,
+      "norm_label": "button.tsx"
+    },
+    {
+      "label": "select.tsx",
+      "file_type": "code",
+      "source_file": "src/components/ui/select.tsx",
+      "source_location": "L1",
+      "id": "src_components_ui_select_tsx",
+      "community": 1,
+      "norm_label": "select.tsx"
+    },
+    {
+      "label": "SelectGroup()",
+      "file_type": "code",
+      "source_file": "src/components/ui/select.tsx",
+      "source_location": "L11",
+      "id": "select_selectgroup",
+      "community": 1,
+      "norm_label": "selectgroup()"
+    },
+    {
+      "label": "SelectValue()",
+      "file_type": "code",
+      "source_file": "src/components/ui/select.tsx",
+      "source_location": "L21",
+      "id": "select_selectvalue",
+      "community": 1,
+      "norm_label": "selectvalue()"
+    },
+    {
+      "label": "SelectTrigger()",
+      "file_type": "code",
+      "source_file": "src/components/ui/select.tsx",
+      "source_location": "L31",
+      "id": "select_selecttrigger",
+      "community": 1,
+      "norm_label": "selecttrigger()"
+    },
+    {
+      "label": "SelectContent()",
+      "file_type": "code",
+      "source_file": "src/components/ui/select.tsx",
+      "source_location": "L59",
+      "id": "select_selectcontent",
+      "community": 1,
+      "norm_label": "selectcontent()"
+    },
+    {
+      "label": "SelectLabel()",
+      "file_type": "code",
+      "source_file": "src/components/ui/select.tsx",
+      "source_location": "L98",
+      "id": "select_selectlabel",
+      "community": 1,
+      "norm_label": "selectlabel()"
+    },
+    {
+      "label": "SelectItem()",
+      "file_type": "code",
+      "source_file": "src/components/ui/select.tsx",
+      "source_location": "L111",
+      "id": "select_selectitem",
+      "community": 1,
+      "norm_label": "selectitem()"
+    },
+    {
+      "label": "SelectSeparator()",
+      "file_type": "code",
+      "source_file": "src/components/ui/select.tsx",
+      "source_location": "L139",
+      "id": "select_selectseparator",
+      "community": 1,
+      "norm_label": "selectseparator()"
+    },
+    {
+      "label": "SelectScrollUpButton()",
+      "file_type": "code",
+      "source_file": "src/components/ui/select.tsx",
+      "source_location": "L152",
+      "id": "select_selectscrollupbutton",
+      "community": 1,
+      "norm_label": "selectscrollupbutton()"
+    },
+    {
+      "label": "SelectScrollDownButton()",
+      "file_type": "code",
+      "source_file": "src/components/ui/select.tsx",
+      "source_location": "L171",
+      "id": "select_selectscrolldownbutton",
+      "community": 1,
+      "norm_label": "selectscrolldownbutton()"
+    },
+    {
+      "label": "textarea.tsx",
+      "file_type": "code",
+      "source_file": "src/components/ui/textarea.tsx",
+      "source_location": "L1",
+      "id": "src_components_ui_textarea_tsx",
+      "community": 64,
+      "norm_label": "textarea.tsx"
+    },
+    {
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "src/components/ui/textarea.tsx",
+      "source_location": "L9",
+      "id": "textarea_cn",
+      "community": 64,
+      "norm_label": "cn()"
+    },
+    {
+      "label": "input.tsx",
+      "file_type": "code",
+      "source_file": "src/components/ui/input.tsx",
+      "source_location": "L1",
+      "id": "src_components_ui_input_tsx",
+      "community": 65,
+      "norm_label": "input.tsx"
+    },
+    {
+      "label": "Input()",
+      "file_type": "code",
+      "source_file": "src/components/ui/input.tsx",
+      "source_location": "L6",
+      "id": "input_input",
+      "community": 65,
+      "norm_label": "input()"
+    },
+    {
+      "label": "footer.tsx",
+      "file_type": "code",
+      "source_file": "src/components/v2/footer.tsx",
+      "source_location": "L1",
+      "id": "src_components_v2_footer_tsx",
+      "community": 66,
+      "norm_label": "footer.tsx"
+    },
+    {
+      "label": "V2Footer()",
+      "file_type": "code",
+      "source_file": "src/components/v2/footer.tsx",
+      "source_location": "L20",
+      "id": "footer_v2footer",
+      "community": 66,
+      "norm_label": "v2footer()"
+    },
+    {
+      "label": "header.tsx",
+      "file_type": "code",
+      "source_file": "src/components/v2/header.tsx",
+      "source_location": "L1",
+      "id": "src_components_v2_header_tsx",
+      "community": 103,
+      "norm_label": "header.tsx"
+    },
+    {
+      "label": "footer.tsx",
+      "file_type": "code",
+      "source_file": "src/components/v5/footer.tsx",
+      "source_location": "L1",
+      "id": "src_components_v5_footer_tsx",
+      "community": 104,
+      "norm_label": "footer.tsx"
+    },
+    {
+      "label": "header.tsx",
+      "file_type": "code",
+      "source_file": "src/components/v5/header.tsx",
+      "source_location": "L1",
+      "id": "src_components_v5_header_tsx",
+      "community": 105,
+      "norm_label": "header.tsx"
+    },
+    {
+      "label": "footer.tsx",
+      "file_type": "code",
+      "source_file": "src/components/v4/footer.tsx",
+      "source_location": "L1",
+      "id": "src_components_v4_footer_tsx",
+      "community": 106,
+      "norm_label": "footer.tsx"
+    },
+    {
+      "label": "header.tsx",
+      "file_type": "code",
+      "source_file": "src/components/v4/header.tsx",
+      "source_location": "L1",
+      "id": "src_components_v4_header_tsx",
+      "community": 107,
+      "norm_label": "header.tsx"
+    },
+    {
+      "label": "footer.tsx",
+      "file_type": "code",
+      "source_file": "src/components/v3/footer.tsx",
+      "source_location": "L1",
+      "id": "src_components_v3_footer_tsx",
+      "community": 67,
+      "norm_label": "footer.tsx"
+    },
+    {
+      "label": "V3Footer()",
+      "file_type": "code",
+      "source_file": "src/components/v3/footer.tsx",
+      "source_location": "L18",
+      "id": "footer_v3footer",
+      "community": 67,
+      "norm_label": "v3footer()"
+    },
+    {
+      "label": "header.tsx",
+      "file_type": "code",
+      "source_file": "src/components/v3/header.tsx",
+      "source_location": "L1",
+      "id": "src_components_v3_header_tsx",
+      "community": 68,
+      "norm_label": "header.tsx"
+    },
+    {
+      "label": "handler()",
+      "file_type": "code",
+      "source_file": "src/components/v3/header.tsx",
+      "source_location": "L74",
+      "id": "header_handler",
+      "community": 68,
+      "norm_label": "handler()"
+    },
+    {
+      "label": "services-data.ts",
+      "file_type": "code",
+      "source_file": "src/lib/services-data.ts",
+      "source_location": "L1",
+      "id": "src_lib_services_data_ts",
+      "community": 0,
+      "norm_label": "services-data.ts"
+    },
+    {
+      "label": "getServicePage()",
+      "file_type": "code",
+      "source_file": "src/lib/services-data.ts",
+      "source_location": "L1066",
+      "id": "services_data_getservicepage",
+      "community": 0,
+      "norm_label": "getservicepage()"
+    },
+    {
+      "label": "navigation.ts",
+      "file_type": "code",
+      "source_file": "src/lib/navigation.ts",
+      "source_location": "L1",
+      "id": "src_lib_navigation_ts",
+      "community": 108,
+      "norm_label": "navigation.ts"
+    },
+    {
+      "label": "utils.ts",
+      "file_type": "code",
+      "source_file": "src/lib/utils.ts",
+      "source_location": "L1",
+      "id": "src_lib_utils_ts",
+      "community": 5,
+      "norm_label": "utils.ts"
+    },
+    {
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "src/lib/utils.ts",
+      "source_location": "L4",
+      "id": "utils_cn",
+      "community": 5,
+      "norm_label": "cn()"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/robots.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_src": "src_app_robots_ts",
+      "_tgt": "robots_robots",
+      "source": "src_app_robots_ts",
+      "target": "robots_robots",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/sitemap.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "src_app_sitemap_ts",
+      "_tgt": "sitemap_sitemap",
+      "source": "src_app_sitemap_ts",
+      "target": "sitemap_sitemap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/not-found.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "src_app_not_found_tsx",
+      "_tgt": "not_found_notfound",
+      "source": "src_app_not_found_tsx",
+      "target": "not_found_notfound",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/v1/layout.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "src_app_v1_layout_tsx",
+      "_tgt": "layout_v1layout",
+      "source": "src_app_v1_layout_tsx",
+      "target": "layout_v1layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/v1/[slug]/page.tsx",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_src": "src_app_v1_slug_page_tsx",
+      "_tgt": "page_generatestaticparams",
+      "source": "src_app_v1_slug_page_tsx",
+      "target": "page_generatestaticparams",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/v1/[slug]/page.tsx",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_src": "src_app_v1_slug_page_tsx",
+      "_tgt": "page_generatemetadata",
+      "source": "src_app_v1_slug_page_tsx",
+      "target": "page_generatemetadata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/v2/[slug]/page.tsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_src": "src_app_v2_slug_page_tsx",
+      "_tgt": "page_generatestaticparams",
+      "source": "page_generatestaticparams",
+      "target": "src_app_v2_slug_page_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/v5/[slug]/page.tsx",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_src": "src_app_v5_slug_page_tsx",
+      "_tgt": "page_generatestaticparams",
+      "source": "page_generatestaticparams",
+      "target": "src_app_v5_slug_page_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/v4/[slug]/page.tsx",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_src": "src_app_v4_slug_page_tsx",
+      "_tgt": "page_generatestaticparams",
+      "source": "page_generatestaticparams",
+      "target": "src_app_v4_slug_page_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/v3/[slug]/page.tsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_src": "src_app_v3_slug_page_tsx",
+      "_tgt": "page_generatestaticparams",
+      "source": "page_generatestaticparams",
+      "target": "src_app_v3_slug_page_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/our-team/[slug]/page.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "src_app_our_team_slug_page_tsx",
+      "_tgt": "page_generatestaticparams",
+      "source": "page_generatestaticparams",
+      "target": "src_app_our_team_slug_page_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/v2/[slug]/page.tsx",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_src": "src_app_v2_slug_page_tsx",
+      "_tgt": "page_generatemetadata",
+      "source": "page_generatemetadata",
+      "target": "src_app_v2_slug_page_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/v5/[slug]/page.tsx",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_src": "src_app_v5_slug_page_tsx",
+      "_tgt": "page_generatemetadata",
+      "source": "page_generatemetadata",
+      "target": "src_app_v5_slug_page_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/v4/[slug]/page.tsx",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_src": "src_app_v4_slug_page_tsx",
+      "_tgt": "page_generatemetadata",
+      "source": "page_generatemetadata",
+      "target": "src_app_v4_slug_page_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/v3/[slug]/page.tsx",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_src": "src_app_v3_slug_page_tsx",
+      "_tgt": "page_generatemetadata",
+      "source": "page_generatemetadata",
+      "target": "src_app_v3_slug_page_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/our-team/[slug]/page.tsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_src": "src_app_our_team_slug_page_tsx",
+      "_tgt": "page_generatemetadata",
+      "source": "page_generatemetadata",
+      "target": "src_app_our_team_slug_page_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/app/v1/[slug]/page.tsx",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_src": "page_generatemetadata",
+      "_tgt": "services_data_getservicepage",
+      "source": "page_generatemetadata",
+      "target": "services_data_getservicepage"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/uk-ancestry-visa/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_uk_ancestry_visa_page_tsx",
+      "_tgt": "page_ukancestryvisapage",
+      "source": "src_app_uk_ancestry_visa_page_tsx",
+      "target": "page_ukancestryvisapage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/car-accidents-claims/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_car_accidents_claims_page_tsx",
+      "_tgt": "page_caraccidentsclaimspage",
+      "source": "src_app_car_accidents_claims_page_tsx",
+      "target": "page_caraccidentsclaimspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/passenger-claims/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_passenger_claims_page_tsx",
+      "_tgt": "page_passengerclaimspage",
+      "source": "src_app_passenger_claims_page_tsx",
+      "target": "page_passengerclaimspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/civil-partnership-visa/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_civil_partnership_visa_page_tsx",
+      "_tgt": "page_civilpartnershipvisapage",
+      "source": "src_app_civil_partnership_visa_page_tsx",
+      "target": "page_civilpartnershipvisapage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/immigration/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_immigration_page_tsx",
+      "_tgt": "page_immigrationpage",
+      "source": "src_app_immigration_page_tsx",
+      "target": "page_immigrationpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/our-fees/page.tsx",
+      "source_location": "L58",
+      "weight": 1.0,
+      "_src": "src_app_our_fees_page_tsx",
+      "_tgt": "page_ourfeespage",
+      "source": "src_app_our_fees_page_tsx",
+      "target": "page_ourfeespage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/asylum-applications/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_asylum_applications_page_tsx",
+      "_tgt": "page_asylumapplicationspage",
+      "source": "src_app_asylum_applications_page_tsx",
+      "target": "page_asylumapplicationspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/website-legal-notice/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "src_app_website_legal_notice_page_tsx",
+      "_tgt": "page_websitelegalnoticepage",
+      "source": "src_app_website_legal_notice_page_tsx",
+      "target": "page_websitelegalnoticepage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/serious-injury-claims/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_serious_injury_claims_page_tsx",
+      "_tgt": "page_seriousinjuryclaimspage",
+      "source": "src_app_serious_injury_claims_page_tsx",
+      "target": "page_seriousinjuryclaimspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/employers-duty-of-care/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_employers_duty_of_care_page_tsx",
+      "_tgt": "page_employersdutyofcarepage",
+      "source": "src_app_employers_duty_of_care_page_tsx",
+      "target": "page_employersdutyofcarepage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/uk-unmarried-partner-visa/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_uk_unmarried_partner_visa_page_tsx",
+      "_tgt": "page_ukunmarriedpartnervisapage",
+      "source": "src_app_uk_unmarried_partner_visa_page_tsx",
+      "target": "page_ukunmarriedpartnervisapage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/fall-from-height-claims/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_fall_from_height_claims_page_tsx",
+      "_tgt": "page_fallfromheightclaimspage",
+      "source": "src_app_fall_from_height_claims_page_tsx",
+      "target": "page_fallfromheightclaimspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/about-us/page.tsx",
+      "source_location": "L135",
+      "weight": 1.0,
+      "_src": "src_app_about_us_page_tsx",
+      "_tgt": "page_aboutuspage",
+      "source": "src_app_about_us_page_tsx",
+      "target": "page_aboutuspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/eu-settlement-scheme/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_eu_settlement_scheme_page_tsx",
+      "_tgt": "page_eusettlementschemepage",
+      "source": "src_app_eu_settlement_scheme_page_tsx",
+      "target": "page_eusettlementschemepage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/uk-spouse-visa/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_uk_spouse_visa_page_tsx",
+      "_tgt": "page_ukspousevisapage",
+      "source": "src_app_uk_spouse_visa_page_tsx",
+      "target": "page_ukspousevisapage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/cookie-policy/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "src_app_cookie_policy_page_tsx",
+      "_tgt": "page_cookiepolicypage",
+      "source": "src_app_cookie_policy_page_tsx",
+      "target": "page_cookiepolicypage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/privacy-policy/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "src_app_privacy_policy_page_tsx",
+      "_tgt": "page_privacypolicypage",
+      "source": "src_app_privacy_policy_page_tsx",
+      "target": "page_privacypolicypage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/uk-visit-visa/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_uk_visit_visa_page_tsx",
+      "_tgt": "page_ukvisitvisapage",
+      "source": "src_app_uk_visit_visa_page_tsx",
+      "target": "page_ukvisitvisapage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/loss-of-sight-claims/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_loss_of_sight_claims_page_tsx",
+      "_tgt": "page_lossofsightclaimspage",
+      "source": "src_app_loss_of_sight_claims_page_tsx",
+      "target": "page_lossofsightclaimspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/motorcycle-accident-claims/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_motorcycle_accident_claims_page_tsx",
+      "_tgt": "page_motorcycleaccidentclaimspage",
+      "source": "src_app_motorcycle_accident_claims_page_tsx",
+      "target": "page_motorcycleaccidentclaimspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/terms-of-business/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "src_app_terms_of_business_page_tsx",
+      "_tgt": "page_termsofbusinesspage",
+      "source": "src_app_terms_of_business_page_tsx",
+      "target": "page_termsofbusinesspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/personal-injury/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_personal_injury_page_tsx",
+      "_tgt": "page_personalinjurypage",
+      "source": "src_app_personal_injury_page_tsx",
+      "target": "page_personalinjurypage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/blog/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "src_app_blog_page_tsx",
+      "_tgt": "page_blogpage",
+      "source": "src_app_blog_page_tsx",
+      "target": "page_blogpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/careers/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "src_app_careers_page_tsx",
+      "_tgt": "page_careerspage",
+      "source": "src_app_careers_page_tsx",
+      "target": "page_careerspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/v2/layout.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "src_app_v2_layout_tsx",
+      "_tgt": "layout_v2layout",
+      "source": "src_app_v2_layout_tsx",
+      "target": "layout_v2layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/v5/layout.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_src": "src_app_v5_layout_tsx",
+      "_tgt": "layout_v5layout",
+      "source": "src_app_v5_layout_tsx",
+      "target": "layout_v5layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/spinal-injury-claims/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_spinal_injury_claims_page_tsx",
+      "_tgt": "page_spinalinjuryclaimspage",
+      "source": "src_app_spinal_injury_claims_page_tsx",
+      "target": "page_spinalinjuryclaimspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/back-injury-claims/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_back_injury_claims_page_tsx",
+      "_tgt": "page_backinjuryclaimspage",
+      "source": "src_app_back_injury_claims_page_tsx",
+      "target": "page_backinjuryclaimspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/pedestrian-claims/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_pedestrian_claims_page_tsx",
+      "_tgt": "page_pedestrianclaimspage",
+      "source": "src_app_pedestrian_claims_page_tsx",
+      "target": "page_pedestrianclaimspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/v4/layout.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "src_app_v4_layout_tsx",
+      "_tgt": "layout_v4layout",
+      "source": "src_app_v4_layout_tsx",
+      "target": "layout_v4layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/v3/layout.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "src_app_v3_layout_tsx",
+      "_tgt": "layout_v3layout",
+      "source": "src_app_v3_layout_tsx",
+      "target": "layout_v3layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/v3/about-us/page.tsx",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_src": "src_app_v3_about_us_page_tsx",
+      "_tgt": "page_v3aboutpage",
+      "source": "src_app_v3_about_us_page_tsx",
+      "target": "page_v3aboutpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/uk-dependent-child-visa/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_uk_dependent_child_visa_page_tsx",
+      "_tgt": "page_ukdependentchildvisapage",
+      "source": "src_app_uk_dependent_child_visa_page_tsx",
+      "target": "page_ukdependentchildvisapage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/uk-visa-extensions-renewals/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_uk_visa_extensions_renewals_page_tsx",
+      "_tgt": "page_ukvisaextensionsrenewalspage",
+      "source": "src_app_uk_visa_extensions_renewals_page_tsx",
+      "target": "page_ukvisaextensionsrenewalspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/refer-a-friend/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "src_app_refer_a_friend_page_tsx",
+      "_tgt": "page_referafriendpage",
+      "source": "src_app_refer_a_friend_page_tsx",
+      "target": "page_referafriendpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/housing-disrepair/page.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "src_app_housing_disrepair_page_tsx",
+      "_tgt": "page_housingdisrepairpage",
+      "source": "src_app_housing_disrepair_page_tsx",
+      "target": "page_housingdisrepairpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/contact-us/page.tsx",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_src": "src_app_contact_us_page_tsx",
+      "_tgt": "page_contactuspage",
+      "source": "src_app_contact_us_page_tsx",
+      "target": "page_contactuspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/uk-fiance-visa/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_uk_fiance_visa_page_tsx",
+      "_tgt": "page_ukfiancevisapage",
+      "source": "src_app_uk_fiance_visa_page_tsx",
+      "target": "page_ukfiancevisapage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/uk-dependent-parent-visa/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_uk_dependent_parent_visa_page_tsx",
+      "_tgt": "page_ukdependentparentvisapage",
+      "source": "src_app_uk_dependent_parent_visa_page_tsx",
+      "target": "page_ukdependentparentvisapage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/fatal-accident-claims/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_fatal_accident_claims_page_tsx",
+      "_tgt": "page_fatalaccidentclaimspage",
+      "source": "src_app_fatal_accident_claims_page_tsx",
+      "target": "page_fatalaccidentclaimspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/uk-partner-visa-extension/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_uk_partner_visa_extension_page_tsx",
+      "_tgt": "page_ukpartnervisaextensionpage",
+      "source": "src_app_uk_partner_visa_extension_page_tsx",
+      "target": "page_ukpartnervisaextensionpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/immigration-lawyers/page.tsx",
+      "source_location": "L71",
+      "weight": 1.0,
+      "_src": "src_app_immigration_lawyers_page_tsx",
+      "_tgt": "page_immigrationlawyerspage",
+      "source": "src_app_immigration_lawyers_page_tsx",
+      "target": "page_immigrationlawyerspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/slips-and-trips/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_slips_and_trips_page_tsx",
+      "_tgt": "page_slipsandtripspage",
+      "source": "src_app_slips_and_trips_page_tsx",
+      "target": "page_slipsandtripspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/accidents-at-work/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_accidents_at_work_page_tsx",
+      "_tgt": "page_accidentsatworkpage",
+      "source": "src_app_accidents_at_work_page_tsx",
+      "target": "page_accidentsatworkpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/immigration-solicitors-london/page.tsx",
+      "source_location": "L148",
+      "weight": 1.0,
+      "_src": "src_app_immigration_solicitors_london_page_tsx",
+      "_tgt": "page_immigrationsolicitorslondonpage",
+      "source": "src_app_immigration_solicitors_london_page_tsx",
+      "target": "page_immigrationsolicitorslondonpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/head-and-brain-injury/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_head_and_brain_injury_page_tsx",
+      "_tgt": "page_headandbraininjurypage",
+      "source": "src_app_head_and_brain_injury_page_tsx",
+      "target": "page_headandbraininjurypage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/indefinite-leave-to-remain-ilr/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_indefinite_leave_to_remain_ilr_page_tsx",
+      "_tgt": "page_indefiniteleavetoremainilrpage",
+      "source": "src_app_indefinite_leave_to_remain_ilr_page_tsx",
+      "target": "page_indefiniteleavetoremainilrpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/british-citizenship/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_british_citizenship_page_tsx",
+      "_tgt": "page_britishcitizenshippage",
+      "source": "src_app_british_citizenship_page_tsx",
+      "target": "page_britishcitizenshippage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/uk-private-life-visa-ilr/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_app_uk_private_life_visa_ilr_page_tsx",
+      "_tgt": "page_ukprivatelifevisailrpage",
+      "source": "src_app_uk_private_life_visa_ilr_page_tsx",
+      "target": "page_ukprivatelifevisailrpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/site-layout.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_src": "src_components_site_layout_tsx",
+      "_tgt": "site_layout_sitelayout",
+      "source": "src_components_site_layout_tsx",
+      "target": "site_layout_sitelayout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/whatsapp-button.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "src_components_whatsapp_button_tsx",
+      "_tgt": "whatsapp_button_whatsappbutton",
+      "source": "src_components_whatsapp_button_tsx",
+      "target": "whatsapp_button_whatsappbutton",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/card.tsx",
+      "source_location": "L40",
+      "weight": 1.0,
+      "_src": "src_components_ui_card_tsx",
+      "_tgt": "card_cn",
+      "source": "src_components_ui_card_tsx",
+      "target": "card_cn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/card.tsx",
+      "source_location": "L59",
+      "weight": 1.0,
+      "_src": "src_components_ui_card_tsx",
+      "_tgt": "card_cardaction",
+      "source": "src_components_ui_card_tsx",
+      "target": "card_cardaction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/sheet.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_src": "src_components_ui_sheet_tsx",
+      "_tgt": "sheet_sheet",
+      "source": "src_components_ui_sheet_tsx",
+      "target": "sheet_sheet",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/sheet.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_src": "src_components_ui_sheet_tsx",
+      "_tgt": "sheet_sheettrigger",
+      "source": "src_components_ui_sheet_tsx",
+      "target": "sheet_sheettrigger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/sheet.tsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_src": "src_components_ui_sheet_tsx",
+      "_tgt": "sheet_sheetclose",
+      "source": "src_components_ui_sheet_tsx",
+      "target": "sheet_sheetclose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/sheet.tsx",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_src": "src_components_ui_sheet_tsx",
+      "_tgt": "sheet_sheetportal",
+      "source": "src_components_ui_sheet_tsx",
+      "target": "sheet_sheetportal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/sheet.tsx",
+      "source_location": "L54",
+      "weight": 1.0,
+      "_src": "src_components_ui_sheet_tsx",
+      "_tgt": "sheet_cn",
+      "source": "src_components_ui_sheet_tsx",
+      "target": "sheet_cn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/sheet.tsx",
+      "source_location": "L108",
+      "weight": 1.0,
+      "_src": "src_components_ui_sheet_tsx",
+      "_tgt": "sheet_sheetdescription",
+      "source": "src_components_ui_sheet_tsx",
+      "target": "sheet_sheetdescription",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/label.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "src_components_ui_label_tsx",
+      "_tgt": "label_cn",
+      "source": "src_components_ui_label_tsx",
+      "target": "label_cn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/navigation-menu.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "src_components_ui_navigation_menu_tsx",
+      "_tgt": "navigation_menu_navigationmenu",
+      "source": "src_components_ui_navigation_menu_tsx",
+      "target": "navigation_menu_navigationmenu",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/navigation-menu.tsx",
+      "source_location": "L29",
+      "weight": 1.0,
+      "_src": "src_components_ui_navigation_menu_tsx",
+      "_tgt": "navigation_menu_navigationmenulist",
+      "source": "src_components_ui_navigation_menu_tsx",
+      "target": "navigation_menu_navigationmenulist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/navigation-menu.tsx",
+      "source_location": "L45",
+      "weight": 1.0,
+      "_src": "src_components_ui_navigation_menu_tsx",
+      "_tgt": "navigation_menu_navigationmenuitem",
+      "source": "src_components_ui_navigation_menu_tsx",
+      "target": "navigation_menu_navigationmenuitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/navigation-menu.tsx",
+      "source_location": "L62",
+      "weight": 1.0,
+      "_src": "src_components_ui_navigation_menu_tsx",
+      "_tgt": "navigation_menu_navigationmenutrigger",
+      "source": "src_components_ui_navigation_menu_tsx",
+      "target": "navigation_menu_navigationmenutrigger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/navigation-menu.tsx",
+      "source_location": "L79",
+      "weight": 1.0,
+      "_src": "src_components_ui_navigation_menu_tsx",
+      "_tgt": "navigation_menu_navigationmenucontent",
+      "source": "src_components_ui_navigation_menu_tsx",
+      "target": "navigation_menu_navigationmenucontent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/navigation-menu.tsx",
+      "source_location": "L124",
+      "weight": 1.0,
+      "_src": "src_components_ui_navigation_menu_tsx",
+      "_tgt": "navigation_menu_navigationmenulink",
+      "source": "src_components_ui_navigation_menu_tsx",
+      "target": "navigation_menu_navigationmenulink",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/accordion.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "src_components_ui_accordion_tsx",
+      "_tgt": "accordion_accordion",
+      "source": "src_components_ui_accordion_tsx",
+      "target": "accordion_accordion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/accordion.tsx",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_src": "src_components_ui_accordion_tsx",
+      "_tgt": "accordion_accordionitem",
+      "source": "src_components_ui_accordion_tsx",
+      "target": "accordion_accordionitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/accordion.tsx",
+      "source_location": "L26",
+      "weight": 1.0,
+      "_src": "src_components_ui_accordion_tsx",
+      "_tgt": "accordion_accordiontrigger",
+      "source": "src_components_ui_accordion_tsx",
+      "target": "accordion_accordiontrigger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/accordion.tsx",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_src": "src_components_ui_accordion_tsx",
+      "_tgt": "accordion_accordioncontent",
+      "source": "src_components_ui_accordion_tsx",
+      "target": "accordion_accordioncontent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/badge.tsx",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_src": "src_components_ui_badge_tsx",
+      "_tgt": "badge_badge",
+      "source": "src_components_ui_badge_tsx",
+      "target": "badge_badge",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/components/ui/badge.tsx",
+      "source_location": "L40",
+      "weight": 1.0,
+      "_src": "badge_badge",
+      "_tgt": "utils_cn",
+      "source": "badge_badge",
+      "target": "utils_cn"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/separator.tsx",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_src": "src_components_ui_separator_tsx",
+      "_tgt": "separator_cn",
+      "source": "src_components_ui_separator_tsx",
+      "target": "separator_cn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/select.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "src_components_ui_select_tsx",
+      "_tgt": "select_selectgroup",
+      "source": "src_components_ui_select_tsx",
+      "target": "select_selectgroup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/select.tsx",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_src": "src_components_ui_select_tsx",
+      "_tgt": "select_selectvalue",
+      "source": "src_components_ui_select_tsx",
+      "target": "select_selectvalue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/select.tsx",
+      "source_location": "L31",
+      "weight": 1.0,
+      "_src": "src_components_ui_select_tsx",
+      "_tgt": "select_selecttrigger",
+      "source": "src_components_ui_select_tsx",
+      "target": "select_selecttrigger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/select.tsx",
+      "source_location": "L59",
+      "weight": 1.0,
+      "_src": "src_components_ui_select_tsx",
+      "_tgt": "select_selectcontent",
+      "source": "src_components_ui_select_tsx",
+      "target": "select_selectcontent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/select.tsx",
+      "source_location": "L98",
+      "weight": 1.0,
+      "_src": "src_components_ui_select_tsx",
+      "_tgt": "select_selectlabel",
+      "source": "src_components_ui_select_tsx",
+      "target": "select_selectlabel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/select.tsx",
+      "source_location": "L111",
+      "weight": 1.0,
+      "_src": "src_components_ui_select_tsx",
+      "_tgt": "select_selectitem",
+      "source": "src_components_ui_select_tsx",
+      "target": "select_selectitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/select.tsx",
+      "source_location": "L139",
+      "weight": 1.0,
+      "_src": "src_components_ui_select_tsx",
+      "_tgt": "select_selectseparator",
+      "source": "src_components_ui_select_tsx",
+      "target": "select_selectseparator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/select.tsx",
+      "source_location": "L152",
+      "weight": 1.0,
+      "_src": "src_components_ui_select_tsx",
+      "_tgt": "select_selectscrollupbutton",
+      "source": "src_components_ui_select_tsx",
+      "target": "select_selectscrollupbutton",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/select.tsx",
+      "source_location": "L171",
+      "weight": 1.0,
+      "_src": "src_components_ui_select_tsx",
+      "_tgt": "select_selectscrolldownbutton",
+      "source": "src_components_ui_select_tsx",
+      "target": "select_selectscrolldownbutton",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/textarea.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_src": "src_components_ui_textarea_tsx",
+      "_tgt": "textarea_cn",
+      "source": "src_components_ui_textarea_tsx",
+      "target": "textarea_cn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/input.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "src_components_ui_input_tsx",
+      "_tgt": "input_input",
+      "source": "src_components_ui_input_tsx",
+      "target": "input_input",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/v2/footer.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_src": "src_components_v2_footer_tsx",
+      "_tgt": "footer_v2footer",
+      "source": "src_components_v2_footer_tsx",
+      "target": "footer_v2footer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/v3/footer.tsx",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_src": "src_components_v3_footer_tsx",
+      "_tgt": "footer_v3footer",
+      "source": "src_components_v3_footer_tsx",
+      "target": "footer_v3footer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/v3/header.tsx",
+      "source_location": "L74",
+      "weight": 1.0,
+      "_src": "src_components_v3_header_tsx",
+      "_tgt": "header_handler",
+      "source": "src_components_v3_header_tsx",
+      "target": "header_handler",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services-data.ts",
+      "source_location": "L1066",
+      "weight": 1.0,
+      "_src": "src_lib_services_data_ts",
+      "_tgt": "services_data_getservicepage",
+      "source": "src_lib_services_data_ts",
+      "target": "services_data_getservicepage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/utils.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_src": "src_lib_utils_ts",
+      "_tgt": "utils_cn",
+      "source": "src_lib_utils_ts",
+      "target": "utils_cn",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": []
+}
