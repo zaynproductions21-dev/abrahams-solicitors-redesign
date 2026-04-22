@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import { ServicePageTemplate } from "@/components/service-page-template";
-import { immigrationPages } from "@/lib/services-data";
+import { getServicePage } from "@/lib/services-data";
 
-const page = immigrationPages.find((p) => p.slug === "uk-visit-visa")!;
+const page = getServicePage("uk-visit-visa")!;
 
 export const metadata: Metadata = {
   title: page.metaTitle,
   description: page.metaDescription,
 };
 
-export default function UkVisitVisaPage() {
+export default function Page() {
   return <ServicePageTemplate page={page} />;
 }

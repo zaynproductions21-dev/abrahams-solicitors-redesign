@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { ServicePageTemplate } from "@/components/service-page-template";
-import { housingPage } from "@/lib/services-data";
+import { getServicePage } from "@/lib/services-data";
+
+const page = getServicePage("housing-disrepair")!;
 
 export const metadata: Metadata = {
-  title: housingPage.metaTitle,
-  description: housingPage.metaDescription,
+  title: page.metaTitle,
+  description: page.metaDescription,
 };
 
-export default function HousingDisrepairPage() {
-  return <ServicePageTemplate page={housingPage} />;
+export default function Page() {
+  return <ServicePageTemplate page={page} />;
 }

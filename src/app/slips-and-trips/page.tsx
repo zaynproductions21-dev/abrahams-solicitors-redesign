@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import { ServicePageTemplate } from "@/components/service-page-template";
-import { personalInjuryPages } from "@/lib/services-data";
+import { getServicePage } from "@/lib/services-data";
 
-const page = personalInjuryPages.find((p) => p.slug === "slips-and-trips")!;
+const page = getServicePage("slips-and-trips")!;
 
 export const metadata: Metadata = {
   title: page.metaTitle,
   description: page.metaDescription,
 };
 
-export default function SlipsAndTripsPage() {
+export default function Page() {
   return <ServicePageTemplate page={page} />;
 }
