@@ -1,4 +1,4 @@
-// Auto-generated from PublishOS page copy — last sync: 2026-04-22T19:21:12.282Z
+// Auto-generated from PublishOS page copy — last sync: 2026-04-22T20:01:43.200Z
 // Run: npx tsx scripts/sync-copy.ts
 
 export interface ServicePage {
@@ -401,6 +401,619 @@ export const immigrationPages: ServicePage[] = [
     ],
     "parentService": "Immigration Law",
     "parentHref": "/immigration/"
+  },
+  {
+    "slug": "immigration",
+    "title": "immigration",
+    "metaTitle": "Immigration Solicitors Near Me | Fixed Fees | Expert UK Visa",
+    "metaDescription": "Expert immigration solicitors offering fixed fees from £1,200. Direct solicitor contact, not call centres. Free consultation. Visa success guaranteed.",
+    "heroTitle": "Expert Immigration Solicitors Near You",
+    "heroDescription": "Worried your visa application might get refused? You're not alone. Every year, thousands of families face separation because of incorrectly prepared applications or missing documentation.",
+    "badge": "Immigration Law",
+    "sections": [
+      {
+        "title": "UK Immigration Lawyer Services That Actually Work",
+        "content": "Our experienced immigration lawyers handle every type of UK visa application with transparent fixed-fee pricing:\n\nFamily Visas\n- Spouse/Partner Visas from £1,500\n- Fiancé Visas from £1,400\n- Child Dependent Visas from £1,200\n- Parent/Grandparent Visas from £1,800\n\nWork & Business Visas\n- Skilled Worker Visas from £1,300\n- Global Talent Visas from £1,600\n- Start-up/Innovator Visas from £2,000\n- Sponsor Licence Applications from £2,500\n\nSettlement & Citizenship\n- Indefinite Leave to Remain (ILR) from £1,200\n- British Citizenship Applications from £1,000\n- EU Settlement Scheme from £800\n\nSpecialist Services\n- Visa Refusal Appeals from £1,500\n- Administrative Reviews from £800\n- [INTERNAL LINK: /canada-immigration] Canada Immigration Support\n\nEvery case includes unlimited email support, document checking, and a dedicated solicitor — never a paralegal or trainee."
+      },
+      {
+        "title": "Why Choose Our Immigration Solicitors",
+        "content": "Direct Solicitor Contact From Day One\nYou'll speak directly with qualified immigration lawyers, not call centre staff. Your solicitor handles your entire case personally.\n\nGuaranteed Fixed Fees\nNo hourly billing. No surprise charges. Pay a single fixed fee upfront and know exactly what your immigration case will cost.\n\nNationwide Coverage\nWhether you're in London, Manchester, or rural Scotland, you'll get the same expert immigration advice. Video consultations available.\n\n98% Success Rate\nOver 5,000 successful visa applications. We know exactly what the Home Office wants to see in your application.\n\nFree Initial Consultation\nDiscuss your immigration options with an experienced solicitor completely free. No obligation, no pressure.\n\nSame-Day Response Guarantee\nUrgent immigration matter? We respond to all enquiries within 24 hours, often the same day."
+      },
+      {
+        "title": "How Our Immigration Process Works",
+        "content": "1. Free Consultation (30 Minutes)\nYou'll speak directly with an immigration solicitor about your situation. We'll assess your eligibility and explain your options clearly.\n\n2. Fixed Fee Quote\nYou'll receive a guaranteed fixed-price quote for your entire immigration case. No hidden costs or hourly billing surprises.\n\n3. Document Preparation\nYour solicitor prepares all Home Office forms and supporting documents. We handle the complex paperwork so you don't have to.\n\n4. Application Submission\nWe submit your visa application and monitor progress. You'll receive regular updates throughout the process.\n\n5. Decision & Next Steps\nWhen your visa's approved, we'll explain any conditions and help plan your next immigration steps if needed."
+      },
+      {
+        "title": "Common UK Immigration Challenges We Solve",
+        "content": "Visa Refusals & Appeals\nHad a visa refused? Our immigration lawyers analyse refusal letters and advise whether to appeal or make a fresh application. Many refusals can be overturned with proper legal representation.\n\nComplex Financial Requirements\nStruggling to meet income thresholds for spouse visas? We help structure your finances and evidence to satisfy Home Office requirements.\n\nUrgent Applications\nFacing tight deadlines? Our priority service ensures urgent visa applications are prepared and submitted quickly without compromising quality.\n\nDocument Issues\nMissing documents from overseas? We'll guide you through obtaining the correct evidence and can often suggest acceptable alternatives.\n\nEnglish Language Requirements\nConfused about English tests? We explain exactly which qualifications are accepted and help you choose the right option for your circumstances.\n\nOur immigration solicitor fees start from £800 for EU Settlement applications, £1,200 for Indefinite Leave to Remain, and £1,500 for spouse visas. Unlike many firms charging hourly rates (£300-500/hour), we offer guaranteed fixed fees with no hidden costs. You pay one price upfront and know exactly what your immigration case will cost.\n\nYes, we offer a free 30-minute consultation with qualified immigration solicitors. During this call, we'll assess your eligibility, explain your options, and provide honest advice about your chances of success. While ongoing legal representation requires payment, this initial advice is completely free with no obligation.\n\nWhile it's not legally required, using an experienced immigration solicitor significantly increases your chances of success. Home Office statistics show higher approval rates for professionally prepared applications. Given visa refusal can mean family separation and wasted fees (£1,033+ for spouse visas), professional help often saves money long-term.\n\nProcessing times depend on visa type: spouse visas typically take 3-6 months, work visas 3-8 weeks, and settlement applications 6 months. Using a solicitor doesn't speed up Home Office processing, but it ensures your application's correct first time, avoiding delays from requests for additional information or refusals requiring reapplication.\n\nImmigration solicitors handle day-to-day visa applications, advice, and client contact. Barristers specialise in court representation for appeals and complex legal arguments. For most visa applications, you only need a solicitor. We work with specialist immigration barristers when court representation's required, ensuring you get the right expertise at each stage.\n\nYes, we regularly help clients whose visas have been refused. We analyse refusal letters, identify weaknesses in the original application, and advise whether to appeal or submit a fresh application. Many refusals result from poor preparation or missing evidence rather than genuine ineligibility — issues we can often resolve."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How much does an immigration solicitor cost in the UK?",
+        "answer": "Our immigration solicitor fees start from £800 for EU Settlement applications, £1,200 for Indefinite Leave to Remain, and £1,500 for spouse visas. Unlike many firms charging hourly rates (£300-500/hour), we offer guaranteed fixed fees with no hidden costs. You pay one price upfront and know exactly what your immigration case will cost."
+      },
+      {
+        "question": "Can I get free immigration advice in the UK?",
+        "answer": "Yes, we offer a free 30-minute consultation with qualified immigration solicitors. During this call, we'll assess your eligibility, explain your options, and provide honest advice about your chances of success. While ongoing legal representation requires payment, this initial advice is completely free with no obligation."
+      },
+      {
+        "question": "Do I need an immigration lawyer for my UK visa application?",
+        "answer": "While it's not legally required, using an experienced immigration solicitor significantly increases your chances of success. Home Office statistics show higher approval rates for professionally prepared applications. Given visa refusal can mean family separation and wasted fees (£1,033+ for spouse visas), professional help often saves money long-term."
+      },
+      {
+        "question": "How long do UK visa applications take with a solicitor?",
+        "answer": "Processing times depend on visa type: spouse visas typically take 3-6 months, work visas 3-8 weeks, and settlement applications 6 months. Using a solicitor doesn't speed up Home Office processing, but it ensures your application's correct first time, avoiding delays from requests for additional information or refusals requiring reapplication."
+      },
+      {
+        "question": "What's the difference between immigration solicitors and barristers?",
+        "answer": "Immigration solicitors handle day-to-day visa applications, advice, and client contact. Barristers specialise in court representation for appeals and complex legal arguments. For most visa applications, you only need a solicitor. We work with specialist immigration barristers when court representation's required, ensuring you get the right expertise at each stage."
+      },
+      {
+        "question": "Can immigration solicitors help with visa refusals?",
+        "answer": "Yes, we regularly help clients whose visas have been refused. We analyse refusal letters, identify weaknesses in the original application, and advise whether to appeal or submit a fresh application. Many refusals result from poor preparation or missing evidence rather than genuine ineligibility — issues we can often resolve."
+      }
+    ],
+    "parentService": "Immigration Law",
+    "parentHref": "/immigration/"
+  },
+  {
+    "slug": "uk-spouse-visa",
+    "title": "UK Spouse Visa",
+    "metaTitle": "UK Spouse Visa Solicitors - Fixed Fees from £1,500",
+    "metaDescription": "Expert UK spouse visa solicitors with guaranteed fixed fees. Direct solicitor contact from day one. Free consultation. No hidden costs.",
+    "heroTitle": "UK Spouse Visa Experts - Unite With Your Partner",
+    "heroDescription": "Meta Title: UK Spouse Visa Solicitors - Fixed Fees from £1,500",
+    "badge": "Immigration Law",
+    "sections": [
+      {
+        "title": "UK Spouse Visa Experts - Unite With Your Partner",
+        "content": "Worried your UK spouse visa application might be refused? You're not alone. Every year, thousands of applications fail because of missing documents, wrong forms, or dodgy financial evidence.\n\nBeing separated from your partner is heartbreaking enough. Then you've got complex immigration rules, tight deadlines, and the fear of losing thousands on a failed application. It's overwhelming.\n\nOur specialist UK spouse visa solicitors have reunited over 2,000 couples with a 98% success rate. We guarantee fixed fees from £1,500 with no hidden costs, and you'll speak directly with your solicitor from day one — not some call centre."
+      },
+      {
+        "title": "Complete UK Spouse Visa Services With Fixed Fees",
+        "content": "Our spouse visa solicitors near me provide full support across the UK:\n\nInitial Spouse Visa Applications (£1,500 fixed fee)\n- Complete application prep and document review\n- Financial requirement calculations and evidence gathering\n- English language requirement guidance\n- Accommodation evidence preparation\n- Home Office submission and tracking\n\nSpouse Visa Extensions (from £1,200)\n- ILR (Indefinite Leave to Remain) applications after 5 years\n- Biometric appointment booking and attendance\n- Life in the UK test preparation support\n\nVisa Refusal Appeals (No Win No Fee available)\n- Expert case review within 48 hours of refusal\n- Administrative review applications\n- First-tier Tribunal appeals\n- Fresh applications with stronger evidence\n\nSpecialist Services\n- Fiancé visa to spouse visa switches\n- Priority and super-priority processing\n- Complex financial circumstances (self-employment, investments)\n- Previous immigration history complications\n\nUnlike high-street immigration lawyer practices, we're available nationwide with the same fixed fees whether you're in London or Newcastle. [INTERNAL LINK: /contact]"
+      },
+      {
+        "title": "Our Proven UK Spouse Visa Process",
+        "content": "Step 1: Free Initial Consultation (30 minutes)\nYour dedicated solicitor looks at your case, explains what you need, and gives you a clear action plan with guaranteed costs.\n\nStep 2: Document Preparation (2-3 weeks)\nWe create a detailed document checklist, review all evidence, and spot any gaps before submission.\n\nStep 3: Application Submission\nYour solicitor completes the online application, books biometric appointments, and submits supporting documents to the Home Office.\n\nStep 4: Ongoing Support\nWe track your application, respond to any Home Office queries, and keep you updated throughout the 12-week processing period.\n\nStep 5: Decision and Next Steps\nOnce you're approved, we explain your visa conditions and plan your route to settlement. If refused, our visa refusal appeal team takes immediate action.\n\nOur best immigration lawyer uk team has handled every type of spouse visa complexity — from self-employed sponsors to previous refusals."
+      },
+      {
+        "title": "Transparent Spouse Visa Solicitor Fees - No Hidden Costs",
+        "content": "Tired of solicitors who won't quote upfront fees? We believe in complete transparency:\n\nStandard Spouse Visa Application: £1,500 (fixed)\n- Initial consultation and case assessment\n- Complete application preparation\n- Document review and submission\n- Home Office correspondence\n- 6 months post-decision support\n\nComplex Cases: from £2,000\n- Previous refusals or immigration breaches\n- Self-employment or investment income\n- Maintenance from third parties\n- Exceptional circumstances applications\n\nAdditional Services:\n- Priority processing assistance: £200\n- Biometric appointment attendance: £150\n- Visa refusal appeal: No Win No Fee available\n- Settlement (ILR) applications: from £1,200\n\nWhat's NOT included:\n- Home Office application fees (£1,538)\n- Biometric appointment fee (£19.20)\n- Priority processing fees (£573)\n- Translation costs (if required)\n\nMany immigration lawyer cost uk queries come from clients shocked by hidden fees elsewhere. With us, the price you're quoted is the price you pay. [INTERNAL LINK: /pricing]"
+      },
+      {
+        "title": "Why Choose Our UK Immigration Lawyer Team",
+        "content": "Direct Solicitor Access from Day One\nNo call centres. No junior staff. You deal directly with qualified solicitors who specialise in UK spouse visas.\n\nNationwide Coverage with Local Understanding\nWhether you need spouse visa solicitors near me in Manchester or expert advice in Edinburgh, our team understands regional Home Office processing variations.\n\n98% Success Rate\nOver 2,000 couples reunited with our expert guidance. Our track record speaks for itself.\n\nFixed Fee Guarantee\nWhat we quote is what you pay. No unexpected bills, no hourly rate surprises.\n\nRegulated and Insured\nAuthorised by the Solicitors Regulation Authority with full professional indemnity insurance.\n\nFree Immigration Advice UK Telephone Support\nEmergency contact line for urgent queries during your application process.\n\nSpecialist Expertise\nOur solicitors handle only immigration law — we're not generalists trying to cover everything.\n\nMany clients come to us after poor experiences with other firms. One client said: \"After 18 months of delays with my previous solicitor, [Firm Name] got my spouse visa approved in 8 weeks. The fixed fee meant no nasty surprises, and speaking directly to my solicitor made all the difference.\"\n\n\nUK spouse visa solicitor fees vary massively. Our fixed fee is £1,500 for standard applications, covering everything from initial consultation to Home Office submission. This compares well to London firms charging £3,000-5,000. Complex cases start from £2,000. Always ask for a written quote including all services — many firms add extra charges later.\n\n\nYes, we provide free initial consultations and emergency telephone support for existing clients. While some organisations offer basic free immigration advice uk telephone services, complex spouse visa applications need specialist legal guidance. Our 30-minute free consultation will give you a clear understanding of your case and what's required.\n\n\nIf your spouse visa is refused, you've got several options: administrative review (if it's a case-working error), fresh application with stronger evidence, or First-tier Tribunal appeal in certain circumstances. Our visa refusal appeal team can review your case within 48 hours and advise the best route forward. We offer No Win No Fee appeals for suitable cases.\n\n\nStandard UK spouse visa applications take up to 12 weeks when applying from outside the UK. Priority processing (additional £573) reduces this to 6 weeks, and super priority to 1 week. Applications from within the UK typically take 8 weeks. We track all our applications and update clients on progress throughout the process.\n\n\nWhile not legally required, spouse visa applications are complex with a high refusal rate for DIY applications. Professional help significantly increases success chances — our approval rate is 98% versus approximately 70% for self-submitted applications. The cost of refusal (reapplication fees, separation time, stress) often exceeds solicitor fees.\n\n\nSolicitor fees can't be refunded if your extension is refused, which is why choosing experienced representation is crucial. Our spouse visa extension solicitor fee starts from £1,200 for settlement applications. We offer free case assessments to identify any potential issues before you commit to the full service."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How much do spouse visa solicitor fees typically cost in the UK?",
+        "answer": "UK spouse visa solicitor fees vary massively. Our fixed fee is £1,500 for standard applications, covering everything from initial consultation to Home Office submission. This compares well to London firms charging £3,000-5,000. Complex cases start from £2,000. Always ask for a written quote including all services — many firms add extra charges later."
+      },
+      {
+        "question": "Can I get free immigration advice UK telephone support during my application?",
+        "answer": "Yes, we provide free initial consultations and emergency telephone support for existing clients. While some organisations offer basic free immigration advice uk telephone services, complex spouse visa applications need specialist legal guidance. Our 30-minute free consultation will give you a clear understanding of your case and what's required."
+      },
+      {
+        "question": "What happens if my UK spouse visa is refused - can I appeal?",
+        "answer": "If your spouse visa is refused, you've got several options: administrative review (if it's a case-working error), fresh application with stronger evidence, or First-tier Tribunal appeal in certain circumstances. Our visa refusal appeal team can review your case within 48 hours and advise the best route forward. We offer No Win No Fee appeals for suitable cases."
+      },
+      {
+        "question": "How long does a UK spouse visa application take to process?",
+        "answer": "Standard UK spouse visa applications take up to 12 weeks when applying from outside the UK. Priority processing (additional £573) reduces this to 6 weeks, and super priority to 1 week. Applications from within the UK typically take 8 weeks. We track all our applications and update clients on progress throughout the process."
+      },
+      {
+        "question": "Do I need an immigration lawyer for my UK spouse visa application?",
+        "answer": "While not legally required, spouse visa applications are complex with a high refusal rate for DIY applications. Professional help significantly increases success chances — our approval rate is 98% versus approximately 70% for self-submitted applications. The cost of refusal (reapplication fees, separation time, stress) often exceeds solicitor fees."
+      },
+      {
+        "question": "Can spouse visa extension solicitor fees be claimed back if refused?",
+        "answer": "Solicitor fees can't be refunded if your extension is refused, which is why choosing experienced representation is crucial. Our spouse visa extension solicitor fee starts from £1,200 for settlement applications. We offer free case assessments to identify any potential issues before you commit to the full service."
+      }
+    ],
+    "parentService": "Immigration Law",
+    "parentHref": "/immigration/"
+  },
+  {
+    "slug": "uk-visit-visa",
+    "title": "uk visit visa",
+    "metaTitle": "** UK Visit Visa Application Help | Expert Immigration Lawyers",
+    "metaDescription": "** Get expert help with your UK visit visa application. Fixed fees from £500. Direct solicitor access. Free consultation available today.",
+    "heroTitle": "UK Visit Visa Applications Made Simple",
+    "heroDescription": "Meta Title: UK Visit Visa Application Help | Expert Immigration Lawyers",
+    "badge": "Immigration Law",
+    "sections": [
+      {
+        "title": "UK Visit Visa Applications Made Simple",
+        "content": "Visiting family in the UK? Planning a business trip? Don't let visa refusal ruin your plans. Our immigration lawyers have helped thousands secure UK visit visas with a 98% success rate. No call centres. No hidden fees. Just direct access to experienced solicitors who know exactly what visa officers want to see.\n\nHere's the thing – your UK visit visa application is too important to leave to chance. Missing documents or incorrect information can lead to automatic refusal and wasted application fees. Our expert team makes sure your application ticks every box the first time round.\n\nCTA: Get Your Free Visa Assessment"
+      },
+      {
+        "title": "Complete UK Visit Visa Services With Fixed Pricing",
+        "content": "Standard Visit Visa Applications - From £500\nTourism, family visits, business trips up to 6 months. Includes document review, application preparation, and submission support.\n\nLong-term Visit Visas - From £750\n2, 5, or 10-year multiple entry visas for frequent visitors. Perfect for business professionals or those with UK family ties.\n\nBusiness Visitor Visas - From £600\nMeetings, conferences, training, or client visits. We'll make sure your business purpose is crystal clear to avoid refusal.\n\nFamily Visit Documentation - From £550\nVisiting spouse, children, or relatives in the UK? We specialise in relationship evidence and sponsor documentation.\n\nVisa Refusal Appeals and Reapplications\nHad a previous refusal? Our visa refusal appeal experts can spot what went wrong and massively improve your chances next time. [INTERNAL LINK: /visa-refusal-appeal]\n\nEvery service includes direct contact with your dedicated immigration lawyer – not call centre staff. Fixed fees agreed upfront with no nasty surprises."
+      },
+      {
+        "title": "Why Choose Our Immigration Lawyers for Your UK Visit Visa",
+        "content": "Direct Solicitor Access From Day One\nYou'll speak directly to qualified immigration lawyers, never trainees or call centre staff. Your case is too important for junior staff.\n\nTransparent Fixed Fees\nKnow exactly what you'll pay upfront. No hourly billing surprises or hidden costs. Immigration lawyer cost UK varies wildly – we believe in fair, fixed pricing.\n\nNationwide Service\nWhether you need a UK immigration lawyer near me in Manchester, Birmingham, or anywhere else, we provide the same expert service nationwide.\n\n98% Success Rate\nOur experience shows. We know what UK visa officers look for and how to present your case for maximum success.\n\nFree Initial Consultation\nNot sure if you qualify? Get free immigration advice UK by telephone to discuss your situation before you commit to anything."
+      },
+      {
+        "title": "Our UK Visit Visa Application Process",
+        "content": "1. Free Consultation (15 minutes)\nWe'll discuss your travel plans, assess eligibility, and spot potential issues before they become problems.\n\n2. Document Review and Strategy\nYour dedicated solicitor reviews all documents and creates a tailored application strategy just for you.\n\n3. Application Preparation\nWe complete your visa application, draft supporting letters, and ensure all evidence meets Home Office requirements.\n\n4. Submission and Tracking\nSubmit your application with confidence. We monitor progress and handle any requests for additional information.\n\n5. Decision Support\nReceive your visa or, in rare cases of refusal, immediate advice on next steps including appeal options.\n\nStart today with your free consultation. Most UK visit visa applications can be submitted within 5-7 working days of instruction.\n\n\nOur UK visit visa services start from £500 for standard applications, which includes document review, application preparation, and submission support. This is in addition to the Home Office visa fee. As the best immigration lawyer UK option for fixed pricing, we guarantee no hidden costs or hourly billing surprises.\n\n\nYou can't appeal a visit visa refusal, but you can reapply immediately with stronger evidence. Our visa refusal appeal specialists can review your refusal letter, identify weaknesses in your original application, and significantly improve your chances of success on reapplication.\n\n\nWhile it's not mandatory, professional help dramatically increases success rates. Visit visa refusals are common due to inadequate financial evidence, poor travel history, or weak ties to home country. Our immigration lawyer cost UK is often less than the combined cost of multiple failed applications.\n\n\nStandard processing is 3 weeks from submission, but can stretch to 8+ weeks during busy periods. Priority services are available for urgent travel. We monitor your application progress and provide regular updates throughout the process.\n\n\nEssential documents include passport, bank statements (6 months), employment letter, travel itinerary, accommodation proof, and invitation letter if you're visiting family. Requirements vary by circumstances – our solicitors provide a personalised checklist during your free consultation.\n\n\nAbsolutely. Weak finances are a common refusal reason, but alternatives exist. We can help structure applications using sponsor support, demonstrate alternative income sources, or build stronger cases with limited finances. Each situation is unique and requires expert assessment."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How much does a UK visit visa application cost with legal help?",
+        "answer": "Our UK visit visa services start from £500 for standard applications, which includes document review, application preparation, and submission support. This is in addition to the Home Office visa fee. As the best immigration lawyer UK option for fixed pricing, we guarantee no hidden costs or hourly billing surprises."
+      },
+      {
+        "question": "Can I appeal if my UK visit visa is refused?",
+        "answer": "You can't appeal a visit visa refusal, but you can reapply immediately with stronger evidence. Our visa refusal appeal specialists can review your refusal letter, identify weaknesses in your original application, and significantly improve your chances of success on reapplication."
+      },
+      {
+        "question": "Do I need an immigration lawyer for a UK visit visa application?",
+        "answer": "While it's not mandatory, professional help dramatically increases success rates. Visit visa refusals are common due to inadequate financial evidence, poor travel history, or weak ties to home country. Our immigration lawyer cost UK is often less than the combined cost of multiple failed applications."
+      },
+      {
+        "question": "How long does a UK visit visa application take to process?",
+        "answer": "Standard processing is 3 weeks from submission, but can stretch to 8+ weeks during busy periods. Priority services are available for urgent travel. We monitor your application progress and provide regular updates throughout the process."
+      },
+      {
+        "question": "What documents do I need for a UK visit visa application?",
+        "answer": "Essential documents include passport, bank statements (6 months), employment letter, travel itinerary, accommodation proof, and invitation letter if you're visiting family. Requirements vary by circumstances – our solicitors provide a personalised checklist during your free consultation."
+      },
+      {
+        "question": "Can you help if I don't have strong financial evidence for my visit visa?",
+        "answer": "Absolutely. Weak finances are a common refusal reason, but alternatives exist. We can help structure applications using sponsor support, demonstrate alternative income sources, or build stronger cases with limited finances. Each situation is unique and requires expert assessment."
+      }
+    ],
+    "parentService": "Immigration Law",
+    "parentHref": "/immigration/"
+  },
+  {
+    "slug": "uk-ancestry-visa",
+    "title": "uk ancestry visa",
+    "metaTitle": "UK Ancestry Visa Applications | Fixed Fee Immigration Law",
+    "metaDescription": "UK ancestry visa applications from £1,200. Direct solicitor access, guaranteed fixed fees. Commonwealth citizens - claim your right to live in the UK.",
+    "heroTitle": "UK Ancestry Visa Applications Made Simple",
+    "heroDescription": "Meta Title: UK Ancestry Visa Applications | Fixed Fee Immigration Law",
+    "badge": "Immigration Law",
+    "sections": [
+      {
+        "title": "UK Ancestry Visa Applications Made Simple",
+        "content": "Your Commonwealth heritage gives you the right to live and work in the UK. But one mistake on your UK ancestry visa application could mean months of delay or outright refusal.\n\nYou shouldn't have to navigate complex immigration rules alone or worry about hidden solicitor fees. That's why we offer guaranteed fixed-price UK ancestry visa applications with direct access to experienced immigration solicitors from day one.\n\nNo call centres. No surprises. Just expert legal support when you need it most."
+      },
+      {
+        "title": "Complete UK Ancestry Visa Services",
+        "content": "Our UK immigration lawyers handle every part of your ancestry visa application:\n\nUK Ancestry Visa Applications - From £1,200 fixed fee\n• Eligibility assessment and document review\n• Application preparation and submission\n• Biometric appointment booking\n• Entry clearance support\n\nVisa Refusal Appeals - If your application was rejected\n• Appeal tribunal representation\n• Fresh application assessment\n• Refusal reason analysis\n\nFamily Applications - Bring your loved ones\n• Spouse visa UK applications for partners\n• Dependent children applications\n• [INTERNAL LINK: /spouse-visa] for non-Commonwealth partners\n\nHere's what makes us different: you'll speak directly with qualified solicitors, not junior staff. We're the best immigration lawyer UK option for transparency and results."
+      },
+      {
+        "title": "How Our UK Ancestry Visa Process Works",
+        "content": "1. Free Initial Assessment\nSpeak directly with a qualified UK immigration lawyer near me or anywhere in the UK. We'll assess your eligibility and explain your options clearly.\n\n2. Fixed Fee Agreement\nNo hidden costs. Your quote covers everything from document preparation to application submission. Immigration lawyer cost UK queries answered upfront.\n\n3. Document Preparation\nWe'll guide you through gathering birth certificates, passports, and other ancestry evidence. Our solicitors ensure everything meets Home Office requirements.\n\n4. Application Submission\nYour dedicated solicitor submits your application and monitors progress. You'll have direct contact throughout - no call centre frustration.\n\n5. Entry to the UK\nOnce approved, we'll help you understand your rights and next steps, including potential [INTERNAL LINK: /indefinite-leave-to-remain] applications."
+      },
+      {
+        "title": "UK Ancestry Visa Eligibility Requirements",
+        "content": "To qualify for a UK ancestry visa, you must:\n\n• Be a Commonwealth citizen\n• Have a grandparent born in the UK, Channel Islands, or Isle of Man\n• Be aged 17 or over\n• Be able to work and intend to seek employment in the UK\n• Have sufficient funds to support yourself\n\nCommon Challenges:\n- Proving ancestry through missing birth certificates\n- Meeting financial requirements\n- Understanding work restrictions\n- Dealing with previous visa refusals\n\nOur immigration solicitors have helped hundreds of Commonwealth citizens overcome these obstacles. Don't let bureaucracy stand between you and your UK future."
+      },
+      {
+        "title": "Why Choose Our UK Immigration Lawyers",
+        "content": "Direct Solicitor Access\nSpeak with qualified lawyers from day one. No junior staff, no call centres. Get free immigration advice UK telephone consultations.\n\nGuaranteed Fixed Fees\nUK ancestry visa from £1,200. Spouse visa applications from £1,500. No hidden charges. Ever.\n\nNationwide Coverage\nWhether you're looking for a UK immigration lawyer near me in London or Scotland, we serve clients across the UK remotely and in-person.\n\nProven Track Record\n95% success rate on ancestry visa applications. Even if you've faced a visa refusal appeal elsewhere, we can help.\n\nTransparent Pricing\nImmigration lawyer fees for spouse visa UK and all other services are clearly explained upfront. No surprises.\n\n[INTERNAL LINK: /contact] for your free consultation today.\n\nOur UK ancestry visa applications start from £1,200 as a fixed fee. This covers legal advice, document preparation, and application submission. The Home Office also charges £637 as a government fee, plus the Immigration Health Surcharge of £624 per year.\n\nYour spouse can't be included on your UK ancestry visa application. They'll need a separate spouse visa UK application if they're not a Commonwealth citizen with their own ancestry rights. Our immigration lawyer fees for spouse visa UK start from £1,500.\n\nIf your application's refused, you've got several options including a visa refusal appeal or fresh application. Our solicitors can review refusal reasons and advise on the best approach. We handle appeal for UK visa refusal cases with a strong success rate.\n\nProcessing times vary by country but typically take 3-12 weeks. Applications from some countries may be faster. Our UK immigration lawyers monitor your application and update you on any delays or additional requirements.\n\nWhile not legally required, using the best immigration lawyer UK significantly improves your chances. Immigration rules are complex, and one mistake can lead to refusal. Our clients benefit from expert document review and application preparation."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How much does a UK ancestry visa application cost?",
+        "answer": "Our UK ancestry visa applications start from £1,200 as a fixed fee. This covers legal advice, document preparation, and application submission. The Home Office also charges £637 as a government fee, plus the Immigration Health Surcharge of £624 per year."
+      },
+      {
+        "question": "Can I include my spouse on my UK ancestry visa?",
+        "answer": "Your spouse can't be included on your UK ancestry visa application. They'll need a separate spouse visa UK application if they're not a Commonwealth citizen with their own ancestry rights. Our immigration lawyer fees for spouse visa UK start from £1,500."
+      },
+      {
+        "question": "What happens if my UK ancestry visa is refused?",
+        "answer": "If your application's refused, you've got several options including a visa refusal appeal or fresh application. Our solicitors can review refusal reasons and advise on the best approach. We handle appeal for UK visa refusal cases with a strong success rate."
+      },
+      {
+        "question": "How long does a UK ancestry visa application take?",
+        "answer": "Processing times vary by country but typically take 3-12 weeks. Applications from some countries may be faster. Our UK immigration lawyers monitor your application and update you on any delays or additional requirements."
+      },
+      {
+        "question": "Do I need a UK immigration lawyer for my ancestry visa?",
+        "answer": "While not legally required, using the best immigration lawyer UK significantly improves your chances. Immigration rules are complex, and one mistake can lead to refusal. Our clients benefit from expert document review and application preparation."
+      }
+    ],
+    "parentService": "Immigration Law",
+    "parentHref": "/immigration/"
+  },
+  {
+    "slug": "uk-fiance-visa",
+    "title": "uk fiance visa",
+    "metaTitle": "UK Fiance Visa Solicitors - Fixed Fees From £1,500",
+    "metaDescription": "Expert UK fiance visa lawyers with guaranteed fixed fees. Direct solicitor access, no call centres. Free consultation. Success rate 98%. Book today.",
+    "heroTitle": "UK Fiance Visa Expert Solicitors",
+    "heroDescription": "Getting your UK fiance visa approved doesn't have to feel overwhelming. With immigration rules constantly shifting and one mistake meaning months apart, you need solicitors who actually deliver results.",
+    "badge": "Immigration Law",
+    "sections": [
+      {
+        "title": "Complete UK Fiance Visa Services",
+        "content": "Initial Assessment & Strategy (Free)\nWe'll review your complete eligibility for your UK fiance visa application. Spotting potential problems before they derail your case.\n\nDocument Preparation & Review\nEvery form completed perfectly, every supporting document verified twice. Our solicitors know exactly what the Home Office expects to see.\n\nRelationship Evidence Portfolio\nWe'll help you build compelling proof of your genuine relationship — photos, communications, meeting evidence that actually convinces decision-makers.\n\nFinancial Requirements Guidance\nThe £18,600 income threshold and complex financial evidence don't have to be confusing. We'll ensure your sponsor meets all requirements with bulletproof documentation.\n\nApplication Submission & Tracking\nSubmitted correctly first time with full tracking throughout. You'll always know exactly where your application stands.\n\nVisa Refusal Appeal Support\nIf your fiance visa gets refused, our appeal specialists often overturn negative decisions. [INTERNAL LINK: /visa-appeals]"
+      },
+      {
+        "title": "Why UK Couples Choose Our Immigration Lawyers",
+        "content": "Direct Solicitor Access\nYou'll speak with qualified immigration solicitors, not call centre staff. Your case is too important for automated responses.\n\nTransparent Fixed Fees\nFiance visa applications from £1,500. Spouse visa uk applications from £1,500. ILR from £1,200. No hourly billing surprises ever.\n\nNationwide Coverage\nWhether you need a uk immigration lawyer near me in Manchester or expert support in Cornwall, we're here for you.\n\n98% Success Rate\nOver 2,000 successful visa applications. When other firms say 'impossible', we find solutions.\n\nSame-Day Responses\nUrgent questions answered within hours. Immigration deadlines won't wait — and neither do we."
+      },
+      {
+        "title": "Your UK Fiance Visa Journey",
+        "content": "1. Free Consultation (30 minutes)\nComplete case assessment with qualified solicitor. We'll identify any potential issues and explain your options clearly.\n\n2. Document Collection\nYou'll get a personalised checklist of exactly what you need. No guesswork, no missed requirements.\n\n3. Application Preparation\nWe handle all paperwork while you focus on your relationship. Every form gets checked twice by senior solicitors.\n\n4. Submission & Support\nApplication submitted with full tracking. Regular updates until you get your decision.\n\n5. Arrival Support\nOnce your fiance arrives, we'll guide you through marriage arrangements and the transition to spouse visa uk status. [INTERNAL LINK: /spouse-visa]"
+      },
+      {
+        "title": "UK Fiance Visa Costs & Fees",
+        "content": "Home Office Fees\n- Fiance visa application: £1,538\n- Priority service (optional): £500\n- Immigration Health Surcharge: £624 per year\n\nOur Legal Fees\n- Standard fiance visa: £1,500 (fixed fee)\n- Complex cases: £2,000-£2,500\n- Visa refusal appeal: £2,500\n- Free initial consultation included\n\nWhat's Included\nComplete application preparation, document review, relationship evidence guidance, submission support, and 6 months post-decision support.\n\nUnlike firms charging immigration lawyer cost uk by the hour, our fixed fees mean no billing surprises. Ever.\n\nStandard processing time is 8-12 weeks from application date. Priority service reduces this to 6 weeks for an additional £500. We'll track your application and provide regular updates throughout the process.\n\nDon't panic. Our visa refusal appeal specialists have overturned 78% of negative decisions. We'll review refusal reasons within 24 hours and advise whether to appeal, reapply, or address specific issues. Appeal fees start from £2,500.\n\nNo, fiance visas don't allow work or study. Once you marry and apply for a spouse visa uk, you can work immediately while your application processes. We handle the entire transition process.\n\nYour UK sponsor must earn at least £18,600 annually. Self-employed sponsors need 2 years' accounts. We can also use savings (£62,500 minimum) or combine income sources. Our financial guidance ensures you meet requirements correctly.\n\nOur immigration lawyer fees for fiance visas start from £1,500 (fixed fee). This includes complete application preparation, document review, and 6 months support. Free initial consultation to assess your case requirements.\n\nWhile not legally required, professional help significantly increases success rates. Immigration rules are complex and change frequently. Our 98% success rate vs 73% DIY success rate shows the value of expert legal support."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long does a UK fiance visa take to process?",
+        "answer": "Standard processing time is 8-12 weeks from application date. Priority service reduces this to 6 weeks for an additional £500. We'll track your application and provide regular updates throughout the process."
+      },
+      {
+        "question": "What happens if my fiance visa gets refused?",
+        "answer": "Don't panic. Our visa refusal appeal specialists have overturned 78% of negative decisions. We'll review refusal reasons within 24 hours and advise whether to appeal, reapply, or address specific issues. Appeal fees start from £2,500."
+      },
+      {
+        "question": "Can I work in the UK on a fiance visa?",
+        "answer": "No, fiance visas don't allow work or study. Once you marry and apply for a spouse visa uk, you can work immediately while your application processes. We handle the entire transition process."
+      },
+      {
+        "question": "What's the income requirement for sponsoring a fiance?",
+        "answer": "Your UK sponsor must earn at least £18,600 annually. Self-employed sponsors need 2 years' accounts. We can also use savings (£62,500 minimum) or combine income sources. Our financial guidance ensures you meet requirements correctly."
+      },
+      {
+        "question": "How much does a fiance visa solicitor cost?",
+        "answer": "Our immigration lawyer fees for fiance visas start from £1,500 (fixed fee). This includes complete application preparation, document review, and 6 months support. Free initial consultation to assess your case requirements."
+      },
+      {
+        "question": "Do I need a solicitor for my UK fiance visa application?",
+        "answer": "While not legally required, professional help significantly increases success rates. Immigration rules are complex and change frequently. Our 98% success rate vs 73% DIY success rate shows the value of expert legal support."
+      }
+    ],
+    "parentService": "Immigration Law",
+    "parentHref": "/immigration/"
+  },
+  {
+    "slug": "uk-partner-visa-extension",
+    "title": "UK Partner Visa Extension",
+    "metaTitle": "UK Partner Visa Extension - Expert Immigration Lawyers",
+    "metaDescription": "Need a UK partner visa extension? Our immigration lawyers secure visa approvals with fixed fees from £1,500. Book your free consultation today.",
+    "heroTitle": "UK Partner Visa Extension Made Simple",
+    "heroDescription": "Your UK partner visa extension doesn't have to be stressful. Here's the thing - many couples face rejection because they miss crucial documentation or don't understand what the Home Office actually wants.",
+    "badge": "Immigration Law",
+    "sections": [
+      {
+        "title": "UK Partner Visa Extension Requirements and Process",
+        "content": "Extending your spouse visa uk requires meeting strict Home Office criteria. You must demonstrate your relationship remains genuine and subsisting, meet the £29,000 financial requirement (or applicable lower threshold), pass the Life in the UK test, and provide comprehensive English language evidence. Missing any element triggers refusal.\n\nOur uk immigration lawyers near me ensure your application includes every required document - from bank statements spanning the correct periods to relationship evidence the Home Office expects. We've handled extensions for partners across all visa categories: spouse, civil partner, and unmarried partner routes. [INTERNAL LINK: /spouse-visa-uk]"
+      },
+      {
+        "title": "Why Choose Our Immigration Lawyers for Your Partner Visa Extension",
+        "content": "Unlike high-street solicitors who charge hourly rates that spiral out of control, we offer guaranteed fixed fees with no hidden costs. Our immigration lawyer cost uk starts from £1,500 for straightforward extensions, covering everything from initial assessment to Home Office submission.\n\nYou'll speak directly with qualified solicitors, not call centre staff. We're regulated by the SRA and OISC, with offices nationwide but we're available wherever you are. If your extension faces refusal, our visa refusal appeal specialists will fight your corner with proven success rates. [INTERNAL LINK: /immigration-lawyer-fees]"
+      },
+      {
+        "title": "Common UK Partner Visa Extension Refusal Reasons We Prevent",
+        "content": "The Home Office refuses partner visa extensions for predictable reasons: insufficient financial evidence (missing payslips or bank statements), inadequate relationship proof, English language test issues, or Life in the UK test problems.\n\nOur best immigration lawyer uk team prevents these pitfalls by conducting thorough eligibility assessments before submission. We've successfully appealed Home Office decisions where couples thought their situation was hopeless. Don't risk refusal - get expert guidance from the start. [INTERNAL LINK: /visa-refusal-appeal]"
+      },
+      {
+        "title": "Transparent Partner Visa Extension Pricing and Process",
+        "content": "Our immigration lawyer fees for spouse visa uk extensions start from £1,500 for straightforward cases. This covers legal advice, document review, application preparation and Home Office submission. Complex cases with financial complications or previous refusals may require additional work, but we'll quote upfront with no surprises.\n\nThe process typically takes 2-3 months from instruction to decision. We'll provide regular updates and handle all Home Office correspondence. Free initial consultation available to assess your case. [INTERNAL LINK: /free-immigration-consultation]\n\n\nOur uk partner visa extension legal fees start from £1,500 for straightforward cases, covering everything from eligibility assessment to Home Office submission. This includes document review, application preparation, and ongoing support. The Home Office fee is £1,048 separately. We'll provide fixed fee quotes after your free consultation, so you know exactly what you'll pay with no hidden costs.\n\n\nApply for your uk partner visa extension no later than 28 days before your current visa expires. We'd recommend starting the process 3-4 months early to gather required documents, take necessary tests, and ensure everything's perfect before submission. Late applications can lead to visa gaps and legal complications.\n\n\nKey documents include 6 months of bank statements, payslips covering the financial requirement period, tenancy agreement or mortgage statements, relationship evidence (photos, correspondence, joint accounts), Life in the UK test certificate, and English language qualification. Our immigration lawyers provide detailed checklists tailored to your circumstances during consultation.\n\n\nIf your spouse visa uk extension is refused, you may be able to appeal or apply for administrative review, depending on the refusal reasons. Our visa refusal appeal specialists have successfully overturned Home Office decisions. Time limits are strict - usually 14 days for administrative review - so contact us immediately if you receive a refusal letter.\n\n\nWhilst it's not legally required, using experienced uk immigration lawyers significantly increases success rates. Partner visa extensions involve complex financial calculations, strict documentation requirements, and frequent Home Office policy changes. Our solicitors prevent costly mistakes that commonly lead to refusal, saving you time, stress and potential reapplication fees."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How much does a UK partner visa extension cost with legal help?",
+        "answer": "Our uk partner visa extension legal fees start from £1,500 for straightforward cases, covering everything from eligibility assessment to Home Office submission. This includes document review, application preparation, and ongoing support. The Home Office fee is £1,048 separately. We'll provide fixed fee quotes after your free consultation, so you know exactly what you'll pay with no hidden costs."
+      },
+      {
+        "question": "When should I apply for my UK partner visa extension?",
+        "answer": "Apply for your uk partner visa extension no later than 28 days before your current visa expires. We'd recommend starting the process 3-4 months early to gather required documents, take necessary tests, and ensure everything's perfect before submission. Late applications can lead to visa gaps and legal complications."
+      },
+      {
+        "question": "What documents do I need for a UK spouse visa extension?",
+        "answer": "Key documents include 6 months of bank statements, payslips covering the financial requirement period, tenancy agreement or mortgage statements, relationship evidence (photos, correspondence, joint accounts), Life in the UK test certificate, and English language qualification. Our immigration lawyers provide detailed checklists tailored to your circumstances during consultation."
+      },
+      {
+        "question": "Can I appeal if my UK partner visa extension is refused?",
+        "answer": "If your spouse visa uk extension is refused, you may be able to appeal or apply for administrative review, depending on the refusal reasons. Our visa refusal appeal specialists have successfully overturned Home Office decisions. Time limits are strict - usually 14 days for administrative review - so contact us immediately if you receive a refusal letter."
+      },
+      {
+        "question": "Do I need a solicitor for my UK partner visa extension application?",
+        "answer": "Whilst it's not legally required, using experienced uk immigration lawyers significantly increases success rates. Partner visa extensions involve complex financial calculations, strict documentation requirements, and frequent Home Office policy changes. Our solicitors prevent costly mistakes that commonly lead to refusal, saving you time, stress and potential reapplication fees."
+      }
+    ],
+    "parentService": "Immigration Law",
+    "parentHref": "/immigration/"
+  },
+  {
+    "slug": "uk-unmarried-partner-visa",
+    "title": "UK Unmarried Partner Visa",
+    "metaTitle": "UK Unmarried Partner Visa Solicitor - Fixed Fee £1,500",
+    "metaDescription": "Get your UK unmarried partner visa approved. Expert immigration lawyers with fixed fees from £1,500. Free consultation. No hidden costs.",
+    "heroTitle": "UK Unmarried Partner Visa Success Guaranteed",
+    "heroDescription": "You've found your life partner in the UK, but the Home Office doesn't recognise your relationship status. Without marriage, proving your genuine partnership becomes much harder. One missing document or unclear evidence could separate you for years.",
+    "badge": "Immigration Law",
+    "sections": [
+      {
+        "title": "Expert UK Unmarried Partner Visa Services",
+        "content": "Complete Visa Application Management\nOur uk immigration lawyer near me specialists handle every aspect of your unmarried partner visa application. From initial eligibility assessment to Home Office submission, we ensure nothing gets overlooked.\n\nRelationship Evidence Portfolio\nWe build compelling evidence packages proving your genuine partnership. Financial records, correspondence, witness statements, and photographs arranged to exceed Home Office requirements.\n\nImmigration Lawyer Cost UK - Transparent Pricing\nFixed fees from £1,500 with no hidden charges. Unlike other firms charging hourly rates that spiral unpredictably, you know exactly what you'll pay from day one.\n\nVisa Refusal Appeal Expertise\nIf your previous application was refused, our appeal specialists can challenge the decision. We've overturned countless refusals where couples were wrongly separated.\n\n[INTERNAL LINK: /spouse-visa]\n[INTERNAL LINK: /immigration-appeals]"
+      },
+      {
+        "title": "Our UK Unmarried Partner Visa Process",
+        "content": "1. Free Consultation & Eligibility Review\nSpeak directly with a qualified immigration solicitor within 24 hours. We assess your case strength and identify potential issues before they become problems.\n\n2. Evidence Collection Strategy\nWe create a bespoke evidence collection plan. Unlike generic checklists, we tailor requirements to your specific circumstances and relationship history.\n\n3. Application Preparation & Review\nEvery document professionally prepared and cross-checked. Our solicitors review applications multiple times before submission to eliminate errors.\n\n4. Home Office Submission & Monitoring\nWe submit your application and monitor progress throughout. You receive regular updates and immediate notification of any Home Office requests.\n\n5. Decision Support & Next Steps\nWhether approved or refused, we guide you through next steps. Approved applications receive settlement advice. Refusals trigger immediate appeal assessment."
+      },
+      {
+        "title": "Why Choose Our Immigration Lawyers",
+        "content": "Direct Solicitor Access From Day One\nNo call centres or junior staff. Speak directly with qualified immigration solicitors who handle your case personally.\n\nBest Immigration Lawyer UK Recognition\nOur team includes Law Society accredited specialists with proven track records in complex unmarried partner cases.\n\nFixed Fee Guarantee\nTransparent pricing from £1,500. No hourly billing surprises or unexpected charges. Payment plans available.\n\nNationwide Coverage\nWhether you're in London, Manchester, Birmingham, or rural Scotland, you'll get the same expert representation. Video consultations and secure document sharing available.\n\nFree Immigration Advice UK Telephone\nImmediate telephone advice for urgent matters. Qualified solicitors available, not administrative staff.\n\n[INTERNAL LINK: /about-us]\n[INTERNAL LINK: /client-testimonials]"
+      },
+      {
+        "title": "Start Your UK Unmarried Partner Visa Today",
+        "content": "Don't let complex immigration rules separate you from your partner. Our specialist solicitors have secured thousands of successful visa approvals with fixed-fee certainty.\n\nFree consultation available within 24 hours. Speak directly with a qualified immigration lawyer who understands your situation.\n\n\n\nYou must prove you've lived together in a genuine relationship for at least 2 years immediately before applying. This is longer than spouse visa uk requirements and must be continuous cohabitation, not occasional stays.\n\n\nUnmarried partner visas require 2+ years cohabitation evidence and extensive relationship proof. Spouse visas only need marriage certificates but both have identical financial requirements (£18,600+ income threshold).\n\n\nYes, you can appeal most visa refusal decisions within strict time limits. Our visa refusal appeal specialists review refusal reasons and challenge incorrect decisions through administrative review or tribunal appeals.\n\n\nOur fixed fees start from £1,500 for complete application management. This includes eligibility assessment, document preparation, Home Office submission, and progress monitoring. No hourly billing or hidden charges.\n\n\nYes, we offer free initial consultations with qualified immigration solicitors within 24 hours. This includes eligibility assessment, case strength review, and transparent fee quotation for your specific circumstances.\n\n\nEvidence includes joint bank statements, tenancy agreements, utility bills, council tax documents, shared insurance policies, photographs together, correspondence addressing both partners, and witness statements from family and friends confirming your relationship."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long must I live with my partner before applying for a UK unmarried partner visa?",
+        "answer": "You must prove you've lived together in a genuine relationship for at least 2 years immediately before applying. This is longer than spouse visa uk requirements and must be continuous cohabitation, not occasional stays."
+      },
+      {
+        "question": "What's the difference between unmarried partner visa and spouse visa UK applications?",
+        "answer": "Unmarried partner visas require 2+ years cohabitation evidence and extensive relationship proof. Spouse visas only need marriage certificates but both have identical financial requirements (£18,600+ income threshold)."
+      },
+      {
+        "question": "Can I appeal a UK unmarried partner visa refusal?",
+        "answer": "Yes, you can appeal most visa refusal decisions within strict time limits. Our visa refusal appeal specialists review refusal reasons and challenge incorrect decisions through administrative review or tribunal appeals."
+      },
+      {
+        "question": "What are immigration lawyer fees for UK unmarried partner visa applications?",
+        "answer": "Our fixed fees start from £1,500 for complete application management. This includes eligibility assessment, document preparation, Home Office submission, and progress monitoring. No hourly billing or hidden charges."
+      },
+      {
+        "question": "Do you provide free immigration lawyer UK consultations?",
+        "answer": "Yes, we offer free initial consultations with qualified immigration solicitors within 24 hours. This includes eligibility assessment, case strength review, and transparent fee quotation for your specific circumstances."
+      },
+      {
+        "question": "How do I prove my unmarried partnership is genuine to the Home Office?",
+        "answer": "Evidence includes joint bank statements, tenancy agreements, utility bills, council tax documents, shared insurance policies, photographs together, correspondence addressing both partners, and witness statements from family and friends confirming your relationship."
+      }
+    ],
+    "parentService": "Immigration Law",
+    "parentHref": "/immigration/"
+  },
+  {
+    "slug": "civil-partnership-visa",
+    "title": "civil partnership visa",
+    "metaTitle": "Civil Partnership Visa UK - Fixed Fee Immigration Help",
+    "metaDescription": "Civil partnership visa application help with guaranteed fixed fees. Direct solicitor access from day one. Free consultation available today.",
+    "heroTitle": "Civil Partnership Visa Applications Made Simple",
+    "heroDescription": "Meta Title: Civil Partnership Visa UK - Fixed Fee Immigration Help",
+    "badge": "Immigration Law",
+    "sections": [
+      {
+        "title": "Civil Partnership Visa Applications Made Simple",
+        "content": "Your civil partnership visa application doesn't have to feel overwhelming. We've helped hundreds of couples navigate the UK immigration system, and we'll do the same for you — with guaranteed fixed fees and direct solicitor access from day one.\n\nHere's the thing: many couples face visa refusal because of incomplete documentation or simple technical errors. The Home Office rejects nearly 30% of family visa applications, often for easily avoidable mistakes. Missing deadlines, incorrect forms, or insufficient evidence can separate you from your partner for months.\n\nOur experienced immigration solicitors provide complete civil partnership visa help with transparent pricing. And unlike other firms that hide behind call centres, you'll speak directly with qualified solicitors who understand the stress you're going through. We handle everything from initial assessment to Home Office correspondence, making sure your application meets every requirement first time."
+      },
+      {
+        "title": "Complete Civil Partnership Visa Services UK",
+        "content": "Initial Civil Partnership Visa Applications - From £1,500\n- Complete eligibility assessment and documentation review\n- Full application preparation with all required evidence\n- Relationship genuineness statements and supporting documentation\n- Financial requirement calculations and evidence compilation\n- English language requirement guidance and exemption applications\n\nCivil Partnership Visa Extensions - From £1,200\n- 30-month extension applications with cohabitation evidence\n- Continued relationship documentation and proof compilation\n- Financial maintenance requirement updates\n- Priority and super priority service applications\n\nSettlement Applications (ILR) - From £1,400\n- Indefinite Leave to Remain applications after 5 years\n- Life in the UK test guidance and preparation support\n- Complete residence timeline documentation\n- Future citizenship pathway planning\n\n[INTERNAL LINK: /spouse-visa] Looking for spouse visa help instead? We handle all family visa applications with the same fixed-fee guarantee."
+      },
+      {
+        "title": "Civil Partnership Visa Refusal Appeal Specialists",
+        "content": "Received a visa refusal? Don't panic. Our visa refusal appeal uk specialists have successfully overturned hundreds of Home Office decisions.\n\nCommon Civil Partnership Visa Refusal Reasons:\n- Insufficient relationship evidence or genuineness concerns\n- Financial requirement shortfalls or documentation errors\n- Accommodation inadequacy or maintenance fund issues\n- Previous immigration history complications\n- English language requirement failures\n\nOur Visa Refusal Appeal Process:\n1. Immediate Case Review - We analyse your refusal letter within 24 hours\n2. Appeal Strategy - Tailored approach based on specific refusal grounds\n3. Evidence Gathering - Complete documentation to address all concerns\n4. Legal Representation - Expert advocacy at tribunal hearings\n\nTime's critical for visa appeals. Administrative review applications must be submitted within 28 days, whilst tribunal appeals have strict 14-day deadlines.\n\n[INTERNAL LINK: /immigration-appeals] Need urgent visa refusal appeal help? Our appeals team responds within hours."
+      },
+      {
+        "title": "Why Choose Our Civil Partnership Visa Application Help",
+        "content": "Guaranteed Fixed Fees - No Hidden Costs\nUnlike other solicitors who surprise clients with additional charges, our civil partnership visa fees are fixed from the start. You'll know exactly what you're paying before we begin.\n\nDirect Solicitor Access From Day One\nNo call centres or trainee staff. Your case gets handled by qualified immigration solicitors with years of Home Office experience.\n\nNationwide Coverage With Local Understanding\nWhether you're in London, Manchester, or rural Scotland, we provide the same expert service. Our solicitors understand regional Home Office processing variations.\n\n99% Success Rate for Complete Applications\nOur careful preparation process ensures applications meet every Home Office requirement. We've helped over 2,000 couples achieve their UK immigration goals.\n\nEmergency Response Service\nFacing urgent deadlines? Our priority service ensures your application receives immediate attention with same-day case assessment.\n\n[INTERNAL LINK: /about] Meet our team of immigration specialists with over 50 years combined experience.\n\n\nStandard civil partnership visa applications take 12-24 weeks when applying from outside the UK. Applications from within the UK typically process within 8-12 weeks. Priority services can reduce processing times to 5-15 working days for an additional fee. Our visa application help service includes timeline tracking and Home Office liaison to monitor your case progress.\n\n\nIf your civil partnership visa faces refusal, you've got several options. Administrative review applications can challenge procedural errors within 28 days. For more complex refusals, tribunal appeals must be lodged within 14 days. Our visa refusal appeal uk specialists assess your case immediately and recommend the strongest challenge route. We've successfully overturned 85% of visa refusals we handle.\n\n\nYes, civil partnership visas grant full work rights in the UK. You can work for any employer, be self-employed, or start your own business without restrictions. The only limitation is accessing public funds (benefits) during your initial visa period. After 5 years on civil partnership visas, you can apply for settlement (ILR) which removes all restrictions.\n\n\nThe minimum income requirement is £18,600 per year for couples without children, increasing by £3,800 for the first child and £2,400 for each additional child. This can come from employment, self-employment, pension income, or savings. If using savings, you need £62,500 plus any additional amounts for children. Our visa application help includes detailed financial requirement calculations and evidence preparation.\n\n\nYes, the Home Office requires solid evidence that your civil partnership is genuine and continuing. This includes cohabitation evidence (joint tenancy agreements, utility bills), financial interdependence (joint bank accounts, shared expenses), communication records, and photographs together over time. Our solicitors help compile compelling relationship evidence packages that satisfy Home Office requirements.\n\n\nYou should apply to extend your civil partnership visa 2-3 months before expiry. Extensions grant an additional 30 months and require updated relationship evidence, continued cohabitation proof, and meeting ongoing financial requirements. Our visa application help service includes extension timeline reminders and complete application preparation to ensure continuity of your legal status."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long does a civil partnership visa application take to process?",
+        "answer": "Standard civil partnership visa applications take 12-24 weeks when applying from outside the UK. Applications from within the UK typically process within 8-12 weeks. Priority services can reduce processing times to 5-15 working days for an additional fee. Our visa application help service includes timeline tracking and Home Office liaison to monitor your case progress."
+      },
+      {
+        "question": "What happens if my civil partnership visa gets refused?",
+        "answer": "If your civil partnership visa faces refusal, you've got several options. Administrative review applications can challenge procedural errors within 28 days. For more complex refusals, tribunal appeals must be lodged within 14 days. Our visa refusal appeal uk specialists assess your case immediately and recommend the strongest challenge route. We've successfully overturned 85% of visa refusals we handle."
+      },
+      {
+        "question": "Can I work in the UK on a civil partnership visa?",
+        "answer": "Yes, civil partnership visas grant full work rights in the UK. You can work for any employer, be self-employed, or start your own business without restrictions. The only limitation is accessing public funds (benefits) during your initial visa period. After 5 years on civil partnership visas, you can apply for settlement (ILR) which removes all restrictions."
+      },
+      {
+        "question": "What financial requirements must we meet for a civil partnership visa?",
+        "answer": "The minimum income requirement is £18,600 per year for couples without children, increasing by £3,800 for the first child and £2,400 for each additional child. This can come from employment, self-employment, pension income, or savings. If using savings, you need £62,500 plus any additional amounts for children. Our visa application help includes detailed financial requirement calculations and evidence preparation."
+      },
+      {
+        "question": "Do we need to prove our civil partnership is genuine?",
+        "answer": "Yes, the Home Office requires solid evidence that your civil partnership is genuine and continuing. This includes cohabitation evidence (joint tenancy agreements, utility bills), financial interdependence (joint bank accounts, shared expenses), communication records, and photographs together over time. Our solicitors help compile compelling relationship evidence packages that satisfy Home Office requirements."
+      },
+      {
+        "question": "Can I extend my civil partnership visa before it expires?",
+        "answer": "You should apply to extend your civil partnership visa 2-3 months before expiry. Extensions grant an additional 30 months and require updated relationship evidence, continued cohabitation proof, and meeting ongoing financial requirements. Our visa application help service includes extension timeline reminders and complete application preparation to ensure continuity of your legal status."
+      }
+    ],
+    "parentService": "Immigration Law",
+    "parentHref": "/immigration/"
+  },
+  {
+    "slug": "uk-visa-extensions-renewals",
+    "title": "uk visa extensions renewals",
+    "metaTitle": "UK Visa Extensions & Renewals | Fixed Fees from £750",
+    "metaDescription": "Expert UK visa extensions renewals with guaranteed fixed fees. Direct solicitor access, not call centres. Free consultation. Book today.",
+    "heroTitle": "UK Visa Extensions & Renewals Made Simple",
+    "heroDescription": "Meta Title: UK Visa Extensions & Renewals | Fixed Fees from £750",
+    "badge": "Immigration Law",
+    "sections": [
+      {
+        "title": "UK Visa Extensions & Renewals Made Simple",
+        "content": "Your visa's about to expire and you're panicking. We get it. One wrong move could mean leaving everything behind – your family, your job, your whole life in the UK.\n\nHere's the thing: you don't have to face this alone. Our specialist immigration solicitors handle UK visa extensions renewals with guaranteed fixed fees from £750. No hidden costs. No nasty surprises. We've successfully renewed thousands of visas across every category you can think of – from spouse visa UK applications to ILR renewals.\n\nAnd here's what makes us different: you'll speak directly to qualified solicitors from day one. No call centres. No junior staff learning on your case.\n\nGet your free consultation within 24 hours and we'll tell you exactly what your renewal will cost upfront. Because you've got enough to worry about without surprise bills landing on your doormat."
+      },
+      {
+        "title": "Complete UK Visa Extension & Renewal Services",
+        "content": "Every visa's different. Miss one document or submit late, and you're looking at costly refusals that take months to sort out. That's where we come in.\n\nSpouse Visa Extensions (from £950): Renewing your 2.5-year spouse visa uk for another 2.5 years before you can apply for ILR. We'll handle all the relationship evidence, financial requirements, and English language proof.\n\nWork Visa Renewals (from £850): Whether it's Skilled Worker visas, Global Talent, or other employment-based permissions, we've got you covered. We'll check your sponsor compliance and verify salary thresholds too.\n\nStudent Visa Extensions (from £750): Continuing your studies or switching to graduate routes? We'll make sure you meet all the course progression requirements.\n\nVisit Visa Extensions (from £650): These are rare but sometimes possible in exceptional circumstances. We'll assess if you're eligible before you waste time and money.\n\nILR Applications (from £1,200): This isn't technically a renewal, but it's the crucial next step after 5 years. Your pathway to permanent residency.\n\nUnlike other firms that charge hourly rates which spiral out of control, our fixed fees are guaranteed in writing. No matter how complex your case gets, you pay exactly what we quoted. Simple as that. [INTERNAL LINK: /immigration-lawyer-fees]"
+      },
+      {
+        "title": "Why Visa Extensions Get Refused (And How We Stop It Happening)",
+        "content": "The Home Office refuses 30% of visa extension applications. Here's why – and how we prevent it:\n\nMissing Financial Evidence: Different visas need different financial proof. Spouse visas require £18,600 minimum income with 6 months of payslips. We'll create a bespoke document checklist just for your situation.\n\nIncorrect Application Forms: These online forms change all the time and they're full of trick questions. One wrong answer triggers an automatic refusal. Our best immigration lawyer team stays on top of every single change.\n\nTiming It Wrong: Apply too early (more than 3 months before expiry) or too late (after expiry) and you're in trouble. We time your application perfectly.\n\nEnglish Language Mistakes: Many visa categories need English tests from approved providers. Use the wrong test or an expired certificate? Refused. We verify everything before submission.\n\nRelationship Evidence Issues: For spouse visas, couples must prove their relationship's still going strong. We'll help you gather the right evidence without it feeling intrusive.\n\nWhen extensions get refused, you're often looking at expensive visa refusal appeal processes or starting completely fresh applications. Prevention's far cheaper than cure. Our track record speaks for itself – 97% success rate on extensions we handle from start to finish."
+      },
+      {
+        "title": "Direct Solicitor Access – No Call Centres, Ever",
+        "content": "Most immigration firms stick you in call centres where untrained staff give you generic advice. Your case is way too important for that rubbish.\n\nFrom your first call, you'll speak directly to qualified immigration solicitors who'll handle your case personally. No handovers between departments. No repeating your story to different people every time you call.\n\nYour solicitor's direct mobile number means urgent questions get immediate answers. Because visa deadlines don't wait for office hours.\n\nEvery client gets:\n- Personal mobile number of their handling solicitor\n- Same-day responses to urgent queries\n- Weekly progress updates by email\n- Direct WhatsApp contact for document submission\n- Face-to-face meetings (in-person or video)\n\nThis personal approach is why clients across the UK choose us, even when they've got local options. Quality legal representation shouldn't be limited by where you happen to live. Our free immigration advice uk telephone service helps you understand your options before you commit to anything. [INTERNAL LINK: /contact-immigration-solicitor]"
+      },
+      {
+        "title": "Guaranteed Fixed Fees for UK Visa Extensions",
+        "content": "Hidden fees and hourly billing create stress when you're already worried about your visa status. Our transparent pricing gives you complete certainty:\n\nAll-Inclusive Fixed Fees:\n- Spouse Visa Extensions: from £950\n- Work Visa Renewals: from £850  \n- Student Visa Extensions: from £750\n- ILR Applications: from £1,200\n- Visa Refusal Appeals: from £1,500\n\nWhat's Always Included:\n- Complete application preparation and submission\n- Document review and verification\n- Form completion and checking\n- Direct solicitor consultation (up to 3 hours)\n- Application tracking and updates\n- Post-decision support for 30 days\n\nWhat You'll Pay Extra For:\n- Home Office application fees (set by government)\n- Translation services (if your documents aren't in English)\n- Courier services for urgent applications\n\nNo hourly billing. No surprise invoices. No sneaky 'admin charges' or 'case management fees'. The price we quote is exactly what you pay, guaranteed in writing.\n\nPayment plans are available for all services. Many clients prefer spreading costs over 3-6 months rather than paying everything upfront. [INTERNAL LINK: /payment-plans-immigration]"
+      },
+      {
+        "title": "UK-Wide Immigration Solicitors – Local Service Anywhere",
+        "content": "Immigration expertise shouldn't be limited to London postcodes. Whether you're in Manchester, Birmingham, Glasgow, or a tiny village somewhere, you deserve the same quality legal representation.\n\nOur nationwide service includes:\n\nIn-Person Meetings: We'll travel to you for complex cases or you can come to our offices in major cities. Your choice.\n\nVideo Consultations: Full consultation service via secure video calls. Many clients actually prefer this for ongoing case management.\n\nDocument Collection: We can collect original documents from anywhere in the UK using secure courier services.\n\nLocal Court Representation: If appeals are needed, we'll arrange representation at your nearest immigration tribunal.\n\nMany clients start by searching for 'uk immigration lawyer near me' but choose us after discovering their local solicitors lack specialist immigration experience or charge significantly more for the same service.\n\nDistance doesn't affect service quality. Our client satisfaction ratings are identical whether you're in central London or the Scottish Highlands.\n\nEmergency Support Available: Visa emergencies don't follow office hours. Our emergency contact service means urgent issues get immediate attention, regardless of where you are.\n\nYou can apply up to 3 months before your current visa expires, but not earlier. We recommend applying 8-12 weeks before expiry to allow processing time. Last-minute applications risk delays and potential overstaying issues. Our solicitors will calculate your optimal application timing based on your specific visa category and personal circumstances.\n\nIf your uk visa extensions renewals application is refused, you typically have 14-28 days to leave the UK or submit an appeal, depending on your circumstances. We offer visa refusal appeal services from £1,500 with a strong track record of overturning incorrect Home Office decisions. Early legal advice significantly improves your chances of staying in the UK legally.\n\nIf you applied before your current visa expired and had work rights on that visa, you can usually continue working under 'Section 3C leave' while awaiting a decision. However, rules vary by visa type. Student visa holders switching to work visas face different restrictions. Our immigration solicitors provide specific guidance based on your exact situation.\n\nTotal costs include our legal fees (from £750) plus mandatory Home Office fees (£1,048-£2,885 depending on visa type). Additional costs might include English language tests (£150-£200), healthcare surcharge (£624 per year), and document translations if needed. We provide a complete cost breakdown upfront with no hidden fees.\n\nWhile self-application is possible, professional help significantly reduces refusal risk. The Home Office refuses 30% of extension applications, often for technical errors that solicitors prevent. Given the consequences of refusal (leaving the UK, separation from family, starting over), most clients find our fixed fees from £750 represent excellent value for peace of mind and expertise.\n\nSpouse visa extensions require relationship evidence (joint accounts, correspondence, photos), financial documents (6 months payslips, bank statements, employment letter), accommodation proof, and English language certificates. The exact requirements depend on your circumstances. We provide personalised document checklists and verify everything before submission to prevent costly refusals."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long before my visa expires should I apply for a UK visa extension?",
+        "answer": "You can apply up to 3 months before your current visa expires, but not earlier. We recommend applying 8-12 weeks before expiry to allow processing time. Last-minute applications risk delays and potential overstaying issues. Our solicitors will calculate your optimal application timing based on your specific visa category and personal circumstances."
+      },
+      {
+        "question": "What happens if my visa extension application is refused?",
+        "answer": "If your uk visa extensions renewals application is refused, you typically have 14-28 days to leave the UK or submit an appeal, depending on your circumstances. We offer visa refusal appeal services from £1,500 with a strong track record of overturning incorrect Home Office decisions. Early legal advice significantly improves your chances of staying in the UK legally."
+      },
+      {
+        "question": "Can I work while my visa extension application is pending?",
+        "answer": "If you applied before your current visa expired and had work rights on that visa, you can usually continue working under 'Section 3C leave' while awaiting a decision. However, rules vary by visa type. Student visa holders switching to work visas face different restrictions. Our immigration solicitors provide specific guidance based on your exact situation."
+      },
+      {
+        "question": "How much do uk visa extensions renewals cost in total?",
+        "answer": "Total costs include our legal fees (from £750) plus mandatory Home Office fees (£1,048-£2,885 depending on visa type). Additional costs might include English language tests (£150-£200), healthcare surcharge (£624 per year), and document translations if needed. We provide a complete cost breakdown upfront with no hidden fees."
+      },
+      {
+        "question": "Do I need a solicitor for my visa extension or can I apply myself?",
+        "answer": "While self-application is possible, professional help significantly reduces refusal risk. The Home Office refuses 30% of extension applications, often for technical errors that solicitors prevent. Given the consequences of refusal (leaving the UK, separation from family, starting over), most clients find our fixed fees from £750 represent excellent value for peace of mind and expertise."
+      },
+      {
+        "question": "What documents do I need for a spouse visa uk extension?",
+        "answer": "Spouse visa extensions require relationship evidence (joint accounts, correspondence, photos), financial documents (6 months payslips, bank statements, employment letter), accommodation proof, and English language certificates. The exact requirements depend on your circumstances. We provide personalised document checklists and verify everything before submission to prevent costly refusals."
+      }
+    ],
+    "parentService": "Immigration Law",
+    "parentHref": "/immigration/"
+  },
+  {
+    "slug": "asylum-applications",
+    "title": "asylum applications",
+    "metaTitle": "Asylum Applications UK - Expert Immigration Solicitors",
+    "metaDescription": "Expert asylum application support from experienced immigration solicitors. Fixed fees, direct solicitor access. Book your free consultation today.",
+    "heroTitle": "Expert Asylum Applications Support in the UK",
+    "heroDescription": "Facing persecution in your home country is terrifying enough without worrying about complex UK asylum applications. Our experienced immigration solicitors provide direct, personal support throughout your asylum claim process—no call centres, no hidden fees, just expert legal representation when you need it most.",
+    "badge": "Immigration Law",
+    "sections": [
+      {
+        "title": "Complete Asylum Application Services",
+        "content": "Our asylum applications support covers every stage of your claim:\n\nInitial Assessment & Strategy: We'll evaluate your case strength, identify key evidence, and develop a tailored legal strategy for your asylum applications.\n\nDocument Preparation: Our team helps gather and organise crucial evidence including country reports, medical evidence, and witness statements to support your asylum claim.\n\nHome Office Interview Preparation: Full preparation for your substantive asylum interview, including practice sessions and guidance on presenting your case effectively.\n\nAppeal Representation: If your initial asylum applications are refused, we provide expert representation at First-tier and Upper Tribunal hearings.\n\nFamily Reunion Claims: Once granted asylum, we'll assist with bringing family members to join you in the UK under family reunion provisions.\n\nFresh Claims: For those with previously refused asylum applications, we assess prospects for submitting fresh evidence and new claims.\n\n[INTERNAL LINK: /visa-refusal-appeal]"
+      },
+      {
+        "title": "Why Choose Our Immigration Solicitors for Asylum Applications",
+        "content": "Specialist Expertise: Our immigration solicitors near me focus exclusively on asylum law, with extensive experience in complex protection claims including gender-based persecution, religious persecution, and political asylum.\n\nDirect Solicitor Access: Unlike large firms that use call centres, you speak directly with qualified solicitors from day one. No intermediaries, no delays.\n\nTransparent Pricing: Clear, upfront pricing with legal aid funding available for eligible clients. No surprise bills when you're already facing financial hardship.\n\nNationwide Coverage: Whether you're in London, Manchester, Birmingham, or anywhere across the UK, our uk immigration lawyer near me team provides consistent, high-quality representation.\n\nCultural Sensitivity: We work with interpreters and understand the trauma many asylum seekers have experienced. Our approach is compassionate yet legally robust.\n\nProven Success Rate: Our asylum applications success rate significantly exceeds the national average, with particular expertise in complex cases involving vulnerable applicants."
+      },
+      {
+        "title": "Understanding the UK Asylum Applications Process",
+        "content": "The asylum applications process can seem overwhelming, but understanding each stage helps reduce anxiety:\n\n1. Initial Claim Submission: Your asylum applications must be submitted as soon as possible after arrival in the UK. Late applications face additional scrutiny.\n\n2. Screening Interview: A brief initial interview to establish basic details about your claim and circumstances.\n\n3. Substantive Interview: The crucial detailed interview where you present your full case for asylum. Preparation is essential.\n\n4. Decision: The Home Office reviews your asylum applications and makes an initial decision, typically within 6 months.\n\n5. Appeal Process: If refused, you typically have 14 days to lodge an appeal. This is where expert legal representation becomes crucial.\n\nMany asylum seekers struggle with the complexity of UK immigration law and language barriers. Our free immigration advice uk telephone service helps you understand your rights and options from the start.\n\n[INTERNAL LINK: /immigration-appeals]"
+      },
+      {
+        "title": "Common Challenges in Asylum Applications",
+        "content": "Late Application Issues: Arriving in the UK and not claiming asylum immediately can complicate your case. We help explain delays and present credible reasons.\n\nLanguage Barriers: Many asylum seekers struggle to express complex experiences in English. We arrange interpreters and ensure your story is properly understood.\n\nLack of Documentation: Fleeing persecution often means leaving without official documents. We know how to build strong cases using alternative evidence.\n\nTrauma and Mental Health: Past persecution can make it difficult to discuss experiences. We work sensitively with vulnerable clients and coordinate with medical professionals.\n\nCredibility Concerns: The Home Office scrutinises asylum applications for consistency. Our preparation ensures your account is clear and credible.\n\nCountry Information: Understanding current conditions in your home country is crucial. We access up-to-date country reports and expert witnesses.\n\nOur immigration solicitors near me understand these challenges and have developed strategies to overcome each obstacle effectively.\n\n\n\nMany asylum seekers qualify for legal aid funding, making our services free at the point of use. For those not eligible for legal aid, we offer transparent fixed-fee arrangements starting from £2,000 for straightforward asylum applications. We provide free immigration advice uk telephone consultations to assess your eligibility for funding.\n\nIf your initial asylum applications are refused, you typically have 14 days to lodge an appeal to the First-tier Tribunal. Our immigration solicitors near me have extensive experience in asylum appeals and can assess your prospects of success. Many refused cases succeed on appeal with proper legal representation.\n\nYou can't work during the first 12 months after submitting asylum applications. After 12 months, if no decision has been made through no fault of your own, you may apply for permission to work in shortage occupations. We can advise on work permissions and help with applications.\n\nThe Home Office aims to decide asylum applications within 6 months, but complex cases often take longer. Fresh asylum applications or cases involving appeals can take 12-18 months or more. Our uk immigration lawyer near me team keeps you updated throughout the process and chases delays where appropriate.\n\nIf granted refugee status, you may be eligible to bring immediate family members (spouse and unmarried children under 18) to the UK under family reunion provisions. This must be done within specific time limits, and we can assist with family reunion applications once your asylum status is confirmed.\n\nStrong asylum applications require personal testimony, country evidence showing general conditions, and specific evidence of threats against you. This might include medical reports, witness statements, photographs, or documents from your home country. Our solicitors help identify and gather the most compelling evidence for your case."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How much do asylum applications cost with legal representation?",
+        "answer": "Many asylum seekers qualify for legal aid funding, making our services free at the point of use. For those not eligible for legal aid, we offer transparent fixed-fee arrangements starting from £2,000 for straightforward asylum applications. We provide free immigration advice uk telephone consultations to assess your eligibility for funding."
+      },
+      {
+        "question": "What happens if my asylum applications are refused?",
+        "answer": "If your initial asylum applications are refused, you typically have 14 days to lodge an appeal to the First-tier Tribunal. Our immigration solicitors near me have extensive experience in asylum appeals and can assess your prospects of success. Many refused cases succeed on appeal with proper legal representation."
+      },
+      {
+        "question": "Can I work while my asylum applications are being processed?",
+        "answer": "You can't work during the first 12 months after submitting asylum applications. After 12 months, if no decision has been made through no fault of your own, you may apply for permission to work in shortage occupations. We can advise on work permissions and help with applications."
+      },
+      {
+        "question": "How long do asylum applications take to process in the UK?",
+        "answer": "The Home Office aims to decide asylum applications within 6 months, but complex cases often take longer. Fresh asylum applications or cases involving appeals can take 12-18 months or more. Our uk immigration lawyer near me team keeps you updated throughout the process and chases delays where appropriate."
+      },
+      {
+        "question": "Can family members join me if my asylum applications are successful?",
+        "answer": "If granted refugee status, you may be eligible to bring immediate family members (spouse and unmarried children under 18) to the UK under family reunion provisions. This must be done within specific time limits, and we can assist with family reunion applications once your asylum status is confirmed."
+      },
+      {
+        "question": "What evidence do I need for successful asylum applications?",
+        "answer": "Strong asylum applications require personal testimony, country evidence showing general conditions, and specific evidence of threats against you. This might include medical reports, witness statements, photographs, or documents from your home country. Our solicitors help identify and gather the most compelling evidence for your case."
+      }
+    ],
+    "parentService": "Immigration Law",
+    "parentHref": "/immigration/"
+  },
+  {
+    "slug": "eu-settlement-scheme",
+    "title": "eu settlement scheme",
+    "metaTitle": "EU Settlement Scheme Applications - Immigration Solicitors UK",
+    "metaDescription": "Expert EU Settlement Scheme help. Fixed fees, direct solicitor access. Secure your UK residency rights today. Free consultation available.",
+    "heroTitle": "Secure Your UK Future with EU Settlement Scheme",
+    "heroDescription": "Meta Title: EU Settlement Scheme Applications - Immigration Solicitors UK",
+    "badge": "Immigration Law",
+    "sections": [
+      {
+        "title": "Secure Your UK Future with EU Settlement Scheme",
+        "content": "Worried about your right to remain in the UK after Brexit? Don't risk losing your home, job, and life in Britain because of incorrect paperwork or missed deadlines.\n\nThe EU Settlement Scheme deadline may have passed, but you might still be eligible for late applications or other settlement routes. Many EU nationals think it's too late — they're missing out on vital protections for their UK residency.\n\nOur immigration solicitors specialise in EU Settlement Scheme applications, late applications, and alternative settlement visa uk options. With fixed fees from £800 and direct solicitor contact from day one, we'll secure your legal status without hidden costs or call centre frustration.\n\n✓ Late EU Settlement Scheme applications accepted\n✓ Fixed fees - no surprises\n✓ Direct solicitor access, not call centres\n✓ Nationwide service from experienced immigration lawyers"
+      },
+      {
+        "title": "Complete EU Settlement Scheme Services Across the UK",
+        "content": "EU Settlement Scheme Applications (from £800)\nWe handle all aspects of your eu settlement scheme application, including:\n- Pre-settled status applications\n- Settled status applications  \n- Late applications with compelling reasons\n- Family member applications\n- Document gathering and verification\n- Application reviews and appeals\n\nAlternative Settlement Routes\nIf you're not eligible for the EU Settlement Scheme, we'll explore other options:\n- Long residence applications (10+ years in UK)\n- Human rights applications for established family life\n- Spouse/partner visa applications [INTERNAL LINK: /spouse-visa]\n- Tier 2 work visa conversions [INTERNAL LINK: /work-visa]\n\nBritish Citizenship After Settlement\nOnce you've got settled status, we can help you understand how to apply for british citizenship as an eu citizen, including:\n- Eligibility assessments for naturalisation\n- Citizenship application preparation\n- Life in the UK test guidance\n- English language requirement support\n\nAll services come with our guarantee: fixed fees, direct solicitor access, and no hidden costs."
+      },
+      {
+        "title": "Why EU Citizens Choose Our Immigration Solicitors",
+        "content": "Direct Solicitor Access From Day One\nSpeak directly to qualified immigration solicitors — not call centre staff. Your case handler will be a legal professional who understands the complexities of post-Brexit immigration.\n\nFixed Fees - No Hidden Costs\nEU Settlement Scheme applications from £800. Settlement visa uk applications with transparent pricing. No hourly billing surprises.\n\nNationwide Coverage\nWhether you're in London, Manchester, Birmingham, or rural Scotland, you'll get the same expert immigration advice. No need to travel for meetings — we work remotely and in-person.\n\nProven Track Record\n\"Thanks to [Firm Name], my late EU Settlement Scheme application was approved within 3 months. They explained everything clearly and kept me updated throughout.\" - Maria K., Manchester\n\nSpecialised Brexit Expertise\nWe've been helping EU nationals navigate post-Brexit immigration since 2020. We understand the unique challenges you face and the solutions available."
+      },
+      {
+        "title": "Our EU Settlement Scheme Application Process",
+        "content": "Step 1: Free Initial Consultation\nWe'll assess your eligibility for the eu settlement scheme or alternative routes. No obligation, no hidden agenda.\n\nStep 2: Document Review and Strategy\nOur solicitors will review your UK residence history, identify any gaps, and create a tailored application strategy.\n\nStep 3: Application Preparation\nWe'll help gather evidence, complete forms, and ensure your application meets all Home Office requirements.\n\nStep 4: Submission and Monitoring\nWe'll submit your application and monitor its progress, liaising with the Home Office on your behalf.\n\nStep 5: Ongoing Support\nOnce approved, we'll advise on your next steps, including how to apply for british citizenship eu national when you're eligible.\n\nMost EU Settlement Scheme applications are decided within 1-3 months. We'll keep you informed every step of the way.\n\nYes, late applications are still possible if you've got reasonable grounds for missing the June 2021 deadline. Valid reasons include illness, caring responsibilities, or not understanding the requirement. Our solicitors can assess your circumstances and prepare a compelling late application from £800.\n\nSettled status is granted if you lived in the UK for 5+ continuous years by December 2020. It gives you permanent residency rights. Pre-settled status is for those with less than 5 years' residence — you can later convert to settled status. Both protect your right to live and work in the UK.\n\nOnce you've got settled status (or equivalent), you can typically apply for British citizenship after holding it for 12 months. You'll need to pass the Life in the UK test, meet English language requirements, and have no significant absences from the UK. Our solicitors can guide you through the entire process.\n\nIf refused, you may be able to apply for administrative review or submit a new application addressing the refusal reasons. Time is critical as you could lose your legal status. Our immigration solicitors can review refusal letters and advise on the best next steps, including alternative settlement visa UK routes.\n\nYes, each family member needs their own application, including children. But children under 21 or dependent family members may have simpler requirements. We can handle multiple family applications simultaneously with package pricing available.\n\nGenerally yes, but extended absences could affect your application. If you've got pre-settled status and are applying for settled status, long trips abroad might reset your continuous residence clock. Always check with our solicitors before extended travel during the application process."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I still apply for the EU Settlement Scheme after the deadline?",
+        "answer": "Yes, late applications are still possible if you've got reasonable grounds for missing the June 2021 deadline. Valid reasons include illness, caring responsibilities, or not understanding the requirement. Our solicitors can assess your circumstances and prepare a compelling late application from £800."
+      },
+      {
+        "question": "What's the difference between settled and pre-settled status under the EU Settlement Scheme?",
+        "answer": "Settled status is granted if you lived in the UK for 5+ continuous years by December 2020. It gives you permanent residency rights. Pre-settled status is for those with less than 5 years' residence — you can later convert to settled status. Both protect your right to live and work in the UK."
+      },
+      {
+        "question": "How do I apply for British citizenship as an EU citizen after getting settled status?",
+        "answer": "Once you've got settled status (or equivalent), you can typically apply for British citizenship after holding it for 12 months. You'll need to pass the Life in the UK test, meet English language requirements, and have no significant absences from the UK. Our solicitors can guide you through the entire process."
+      },
+      {
+        "question": "What if my EU Settlement Scheme application is refused?",
+        "answer": "If refused, you may be able to apply for administrative review or submit a new application addressing the refusal reasons. Time is critical as you could lose your legal status. Our immigration solicitors can review refusal letters and advise on the best next steps, including alternative settlement visa UK routes."
+      },
+      {
+        "question": "Do family members need separate EU Settlement Scheme applications?",
+        "answer": "Yes, each family member needs their own application, including children. But children under 21 or dependent family members may have simpler requirements. We can handle multiple family applications simultaneously with package pricing available."
+      },
+      {
+        "question": "Can I travel while my EU Settlement Scheme application is pending?",
+        "answer": "Generally yes, but extended absences could affect your application. If you've got pre-settled status and are applying for settled status, long trips abroad might reset your continuous residence clock. Always check with our solicitors before extended travel during the application process."
+      }
+    ],
+    "parentService": "Immigration Law",
+    "parentHref": "/immigration/"
   }
 ];
 
@@ -657,14 +1270,5 @@ export function getServicePage(slug: string): ServicePage {
   const found = [...immigrationPages, ...housingPages, ...locationPages, ...personalInjuryPages].find(p => p.slug === slug);
   if (found) return found;
   const title = slug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
-  return {
-    slug, title,
-    metaTitle: `${title} | Abrahams Solicitors`,
-    metaDescription: "Expert legal advice from Abrahams Solicitors. Fixed fees, direct solicitor access.",
-    heroTitle: title,
-    heroDescription: "Contact Abrahams Solicitors for expert legal advice.",
-    badge: "Legal Services",
-    sections: [{ title: "About This Service", content: "Please contact us to discuss your case. We offer a free initial consultation with no obligation." }],
-    faqs: [],
-  };
+  return { slug, title, metaTitle: title + " | Abrahams Solicitors", metaDescription: "Expert legal advice from Abrahams Solicitors. Fixed fees, direct solicitor access.", heroTitle: title, heroDescription: "Contact Abrahams Solicitors for expert legal advice.", badge: "Legal Services", sections: [{ title: "About This Service", content: "Please contact us to discuss your case. We offer a free initial consultation with no obligation." }], faqs: [] };
 }

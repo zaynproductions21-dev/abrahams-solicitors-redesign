@@ -1,3 +1,6 @@
+// Auto-generated from PublishOS page copy — last sync: 2026-04-22T20:01:43.204Z
+// Run: npx tsx scripts/sync-copy.ts
+
 export type NavItem = {
   label: string;
   href: string;
@@ -10,29 +13,84 @@ export const navigation: NavItem[] = [
     label: "Immigration Law",
     href: "/immigration/",
     children: [
-      { label: "Immigration Solicitors London", href: "/immigration-solicitors-london/" },
-      { label: "Spouse Visa Services", href: "/spouse-visa-solicitors/" },
-      { label: "British Citizenship", href: "/british-citizenship-services/" },
-      { label: "UK Spouse Visa", href: "/uk-spouse-visa/" },
-      { label: "UK Partner Visa Extension", href: "/uk-partner-visa-extension/" },
-      { label: "UK Fiance Visa", href: "/uk-fiance-visa/" },
-      { label: "Civil Partnership Visa", href: "/civil-partnership-visa/" },
-      { label: "UK Unmarried Partner Visa", href: "/uk-unmarried-partner-visa/" },
-      { label: "UK Visit Visa", href: "/uk-visit-visa/" },
-      { label: "UK Ancestry Visa", href: "/uk-ancestry-visa/" },
-      { label: "Indefinite Leave to Remain", href: "/indefinite-leave-to-remain-ilr/" },
-      { label: "Visa Extensions & Renewals", href: "/uk-visa-extensions-renewals/" },
-      { label: "Asylum Applications", href: "/asylum-applications/" },
-      { label: "EU Settlement Scheme", href: "/eu-settlement-scheme/" },
-      { label: "Immigration Lawyers Near Me", href: "/immigration-lawyers/" },
+          {
+                "label": "UK Spouse Visa Solicitors",
+                "href": "/uk-spouse-visa-solicitors/"
+          },
+          {
+                "label": "British Citizenship Solicitors",
+                "href": "/british-citizenship-solicitors/"
+          },
+          {
+                "label": "Sponsor Licence Applications",
+                "href": "/sponsor-licence-applications/"
+          },
+          {
+                "label": "Indefinite Leave To Remain",
+                "href": "/indefinite-leave-to-remain-ilr/"
+          },
+          {
+                "label": "UK Visa Applications",
+                "href": "/uk-visa-applications/"
+          },
+          {
+                "label": "Visa Refusal & Appeals Hub",
+                "href": "/visa-refusal-appeal/"
+          },
+          {
+                "label": "Immigration",
+                "href": "/immigration/"
+          },
+          {
+                "label": "UK Spouse Visa",
+                "href": "/uk-spouse-visa/"
+          },
+          {
+                "label": "UK Visit Visa",
+                "href": "/uk-visit-visa/"
+          },
+          {
+                "label": "UK Ancestry Visa",
+                "href": "/uk-ancestry-visa/"
+          },
+          {
+                "label": "UK Fiance Visa",
+                "href": "/uk-fiance-visa/"
+          },
+          {
+                "label": "UK Partner Visa Extension",
+                "href": "/uk-partner-visa-extension/"
+          },
+          {
+                "label": "UK Unmarried Partner Visa",
+                "href": "/uk-unmarried-partner-visa/"
+          },
+          {
+                "label": "Civil Partnership Visa",
+                "href": "/civil-partnership-visa/"
+          },
+          {
+                "label": "UK Visa Extensions Renewals",
+                "href": "/uk-visa-extensions-renewals/"
+          },
+          {
+                "label": "Asylum Applications",
+                "href": "/asylum-applications/"
+          },
+          {
+                "label": "EU Settlement Scheme",
+                "href": "/eu-settlement-scheme/"
+          }
     ],
   },
   {
     label: "Housing Law",
-    href: "/housing-disrepair/",
+    href: "/housing-disrepair-claims/",
     children: [
-      { label: "Housing Disrepair Claims", href: "/housing-disrepair-claims/" },
-      { label: "Tenant Rights", href: "/housing-disrepair/" },
+          {
+                "label": "Housing Disrepair Claims",
+                "href": "/housing-disrepair-claims/"
+          }
     ],
   },
   { label: "About Us", href: "/about-us/" },

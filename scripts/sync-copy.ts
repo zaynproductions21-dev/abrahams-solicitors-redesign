@@ -123,6 +123,67 @@ async function main() {
   console.log(`  Housing: ${housingPages.length}`);
   console.log(`  Location: ${locationPages.length}`);
   console.log(`  Other: ${otherPages.length}`);
+
+  // ── Auto-generate navigation.ts from pages with copy ──
+  console.log("\nGenerating navigation.ts from pages with copy...");
+
+  const immigrationChildren = immigrationPages.map((p: any) => ({
+    label: cleanTitle(p.title),
+    href: `/${p.slug}/`,
+  }));
+
+  const housingChildren = housingPages.map((p: any) => ({
+    label: cleanTitle(p.title),
+    href: `/${p.slug}/`,
+  }));
+
+  const locationChildren = locationPages.map((p: any) => ({
+    label: cleanTitle(p.title),
+    href: `/${p.slug}/`,
+  }));
+
+  const navLines = [
+    `// Auto-generated from PublishOS page copy — last sync: ${new Date().toISOString()}`,
+    `// Run: npx tsx scripts/sync-copy.ts`,
+    ``,
+    `export type NavItem = {`,
+    `  label: string;`,
+    `  href: string;`,
+    `  children?: NavItem[];`,
+    `};`,
+    ``,
+    `export const navigation: NavItem[] = [`,
+    `  { label: "Home", href: "/" },`,
+    `  {`,
+    `    label: "Immigration Law",`,
+    `    href: "/immigration/",`,
+    `    children: ${JSON.stringify(immigrationChildren, null, 6).split("\n").map((l, i) => i === 0 ? l : "    " + l).join("\n")},`,
+    `  },`,
+  ];
+
+  if (housingChildren.length > 0) {
+    navLines.push(`  {`);
+    navLines.push(`    label: "Housing Law",`);
+    navLines.push(`    href: "/${housingPages[0]?.slug || "housing-disrepair"}/",`);
+    navLines.push(`    children: ${JSON.stringify(housingChildren, null, 6).split("\n").map((l, i) => i === 0 ? l : "    " + l).join("\n")},`);
+    navLines.push(`  },`);
+  }
+
+  navLines.push(`  { label: "About Us", href: "/about-us/" },`);
+  navLines.push(`  { label: "Our Fees", href: "/our-fees/" },`);
+  navLines.push(`  { label: "Contact", href: "/contact-us/" },`);
+  navLines.push(`];`);
+  navLines.push(``);
+
+  // Preserve team members from existing navigation.ts
+  const existingNav = fs.existsSync("src/lib/navigation.ts") ? fs.readFileSync("src/lib/navigation.ts", "utf8") : "";
+  const teamMembersMatch = existingNav.match(/export const teamMembers[\s\S]*$/);
+  if (teamMembersMatch) {
+    navLines.push(teamMembersMatch[0]);
+  }
+
+  fs.writeFileSync("src/lib/navigation.ts", navLines.join("\n"));
+  console.log(`Written src/lib/navigation.ts with ${immigrationChildren.length} immigration + ${housingChildren.length} housing + ${locationChildren.length} location nav items`);
 }
 
 function cleanTitle(t: string): string {
