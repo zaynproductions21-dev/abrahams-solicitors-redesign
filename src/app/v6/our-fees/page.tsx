@@ -58,7 +58,7 @@ export default function V1FeesPage() {
       <section className="bg-brand-navy py-24 lg:py-32">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">Our Fees</p>
-          <h1 className="text-4xl lg:text-6xl font-heading font-bold text-white leading-tight max-w-3xl">
+          <h1 className="text-4xl lg:text-6xl font-bold text-white leading-tight max-w-3xl">
             Clear, Transparent Pricing
           </h1>
           <p className="mt-6 text-lg text-white/50 max-w-2xl leading-relaxed">
@@ -74,7 +74,7 @@ export default function V1FeesPage() {
             {feeCategories.map((cat) => (
               <div key={cat.title} className="bg-white rounded-2xl ring-1 ring-slate-200 overflow-hidden">
                 <div className="bg-brand-navy p-6">
-                  <h3 className="text-lg font-heading font-bold text-white">{cat.title}</h3>
+                  <h3 className="text-lg font-bold text-white">{cat.title}</h3>
                   <p className="text-brand-gold text-sm font-medium mt-1">{cat.highlight}</p>
                 </div>
                 <div className="p-6">
@@ -102,7 +102,7 @@ export default function V1FeesPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">What&apos;s Included</p>
-              <h2 className="text-3xl lg:text-5xl font-heading font-bold text-brand-navy leading-tight">No Hidden Extras</h2>
+              <h2 className="text-3xl lg:text-5xl font-bold text-brand-navy leading-tight">No Hidden Extras</h2>
               <p className="mt-5 text-lg text-slate-500 leading-relaxed">Every fee quoted includes all the essentials. You won&apos;t be charged extra for basic services.</p>
             </div>
             <div className="space-y-4">
@@ -120,7 +120,7 @@ export default function V1FeesPage() {
       {/* CTA */}
       <section className="bg-brand-navy py-24 lg:py-28">
         <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-5xl font-heading font-bold text-white leading-tight">Get Your Free Quote Today</h2>
+          <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">Get Your Free Quote Today</h2>
           <p className="mt-6 text-white/40 text-lg max-w-xl mx-auto">Speak to us about your case and we&apos;ll provide a clear, fixed fee quote.</p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Button asChild size="lg" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-xl text-base h-13 px-8">

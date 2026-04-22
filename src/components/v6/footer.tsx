@@ -34,9 +34,9 @@ export function V6Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-4">
             <Link href="/v6/" className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 bg-brand-red rounded-xl flex items-center justify-center text-white font-heading text-xl font-bold">A</div>
+              <div className="w-10 h-10 bg-brand-red rounded-xl flex items-center justify-center text-white text-xl font-bold">A</div>
               <div className="leading-tight">
-                <span className="block text-xl font-heading font-bold tracking-tight">Abrahams</span>
+                <span className="block text-xl font-bold tracking-tight">Abrahams</span>
                 <span className="block text-[10px] font-semibold text-brand-gold uppercase tracking-[0.2em]">Solicitors</span>
               </div>
             </Link>

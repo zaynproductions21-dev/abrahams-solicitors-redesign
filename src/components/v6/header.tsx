@@ -106,11 +106,11 @@ export function V6Header() {
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <Link href="/v6/" className="flex items-center gap-3 shrink-0">
-              <div className="w-10 h-10 bg-brand-red rounded-xl flex items-center justify-center text-white font-heading text-xl font-bold">
+              <div className="w-10 h-10 bg-brand-red rounded-xl flex items-center justify-center text-white text-xl font-bold">
                 A
               </div>
               <div className="leading-tight">
-                <span className="block text-xl font-heading font-bold text-brand-navy tracking-tight">Abrahams</span>
+                <span className="block text-xl font-bold text-brand-navy tracking-tight">Abrahams</span>
                 <span className="block text-[10px] font-semibold text-brand-gold uppercase tracking-[0.2em]">Solicitors</span>
               </div>
             </Link>
@@ -142,9 +142,9 @@ export function V6Header() {
                   <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                   <div className="p-6 border-b border-slate-100">
                     <Link href="/v6/" className="flex items-center gap-3">
-                      <div className="w-9 h-9 bg-brand-red rounded-xl flex items-center justify-center text-white font-heading font-bold text-lg">A</div>
+                      <div className="w-9 h-9 bg-brand-red rounded-xl flex items-center justify-center text-white font-bold text-lg">A</div>
                       <div className="leading-tight">
-                        <span className="block text-lg font-heading font-bold text-brand-navy">Abrahams</span>
+                        <span className="block text-lg font-bold text-brand-navy">Abrahams</span>
                         <span className="block text-[10px] font-semibold text-brand-gold uppercase tracking-[0.2em]">Solicitors</span>
                       </div>
                     </Link>

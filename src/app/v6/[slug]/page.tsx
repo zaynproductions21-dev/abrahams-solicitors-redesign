@@ -40,7 +40,7 @@ export default async function V1ServicePage({ params }: { params: Promise<{ slug
           {page.badge && (
             <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">{page.badge}</p>
           )}
-          <h1 className="text-3xl lg:text-5xl xl:text-6xl font-heading font-bold text-white leading-tight max-w-3xl">
+          <h1 className="text-3xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight max-w-3xl">
             {page.heroTitle}
           </h1>
           <p className="mt-6 text-lg text-white/50 max-w-2xl leading-relaxed">{page.heroDescription}</p>
@@ -71,7 +71,7 @@ export default async function V1ServicePage({ params }: { params: Promise<{ slug
             <div className="lg:col-span-2 space-y-14">
               {page.sections.map((section, index) => (
                 <div key={index}>
-                  <h2 className="text-2xl lg:text-3xl font-heading font-bold text-brand-navy mb-5">{section.title}</h2>
+                  <h2 className="text-2xl lg:text-3xl font-bold text-brand-navy mb-5">{section.title}</h2>
                   <p className="text-slate-500 leading-relaxed mb-6">{section.content}</p>
                   {section.items && (
                     <ul className="grid sm:grid-cols-2 gap-3">
@@ -87,7 +87,7 @@ export default async function V1ServicePage({ params }: { params: Promise<{ slug
 
               {page.faqs && page.faqs.length > 0 && (
                 <div>
-                  <h2 className="text-2xl lg:text-3xl font-heading font-bold text-brand-navy mb-8">Frequently Asked Questions</h2>
+                  <h2 className="text-2xl lg:text-3xl font-bold text-brand-navy mb-8">Frequently Asked Questions</h2>
                   <Accordion className="w-full">
                     {page.faqs.map((faq, index) => (
                       <AccordionItem key={index} value={index}>
@@ -107,7 +107,7 @@ export default async function V1ServicePage({ params }: { params: Promise<{ slug
             {/* Sidebar */}
             <div className="space-y-6">
               <div className="bg-brand-navy rounded-2xl p-8 sticky top-28">
-                <h3 className="text-lg font-heading font-bold text-white mb-3">Get Expert Legal Advice</h3>
+                <h3 className="text-lg font-bold text-white mb-3">Get Expert Legal Advice</h3>
                 <p className="text-white/50 text-sm mb-6 leading-relaxed">Speak to one of our experienced solicitors. Free initial consultation.</p>
                 <div className="space-y-3">
                   <Button asChild className="w-full bg-brand-red hover:bg-brand-red-dark text-white rounded-xl">
@@ -133,7 +133,7 @@ export default async function V1ServicePage({ params }: { params: Promise<{ slug
       {/* Bottom CTA */}
       <section className="bg-brand-navy py-20">
         <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
-          <h2 className="text-2xl lg:text-4xl font-heading font-bold text-white">Ready to Discuss Your Case?</h2>
+          <h2 className="text-2xl lg:text-4xl font-bold text-white">Ready to Discuss Your Case?</h2>
           <p className="mt-4 text-white/40 max-w-xl mx-auto">Contact us today for a free consultation.</p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Button asChild size="lg" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-xl">

@@ -16,7 +16,7 @@ export default function V1ContactPage() {
       <section className="bg-brand-navy py-24 lg:py-32">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">Contact Us</p>
-          <h1 className="text-4xl lg:text-6xl font-heading font-bold text-white leading-tight max-w-3xl">Get in Touch</h1>
+          <h1 className="text-4xl lg:text-6xl font-bold text-white leading-tight max-w-3xl">Get in Touch</h1>
           <p className="mt-6 text-lg text-white/50 max-w-2xl leading-relaxed">
             Book a free consultation to discuss your case. We offer phone, video, and in-person appointments.
           </p>
@@ -32,7 +32,7 @@ export default function V1ContactPage() {
               {submitted ? (
                 <div className="bg-white rounded-2xl ring-1 ring-slate-200 p-12 text-center">
                   <CheckCircle2 className="h-12 w-12 text-brand-gold mx-auto mb-4" />
-                  <h2 className="text-2xl font-heading font-bold text-brand-navy mb-2">Message Sent</h2>
+                  <h2 className="text-2xl font-bold text-brand-navy mb-2">Message Sent</h2>
                   <p className="text-slate-500">We&apos;ll be in touch within 24 hours.</p>
                 </div>
               ) : (
@@ -81,7 +81,7 @@ export default function V1ContactPage() {
             {/* Contact Details */}
             <div className="lg:col-span-2 space-y-6">
               <div className="bg-brand-navy rounded-2xl p-8">
-                <h3 className="text-lg font-heading font-bold text-white mb-6">Contact Details</h3>
+                <h3 className="text-lg font-bold text-white mb-6">Contact Details</h3>
                 <div className="space-y-5">
                   <a href="tel:02034880512" className="flex items-center gap-3 text-white/70 hover:text-brand-gold transition-colors text-sm">
                     <Phone className="h-5 w-5 shrink-0" />020 3488 0512
@@ -109,7 +109,7 @@ export default function V1ContactPage() {
               ))}
 
               <div className="bg-white rounded-2xl ring-1 ring-slate-200 p-6">
-                <h3 className="font-heading font-semibold text-brand-navy mb-3">Free Consultation</h3>
+                <h3 className="font-semibold text-brand-navy mb-3">Free Consultation</h3>
                 <div className="space-y-2">
                   {["No obligation assessment", "Phone, video, or in-person", "Confidential and professional"].map((item) => (
                     <div key={item} className="flex items-center gap-2 text-sm text-slate-500">
