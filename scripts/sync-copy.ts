@@ -103,8 +103,11 @@ async function main() {
   }
   lines.push(`export const personalInjuryPages: ServicePage[] = [];`);
   lines.push(``);
-  lines.push(`export function getServicePage(slug: string): ServicePage | undefined {`);
-  lines.push(`  return [...immigrationPages, ...housingPages, ...locationPages${otherPages.length ? ", ...otherPages" : ""}, ...personalInjuryPages].find(p => p.slug === slug);`);
+  lines.push(`export function getServicePage(slug: string): ServicePage {`);
+  lines.push(`  const found = [...immigrationPages, ...housingPages, ...locationPages${otherPages.length ? ", ...otherPages" : ""}, ...personalInjuryPages].find(p => p.slug === slug);`);
+  lines.push(`  if (found) return found;`);
+  lines.push(`  const title = slug.replace(/-/g, " ").replace(/\\b\\w/g, c => c.toUpperCase());`);
+  lines.push(`  return { slug, title, metaTitle: title + " | Abrahams Solicitors", metaDescription: "Expert legal advice from Abrahams Solicitors. Fixed fees, direct solicitor access.", heroTitle: title, heroDescription: "Contact Abrahams Solicitors for expert legal advice.", badge: "Legal Services", sections: [{ title: "About This Service", content: "Please contact us to discuss your case. We offer a free initial consultation with no obligation." }], faqs: [] };`);
   lines.push(`}`);
   lines.push(``);
 

@@ -653,6 +653,18 @@ export const locationPages: ServicePage[] = [
 
 export const personalInjuryPages: ServicePage[] = [];
 
-export function getServicePage(slug: string): ServicePage | undefined {
-  return [...immigrationPages, ...housingPages, ...locationPages, ...personalInjuryPages].find(p => p.slug === slug);
+export function getServicePage(slug: string): ServicePage {
+  const found = [...immigrationPages, ...housingPages, ...locationPages, ...personalInjuryPages].find(p => p.slug === slug);
+  if (found) return found;
+  const title = slug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+  return {
+    slug, title,
+    metaTitle: `${title} | Abrahams Solicitors`,
+    metaDescription: "Expert legal advice from Abrahams Solicitors. Fixed fees, direct solicitor access.",
+    heroTitle: title,
+    heroDescription: "Contact Abrahams Solicitors for expert legal advice.",
+    badge: "Legal Services",
+    sections: [{ title: "About This Service", content: "Please contact us to discuss your case. We offer a free initial consultation with no obligation." }],
+    faqs: [],
+  };
 }
