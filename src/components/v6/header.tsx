@@ -14,10 +14,10 @@ function DesktopDropdown({ item }: { item: NavItem }) {
     <div className="relative group">
       <Link
         href={href}
-        className="flex items-center gap-1 px-3 py-2 text-sm font-semibold tracking-wide uppercase text-brand-navy hover:text-brand-red transition-colors whitespace-nowrap"
+        className="flex items-center gap-1 px-3 py-2 text-[13px] font-semibold tracking-wide uppercase text-brand-navy hover:text-brand-red transition-colors whitespace-nowrap"
       >
         {item.label}
-        {item.children && <ChevronDown className="h-3.5 w-3.5 opacity-50" />}
+        {item.children && <ChevronDown className="h-3 w-3 opacity-50" />}
       </Link>
       {item.children && (
         <div className="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
@@ -126,7 +126,7 @@ export function V6Header() {
               </div>
             </Link>
 
-            <nav className="hidden xl:flex items-center">
+            <nav className="hidden xl:flex items-center mx-8">
               {navigation.map((item) => (
                 <DesktopDropdown key={item.href} item={item} />
               ))}

@@ -10,7 +10,7 @@ export type NavItem = {
 export const navigation: NavItem[] = [
   { label: "Home", href: "/" },
   {
-    label: "Immigration Law",
+    label: "Immigration",
     href: "/immigration/",
     children: [
           {
@@ -84,7 +84,7 @@ export const navigation: NavItem[] = [
     ],
   },
   {
-    label: "Housing Law",
+    label: "Housing",
     href: "/housing-disrepair-claims/",
     children: [
           {
