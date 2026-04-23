@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { navigation, type NavItem } from "@/lib/navigation";
 import { Button } from "@/components/ui/button";
@@ -13,7 +14,7 @@ function DesktopDropdown({ item }: { item: NavItem }) {
     <div className="relative group">
       <Link
         href={href}
-        className="flex items-center gap-1 px-4 py-2 text-[13px] font-medium tracking-wide uppercase text-brand-navy/70 hover:text-brand-red transition-colors"
+        className="flex items-center gap-1 px-3 py-2 text-[13px] font-medium tracking-wide uppercase text-brand-navy/70 hover:text-brand-red transition-colors whitespace-nowrap"
       >
         {item.label}
         {item.children && <ChevronDown className="h-3 w-3 opacity-40" />}
@@ -104,15 +105,16 @@ export function V6Header() {
       {/* Main header */}
       <div className="bg-white/95 backdrop-blur-md border-b border-slate-100">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            <Link href="/v6/" className="flex items-center gap-3 shrink-0">
-              <div className="w-10 h-10 bg-brand-red rounded-xl flex items-center justify-center text-white text-xl font-bold">
-                A
-              </div>
-              <div className="leading-tight">
-                <span className="block text-xl font-bold text-brand-navy tracking-tight">Abrahams</span>
-                <span className="block text-[10px] font-semibold text-brand-gold uppercase tracking-[0.2em]">Solicitors</span>
-              </div>
+          <div className="flex items-center justify-between h-16">
+            <Link href="/v6/" className="flex items-center gap-2 shrink-0">
+              <Image
+                src="/abrahams-logo.png"
+                alt="Abrahams Solicitors"
+                width={160}
+                height={48}
+                priority
+                className="h-10 w-auto"
+              />
             </Link>
 
             <nav className="hidden xl:flex items-center">
@@ -121,12 +123,12 @@ export function V6Header() {
               ))}
             </nav>
 
-            <div className="hidden xl:flex items-center gap-5">
-              <a href="tel:02034880512" className="text-sm font-medium text-brand-navy/60 hover:text-brand-red transition-colors">
-                020 3488 0512
-              </a>
-              <Button asChild size="sm" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg px-6 h-10 text-sm">
-                <Link href="/v6/contact-us/">Get Proposal</Link>
+            <div className="hidden xl:flex items-center gap-3">
+              <Button asChild size="sm" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg px-5 h-10 text-sm font-semibold">
+                <a href="tel:02034880512" className="flex items-center gap-2">
+                  <Phone className="h-4 w-4" />
+                  020 3488 0512
+                </a>
               </Button>
             </div>
 
@@ -141,12 +143,14 @@ export function V6Header() {
                 <SheetContent side="right" className="w-[340px] p-0 overflow-y-auto">
                   <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                   <div className="p-6 border-b border-slate-100">
-                    <Link href="/v6/" className="flex items-center gap-3">
-                      <div className="w-9 h-9 bg-brand-red rounded-xl flex items-center justify-center text-white font-bold text-lg">A</div>
-                      <div className="leading-tight">
-                        <span className="block text-lg font-bold text-brand-navy">Abrahams</span>
-                        <span className="block text-[10px] font-semibold text-brand-gold uppercase tracking-[0.2em]">Solicitors</span>
-                      </div>
+                    <Link href="/v6/" className="flex items-center">
+                      <Image
+                        src="/abrahams-logo.png"
+                        alt="Abrahams Solicitors"
+                        width={160}
+                        height={48}
+                        className="h-10 w-auto"
+                      />
                     </Link>
                   </div>
                   <nav>
@@ -154,11 +158,8 @@ export function V6Header() {
                       <MobileNavItem key={item.href} item={item} />
                     ))}
                   </nav>
-                  <div className="p-6 space-y-3">
+                  <div className="p-6">
                     <Button asChild className="w-full bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12">
-                      <Link href="/v6/contact-us/">Get Proposal</Link>
-                    </Button>
-                    <Button asChild variant="outline" className="w-full rounded-lg h-12">
                       <a href="tel:02034880512"><Phone className="h-4 w-4 mr-2" />020 3488 0512</a>
                     </Button>
                   </div>

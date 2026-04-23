@@ -13,7 +13,7 @@ export default function V1ContactPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-brand-navy py-24 lg:py-32">
+      <section className="bg-brand-navy py-12 lg:py-16">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">Contact Us</p>
           <h1 className="text-4xl lg:text-6xl font-bold text-white leading-tight max-w-3xl">Get in Touch</h1>
@@ -24,7 +24,7 @@ export default function V1ContactPage() {
       </section>
 
       {/* Form + Details */}
-      <section className="py-24 lg:py-32">
+      <section className="py-12 lg:py-16">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
             {/* Form */}

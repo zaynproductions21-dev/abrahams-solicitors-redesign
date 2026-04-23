@@ -13,7 +13,7 @@ const services = [
   {
     icon: Scale, title: "Immigration Law",
     description: "Visa applications, ILR (permanent residency), asylum claims, partner visas, and appeals. Expert guidance at every step.",
-    href: "/v6/immigration/", price: "From £1,500",
+    href: "/v6/immigration/", price: "From £240*",
   },
   {
     icon: Home, title: "Housing Disrepair",
@@ -23,7 +23,7 @@ const services = [
   {
     icon: Award, title: "British Citizenship",
     description: "Naturalisation, registration, dual citizenship. We guide you through every step of securing your right to stay.",
-    href: "/v6/british-citizenship/", price: "From £1,200",
+    href: "/v6/british-citizenship/", price: "From £240*",
   },
 ];
 
@@ -37,7 +37,7 @@ const testimonials = [
 ];
 
 const faqs = [
-  { q: "How much does a spouse visa application cost?", a: "We offer a fixed fee from £1,500 for spouse and partner visa applications. This covers the full legal service — preparing your application, reviewing documents, and submitting to the Home Office. No hidden costs." },
+  { q: "How much does a spouse visa application cost?", a: "We offer fixed fees from £240 for spouse and partner visa applications. This covers the full legal service — preparing your application, reviewing documents, and submitting to the Home Office. No hidden costs." },
   { q: "What is ILR and how do I apply?", a: "ILR stands for Indefinite Leave to Remain — the UK's form of permanent residency. Once granted, you can live and work in the UK without restrictions. Our fixed fee starts from £1,200." },
   { q: "Can you help with damp and mould in my rented home?", a: "Yes. If your landlord has failed to repair damp, mould, or heating problems, you may be entitled to compensation. We handle all housing disrepair claims on a No Win, No Fee basis." },
   { q: "How do your fixed fees work?", a: "Before we begin, we give you a clear written quote. No hidden charges. For housing disrepair we work on No Win, No Fee. For immigration, fixed fees are agreed upfront." },
@@ -47,18 +47,32 @@ function ConsultationForm({ dark = false }: { dark?: boolean }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [service, setService] = useState("");
+  const [caseDescription, setCaseDescription] = useState("");
+
+  const inputClass = "w-full px-4 py-3 rounded-lg border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red/20 transition-colors";
 
   return (
-    <div className={`rounded-2xl p-8 ${dark ? "bg-white shadow-2xl" : "bg-white shadow-xl border border-slate-100"}`}>
+    <div className={`rounded-2xl p-6 sm:p-7 ${dark ? "bg-white shadow-2xl" : "bg-white shadow-xl border border-slate-100"}`}>
       <h3 className="text-xl font-bold text-slate-900 mb-1">Book Free Consultation</h3>
-      <p className="text-sm text-slate-400 mb-6">Speak to a solicitor today — no obligation.</p>
-      <form onSubmit={(e) => { e.preventDefault(); window.location.href = `/v6/contact-us/?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}`; }} className="space-y-3">
-        <input value={name} onChange={e => setName(e.target.value)} placeholder="Your Name" required
-          className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red/20 transition-colors" />
-        <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="Email Address" required
-          className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red/20 transition-colors" />
-        <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" placeholder="Phone Number"
-          className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red/20 transition-colors" />
+      <p className="text-sm text-slate-400 mb-5">Speak to a solicitor today — no obligation.</p>
+      <form onSubmit={(e) => { e.preventDefault(); window.location.href = `/v6/contact-us/?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}&service=${encodeURIComponent(service)}&case=${encodeURIComponent(caseDescription)}`; }} className="space-y-3">
+        <input value={name} onChange={e => setName(e.target.value)} placeholder="Your Name" required className={inputClass} />
+        <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="Email Address" required className={inputClass} />
+        <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" placeholder="Phone Number" className={inputClass} />
+        <select value={service} onChange={e => setService(e.target.value)} required className={`${inputClass} appearance-none bg-white`}>
+          <option value="">Service Required</option>
+          <option value="spouse-visa">Spouse Visa</option>
+          <option value="british-citizenship">British Citizenship</option>
+          <option value="visa-extension">Visa Extension</option>
+          <option value="ilr">ILR Application</option>
+          <option value="asylum">Asylum Application</option>
+          <option value="visit-visa">Visit Visa</option>
+          <option value="housing-disrepair">Housing Disrepair</option>
+          <option value="personal-injury">Personal Injury</option>
+          <option value="other">Other</option>
+        </select>
+        <textarea value={caseDescription} onChange={e => setCaseDescription(e.target.value)} placeholder="Briefly describe your case" rows={3} className={`${inputClass} resize-none`} />
         <Button type="submit" className="w-full bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 text-sm font-bold uppercase tracking-wide">
           Get Started
         </Button>
@@ -89,8 +103,8 @@ export default function V6HomePage() {
         {/* Orange/red diagonal accent */}
         <div className="absolute top-20 right-[30%] w-64 h-64 bg-brand-red/5 rounded-full blur-3xl" />
 
-        <div className="relative max-w-[1200px] mx-auto px-6 lg:px-8 py-20 lg:py-28">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="relative max-w-[1200px] mx-auto px-6 lg:px-8 py-10 lg:py-14">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left: headline */}
             <div>
               <h1 className="text-3xl sm:text-4xl lg:text-[3.25rem] xl:text-[3.75rem] font-black text-slate-900 leading-[1.1] tracking-tight">
@@ -98,10 +112,10 @@ export default function V6HomePage() {
                 <span className="text-brand-red">Immigration, Housing</span>{" "}
                 &amp; Citizenship.
               </h1>
-              <p className="mt-6 text-lg text-slate-500 leading-relaxed max-w-md">
+              <p className="mt-4 text-lg text-slate-500 leading-relaxed max-w-md">
                 Fixed fees. Direct solicitor access. No call centres. We handle your case from start to finish.
               </p>
-              <div className="mt-8 flex flex-wrap items-center gap-3">
+              <div className="mt-6 flex flex-wrap items-center gap-3">
                 <Button asChild size="lg" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide px-8 h-12">
                   <Link href="#services">Our Services</Link>
                 </Button>
@@ -120,7 +134,7 @@ export default function V6HomePage() {
       </section>
 
       {/* ─── Features row ─── clean icons like Porto "Online 24/7" */}
-      <section className="border-y border-slate-100 py-12 bg-slate-50/50">
+      <section className="border-y border-slate-100 py-8 bg-slate-50/50">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {[
@@ -144,8 +158,8 @@ export default function V6HomePage() {
       </section>
 
       {/* ─── Services ─── alternating left/right Porto-style */}
-      <section id="services" className="py-20 lg:py-28">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 space-y-20 lg:space-y-28">
+      <section id="services" className="py-14 lg:py-20">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 space-y-14 lg:space-y-20">
           {services.map((service, i) => (
             <div key={service.title} className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${i % 2 === 1 ? "lg:[direction:rtl]" : ""}`}>
               <div className={i % 2 === 1 ? "lg:[direction:ltr]" : ""}>
@@ -161,13 +175,14 @@ export default function V6HomePage() {
               </div>
             </div>
           ))}
+          <p className="text-xs text-slate-400 text-center pt-4">*Consultation fees. Full service fees vary by case — see <Link href="/v6/our-fees/" className="text-brand-red hover:underline">our fees</Link>.</p>
         </div>
       </section>
 
       {/* ─── Testimonials Grid ─── Porto-style 3-column cards with stars */}
-      <section className="py-20 lg:py-28 bg-slate-50/60">
+      <section className="py-14 lg:py-20 bg-slate-50/60">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10">
             <h2 className="text-2xl sm:text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">Clients We&rsquo;ve Helped</h2>
             <p className="mt-3 text-base text-slate-400">Real cases. Real results. Real reviews.</p>
           </div>
@@ -196,9 +211,9 @@ export default function V6HomePage() {
       </section>
 
       {/* ─── FAQ Accordion ─── */}
-      <section className="py-20 lg:py-28">
+      <section className="py-14 lg:py-20">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
             {/* Left: heading */}
             <div>
               <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">Common Questions</p>
@@ -228,9 +243,9 @@ export default function V6HomePage() {
       </section>
 
       {/* ─── Locations ─── */}
-      <section className="border-t border-slate-100 py-20 lg:py-28 bg-slate-50/60">
+      <section className="border-t border-slate-100 py-14 lg:py-20 bg-slate-50/60">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight text-center mb-14">Our Offices</h2>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight text-center mb-10">Our Offices</h2>
           <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {[
               { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU", phone: "020 3488 0512", transport: "Bank, Mansion House, Cannon Street" },
@@ -251,9 +266,9 @@ export default function V6HomePage() {
       </section>
 
       {/* ─── Pre-footer CTA with form (Porto-style repeat) ─── */}
-      <section className="bg-brand-navy py-20 lg:py-24">
+      <section className="bg-brand-navy py-14 lg:py-18">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight tracking-tight">
                 Ready to Discuss Your Case?

@@ -20,7 +20,7 @@ export default function V1AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-brand-navy py-24 lg:py-32">
+      <section className="bg-brand-navy py-12 lg:py-16">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">About Us</p>
           <h1 className="text-4xl lg:text-6xl font-bold text-white leading-tight max-w-3xl">
@@ -33,7 +33,7 @@ export default function V1AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="py-24 lg:py-32">
+      <section className="py-12 lg:py-16">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="max-w-2xl mb-16">
             <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">Our Values</p>
@@ -52,7 +52,7 @@ export default function V1AboutPage() {
       </section>
 
       {/* Team */}
-      <section className="py-24 lg:py-32 bg-slate-50">
+      <section className="py-12 lg:py-16 bg-slate-50">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="max-w-2xl mb-16">
             <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">Our Team</p>
@@ -76,7 +76,7 @@ export default function V1AboutPage() {
       </section>
 
       {/* Offices */}
-      <section className="py-24 lg:py-32">
+      <section className="py-12 lg:py-16">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">Our Offices</p>
@@ -101,7 +101,7 @@ export default function V1AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-brand-navy py-24 lg:py-28">
+      <section className="bg-brand-navy py-12 lg:py-16">
         <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">Ready to Discuss Your Case?</h2>
           <p className="mt-6 text-white/40 text-lg max-w-xl mx-auto">Contact us today for a free consultation.</p>

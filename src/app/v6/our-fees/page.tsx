@@ -13,10 +13,10 @@ const feeCategories = [
     title: "Immigration Law",
     highlight: "Fixed Fees",
     items: [
-      { service: "Spouse Visa Application", price: "From £1,500" },
-      { service: "British Citizenship", price: "From £800" },
-      { service: "Visa Extensions", price: "From £800" },
-      { service: "ILR Application", price: "From £1,200" },
+      { service: "Spouse Visa Application", price: "From £900" },
+      { service: "British Citizenship", price: "From £600" },
+      { service: "Visa Extensions", price: "From £900" },
+      { service: "ILR Application", price: "From £750" },
       { service: "Asylum Application", price: "Legal Aid / Fixed Fee" },
       { service: "Visit Visa", price: "From £500" },
     ],
@@ -55,7 +55,7 @@ export default function V1FeesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-brand-navy py-24 lg:py-32">
+      <section className="bg-brand-navy py-12 lg:py-16">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">Our Fees</p>
           <h1 className="text-4xl lg:text-6xl font-bold text-white leading-tight max-w-3xl">
@@ -68,7 +68,7 @@ export default function V1FeesPage() {
       </section>
 
       {/* Fee Cards */}
-      <section className="py-24 lg:py-32">
+      <section className="py-12 lg:py-16">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
             {feeCategories.map((cat) => (
@@ -97,7 +97,7 @@ export default function V1FeesPage() {
       </section>
 
       {/* What's Included */}
-      <section className="py-24 lg:py-32 bg-slate-50">
+      <section className="py-12 lg:py-16 bg-slate-50">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -118,7 +118,7 @@ export default function V1FeesPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-brand-navy py-24 lg:py-28">
+      <section className="bg-brand-navy py-12 lg:py-16">
         <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">Get Your Free Quote Today</h2>
           <p className="mt-6 text-white/40 text-lg max-w-xl mx-auto">Speak to us about your case and we&apos;ll provide a clear, fixed fee quote.</p>

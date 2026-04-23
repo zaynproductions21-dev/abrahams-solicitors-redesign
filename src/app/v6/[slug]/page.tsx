@@ -12,22 +12,73 @@ import {
   getServicePage, immigrationPages, personalInjuryPages, housingPage,
 } from "@/lib/services-data";
 
-function ConsultationForm({ serviceName }: { serviceName: string }) {
+function RichContent({ text }: { text: string }) {
+  const blocks = text.split(/\n\n+/);
+  return (
+    <div className="space-y-4 text-base text-slate-500 leading-relaxed">
+      {blocks.map((block, idx) => {
+        const lines = block.split("\n").map(l => l.trim()).filter(Boolean);
+        const bulletChars = ["•", "✓", "-", "*"];
+        const isBulletLine = (l: string) => bulletChars.some(c => l.startsWith(c + " ") || l.startsWith(c));
+        const allBullets = lines.length > 1 && lines.slice(1).every(isBulletLine);
+        const heading = allBullets && !isBulletLine(lines[0]) ? lines[0] : null;
+        const items = heading ? lines.slice(1) : lines.filter(isBulletLine);
+        const textLines = heading ? [] : lines.filter(l => !isBulletLine(l));
+
+        if (items.length > 0) {
+          return (
+            <div key={idx}>
+              {heading && <p className="font-semibold text-slate-900 mb-2">{heading}</p>}
+              {textLines.length > 0 && (
+                <p className="mb-2">{textLines.join(" ")}</p>
+              )}
+              <ul className="space-y-2 pl-0">
+                {items.map((item, i) => (
+                  <li key={i} className="flex items-start gap-2.5">
+                    <CheckCircle2 className="h-4 w-4 text-brand-red shrink-0 mt-1" />
+                    <span>{item.replace(/^[•✓\-*]\s*/, "")}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        }
+        return <p key={idx}>{block}</p>;
+      })}
+    </div>
+  );
+}
+
+function ConsultationForm({ serviceName, defaultService = "" }: { serviceName: string; defaultService?: string }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [service, setService] = useState(defaultService);
+  const [caseDescription, setCaseDescription] = useState("");
+
+  const inputClass = "w-full px-4 py-3 rounded-lg border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red/20";
 
   return (
     <div className="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 lg:p-8 sticky top-28">
       <h3 className="text-lg font-bold text-slate-900 mb-1">Free {serviceName} Consultation</h3>
       <p className="text-sm text-slate-400 mb-5">Speak to a solicitor today — no obligation.</p>
-      <form onSubmit={(e) => { e.preventDefault(); window.location.href = `/v6/contact-us/?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}`; }} className="space-y-3">
-        <input value={name} onChange={e => setName(e.target.value)} placeholder="Your Name" required
-          className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red/20" />
-        <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="Email Address" required
-          className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red/20" />
-        <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" placeholder="Phone Number"
-          className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red/20" />
+      <form onSubmit={(e) => { e.preventDefault(); window.location.href = `/v6/contact-us/?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}&service=${encodeURIComponent(service)}&case=${encodeURIComponent(caseDescription)}`; }} className="space-y-3">
+        <input value={name} onChange={e => setName(e.target.value)} placeholder="Your Name" required className={inputClass} />
+        <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="Email Address" required className={inputClass} />
+        <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" placeholder="Phone Number" className={inputClass} />
+        <select value={service} onChange={e => setService(e.target.value)} required className={`${inputClass} appearance-none bg-white`}>
+          <option value="">Service Required</option>
+          <option value="spouse-visa">Spouse Visa</option>
+          <option value="british-citizenship">British Citizenship</option>
+          <option value="visa-extension">Visa Extension</option>
+          <option value="ilr">ILR Application</option>
+          <option value="asylum">Asylum Application</option>
+          <option value="visit-visa">Visit Visa</option>
+          <option value="housing-disrepair">Housing Disrepair</option>
+          <option value="personal-injury">Personal Injury</option>
+          <option value="other">Other</option>
+        </select>
+        <textarea value={caseDescription} onChange={e => setCaseDescription(e.target.value)} placeholder="Briefly describe your case" rows={3} className={`${inputClass} resize-none`} />
         <Button type="submit" className="w-full bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 text-sm font-bold uppercase tracking-wide">
           Get Free Advice
         </Button>
@@ -61,18 +112,18 @@ export default function V6ServicePage() {
   // Determine pricing display
   const isHousing = slug.includes("housing") || slug.includes("disrepair");
   const isCitizenship = slug.includes("citizenship") || slug.includes("naturalisation");
-  const priceLabel = isHousing ? "No Win, No Fee" : isCitizenship ? "From £1,200" : "From £1,500";
+  const priceLabel = isHousing ? "No Win, No Fee" : "From £240*";
 
   return (
     <>
       {/* ─── Hero ─── Porto-style: white bg, bold heading left, form right */}
       <section className="bg-white border-b border-slate-100">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-16 lg:py-24">
-          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-start">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-10 lg:py-14">
+          <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
             {/* Left: 3 cols */}
             <div className="lg:col-span-3">
               {/* Breadcrumb */}
-              <nav className="flex items-center gap-1.5 text-sm text-slate-400 mb-6">
+              <nav className="flex items-center gap-1.5 text-sm text-slate-400 mb-4">
                 <Link href="/v6/" className="hover:text-brand-red transition-colors">Home</Link>
                 <ChevronRight className="h-3.5 w-3.5" />
                 {page.parentService && page.parentHref && (
@@ -95,9 +146,9 @@ export default function V6ServicePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-black text-slate-900 leading-[1.1] tracking-tight">
                 {page.heroTitle}
               </h1>
-              <p className="mt-5 text-base text-slate-500 leading-relaxed max-w-xl">{page.heroDescription}</p>
+              <p className="mt-4 text-base text-slate-500 leading-relaxed max-w-xl">{page.heroDescription}</p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-3">
+              <div className="mt-6 flex flex-wrap items-center gap-3">
                 <Button asChild size="lg" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide px-8 h-12">
                   <a href="#consultation-form">Book Free Consultation</a>
                 </Button>
@@ -107,7 +158,7 @@ export default function V6ServicePage() {
               </div>
 
               {/* Trust strip */}
-              <div className="flex items-center gap-6 mt-8 pt-6 border-t border-slate-100">
+              <div className="flex items-center gap-6 mt-6 pt-5 border-t border-slate-100">
                 {[
                   { icon: Headset, text: "Direct solicitor access" },
                   { icon: PoundSterling, text: "Fixed fees" },
@@ -129,20 +180,20 @@ export default function V6ServicePage() {
       </section>
 
       {/* ─── Content sections ─── alternating layout */}
-      <section className="py-16 lg:py-24">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 space-y-16 lg:space-y-24">
+      <section className="py-10 lg:py-14">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 space-y-10 lg:space-y-14">
           {page.sections.map((section, i) => (
-            <div key={i} className={`grid lg:grid-cols-2 gap-10 lg:gap-16 items-start ${i % 2 === 1 ? "lg:[direction:rtl]" : ""}`}>
+            <div key={i} className={`grid lg:grid-cols-2 gap-8 lg:gap-12 items-start ${i % 2 === 1 ? "lg:[direction:rtl]" : ""}`}>
               <div className={i % 2 === 1 ? "lg:[direction:ltr]" : ""}>
-                <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">
+                <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-2">
                   {String(i + 1).padStart(2, "0")}
                 </p>
-                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight mb-4">
+                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight mb-3">
                   {section.title}
                 </h2>
-                <p className="text-base text-slate-500 leading-relaxed">{section.content}</p>
+                <RichContent text={section.content} />
                 {section.items && (
-                  <ul className="mt-5 grid sm:grid-cols-2 gap-2.5">
+                  <ul className="mt-4 grid sm:grid-cols-2 gap-2.5">
                     {section.items.map((item) => (
                       <li key={item} className="flex items-start gap-2.5 text-sm text-slate-700">
                         <CheckCircle2 className="h-4 w-4 text-brand-red shrink-0 mt-0.5" />{item}
@@ -163,13 +214,13 @@ export default function V6ServicePage() {
       </section>
 
       {/* ─── Pricing callout ─── */}
-      <section className="border-y border-slate-100 py-12 bg-slate-50/50">
+      <section className="border-y border-slate-100 py-8 bg-slate-50/50">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
               <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-1">Pricing</p>
               <h3 className="text-xl sm:text-2xl font-black text-slate-900">{page.title}: <span className="text-brand-red">{priceLabel}</span></h3>
-              <p className="text-sm text-slate-400 mt-1">Clear, upfront pricing with no hidden costs. Free initial consultation.</p>
+              <p className="text-sm text-slate-400 mt-1">{priceLabel.includes("*") ? "*Consultation fee. Full service fees vary by case — see our fees page." : "Clear, upfront pricing with no hidden costs. Free initial consultation."}</p>
             </div>
             <Button asChild size="lg" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide px-8 h-12 shrink-0">
               <Link href="/v6/our-fees/">View All Fees</Link>
@@ -180,7 +231,7 @@ export default function V6ServicePage() {
 
       {/* ─── FAQ ─── Porto-style split layout */}
       {page.faqs && page.faqs.length > 0 && (
-        <section className="py-16 lg:py-24">
+        <section className="py-10 lg:py-14">
           <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
               <div>
@@ -215,7 +266,7 @@ export default function V6ServicePage() {
       )}
 
       {/* ─── Testimonial strip ─── */}
-      <section className="bg-slate-50/60 py-16 lg:py-20">
+      <section className="bg-slate-50/60 py-10 lg:py-14">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <div className="flex justify-center gap-1 mb-6">
@@ -231,7 +282,7 @@ export default function V6ServicePage() {
       </section>
 
       {/* ─── Bottom CTA with form (Porto double-form pattern) ─── */}
-      <section className="bg-brand-navy py-16 lg:py-24">
+      <section className="bg-brand-navy py-10 lg:py-14">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div>
