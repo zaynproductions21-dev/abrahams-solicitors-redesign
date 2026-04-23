@@ -121,7 +121,7 @@ export default function V6ServicePage() {
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-10 lg:py-14">
           <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
             {/* Left: 3 cols */}
-            <div className="lg:col-span-3">
+            <div className="lg:col-span-3 min-w-0">
               {/* Breadcrumb */}
               <nav className="flex items-center gap-1 text-xs sm:text-sm text-slate-400 mb-4 overflow-hidden">
                 <Link href="/v6/" className="hover:text-brand-red transition-colors shrink-0">Home</Link>
@@ -172,7 +172,7 @@ export default function V6ServicePage() {
             </div>
 
             {/* Right: 2 cols — consultation form */}
-            <div className="lg:col-span-2" id="consultation-form">
+            <div className="lg:col-span-2 min-w-0" id="consultation-form">
               <ConsultationForm serviceName={page.title} />
             </div>
           </div>
