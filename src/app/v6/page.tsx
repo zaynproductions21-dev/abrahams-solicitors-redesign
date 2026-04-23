@@ -107,7 +107,7 @@ export default function V6HomePage() {
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left: headline */}
             <div>
-              <h1 className="text-3xl sm:text-4xl lg:text-[3.25rem] xl:text-[3.75rem] font-black text-slate-900 leading-[1.1] tracking-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-[2.5rem] xl:text-[2.75rem] font-black text-slate-900 leading-[1.1] tracking-tight">
                 Expert Legal Support for{" "}
                 <span className="text-brand-red">Immigration, Housing</span>{" "}
                 &amp; Citizenship.

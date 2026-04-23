@@ -59,7 +59,7 @@ function ConsultationForm({ serviceName, defaultService = "" }: { serviceName: s
   const inputClass = "w-full px-4 py-3 rounded-lg border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red/20";
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 lg:p-8 sticky top-28">
+    <div className="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 lg:p-7">
       <h3 className="text-lg font-bold text-slate-900 mb-1">Free {serviceName} Consultation</h3>
       <p className="text-sm text-slate-400 mb-5">Speak to a solicitor today — no obligation.</p>
       <form onSubmit={(e) => { e.preventDefault(); window.location.href = `/v6/contact-us/?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}&service=${encodeURIComponent(service)}&case=${encodeURIComponent(caseDescription)}`; }} className="space-y-3">
@@ -83,21 +83,6 @@ function ConsultationForm({ serviceName, defaultService = "" }: { serviceName: s
           Get Free Advice
         </Button>
       </form>
-      <div className="mt-4 pt-4 border-t border-slate-100 space-y-2">
-        {["Free Initial Consultation", "SRA Regulated Firm", "Fixed Fee Pricing"].map((item) => (
-          <div key={item} className="flex items-center gap-2 text-xs text-slate-400">
-            <CheckCircle2 className="h-3.5 w-3.5 text-brand-red" />{item}
-          </div>
-        ))}
-      </div>
-      <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-slate-100">
-        <a href="tel:02034880512" className="flex items-center gap-2 text-xs text-slate-400 hover:text-brand-red">
-          <Phone className="h-3.5 w-3.5 shrink-0" />020 3488 0512
-        </a>
-        <a href="https://wa.me/442034880512" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs text-slate-400 hover:text-brand-red">
-          <MessageCircle className="h-3.5 w-3.5 shrink-0" />WhatsApp Us
-        </a>
-      </div>
     </div>
   );
 }
@@ -119,7 +104,7 @@ export default function V6ServicePage() {
       {/* ─── Hero ─── Porto-style: white bg, bold heading left, form right */}
       <section className="bg-white border-b border-slate-100">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-10 lg:py-14">
-          <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
+          <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center">
             {/* Left: 3 cols */}
             <div className="lg:col-span-3 min-w-0">
               {/* Breadcrumb */}
@@ -143,7 +128,7 @@ export default function V6ServicePage() {
                 <span className="text-xs font-bold text-white bg-brand-red px-3 py-1 rounded-full">{priceLabel}</span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-black text-slate-900 leading-[1.1] tracking-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-[2.5rem] xl:text-[2.75rem] font-black text-slate-900 leading-[1.1] tracking-tight">
                 {page.heroTitle}
               </h1>
               <p className="mt-4 text-base text-slate-500 leading-relaxed max-w-xl">{page.heroDescription}</p>
