@@ -110,11 +110,15 @@ export function V6Header() {
               <Image
                 src="/abrahams-logo.png"
                 alt="Abrahams Solicitors"
-                width={160}
+                width={48}
                 height={48}
                 priority
-                className="h-10 w-auto"
+                className="h-10 w-10 object-contain"
               />
+              <div className="leading-tight">
+                <span className="block text-xl font-bold text-brand-navy tracking-tight">Abrahams</span>
+                <span className="block text-[10px] font-semibold text-brand-gold uppercase tracking-[0.2em]">Solicitors</span>
+              </div>
             </Link>
 
             <nav className="hidden xl:flex items-center">
@@ -143,14 +147,18 @@ export function V6Header() {
                 <SheetContent side="right" className="w-[340px] p-0 overflow-y-auto">
                   <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                   <div className="p-6 border-b border-slate-100">
-                    <Link href="/v6/" className="flex items-center">
+                    <Link href="/v6/" className="flex items-center gap-2">
                       <Image
                         src="/abrahams-logo.png"
                         alt="Abrahams Solicitors"
-                        width={160}
-                        height={48}
-                        className="h-10 w-auto"
+                        width={40}
+                        height={40}
+                        className="h-10 w-10 object-contain"
                       />
+                      <div className="leading-tight">
+                        <span className="block text-lg font-bold text-brand-navy">Abrahams</span>
+                        <span className="block text-[10px] font-semibold text-brand-gold uppercase tracking-[0.2em]">Solicitors</span>
+                      </div>
                     </Link>
                   </div>
                   <nav>
