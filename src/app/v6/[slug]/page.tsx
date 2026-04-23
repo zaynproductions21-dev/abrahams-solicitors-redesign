@@ -12,12 +12,16 @@ import {
   getServicePage, immigrationPages, personalInjuryPages, housingPage,
 } from "@/lib/services-data";
 
+function stripHeadingPrefix(text: string): string {
+  return text.replace(/^\s*(H[1-6]|Meta\s*Title|Meta\s*Description|Meta|Title|Heading)\s*:\s*/i, "");
+}
+
 function RichContent({ text }: { text: string }) {
   const blocks = text.split(/\n\n+/);
   return (
     <div className="space-y-4 text-base text-slate-500 leading-relaxed">
       {blocks.map((block, idx) => {
-        const lines = block.split("\n").map(l => l.trim()).filter(Boolean);
+        const lines = block.split("\n").map(l => stripHeadingPrefix(l.trim())).filter(Boolean);
         const bulletChars = ["•", "✓", "-", "*"];
         const isBulletLine = (l: string) => bulletChars.some(c => l.startsWith(c + " ") || l.startsWith(c));
         const allBullets = lines.length > 1 && lines.slice(1).every(isBulletLine);
@@ -129,9 +133,9 @@ export default function V6ServicePage() {
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-[2.5rem] xl:text-[2.75rem] font-black text-slate-900 leading-[1.1] tracking-tight">
-                {page.heroTitle}
+                {stripHeadingPrefix(page.heroTitle)}
               </h1>
-              <p className="mt-4 text-base text-slate-500 leading-relaxed max-w-xl">{page.heroDescription}</p>
+              <p className="mt-4 text-base text-slate-500 leading-relaxed max-w-xl">{stripHeadingPrefix(page.heroDescription)}</p>
 
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <Button asChild size="lg" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide px-8 h-12">
@@ -174,7 +178,7 @@ export default function V6ServicePage() {
                   {String(i + 1).padStart(2, "0")}
                 </p>
                 <h2 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight mb-3">
-                  {section.title}
+                  {stripHeadingPrefix(section.title)}
                 </h2>
                 <RichContent text={section.content} />
                 {section.items && (
@@ -190,7 +194,7 @@ export default function V6ServicePage() {
               <div className={`bg-slate-50 rounded-2xl aspect-[4/3] flex items-center justify-center ${i % 2 === 1 ? "lg:[direction:ltr]" : ""}`}>
                 <div className="text-center">
                   <div className="text-6xl font-black text-brand-red/10">{String(i + 1).padStart(2, "0")}</div>
-                  <p className="text-sm text-slate-400 mt-2">{section.title}</p>
+                  <p className="text-sm text-slate-400 mt-2">{stripHeadingPrefix(section.title)}</p>
                 </div>
               </div>
             </div>
@@ -236,11 +240,11 @@ export default function V6ServicePage() {
                   <div key={i} className="border border-slate-200 rounded-xl overflow-hidden">
                     <button onClick={() => setOpenFaq(openFaq === i ? null : i)}
                       className="flex items-center justify-between gap-4 w-full p-5 text-left text-sm font-bold text-slate-900 hover:text-brand-red transition-colors">
-                      {faq.question}
+                      {stripHeadingPrefix(faq.question)}
                       <ChevronDown className={`h-4 w-4 shrink-0 text-brand-red transition-transform duration-200 ${openFaq === i ? "rotate-180" : ""}`} />
                     </button>
                     {openFaq === i && (
-                      <div className="px-5 pb-5 text-sm text-slate-500 leading-relaxed border-t border-slate-100 pt-4">{faq.answer}</div>
+                      <div className="px-5 pb-5 text-sm text-slate-500 leading-relaxed border-t border-slate-100 pt-4">{stripHeadingPrefix(faq.answer)}</div>
                     )}
                   </div>
                 ))}
