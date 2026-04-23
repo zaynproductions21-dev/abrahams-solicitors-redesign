@@ -123,16 +123,16 @@ export default function V6ServicePage() {
             {/* Left: 3 cols */}
             <div className="lg:col-span-3">
               {/* Breadcrumb */}
-              <nav className="flex items-center gap-1.5 text-sm text-slate-400 mb-4">
-                <Link href="/v6/" className="hover:text-brand-red transition-colors">Home</Link>
-                <ChevronRight className="h-3.5 w-3.5" />
+              <nav className="flex items-center gap-1 text-xs sm:text-sm text-slate-400 mb-4 overflow-hidden">
+                <Link href="/v6/" className="hover:text-brand-red transition-colors shrink-0">Home</Link>
+                <ChevronRight className="h-3 w-3 shrink-0" />
                 {page.parentService && page.parentHref && (
                   <>
-                    <Link href={`/v6${page.parentHref}`} className="hover:text-brand-red transition-colors">{page.parentService}</Link>
-                    <ChevronRight className="h-3.5 w-3.5" />
+                    <Link href={`/v6${page.parentHref}`} className="hover:text-brand-red transition-colors truncate max-w-[110px] sm:max-w-none">{page.parentService}</Link>
+                    <ChevronRight className="h-3 w-3 shrink-0" />
                   </>
                 )}
-                <span className="text-slate-600 font-medium">{page.title}</span>
+                <span className="text-slate-600 font-medium truncate">{page.title}</span>
               </nav>
 
               {/* Badge + price */}

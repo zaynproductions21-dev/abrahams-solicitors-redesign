@@ -14,10 +14,10 @@ function DesktopDropdown({ item }: { item: NavItem }) {
     <div className="relative group">
       <Link
         href={href}
-        className="flex items-center gap-1 px-3 py-2 text-[13px] font-medium tracking-wide uppercase text-brand-navy/70 hover:text-brand-red transition-colors whitespace-nowrap"
+        className="flex items-center gap-1 px-3 py-2 text-sm font-semibold tracking-wide uppercase text-brand-navy hover:text-brand-red transition-colors whitespace-nowrap"
       >
         {item.label}
-        {item.children && <ChevronDown className="h-3 w-3 opacity-40" />}
+        {item.children && <ChevronDown className="h-3.5 w-3.5 opacity-50" />}
       </Link>
       {item.children && (
         <div className="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
@@ -38,7 +38,7 @@ function DesktopDropdown({ item }: { item: NavItem }) {
   );
 }
 
-function MobileNavItem({ item }: { item: NavItem }) {
+function MobileNavItem({ item, onNavigate }: { item: NavItem; onNavigate: () => void }) {
   const [open, setOpen] = useState(false);
   const href = item.href === "/" ? "/v6/" : `/v6${item.href}`;
 
@@ -46,6 +46,7 @@ function MobileNavItem({ item }: { item: NavItem }) {
     return (
       <Link
         href={href}
+        onClick={onNavigate}
         className="block px-6 py-3.5 text-[15px] font-medium text-brand-navy hover:text-brand-red border-b border-slate-100"
       >
         {item.label}
@@ -64,13 +65,14 @@ function MobileNavItem({ item }: { item: NavItem }) {
       </button>
       {open && (
         <div className="bg-slate-50/60 pb-2">
-          <Link href={href} className="block px-8 py-2.5 text-sm text-brand-navy/70 hover:text-brand-red">
+          <Link href={href} onClick={onNavigate} className="block px-8 py-2.5 text-sm text-brand-navy/70 hover:text-brand-red">
             Overview
           </Link>
           {item.children.map((child) => (
             <Link
               key={child.href}
               href={`/v6${child.href}`}
+              onClick={onNavigate}
               className="block px-8 py-2.5 text-sm text-brand-navy/70 hover:text-brand-red"
             >
               {child.label}
@@ -83,6 +85,9 @@ function MobileNavItem({ item }: { item: NavItem }) {
 }
 
 export function V6Header() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const closeMobile = () => setMobileOpen(false);
+
   return (
     <header className="sticky top-0 z-50">
       {/* Announcement bar */}
@@ -140,14 +145,14 @@ export function V6Header() {
               <a href="tel:02034880512" className="inline-flex items-center justify-center rounded-xl p-2.5 text-brand-red hover:bg-brand-red/5 transition-colors" aria-label="Call us">
                 <Phone className="h-5 w-5" />
               </a>
-              <Sheet>
+              <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
                 <SheetTrigger className="inline-flex items-center justify-center rounded-xl p-2.5 text-brand-navy hover:bg-slate-50 transition-colors">
                   <Menu className="h-5 w-5" />
                 </SheetTrigger>
                 <SheetContent side="right" className="w-[340px] p-0 overflow-y-auto">
                   <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                   <div className="p-6 border-b border-slate-100">
-                    <Link href="/v6/" className="flex items-center gap-2">
+                    <Link href="/v6/" onClick={closeMobile} className="flex items-center gap-2">
                       <Image
                         src="/abrahams-logo.png"
                         alt="Abrahams Solicitors"
@@ -163,7 +168,7 @@ export function V6Header() {
                   </div>
                   <nav>
                     {navigation.map((item) => (
-                      <MobileNavItem key={item.href} item={item} />
+                      <MobileNavItem key={item.href} item={item} onNavigate={closeMobile} />
                     ))}
                   </nav>
                   <div className="p-6">
