@@ -51,11 +51,11 @@ const legalLinks = [
 ];
 
 const socialLinks: { label: string; href: string; icon: "facebook" | "twitter" | "linkedin" | "instagram" | "youtube" }[] = [
-  { label: "Facebook", href: "https://www.facebook.com/abrahamssolicitors", icon: "facebook" },
-  { label: "Twitter", href: "https://twitter.com/abrahamssols", icon: "twitter" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/abrahams-solicitors", icon: "linkedin" },
-  { label: "Instagram", href: "https://www.instagram.com/abrahamssolicitors", icon: "instagram" },
-  { label: "YouTube", href: "https://www.youtube.com/@abrahamssolicitors", icon: "youtube" },
+  { label: "Facebook", href: "https://www.facebook.com/AbrahamsSolicitors/", icon: "facebook" },
+  { label: "X (Twitter)", href: "https://x.com/Abrahamssolic", icon: "twitter" },
+  { label: "Instagram", href: "https://www.instagram.com/AbrahamsSolicitors/", icon: "instagram" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/brahamssolicitors", icon: "linkedin" },
+  { label: "YouTube", href: "https://www.youtube.com/@AbrahamsSolicitors", icon: "youtube" },
 ];
 
 const offices = [
