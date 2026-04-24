@@ -53,9 +53,9 @@ const jsonLd = {
     },
     {
       "@type": "PostalAddress",
-      streetAddress: "2nd Floor, 6 Piccadilly",
+      streetAddress: "Unit 20, Listerhills Science Park, Campus Road",
       addressLocality: "Bradford",
-      postalCode: "BD1 3LS",
+      postalCode: "BD7 1HR",
       addressCountry: "GB",
     },
   ],

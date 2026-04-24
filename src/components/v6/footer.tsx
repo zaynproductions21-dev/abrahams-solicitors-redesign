@@ -60,7 +60,7 @@ const socialLinks: { label: string; href: string; icon: "facebook" | "twitter" |
 
 const offices = [
   { city: "London", address: "Suite 10, Atlas House,\n1 King Street,\nLondon EC2V 8AU" },
-  { city: "Bradford", address: "2nd Floor, 6 Piccadilly,\nBradford BD1 3LS" },
+  { city: "Bradford", address: "Unit 20, Listerhills Science Park,\nCampus Road, Bradford BD7 1HR" },
 ];
 
 function VisaLogo() {

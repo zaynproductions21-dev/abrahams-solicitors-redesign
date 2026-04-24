@@ -85,7 +85,7 @@ export default function V1AboutPage() {
           <div className="grid md:grid-cols-2 gap-8">
             {[
               { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU" },
-              { city: "Bradford", address: "2nd Floor, 6 Piccadilly, Bradford BD1 3LS" },
+              { city: "Bradford", address: "Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR" },
             ].map((office) => (
               <div key={office.city} className="bg-white rounded-2xl ring-1 ring-slate-200 p-8 lg:p-10">
                 <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-5">{office.city} Office</p>
