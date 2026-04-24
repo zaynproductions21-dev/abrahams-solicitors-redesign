@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 const immigrationLinks = [
@@ -18,6 +19,10 @@ const otherLinks = [
 const quickLinks = [
   { label: "About Us", href: "/v6/about-us/" },
   { label: "Our Fees", href: "/v6/our-fees/" },
+  { label: "Blog", href: "/v6/blog/" },
+  { label: "Press Releases", href: "/v6/press-releases/" },
+  { label: "Newsletter", href: "/v6/newsletter/" },
+  { label: "FAQs", href: "/v6/faqs/" },
   { label: "Free Consultation", href: "/v6/contact-us/" },
 ];
 
@@ -33,8 +38,8 @@ export function V6Footer() {
       <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-4">
-            <Link href="/v6/" className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 bg-brand-red rounded-xl flex items-center justify-center text-white text-xl font-bold">A</div>
+            <Link href="/v6/" className="flex items-center gap-2 mb-8">
+              <Image src="/abrahams-logo.png" alt="Abrahams Solicitors" width={40} height={40} className="h-10 w-10 object-contain bg-white rounded-lg p-1" />
               <div className="leading-tight">
                 <span className="block text-xl font-bold tracking-tight">Abrahams</span>
                 <span className="block text-[10px] font-semibold text-brand-gold uppercase tracking-[0.2em]">Solicitors</span>
