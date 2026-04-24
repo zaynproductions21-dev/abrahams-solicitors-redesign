@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { pushFormSubmit } from "@/lib/tracking";
 import {
   Phone, Star, Scale, Home, ArrowRight, MapPin,
   Clock, Award, MessageCircle, Mail,
@@ -56,7 +57,7 @@ function ConsultationForm({ dark = false }: { dark?: boolean }) {
     <div className={`rounded-2xl p-6 sm:p-7 ${dark ? "bg-white shadow-2xl" : "bg-white shadow-xl border border-slate-100"}`}>
       <h3 className="text-xl font-bold text-slate-900 mb-1">Book Free Consultation</h3>
       <p className="text-sm text-slate-400 mb-5">Speak to a solicitor today — no obligation.</p>
-      <form onSubmit={(e) => { e.preventDefault(); window.location.href = `/v6/contact-us/?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}&service=${encodeURIComponent(service)}&case=${encodeURIComponent(caseDescription)}`; }} className="space-y-3">
+      <form onSubmit={(e) => { e.preventDefault(); pushFormSubmit({ email, phone }); window.location.href = `/v6/contact-us/?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}&service=${encodeURIComponent(service)}&case=${encodeURIComponent(caseDescription)}`; }} className="space-y-3">
         <input value={name} onChange={e => setName(e.target.value)} placeholder="Your Name" required className={inputClass} />
         <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="Email Address" required className={inputClass} />
         <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" placeholder="Phone Number" className={inputClass} />

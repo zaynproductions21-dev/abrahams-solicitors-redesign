@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Mail, Calendar, ArrowRight, CheckCircle2 } from "lucide-react";
 import { getNewsletters, subscribeToNewsletter, formatDate, type NewsletterIssue } from "@/lib/publishos";
+import { pushFormSubmit } from "@/lib/tracking";
 
 export default function V6NewsletterPage() {
   const [issues, setIssues] = useState<NewsletterIssue[] | null>(null);
@@ -28,6 +29,7 @@ export default function V6NewsletterPage() {
     const ok = await subscribeToNewsletter(email);
     setSubmitting(false);
     if (ok) {
+      pushFormSubmit({ email });
       setSubscribed(true);
       setEmail("");
     }

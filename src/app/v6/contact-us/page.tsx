@@ -6,9 +6,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Phone, Mail, MapPin, Clock, CheckCircle2 } from "lucide-react";
+import { pushFormSubmit } from "@/lib/tracking";
 
 export default function V1ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
 
   return (
     <>
@@ -37,7 +40,7 @@ export default function V1ContactPage() {
                 </div>
               ) : (
                 <form
-                  onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}
+                  onSubmit={(e) => { e.preventDefault(); pushFormSubmit({ email, phone }); setSubmitted(true); }}
                   className="bg-white rounded-2xl ring-1 ring-slate-200 p-8 lg:p-10 space-y-6"
                 >
                   <div className="grid sm:grid-cols-2 gap-6">
@@ -47,13 +50,13 @@ export default function V1ContactPage() {
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="email">Email Address</Label>
-                      <Input id="email" type="email" placeholder="your@email.com" required className="rounded-xl" />
+                      <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="your@email.com" required className="rounded-xl" />
                     </div>
                   </div>
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="phone">Phone Number</Label>
-                      <Input id="phone" type="tel" placeholder="07xxx xxxxxx" className="rounded-xl" />
+                      <Input id="phone" type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="07xxx xxxxxx" className="rounded-xl" />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="service">Service Required</Label>
