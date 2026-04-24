@@ -151,7 +151,7 @@ export default function V6HomePage() {
               { icon: Headset, title: "Direct Solicitor Access", desc: "Speak to your lawyer directly" },
               { icon: PoundSterling, title: "Fixed Fees", desc: "Clear pricing, no surprises" },
               { icon: Shield, title: "SRA Regulated", desc: "Solicitors Regulation Authority" },
-              { icon: Users, title: "Nationwide Coverage", desc: "Yorkshire base, video consultations UK-wide" },
+              { icon: Users, title: "Nationwide Coverage", desc: "London &amp; Yorkshire offices, video consultations UK-wide" },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3">
                 <div className="w-10 h-10 rounded-lg bg-brand-red/8 flex items-center justify-center shrink-0">

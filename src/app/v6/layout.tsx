@@ -1,9 +1,8 @@
-import Script from "next/script";
 import { Poppins } from "next/font/google";
 import { V6Header } from "@/components/v6/header";
 import { V6Footer } from "@/components/v6/footer";
 import { CookieConsent } from "@/components/v6/cookie-consent";
-import { WhatsAppButton } from "@/components/whatsapp-button";
+import { ChatWidgets } from "@/components/v6/chat-widgets";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -33,12 +32,8 @@ export default function V6Layout({ children }: { children: React.ReactNode }) {
       <V6Header />
       <main className="flex-1">{children}</main>
       <V6Footer />
-      <WhatsAppButton />
+      <ChatWidgets />
       <CookieConsent />
-      <Script
-        src="https://buildmyagent.io/widget/695bd22f35932d4b85fe954c/widget-professional.js?widgetId=695bd22f35932d4b85fe954c"
-        strategy="lazyOnload"
-      />
     </div>
   );
 }
