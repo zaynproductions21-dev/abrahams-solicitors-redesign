@@ -3,6 +3,7 @@ import { V6Header } from "@/components/v6/header";
 import { V6Footer } from "@/components/v6/footer";
 import { CookieConsent } from "@/components/v6/cookie-consent";
 import { ChatWidgets } from "@/components/v6/chat-widgets";
+import { GoogleTagManager } from "@/components/v6/google-tag-manager";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -13,6 +14,7 @@ const poppins = Poppins({
 export default function V6Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className={poppins.className}>
+      <GoogleTagManager />
       <style>{`
         .${poppins.className} h1,
         .${poppins.className} h2,
