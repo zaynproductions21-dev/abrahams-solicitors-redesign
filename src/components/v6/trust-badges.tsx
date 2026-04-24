@@ -6,8 +6,10 @@ type Badge = {
   rating?: string;
   reviews?: string;
   href: string;
-  icon: "sra" | "google" | "reviewsolicitors";
+  icon: "sra" | "google" | "reviewsolicitors" | "skeepers";
 };
+
+const SKEEPERS_SVG = "https://widgets.rr.skeepers.io/generated/05e45d6a-f5da-d744-cde2-d610aceec3fd/fd0dfd26-c4d2-409b-a4bb-a261f728096d.svg";
 
 const BADGES: Badge[] = [
   {
@@ -33,9 +35,23 @@ const BADGES: Badge[] = [
     href: "https://www.reviewsolicitors.co.uk/west-yorkshire/bradford/abrahams-yorkshire-limited",
     icon: "reviewsolicitors",
   },
+  {
+    label: "Verified Reviews",
+    sublabel: "Independent client feedback",
+    href: SKEEPERS_SVG,
+    icon: "skeepers",
+  },
 ];
 
 function BadgeIcon({ kind }: { kind: Badge["icon"] }) {
+  if (kind === "skeepers") {
+    return (
+      <div className="w-10 h-10 rounded-lg bg-white border border-slate-200 flex items-center justify-center shrink-0 overflow-hidden p-1">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={SKEEPERS_SVG} alt="Skeepers Verified Reviews" className="max-h-full max-w-full object-contain" />
+      </div>
+    );
+  }
   if (kind === "google") {
     return (
       <div className="w-10 h-10 rounded-lg bg-white border border-slate-200 flex items-center justify-center shrink-0">
@@ -79,7 +95,7 @@ export function TrustBadges() {
   return (
     <section className="border-y border-slate-100 bg-white">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-6">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {BADGES.map(b => (
             <a
               key={b.label}
