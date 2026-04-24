@@ -48,11 +48,13 @@ export default function V6BlogPage() {
                   <div className="aspect-[16/9] bg-slate-100 overflow-hidden">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={post.cover_image || "/placeholders/blog-cover.svg"}
+                      src={post.cover_image || `/placeholders/blog-cover.svg?slot=blog-cover-${post.slug}`}
                       alt={`${post.title} — editorial cover image for Abrahams Solicitors blog post${post.category ? ` in the ${post.category} category` : ""}`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       data-image-slot={`blog-cover-${post.slug}`}
                       data-image-type="blog-cover"
+                      width={1200}
+                      height={675}
                       loading="lazy"
                     />
                   </div>

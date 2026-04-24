@@ -63,11 +63,13 @@ export default function V6BlogPostPage() {
       <div className="max-w-4xl mx-auto -mt-0 lg:-mt-6 px-6 lg:px-8">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={post.cover_image || "/placeholders/blog-cover.svg"}
+          src={post.cover_image || `/placeholders/blog-cover.svg?slot=blog-post-cover-${post.slug}`}
           alt={`${post.title} — hero cover image for Abrahams Solicitors blog post${post.category ? ` (${post.category})` : ""}`}
           className="w-full aspect-[16/9] object-cover rounded-2xl shadow-xl"
           data-image-slot={`blog-post-cover-${post.slug}`}
           data-image-type="blog-cover"
+          width={1200}
+          height={675}
           loading="eager"
         />
       </div>

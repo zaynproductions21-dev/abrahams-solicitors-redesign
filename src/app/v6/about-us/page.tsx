@@ -46,6 +46,8 @@ export default function V1AboutPage() {
               className="w-full h-full object-cover"
               data-image-slot="about-firm-hero"
               data-image-type="about"
+              width={1200}
+              height={500}
               loading="lazy"
             />
           </div>

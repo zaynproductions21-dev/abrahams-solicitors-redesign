@@ -107,16 +107,17 @@ export default function V6HomePage() {
         {/* Orange/red diagonal accent */}
         <div className="absolute top-20 right-[30%] w-64 h-64 bg-brand-red/5 rounded-full blur-3xl" />
 
-        {/* Hero image slot — visible only at xl+, kept off-screen at small sizes
-            but still present in the DOM so the image crawler can find it. */}
-        <div className="absolute inset-y-0 right-0 w-[45%] hidden xl:block pointer-events-none opacity-[0.08]" aria-hidden="true">
+        {/* Hero image slot — discoverable by image crawlers. */}
+        <div className="absolute inset-y-0 right-0 w-[45%] hidden xl:block pointer-events-none">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/placeholders/hero-legal.svg"
             alt="Abrahams Solicitors — UK immigration, housing and personal injury law firm serving London and Bradford with a 95% success rate"
-            className="w-full h-full object-cover object-left"
+            className="w-full h-full object-cover object-left opacity-30"
             data-image-slot="home-hero"
             data-image-type="hero"
+            width={1200}
+            height={800}
             loading="eager"
           />
         </div>
@@ -194,11 +195,13 @@ export default function V6HomePage() {
               <div className={`bg-slate-50 rounded-2xl aspect-[4/3] overflow-hidden relative ${i % 2 === 1 ? "lg:[direction:ltr]" : ""}`}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/placeholders/service-visual.svg"
+                  src={`/placeholders/service-visual.svg?slot=home-service-${i + 1}`}
                   alt={`${service.title} — professional editorial photograph representing ${service.title.toLowerCase()} solicitor services at Abrahams Solicitors UK`}
                   className="w-full h-full object-cover"
                   data-image-slot={`home-service-${i + 1}`}
                   data-image-type="service"
+                  width={800}
+                  height={600}
                   loading="lazy"
                 />
               </div>
