@@ -107,6 +107,20 @@ export default function V6HomePage() {
         {/* Orange/red diagonal accent */}
         <div className="absolute top-20 right-[30%] w-64 h-64 bg-brand-red/5 rounded-full blur-3xl" />
 
+        {/* Hero image slot — visible only at xl+, kept off-screen at small sizes
+            but still present in the DOM so the image crawler can find it. */}
+        <div className="absolute inset-y-0 right-0 w-[45%] hidden xl:block pointer-events-none opacity-[0.08]" aria-hidden="true">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/placeholders/hero-legal.svg"
+            alt="Abrahams Solicitors — UK immigration, housing and personal injury law firm serving London and Bradford with a 95% success rate"
+            className="w-full h-full object-cover object-left"
+            data-image-slot="home-hero"
+            data-image-type="hero"
+            loading="eager"
+          />
+        </div>
+
         <div className="relative max-w-[1200px] mx-auto px-6 lg:px-8 py-10 lg:py-14">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left: headline */}
@@ -177,8 +191,16 @@ export default function V6HomePage() {
                   <Link href={service.href}>Learn More<ArrowRight className="h-4 w-4 ml-2" /></Link>
                 </Button>
               </div>
-              <div className={`bg-slate-50 rounded-2xl aspect-[4/3] flex items-center justify-center ${i % 2 === 1 ? "lg:[direction:ltr]" : ""}`}>
-                <service.icon className="h-20 w-20 text-brand-red/15" />
+              <div className={`bg-slate-50 rounded-2xl aspect-[4/3] overflow-hidden relative ${i % 2 === 1 ? "lg:[direction:ltr]" : ""}`}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/placeholders/service-visual.svg"
+                  alt={`${service.title} — professional editorial photograph representing ${service.title.toLowerCase()} solicitor services at Abrahams Solicitors UK`}
+                  className="w-full h-full object-cover"
+                  data-image-slot={`home-service-${i + 1}`}
+                  data-image-type="service"
+                  loading="lazy"
+                />
               </div>
             </div>
           ))}

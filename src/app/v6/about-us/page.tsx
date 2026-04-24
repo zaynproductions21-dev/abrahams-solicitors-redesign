@@ -35,6 +35,23 @@ export default function V1AboutPage() {
 
       <TrustBadges />
 
+      {/* Firm imagery slot */}
+      <section className="py-0">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 -mt-2">
+          <div className="rounded-3xl overflow-hidden aspect-[21/9] bg-slate-100">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/placeholders/about-firm.svg"
+              alt="Abrahams Solicitors — interior of the London office with solicitors meeting clients in a professional, welcoming environment"
+              className="w-full h-full object-cover"
+              data-image-slot="about-firm-hero"
+              data-image-type="about"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Values */}
       <section className="py-12 lg:py-16">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">

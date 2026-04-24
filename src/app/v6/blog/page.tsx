@@ -45,12 +45,17 @@ export default function V6BlogPage() {
                   href={`/v6/blog/${post.slug}/`}
                   className="group bg-white rounded-xl border border-slate-100 overflow-hidden hover:shadow-lg hover:border-brand-red/20 transition-all"
                 >
-                  {post.cover_image && (
-                    <div className="aspect-[16/9] bg-slate-100 overflow-hidden">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={post.cover_image} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                    </div>
-                  )}
+                  <div className="aspect-[16/9] bg-slate-100 overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={post.cover_image || "/placeholders/blog-cover.svg"}
+                      alt={`${post.title} — editorial cover image for Abrahams Solicitors blog post${post.category ? ` in the ${post.category} category` : ""}`}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      data-image-slot={`blog-cover-${post.slug}`}
+                      data-image-type="blog-cover"
+                      loading="lazy"
+                    />
+                  </div>
                   <div className="p-6">
                     {post.category && (
                       <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">{post.category}</p>

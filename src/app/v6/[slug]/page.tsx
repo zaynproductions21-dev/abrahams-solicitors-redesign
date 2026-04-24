@@ -210,11 +210,16 @@ export default function V6ServicePage() {
                   </ul>
                 )}
               </div>
-              <div className={`bg-slate-50 rounded-2xl aspect-[4/3] flex items-center justify-center ${i % 2 === 1 ? "lg:[direction:ltr]" : ""}`}>
-                <div className="text-center">
-                  <div className="text-6xl font-black text-brand-red/10">{String(i + 1).padStart(2, "0")}</div>
-                  <p className="text-sm text-slate-400 mt-2">{stripHeadingPrefix(section.title)}</p>
-                </div>
+              <div className={`bg-slate-50 rounded-2xl aspect-[4/3] overflow-hidden relative ${i % 2 === 1 ? "lg:[direction:ltr]" : ""}`}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/placeholders/service-visual.svg"
+                  alt={`${stripHeadingPrefix(page.title)} — ${stripHeadingPrefix(section.title)} (editorial photo: UK solicitor reviewing case documents with client, warm natural light, navy + gold branding)`}
+                  className="w-full h-full object-cover"
+                  data-image-slot={`service-${slug}-${i + 1}`}
+                  data-image-type="service"
+                  loading="lazy"
+                />
               </div>
             </div>
           ))}

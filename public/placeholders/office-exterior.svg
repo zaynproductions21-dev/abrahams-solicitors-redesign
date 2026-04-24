@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Office exterior placeholder — photograph of the firm's building">
+  <rect width="800" height="500" fill="#cbd5e1"/>
+  <g fill="#0b1e4a" opacity="0.18">
+    <rect x="120" y="80" width="560" height="380"/>
+    <rect x="160" y="120" width="120" height="120" fill="#fff" opacity="0.25"/>
+    <rect x="320" y="120" width="120" height="120" fill="#fff" opacity="0.25"/>
+    <rect x="480" y="120" width="120" height="120" fill="#fff" opacity="0.25"/>
+    <rect x="160" y="270" width="120" height="120" fill="#fff" opacity="0.25"/>
+    <rect x="320" y="270" width="120" height="120" fill="#fff" opacity="0.25"/>
+    <rect x="480" y="270" width="120" height="120" fill="#fff" opacity="0.25"/>
+  </g>
+  <g transform="translate(400 460)" text-anchor="middle" font-family="Georgia, serif">
+    <text fill="#0b1e4a" font-size="13" letter-spacing="2" opacity="0.8">OFFICE EXTERIOR PLACEHOLDER</text>
+  </g>
+</svg>

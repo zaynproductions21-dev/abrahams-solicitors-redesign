@@ -60,12 +60,17 @@ export default function V6BlogPostPage() {
         </div>
       </section>
 
-      {post.cover_image && (
-        <div className="max-w-4xl mx-auto -mt-0 lg:-mt-6 px-6 lg:px-8">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={post.cover_image} alt={post.title} className="w-full aspect-[16/9] object-cover rounded-2xl shadow-xl" />
-        </div>
-      )}
+      <div className="max-w-4xl mx-auto -mt-0 lg:-mt-6 px-6 lg:px-8">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={post.cover_image || "/placeholders/blog-cover.svg"}
+          alt={`${post.title} — hero cover image for Abrahams Solicitors blog post${post.category ? ` (${post.category})` : ""}`}
+          className="w-full aspect-[16/9] object-cover rounded-2xl shadow-xl"
+          data-image-slot={`blog-post-cover-${post.slug}`}
+          data-image-type="blog-cover"
+          loading="eager"
+        />
+      </div>
 
       <section className="py-10 lg:py-14">
         <div className="max-w-3xl mx-auto px-6 lg:px-8">

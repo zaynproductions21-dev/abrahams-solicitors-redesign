@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-label="About the firm placeholder — photo of Abrahams Solicitors office interior">
+  <rect width="1200" height="700" fill="#e2e8f0"/>
+  <g fill="#0b1e4a" opacity="0.1">
+    <rect x="80" y="120" width="280" height="460" rx="14"/>
+    <rect x="460" y="80" width="280" height="500" rx="14"/>
+    <rect x="840" y="150" width="280" height="430" rx="14"/>
+  </g>
+  <g transform="translate(600 360)" text-anchor="middle" font-family="Georgia, serif">
+    <text fill="#0b1e4a" font-size="32" font-weight="700">About the firm</text>
+    <text y="34" fill="#64748b" font-size="14" letter-spacing="2.5">ABOUT IMAGE PLACEHOLDER</text>
+    <text y="62" fill="#94a3b8" font-size="12">Office interior / solicitors at work</text>
+  </g>
+</svg>
