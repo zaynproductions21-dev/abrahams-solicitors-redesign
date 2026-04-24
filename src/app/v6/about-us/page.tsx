@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { teamMembers } from "@/lib/navigation";
-import { ArrowRight, CheckCircle2, Phone, MapPin, Clock } from "lucide-react";
+import { CheckCircle2, Phone, MapPin, Clock } from "lucide-react";
 import { TrustBadges } from "@/components/v6/trust-badges";
 import type { Metadata } from "next";
 
@@ -48,30 +47,6 @@ export default function V1AboutPage() {
                 <CheckCircle2 className="h-6 w-6 text-brand-gold mb-4" />
                 <h3 className="font-bold text-brand-navy text-lg mb-2">{v.title}</h3>
                 <p className="text-sm text-slate-500 leading-relaxed">{v.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team */}
-      <section className="py-12 lg:py-16 bg-slate-50">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="max-w-2xl mb-16">
-            <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">Our Team</p>
-            <h2 className="text-3xl lg:text-5xl font-bold text-brand-navy leading-tight">Meet Your Legal Team</h2>
-            <p className="mt-5 text-lg text-slate-400 leading-relaxed">Experienced professionals dedicated to achieving the best outcome for every client.</p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {teamMembers.map((member) => (
-              <div key={member.slug} className="bg-white rounded-2xl ring-1 ring-slate-200 p-8 hover:shadow-md transition-all duration-300">
-                <div className="w-16 h-16 rounded-2xl bg-brand-navy flex items-center justify-center text-white text-xl font-bold mb-6">
-                  {member.name.split(" ").map((n) => n[0]).join("")}
-                </div>
-                <h3 className="text-lg font-bold text-brand-navy">{member.name}</h3>
-                <p className="text-brand-red text-sm font-medium mt-1">{member.role}</p>
-                <p className="text-xs text-slate-400 mt-2 uppercase tracking-wider font-medium">{member.specialisation}</p>
-                <p className="text-sm text-slate-500 mt-4 leading-relaxed">{member.description}</p>
               </div>
             ))}
           </div>
