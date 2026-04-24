@@ -7,11 +7,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Phone, Mail, MapPin, Clock, CheckCircle2 } from "lucide-react";
 import { pushFormSubmit } from "@/lib/tracking";
+import { submitEnquiry } from "@/lib/publishos";
 
 export default function V1ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [service, setService] = useState("");
+  const [message, setMessage] = useState("");
 
   return (
     <>
@@ -32,53 +35,45 @@ export default function V1ContactPage() {
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
             {/* Form */}
             <div className="lg:col-span-3">
-              {submitted ? (
-                <div className="bg-white rounded-2xl ring-1 ring-slate-200 p-12 text-center">
-                  <CheckCircle2 className="h-12 w-12 text-brand-gold mx-auto mb-4" />
-                  <h2 className="text-2xl font-bold text-brand-navy mb-2">Message Sent</h2>
-                  <p className="text-slate-500">We&apos;ll be in touch within 24 hours.</p>
-                </div>
-              ) : (
-                <form
-                  onSubmit={(e) => { e.preventDefault(); pushFormSubmit({ email, phone }); setSubmitted(true); }}
-                  className="bg-white rounded-2xl ring-1 ring-slate-200 p-8 lg:p-10 space-y-6"
-                >
-                  <div className="grid sm:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Full Name</Label>
-                      <Input id="name" placeholder="Your full name" required className="rounded-xl" />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email Address</Label>
-                      <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="your@email.com" required className="rounded-xl" />
-                    </div>
-                  </div>
-                  <div className="grid sm:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="phone">Phone Number</Label>
-                      <Input id="phone" type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="07xxx xxxxxx" className="rounded-xl" />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="service">Service Required</Label>
-                      <select id="service" className="flex h-10 w-full rounded-xl border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                        <option value="">Select a service</option>
-                        <option value="immigration">Immigration Law</option>
-                        <option value="housing">Housing Disrepair</option>
-                        <option value="personal-injury">Personal Injury</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
+              <form
+                onSubmit={async (e) => { e.preventDefault(); pushFormSubmit({ email, phone }); await submitEnquiry({ source: 'contact-us', name, email, phone, service, case: message }); window.location.href = '/v6/thank-you/'; }}
+                className="bg-white rounded-2xl ring-1 ring-slate-200 p-8 lg:p-10 space-y-6"
+              >
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Full Name</Label>
+                    <Input id="name" value={name} onChange={e => setName(e.target.value)} placeholder="Your full name" required className="rounded-xl" />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="message">Your Message</Label>
-                    <Textarea id="message" placeholder="Tell us about your case..." rows={5} required className="rounded-xl" />
+                    <Label htmlFor="email">Email Address</Label>
+                    <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="your@email.com" required className="rounded-xl" />
                   </div>
-                  <Button type="submit" className="w-full bg-brand-red hover:bg-brand-red-dark text-white rounded-xl h-12 text-base">
-                    Send Message
-                  </Button>
-                  <p className="text-xs text-slate-400 text-center">We aim to respond within 24 hours. Your information is kept confidential.</p>
-                </form>
-              )}
+                </div>
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Phone Number</Label>
+                    <Input id="phone" type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="07xxx xxxxxx" className="rounded-xl" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="service">Service Required</Label>
+                    <select id="service" value={service} onChange={e => setService(e.target.value)} className="flex h-10 w-full rounded-xl border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                      <option value="">Select a service</option>
+                      <option value="immigration">Immigration Law</option>
+                      <option value="housing">Housing Disrepair</option>
+                      <option value="personal-injury">Personal Injury</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="message">Your Message</Label>
+                  <Textarea id="message" value={message} onChange={e => setMessage(e.target.value)} placeholder="Tell us about your case..." rows={5} required className="rounded-xl" />
+                </div>
+                <Button type="submit" className="w-full bg-brand-red hover:bg-brand-red-dark text-white rounded-xl h-12 text-base">
+                  Send Message
+                </Button>
+                <p className="text-xs text-slate-400 text-center">We aim to respond within 24 hours. Your information is kept confidential.</p>
+              </form>
             </div>
 
             {/* Contact Details */}

@@ -24,13 +24,16 @@ const quickLinks = [
   { label: "Press Releases", href: "/v6/press-releases/" },
   { label: "Newsletter", href: "/v6/newsletter/" },
   { label: "FAQs", href: "/v6/faqs/" },
-  { label: "Free Consultation", href: "/v6/contact-us/" },
+  { label: "Refer a Friend", href: "/v6/refer-a-friend/" },
+  { label: "Careers", href: "/v6/careers/" },
+  { label: "Free Consultation", href: "/v6/free-consultation/" },
 ];
 
 const legalLinks = [
   { label: "Privacy Policy", href: "/v6/privacy-policy/" },
   { label: "Terms of Business", href: "/v6/terms-of-business/" },
   { label: "Cookie Policy", href: "/v6/cookie-policy/" },
+  { label: "Website Legal Notice", href: "/v6/website-legal-notice/" },
 ];
 
 export function V6Footer() {

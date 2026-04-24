@@ -60,6 +60,35 @@ export const getPressReleases = () => fetchCollection<PressRelease>("abrahams_pr
 export const getNewsletters = () => fetchCollection<NewsletterIssue>("abrahams_newsletters");
 export const getFaqs = () => fetchCollection<FaqItem>("abrahams_faqs");
 
+export type Enquiry = {
+  id: string;
+  source: string;
+  name?: string;
+  email: string;
+  phone?: string;
+  service?: string;
+  case?: string;
+  submitted_at: string;
+};
+
+export async function submitEnquiry(payload: Omit<Enquiry, "id" | "submitted_at">): Promise<boolean> {
+  try {
+    const existing = await fetchCollection<Enquiry>("abrahams_enquiries");
+    const updated = [
+      ...existing,
+      { id: crypto.randomUUID(), submitted_at: new Date().toISOString(), ...payload },
+    ];
+    const res = await fetch(`${API_BASE}/abrahams_enquiries`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updated),
+    });
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
+
 export async function subscribeToNewsletter(email: string): Promise<boolean> {
   try {
     const existing = await fetchCollection<{ id: string; email: string; subscribed_at: string }>(

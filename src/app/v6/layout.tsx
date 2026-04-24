@@ -1,6 +1,7 @@
 import { Poppins } from "next/font/google";
 import { V6Header } from "@/components/v6/header";
 import { V6Footer } from "@/components/v6/footer";
+import { CookieConsent } from "@/components/v6/cookie-consent";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 
 const poppins = Poppins({
@@ -32,6 +33,7 @@ export default function V6Layout({ children }: { children: React.ReactNode }) {
       <main className="flex-1">{children}</main>
       <V6Footer />
       <WhatsAppButton />
+      <CookieConsent />
     </div>
   );
 }
