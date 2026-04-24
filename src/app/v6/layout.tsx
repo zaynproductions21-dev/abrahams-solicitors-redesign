@@ -1,3 +1,4 @@
+import Script from "next/script";
 import { Poppins } from "next/font/google";
 import { V6Header } from "@/components/v6/header";
 import { V6Footer } from "@/components/v6/footer";
@@ -34,6 +35,10 @@ export default function V6Layout({ children }: { children: React.ReactNode }) {
       <V6Footer />
       <WhatsAppButton />
       <CookieConsent />
+      <Script
+        src="https://buildmyagent.io/widget/695bd22f35932d4b85fe954c/widget-professional.js?widgetId=695bd22f35932d4b85fe954c"
+        strategy="lazyOnload"
+      />
     </div>
   );
 }

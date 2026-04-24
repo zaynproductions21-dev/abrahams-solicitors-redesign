@@ -73,15 +73,20 @@ export type Enquiry = {
 
 export async function submitEnquiry(payload: Omit<Enquiry, "id" | "submitted_at">): Promise<boolean> {
   try {
-    const existing = await fetchCollection<Enquiry>("abrahams_enquiries");
-    const updated = [
-      ...existing,
-      { id: crypto.randomUUID(), submitted_at: new Date().toISOString(), ...payload },
-    ];
-    const res = await fetch(`${API_BASE}/abrahams_enquiries`, {
+    const res = await fetch("/api/lead", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updated),
+      body: JSON.stringify({
+        name: payload.name,
+        email: payload.email,
+        phone: payload.phone,
+        source: payload.source,
+        service: payload.service,
+        serviceLine: payload.service,
+        subject: payload.service ? `Enquiry: ${payload.service}` : "Website enquiry",
+        message: payload.case,
+        pageUrl: typeof window !== "undefined" ? window.location.href : "",
+      }),
     });
     return res.ok;
   } catch {
@@ -89,23 +94,49 @@ export async function submitEnquiry(payload: Omit<Enquiry, "id" | "submitted_at"
   }
 }
 
-export async function subscribeToNewsletter(email: string): Promise<boolean> {
+export async function subscribeToNewsletter(
+  email: string,
+  opts: { firstName?: string; lastName?: string } = {}
+): Promise<boolean> {
+  const orgId = process.env.NEXT_PUBLIC_SALESHUB_NEWSLETTER_ORG_ID;
+
+  // Always keep a backup copy in our own collection so we don't lose signups.
+  const mirror = async () => {
+    try {
+      const existing = await fetchCollection<{ id: string; email: string; subscribed_at: string }>(
+        "abrahams_newsletter_subscribers"
+      );
+      if (existing.some(s => s.email.toLowerCase() === email.toLowerCase())) return;
+      const updated = [
+        ...existing,
+        { id: crypto.randomUUID(), email, subscribed_at: new Date().toISOString(), ...opts },
+      ];
+      await fetch(`${API_BASE}/abrahams_newsletter_subscribers`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updated),
+      });
+    } catch {}
+  };
+
+  if (!orgId) {
+    await mirror();
+    return true;
+  }
+
   try {
-    const existing = await fetchCollection<{ id: string; email: string; subscribed_at: string }>(
-      "abrahams_newsletter_subscribers"
+    const res = await fetch(
+      `https://app.saleshubcloud.com/api/public/newsletter-signup/${orgId}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, firstName: opts.firstName ?? "", lastName: opts.lastName ?? "" }),
+      }
     );
-    if (existing.some(s => s.email.toLowerCase() === email.toLowerCase())) return true;
-    const updated = [
-      ...existing,
-      { id: crypto.randomUUID(), email, subscribed_at: new Date().toISOString() },
-    ];
-    const res = await fetch(`${API_BASE}/abrahams_newsletter_subscribers`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updated),
-    });
+    await mirror();
     return res.ok;
   } catch {
+    await mirror();
     return false;
   }
 }
