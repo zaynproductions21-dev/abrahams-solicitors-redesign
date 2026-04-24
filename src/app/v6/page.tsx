@@ -290,7 +290,7 @@ export default function V6HomePage() {
                 </a>
               </div>
               <div className="mt-3 flex items-center gap-4">
-                <a href="https://wa.me/442034880512" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm">
+                <a href="https://wa.me/447476548311" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm">
                   <MessageCircle className="h-4 w-4" />WhatsApp Us
                 </a>
               </div>

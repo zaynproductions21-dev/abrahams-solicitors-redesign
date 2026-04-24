@@ -18,7 +18,13 @@ import {
 } from "@/lib/services-data";
 
 function stripHeadingPrefix(text: string): string {
-  return text.replace(/^\s*(H[1-6]|Meta\s*Title|Meta\s*Description|Meta|Title|Heading)\s*:\s*/i, "");
+  return text
+    .replace(/^\s*(H[1-6]|Meta\s*Title|Meta\s*Description|Meta|Title|Heading)\s*:\s*/i, "")
+    // Strip editor placeholders like "[INTERNAL LINK: /contact-us]" or "[LINK: xxx]"
+    .replace(/\[\s*(INTERNAL\s+LINK|LINK|CTA|IMAGE|IMG)\s*:[^\]]*\]/gi, "")
+    // Collapse any double-spacing left behind
+    .replace(/[ \t]{2,}/g, " ")
+    .trim();
 }
 
 function RichContent({ text }: { text: string }) {
@@ -288,7 +294,7 @@ export default function V6ServicePage() {
                 <a href="tel:02034880512" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors">
                   <Phone className="h-5 w-5" /><span className="text-lg font-bold">020 3488 0512</span>
                 </a>
-                <a href="https://wa.me/442034880512" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm">
+                <a href="https://wa.me/447476548311" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm">
                   <MessageCircle className="h-4 w-4" />WhatsApp Us
                 </a>
                 <a href="mailto:info@abrahamssolicitors.co.uk" className="flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm">

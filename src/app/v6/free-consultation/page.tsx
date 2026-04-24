@@ -68,7 +68,7 @@ export default function FreeConsultationPage() {
                 <a href="tel:02034880512" className="flex items-center gap-2.5 text-sm font-semibold text-slate-900 hover:text-brand-red transition-colors">
                   <Phone className="h-4 w-4 text-brand-red" />Prefer to call? 020 3488 0512
                 </a>
-                <a href="https://wa.me/442034880512" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-sm text-slate-500 hover:text-brand-red transition-colors">
+                <a href="https://wa.me/447476548311" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-sm text-slate-500 hover:text-brand-red transition-colors">
                   <MessageCircle className="h-4 w-4 text-brand-red" />WhatsApp us
                 </a>
               </div>
@@ -101,15 +101,12 @@ export default function FreeConsultationPage() {
                   <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" placeholder="Phone Number" className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red/20" />
                   <select value={service} onChange={e => setService(e.target.value)} required className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm bg-white focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red/20">
                     <option value="">Service Required</option>
-                    <option value="spouse-visa">Spouse Visa</option>
-                    <option value="british-citizenship">British Citizenship</option>
-                    <option value="visa-extension">Visa Extension</option>
-                    <option value="ilr">ILR Application</option>
-                    <option value="asylum">Asylum</option>
-                    <option value="visit-visa">Visit Visa</option>
-                    <option value="housing-disrepair">Housing Disrepair</option>
+                    <option value="immigration">Immigration</option>
+                    <option value="housing">Housing</option>
+                    <option value="citizenship">Citizenship</option>
                     <option value="personal-injury">Personal Injury</option>
                     <option value="other">Other</option>
+                    <option value="existing-client">Existing Client</option>
                   </select>
                 </div>
                 <input value={preferredTime} onChange={e => setPreferredTime(e.target.value)} placeholder="Best time to call (e.g. weekday mornings)" className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red/20" />
