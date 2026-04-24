@@ -25,9 +25,9 @@ export default function V1ContactPage() {
       {/* Hero */}
       <section className="bg-brand-navy py-12 lg:py-16">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">Contact Us</p>
-          <h1 className="text-4xl lg:text-6xl font-bold text-white leading-tight max-w-3xl">Get in Touch</h1>
-          <p className="mt-6 text-lg text-white/50 max-w-2xl leading-relaxed">
+          <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-3">Contact Us</p>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-[1.1] tracking-tight max-w-3xl">Get in Touch</h1>
+          <p className="mt-4 text-base sm:text-lg text-white/60 max-w-2xl leading-relaxed">
             Book a free consultation to discuss your case. We offer phone, video, and in-person appointments.
           </p>
         </div>
@@ -36,17 +36,17 @@ export default function V1ContactPage() {
       <TrustBadges />
 
       {/* Form + Details */}
-      <section className="py-12 lg:py-16">
+      <section className="py-10 lg:py-14">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
+          <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
             {/* Form */}
             <div className="lg:col-span-3">
               <form
                 onSubmit={async (e) => { e.preventDefault(); pushFormSubmit({ email, phone }); await submitEnquiry({ source: 'contact-us', name, email, phone, service, case: message }, spam.payload()); window.location.href = '/v6/thank-you/'; }}
-                className="bg-white rounded-2xl ring-1 ring-slate-200 p-8 lg:p-10 space-y-6"
+                className="bg-white rounded-2xl ring-1 ring-slate-200 p-6 sm:p-8 lg:p-10 space-y-5"
               >
                 <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
-                <div className="grid sm:grid-cols-2 gap-6">
+                <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
                   <div className="space-y-2">
                     <Label htmlFor="name">Full Name</Label>
                     <Input id="name" value={name} onChange={e => setName(e.target.value)} placeholder="Your full name" required className="rounded-xl" />
@@ -56,7 +56,7 @@ export default function V1ContactPage() {
                     <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="your@email.com" required className="rounded-xl" />
                   </div>
                 </div>
-                <div className="grid sm:grid-cols-2 gap-6">
+                <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
                   <div className="space-y-2">
                     <Label htmlFor="phone">Phone Number</Label>
                     <Input id="phone" type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="07xxx xxxxxx" className="rounded-xl" />
@@ -65,10 +65,12 @@ export default function V1ContactPage() {
                     <Label htmlFor="service">Service Required</Label>
                     <select id="service" value={service} onChange={e => setService(e.target.value)} className="flex h-10 w-full rounded-xl border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                       <option value="">Select a service</option>
-                      <option value="immigration">Immigration Law</option>
-                      <option value="housing">Housing Disrepair</option>
+                      <option value="immigration">Immigration</option>
+                      <option value="housing">Housing</option>
+                      <option value="citizenship">Citizenship</option>
                       <option value="personal-injury">Personal Injury</option>
                       <option value="other">Other</option>
+                      <option value="existing-client">Existing Client</option>
                     </select>
                   </div>
                 </div>
@@ -85,9 +87,9 @@ export default function V1ContactPage() {
 
             {/* Contact Details */}
             <div className="lg:col-span-2 space-y-6">
-              <div className="bg-brand-navy rounded-2xl p-8">
-                <h3 className="text-lg font-bold text-white mb-6">Contact Details</h3>
-                <div className="space-y-5">
+              <div className="bg-brand-navy rounded-2xl p-6 sm:p-8">
+                <h3 className="text-lg font-bold text-white mb-5">Contact Details</h3>
+                <div className="space-y-4">
                   <a href="tel:02034880512" className="flex items-center gap-3 text-white/70 hover:text-brand-gold transition-colors text-sm">
                     <Phone className="h-5 w-5 shrink-0" />020 3488 0512
                   </a>

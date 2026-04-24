@@ -69,15 +69,12 @@ function ConsultationForm({ dark = false }: { dark?: boolean }) {
         <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" placeholder="Phone Number" className={inputClass} />
         <select value={service} onChange={e => setService(e.target.value)} required className={`${inputClass} appearance-none bg-white`}>
           <option value="">Service Required</option>
-          <option value="spouse-visa">Spouse Visa</option>
-          <option value="british-citizenship">British Citizenship</option>
-          <option value="visa-extension">Visa Extension</option>
-          <option value="ilr">ILR Application</option>
-          <option value="asylum">Asylum Application</option>
-          <option value="visit-visa">Visit Visa</option>
-          <option value="housing-disrepair">Housing Disrepair</option>
+          <option value="immigration">Immigration</option>
+          <option value="housing">Housing</option>
+          <option value="citizenship">Citizenship</option>
           <option value="personal-injury">Personal Injury</option>
           <option value="other">Other</option>
+          <option value="existing-client">Existing Client</option>
         </select>
         <textarea value={caseDescription} onChange={e => setCaseDescription(e.target.value)} placeholder="Briefly describe your case" rows={3} className={`${inputClass} resize-none`} />
         <Button type="submit" className="w-full bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 text-sm font-bold uppercase tracking-wide">
