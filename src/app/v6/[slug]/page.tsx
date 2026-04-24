@@ -102,25 +102,29 @@ export default function V6ServicePage() {
 
   return (
     <>
+      {/* ─── Breadcrumb ─── own row above hero so it reads as navigation */}
+      <section className="bg-slate-50/60 border-b border-slate-100">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-3 lg:py-4">
+          <nav className="flex items-center gap-1 text-xs sm:text-sm text-slate-400 overflow-hidden">
+            <Link href="/v6/" className="hover:text-brand-red transition-colors shrink-0">Home</Link>
+            <ChevronRight className="h-3 w-3 shrink-0" />
+            {page.parentService && page.parentHref && (
+              <>
+                <Link href={`/v6${page.parentHref}`} className="hover:text-brand-red transition-colors truncate max-w-[110px] sm:max-w-none">{page.parentService}</Link>
+                <ChevronRight className="h-3 w-3 shrink-0" />
+              </>
+            )}
+            <span className="text-slate-600 font-medium truncate">{page.title}</span>
+          </nav>
+        </div>
+      </section>
+
       {/* ─── Hero ─── Porto-style: white bg, bold heading left, form right */}
       <section className="bg-white border-b border-slate-100">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-10 lg:py-14">
           <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center">
             {/* Left: 3 cols */}
             <div className="lg:col-span-3 min-w-0">
-              {/* Breadcrumb */}
-              <nav className="flex items-center gap-1 text-xs sm:text-sm text-slate-400 mb-4 overflow-hidden">
-                <Link href="/v6/" className="hover:text-brand-red transition-colors shrink-0">Home</Link>
-                <ChevronRight className="h-3 w-3 shrink-0" />
-                {page.parentService && page.parentHref && (
-                  <>
-                    <Link href={`/v6${page.parentHref}`} className="hover:text-brand-red transition-colors truncate max-w-[110px] sm:max-w-none">{page.parentService}</Link>
-                    <ChevronRight className="h-3 w-3 shrink-0" />
-                  </>
-                )}
-                <span className="text-slate-600 font-medium truncate">{page.title}</span>
-              </nav>
-
               {/* Badge + price */}
               <div className="flex items-center gap-3 mb-4">
                 {page.badge && (
