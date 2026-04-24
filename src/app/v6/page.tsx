@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { TrustBadges } from "@/components/v6/trust-badges";
 import { pushFormSubmit } from "@/lib/tracking";
 import {
   Phone, Star, Scale, Home, ArrowRight, MapPin,
@@ -133,6 +134,9 @@ export default function V6HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ─── Trust badges ─── SRA, Google Reviews, ReviewSolicitors */}
+      <TrustBadges />
 
       {/* ─── Features row ─── clean icons like Porto "Online 24/7" */}
       <section className="border-y border-slate-100 py-8 bg-slate-50/50">
