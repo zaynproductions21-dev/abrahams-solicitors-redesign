@@ -65,8 +65,8 @@ export default function FreeConsultationPage() {
                 ))}
               </div>
               <div className="mt-8 pt-6 border-t border-slate-100 space-y-3">
-                <a href="tel:02034880512" className="flex items-center gap-2.5 text-sm font-semibold text-slate-900 hover:text-brand-red transition-colors">
-                  <Phone className="h-4 w-4 text-brand-red" />Prefer to call? 020 3488 0512
+                <a href="tel:02033559823" className="flex items-center gap-2.5 text-sm font-semibold text-slate-900 hover:text-brand-red transition-colors">
+                  <Phone className="h-4 w-4 text-brand-red" />Prefer to call? 0203 355 9823
                 </a>
                 <a href="https://wa.me/447476548311" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-sm text-slate-500 hover:text-brand-red transition-colors">
                   <MessageCircle className="h-4 w-4 text-brand-red" />WhatsApp us

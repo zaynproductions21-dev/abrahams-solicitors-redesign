@@ -37,7 +37,7 @@ export default function WebsiteLegalNoticePage() {
 
       <h2>Contact</h2>
       <p>
-        Questions about the site or content: <a href="mailto:info@abrahamssolicitors.co.uk">info@abrahamssolicitors.co.uk</a> or 020 3488 0512.
+        Questions about the site or content: <a href="mailto:info@abrahamssolicitors.co.uk">info@abrahamssolicitors.co.uk</a> or 0203 355 9823.
       </p>
     </LegalPage>
   );

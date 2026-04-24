@@ -20,11 +20,11 @@ export default function ThankYouPage() {
         </div>
         <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">Thank you — we&rsquo;ve got your enquiry.</h1>
         <p className="mt-4 text-base text-slate-500 leading-relaxed">
-          One of our solicitors will be in touch within one working day to arrange your free consultation. If your matter is urgent, call us directly on the number below.
+          One of our solicitors will call you <strong className="text-slate-900">within the hour</strong> from an <strong className="text-slate-900">0203 number</strong> to arrange your free consultation. Please keep your phone to hand. A confirmation email is on its way to your inbox.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Button asChild size="lg" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide px-8 h-12">
-            <a href="tel:02034880512"><Phone className="h-4 w-4 mr-2" />020 3488 0512</a>
+            <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
           </Button>
           <Button asChild size="lg" variant="outline" className="rounded-lg h-12 border-slate-200 hover:border-brand-red hover:text-brand-red">
             <Link href="/v6/">Back to home <ArrowRight className="h-4 w-4 ml-2" /></Link>

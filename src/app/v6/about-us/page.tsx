@@ -87,14 +87,17 @@ export default function V1AboutPage() {
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             {[
-              { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU" },
-              { city: "Bradford", address: "Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR" },
+              { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU", tag: "" },
+              { city: "Bradford", address: "Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR", tag: "New Office" },
             ].map((office) => (
               <div key={office.city} className="bg-white rounded-2xl ring-1 ring-slate-200 p-8 lg:p-10">
-                <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-5">{office.city} Office</p>
+                <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-5 flex items-center gap-2">
+                  {office.city} Office
+                  {office.tag && <span className="text-[10px] font-semibold bg-brand-red/10 text-brand-red px-2 py-0.5 rounded normal-case tracking-normal">{office.tag}</span>}
+                </p>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3"><MapPin className="h-5 w-5 text-brand-gold/60 shrink-0 mt-0.5" /><p className="text-brand-navy">{office.address}</p></div>
-                  <div className="flex items-center gap-3"><Phone className="h-5 w-5 text-brand-gold/60 shrink-0" /><a href="tel:02034880512" className="text-brand-navy hover:text-brand-red transition-colors">020 3488 0512</a></div>
+                  <div className="flex items-center gap-3"><Phone className="h-5 w-5 text-brand-gold/60 shrink-0" /><a href="tel:02033559823" className="text-brand-navy hover:text-brand-red transition-colors">0203 355 9823</a></div>
                   <div className="flex items-center gap-3"><Clock className="h-5 w-5 text-brand-gold/60 shrink-0" /><p className="text-slate-500 text-sm">Mon &ndash; Fri: 9:00am &ndash; 5:30pm</p></div>
                 </div>
               </div>
@@ -113,7 +116,7 @@ export default function V1AboutPage() {
               <Link href="/v6/contact-us/">Book a Consultation</Link>
             </Button>
             <Button asChild variant="outline-light" size="lg" className="rounded-xl text-base h-13">
-              <a href="tel:02034880512"><Phone className="h-4 w-4 mr-2" />020 3488 0512</a>
+              <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
             </Button>
           </div>
         </div>

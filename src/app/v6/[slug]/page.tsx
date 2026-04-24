@@ -149,7 +149,7 @@ export default function V6ServicePage() {
                   <a href="#consultation-form">Book Free Consultation</a>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="rounded-lg text-sm font-semibold h-12 border-slate-200 text-slate-700 hover:border-brand-red hover:text-brand-red">
-                  <a href="tel:02034880512"><Phone className="h-4 w-4 mr-2" />020 3488 0512</a>
+                  <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
                 </Button>
               </div>
 
@@ -291,8 +291,8 @@ export default function V6ServicePage() {
                 Book a free consultation with one of our specialist solicitors. We offer phone, video, and in-person appointments nationwide.
               </p>
               <div className="mt-6 space-y-3">
-                <a href="tel:02034880512" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors">
-                  <Phone className="h-5 w-5" /><span className="text-lg font-bold">020 3488 0512</span>
+                <a href="tel:02033559823" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors">
+                  <Phone className="h-5 w-5" /><span className="text-lg font-bold">0203 355 9823</span>
                 </a>
                 <a href="https://wa.me/447476548311" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm">
                   <MessageCircle className="h-4 w-4" />WhatsApp Us

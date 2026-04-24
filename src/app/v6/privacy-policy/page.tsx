@@ -11,7 +11,7 @@ export default function PrivacyPolicyPage() {
 
       <h2>Who we are (data controller)</h2>
       <p>
-        Abrahams (Yorkshire) Limited, Suite 10, Atlas House, 1 King Street, London EC2V 8AU. You can contact us at <a href="mailto:info@abrahamssolicitors.co.uk">info@abrahamssolicitors.co.uk</a> or on 020 3488 0512. We are registered with the Information Commissioner&rsquo;s Office (ICO).
+        Abrahams (Yorkshire) Limited, Suite 10, Atlas House, 1 King Street, London EC2V 8AU. You can contact us at <a href="mailto:info@abrahamssolicitors.co.uk">info@abrahamssolicitors.co.uk</a> or on 0203 355 9823. We are registered with the Information Commissioner&rsquo;s Office (ICO).
       </p>
 
       <h2>What we collect</h2>

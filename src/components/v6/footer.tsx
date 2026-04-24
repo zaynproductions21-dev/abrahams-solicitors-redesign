@@ -59,9 +59,9 @@ const socialLinks: { label: string; href: string; icon: "facebook" | "twitter" |
   { label: "YouTube", href: "https://www.youtube.com/@AbrahamsSolicitors", icon: "youtube" },
 ];
 
-const offices = [
+const offices: { city: string; address: string; tag?: string }[] = [
   { city: "London", address: "Suite 10, Atlas House,\n1 King Street,\nLondon EC2V 8AU" },
-  { city: "Bradford", address: "Unit 20, Listerhills Science Park,\nCampus Road, Bradford BD7 1HR" },
+  { city: "Bradford", address: "Unit 20, Listerhills Science Park,\nCampus Road, Bradford BD7 1HR", tag: "New Office" },
 ];
 
 function VisaLogo() {
@@ -141,8 +141,8 @@ export function V6Footer() {
               <SraBadge />
             </div>
             <div className="space-y-2.5 text-sm">
-              <a href="tel:02034880512" className="flex items-center gap-3 text-white/70 hover:text-brand-gold transition-colors">
-                <Phone className="h-4 w-4 shrink-0" />020 3488 0512
+              <a href="tel:02033559823" className="flex items-center gap-3 text-white/70 hover:text-brand-gold transition-colors">
+                <Phone className="h-4 w-4 shrink-0" />0203 355 9823
               </a>
               <a href="mailto:info@abrahamssolicitors.co.uk" className="flex items-center gap-3 text-white/70 hover:text-brand-gold transition-colors">
                 <Mail className="h-4 w-4 shrink-0" />info@abrahamssolicitors.co.uk
@@ -193,7 +193,12 @@ export function V6Footer() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {offices.map(office => (
                 <div key={office.city}>
-                  <h3 className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-3">{office.city}</h3>
+                  <h3 className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
+                    {office.city}
+                    {office.tag && (
+                      <span className="text-[9px] font-semibold bg-brand-red/15 text-brand-red px-1.5 py-0.5 rounded normal-case tracking-normal">{office.tag}</span>
+                    )}
+                  </h3>
                   <div className="flex items-start gap-2.5 text-sm text-white/50 mb-2">
                     <MapPin className="h-4 w-4 shrink-0 mt-0.5 text-white/30" />
                     <span className="whitespace-pre-line">{office.address}</span>

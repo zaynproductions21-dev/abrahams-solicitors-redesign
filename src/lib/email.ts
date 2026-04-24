@@ -1,7 +1,7 @@
 // Brevo (Sendinblue) transactional email helper.
 // Set in Vercel env vars:
 //   BREVO_API_KEY      — required. From https://app.brevo.com/settings/keys/api
-//   BREVO_SENDER_EMAIL — optional. Defaults to noreply@abrahamssolicitors.co.uk
+//   BREVO_SENDER_EMAIL — optional. Defaults to contact@abrahamssolicitors.co.uk
 //                        (must be a verified sender in Brevo)
 //   BREVO_SENDER_NAME  — optional. Defaults to "Abrahams Solicitors"
 //   NOTIFY_EMAIL       — optional. Defaults to info@abrahamssolicitors.co.uk
@@ -20,7 +20,7 @@ async function sendEmail(payload: EmailPayload): Promise<boolean> {
   if (!apiKey) return false;
 
   const sender = {
-    email: process.env.BREVO_SENDER_EMAIL ?? "noreply@abrahamssolicitors.co.uk",
+    email: process.env.BREVO_SENDER_EMAIL ?? "contact@abrahamssolicitors.co.uk",
     name: process.env.BREVO_SENDER_NAME ?? "Abrahams Solicitors",
   };
 
@@ -103,17 +103,17 @@ function prospectHtml(d: EnquiryData): string {
   </div>
   <div style="padding:28px 32px;color:#0f172a;line-height:1.65;font-size:15px;">
     <p style="margin:0 0 16px;">${greet}</p>
-    <p style="margin:0 0 16px;">Thanks for reaching out${serviceLine}. We&rsquo;ve received your enquiry and a qualified solicitor will be in touch within <strong>one working day</strong> to arrange your free consultation.</p>
-    <p style="margin:0 0 16px;">If your matter is urgent, please call us directly:</p>
+    <p style="margin:0 0 16px;">Thanks for getting in touch${serviceLine}. We&rsquo;ve received your enquiry and a qualified solicitor will be calling you <strong>within the hour</strong> from an <strong>0203 number</strong> to arrange your free consultation — please keep your phone to hand.</p>
+    <p style="margin:0 0 16px;">If you&rsquo;d prefer to reach us first, use any of the options below:</p>
     <p style="margin:0 0 24px;">
-      <a href="tel:02034880512" style="display:inline-block;padding:12px 22px;background:#dc2626;color:#fff;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;letter-spacing:0.02em;">📞 020 3488 0512</a>
+      <a href="tel:02033559823" style="display:inline-block;padding:12px 22px;background:#dc2626;color:#fff;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;letter-spacing:0.02em;">📞 0203 355 9823</a>
       <a href="https://wa.me/447476548311" style="display:inline-block;margin-left:8px;padding:12px 22px;background:#25D366;color:#fff;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;">WhatsApp us</a>
     </p>
     <div style="padding:16px 20px;background:#f8fafc;border-radius:10px;margin:0 0 22px;">
       <p style="margin:0 0 6px;font-size:12px;color:#64748b;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">What happens next</p>
       <ol style="margin:0;padding:0 0 0 18px;color:#334155;font-size:14px;line-height:1.7;">
-        <li>A solicitor reviews your enquiry and the evidence you&rsquo;ve shared.</li>
-        <li>We call or email you to book a 30-minute consultation (phone, video or in-person).</li>
+        <li>Expect a call from a <strong>0203 number</strong> within the hour — that&rsquo;s us.</li>
+        <li>We&rsquo;ll book a 30-minute consultation (phone, video or in-person) at a time that suits you.</li>
         <li>You&rsquo;ll get an honest assessment of your case and a fixed-fee quote if you decide to proceed.</li>
       </ol>
     </div>

@@ -36,7 +36,7 @@ const jsonLd = {
   description:
     "Expert immigration and housing law solicitors in London and Bradford.",
   url: "https://abrahamssolicitors.co.uk",
-  telephone: "+442034880512",
+  telephone: "+442033559823",
   email: "info@abrahamssolicitors.co.uk",
   priceRange: "$$",
   areaServed: [

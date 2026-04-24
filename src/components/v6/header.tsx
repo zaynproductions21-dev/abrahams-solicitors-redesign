@@ -134,15 +134,15 @@ export function V6Header() {
 
             <div className="hidden xl:flex items-center gap-3">
               <Button asChild size="sm" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg px-5 h-10 text-sm font-semibold">
-                <a href="tel:02034880512" className="flex items-center gap-2">
+                <a href="tel:02033559823" className="flex items-center gap-2">
                   <Phone className="h-4 w-4" />
-                  020 3488 0512
+                  0203 355 9823
                 </a>
               </Button>
             </div>
 
             <div className="flex xl:hidden items-center gap-2">
-              <a href="tel:02034880512" className="inline-flex items-center justify-center rounded-xl p-2.5 text-brand-red hover:bg-brand-red/5 transition-colors" aria-label="Call us">
+              <a href="tel:02033559823" className="inline-flex items-center justify-center rounded-xl p-2.5 text-brand-red hover:bg-brand-red/5 transition-colors" aria-label="Call us">
                 <Phone className="h-5 w-5" />
               </a>
               <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
@@ -173,7 +173,7 @@ export function V6Header() {
                   </nav>
                   <div className="p-6">
                     <Button asChild className="w-full bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12">
-                      <a href="tel:02034880512"><Phone className="h-4 w-4 mr-2" />020 3488 0512</a>
+                      <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
                     </Button>
                   </div>
                 </SheetContent>
