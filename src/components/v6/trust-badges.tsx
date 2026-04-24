@@ -38,7 +38,9 @@ const BADGES: Badge[] = [
   {
     label: "Verified Reviews",
     sublabel: "Independent client feedback",
-    href: SKEEPERS_SVG,
+    rating: "4.9",
+    reviews: "97 reviews",
+    href: "https://www.verified-reviews.co.uk/reviews/abrahamssolicitors.co.uk",
     icon: "skeepers",
   },
 ];
