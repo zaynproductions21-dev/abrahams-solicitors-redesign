@@ -14,12 +14,13 @@ const feeCategories = [
     title: "Immigration Law",
     highlight: "Fixed Fees",
     items: [
-      { service: "Spouse Visa Application", price: "From £900" },
-      { service: "British Citizenship", price: "From £600" },
-      { service: "Visa Extensions", price: "From £900" },
-      { service: "ILR Application", price: "From £750" },
+      { service: "Spouse Visa Application", price: "From £900*" },
+      { service: "British Citizenship", price: "From £600*" },
+      { service: "Visa Extensions", price: "From £900*" },
+      { service: "ILR Application", price: "From £750*" },
+      { service: "Visa Refusal Appeals", price: "From £1,250*" },
       { service: "Asylum Application", price: "Legal Aid / Fixed Fee" },
-      { service: "Visit Visa", price: "From £500" },
+      { service: "Visit Visa", price: "From £500*" },
     ],
   },
   {
@@ -96,6 +97,9 @@ export default function V1FeesPage() {
               </div>
             ))}
           </div>
+          <p className="text-xs text-slate-500 text-center mt-10 max-w-2xl mx-auto leading-relaxed">
+            *Fixed fee price subject to our free case assessment. Complex cases may require an additional quote, which we&rsquo;ll always agree with you in writing before any work begins.
+          </p>
         </div>
       </section>
 

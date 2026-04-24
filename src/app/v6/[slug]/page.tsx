@@ -58,7 +58,7 @@ function RichContent({ text }: { text: string }) {
             </div>
           );
         }
-        return <p key={idx}>{block}</p>;
+        return <p key={idx}>{lines.join(" ")}</p>;
       })}
     </div>
   );
@@ -304,6 +304,15 @@ export default function V6ServicePage() {
             </div>
             <ConsultationForm serviceName={page.title} />
           </div>
+        </div>
+      </section>
+
+      {/* ─── Price footnote ─── */}
+      <section className="bg-white border-t border-slate-100">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8 py-5">
+          <p className="text-xs text-slate-400 text-center leading-relaxed">
+            *Fixed fee price subject to our free case assessment. All fees are quoted upfront — no hidden charges.
+          </p>
         </div>
       </section>
     </>

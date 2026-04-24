@@ -182,7 +182,7 @@ export default function V6HomePage() {
               </div>
             </div>
           ))}
-          <p className="text-xs text-slate-400 text-center pt-4">*Consultation fees. Full service fees vary by case — see <Link href="/v6/our-fees/" className="text-brand-red hover:underline">our fees</Link>.</p>
+          <p className="text-xs text-slate-400 text-center pt-4">*Fixed fee price subject to our free case assessment. See <Link href="/v6/our-fees/" className="text-brand-red hover:underline">our fees</Link> for details.</p>
         </div>
       </section>
 
