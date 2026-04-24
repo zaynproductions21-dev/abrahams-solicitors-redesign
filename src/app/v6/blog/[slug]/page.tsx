@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import { ArrowLeft, Calendar, User } from "lucide-react";
 import { getBlogPosts, formatDate, type BlogPost } from "@/lib/publishos";
 import { JsonLd, blogPostSchema } from "@/components/v6/jsonld";
+import { SlotImage } from "@/components/slot-image";
 
 function RichContent({ text }: { text: string }) {
   const blocks = text.split(/\n\n+/);
@@ -61,13 +62,12 @@ export default function V6BlogPostPage() {
       </section>
 
       <div className="max-w-4xl mx-auto -mt-0 lg:-mt-6 px-6 lg:px-8">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={post.cover_image || `https://placehold.co/1600x900/dc2626/ffffff/png?text=${encodeURIComponent(post.title.slice(0, 40))}&font=playfair-display`}
+        <SlotImage
+          slot={`blog-post-cover-${post.slug}`}
+          fallbackSrc={post.cover_image || `https://placehold.co/1600x900/dc2626/ffffff/png?text=${encodeURIComponent(post.title.slice(0, 40))}&font=playfair-display`}
           alt={`${post.title} — hero cover image for Abrahams Solicitors blog post${post.category ? ` (${post.category})` : ""}`}
           className="w-full aspect-[16/9] object-cover rounded-2xl shadow-xl"
-          data-image-slot={`blog-post-cover-${post.slug}`}
-          data-image-type="blog-cover"
+          type="blog-cover"
           width={1600}
           height={900}
           loading="eager"

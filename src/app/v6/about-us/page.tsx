@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle2, Phone, MapPin, Clock } from "lucide-react";
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { OfficeMap } from "@/components/v6/office-map";
+import { SlotImage } from "@/components/slot-image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -41,14 +42,14 @@ export default function V1AboutPage() {
           <div className="rounded-3xl overflow-hidden aspect-[21/9] bg-slate-100">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://placehold.co/2100x900/e2e8f0/0b1e4a/png?text=Abrahams+Solicitors+Office&font=playfair-display"
+            <SlotImage
+              slot="about-firm-hero"
+              fallbackSrc="https://placehold.co/2100x900/e2e8f0/0b1e4a/png?text=Abrahams+Solicitors+Office&font=playfair-display"
               alt="Abrahams Solicitors — interior of the London office with solicitors meeting clients in a professional, welcoming environment"
               className="w-full h-full object-cover"
-              data-image-slot="about-firm-hero"
-              data-image-type="about"
+              type="about"
               width={2100}
               height={900}
-              loading="lazy"
             />
           </div>
         </div>

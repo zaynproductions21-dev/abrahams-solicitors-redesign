@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ArrowRight, Calendar, User } from "lucide-react";
 import { getBlogPosts, formatDate, type BlogPost } from "@/lib/publishos";
+import { SlotImage } from "@/components/slot-image";
 
 export default function V6BlogPage() {
   const [posts, setPosts] = useState<BlogPost[] | null>(null);
@@ -46,16 +47,14 @@ export default function V6BlogPage() {
                   className="group bg-white rounded-xl border border-slate-100 overflow-hidden hover:shadow-lg hover:border-brand-red/20 transition-all"
                 >
                   <div className="aspect-[16/9] bg-slate-100 overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={post.cover_image || `https://placehold.co/1200x675/dc2626/ffffff/png?text=${encodeURIComponent(post.category || "Legal Insight")}&font=playfair-display`}
+                    <SlotImage
+                      slot={`blog-cover-${post.slug}`}
+                      fallbackSrc={post.cover_image || `https://placehold.co/1200x675/dc2626/ffffff/png?text=${encodeURIComponent(post.category || "Legal Insight")}&font=playfair-display`}
                       alt={`${post.title} — editorial cover image for Abrahams Solicitors blog post${post.category ? ` in the ${post.category} category` : ""}`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      data-image-slot={`blog-cover-${post.slug}`}
-                      data-image-type="blog-cover"
+                      type="blog-cover"
                       width={1200}
                       height={675}
-                      loading="lazy"
                     />
                   </div>
                   <div className="p-6">

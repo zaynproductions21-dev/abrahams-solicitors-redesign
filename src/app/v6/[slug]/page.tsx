@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { pushFormSubmit } from "@/lib/tracking";
+import { SlotImage } from "@/components/slot-image";
 import { useSpamGuard } from "@/lib/spam-client";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
 import { TrustBadges } from "@/components/v6/trust-badges";
@@ -213,14 +214,14 @@ export default function V6ServicePage() {
               <div className={`bg-slate-50 rounded-2xl aspect-[4/3] overflow-hidden relative ${i % 2 === 1 ? "lg:[direction:ltr]" : ""}`}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={`https://placehold.co/1200x900/f1f5f9/dc2626/png?text=${encodeURIComponent(stripHeadingPrefix(section.title).slice(0, 40))}&font=playfair-display`}
+                <SlotImage
+                  slot={`service-${slug}-${i + 1}`}
+                  fallbackSrc={`https://placehold.co/1200x900/f1f5f9/dc2626/png?text=${encodeURIComponent(stripHeadingPrefix(section.title).slice(0, 40))}&font=playfair-display`}
                   alt={`${stripHeadingPrefix(page.title)} — ${stripHeadingPrefix(section.title)} (editorial photo: UK solicitor reviewing case documents with client, warm natural light, navy + gold branding)`}
                   className="w-full h-full object-cover"
-                  data-image-slot={`service-${slug}-${i + 1}`}
-                  data-image-type="service"
+                  type="service"
                   width={1200}
                   height={900}
-                  loading="lazy"
                 />
               </div>
             </div>
