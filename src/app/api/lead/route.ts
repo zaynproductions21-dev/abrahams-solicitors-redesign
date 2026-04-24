@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isSpamSubmission } from "@/lib/spam";
+import { sendEnquiryEmails } from "@/lib/email";
 
 const SALESHUB_ENDPOINT = "https://app.saleshubcloud.com/api/webhook/form-submission";
 const PUBLISHOS_DB = "https://publishos-eosin.vercel.app/api/db/abrahams_enquiries";
@@ -58,5 +59,23 @@ export async function POST(req: NextRequest) {
   await saveToPublishOS(saleshubPayload);
   results.backup = true;
 
-  return NextResponse.json({ success: results.saleshub || results.backup, ...results });
+  // Fire notification + auto-responder emails via Brevo in parallel
+  // with the response — don't block the user on SMTP.
+  const emailPromise = sendEnquiryEmails({
+    name: body.name ?? `${saleshubPayload.firstName} ${saleshubPayload.lastName}`.trim(),
+    email: saleshubPayload.email,
+    phone: saleshubPayload.phone,
+    service: saleshubPayload.serviceLine || saleshubPayload.subject,
+    message: saleshubPayload.message,
+    source: saleshubPayload.source,
+    pageUrl: saleshubPayload.pageUrl,
+  }).catch(() => ({ internal: false, prospect: false }));
+
+  const emails = await emailPromise;
+  return NextResponse.json({
+    success: results.saleshub || results.backup,
+    ...results,
+    notify: emails.internal,
+    auto_responder: emails.prospect,
+  });
 }
