@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { pushFormSubmit } from "@/lib/tracking";
 import { useSpamGuard } from "@/lib/spam-client";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
+import { TrustBadges } from "@/components/v6/trust-badges";
 import { submitEnquiry } from "@/lib/publishos";
 import {
   CheckCircle2, ArrowRight, Phone, ChevronRight, ChevronDown,
@@ -163,6 +164,8 @@ export default function V6ServicePage() {
           </div>
         </div>
       </section>
+
+      <TrustBadges />
 
       {/* ─── Content sections ─── alternating layout */}
       <section className="py-10 lg:py-14">

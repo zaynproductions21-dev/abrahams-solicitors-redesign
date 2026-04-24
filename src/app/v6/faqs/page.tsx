@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ChevronDown, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { TrustBadges } from "@/components/v6/trust-badges";
 import { getFaqs, type FaqItem } from "@/lib/publishos";
 
 export default function V6FaqsPage() {
@@ -39,6 +40,8 @@ export default function V6FaqsPage() {
           </p>
         </div>
       </section>
+
+      <TrustBadges />
 
       <section className="py-12 lg:py-16">
         <div className="max-w-3xl mx-auto px-6 lg:px-8">

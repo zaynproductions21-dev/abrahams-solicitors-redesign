@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, ArrowRight, Phone } from "lucide-react";
+import { TrustBadges } from "@/components/v6/trust-badges";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -66,6 +67,8 @@ export default function V1FeesPage() {
           </p>
         </div>
       </section>
+
+      <TrustBadges />
 
       {/* Fee Cards */}
       <section className="py-12 lg:py-16">

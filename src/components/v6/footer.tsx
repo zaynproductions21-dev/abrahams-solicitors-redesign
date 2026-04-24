@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { SraBadge } from "./sra-badge";
 import { FooterNewsletter } from "./footer-newsletter";
+import { FooterWhatsApp } from "./footer-whatsapp";
 
 const SocialIcon = ({ name }: { name: "facebook" | "twitter" | "linkedin" | "instagram" | "youtube" }) => {
   const paths: Record<string, React.ReactNode> = {
@@ -152,6 +153,9 @@ export function V6Footer() {
                   <p>Mon &ndash; Fri: 9:00am &ndash; 5:00pm</p>
                   <p className="text-xs text-brand-gold mt-0.5">New enquiries: 24 hours</p>
                 </div>
+              </div>
+              <div className="pt-2">
+                <FooterWhatsApp />
               </div>
             </div>
           </div>

@@ -7,6 +7,7 @@ import { Phone, Clock, Shield, Headset, MessageCircle, CheckCircle2 } from "luci
 import { pushFormSubmit } from "@/lib/tracking";
 import { useSpamGuard } from "@/lib/spam-client";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
+import { TrustBadges } from "@/components/v6/trust-badges";
 import { submitEnquiry } from "@/lib/publishos";
 
 const perks = [
@@ -36,6 +37,8 @@ export default function FreeConsultationPage() {
           </p>
         </div>
       </section>
+
+      <TrustBadges />
 
       <section className="py-12 lg:py-16">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">

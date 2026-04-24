@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { teamMembers } from "@/lib/navigation";
 import { ArrowRight, CheckCircle2, Phone, MapPin, Clock } from "lucide-react";
+import { TrustBadges } from "@/components/v6/trust-badges";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -31,6 +32,8 @@ export default function V1AboutPage() {
           </p>
         </div>
       </section>
+
+      <TrustBadges />
 
       {/* Values */}
       <section className="py-12 lg:py-16">

@@ -7,6 +7,7 @@ import { Gift, CheckCircle2, ArrowRight } from "lucide-react";
 import { pushFormSubmit } from "@/lib/tracking";
 import { useSpamGuard } from "@/lib/spam-client";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
+import { TrustBadges } from "@/components/v6/trust-badges";
 import { submitEnquiry } from "@/lib/publishos";
 
 export default function ReferAFriendPage() {
@@ -30,6 +31,8 @@ export default function ReferAFriendPage() {
           </p>
         </div>
       </section>
+
+      <TrustBadges />
 
       <section className="py-12 lg:py-16">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
