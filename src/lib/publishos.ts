@@ -71,7 +71,10 @@ export type Enquiry = {
   submitted_at: string;
 };
 
-export async function submitEnquiry(payload: Omit<Enquiry, "id" | "submitted_at">): Promise<boolean> {
+export async function submitEnquiry(
+  payload: Omit<Enquiry, "id" | "submitted_at">,
+  spam?: { _hp: string; _t: number }
+): Promise<boolean> {
   try {
     const res = await fetch("/api/lead", {
       method: "POST",
@@ -86,6 +89,7 @@ export async function submitEnquiry(payload: Omit<Enquiry, "id" | "submitted_at"
         subject: payload.service ? `Enquiry: ${payload.service}` : "Website enquiry",
         message: payload.case,
         pageUrl: typeof window !== "undefined" ? window.location.href : "",
+        ...(spam ?? {}),
       }),
     });
     return res.ok;
@@ -96,8 +100,12 @@ export async function submitEnquiry(payload: Omit<Enquiry, "id" | "submitted_at"
 
 export async function subscribeToNewsletter(
   email: string,
-  opts: { firstName?: string; lastName?: string } = {}
+  opts: { firstName?: string; lastName?: string; _hp?: string; _t?: number } = {}
 ): Promise<boolean> {
+  // Client-side honeypot: pretend success so bots don't retry.
+  if (opts._hp && opts._hp.trim().length > 0) return true;
+  if (opts._t && Date.now() - opts._t < 2000) return true;
+
   const orgId = process.env.NEXT_PUBLIC_SALESHUB_NEWSLETTER_ORG_ID;
 
   // Always keep a backup copy in our own collection so we don't lose signups.

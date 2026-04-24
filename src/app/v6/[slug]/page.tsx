@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { pushFormSubmit } from "@/lib/tracking";
+import { useSpamGuard } from "@/lib/spam-client";
+import { HoneypotInput } from "@/components/v6/honeypot-input";
 import { submitEnquiry } from "@/lib/publishos";
 import {
   CheckCircle2, ArrowRight, Phone, ChevronRight, ChevronDown,
@@ -61,6 +63,7 @@ function ConsultationForm({ serviceName, defaultService = "" }: { serviceName: s
   const [phone, setPhone] = useState("");
   const [service, setService] = useState(defaultService);
   const [caseDescription, setCaseDescription] = useState("");
+  const spam = useSpamGuard();
 
   const inputClass = "w-full px-4 py-3 rounded-lg border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red/20";
 
@@ -68,7 +71,8 @@ function ConsultationForm({ serviceName, defaultService = "" }: { serviceName: s
     <div className="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 lg:p-7">
       <h3 className="text-lg font-bold text-slate-900 mb-1">Free {serviceName} Consultation</h3>
       <p className="text-sm text-slate-400 mb-5">Speak to a solicitor today — no obligation.</p>
-      <form onSubmit={async (e) => { e.preventDefault(); pushFormSubmit({ email, phone }); await submitEnquiry({ source: `service-page:${serviceName}`, name, email, phone, service, case: caseDescription }); window.location.href = `/v6/thank-you/`; }} className="space-y-3">
+      <form onSubmit={async (e) => { e.preventDefault(); pushFormSubmit({ email, phone }); await submitEnquiry({ source: `service-page:${serviceName}`, name, email, phone, service, case: caseDescription }, spam.payload()); window.location.href = `/v6/thank-you/`; }} className="space-y-3">
+        <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
         <input value={name} onChange={e => setName(e.target.value)} placeholder="Your Name" required className={inputClass} />
         <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="Email Address" required className={inputClass} />
         <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" placeholder="Phone Number" className={inputClass} />

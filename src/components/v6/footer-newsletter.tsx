@@ -5,18 +5,21 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle2, Mail } from "lucide-react";
 import { subscribeToNewsletter } from "@/lib/publishos";
 import { pushFormSubmit } from "@/lib/tracking";
+import { useSpamGuard } from "@/lib/spam-client";
+import { HoneypotInput } from "./honeypot-input";
 
 export function FooterNewsletter() {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
+  const spam = useSpamGuard();
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email) return;
     setSubmitting(true);
-    await subscribeToNewsletter(email, { firstName });
+    await subscribeToNewsletter(email, { firstName, _hp: spam.honeypot, _t: spam.loadedAt });
     pushFormSubmit({ email });
     setSubmitting(false);
     setDone(true);
@@ -33,6 +36,7 @@ export function FooterNewsletter() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-2.5">
+      <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
       <div className="flex items-center gap-2 text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-2">
         <Mail className="h-3.5 w-3.5" />
         Newsletter

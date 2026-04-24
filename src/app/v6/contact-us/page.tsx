@@ -7,6 +7,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Phone, Mail, MapPin, Clock, CheckCircle2 } from "lucide-react";
 import { pushFormSubmit } from "@/lib/tracking";
+import { useSpamGuard } from "@/lib/spam-client";
+import { HoneypotInput } from "@/components/v6/honeypot-input";
 import { submitEnquiry } from "@/lib/publishos";
 
 export default function V1ContactPage() {
@@ -15,6 +17,7 @@ export default function V1ContactPage() {
   const [phone, setPhone] = useState("");
   const [service, setService] = useState("");
   const [message, setMessage] = useState("");
+  const spam = useSpamGuard();
 
   return (
     <>
@@ -36,9 +39,10 @@ export default function V1ContactPage() {
             {/* Form */}
             <div className="lg:col-span-3">
               <form
-                onSubmit={async (e) => { e.preventDefault(); pushFormSubmit({ email, phone }); await submitEnquiry({ source: 'contact-us', name, email, phone, service, case: message }); window.location.href = '/v6/thank-you/'; }}
+                onSubmit={async (e) => { e.preventDefault(); pushFormSubmit({ email, phone }); await submitEnquiry({ source: 'contact-us', name, email, phone, service, case: message }, spam.payload()); window.location.href = '/v6/thank-you/'; }}
                 className="bg-white rounded-2xl ring-1 ring-slate-200 p-8 lg:p-10 space-y-6"
               >
+                <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="name">Full Name</Label>

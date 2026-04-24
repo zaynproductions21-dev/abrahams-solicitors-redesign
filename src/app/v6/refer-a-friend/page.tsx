@@ -5,6 +5,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Gift, CheckCircle2, ArrowRight } from "lucide-react";
 import { pushFormSubmit } from "@/lib/tracking";
+import { useSpamGuard } from "@/lib/spam-client";
+import { HoneypotInput } from "@/components/v6/honeypot-input";
 import { submitEnquiry } from "@/lib/publishos";
 
 export default function ReferAFriendPage() {
@@ -15,6 +17,7 @@ export default function ReferAFriendPage() {
   const [friendPhone, setFriendPhone] = useState("");
   const [caseType, setCaseType] = useState("");
   const [notes, setNotes] = useState("");
+  const spam = useSpamGuard();
 
   return (
     <>
@@ -63,11 +66,12 @@ export default function ReferAFriendPage() {
                     phone: friendPhone,
                     service: caseType,
                     case: notes,
-                  });
+                  }, spam.payload());
                   window.location.href = "/v6/thank-you/";
                 }}
                 className="bg-white rounded-2xl ring-1 ring-slate-200 shadow-sm p-6 lg:p-8 space-y-5"
               >
+                <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
                 <div>
                   <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">Your Details</p>
                   <div className="grid sm:grid-cols-2 gap-4">

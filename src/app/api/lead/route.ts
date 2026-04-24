@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isSpamSubmission } from "@/lib/spam";
 
 const SALESHUB_ENDPOINT = "https://app.saleshubcloud.com/api/webhook/form-submission";
 const PUBLISHOS_DB = "https://publishos-eosin.vercel.app/api/db/abrahams_enquiries";
@@ -21,6 +22,12 @@ async function saveToPublishOS(payload: Record<string, unknown>) {
 
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => ({}));
+
+  // Silent spam rejection: return a 200 OK so bots don't know the submission was dropped.
+  if (isSpamSubmission(body)) {
+    return NextResponse.json({ success: true });
+  }
+
   const apiKey = process.env.SALESHUB_API_KEY;
 
   const saleshubPayload = {

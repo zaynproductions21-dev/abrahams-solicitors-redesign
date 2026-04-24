@@ -6,12 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Mail, Calendar, ArrowRight, CheckCircle2 } from "lucide-react";
 import { getNewsletters, subscribeToNewsletter, formatDate, type NewsletterIssue } from "@/lib/publishos";
 import { pushFormSubmit } from "@/lib/tracking";
+import { useSpamGuard } from "@/lib/spam-client";
+import { HoneypotInput } from "@/components/v6/honeypot-input";
 
 export default function V6NewsletterPage() {
   const [issues, setIssues] = useState<NewsletterIssue[] | null>(null);
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
+  const spam = useSpamGuard();
 
   useEffect(() => {
     getNewsletters().then(all => {
@@ -26,7 +29,7 @@ export default function V6NewsletterPage() {
     e.preventDefault();
     if (!email) return;
     setSubmitting(true);
-    const ok = await subscribeToNewsletter(email);
+    const ok = await subscribeToNewsletter(email, { _hp: spam.honeypot, _t: spam.loadedAt });
     setSubmitting(false);
     if (ok) {
       pushFormSubmit({ email });
@@ -68,6 +71,7 @@ export default function V6NewsletterPage() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+                <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
                 <input
                   type="email"
                   value={email}

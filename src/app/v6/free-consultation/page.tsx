@@ -5,6 +5,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Phone, Clock, Shield, Headset, MessageCircle, CheckCircle2 } from "lucide-react";
 import { pushFormSubmit } from "@/lib/tracking";
+import { useSpamGuard } from "@/lib/spam-client";
+import { HoneypotInput } from "@/components/v6/honeypot-input";
 import { submitEnquiry } from "@/lib/publishos";
 
 const perks = [
@@ -21,6 +23,7 @@ export default function FreeConsultationPage() {
   const [service, setService] = useState("");
   const [caseText, setCaseText] = useState("");
   const [preferredTime, setPreferredTime] = useState("");
+  const spam = useSpamGuard();
 
   return (
     <>
@@ -78,11 +81,12 @@ export default function FreeConsultationPage() {
                     name, email, phone,
                     service,
                     case: preferredTime ? `Preferred time: ${preferredTime}\n\n${caseText}` : caseText,
-                  });
+                  }, spam.payload());
                   window.location.href = "/v6/thank-you/";
                 }}
                 className="bg-white rounded-2xl ring-1 ring-slate-200 shadow-sm p-6 lg:p-8 space-y-4"
               >
+                <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
                 <h3 className="text-xl font-bold text-slate-900">Book your call</h3>
                 <p className="text-sm text-slate-500 -mt-2">We aim to respond within one working day.</p>
 
