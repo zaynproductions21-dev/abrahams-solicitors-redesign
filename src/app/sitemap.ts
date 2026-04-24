@@ -1,45 +1,46 @@
 import type { MetadataRoute } from "next";
 import { immigrationPages, personalInjuryPages } from "@/lib/services-data";
-import { teamMembers } from "@/lib/navigation";
+
+// Sitemap targets the v6 redesign. Swap the `baseUrl` once the production
+// domain points at Vercel and drop the `/v6` prefix (or move v6 pages to `/`).
+const baseUrl = "https://abrahams-redesign-zayn-productions.vercel.app";
+const PREFIX = "/v6";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://abrahamssolicitors.co.uk";
+  const now = new Date();
+  const p = (path: string) => `${baseUrl}${PREFIX}${path}`;
 
   const staticPages: MetadataRoute.Sitemap = [
-    { url: baseUrl, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
-    { url: `${baseUrl}/about-us/`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/contact-us/`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/our-fees/`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/housing-disrepair/`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
-    { url: `${baseUrl}/blog/`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.6 },
-    { url: `${baseUrl}/refer-a-friend/`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.4 },
-    { url: `${baseUrl}/careers/`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.4 },
-    { url: `${baseUrl}/privacy-policy/`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
-    { url: `${baseUrl}/terms-of-business/`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
-    { url: `${baseUrl}/website-legal-notice/`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
-    { url: `${baseUrl}/cookie-policy/`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
+    { url: p("/"), lastModified: now, changeFrequency: "weekly", priority: 1 },
+    { url: p("/about-us/"), lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: p("/contact-us/"), lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: p("/our-fees/"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: p("/free-consultation/"), lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: p("/faqs/"), lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: p("/blog/"), lastModified: now, changeFrequency: "weekly", priority: 0.6 },
+    { url: p("/press-releases/"), lastModified: now, changeFrequency: "weekly", priority: 0.5 },
+    { url: p("/newsletter/"), lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    { url: p("/refer-a-friend/"), lastModified: now, changeFrequency: "monthly", priority: 0.4 },
+    { url: p("/careers/"), lastModified: now, changeFrequency: "monthly", priority: 0.4 },
+    { url: p("/privacy-policy/"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+    { url: p("/terms-of-business/"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+    { url: p("/website-legal-notice/"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+    { url: p("/cookie-policy/"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
   ];
 
   const immigrationRoutes: MetadataRoute.Sitemap = immigrationPages.map((page) => ({
-    url: `${baseUrl}/${page.slug}/`,
-    lastModified: new Date(),
+    url: p(`/${page.slug}/`),
+    lastModified: now,
     changeFrequency: "weekly" as const,
     priority: page.slug === "immigration" ? 0.9 : 0.7,
   }));
 
   const piRoutes: MetadataRoute.Sitemap = personalInjuryPages.map((page) => ({
-    url: `${baseUrl}/${page.slug}/`,
-    lastModified: new Date(),
+    url: p(`/${page.slug}/`),
+    lastModified: now,
     changeFrequency: "weekly" as const,
     priority: page.slug === "personal-injury" ? 0.9 : 0.7,
   }));
 
-  const teamRoutes: MetadataRoute.Sitemap = teamMembers.map((member) => ({
-    url: `${baseUrl}/our-team/${member.slug}/`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.5,
-  }));
-
-  return [...staticPages, ...immigrationRoutes, ...piRoutes, ...teamRoutes];
+  return [...staticPages, ...immigrationRoutes, ...piRoutes];
 }
