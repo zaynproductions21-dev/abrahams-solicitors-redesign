@@ -26,7 +26,22 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_GB",
     siteName: "Abrahams Solicitors",
+    images: [
+      {
+        url: "/abrahams-logo.png",
+        width: 1024,
+        height: 1024,
+        alt: "Abrahams Solicitors — UK Immigration & Housing Law",
+      },
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    site: "@Abrahamssolic",
+    creator: "@Abrahamssolic",
+  },
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
 };
 
 const jsonLd = {

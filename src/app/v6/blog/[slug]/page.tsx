@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { ArrowLeft, Calendar, User } from "lucide-react";
 import { getBlogPosts, formatDate, type BlogPost } from "@/lib/publishos";
+import { JsonLd, blogPostSchema } from "@/components/v6/jsonld";
 
 function RichContent({ text }: { text: string }) {
   const blocks = text.split(/\n\n+/);
@@ -40,6 +41,7 @@ export default function V6BlogPostPage() {
 
   return (
     <article>
+      <JsonLd data={blogPostSchema(post)} />
       <section className="bg-slate-50 py-10 lg:py-14 border-b border-slate-100">
         <div className="max-w-3xl mx-auto px-6 lg:px-8">
           <Link href="/v6/blog/" className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-brand-red transition-colors mb-6">

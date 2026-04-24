@@ -8,6 +8,7 @@ import { pushFormSubmit } from "@/lib/tracking";
 import { useSpamGuard } from "@/lib/spam-client";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
 import { TrustBadges } from "@/components/v6/trust-badges";
+import { JsonLd, faqPageSchema, breadcrumbSchema, serviceSchema } from "@/components/v6/jsonld";
 import { submitEnquiry } from "@/lib/publishos";
 import {
   CheckCircle2, ArrowRight, Phone, ChevronRight, ChevronDown,
@@ -108,6 +109,15 @@ export default function V6ServicePage() {
 
   return (
     <>
+      <JsonLd data={serviceSchema({ name: stripHeadingPrefix(page.title), description: stripHeadingPrefix(page.heroDescription), slug, priceLabel })} />
+      <JsonLd data={breadcrumbSchema([
+        { name: "Home", url: "https://www.abrahamssolicitors.co.uk/v6/" },
+        ...(page.parentService && page.parentHref ? [{ name: page.parentService, url: `https://www.abrahamssolicitors.co.uk/v6${page.parentHref}` }] : []),
+        { name: stripHeadingPrefix(page.title) },
+      ])} />
+      {page.faqs && page.faqs.length > 0 && (
+        <JsonLd data={faqPageSchema(page.faqs.map(f => ({ question: stripHeadingPrefix(f.question), answer: stripHeadingPrefix(f.answer) })))} />
+      )}
       {/* ─── Breadcrumb ─── own row above hero so it reads as navigation */}
       <section className="bg-slate-50/60 border-b border-slate-100">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-3 lg:py-4">

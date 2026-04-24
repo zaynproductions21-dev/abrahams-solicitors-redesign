@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ChevronDown, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TrustBadges } from "@/components/v6/trust-badges";
+import { JsonLd, faqPageSchema } from "@/components/v6/jsonld";
 import { getFaqs, type FaqItem } from "@/lib/publishos";
 
 export default function V6FaqsPage() {
@@ -31,6 +32,9 @@ export default function V6FaqsPage() {
 
   return (
     <>
+      {faqs && faqs.length > 0 && (
+        <JsonLd data={faqPageSchema(faqs.map(f => ({ question: f.question, answer: f.answer })))} />
+      )}
       <section className="bg-brand-navy py-12 lg:py-16">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">Help</p>

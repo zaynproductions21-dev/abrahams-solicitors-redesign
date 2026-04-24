@@ -10,6 +10,7 @@ import { pushFormSubmit } from "@/lib/tracking";
 import { useSpamGuard } from "@/lib/spam-client";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
 import { TrustBadges } from "@/components/v6/trust-badges";
+import { OfficeMap } from "@/components/v6/office-map";
 import { submitEnquiry } from "@/lib/publishos";
 
 export default function V1ContactPage() {
@@ -106,15 +107,18 @@ export default function V1ContactPage() {
                 { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU", tag: "" },
                 { city: "Bradford", address: "Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR", tag: "New Office" },
               ].map((office) => (
-                <div key={office.city} className="bg-white rounded-2xl ring-1 ring-slate-200 p-6">
-                  <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
-                    {office.city} Office
-                    {office.tag && <span className="text-[10px] font-semibold bg-brand-red/10 text-brand-red px-2 py-0.5 rounded normal-case tracking-normal">{office.tag}</span>}
-                  </p>
-                  <div className="flex items-start gap-3">
-                    <MapPin className="h-5 w-5 text-brand-gold/60 shrink-0 mt-0.5" />
-                    <p className="text-sm text-brand-navy">{office.address}</p>
+                <div key={office.city} className="bg-white rounded-2xl ring-1 ring-slate-200 overflow-hidden">
+                  <div className="p-6">
+                    <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
+                      {office.city} Office
+                      {office.tag && <span className="text-[10px] font-semibold bg-brand-red/10 text-brand-red px-2 py-0.5 rounded normal-case tracking-normal">{office.tag}</span>}
+                    </p>
+                    <div className="flex items-start gap-3">
+                      <MapPin className="h-5 w-5 text-brand-gold/60 shrink-0 mt-0.5" />
+                      <p className="text-sm text-brand-navy">{office.address}</p>
+                    </div>
                   </div>
+                  <OfficeMap city={office.city} address={office.address} className="rounded-none border-0 border-t border-slate-100" />
                 </div>
               ))}
 
