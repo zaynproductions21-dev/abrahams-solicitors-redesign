@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { SraBadge } from "./sra-badge";
 
 const immigrationLinks = [
   { label: "Spouse Visa Services", href: "/v6/uk-spouse-visa/" },
@@ -45,9 +46,12 @@ export function V6Footer() {
                 <span className="block text-[10px] font-semibold text-brand-gold uppercase tracking-[0.2em]">Solicitors</span>
               </div>
             </Link>
-            <p className="text-white/50 text-sm leading-relaxed mb-8 max-w-xs">
+            <p className="text-white/50 text-sm leading-relaxed mb-6 max-w-xs">
               UK immigration and housing solicitors. Fixed fees, direct solicitor access, and a commitment to achieving the best outcomes for our clients.
             </p>
+            <div className="mb-6">
+              <SraBadge />
+            </div>
             <div className="space-y-3 text-sm">
               <a href="tel:02034880512" className="flex items-center gap-3 text-white/70 hover:text-brand-gold transition-colors">
                 <Phone className="h-4 w-4 shrink-0" />020 3488 0512
