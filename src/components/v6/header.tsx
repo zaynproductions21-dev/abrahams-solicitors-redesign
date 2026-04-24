@@ -118,7 +118,7 @@ export function V6Header() {
                 width={48}
                 height={48}
                 priority
-                className="h-10 w-10 object-contain"
+                className="h-10 w-10 object-contain rounded-lg border border-slate-200 p-0.5"
               />
               <div className="leading-tight">
                 <span className="block text-xl font-bold text-brand-navy tracking-tight">Abrahams</span>
@@ -158,7 +158,7 @@ export function V6Header() {
                         alt="Abrahams Solicitors"
                         width={40}
                         height={40}
-                        className="h-10 w-10 object-contain"
+                        className="h-10 w-10 object-contain rounded-lg border border-slate-200 p-0.5"
                       />
                       <div className="leading-tight">
                         <span className="block text-lg font-bold text-brand-navy">Abrahams</span>
