@@ -41,13 +41,13 @@ export default function V1AboutPage() {
           <div className="rounded-3xl overflow-hidden aspect-[21/9] bg-slate-100">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/placeholders/about-firm.svg"
+              src="https://placehold.co/2100x900/e2e8f0/0b1e4a/png?text=Abrahams+Solicitors+Office&font=playfair-display"
               alt="Abrahams Solicitors — interior of the London office with solicitors meeting clients in a professional, welcoming environment"
               className="w-full h-full object-cover"
               data-image-slot="about-firm-hero"
               data-image-type="about"
-              width={1200}
-              height={500}
+              width={2100}
+              height={900}
               loading="lazy"
             />
           </div>

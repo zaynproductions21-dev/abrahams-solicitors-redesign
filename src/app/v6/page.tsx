@@ -111,13 +111,13 @@ export default function V6HomePage() {
         <div className="absolute inset-y-0 right-0 w-[45%] hidden xl:block pointer-events-none">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/placeholders/hero-legal.svg"
+            src="https://placehold.co/1920x1080/0b1e4a/f59e0b/png?text=Abrahams+Solicitors+Hero"
             alt="Abrahams Solicitors — UK immigration, housing and personal injury law firm serving London and Bradford with a 95% success rate"
             className="w-full h-full object-cover object-left opacity-30"
             data-image-slot="home-hero"
             data-image-type="hero"
-            width={1200}
-            height={800}
+            width={1920}
+            height={1080}
             loading="eager"
           />
         </div>
@@ -195,13 +195,13 @@ export default function V6HomePage() {
               <div className={`bg-slate-50 rounded-2xl aspect-[4/3] overflow-hidden relative ${i % 2 === 1 ? "lg:[direction:ltr]" : ""}`}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={`/placeholders/service-visual.svg?slot=home-service-${i + 1}`}
+                  src={`https://placehold.co/1200x900/f1f5f9/dc2626/png?text=${encodeURIComponent(service.title)}&font=playfair-display`}
                   alt={`${service.title} — professional editorial photograph representing ${service.title.toLowerCase()} solicitor services at Abrahams Solicitors UK`}
                   className="w-full h-full object-cover"
                   data-image-slot={`home-service-${i + 1}`}
                   data-image-type="service"
-                  width={800}
-                  height={600}
+                  width={1200}
+                  height={900}
                   loading="lazy"
                 />
               </div>

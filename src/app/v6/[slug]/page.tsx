@@ -213,13 +213,13 @@ export default function V6ServicePage() {
               <div className={`bg-slate-50 rounded-2xl aspect-[4/3] overflow-hidden relative ${i % 2 === 1 ? "lg:[direction:ltr]" : ""}`}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={`/placeholders/service-visual.svg?slot=service-${slug}-${i + 1}`}
+                  src={`https://placehold.co/1200x900/f1f5f9/dc2626/png?text=${encodeURIComponent(stripHeadingPrefix(section.title).slice(0, 40))}&font=playfair-display`}
                   alt={`${stripHeadingPrefix(page.title)} — ${stripHeadingPrefix(section.title)} (editorial photo: UK solicitor reviewing case documents with client, warm natural light, navy + gold branding)`}
                   className="w-full h-full object-cover"
                   data-image-slot={`service-${slug}-${i + 1}`}
                   data-image-type="service"
-                  width={800}
-                  height={600}
+                  width={1200}
+                  height={900}
                   loading="lazy"
                 />
               </div>
