@@ -63,17 +63,61 @@ const offices = [
   { city: "Bradford", address: "2nd Floor, 6 Piccadilly,\nBradford BD1 3LS" },
 ];
 
-function PaymentIcon({ label }: { label: string }) {
-  const base = "h-5 w-8 rounded bg-white/90 text-[9px] font-black flex items-center justify-center tracking-tight";
-  const styles: Record<string, string> = {
-    Visa: "text-[#1a1f71]",
-    Mastercard: "text-[#eb001b]",
-    Amex: "text-[#006fcf]",
-    "Apple Pay": "text-black",
-    "Google Pay": "text-[#4285F4]",
-  };
-  return <span className={`${base} ${styles[label] ?? "text-slate-900"}`}>{label.replace("Mastercard", "MC")}</span>;
+function VisaLogo() {
+  return (
+    <svg viewBox="0 0 48 32" className="h-8 w-12 rounded-md bg-white">
+      <text x="24" y="22" textAnchor="middle" fontFamily="Arial Black, sans-serif" fontWeight="900" fontStyle="italic" fontSize="13" fill="#1a1f71" letterSpacing="0.5">VISA</text>
+    </svg>
+  );
 }
+function MastercardLogo() {
+  return (
+    <svg viewBox="0 0 48 32" className="h-8 w-12 rounded-md bg-white">
+      <circle cx="20" cy="16" r="8" fill="#eb001b" />
+      <circle cx="28" cy="16" r="8" fill="#f79e1b" fillOpacity="0.9" />
+      <path d="M24 10a8 8 0 0 0 0 12 8 8 0 0 0 0-12z" fill="#ff5f00" />
+    </svg>
+  );
+}
+function AmexLogo() {
+  return (
+    <svg viewBox="0 0 48 32" className="h-8 w-12 rounded-md">
+      <rect width="48" height="32" rx="3" fill="#2e77bb" />
+      <text x="24" y="20" textAnchor="middle" fontFamily="Arial Black, sans-serif" fontWeight="900" fontSize="9" fill="#fff" letterSpacing="0.3">AMEX</text>
+    </svg>
+  );
+}
+function ApplePayLogo() {
+  return (
+    <svg viewBox="0 0 48 32" className="h-8 w-12 rounded-md bg-white">
+      <g transform="translate(7 9)" fill="#000">
+        <path d="M5.05 1.84c.47-.56.77-1.33.7-2.09-.66.03-1.46.44-1.94 1.01-.42.5-.8 1.28-.7 2.03.73.05 1.47-.37 1.94-.95zm.7.96c-1.08-.06-2 .61-2.52.61-.52 0-1.3-.58-2.14-.56-1.1.01-2.12.64-2.68 1.63-1.15 1.99-.29 4.94.81 6.56.54.8 1.19 1.68 2.03 1.65.82-.03 1.12-.53 2.1-.53s1.26.53 2.13.51c.88-.02 1.44-.8 1.97-1.6.62-.91.88-1.8.89-1.84-.02-.02-1.71-.65-1.72-2.58-.02-1.61 1.32-2.38 1.38-2.42-.76-1.12-1.94-1.25-2.35-1.28z" />
+        <text x="11" y="11" fontFamily="-apple-system, SF Pro Display, Helvetica" fontWeight="600" fontSize="8">Pay</text>
+      </g>
+    </svg>
+  );
+}
+function GooglePayLogo() {
+  return (
+    <svg viewBox="0 0 48 32" className="h-8 w-12 rounded-md bg-white">
+      <g transform="translate(5 10)">
+        <path fill="#4285F4" d="M5.5 2.5v1.7h2.35c-.09.53-.39.97-.82 1.27v1.05h1.32c.77-.71 1.22-1.76 1.22-3 0-.29-.03-.57-.08-.83h-3.99z"/>
+        <path fill="#34A853" d="M5.5 7.5c1.11 0 2.04-.37 2.72-1l-1.32-1.05c-.37.25-.83.39-1.4.39-1.07 0-1.98-.72-2.3-1.7h-1.36v1.08c.68 1.36 2.07 2.28 3.66 2.28z"/>
+        <path fill="#FBBC04" d="M3.2 4.14c-.17-.52-.17-1.08 0-1.6v-1.08H1.84c-.58 1.14-.58 2.48 0 3.62l1.36-1.08z"/>
+        <path fill="#EA4335" d="M5.5 1.34c.6 0 1.14.21 1.57.62l1.17-1.17c-.71-.66-1.63-1.06-2.74-1.06-1.6 0-2.98.92-3.66 2.26l1.36 1.06c.32-.98 1.23-1.71 2.3-1.71z"/>
+        <text x="11" y="6.5" fontFamily="-apple-system, Roboto, Helvetica" fontWeight="500" fontSize="7" fill="#5f6368">Pay</text>
+      </g>
+    </svg>
+  );
+}
+
+const PAYMENT_LOGOS = [
+  { label: "Visa", Logo: VisaLogo },
+  { label: "Mastercard", Logo: MastercardLogo },
+  { label: "American Express", Logo: AmexLogo },
+  { label: "Apple Pay", Logo: ApplePayLogo },
+  { label: "Google Pay", Logo: GooglePayLogo },
+];
 
 export function V6Footer() {
   return (
@@ -181,8 +225,8 @@ export function V6Footer() {
           <div className="flex items-center gap-3">
             <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40">We Accept</span>
             <div className="flex items-center gap-1.5">
-              {["Visa", "Mastercard", "Amex", "Apple Pay", "Google Pay"].map(m => (
-                <PaymentIcon key={m} label={m} />
+              {PAYMENT_LOGOS.map(({ label, Logo }) => (
+                <span key={label} aria-label={label} title={label}><Logo /></span>
               ))}
             </div>
           </div>
