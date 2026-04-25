@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { TrustBadges } from "@/components/v6/trust-badges";
+import { TeamStrip } from "@/components/v6/team-strip";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
 import { pushFormSubmit } from "@/lib/tracking";
 import { SlotImage } from "@/components/slot-image";
@@ -274,6 +275,8 @@ export default function V6HomePage() {
           </div>
         </div>
       </section>
+
+      <TeamStrip />
 
       {/* ─── Locations ─── */}
       <section className="border-t border-slate-100 py-14 lg:py-20 bg-slate-50/60">

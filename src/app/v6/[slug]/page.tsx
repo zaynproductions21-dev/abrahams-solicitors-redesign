@@ -9,6 +9,7 @@ import { SlotImage } from "@/components/slot-image";
 import { useSpamGuard } from "@/lib/spam-client";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
 import { TrustBadges } from "@/components/v6/trust-badges";
+import { TeamStrip } from "@/components/v6/team-strip";
 import { JsonLd, faqPageSchema, breadcrumbSchema, serviceSchema } from "@/components/v6/jsonld";
 import { submitEnquiry } from "@/lib/publishos";
 import {
@@ -293,6 +294,8 @@ export default function V6ServicePage() {
           </div>
         </section>
       )}
+
+      <TeamStrip />
 
       {/* ─── Testimonial strip ─── */}
       <section className="bg-slate-50/60 py-10 lg:py-14">

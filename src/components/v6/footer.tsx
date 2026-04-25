@@ -34,6 +34,7 @@ const otherLinks = [
 
 const quickLinks = [
   { label: "About Us", href: "/v6/about-us/" },
+  { label: "Our Team", href: "/v6/our-team/" },
   { label: "Our Fees", href: "/v6/our-fees/" },
   { label: "Blog", href: "/v6/blog/" },
   { label: "Press Releases", href: "/v6/press-releases/" },

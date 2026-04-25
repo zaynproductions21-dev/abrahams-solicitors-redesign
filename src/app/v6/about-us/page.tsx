@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, Phone, MapPin, Clock } from "lucide-react";
+import { CheckCircle2, Phone, MapPin, Clock, ShieldCheck, ExternalLink } from "lucide-react";
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { OfficeMap } from "@/components/v6/office-map";
 import { SlotImage } from "@/components/slot-image";
+import { team } from "@/lib/team";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -68,6 +69,64 @@ export default function V1AboutPage() {
                 <p className="text-sm text-slate-500 leading-relaxed">{v.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Meet the Team */}
+      <section className="py-12 lg:py-16 bg-slate-50/60 border-t border-slate-100">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8">
+          <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">Meet the Team</p>
+          <h2 className="text-3xl lg:text-4xl font-black text-brand-navy leading-tight tracking-tight">Three solicitors. Direct access. No call centres.</h2>
+          <div className="mt-6 space-y-4 text-base text-slate-600 leading-relaxed">
+            <p>
+              At Abrahams Solicitors, our team focuses on delivering clear, professional and effective legal support across immigration, litigation and housing matters. Most clients come to us during stressful and uncertain periods — facing a Home Office decision that could split a family, a landlord ignoring damp and mould, or a legal dispute that needs careful handling. Our job is to give straightforward advice and strong case preparation from the first call.
+            </p>
+            <p>
+              Each of our solicitors is SRA-regulated and works directly on your file. You speak to the person handling your case — no junior pass-offs, no call centres.
+            </p>
+          </div>
+
+          <div className="mt-10 space-y-6">
+            {team.map((s) => (
+              <article key={s.slug} className="bg-white rounded-2xl border border-slate-100 p-6 sm:p-8">
+                <header className="mb-4">
+                  <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">{s.name}</h3>
+                  <p className="mt-1 text-brand-red text-xs font-semibold uppercase tracking-widest">{s.role}</p>
+                </header>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {s.specialisms.map((sp) => (
+                    <span key={sp} className="text-[11px] font-semibold bg-slate-50 text-slate-600 px-2.5 py-1 rounded-full border border-slate-100">{sp}</span>
+                  ))}
+                </div>
+                <div className="space-y-3 text-sm text-slate-600 leading-relaxed">
+                  {s.long.split("\n\n").map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
+                </div>
+                <div className="mt-5 pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs">
+                  <div className="flex items-center gap-1.5 text-slate-500">
+                    <ShieldCheck className="h-3.5 w-3.5 text-brand-red" />
+                    <span>SRA #{s.sraNumber} · admitted {s.admittedYear}</span>
+                  </div>
+                  <a
+                    href={s.sraUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-brand-red font-semibold hover:underline"
+                  >
+                    Verify on SRA register
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link href="/v6/our-team/" className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-red hover:underline">
+              View full team page →
+            </Link>
           </div>
         </div>
       </section>
