@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 interface SlotImageProps {
   slot: string
@@ -16,10 +16,20 @@ interface SlotImageProps {
 /**
  * Image component that checks /generated/{slot}.webp first,
  * then falls back to the provided placeholder src.
+ * Starts with fallback on SSR to avoid broken images before hydration.
  */
 export function SlotImage({ slot, fallbackSrc, alt, className, width, height, loading = 'lazy', type }: SlotImageProps) {
-  const [src, setSrc] = useState(`/generated/${slot}.webp`)
-  const [triedGenerated, setTriedGenerated] = useState(false)
+  const [src, setSrc] = useState(fallbackSrc)
+  const [checked, setChecked] = useState(false)
+
+  useEffect(() => {
+    if (checked) return
+    const generatedUrl = `/generated/${slot}.webp`
+    const img = new Image()
+    img.onload = () => { setSrc(generatedUrl); setChecked(true) }
+    img.onerror = () => { setChecked(true) }
+    img.src = generatedUrl
+  }, [slot, checked])
 
   return (
     // eslint-disable-next-line @next/next/no-img-element
@@ -32,12 +42,6 @@ export function SlotImage({ slot, fallbackSrc, alt, className, width, height, lo
       loading={loading}
       data-image-slot={slot}
       data-image-type={type}
-      onError={() => {
-        if (!triedGenerated) {
-          setTriedGenerated(true)
-          setSrc(fallbackSrc)
-        }
-      }}
     />
   )
 }
