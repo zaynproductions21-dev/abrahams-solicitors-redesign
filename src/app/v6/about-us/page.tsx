@@ -40,8 +40,6 @@ export default function V1AboutPage() {
       <section className="py-0">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8 -mt-2">
           <div className="rounded-3xl overflow-hidden aspect-[21/9] bg-slate-100">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
             <SlotImage
               slot="about-firm-hero"
               fallbackSrc="https://placehold.co/2100x900/e2e8f0/0b1e4a/png?text=Abrahams+Solicitors+Office&font=playfair-display"
