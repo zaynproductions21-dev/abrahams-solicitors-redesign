@@ -3,6 +3,7 @@ import { V6Header } from "@/components/v6/header";
 import { V6Footer } from "@/components/v6/footer";
 import { CookieConsent } from "@/components/v6/cookie-consent";
 import { ChatWidgets } from "@/components/v6/chat-widgets";
+import { StickyCallBar } from "@/components/v6/sticky-call-bar";
 import { GoogleTagManager } from "@/components/v6/google-tag-manager";
 import { JsonLd, organisationSchema } from "@/components/v6/jsonld";
 
@@ -36,6 +37,7 @@ export default function V6Layout({ children }: { children: React.ReactNode }) {
       <V6Header />
       <main className="flex-1">{children}</main>
       <V6Footer />
+      <StickyCallBar />
       <ChatWidgets />
       <CookieConsent />
     </div>

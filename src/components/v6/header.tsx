@@ -89,7 +89,7 @@ export function V6Header() {
   const closeMobile = () => setMobileOpen(false);
 
   return (
-    <header className="sticky top-0 z-50">
+    <header className="md:sticky md:top-0 z-50">
       {/* Announcement bar */}
       <div className="bg-brand-navy">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
