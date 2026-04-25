@@ -137,8 +137,23 @@ export default function V6ServicePage() {
       </section>
 
       {/* ─── Hero ─── Porto-style: white bg, bold heading left, form right */}
-      <section className="bg-white border-b border-slate-100">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-10 lg:py-14">
+      <section className="relative bg-white border-b border-slate-100 overflow-hidden">
+        {/* Hero image — desktop only, behind the consultation form. */}
+        <div className="absolute inset-y-0 right-0 w-[55%] hidden lg:block pointer-events-none overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/hero-london.jpg"
+            alt="Solicitor at the London office of Abrahams Solicitors with the City of London skyline in the background"
+            className="w-full h-full object-cover object-center"
+            width={1536}
+            height={1024}
+            loading="eager"
+          />
+          {/* Soft fade on the left edge so the headline text stays legible */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent" aria-hidden="true" />
+        </div>
+
+        <div className="relative max-w-[1200px] mx-auto px-6 lg:px-8 py-10 lg:py-14">
           <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center">
             {/* Left: 3 cols */}
             <div className="lg:col-span-3 min-w-0">
