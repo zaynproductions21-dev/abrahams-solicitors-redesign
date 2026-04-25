@@ -108,18 +108,20 @@ export default function V6HomePage() {
         {/* Orange/red diagonal accent */}
         <div className="absolute top-20 right-[30%] w-64 h-64 bg-brand-red/5 rounded-full blur-3xl" />
 
-        {/* Hero image slot — discoverable by image crawlers. */}
-        <div className="absolute inset-y-0 right-0 w-[45%] hidden xl:block pointer-events-none">
+        {/* Hero image slot — desktop only, behind the consultation form. */}
+        <div className="absolute inset-y-0 right-0 w-[55%] hidden lg:block pointer-events-none overflow-hidden">
           <SlotImage
             slot="home-hero"
-            fallbackSrc="https://placehold.co/1920x1080/0b1e4a/f59e0b/png?text=Abrahams+Solicitors+Hero"
-            alt="Abrahams Solicitors — UK immigration, housing and personal injury law firm serving London and Bradford with a 95% success rate"
-            className="w-full h-full object-cover object-left opacity-30"
+            fallbackSrc="/hero-london.jpg"
+            alt="Solicitor at the London office of Abrahams Solicitors with the City of London skyline in the background"
+            className="w-full h-full object-cover object-center"
             type="hero"
-            width={1920}
-            height={1080}
+            width={1536}
+            height={1024}
             loading="eager"
           />
+          {/* Soft fade on the left edge so the headline text stays legible */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent" aria-hidden="true" />
         </div>
 
         <div className="relative max-w-[1200px] mx-auto px-6 lg:px-8 py-10 lg:py-14">
