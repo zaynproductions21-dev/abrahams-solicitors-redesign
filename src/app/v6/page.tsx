@@ -108,14 +108,15 @@ export default function V6HomePage() {
         {/* Orange/red diagonal accent */}
         <div className="absolute top-20 right-[30%] w-64 h-64 bg-brand-red/5 rounded-full blur-3xl" />
 
-        {/* Hero image slot — desktop only, behind the consultation form. */}
+        {/* Hero image — desktop only, behind the consultation form.
+            Hardcoded to /hero-london.jpg so the bot's generated
+            /public/generated/home-hero.webp does NOT replace this photo. */}
         <div className="absolute inset-y-0 right-0 w-[55%] hidden lg:block pointer-events-none overflow-hidden">
-          <SlotImage
-            slot="home-hero"
-            fallbackSrc="/hero-london.jpg"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/hero-london.jpg"
             alt="Solicitor at the London office of Abrahams Solicitors with the City of London skyline in the background"
             className="w-full h-full object-cover object-center"
-            type="hero"
             width={1536}
             height={1024}
             loading="eager"
