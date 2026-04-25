@@ -212,8 +212,6 @@ export default function V6ServicePage() {
                 )}
               </div>
               <div className={`bg-slate-50 rounded-2xl aspect-[4/3] overflow-hidden relative ${i % 2 === 1 ? "lg:[direction:ltr]" : ""}`}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
                 <SlotImage
                   slot={`service-${slug}-${i + 1}`}
                   fallbackSrc={`https://placehold.co/1200x900/f1f5f9/dc2626/png?text=${encodeURIComponent(stripHeadingPrefix(section.title).slice(0, 40))}&font=playfair-display`}
