@@ -97,7 +97,7 @@ export default function V1HomePage() {
                 <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
               </Button>
               <Button asChild variant="outline-light" size="lg" className="rounded-xl text-base h-13">
-                <a href="https://wa.me/442034880512" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/442033559823" target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="h-4 w-4 mr-2" />WhatsApp Us
                 </a>
               </Button>

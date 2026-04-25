@@ -301,7 +301,7 @@ export default function V4HomePage() {
               <Link href="/v4/contact-us/">Book Free Consultation</Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="rounded-full text-sm font-semibold h-12 border-slate-200 text-brand-navy hover:border-brand-red hover:text-brand-red">
-              <a href="https://wa.me/442034880512" target="_blank" rel="noopener noreferrer"><MessageCircle className="h-4 w-4 mr-2" />WhatsApp Us</a>
+              <a href="https://wa.me/442033559823" target="_blank" rel="noopener noreferrer"><MessageCircle className="h-4 w-4 mr-2" />WhatsApp Us</a>
             </Button>
           </div>
         </div>

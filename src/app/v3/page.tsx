@@ -94,7 +94,7 @@ export default function V3HomePage() {
                   <Link href="/v3/contact-us/">Begin Your Consultation<ArrowRight className="h-4 w-4 ml-2" /></Link>
                 </Button>
                 <a
-                  href="https://wa.me/442034880512"
+                  href="https://wa.me/442033559823"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/50 hover:text-brand-gold transition-colors text-sm font-medium flex items-center gap-2"
@@ -346,7 +346,7 @@ export default function V3HomePage() {
               <Link href="/v3/contact-us/">Book an Appointment</Link>
             </Button>
             <Button asChild className="bg-transparent hover:bg-white/10 text-white border-2 border-white/30 rounded-xl text-base h-13 px-8 font-semibold">
-              <a href="https://wa.me/442034880512" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/442033559823" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="h-4 w-4 mr-2" />WhatsApp Us
               </a>
             </Button>
