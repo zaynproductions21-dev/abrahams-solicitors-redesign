@@ -99,8 +99,8 @@ export function V3Header() {
           </nav>
 
           <div className="hidden xl:flex items-center gap-5">
-            <a href="tel:02034880512" className={`text-sm font-medium transition-colors ${scrolled ? "text-brand-navy/60 hover:text-brand-gold" : "text-white/60 hover:text-brand-gold"}`}>
-              020 3488 0512
+            <a href="tel:02033559823" className={`text-sm font-medium transition-colors ${scrolled ? "text-brand-navy/60 hover:text-brand-gold" : "text-white/60 hover:text-brand-gold"}`}>
+              0203 355 9823
             </a>
             <Button asChild size="sm" className="bg-transparent hover:bg-brand-gold/10 text-brand-gold border-2 border-brand-gold rounded-xl px-6 h-10 text-sm font-semibold">
               <Link href="/v3/contact-us/">Begin Consultation</Link>
@@ -108,7 +108,7 @@ export function V3Header() {
           </div>
 
           <div className="flex xl:hidden items-center gap-2">
-            <a href="tel:02034880512" className={`inline-flex items-center justify-center rounded-xl p-2.5 transition-colors ${scrolled ? "text-brand-gold" : "text-brand-gold"}`} aria-label="Call us">
+            <a href="tel:02033559823" className={`inline-flex items-center justify-center rounded-xl p-2.5 transition-colors ${scrolled ? "text-brand-gold" : "text-brand-gold"}`} aria-label="Call us">
               <Phone className="h-5 w-5" />
             </a>
             <Sheet>

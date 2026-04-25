@@ -75,7 +75,7 @@ export default function V4HomePage() {
                   <Link href="/v4/contact-us/">Book Free Consultation</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="rounded-full text-sm font-semibold h-12 border-slate-200 text-brand-navy hover:border-brand-red hover:text-brand-red">
-                  <a href="tel:02034880512"><Phone className="h-4 w-4 mr-2" />020 3488 0512</a>
+                  <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
                 </Button>
               </div>
             </div>
@@ -273,8 +273,8 @@ export default function V4HomePage() {
           <h2 className="text-2xl lg:text-3xl font-bold text-brand-navy text-center mb-14">Our Offices</h2>
           <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {[
-              { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU", phone: "020 3488 0512", transport: "Bank, Mansion House, Cannon Street" },
-              { city: "Bradford", address: "2nd Floor, 6 Piccadilly, Bradford BD1 3LS", phone: "020 3488 0512", transport: "Bradford Interchange" },
+              { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU", phone: "0203 355 9823", transport: "Bank, Mansion House, Cannon Street" },
+              { city: "Bradford", address: "2nd Floor, 6 Piccadilly, Bradford BD1 3LS", phone: "0203 355 9823", transport: "Bradford Interchange" },
             ].map((office) => (
               <div key={office.city} className="bg-white rounded-xl border border-slate-200 p-6">
                 <p className="text-xs font-semibold text-brand-red uppercase tracking-wider mb-4">{office.city} Office</p>

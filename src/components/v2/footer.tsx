@@ -80,8 +80,8 @@ export function V2Footer() {
           <div>
             <h3 className="text-sm font-bold text-brand-gold uppercase tracking-[0.15em] mb-6">Contact</h3>
             <div className="space-y-4 text-sm">
-              <a href="tel:02034880512" className="flex items-center gap-3 text-white/60 hover:text-brand-gold transition-colors font-medium">
-                <Phone className="h-4 w-4" />020 3488 0512
+              <a href="tel:02033559823" className="flex items-center gap-3 text-white/60 hover:text-brand-gold transition-colors font-medium">
+                <Phone className="h-4 w-4" />0203 355 9823
               </a>
               <a href="mailto:info@abrahamssolicitors.co.uk" className="flex items-center gap-3 text-white/60 hover:text-brand-gold transition-colors font-medium">
                 <Mail className="h-4 w-4" />info@abrahamssolicitors.co.uk

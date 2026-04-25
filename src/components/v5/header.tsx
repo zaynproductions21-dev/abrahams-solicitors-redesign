@@ -122,8 +122,8 @@ export function V5Header() {
             </nav>
 
             <div className="hidden xl:flex items-center gap-5">
-              <a href="tel:02034880512" className="text-sm font-medium text-brand-navy/60 hover:text-brand-red transition-colors">
-                020 3488 0512
+              <a href="tel:02033559823" className="text-sm font-medium text-brand-navy/60 hover:text-brand-red transition-colors">
+                0203 355 9823
               </a>
               <Button asChild size="sm" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg px-6 h-10 text-sm">
                 <Link href="/v5/contact-us/">Get Proposal</Link>
@@ -131,7 +131,7 @@ export function V5Header() {
             </div>
 
             <div className="flex xl:hidden items-center gap-2">
-              <a href="tel:02034880512" className="inline-flex items-center justify-center rounded-xl p-2.5 text-brand-red hover:bg-brand-red/5 transition-colors" aria-label="Call us">
+              <a href="tel:02033559823" className="inline-flex items-center justify-center rounded-xl p-2.5 text-brand-red hover:bg-brand-red/5 transition-colors" aria-label="Call us">
                 <Phone className="h-5 w-5" />
               </a>
               <Sheet>
@@ -159,7 +159,7 @@ export function V5Header() {
                       <Link href="/v5/contact-us/">Get Proposal</Link>
                     </Button>
                     <Button asChild variant="outline" className="w-full rounded-lg h-12">
-                      <a href="tel:02034880512"><Phone className="h-4 w-4 mr-2" />020 3488 0512</a>
+                      <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
                     </Button>
                   </div>
                 </SheetContent>

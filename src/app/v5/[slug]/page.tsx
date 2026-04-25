@@ -114,7 +114,7 @@ export default async function V1ServicePage({ params }: { params: Promise<{ slug
                     <Link href="/v1/contact-us/">Book a Consultation<ArrowRight className="h-4 w-4 ml-2" /></Link>
                   </Button>
                   <Button asChild variant="outline-light" className="w-full rounded-xl">
-                    <a href="tel:02034880512"><Phone className="h-4 w-4 mr-2" />020 3488 0512</a>
+                    <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
                   </Button>
                 </div>
                 <div className="mt-6 pt-6 border-t border-white/10 space-y-3">
@@ -140,7 +140,7 @@ export default async function V1ServicePage({ params }: { params: Promise<{ slug
               <Link href="/v1/contact-us/">Make an Appointment</Link>
             </Button>
             <Button asChild variant="outline-light" size="lg" className="rounded-xl">
-              <a href="tel:02034880512"><Phone className="h-4 w-4 mr-2" />Call Now</a>
+              <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />Call Now</a>
             </Button>
           </div>
         </div>

@@ -106,7 +106,7 @@ export default function V2AboutPage() {
               <Link href="/v2/contact-us/">Book a Consultation</Link>
             </Button>
             <Button asChild variant="outline-light" className="rounded-2xl text-base h-14 px-8 font-bold border-2">
-              <a href="tel:02034880512"><Phone className="h-5 w-5 mr-2" />020 3488 0512</a>
+              <a href="tel:02033559823"><Phone className="h-5 w-5 mr-2" />0203 355 9823</a>
             </Button>
           </div>
         </div>

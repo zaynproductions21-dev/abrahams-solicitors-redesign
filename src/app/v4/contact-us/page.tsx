@@ -83,8 +83,8 @@ export default function V1ContactPage() {
               <div className="bg-brand-navy rounded-2xl p-8">
                 <h3 className="text-lg font-heading font-bold text-white mb-6">Contact Details</h3>
                 <div className="space-y-5">
-                  <a href="tel:02034880512" className="flex items-center gap-3 text-white/70 hover:text-brand-gold transition-colors text-sm">
-                    <Phone className="h-5 w-5 shrink-0" />020 3488 0512
+                  <a href="tel:02033559823" className="flex items-center gap-3 text-white/70 hover:text-brand-gold transition-colors text-sm">
+                    <Phone className="h-5 w-5 shrink-0" />0203 355 9823
                   </a>
                   <a href="mailto:info@abrahamssolicitors.co.uk" className="flex items-center gap-3 text-white/70 hover:text-brand-gold transition-colors text-sm">
                     <Mail className="h-5 w-5 shrink-0" />info@abrahamssolicitors.co.uk

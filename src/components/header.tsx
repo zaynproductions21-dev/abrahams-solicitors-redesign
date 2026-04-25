@@ -114,10 +114,10 @@ export function Header() {
           {/* Desktop: phone + CTA */}
           <div className="hidden xl:flex items-center gap-5">
             <a
-              href="tel:02034880512"
+              href="tel:02033559823"
               className="text-sm font-medium text-brand-navy/70 hover:text-brand-red transition-colors"
             >
-              020 3488 0512
+              0203 355 9823
             </a>
             <Button
               asChild
@@ -131,7 +131,7 @@ export function Header() {
           {/* Mobile: phone + burger */}
           <div className="flex xl:hidden items-center gap-2">
             <a
-              href="tel:02034880512"
+              href="tel:02033559823"
               className="inline-flex items-center justify-center rounded-xl p-2.5 text-brand-red hover:bg-brand-red/5 transition-colors"
               aria-label="Call us"
             >
@@ -171,9 +171,9 @@ export function Header() {
                     <Link href="/contact-us/">Free Consultation</Link>
                   </Button>
                   <Button asChild variant="outline" className="w-full rounded-xl h-12">
-                    <a href="tel:02034880512">
+                    <a href="tel:02033559823">
                       <Phone className="h-4 w-4 mr-2" />
-                      020 3488 0512
+                      0203 355 9823
                     </a>
                   </Button>
                 </div>

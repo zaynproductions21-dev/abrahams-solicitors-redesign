@@ -127,9 +127,9 @@ export function ServicePageTemplate({ page }: { page: ServicePage }) {
                     variant="outline-light"
                     className="w-full rounded-xl"
                   >
-                    <a href="tel:02034880512">
+                    <a href="tel:02033559823">
                       <Phone className="h-4 w-4 mr-2" />
-                      020 3488 0512
+                      0203 355 9823
                     </a>
                   </Button>
                 </div>
@@ -191,7 +191,7 @@ export function ServicePageTemplate({ page }: { page: ServicePage }) {
               size="lg"
               className="rounded-xl"
             >
-              <a href="tel:02034880512">
+              <a href="tel:02033559823">
                 <Phone className="h-4 w-4 mr-2" />
                 Call Now
               </a>

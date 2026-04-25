@@ -191,10 +191,10 @@ export default function ContactUsPage() {
                       Immigration Enquiries
                     </p>
                     <a
-                      href="tel:02034880512"
+                      href="tel:02033559823"
                       className="text-brand-red hover:underline"
                     >
-                      020 3488 0512
+                      0203 355 9823
                     </a>
                   </div>
                   <div>
@@ -202,10 +202,10 @@ export default function ContactUsPage() {
                       Housing &amp; PI Enquiries
                     </p>
                     <a
-                      href="tel:02034880512"
+                      href="tel:02033559823"
                       className="text-brand-red hover:underline"
                     >
-                      020 3488 0512
+                      0203 355 9823
                     </a>
                   </div>
                   <p className="flex items-center gap-2 pt-2 text-xs text-slate-400">
@@ -269,11 +269,11 @@ export default function ContactUsPage() {
                     </li>
                   </ul>
                   <a
-                    href="tel:02034880512"
+                    href="tel:02033559823"
                     className="inline-flex items-center gap-2 text-brand-red font-medium hover:underline pt-2"
                   >
                     <Phone className="h-4 w-4" />
-                    Call 020 3488 0512
+                    Call 0203 355 9823
                   </a>
                 </div>
               </div>
@@ -310,10 +310,10 @@ export default function ContactUsPage() {
                 <div className="flex items-center gap-3">
                   <Phone className="h-5 w-5 shrink-0 text-brand-gold" />
                   <a
-                    href="tel:02034880512"
+                    href="tel:02033559823"
                     className="hover:text-brand-red transition-colors"
                   >
-                    020 3488 0512
+                    0203 355 9823
                   </a>
                 </div>
                 <div className="flex items-start gap-3">
@@ -344,10 +344,10 @@ export default function ContactUsPage() {
                 <div className="flex items-center gap-3">
                   <Phone className="h-5 w-5 shrink-0 text-brand-gold" />
                   <a
-                    href="tel:02034880512"
+                    href="tel:02033559823"
                     className="hover:text-brand-red transition-colors"
                   >
-                    020 3488 0512
+                    0203 355 9823
                   </a>
                 </div>
                 <div className="flex items-start gap-3">
@@ -436,9 +436,9 @@ export default function ContactUsPage() {
               size="lg"
               className="bg-brand-red hover:bg-brand-red-dark text-white rounded-xl"
             >
-              <a href="tel:02034880512">
+              <a href="tel:02033559823">
                 <Phone className="mr-2 h-4 w-4" />
-                Call 020 3488 0512
+                Call 0203 355 9823
               </a>
             </Button>
             <Button

@@ -98,14 +98,14 @@ export default function V1ContactPage() {
                     <Mail className="h-5 w-5 shrink-0" />info@abrahamssolicitors.co.uk
                   </a>
                   <div className="flex items-center gap-3 text-white/70 text-sm">
-                    <Clock className="h-5 w-5 shrink-0" />Mon &ndash; Fri: 9:00am &ndash; 5:30pm
+                    <Clock className="h-5 w-5 shrink-0" />Mon &ndash; Fri: 9:00am &ndash; 5:00pm
                   </div>
                 </div>
               </div>
 
               {[
-                { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU", tag: "" },
-                { city: "Bradford", address: "Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR", tag: "New Office" },
+                { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU", phone: "0203 355 9823", tag: "" },
+                { city: "Bradford", address: "Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR", phone: "0333 339 6004", tag: "New Office" },
               ].map((office) => (
                 <div key={office.city} className="bg-white rounded-2xl ring-1 ring-slate-200 overflow-hidden">
                   <div className="p-6">
@@ -113,10 +113,14 @@ export default function V1ContactPage() {
                       {office.city} Office
                       {office.tag && <span className="text-[10px] font-semibold bg-brand-red/10 text-brand-red px-2 py-0.5 rounded normal-case tracking-normal">{office.tag}</span>}
                     </p>
-                    <div className="flex items-start gap-3">
+                    <div className="flex items-start gap-3 mb-2">
                       <MapPin className="h-5 w-5 text-brand-gold/60 shrink-0 mt-0.5" />
                       <p className="text-sm text-brand-navy">{office.address}</p>
                     </div>
+                    <a href={`tel:${office.phone.replace(/\s/g, "")}`} className="flex items-center gap-3 text-sm text-brand-navy hover:text-brand-red transition-colors">
+                      <Phone className="h-5 w-5 text-brand-gold/60 shrink-0" />
+                      {office.phone}
+                    </a>
                   </div>
                   <OfficeMap city={office.city} address={office.address} className="rounded-none border-0 border-t border-slate-100" />
                 </div>

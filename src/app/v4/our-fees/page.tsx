@@ -127,7 +127,7 @@ export default function V1FeesPage() {
               <Link href="/v4/contact-us/">Request a Quote</Link>
             </Button>
             <Button asChild variant="outline-light" size="lg" className="rounded-xl text-base h-13">
-              <a href="tel:02034880512"><Phone className="h-4 w-4 mr-2" />020 3488 0512</a>
+              <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
             </Button>
           </div>
         </div>

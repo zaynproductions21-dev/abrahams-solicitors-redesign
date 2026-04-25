@@ -139,9 +139,9 @@ export default function HousingDisrepairClaimsPage() {
                 </Link>
               </Button>
               <Button asChild variant="outline-light" size="lg" className="rounded-xl text-base h-13">
-                <a href="tel:02034880512">
+                <a href="tel:02033559823">
                   <Phone className="h-4 w-4 mr-2" />
-                  020 3488 0512
+                  0203 355 9823
                 </a>
               </Button>
             </div>
@@ -310,9 +310,9 @@ export default function HousingDisrepairClaimsPage() {
               <Link href="/contact-us/">Free Assessment</Link>
             </Button>
             <Button asChild variant="outline-light" size="lg" className="rounded-xl text-base h-13">
-              <a href="tel:02034880512">
+              <a href="tel:02033559823">
                 <Phone className="h-4 w-4 mr-2" />
-                020 3488 0512
+                0203 355 9823
               </a>
             </Button>
           </div>

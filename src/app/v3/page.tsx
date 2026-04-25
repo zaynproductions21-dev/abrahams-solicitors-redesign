@@ -101,8 +101,8 @@ export default function V3HomePage() {
                 >
                   <MessageCircle className="h-4 w-4" />WhatsApp Us
                 </a>
-                <a href="tel:02034880512" className="text-white/50 hover:text-brand-gold transition-colors text-sm font-medium flex items-center gap-2">
-                  <Phone className="h-4 w-4" />020 3488 0512
+                <a href="tel:02033559823" className="text-white/50 hover:text-brand-gold transition-colors text-sm font-medium flex items-center gap-2">
+                  <Phone className="h-4 w-4" />0203 355 9823
                 </a>
               </div>
             </div>
@@ -319,7 +319,7 @@ export default function V3HomePage() {
                   </div>
                   <div className="flex items-center gap-3">
                     <Phone className="h-5 w-5 text-brand-gold/60 shrink-0" />
-                    <a href="tel:02034880512" className="text-brand-navy hover:text-brand-gold transition-colors">020 3488 0512</a>
+                    <a href="tel:02033559823" className="text-brand-navy hover:text-brand-gold transition-colors">0203 355 9823</a>
                   </div>
                   <div className="flex items-center gap-3">
                     <Clock className="h-5 w-5 text-brand-gold/60 shrink-0" />
@@ -351,7 +351,7 @@ export default function V3HomePage() {
               </a>
             </Button>
             <Button asChild className="bg-transparent hover:bg-brand-gold/10 text-brand-gold border-2 border-brand-gold/50 rounded-xl text-base h-13 px-8 font-semibold">
-              <a href="tel:02034880512"><Phone className="h-4 w-4 mr-2" />020 3488 0512</a>
+              <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
             </Button>
           </div>
         </div>

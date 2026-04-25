@@ -93,8 +93,8 @@ export function V2Header() {
             </nav>
 
             <div className="hidden xl:flex items-center gap-5">
-              <a href="tel:02034880512" className="text-sm font-bold text-brand-navy hover:text-brand-red transition-colors">
-                020 3488 0512
+              <a href="tel:02033559823" className="text-sm font-bold text-brand-navy hover:text-brand-red transition-colors">
+                0203 355 9823
               </a>
               <Button asChild className="bg-brand-red hover:bg-brand-red-dark text-white rounded-2xl px-8 h-12 text-sm font-bold shadow-lg shadow-brand-red/20">
                 <Link href="/v2/contact-us/">Free Consultation<ArrowRight className="h-4 w-4 ml-2" /></Link>
@@ -102,7 +102,7 @@ export function V2Header() {
             </div>
 
             <div className="flex xl:hidden items-center gap-2">
-              <a href="tel:02034880512" className="inline-flex items-center justify-center rounded-2xl p-2.5 text-brand-red" aria-label="Call us">
+              <a href="tel:02033559823" className="inline-flex items-center justify-center rounded-2xl p-2.5 text-brand-red" aria-label="Call us">
                 <Phone className="h-5 w-5" />
               </a>
               <Sheet>

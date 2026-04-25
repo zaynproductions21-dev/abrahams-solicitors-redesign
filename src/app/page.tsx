@@ -121,9 +121,9 @@ export default function HomePage() {
                 size="lg"
                 className="rounded-xl text-base h-13"
               >
-                <a href="tel:02034880512">
+                <a href="tel:02033559823">
                   <Phone className="h-4 w-4 mr-2" />
-                  020 3488 0512
+                  0203 355 9823
                 </a>
               </Button>
             </div>
@@ -429,13 +429,13 @@ export default function HomePage() {
               {
                 city: "London",
                 address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU",
-                phone: "020 3488 0512",
+                phone: "0203 355 9823",
                 transport: "Bank, Mansion House, Cannon Street stations",
               },
               {
                 city: "Bradford",
                 address: "2nd Floor, 6 Piccadilly, Bradford BD1 3LS",
-                phone: "020 3488 0512",
+                phone: "0203 355 9823",
                 transport: "Bradford Interchange station",
               },
             ].map((office) => (
@@ -498,9 +498,9 @@ export default function HomePage() {
               size="lg"
               className="rounded-xl text-base h-13"
             >
-              <a href="tel:02034880512">
+              <a href="tel:02033559823">
                 <Phone className="h-4 w-4 mr-2" />
-                020 3488 0512
+                0203 355 9823
               </a>
             </Button>
           </div>

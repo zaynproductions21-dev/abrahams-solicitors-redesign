@@ -176,9 +176,9 @@ export default function ImmigrationSolicitorsLondonPage() {
               size="lg"
               className="rounded-xl px-8 py-3 text-base"
             >
-              <Link href="tel:02034880512">
+              <Link href="tel:02033559823">
                 <Phone className="size-4 mr-2" />
-                020 3488 0512
+                0203 355 9823
               </Link>
             </Button>
           </div>
@@ -257,10 +257,10 @@ export default function ImmigrationSolicitorsLondonPage() {
               </h3>
               <p className="text-slate-500 leading-relaxed">
                 <Link
-                  href="tel:02034880512"
+                  href="tel:02033559823"
                   className="hover:text-brand-navy transition-colors"
                 >
-                  020 3488 0512
+                  0203 355 9823
                 </Link>
               </p>
             </div>
@@ -445,9 +445,9 @@ export default function ImmigrationSolicitorsLondonPage() {
               size="lg"
               className="rounded-xl px-8 py-3 text-base"
             >
-              <Link href="tel:02034880512">
+              <Link href="tel:02033559823">
                 <Phone className="size-4 mr-2" />
-                020 3488 0512
+                0203 355 9823
               </Link>
             </Button>
           </div>

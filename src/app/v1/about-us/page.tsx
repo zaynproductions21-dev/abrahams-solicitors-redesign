@@ -91,7 +91,7 @@ export default function V1AboutPage() {
                 <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-5">{office.city} Office</p>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3"><MapPin className="h-5 w-5 text-brand-gold/60 shrink-0 mt-0.5" /><p className="text-brand-navy">{office.address}</p></div>
-                  <div className="flex items-center gap-3"><Phone className="h-5 w-5 text-brand-gold/60 shrink-0" /><a href="tel:02034880512" className="text-brand-navy hover:text-brand-red transition-colors">020 3488 0512</a></div>
+                  <div className="flex items-center gap-3"><Phone className="h-5 w-5 text-brand-gold/60 shrink-0" /><a href="tel:02033559823" className="text-brand-navy hover:text-brand-red transition-colors">0203 355 9823</a></div>
                   <div className="flex items-center gap-3"><Clock className="h-5 w-5 text-brand-gold/60 shrink-0" /><p className="text-slate-500 text-sm">Mon &ndash; Fri: 9:00am &ndash; 5:30pm</p></div>
                 </div>
               </div>
@@ -110,7 +110,7 @@ export default function V1AboutPage() {
               <Link href="/v1/contact-us/">Book a Consultation</Link>
             </Button>
             <Button asChild variant="outline-light" size="lg" className="rounded-xl text-base h-13">
-              <a href="tel:02034880512"><Phone className="h-4 w-4 mr-2" />020 3488 0512</a>
+              <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
             </Button>
           </div>
         </div>

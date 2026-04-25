@@ -94,7 +94,7 @@ export default function V1HomePage() {
                 <Link href="/v1/contact-us/">Free Immigration Consultation<ArrowRight className="h-4 w-4 ml-2" /></Link>
               </Button>
               <Button asChild variant="outline-light" size="lg" className="rounded-xl text-base h-13">
-                <a href="tel:02034880512"><Phone className="h-4 w-4 mr-2" />020 3488 0512</a>
+                <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
               </Button>
               <Button asChild variant="outline-light" size="lg" className="rounded-xl text-base h-13">
                 <a href="https://wa.me/442034880512" target="_blank" rel="noopener noreferrer">
@@ -307,8 +307,8 @@ export default function V1HomePage() {
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             {[
-              { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU", phone: "020 3488 0512", transport: "Bank, Mansion House, Cannon Street stations" },
-              { city: "Bradford", address: "2nd Floor, 6 Piccadilly, Bradford BD1 3LS", phone: "020 3488 0512", transport: "Bradford Interchange station" },
+              { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU", phone: "0203 355 9823", transport: "Bank, Mansion House, Cannon Street stations" },
+              { city: "Bradford", address: "2nd Floor, 6 Piccadilly, Bradford BD1 3LS", phone: "0203 355 9823", transport: "Bradford Interchange station" },
             ].map((office) => (
               <div key={office.city} className="bg-white rounded-2xl ring-1 ring-slate-200 p-8 lg:p-10">
                 <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-5">{office.city} Office</p>
@@ -343,7 +343,7 @@ export default function V1HomePage() {
               <Link href="/v1/contact-us/">Make an Appointment</Link>
             </Button>
             <Button asChild variant="outline-light" size="lg" className="rounded-xl text-base h-13">
-              <a href="tel:02034880512"><Phone className="h-4 w-4 mr-2" />020 3488 0512</a>
+              <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
             </Button>
           </div>
         </div>

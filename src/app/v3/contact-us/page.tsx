@@ -37,8 +37,8 @@ export default function V3ContactPage() {
               <div>
                 <p className="text-[10px] font-semibold text-brand-gold uppercase tracking-[0.3em] mb-6">Get in Touch</p>
                 <div className="space-y-5">
-                  <a href="tel:02034880512" className="flex items-center gap-3 text-brand-navy hover:text-brand-gold transition-colors font-medium">
-                    <Phone className="h-5 w-5 text-brand-gold/60" />020 3488 0512
+                  <a href="tel:02033559823" className="flex items-center gap-3 text-brand-navy hover:text-brand-gold transition-colors font-medium">
+                    <Phone className="h-5 w-5 text-brand-gold/60" />0203 355 9823
                   </a>
                   <a href="mailto:info@abrahamssolicitors.co.uk" className="flex items-center gap-3 text-brand-navy hover:text-brand-gold transition-colors text-sm font-medium">
                     <Mail className="h-5 w-5 text-brand-gold/60" />info@abrahamssolicitors.co.uk

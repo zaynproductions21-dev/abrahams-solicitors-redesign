@@ -67,8 +67,8 @@ function ConsultationForm({ dark = false }: { dark?: boolean }) {
         <a href="mailto:info@abrahamssolicitors.co.uk" className="flex items-center gap-2 text-xs text-slate-400 hover:text-brand-red transition-colors">
           <Mail className="h-3.5 w-3.5" />info@abrahamssolicitors.co.uk
         </a>
-        <a href="tel:02034880512" className="flex items-center gap-2 text-xs text-slate-400 hover:text-brand-red transition-colors">
-          <Phone className="h-3.5 w-3.5" />020 3488 0512
+        <a href="tel:02033559823" className="flex items-center gap-2 text-xs text-slate-400 hover:text-brand-red transition-colors">
+          <Phone className="h-3.5 w-3.5" />0203 355 9823
         </a>
       </div>
     </div>
@@ -106,7 +106,7 @@ export default function V5HomePage() {
                   <Link href="#services">Our Services</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="rounded-lg text-sm font-semibold h-12 border-slate-200 text-slate-700 hover:border-brand-red hover:text-brand-red">
-                  <a href="tel:02034880512"><Phone className="h-4 w-4 mr-2" />020 3488 0512</a>
+                  <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
                 </Button>
               </div>
             </div>
@@ -233,8 +233,8 @@ export default function V5HomePage() {
           <h2 className="text-3xl lg:text-4xl font-black text-slate-900 tracking-tight text-center mb-14">Our Offices</h2>
           <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {[
-              { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU", phone: "020 3488 0512", transport: "Bank, Mansion House, Cannon Street" },
-              { city: "Bradford", address: "2nd Floor, 6 Piccadilly, Bradford BD1 3LS", phone: "020 3488 0512", transport: "Bradford Interchange" },
+              { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU", phone: "0203 355 9823", transport: "Bank, Mansion House, Cannon Street" },
+              { city: "Bradford", address: "2nd Floor, 6 Piccadilly, Bradford BD1 3LS", phone: "0203 355 9823", transport: "Bradford Interchange" },
             ].map((office) => (
               <div key={office.city} className="bg-white rounded-xl border border-slate-100 p-6">
                 <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-4">{office.city} Office</p>
@@ -262,9 +262,9 @@ export default function V5HomePage() {
                 Book a free consultation with one of our specialist solicitors. We offer phone, video, and in-person appointments nationwide.
               </p>
               <div className="mt-6 flex items-center gap-4">
-                <a href="tel:02034880512" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors">
+                <a href="tel:02033559823" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors">
                   <Phone className="h-5 w-5" />
-                  <span className="text-lg font-bold">020 3488 0512</span>
+                  <span className="text-lg font-bold">0203 355 9823</span>
                 </a>
               </div>
               <div className="mt-3 flex items-center gap-4">

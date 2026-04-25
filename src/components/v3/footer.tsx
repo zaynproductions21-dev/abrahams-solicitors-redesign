@@ -82,8 +82,8 @@ export function V3Footer() {
               <div className="h-px bg-brand-gold/20 my-8" />
 
               <div className="space-y-3 text-sm">
-                <a href="tel:02034880512" className="flex items-center gap-3 text-white/50 hover:text-brand-gold transition-colors">
-                  <Phone className="h-4 w-4 text-brand-gold/40" />020 3488 0512
+                <a href="tel:02033559823" className="flex items-center gap-3 text-white/50 hover:text-brand-gold transition-colors">
+                  <Phone className="h-4 w-4 text-brand-gold/40" />0203 355 9823
                 </a>
                 <a href="mailto:info@abrahamssolicitors.co.uk" className="flex items-center gap-3 text-white/50 hover:text-brand-gold transition-colors">
                   <Mail className="h-4 w-4 text-brand-gold/40" />info@abrahamssolicitors.co.uk

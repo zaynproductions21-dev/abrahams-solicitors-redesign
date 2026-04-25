@@ -62,11 +62,11 @@ export function Footer() {
             </p>
             <div className="space-y-3 text-sm">
               <a
-                href="tel:02034880512"
+                href="tel:02033559823"
                 className="flex items-center gap-3 text-white/70 hover:text-brand-gold transition-colors"
               >
                 <Phone className="h-4 w-4 shrink-0" />
-                020 3488 0512
+                0203 355 9823
               </a>
               <a
                 href="mailto:info@abrahamssolicitors.co.uk"

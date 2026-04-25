@@ -81,8 +81,8 @@ export default function V1AboutPage() {
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             {[
-              { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU", tag: "" },
-              { city: "Bradford", address: "Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR", tag: "New Office" },
+              { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU", phone: "0203 355 9823", tag: "" },
+              { city: "Bradford", address: "Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR", phone: "0333 339 6004", tag: "New Office" },
             ].map((office) => (
               <div key={office.city} className="bg-white rounded-2xl ring-1 ring-slate-200 overflow-hidden">
                 <div className="p-8 lg:p-10">
@@ -92,8 +92,8 @@ export default function V1AboutPage() {
                   </p>
                   <div className="space-y-4">
                     <div className="flex items-start gap-3"><MapPin className="h-5 w-5 text-brand-gold/60 shrink-0 mt-0.5" /><p className="text-brand-navy">{office.address}</p></div>
-                    <div className="flex items-center gap-3"><Phone className="h-5 w-5 text-brand-gold/60 shrink-0" /><a href="tel:02033559823" className="text-brand-navy hover:text-brand-red transition-colors">0203 355 9823</a></div>
-                    <div className="flex items-center gap-3"><Clock className="h-5 w-5 text-brand-gold/60 shrink-0" /><p className="text-slate-500 text-sm">Mon &ndash; Fri: 9:00am &ndash; 5:30pm</p></div>
+                    <div className="flex items-center gap-3"><Phone className="h-5 w-5 text-brand-gold/60 shrink-0" /><a href={`tel:${office.phone.replace(/\s/g, "")}`} className="text-brand-navy hover:text-brand-red transition-colors">{office.phone}</a></div>
+                    <div className="flex items-center gap-3"><Clock className="h-5 w-5 text-brand-gold/60 shrink-0" /><p className="text-slate-500 text-sm">Mon &ndash; Fri: 9:00am &ndash; 5:00pm</p></div>
                   </div>
                 </div>
                 <OfficeMap city={office.city} address={office.address} className="rounded-none border-0 border-t border-slate-100" />

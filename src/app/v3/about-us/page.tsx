@@ -104,7 +104,7 @@ export default function V3AboutPage() {
               <Link href="/v3/contact-us/">Book an Appointment</Link>
             </Button>
             <Button asChild className="bg-transparent hover:bg-brand-gold/10 text-brand-gold border-2 border-brand-gold rounded-xl text-base h-13 px-8">
-              <a href="tel:02034880512"><Phone className="h-4 w-4 mr-2" />020 3488 0512</a>
+              <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
             </Button>
           </div>
         </div>

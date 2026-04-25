@@ -44,8 +44,8 @@ export function V1Footer() {
               UK immigration and housing solicitors. Fixed fees, direct solicitor access, and a commitment to achieving the best outcomes for our clients.
             </p>
             <div className="space-y-3 text-sm">
-              <a href="tel:02034880512" className="flex items-center gap-3 text-white/70 hover:text-brand-gold transition-colors">
-                <Phone className="h-4 w-4 shrink-0" />020 3488 0512
+              <a href="tel:02033559823" className="flex items-center gap-3 text-white/70 hover:text-brand-gold transition-colors">
+                <Phone className="h-4 w-4 shrink-0" />0203 355 9823
               </a>
               <a href="mailto:info@abrahamssolicitors.co.uk" className="flex items-center gap-3 text-white/70 hover:text-brand-gold transition-colors">
                 <Mail className="h-4 w-4 shrink-0" />info@abrahamssolicitors.co.uk
