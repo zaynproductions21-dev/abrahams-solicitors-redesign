@@ -29,6 +29,25 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true });
   }
 
+  // Verify Cloudflare Turnstile token
+  const turnstileToken = body["cf-turnstile-response"];
+  if (!turnstileToken) {
+    return NextResponse.json({ success: false, error: "Security check required" }, { status: 400 });
+  }
+  try {
+    const tsRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ secret: process.env.TURNSTILE_SECRET_KEY, response: turnstileToken }),
+    });
+    const tsData = await tsRes.json();
+    if (!tsData.success) {
+      return NextResponse.json({ success: true }); // Silent reject like spam
+    }
+  } catch {
+    // If verification service is down, let it through (fail open)
+  }
+
   const apiKey = process.env.SALESHUB_API_KEY;
 
   const saleshubPayload = {

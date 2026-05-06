@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,13 +13,34 @@ import { TrustBadges } from "@/components/v6/trust-badges";
 import { OfficeMap } from "@/components/v6/office-map";
 import { submitEnquiry } from "@/lib/publishos";
 
+const TURNSTILE_SITE_KEY = "0x4AAAAAADKI5BaseSCYFE9P";
+
 export default function V1ContactPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [service, setService] = useState("");
   const [message, setMessage] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [error, setError] = useState("");
+  const turnstileRef = useRef<HTMLDivElement>(null);
   const spam = useSpamGuard();
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad";
+    script.async = true;
+    (window as unknown as Record<string, unknown>).onTurnstileLoad = () => {
+      if (turnstileRef.current && (window as unknown as Record<string, { render: Function }>).turnstile) {
+        (window as unknown as Record<string, { render: Function }>).turnstile.render(turnstileRef.current, {
+          sitekey: TURNSTILE_SITE_KEY,
+          callback: (token: string) => setTurnstileToken(token),
+        });
+      }
+    };
+    document.head.appendChild(script);
+    return () => { script.remove(); };
+  }, []);
 
   return (
     <>
@@ -43,9 +64,10 @@ export default function V1ContactPage() {
             {/* Form */}
             <div className="lg:col-span-3">
               <form
-                onSubmit={async (e) => { e.preventDefault(); pushFormSubmit({ email, phone }); await submitEnquiry({ source: 'contact-us', name, email, phone, service, case: message }, spam.payload()); window.location.href = '/v6/thank-you/'; }}
+                onSubmit={async (e) => { e.preventDefault(); setError(""); if (!turnstileToken) { setError("Please complete the security check."); return; } pushFormSubmit({ email, phone }); await submitEnquiry({ source: 'contact-us', name, email, phone, service, case: message }, spam.payload(), turnstileToken); window.location.href = '/v6/thank-you/'; }}
                 className="bg-white rounded-2xl ring-1 ring-slate-200 p-6 sm:p-8 lg:p-10 space-y-5"
               >
+                {error && <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3">{error}</p>}
                 <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
                 <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
                   <div className="space-y-2">
@@ -79,6 +101,7 @@ export default function V1ContactPage() {
                   <Label htmlFor="message">Your Message</Label>
                   <Textarea id="message" value={message} onChange={e => setMessage(e.target.value)} placeholder="Tell us about your case..." rows={5} required className="rounded-xl" />
                 </div>
+                <div ref={turnstileRef} />
                 <Button type="submit" className="w-full bg-brand-red hover:bg-brand-red-dark text-white rounded-xl h-12 text-base">
                   Send Message
                 </Button>

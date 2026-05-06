@@ -73,7 +73,8 @@ export type Enquiry = {
 
 export async function submitEnquiry(
   payload: Omit<Enquiry, "id" | "submitted_at">,
-  spam?: { _hp: string; _t: number }
+  spam?: { _hp: string; _t: number },
+  turnstileToken?: string
 ): Promise<boolean> {
   try {
     const res = await fetch("/api/lead", {
@@ -90,6 +91,7 @@ export async function submitEnquiry(
         message: payload.case,
         pageUrl: typeof window !== "undefined" ? window.location.href : "",
         ...(spam ?? {}),
+        ...(turnstileToken ? { "cf-turnstile-response": turnstileToken } : {}),
       }),
     });
     return res.ok;
