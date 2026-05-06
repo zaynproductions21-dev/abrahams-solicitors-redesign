@@ -592,7 +592,7 @@ export default function HousingDisrepairClaimsPage() {
             <Button asChild size="lg" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide px-8 h-12">
               <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
             </Button>
-            <Button asChild variant="outline" size="lg" className="rounded-lg text-sm font-semibold h-12 border-white/30 text-white hover:bg-white hover:text-brand-navy">
+            <Button asChild variant="outline" size="lg" className="rounded-lg text-sm font-semibold h-12 bg-transparent border-2 border-white text-white hover:bg-white hover:text-brand-navy">
               <a href="#qualifier">Free 60-second check</a>
             </Button>
           </div>
