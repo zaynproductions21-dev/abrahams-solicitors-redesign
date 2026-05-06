@@ -10,16 +10,16 @@ import { HoneypotInput } from "@/components/v6/honeypot-input";
 import { submitEnquiry } from "@/lib/publishos";
 
 const ISSUES = [
-  { id: "damp", label: "Damp or condensation" },
-  { id: "mould", label: "Mould or black spores" },
-  { id: "leaks", label: "Leaks (roof, pipes, windows)" },
-  { id: "heating", label: "Broken heating or hot water" },
-  { id: "electrics", label: "Faulty wiring or sockets" },
-  { id: "structural", label: "Cracks, subsidence, structural" },
-  { id: "windows", label: "Broken / draughty windows" },
-  { id: "pest", label: "Vermin or pest infestation" },
-  { id: "plaster", label: "Damaged plaster or walls" },
-  { id: "drainage", label: "Drainage / sewage problems" },
+  { id: "damp", label: "Damp / condensation" },
+  { id: "mould", label: "Mould / black mould" },
+  { id: "leaks", label: "Leaks (roof / pipes)" },
+  { id: "heating", label: "No heating / hot water" },
+  { id: "electrics", label: "Faulty wiring / sockets" },
+  { id: "structural", label: "Cracks / subsidence" },
+  { id: "windows", label: "Draughty / broken windows" },
+  { id: "pest", label: "Vermin / pests" },
+  { id: "plaster", label: "Damaged plaster / walls" },
+  { id: "drainage", label: "Drainage / sewage" },
 ];
 
 const DURATIONS = [
@@ -150,9 +150,9 @@ export function HousingQualifier() {
   }
 
   return (
-    <div className="bg-white rounded-2xl border-2 border-slate-200 shadow-xl overflow-hidden">
+    <div className="bg-white rounded-2xl border-2 border-slate-200 shadow-xl overflow-hidden w-full max-w-full">
       {/* Progress */}
-      <div className="px-5 sm:px-8 pt-5 pb-4 border-b border-slate-100">
+      <div className="px-4 sm:px-8 pt-5 pb-4 border-b border-slate-100">
         <div className="flex items-center justify-between text-xs font-semibold text-slate-500 mb-2">
           <span>Step {step} of 3</span>
           <span className="flex items-center gap-1.5 text-brand-red">
@@ -165,11 +165,11 @@ export function HousingQualifier() {
         </div>
       </div>
 
-      <div className="p-5 sm:p-8">
+      <div className="p-4 sm:p-8">
         {step === 1 && (
           <div>
             <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-1">What&rsquo;s wrong with your home?</h3>
-            <p className="text-sm text-slate-500 mb-4">Tick everything that applies — most cases involve more than one issue.</p>
+            <p className="text-sm text-slate-500 mb-4">Tick everything that applies.</p>
             <div className="flex flex-col gap-2">
               {ISSUES.map(i => {
                 const active = issues.includes(i.id);
@@ -178,12 +178,12 @@ export function HousingQualifier() {
                     key={i.id}
                     type="button"
                     onClick={() => toggleIssue(i.id)}
-                    className={`flex items-center gap-3 w-full px-3.5 py-2.5 rounded-lg border text-sm text-left transition-colors ${active ? "border-brand-red bg-brand-red/5 text-slate-900 font-semibold" : "border-slate-200 text-slate-600 hover:border-slate-300"}`}
+                    className={`flex items-center gap-2.5 w-full px-3 py-2.5 rounded-lg border text-[13px] sm:text-sm text-left transition-colors ${active ? "border-brand-red bg-brand-red/5 text-slate-900 font-semibold" : "border-slate-200 text-slate-600 hover:border-slate-300"}`}
                   >
                     <div className={`w-4 h-4 rounded border-2 shrink-0 flex items-center justify-center ${active ? "bg-brand-red border-brand-red" : "border-slate-300"}`}>
                       {active && <CheckCircle2 className="h-3 w-3 text-white" />}
                     </div>
-                    <span className="leading-snug">{i.label}</span>
+                    <span className="leading-snug min-w-0 break-words">{i.label}</span>
                   </button>
                 );
               })}
