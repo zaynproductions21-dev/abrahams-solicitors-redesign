@@ -177,3 +177,73 @@ export function serviceSchema(service: { name: string; description: string; slug
     url: `${BASE_URL}/v6/${service.slug}/`,
   };
 }
+
+// Speakable: marks selectors that voice assistants / AI summarisers should read aloud.
+export function speakableSchema(cssSelectors: string[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: cssSelectors,
+    },
+  };
+}
+
+// Author/byline schema for E-E-A-T signals on solicitor-authored pages.
+export function personSchema(p: {
+  name: string;
+  jobTitle: string;
+  sraNumber: string;
+  sraUrl: string;
+  bio?: string;
+  slug: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: p.name,
+    jobTitle: p.jobTitle,
+    worksFor: { "@id": `${BASE_URL}#organization` },
+    identifier: { "@type": "PropertyValue", name: "SRA", value: p.sraNumber },
+    url: `${BASE_URL}/v6/our-team/#${p.slug}`,
+    sameAs: [p.sraUrl],
+    ...(p.bio ? { description: p.bio } : {}),
+  };
+}
+
+// Detailed LegalService schema with hasOfferCatalog — for landing pages that list specific
+// disrepair claim types so AI search engines can summarise the offer set.
+export function legalServiceWithCatalogSchema(args: {
+  name: string;
+  description: string;
+  slug: string;
+  catalog: { name: string; description: string }[];
+  author?: { name: string; sraUrl: string };
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "LegalService",
+    name: args.name,
+    description: args.description,
+    provider: { "@id": `${BASE_URL}#organization` },
+    areaServed: { "@type": "Country", name: "United Kingdom" },
+    url: `${BASE_URL}/v6/${args.slug}/`,
+    ...(args.author
+      ? { author: { "@type": "Person", name: args.author.name, sameAs: [args.author.sraUrl] } }
+      : {}),
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: args.name,
+      itemListElement: args.catalog.map((item, i) => ({
+        "@type": "Offer",
+        position: i + 1,
+        itemOffered: {
+          "@type": "Service",
+          name: item.name,
+          description: item.description,
+        },
+      })),
+    },
+  };
+}
