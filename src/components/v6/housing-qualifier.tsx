@@ -170,7 +170,7 @@ export function HousingQualifier() {
           <div>
             <h3 className="text-xl font-bold text-slate-900 mb-1">What&rsquo;s wrong with your home?</h3>
             <p className="text-sm text-slate-500 mb-5">Tick everything that applies — most cases involve more than one issue.</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <div className="flex flex-col gap-2">
               {ISSUES.map(i => {
                 const active = issues.includes(i.id);
                 return (
@@ -178,12 +178,12 @@ export function HousingQualifier() {
                     key={i.id}
                     type="button"
                     onClick={() => toggleIssue(i.id)}
-                    className={`flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg border text-sm text-left transition-colors ${active ? "border-brand-red bg-brand-red/5 text-slate-900 font-semibold" : "border-slate-200 text-slate-600 hover:border-slate-300"}`}
+                    className={`flex items-center gap-3 w-full px-4 py-3 rounded-lg border text-sm text-left transition-colors ${active ? "border-brand-red bg-brand-red/5 text-slate-900 font-semibold" : "border-slate-200 text-slate-600 hover:border-slate-300"}`}
                   >
                     <div className={`w-4 h-4 rounded border-2 shrink-0 flex items-center justify-center ${active ? "bg-brand-red border-brand-red" : "border-slate-300"}`}>
                       {active && <CheckCircle2 className="h-3 w-3 text-white" />}
                     </div>
-                    {i.label}
+                    <span className="whitespace-nowrap">{i.label}</span>
                   </button>
                 );
               })}
