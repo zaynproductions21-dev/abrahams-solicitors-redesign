@@ -87,14 +87,33 @@ function ExitIntent() {
 
   useEffect(() => {
     if (shown) return;
+    if (typeof window === "undefined") return;
+    // Skip on touch devices entirely — exit intent is a desktop pattern,
+    // and iOS Safari fires synthetic mouseleave events that misfire here.
+    const isTouch =
+      "ontouchstart" in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia("(pointer: coarse)").matches;
+    if (isTouch) return;
+    if (window.innerWidth < 1024) return;
+
+    // Require ~8 seconds of engagement before arming the trigger so it
+    // doesn't fire on a quick bounce.
+    const armed = { current: false };
+    const armTimer = setTimeout(() => { armed.current = true; }, 8000);
+
     const handler = (e: MouseEvent) => {
+      if (!armed.current) return;
       if (e.clientY <= 0 && !shown) {
         setOpen(true);
         setShown(true);
       }
     };
     document.addEventListener("mouseleave", handler);
-    return () => document.removeEventListener("mouseleave", handler);
+    return () => {
+      clearTimeout(armTimer);
+      document.removeEventListener("mouseleave", handler);
+    };
   }, [shown]);
 
   if (!open) return null;

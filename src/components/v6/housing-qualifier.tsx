@@ -285,21 +285,24 @@ export function HousingQualifier() {
                   type="button"
                   variant="outline"
                   onClick={() => setStep(2)}
-                  className="rounded-lg h-12 px-4 border-slate-200 text-slate-700"
+                  className="rounded-lg h-12 px-3 border-slate-200 text-slate-700 shrink-0"
                 >
                   <ArrowLeft className="h-4 w-4" />
                 </Button>
                 <Button
                   type="submit"
                   disabled={!step3Valid || submitting}
-                  className="flex-1 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 text-sm font-bold uppercase tracking-wide disabled:opacity-40"
+                  className="flex-1 min-w-0 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 text-sm font-bold uppercase tracking-normal sm:tracking-wide disabled:opacity-40 px-3 truncate"
                 >
-                  {submitting ? "Sending..." : "Get my free assessment"}
+                  {submitting ? "Sending..." : "Get free assessment"}
                 </Button>
               </div>
               <p className="text-xs text-slate-400 flex items-start gap-1.5 pt-1">
                 <AlertCircle className="h-3.5 w-3.5 shrink-0 mt-0.5" />
-                Your details go straight to a solicitor — no third-party brokers. By submitting you agree to our <Link href="/v6/privacy-policy/" className="text-brand-red hover:underline">privacy policy</Link>.
+                <span className="min-w-0 leading-snug">
+                  Your details go straight to a solicitor — no third-party brokers. By submitting you agree to our{" "}
+                  <Link href="/v6/privacy-policy/" className="text-brand-red hover:underline whitespace-nowrap">privacy policy</Link>.
+                </span>
               </p>
             </form>
           </div>
