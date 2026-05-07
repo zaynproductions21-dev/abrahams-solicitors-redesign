@@ -9,7 +9,8 @@ import { Phone, Mail, MapPin, Clock, CheckCircle2 } from "lucide-react";
 import { pushFormSubmit } from "@/lib/tracking";
 import { useSpamGuard } from "@/lib/spam-client";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
-import { GclidField } from "@/components/v6/gclid-field";
+import { GclidField, MsclkidField } from "@/components/v6/gclid-field";
+import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { OfficeMap } from "@/components/v6/office-map";
 import { submitEnquiry } from "@/lib/publishos";
@@ -71,6 +72,7 @@ export default function V1ContactPage() {
                 {error && <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3">{error}</p>}
                 <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
                 <GclidField />
+                <MsclkidField />
                 <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
                   <div className="space-y-2">
                     <Label htmlFor="name">Full Name</Label>
@@ -116,9 +118,10 @@ export default function V1ContactPage() {
               <div className="bg-brand-navy rounded-2xl p-6 sm:p-8">
                 <h3 className="text-lg font-bold text-white mb-5">Contact Details</h3>
                 <div className="space-y-4">
-                  <a href="tel:02033559823" className="flex items-center gap-3 text-white/70 hover:text-brand-gold transition-colors text-sm">
-                    <Phone className="h-5 w-5 shrink-0" />0203 355 9823
-                  </a>
+                  <DynamicCallLink className="flex items-center gap-3 text-white/70 hover:text-brand-gold transition-colors text-sm">
+                    <Phone className="h-5 w-5 shrink-0" />
+                    <DynamicPhoneText />
+                  </DynamicCallLink>
                   <a href="mailto:info@abrahamssolicitors.co.uk" className="flex items-center gap-3 text-white/70 hover:text-brand-gold transition-colors text-sm">
                     <Mail className="h-5 w-5 shrink-0" />info@abrahamssolicitors.co.uk
                   </a>
@@ -142,10 +145,17 @@ export default function V1ContactPage() {
                       <MapPin className="h-5 w-5 text-brand-gold/60 shrink-0 mt-0.5" />
                       <p className="text-sm text-brand-navy">{office.address}</p>
                     </div>
-                    <a href={`tel:${office.phone.replace(/\s/g, "")}`} className="flex items-center gap-3 text-sm text-brand-navy hover:text-brand-red transition-colors">
-                      <Phone className="h-5 w-5 text-brand-gold/60 shrink-0" />
-                      {office.phone}
-                    </a>
+                    {office.city === "London" ? (
+                      <DynamicCallLink className="flex items-center gap-3 text-sm text-brand-navy hover:text-brand-red transition-colors">
+                        <Phone className="h-5 w-5 text-brand-gold/60 shrink-0" />
+                        <DynamicPhoneText />
+                      </DynamicCallLink>
+                    ) : (
+                      <a href={`tel:${office.phone.replace(/\s/g, "")}`} className="flex items-center gap-3 text-sm text-brand-navy hover:text-brand-red transition-colors">
+                        <Phone className="h-5 w-5 text-brand-gold/60 shrink-0" />
+                        {office.phone}
+                      </a>
+                    )}
                   </div>
                   <OfficeMap city={office.city} address={office.address} className="rounded-none border-0 border-t border-slate-100" />
                 </div>

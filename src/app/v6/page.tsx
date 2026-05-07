@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button";
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { TeamStrip } from "@/components/v6/team-strip";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
-import { GclidField } from "@/components/v6/gclid-field";
+import { GclidField, MsclkidField } from "@/components/v6/gclid-field";
+import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
 import { pushFormSubmit } from "@/lib/tracking";
 import { SlotImage } from "@/components/slot-image";
 import { useSpamGuard } from "@/lib/spam-client";
@@ -68,6 +69,7 @@ function ConsultationForm({ dark = false }: { dark?: boolean }) {
       <form onSubmit={async (e) => { e.preventDefault(); pushFormSubmit({ email, phone }); await submitEnquiry({ source: 'homepage', name, email, phone, service, case: caseDescription }, spam.payload()); window.location.href = `/v6/thank-you/`; }} className="space-y-3">
         <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
         <GclidField />
+        <MsclkidField />
         <input value={name} onChange={e => setName(e.target.value)} placeholder="Your Name" required className={inputClass} />
         <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="Email Address" required className={inputClass} />
         <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" placeholder="Phone Number" className={inputClass} />
@@ -89,9 +91,10 @@ function ConsultationForm({ dark = false }: { dark?: boolean }) {
         <a href="mailto:info@abrahamssolicitors.co.uk" className="flex items-center gap-2 text-xs text-slate-400 hover:text-brand-red transition-colors">
           <Mail className="h-3.5 w-3.5 shrink-0" />info@abrahamssolicitors.co.uk
         </a>
-        <a href="tel:02033559823" className="flex items-center gap-2 text-xs text-slate-400 hover:text-brand-red transition-colors">
-          <Phone className="h-3.5 w-3.5 shrink-0" />0203 355 9823
-        </a>
+        <DynamicCallLink className="flex items-center gap-2 text-xs text-slate-400 hover:text-brand-red transition-colors">
+          <Phone className="h-3.5 w-3.5 shrink-0" />
+          <DynamicPhoneText />
+        </DynamicCallLink>
       </div>
     </div>
   );
@@ -144,9 +147,10 @@ export default function V6HomePage() {
                 <Button asChild size="lg" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide px-8 h-12">
                   <Link href="#services">Our Services</Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-lg text-sm font-semibold h-12 border-slate-200 text-slate-700 hover:border-brand-red hover:text-brand-red">
-                  <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
-                </Button>
+                <DynamicCallLink className="inline-flex items-center justify-center rounded-lg text-sm font-semibold h-12 px-6 border border-slate-200 text-slate-700 hover:border-brand-red hover:text-brand-red bg-transparent">
+                  <Phone className="h-4 w-4 mr-2" />
+                  <DynamicPhoneText />
+                </DynamicCallLink>
               </div>
             </div>
 
@@ -296,7 +300,13 @@ export default function V6HomePage() {
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-start gap-3"><MapPin className="h-4 w-4 text-slate-300 shrink-0 mt-0.5" /><p className="text-sm text-slate-900">{office.address}</p></div>
-                  <div className="flex items-center gap-3"><Phone className="h-4 w-4 text-slate-300 shrink-0" /><a href={`tel:${office.phone.replace(/\s/g, "")}`} className="text-sm text-slate-900 hover:text-brand-red transition-colors">{office.phone}</a></div>
+                  <div className="flex items-center gap-3"><Phone className="h-4 w-4 text-slate-300 shrink-0" />{office.city === "London" ? (
+                    <DynamicCallLink className="text-sm text-slate-900 hover:text-brand-red transition-colors">
+                      <DynamicPhoneText />
+                    </DynamicCallLink>
+                  ) : (
+                    <a href={`tel:${office.phone.replace(/\s/g, "")}`} className="text-sm text-slate-900 hover:text-brand-red transition-colors">{office.phone}</a>
+                  )}</div>
                   <div className="flex items-center gap-3"><Clock className="h-4 w-4 text-slate-300 shrink-0" /><p className="text-sm text-slate-400">Mon &ndash; Fri: 9:00am &ndash; 5:00pm</p></div>
                 </div>
               </div>
@@ -318,10 +328,10 @@ export default function V6HomePage() {
                 Book a free consultation with one of our specialist solicitors. We offer phone, video, and in-person appointments nationwide.
               </p>
               <div className="mt-6 flex items-center gap-4">
-                <a href="tel:02033559823" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors">
+                <DynamicCallLink className="flex items-center gap-2 text-white/80 hover:text-white transition-colors">
                   <Phone className="h-5 w-5" />
-                  <span className="text-lg font-bold">0203 355 9823</span>
-                </a>
+                  <span className="text-lg font-bold"><DynamicPhoneText /></span>
+                </DynamicCallLink>
               </div>
               <div className="mt-3 flex items-center gap-4">
                 <a href="https://wa.me/447476548311" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm">

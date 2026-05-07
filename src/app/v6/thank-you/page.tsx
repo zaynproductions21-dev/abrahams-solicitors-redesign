@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { CheckCircle2, Phone, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
 
 export default function ThankYouPage() {
   useEffect(() => {
@@ -24,7 +25,7 @@ export default function ThankYouPage() {
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Button asChild size="lg" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide px-8 h-12">
-            <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
+            <DynamicCallLink className="inline-flex items-center"><Phone className="h-4 w-4 mr-2" /><DynamicPhoneText /></DynamicCallLink>
           </Button>
           <Button asChild size="lg" variant="outline" className="rounded-lg h-12 border-slate-200 hover:border-brand-red hover:text-brand-red">
             <Link href="/v6/">Back to home <ArrowRight className="h-4 w-4 ml-2" /></Link>

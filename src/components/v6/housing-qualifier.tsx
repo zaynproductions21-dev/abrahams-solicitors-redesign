@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { pushFormSubmit } from "@/lib/tracking";
 import { useSpamGuard } from "@/lib/spam-client";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
-import { GclidField } from "@/components/v6/gclid-field";
+import { GclidField, MsclkidField } from "@/components/v6/gclid-field";
 import { submitEnquiry } from "@/lib/publishos";
 
 const ISSUES = [
@@ -275,6 +275,7 @@ export function HousingQualifier() {
             >
               <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
               <GclidField />
+              <MsclkidField />
               <input value={name} onChange={e => setName(e.target.value)} placeholder="Your name" required className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red" />
               <div className="grid sm:grid-cols-2 gap-3">
                 <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="Email" required className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red" />

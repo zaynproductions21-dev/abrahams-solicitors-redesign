@@ -1,26 +1,31 @@
-// Google Click Identifier (GCLID) capture + retrieval.
+// Click-ID capture + retrieval for paid-traffic attribution.
 //
-// On any v6 page Google sends paid traffic to, the URL will carry ?gclid=...
-// We persist it for 90 days (Google Ads click→conversion attribution window)
-// in both a cookie and localStorage, then attach it to every lead form
-// submission so the SalesHub CRM can store it against the lead and we can
-// upload conversions back to Google Ads later.
+// On any v6 page paid traffic lands on, the URL will carry one of:
+//   gclid   — Google Ads
+//   gbraid  — Google Ads (iOS, no third-party cookies)
+//   wbraid  — Google Ads (Android, no third-party cookies)
+//   msclkid — Microsoft/Bing Ads
 //
-// Also handles `gbraid` and `wbraid` — the iOS/Android equivalents Google
-// emits when third-party cookies aren't available.
+// We persist each one for 90 days in a cookie + a localStorage mirror,
+// then attach the relevant value to every lead form submission so the
+// SalesHub CRM can store it against the lead. That gives us the round
+// trip for offline conversion upload back to Google Ads / Bing Ads.
 
 export const GCLID_COOKIE = "abrahams_gclid";
 export const GBRAID_COOKIE = "abrahams_gbraid";
 export const WBRAID_COOKIE = "abrahams_wbraid";
+export const MSCLKID_COOKIE = "abrahams_msclkid";
+export const TRAFFIC_SOURCE_COOKIE = "abrahams_traffic_source";
 export const GCLID_LS_KEY = "abrahams.gclid";
 const TTL_DAYS = 90;
 
-type Identifier = "gclid" | "gbraid" | "wbraid";
+type Identifier = "gclid" | "gbraid" | "wbraid" | "msclkid";
 
 const COOKIE_MAP: Record<Identifier, string> = {
   gclid: GCLID_COOKIE,
   gbraid: GBRAID_COOKIE,
   wbraid: WBRAID_COOKIE,
+  msclkid: MSCLKID_COOKIE,
 };
 
 function setCookie(name: string, value: string, days: number) {
@@ -37,11 +42,14 @@ function readCookie(name: string): string | null {
   return match ? decodeURIComponent(match[2]) : null;
 }
 
-/** Reads the URL once on landing and persists any of gclid/gbraid/wbraid.
+/** Reads the URL once on landing and persists any captured click IDs.
  *
  * Per Google's reference script (support.google.com/google-ads/answer/7012522)
  * we also validate `gclsrc`: if present, it must contain "aw" — this rejects
  * non-Ads gclids (e.g. older Google Analytics auto-tagging).
+ *
+ * We also stamp a single `traffic_source` cookie used by Dynamic Number
+ * Insertion to pick which call-tracking number to display.
  */
 export function captureGclidFromUrl(): void {
   if (typeof window === "undefined") return;
@@ -50,8 +58,9 @@ export function captureGclidFromUrl(): void {
   const gclsrc = params.get("gclsrc");
   const gclidValid = !gclsrc || gclsrc.indexOf("aw") !== -1;
 
+  let capturedSource: TrafficSource | null = null;
+
   (Object.keys(COOKIE_MAP) as Identifier[]).forEach((key) => {
-    // gclid is gated by gclsrc validation; gbraid/wbraid don't carry gclsrc.
     if (key === "gclid" && !gclidValid) return;
     const value = params.get(key);
     if (value && value.length > 0 && value.length < 512) {
@@ -63,25 +72,48 @@ export function captureGclidFromUrl(): void {
             JSON.stringify({ value, ts: Date.now() + TTL_DAYS * 24 * 60 * 60 * 1000 })
           );
         } catch {}
+        capturedSource = "google";
+      } else if ((key === "gbraid" || key === "wbraid") && !capturedSource) {
+        capturedSource = "google";
+      } else if (key === "msclkid") {
+        capturedSource = "bing";
       }
     }
   });
+
+  if (capturedSource) {
+    setCookie(TRAFFIC_SOURCE_COOKIE, capturedSource, TTL_DAYS);
+  }
 }
 
-/** Returns the most recently captured gclid (or gbraid/wbraid fallback). */
+/** Returns the most recently captured click identifiers. */
 export function getStoredGclid(): {
   gclid: string | null;
   gbraid: string | null;
   wbraid: string | null;
+  msclkid: string | null;
 } {
   const gclid = readCookie(GCLID_COOKIE);
   const gbraid = readCookie(GBRAID_COOKIE);
   const wbraid = readCookie(WBRAID_COOKIE);
-  return { gclid, gbraid, wbraid };
+  const msclkid = readCookie(MSCLKID_COOKIE);
+  return { gclid, gbraid, wbraid, msclkid };
 }
 
-/** Single best identifier — gclid wins, then gbraid, then wbraid. */
+/** Single best Google identifier — gclid wins, then gbraid, then wbraid. */
 export function getBestClickId(): string | null {
   const { gclid, gbraid, wbraid } = getStoredGclid();
   return gclid || gbraid || wbraid || null;
+}
+
+export type TrafficSource = "google" | "bing" | "direct";
+
+/** Reads the traffic-source cookie; falls back to inspecting click-id cookies. */
+export function getTrafficSource(): TrafficSource {
+  const stamped = readCookie(TRAFFIC_SOURCE_COOKIE);
+  if (stamped === "google" || stamped === "bing") return stamped;
+  const { gclid, gbraid, wbraid, msclkid } = getStoredGclid();
+  if (msclkid) return "bing";
+  if (gclid || gbraid || wbraid) return "google";
+  return "direct";
 }

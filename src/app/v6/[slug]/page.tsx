@@ -8,7 +8,8 @@ import { pushFormSubmit } from "@/lib/tracking";
 import { SlotImage } from "@/components/slot-image";
 import { useSpamGuard } from "@/lib/spam-client";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
-import { GclidField } from "@/components/v6/gclid-field";
+import { GclidField, MsclkidField } from "@/components/v6/gclid-field";
+import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { TeamStrip } from "@/components/v6/team-strip";
 import { JsonLd, faqPageSchema, breadcrumbSchema, serviceSchema } from "@/components/v6/jsonld";
@@ -84,6 +85,7 @@ function ConsultationForm({ serviceName }: { serviceName: string }) {
       <form onSubmit={async (e) => { e.preventDefault(); pushFormSubmit({ email, phone }); await submitEnquiry({ source: `service-page:${serviceName}`, name, email, phone, service: serviceName, case: caseDescription }, spam.payload()); window.location.href = `/v6/thank-you/`; }} className="space-y-3">
         <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
         <GclidField />
+        <MsclkidField />
         <input value={name} onChange={e => setName(e.target.value)} placeholder="Your Name" required className={inputClass} />
         <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="Email Address" required className={inputClass} />
         <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" placeholder="Phone Number" className={inputClass} />
@@ -177,9 +179,10 @@ export default function V6ServicePage() {
                 <Button asChild size="lg" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide px-8 h-12">
                   <a href="#consultation-form">Book Free Consultation</a>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-lg text-sm font-semibold h-12 border-slate-200 text-slate-700 hover:border-brand-red hover:text-brand-red">
-                  <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
-                </Button>
+                <DynamicCallLink className="inline-flex items-center justify-center rounded-lg text-sm font-semibold h-12 px-6 border border-slate-200 text-slate-700 hover:border-brand-red hover:text-brand-red bg-transparent">
+                  <Phone className="h-4 w-4 mr-2" />
+                  <DynamicPhoneText />
+                </DynamicCallLink>
               </div>
 
               {/* Trust strip */}
@@ -327,9 +330,9 @@ export default function V6ServicePage() {
                 Book a free consultation with one of our specialist solicitors. We offer phone, video, and in-person appointments nationwide.
               </p>
               <div className="mt-6 space-y-3">
-                <a href="tel:02033559823" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors">
-                  <Phone className="h-5 w-5" /><span className="text-lg font-bold">0203 355 9823</span>
-                </a>
+                <DynamicCallLink className="flex items-center gap-2 text-white/80 hover:text-white transition-colors">
+                  <Phone className="h-5 w-5" /><span className="text-lg font-bold"><DynamicPhoneText /></span>
+                </DynamicCallLink>
                 <a href="https://wa.me/447476548311" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm">
                   <MessageCircle className="h-4 w-4" />WhatsApp Us
                 </a>

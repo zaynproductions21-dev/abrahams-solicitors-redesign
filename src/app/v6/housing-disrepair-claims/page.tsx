@@ -15,6 +15,7 @@ import {
   legalServiceWithCatalogSchema,
 } from "@/components/v6/jsonld";
 import { team } from "@/lib/team";
+import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
 import {
   Phone, ChevronRight, ChevronDown, ShieldCheck, CheckCircle2,
   AlertCircle, Star, Scale, FileCheck2, Clock, BadgeCheck, X,
@@ -247,9 +248,10 @@ export default function HousingDisrepairClaimsPage() {
 
               {/* Triple CTA */}
               <div className="mt-7 flex flex-wrap items-center gap-3">
-                <Button asChild size="lg" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide px-6 h-12">
-                  <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
-                </Button>
+                <DynamicCallLink className="inline-flex items-center justify-center bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide px-6 h-12">
+                  <Phone className="h-4 w-4 mr-2" />
+                  <DynamicPhoneText />
+                </DynamicCallLink>
                 <Button asChild variant="outline" size="lg" className="rounded-lg text-sm font-semibold h-12 border-slate-300 text-slate-800 hover:border-brand-red hover:text-brand-red">
                   <a href="#qualifier">Free 60-second check</a>
                 </Button>
@@ -444,9 +446,10 @@ export default function HousingDisrepairClaimsPage() {
               <p className="mt-4 text-base text-slate-600 leading-relaxed">
                 Direct answers in plain English. If yours isn&rsquo;t here, ring us — we don&rsquo;t charge to ask a question.
               </p>
-              <Button asChild className="mt-6 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide">
-                <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
-              </Button>
+              <DynamicCallLink className="mt-6 inline-flex items-center justify-center bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide h-10 px-4">
+                <Phone className="h-4 w-4 mr-2" />
+                <DynamicPhoneText />
+              </DynamicCallLink>
             </div>
             <div className="lg:col-span-2 space-y-3">
               {FAQS.map((f, i) => (
@@ -589,9 +592,10 @@ export default function HousingDisrepairClaimsPage() {
             Spend 60 seconds telling us what&rsquo;s wrong — a specialist solicitor will call you back within the hour with a free, honest assessment.
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-            <Button asChild size="lg" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide px-8 h-12">
-              <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
-            </Button>
+            <DynamicCallLink className="inline-flex items-center justify-center bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide px-8 h-12">
+              <Phone className="h-4 w-4 mr-2" />
+              <DynamicPhoneText />
+            </DynamicCallLink>
             <Button asChild variant="outline" size="lg" className="rounded-lg text-sm font-semibold h-12 bg-transparent border-2 border-white text-white hover:bg-white hover:text-brand-navy">
               <a href="#qualifier">Free 60-second check</a>
             </Button>

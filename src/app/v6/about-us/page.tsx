@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Phone, MapPin, Clock, ShieldCheck, ExternalLink } from "lucide-react";
 import { TrustBadges } from "@/components/v6/trust-badges";
+import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
 import { OfficeMap } from "@/components/v6/office-map";
 import { SlotImage } from "@/components/slot-image";
 import { team } from "@/lib/team";
@@ -151,7 +152,13 @@ export default function V1AboutPage() {
                   </p>
                   <div className="space-y-4">
                     <div className="flex items-start gap-3"><MapPin className="h-5 w-5 text-brand-gold/60 shrink-0 mt-0.5" /><p className="text-brand-navy">{office.address}</p></div>
-                    <div className="flex items-center gap-3"><Phone className="h-5 w-5 text-brand-gold/60 shrink-0" /><a href={`tel:${office.phone.replace(/\s/g, "")}`} className="text-brand-navy hover:text-brand-red transition-colors">{office.phone}</a></div>
+                    <div className="flex items-center gap-3"><Phone className="h-5 w-5 text-brand-gold/60 shrink-0" />{office.city === "London" ? (
+                      <DynamicCallLink className="text-brand-navy hover:text-brand-red transition-colors">
+                        <DynamicPhoneText />
+                      </DynamicCallLink>
+                    ) : (
+                      <a href={`tel:${office.phone.replace(/\s/g, "")}`} className="text-brand-navy hover:text-brand-red transition-colors">{office.phone}</a>
+                    )}</div>
                     <div className="flex items-center gap-3"><Clock className="h-5 w-5 text-brand-gold/60 shrink-0" /><p className="text-slate-500 text-sm">Mon &ndash; Fri: 9:00am &ndash; 5:00pm</p></div>
                   </div>
                 </div>
@@ -172,7 +179,7 @@ export default function V1AboutPage() {
               <Link href="/v6/contact-us/">Book a Consultation</Link>
             </Button>
             <Button asChild variant="outline-light" size="lg" className="rounded-xl text-base h-13">
-              <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
+              <DynamicCallLink className="inline-flex items-center"><Phone className="h-4 w-4 mr-2" /><DynamicPhoneText /></DynamicCallLink>
             </Button>
           </div>
         </div>

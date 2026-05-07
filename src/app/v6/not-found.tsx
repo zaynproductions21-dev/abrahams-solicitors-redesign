@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Home, Search, Phone, Mail, ArrowRight } from "lucide-react";
+import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
 
 export const metadata = { title: "Page not found" };
 
@@ -28,7 +29,7 @@ export default function NotFound() {
               <Link href="/v6/"><Home className="h-4 w-4 mr-2" />Back to home</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="rounded-lg h-12 px-6 border-slate-200 hover:border-brand-red hover:text-brand-red">
-              <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
+              <DynamicCallLink className="inline-flex items-center"><Phone className="h-4 w-4 mr-2" /><DynamicPhoneText /></DynamicCallLink>
             </Button>
           </div>
         </div>

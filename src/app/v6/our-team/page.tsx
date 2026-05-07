@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, ArrowRight, Phone, ExternalLink } from "lucide-react";
 import { TrustBadges } from "@/components/v6/trust-badges";
+import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
 import { JsonLd } from "@/components/v6/jsonld";
 import { team } from "@/lib/team";
 import type { Metadata } from "next";
@@ -116,7 +117,7 @@ export default function OurTeamPage() {
               <Link href="/v6/free-consultation/">Book Free Consultation <ArrowRight className="h-4 w-4 ml-2" /></Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="rounded-lg h-12 border-slate-200 hover:border-brand-red hover:text-brand-red">
-              <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
+              <DynamicCallLink className="inline-flex items-center"><Phone className="h-4 w-4 mr-2" /><DynamicPhoneText /></DynamicCallLink>
             </Button>
           </div>
         </div>

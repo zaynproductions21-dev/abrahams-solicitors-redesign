@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, ArrowRight, Phone } from "lucide-react";
 import { TrustBadges } from "@/components/v6/trust-badges";
+import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -134,7 +135,7 @@ export default function V1FeesPage() {
               <Link href="/v6/contact-us/">Request a Quote</Link>
             </Button>
             <Button asChild variant="outline-light" size="lg" className="rounded-xl text-base h-13">
-              <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
+              <DynamicCallLink className="inline-flex items-center"><Phone className="h-4 w-4 mr-2" /><DynamicPhoneText /></DynamicCallLink>
             </Button>
           </div>
         </div>

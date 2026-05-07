@@ -7,7 +7,8 @@ import { Phone, Clock, Shield, Headset, MessageCircle, CheckCircle2 } from "luci
 import { pushFormSubmit } from "@/lib/tracking";
 import { useSpamGuard } from "@/lib/spam-client";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
-import { GclidField } from "@/components/v6/gclid-field";
+import { GclidField, MsclkidField } from "@/components/v6/gclid-field";
+import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { submitEnquiry } from "@/lib/publishos";
 
@@ -66,9 +67,10 @@ export default function FreeConsultationPage() {
                 ))}
               </div>
               <div className="mt-8 pt-6 border-t border-slate-100 space-y-3">
-                <a href="tel:02033559823" className="flex items-center gap-2.5 text-sm font-semibold text-slate-900 hover:text-brand-red transition-colors">
-                  <Phone className="h-4 w-4 text-brand-red" />Prefer to call? 0203 355 9823
-                </a>
+                <DynamicCallLink className="flex items-center gap-2.5 text-sm font-semibold text-slate-900 hover:text-brand-red transition-colors">
+                  <Phone className="h-4 w-4 text-brand-red" />
+                  <span>Prefer to call? <DynamicPhoneText /></span>
+                </DynamicCallLink>
                 <a href="https://wa.me/447476548311" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-sm text-slate-500 hover:text-brand-red transition-colors">
                   <MessageCircle className="h-4 w-4 text-brand-red" />WhatsApp us
                 </a>
@@ -92,6 +94,7 @@ export default function FreeConsultationPage() {
               >
                 <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
                 <GclidField />
+                <MsclkidField />
                 <h3 className="text-xl font-bold text-slate-900">Book your call</h3>
                 <p className="text-sm text-slate-500 -mt-2">We aim to respond within one working day.</p>
 

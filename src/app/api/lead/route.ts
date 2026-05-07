@@ -50,12 +50,15 @@ export async function POST(req: NextRequest) {
 
   const apiKey = process.env.SALESHUB_API_KEY;
 
-  // Google Click IDs — captured client-side from ?gclid=/?gbraid=/?wbraid=
-  // on landing and forwarded with each lead. SalesHub admins should create
-  // a custom lead field named `gclid` to receive these for conversion upload.
+  // Click IDs — captured client-side from ?gclid=/?gbraid=/?wbraid= (Google)
+  // and ?msclkid= (Bing) on landing and forwarded with each lead. SalesHub
+  // admins should create custom lead fields `gclid` and `msclkid` to receive
+  // these so offline conversions can be uploaded back to each ad network.
   const gclid = typeof body.gclid === "string" ? body.gclid : "";
   const gbraid = typeof body.gbraid === "string" ? body.gbraid : "";
   const wbraid = typeof body.wbraid === "string" ? body.wbraid : "";
+  const msclkid = typeof body.msclkid === "string" ? body.msclkid : "";
+  const trafficSource = typeof body.traffic_source === "string" ? body.traffic_source : "";
 
   const saleshubPayload = {
     firstName: body.firstName ?? body.name?.split(" ")[0] ?? "",
@@ -70,6 +73,8 @@ export async function POST(req: NextRequest) {
     ...(gclid ? { gclid } : {}),
     ...(gbraid ? { gbraid } : {}),
     ...(wbraid ? { wbraid } : {}),
+    ...(msclkid ? { msclkid } : {}),
+    ...(trafficSource ? { traffic_source: trafficSource } : {}),
   };
 
   const results = { saleshub: false, backup: false };

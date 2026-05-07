@@ -4,8 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { navigation, type NavItem } from "@/lib/navigation";
-import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
+import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
 import { Phone, Menu, ChevronDown, ArrowRight } from "lucide-react";
 
 function DesktopDropdown({ item }: { item: NavItem }) {
@@ -133,18 +133,16 @@ export function V6Header() {
             </nav>
 
             <div className="hidden xl:flex items-center gap-3">
-              <Button asChild size="sm" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg px-5 h-10 text-sm font-semibold">
-                <a href="tel:02033559823" className="flex items-center gap-2">
-                  <Phone className="h-4 w-4" />
-                  0203 355 9823
-                </a>
-              </Button>
+              <DynamicCallLink className="inline-flex items-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg px-5 h-10 text-sm font-semibold">
+                <Phone className="h-4 w-4" />
+                <DynamicPhoneText />
+              </DynamicCallLink>
             </div>
 
             <div className="flex xl:hidden items-center gap-2">
-              <a href="tel:02033559823" className="inline-flex items-center justify-center rounded-xl p-2.5 text-brand-red hover:bg-brand-red/5 transition-colors" aria-label="Call us">
+              <DynamicCallLink className="inline-flex items-center justify-center rounded-xl p-2.5 text-brand-red hover:bg-brand-red/5 transition-colors" ariaLabel="Call us">
                 <Phone className="h-5 w-5" />
-              </a>
+              </DynamicCallLink>
               <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
                 <SheetTrigger className="inline-flex items-center justify-center rounded-xl p-2.5 text-brand-navy hover:bg-slate-50 transition-colors">
                   <Menu className="h-5 w-5" />
@@ -172,9 +170,10 @@ export function V6Header() {
                     ))}
                   </nav>
                   <div className="p-6">
-                    <Button asChild className="w-full bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12">
-                      <a href="tel:02033559823"><Phone className="h-4 w-4 mr-2" />0203 355 9823</a>
-                    </Button>
+                    <DynamicCallLink className="w-full inline-flex items-center justify-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 text-sm font-semibold">
+                      <Phone className="h-4 w-4" />
+                      <DynamicPhoneText />
+                    </DynamicCallLink>
                   </div>
                 </SheetContent>
               </Sheet>

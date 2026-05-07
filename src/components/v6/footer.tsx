@@ -4,6 +4,7 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { SraBadge } from "./sra-badge";
 import { FooterNewsletter } from "./footer-newsletter";
 import { FooterWhatsApp } from "./footer-whatsapp";
+import { DynamicCallLink, DynamicPhoneText } from "./dynamic-phone";
 
 const SocialIcon = ({ name }: { name: "facebook" | "twitter" | "linkedin" | "instagram" | "youtube" }) => {
   const paths: Record<string, React.ReactNode> = {
@@ -142,9 +143,10 @@ export function V6Footer() {
               <SraBadge />
             </div>
             <div className="space-y-2.5 text-sm">
-              <a href="tel:02033559823" className="flex items-center gap-3 text-white/70 hover:text-brand-gold transition-colors">
-                <Phone className="h-4 w-4 shrink-0" />0203 355 9823
-              </a>
+              <DynamicCallLink className="flex items-center gap-3 text-white/70 hover:text-brand-gold transition-colors">
+                <Phone className="h-4 w-4 shrink-0" />
+                <DynamicPhoneText />
+              </DynamicCallLink>
               <a href="mailto:info@abrahamssolicitors.co.uk" className="flex items-center gap-3 text-white/70 hover:text-brand-gold transition-colors">
                 <Mail className="h-4 w-4 shrink-0" />info@abrahamssolicitors.co.uk
               </a>
