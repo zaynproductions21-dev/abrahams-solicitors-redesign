@@ -77,6 +77,19 @@ export async function submitEnquiry(
   turnstileToken?: string
 ): Promise<boolean> {
   try {
+    // Pull captured Google Click IDs (gclid / gbraid / wbraid) so the API
+    // route can forward them to SalesHub against this lead.
+    let gclid = "";
+    let gbraid = "";
+    let wbraid = "";
+    if (typeof window !== "undefined") {
+      const { getStoredGclid } = await import("@/lib/gclid");
+      const ids = getStoredGclid();
+      gclid = ids.gclid || "";
+      gbraid = ids.gbraid || "";
+      wbraid = ids.wbraid || "";
+    }
+
     const res = await fetch("/api/lead", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -90,6 +103,9 @@ export async function submitEnquiry(
         subject: payload.service ? `Enquiry: ${payload.service}` : "Website enquiry",
         message: payload.case,
         pageUrl: typeof window !== "undefined" ? window.location.href : "",
+        ...(gclid ? { gclid } : {}),
+        ...(gbraid ? { gbraid } : {}),
+        ...(wbraid ? { wbraid } : {}),
         ...(spam ?? {}),
         ...(turnstileToken ? { "cf-turnstile-response": turnstileToken } : {}),
       }),

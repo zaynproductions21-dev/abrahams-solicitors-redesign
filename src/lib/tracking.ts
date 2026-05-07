@@ -1,5 +1,9 @@
 // Google Ads Enhanced Conversions / GA4 form submission tracking.
-// Fires dataLayer event `ec_form_submit` with unhashed email + E.164 phone.
+// Fires dataLayer event `ec_form_submit` with unhashed email + E.164 phone
+// (Google's GTM template hashes server-side) and the captured GCLID so a
+// Google Ads conversion tag can read it directly off the dataLayer.
+
+import { getStoredGclid } from "@/lib/gclid";
 
 declare global {
   interface Window {
@@ -43,5 +47,16 @@ export function pushFormSubmit({
     const normalised = toE164(phone);
     if (normalised) user_data.phone_number = normalised;
   }
-  window.dataLayer.push({ event: "ec_form_submit", user_data });
+
+  // Pull the persisted Google Click IDs (gclid / gbraid / wbraid) so the
+  // GTM Google Ads conversion tag can attach them to the conversion event.
+  const { gclid, gbraid, wbraid } = getStoredGclid();
+
+  window.dataLayer.push({
+    event: "ec_form_submit",
+    user_data,
+    ...(gclid ? { gclid } : {}),
+    ...(gbraid ? { gbraid } : {}),
+    ...(wbraid ? { wbraid } : {}),
+  });
 }

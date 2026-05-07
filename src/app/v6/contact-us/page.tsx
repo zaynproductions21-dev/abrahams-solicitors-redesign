@@ -9,6 +9,7 @@ import { Phone, Mail, MapPin, Clock, CheckCircle2 } from "lucide-react";
 import { pushFormSubmit } from "@/lib/tracking";
 import { useSpamGuard } from "@/lib/spam-client";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
+import { GclidField } from "@/components/v6/gclid-field";
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { OfficeMap } from "@/components/v6/office-map";
 import { submitEnquiry } from "@/lib/publishos";
@@ -69,6 +70,7 @@ export default function V1ContactPage() {
               >
                 {error && <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3">{error}</p>}
                 <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
+                <GclidField id="contact_us_gclid" />
                 <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
                   <div className="space-y-2">
                     <Label htmlFor="name">Full Name</Label>

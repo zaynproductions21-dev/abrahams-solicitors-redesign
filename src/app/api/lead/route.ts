@@ -50,6 +50,13 @@ export async function POST(req: NextRequest) {
 
   const apiKey = process.env.SALESHUB_API_KEY;
 
+  // Google Click IDs — captured client-side from ?gclid=/?gbraid=/?wbraid=
+  // on landing and forwarded with each lead. SalesHub admins should create
+  // a custom lead field named `gclid` to receive these for conversion upload.
+  const gclid = typeof body.gclid === "string" ? body.gclid : "";
+  const gbraid = typeof body.gbraid === "string" ? body.gbraid : "";
+  const wbraid = typeof body.wbraid === "string" ? body.wbraid : "";
+
   const saleshubPayload = {
     firstName: body.firstName ?? body.name?.split(" ")[0] ?? "",
     lastName: body.lastName ?? body.name?.split(" ").slice(1).join(" ") ?? "",
@@ -60,6 +67,9 @@ export async function POST(req: NextRequest) {
     serviceLine: body.serviceLine ?? body.service ?? "",
     message: body.message ?? body.case ?? "",
     pageUrl: body.pageUrl ?? "",
+    ...(gclid ? { gclid } : {}),
+    ...(gbraid ? { gbraid } : {}),
+    ...(wbraid ? { wbraid } : {}),
   };
 
   const results = { saleshub: false, backup: false };
