@@ -6,13 +6,13 @@ import { getStoredGclid } from "@/lib/gclid";
 /**
  * Hidden form field that auto-populates with the captured Google Click ID.
  *
- * Drop one inside any <form> on a v6 page. We also pipe the GCLID through
- * the /api/lead route to SalesHub directly — but Google's tech support
- * recipe expects a literal hidden input on the form, so this satisfies
- * both paths.
+ * Drop one inside any <form> on a v6 page. We pipe the GCLID through the
+ * /api/lead route to SalesHub directly — and Google's reference script
+ * (support.google.com/google-ads/answer/7012522) reads it from a hidden
+ * input with the literal id `gclid_field`, so this satisfies both paths.
  *
- * The input id matches the field name SalesHub will store the GCLID
- * against, making the GTM tag config straightforward.
+ * Field name is the SalesHub custom-field key; the `id` is what Google's
+ * script targets. Keeping both as `gclid_field` is the universal default.
  */
 export function GclidField({ id = "gclid_field" }: { id?: string }) {
   const [value, setValue] = useState("");
@@ -26,7 +26,7 @@ export function GclidField({ id = "gclid_field" }: { id?: string }) {
     <input
       type="hidden"
       id={id}
-      name="gclid"
+      name="gclid_field"
       value={value}
       readOnly
       tabIndex={-1}

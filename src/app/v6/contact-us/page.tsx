@@ -70,7 +70,7 @@ export default function V1ContactPage() {
               >
                 {error && <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3">{error}</p>}
                 <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
-                <GclidField id="contact_us_gclid" />
+                <GclidField />
                 <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
                   <div className="space-y-2">
                     <Label htmlFor="name">Full Name</Label>

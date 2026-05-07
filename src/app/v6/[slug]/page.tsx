@@ -83,7 +83,7 @@ function ConsultationForm({ serviceName }: { serviceName: string }) {
       <p className="text-sm text-slate-400 mb-5">Speak to a solicitor today — no obligation.</p>
       <form onSubmit={async (e) => { e.preventDefault(); pushFormSubmit({ email, phone }); await submitEnquiry({ source: `service-page:${serviceName}`, name, email, phone, service: serviceName, case: caseDescription }, spam.payload()); window.location.href = `/v6/thank-you/`; }} className="space-y-3">
         <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
-        <GclidField id="service_page_gclid" />
+        <GclidField />
         <input value={name} onChange={e => setName(e.target.value)} placeholder="Your Name" required className={inputClass} />
         <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="Email Address" required className={inputClass} />
         <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" placeholder="Phone Number" className={inputClass} />

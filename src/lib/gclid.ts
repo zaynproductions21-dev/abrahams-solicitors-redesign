@@ -37,11 +37,22 @@ function readCookie(name: string): string | null {
   return match ? decodeURIComponent(match[2]) : null;
 }
 
-/** Reads the URL once on landing and persists any of gclid/gbraid/wbraid. */
+/** Reads the URL once on landing and persists any of gclid/gbraid/wbraid.
+ *
+ * Per Google's reference script (support.google.com/google-ads/answer/7012522)
+ * we also validate `gclsrc`: if present, it must contain "aw" — this rejects
+ * non-Ads gclids (e.g. older Google Analytics auto-tagging).
+ */
 export function captureGclidFromUrl(): void {
   if (typeof window === "undefined") return;
   const params = new URLSearchParams(window.location.search);
+
+  const gclsrc = params.get("gclsrc");
+  const gclidValid = !gclsrc || gclsrc.indexOf("aw") !== -1;
+
   (Object.keys(COOKIE_MAP) as Identifier[]).forEach((key) => {
+    // gclid is gated by gclsrc validation; gbraid/wbraid don't carry gclsrc.
+    if (key === "gclid" && !gclidValid) return;
     const value = params.get(key);
     if (value && value.length > 0 && value.length < 512) {
       setCookie(COOKIE_MAP[key], value, TTL_DAYS);
@@ -49,7 +60,7 @@ export function captureGclidFromUrl(): void {
         try {
           window.localStorage.setItem(
             GCLID_LS_KEY,
-            JSON.stringify({ value, ts: Date.now() })
+            JSON.stringify({ value, ts: Date.now() + TTL_DAYS * 24 * 60 * 60 * 1000 })
           );
         } catch {}
       }
