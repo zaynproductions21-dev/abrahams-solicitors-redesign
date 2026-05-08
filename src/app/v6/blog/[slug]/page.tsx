@@ -35,7 +35,7 @@ export default function V6BlogPostPage() {
     return (
       <div className="py-32 text-center">
         <p className="text-slate-500 mb-4">Post not found.</p>
-        <Link href="/v6/blog/" className="text-brand-red font-semibold hover:underline">Back to blog</Link>
+        <Link href="/blog/" className="text-brand-red font-semibold hover:underline">Back to blog</Link>
       </div>
     );
   }
@@ -45,7 +45,7 @@ export default function V6BlogPostPage() {
       <JsonLd data={blogPostSchema(post)} />
       <section className="bg-slate-50 py-10 lg:py-14 border-b border-slate-100">
         <div className="max-w-3xl mx-auto px-6 lg:px-8">
-          <Link href="/v6/blog/" className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-brand-red transition-colors mb-6">
+          <Link href="/blog/" className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-brand-red transition-colors mb-6">
             <ArrowLeft className="h-4 w-4" /> Back to blog
           </Link>
           {post.category && (

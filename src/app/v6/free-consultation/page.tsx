@@ -88,7 +88,7 @@ export default function FreeConsultationPage() {
                     service,
                     case: preferredTime ? `Preferred time: ${preferredTime}\n\n${caseText}` : caseText,
                   }, spam.payload());
-                  window.location.href = "/v6/thank-you/";
+                  window.location.href = "/thank-you/";
                 }}
                 className="bg-white rounded-2xl ring-1 ring-slate-200 shadow-sm p-6 lg:p-8 space-y-4"
               >

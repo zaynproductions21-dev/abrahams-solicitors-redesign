@@ -21,7 +21,7 @@ export default function TermsOfBusinessPage() {
 
       <h2>Fees</h2>
       <p>
-        Our current fee structure is on <a href="/v6/our-fees/">our fees page</a>. Before we start we&rsquo;ll confirm your fees in writing. Most immigration work is on a fixed fee; housing disrepair and personal injury work is typically no win, no fee. VAT is added where applicable. Disbursements (court fees, counsel, expert reports) are billed at cost.
+        Our current fee structure is on <a href="/our-fees/">our fees page</a>. Before we start we&rsquo;ll confirm your fees in writing. Most immigration work is on a fixed fee; housing disrepair and personal injury work is typically no win, no fee. VAT is added where applicable. Disbursements (court fees, counsel, expert reports) are billed at cost.
       </p>
 
       <h2>Payment</h2>
@@ -36,7 +36,7 @@ export default function TermsOfBusinessPage() {
 
       <h2>Equality and data</h2>
       <p>
-        We treat all clients fairly regardless of age, disability, gender, race, religion or sexual orientation. How we handle your personal data is explained in our <a href="/v6/privacy-policy/">Privacy Policy</a>.
+        We treat all clients fairly regardless of age, disability, gender, race, religion or sexual orientation. How we handle your personal data is explained in our <a href="/privacy-policy/">Privacy Policy</a>.
       </p>
 
       <h2>Complaints</h2>

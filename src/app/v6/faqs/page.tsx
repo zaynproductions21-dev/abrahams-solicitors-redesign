@@ -56,7 +56,7 @@ export default function V6FaqsPage() {
               <HelpCircle className="h-10 w-10 text-slate-200 mx-auto mb-4" />
               <p className="text-slate-500 text-lg">No FAQs published yet.</p>
               <Button asChild className="mt-6 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg">
-                <Link href="/v6/contact-us/">Ask a question</Link>
+                <Link href="/contact-us/">Ask a question</Link>
               </Button>
             </div>
           ) : (
@@ -99,7 +99,7 @@ export default function V6FaqsPage() {
             Book a free consultation with one of our specialist solicitors.
           </p>
           <Button asChild size="lg" className="mt-6 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 px-8 font-bold uppercase tracking-wide">
-            <Link href="/v6/contact-us/">Contact Us</Link>
+            <Link href="/contact-us/">Contact Us</Link>
           </Button>
         </div>
       </section>

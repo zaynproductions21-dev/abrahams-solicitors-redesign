@@ -43,7 +43,7 @@ export default function V6BlogPage() {
               {posts.map(post => (
                 <Link
                   key={post.id}
-                  href={`/v6/blog/${post.slug}/`}
+                  href={`/blog/${post.slug}/`}
                   className="group bg-white rounded-xl border border-slate-100 overflow-hidden hover:shadow-lg hover:border-brand-red/20 transition-all"
                 >
                   <div className="aspect-[16/9] bg-slate-100 overflow-hidden">

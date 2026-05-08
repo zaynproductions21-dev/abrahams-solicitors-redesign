@@ -6,12 +6,12 @@ import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone
 export const metadata = { title: "Page not found" };
 
 const popular = [
-  { label: "UK Spouse Visa Solicitors", href: "/v6/uk-spouse-visa-solicitors/" },
-  { label: "British Citizenship", href: "/v6/british-citizenship-solicitors/" },
-  { label: "Indefinite Leave to Remain", href: "/v6/indefinite-leave-to-remain-ilr/" },
-  { label: "Housing Disrepair Claims", href: "/v6/housing-disrepair-claims/" },
-  { label: "Our Fees", href: "/v6/our-fees/" },
-  { label: "Free Consultation", href: "/v6/free-consultation/" },
+  { label: "UK Spouse Visa Solicitors", href: "/uk-spouse-visa-solicitors/" },
+  { label: "British Citizenship", href: "/british-citizenship-solicitors/" },
+  { label: "Indefinite Leave to Remain", href: "/indefinite-leave-to-remain-ilr/" },
+  { label: "Housing Disrepair Claims", href: "/housing-disrepair-claims/" },
+  { label: "Our Fees", href: "/our-fees/" },
+  { label: "Free Consultation", href: "/free-consultation/" },
 ];
 
 export default function NotFound() {
@@ -26,7 +26,7 @@ export default function NotFound() {
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Button asChild size="lg" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 px-6 font-bold uppercase tracking-wide">
-              <Link href="/v6/"><Home className="h-4 w-4 mr-2" />Back to home</Link>
+              <Link href="/"><Home className="h-4 w-4 mr-2" />Back to home</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="rounded-lg h-12 px-6 border-slate-200 hover:border-brand-red hover:text-brand-red">
               <DynamicCallLink className="inline-flex items-center"><Phone className="h-4 w-4 mr-2" /><DynamicPhoneText /></DynamicCallLink>

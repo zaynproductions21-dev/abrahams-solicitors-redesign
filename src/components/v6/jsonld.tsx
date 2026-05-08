@@ -156,7 +156,7 @@ export function blogPostSchema(post: {
     publisher: { "@type": "Organization", name: "Abrahams Solicitors", logo: { "@type": "ImageObject", url: `${BASE_URL}/abrahams-logo.png` } },
     datePublished: post.published_at,
     image: post.cover_image || `${BASE_URL}/abrahams-logo.png`,
-    mainEntityOfPage: `${BASE_URL}/v6/blog/${post.slug}/`,
+    mainEntityOfPage: `${BASE_URL}/blog/${post.slug}/`,
   };
 }
 
@@ -174,7 +174,7 @@ export function serviceSchema(service: { name: string; description: string; slug
       description: service.priceLabel,
       availability: "https://schema.org/InStock",
     },
-    url: `${BASE_URL}/v6/${service.slug}/`,
+    url: `${BASE_URL}/${service.slug}/`,
   };
 }
 
@@ -206,7 +206,7 @@ export function personSchema(p: {
     jobTitle: p.jobTitle,
     worksFor: { "@id": `${BASE_URL}#organization` },
     identifier: { "@type": "PropertyValue", name: "SRA", value: p.sraNumber },
-    url: `${BASE_URL}/v6/our-team/#${p.slug}`,
+    url: `${BASE_URL}/our-team/#${p.slug}`,
     sameAs: [p.sraUrl],
     ...(p.bio ? { description: p.bio } : {}),
   };
@@ -228,7 +228,7 @@ export function legalServiceWithCatalogSchema(args: {
     description: args.description,
     provider: { "@id": `${BASE_URL}#organization` },
     areaServed: { "@type": "Country", name: "United Kingdom" },
-    url: `${BASE_URL}/v6/${args.slug}/`,
+    url: `${BASE_URL}/${args.slug}/`,
     ...(args.author
       ? { author: { "@type": "Person", name: args.author.name, sameAs: [args.author.sraUrl] } }
       : {}),

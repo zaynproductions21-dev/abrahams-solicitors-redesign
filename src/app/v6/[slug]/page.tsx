@@ -82,7 +82,7 @@ function ConsultationForm({ serviceName }: { serviceName: string }) {
     <div className="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 lg:p-7">
       <h3 className="text-lg font-bold text-slate-900 mb-1">Free {serviceName} Consultation</h3>
       <p className="text-sm text-slate-400 mb-5">Speak to a solicitor today — no obligation.</p>
-      <form onSubmit={async (e) => { e.preventDefault(); pushFormSubmit({ email, phone }); await submitEnquiry({ source: `service-page:${serviceName}`, name, email, phone, service: serviceName, case: caseDescription }, spam.payload()); window.location.href = `/v6/thank-you/`; }} className="space-y-3">
+      <form onSubmit={async (e) => { e.preventDefault(); pushFormSubmit({ email, phone }); await submitEnquiry({ source: `service-page:${serviceName}`, name, email, phone, service: serviceName, case: caseDescription }, spam.payload()); window.location.href = `/thank-you/`; }} className="space-y-3">
         <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
         <GclidField />
         <MsclkidField />
@@ -117,7 +117,7 @@ export default function V6ServicePage() {
     <>
       <JsonLd data={serviceSchema({ name: stripHeadingPrefix(page.title), description: stripHeadingPrefix(page.heroDescription), slug, priceLabel })} />
       <JsonLd data={breadcrumbSchema([
-        { name: "Home", url: "https://www.abrahamssolicitors.co.uk/v6/" },
+        { name: "Home", url: "https://www.abrahamssolicitors.co.uk/" },
         ...(page.parentService && page.parentHref ? [{ name: page.parentService, url: `https://www.abrahamssolicitors.co.uk/v6${page.parentHref}` }] : []),
         { name: stripHeadingPrefix(page.title) },
       ])} />
@@ -128,7 +128,7 @@ export default function V6ServicePage() {
       <section className="bg-slate-50/60 border-b border-slate-100">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-3 lg:py-4">
           <nav className="flex items-center gap-1 text-xs sm:text-sm text-slate-400 overflow-hidden">
-            <Link href="/v6/" className="hover:text-brand-red transition-colors shrink-0">Home</Link>
+            <Link href="/" className="hover:text-brand-red transition-colors shrink-0">Home</Link>
             <ChevronRight className="h-3 w-3 shrink-0" />
             {page.parentService && page.parentHref && (
               <>
@@ -258,7 +258,7 @@ export default function V6ServicePage() {
               <p className="text-sm text-slate-400 mt-1">{priceLabel.includes("*") ? "*Consultation fee. Full service fees vary by case — see our fees page." : "Clear, upfront pricing with no hidden costs. Free initial consultation."}</p>
             </div>
             <Button asChild size="lg" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide px-8 h-12 shrink-0">
-              <Link href="/v6/our-fees/">View All Fees</Link>
+              <Link href="/our-fees/">View All Fees</Link>
             </Button>
           </div>
         </div>
@@ -278,7 +278,7 @@ export default function V6ServicePage() {
                   Plain-English answers to the questions we hear most often about {page.title.toLowerCase()}.
                 </p>
                 <Button asChild className="mt-6 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide">
-                  <Link href="/v6/contact-us/">Ask Us Anything</Link>
+                  <Link href="/contact-us/">Ask Us Anything</Link>
                 </Button>
               </div>
               <div className="space-y-3">

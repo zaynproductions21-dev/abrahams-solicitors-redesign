@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 
 const HOUSING_AUTHOR = team.find(t => t.slug === "sannah-khatoon")!;
-const PAGE_URL = "https://www.abrahamssolicitors.co.uk/v6/housing-disrepair-claims/";
+const PAGE_URL = "https://www.abrahamssolicitors.co.uk/housing-disrepair-claims/";
 
 const ISSUE_CATALOG = [
   { name: "Damp and mould claims", description: "Compensation and repairs for prolonged damp, condensation, and black mould affecting health or property." },
@@ -202,7 +202,7 @@ export default function HousingDisrepairClaimsPage() {
       })} />
       <JsonLd data={faqPageSchema(FAQS)} />
       <JsonLd data={breadcrumbSchema([
-        { name: "Home", url: "https://www.abrahamssolicitors.co.uk/v6/" },
+        { name: "Home", url: "https://www.abrahamssolicitors.co.uk/" },
         { name: "Housing Disrepair Claims" },
       ])} />
       <JsonLd data={speakableSchema([
@@ -215,7 +215,7 @@ export default function HousingDisrepairClaimsPage() {
       <section className="bg-slate-50/60 border-b border-slate-100">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-3 lg:py-4">
           <nav className="flex items-center gap-1 text-xs sm:text-sm text-slate-400">
-            <Link href="/v6/" className="hover:text-brand-red transition-colors">Home</Link>
+            <Link href="/" className="hover:text-brand-red transition-colors">Home</Link>
             <ChevronRight className="h-3 w-3" />
             <span className="text-slate-600 font-medium">Housing Disrepair Claims</span>
           </nav>
@@ -267,7 +267,7 @@ export default function HousingDisrepairClaimsPage() {
                 </div>
                 <div>
                   <p className="text-sm text-slate-700">
-                    Reviewed by <Link href="/v6/our-team/" className="font-semibold text-slate-900 hover:text-brand-red">{HOUSING_AUTHOR.name}</Link> — {HOUSING_AUTHOR.role.toLowerCase()}.
+                    Reviewed by <Link href="/our-team/" className="font-semibold text-slate-900 hover:text-brand-red">{HOUSING_AUTHOR.name}</Link> — {HOUSING_AUTHOR.role.toLowerCase()}.
                   </p>
                   <p className="text-xs text-slate-400">
                     SRA #{HOUSING_AUTHOR.sraNumber} · Admitted {HOUSING_AUTHOR.admittedYear} ·{" "}
@@ -555,7 +555,7 @@ export default function HousingDisrepairClaimsPage() {
                 Read the full breakdown of every fee and how the No Win, No Fee agreement works on our fees page — no jargon, no hidden costs.
               </p>
               <Button asChild className="mt-5 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide">
-                <Link href="/v6/our-fees/">View All Fees</Link>
+                <Link href="/our-fees/">View All Fees</Link>
               </Button>
             </div>
             <ul className="space-y-3 bg-white rounded-2xl border border-slate-100 p-6">

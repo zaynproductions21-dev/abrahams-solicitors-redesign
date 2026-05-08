@@ -92,7 +92,7 @@ export default function V1FeesPage() {
                     ))}
                   </div>
                   <Button asChild className="w-full mt-6 bg-brand-red hover:bg-brand-red-dark text-white rounded-xl">
-                    <Link href="/v6/contact-us/">Get a Quote<ArrowRight className="h-4 w-4 ml-2" /></Link>
+                    <Link href="/contact-us/">Get a Quote<ArrowRight className="h-4 w-4 ml-2" /></Link>
                   </Button>
                 </div>
               </div>
@@ -132,7 +132,7 @@ export default function V1FeesPage() {
           <p className="mt-6 text-white/40 text-lg max-w-xl mx-auto">Speak to us about your case and we&apos;ll provide a clear, fixed fee quote.</p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Button asChild size="lg" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-xl text-base h-13 px-8">
-              <Link href="/v6/contact-us/">Request a Quote</Link>
+              <Link href="/contact-us/">Request a Quote</Link>
             </Button>
             <Button asChild variant="outline-light" size="lg" className="rounded-xl text-base h-13">
               <DynamicCallLink className="inline-flex items-center"><Phone className="h-4 w-4 mr-2" /><DynamicPhoneText /></DynamicCallLink>

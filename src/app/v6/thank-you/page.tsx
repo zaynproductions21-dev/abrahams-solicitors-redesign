@@ -28,7 +28,7 @@ export default function ThankYouPage() {
             <DynamicCallLink className="inline-flex items-center"><Phone className="h-4 w-4 mr-2" /><DynamicPhoneText /></DynamicCallLink>
           </Button>
           <Button asChild size="lg" variant="outline" className="rounded-lg h-12 border-slate-200 hover:border-brand-red hover:text-brand-red">
-            <Link href="/v6/">Back to home <ArrowRight className="h-4 w-4 ml-2" /></Link>
+            <Link href="/">Back to home <ArrowRight className="h-4 w-4 ml-2" /></Link>
           </Button>
         </div>
         <p className="mt-10 text-xs text-slate-400">

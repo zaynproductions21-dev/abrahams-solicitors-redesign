@@ -43,7 +43,7 @@ export default function V6PressReleasesPage() {
               {releases.map(r => (
                 <Link
                   key={r.id}
-                  href={`/v6/press-releases/${r.slug}/`}
+                  href={`/press-releases/${r.slug}/`}
                   className="group block bg-white rounded-xl border border-slate-100 p-6 lg:p-7 hover:shadow-lg hover:border-brand-red/20 transition-all"
                 >
                   <div className="flex items-center gap-3 text-xs text-slate-400 mb-3">

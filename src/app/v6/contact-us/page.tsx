@@ -66,7 +66,7 @@ export default function V1ContactPage() {
             {/* Form */}
             <div className="lg:col-span-3">
               <form
-                onSubmit={async (e) => { e.preventDefault(); setError(""); if (!turnstileToken) { setError("Please complete the security check."); return; } pushFormSubmit({ email, phone }); await submitEnquiry({ source: 'contact-us', name, email, phone, service, case: message }, spam.payload(), turnstileToken); window.location.href = '/v6/thank-you/'; }}
+                onSubmit={async (e) => { e.preventDefault(); setError(""); if (!turnstileToken) { setError("Please complete the security check."); return; } pushFormSubmit({ email, phone }); await submitEnquiry({ source: 'contact-us', name, email, phone, service, case: message }, spam.payload(), turnstileToken); window.location.href = '/thank-you/'; }}
                 className="bg-white rounded-2xl ring-1 ring-slate-200 p-6 sm:p-8 lg:p-10 space-y-5"
               >
                 {error && <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3">{error}</p>}

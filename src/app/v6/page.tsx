@@ -22,17 +22,17 @@ const services = [
   {
     icon: Scale, title: "Immigration Law",
     description: "Visa applications, ILR (permanent residency), asylum claims, partner visas, and appeals. Expert guidance at every step.",
-    href: "/v6/immigration/", price: "From £240*",
+    href: "/immigration/", price: "From £240*",
   },
   {
     icon: Home, title: "Housing Disrepair",
     description: "Claims against landlords for damp, heating failures, and structural issues. You pay nothing unless we win.",
-    href: "/v6/housing-disrepair/", price: "No Win, No Fee",
+    href: "/housing-disrepair/", price: "No Win, No Fee",
   },
   {
     icon: Award, title: "British Citizenship",
     description: "Naturalisation, registration, dual citizenship. We guide you through every step of securing your right to stay.",
-    href: "/v6/british-citizenship/", price: "From £240*",
+    href: "/british-citizenship/", price: "From £240*",
   },
 ];
 
@@ -66,7 +66,7 @@ function ConsultationForm({ dark = false }: { dark?: boolean }) {
     <div className={`rounded-2xl p-6 sm:p-7 ${dark ? "bg-white shadow-2xl" : "bg-white shadow-xl border border-slate-100"}`}>
       <h3 className="text-xl font-bold text-slate-900 mb-1">Book Free Consultation</h3>
       <p className="text-sm text-slate-400 mb-5">Speak to a solicitor today — no obligation.</p>
-      <form onSubmit={async (e) => { e.preventDefault(); pushFormSubmit({ email, phone }); await submitEnquiry({ source: 'homepage', name, email, phone, service, case: caseDescription }, spam.payload()); window.location.href = `/v6/thank-you/`; }} className="space-y-3">
+      <form onSubmit={async (e) => { e.preventDefault(); pushFormSubmit({ email, phone }); await submitEnquiry({ source: 'homepage', name, email, phone, service, case: caseDescription }, spam.payload()); window.location.href = `/thank-you/`; }} className="space-y-3">
         <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
         <GclidField />
         <MsclkidField />
@@ -215,7 +215,7 @@ export default function V6HomePage() {
               </div>
             </div>
           ))}
-          <p className="text-xs text-slate-400 text-center pt-4">*Fixed fee price subject to our free case assessment. See <Link href="/v6/our-fees/" className="text-brand-red hover:underline">our fees</Link> for details.</p>
+          <p className="text-xs text-slate-400 text-center pt-4">*Fixed fee price subject to our free case assessment. See <Link href="/our-fees/" className="text-brand-red hover:underline">our fees</Link> for details.</p>
         </div>
       </section>
 
@@ -260,7 +260,7 @@ export default function V6HomePage() {
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 leading-tight tracking-tight">Frequently Asked Questions</h2>
               <p className="mt-4 text-base text-slate-500 leading-relaxed">Plain-English answers to the questions we hear most often about immigration, housing, and fees.</p>
               <Button asChild className="mt-6 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide">
-                <Link href="/v6/contact-us/">Ask Us Anything</Link>
+                <Link href="/contact-us/">Ask Us Anything</Link>
               </Button>
             </div>
             {/* Right: accordion */}

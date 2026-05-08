@@ -102,7 +102,7 @@ export default function V6NewsletterPage() {
               {issues.map(issue => (
                 <Link
                   key={issue.id}
-                  href={`/v6/newsletter/${issue.slug}/`}
+                  href={`/newsletter/${issue.slug}/`}
                   className="group block bg-white rounded-xl border border-slate-100 p-6 hover:shadow-lg hover:border-brand-red/20 transition-all"
                 >
                   <div className="flex items-center gap-3 text-xs text-slate-400 mb-2">

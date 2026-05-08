@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Meet Our Solicitors | Immigration, Housing & Litigation Team",
   description:
     "Three SRA-regulated solicitors at Abrahams Solicitors handling UK immigration, housing disrepair and litigation. Direct solicitor access, verified profiles, free consultation.",
-  alternates: { canonical: "/v6/our-team/" },
+  alternates: { canonical: "/our-team/" },
   openGraph: {
     title: "Meet Our Solicitors — Abrahams Solicitors",
     description: "SRA-regulated solicitors specialising in immigration, housing disrepair and litigation across the UK.",
@@ -24,7 +24,7 @@ const personGraph = {
   "@context": "https://schema.org",
   "@graph": team.map((s) => ({
     "@type": "Person",
-    "@id": `${BASE_URL}/v6/our-team/#${s.slug}`,
+    "@id": `${BASE_URL}/our-team/#${s.slug}`,
     name: s.name,
     jobTitle: s.role,
     description: s.short,
@@ -114,7 +114,7 @@ export default function OurTeamPage() {
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
             <Button asChild size="lg" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 px-8 font-bold uppercase tracking-wide">
-              <Link href="/v6/free-consultation/">Book Free Consultation <ArrowRight className="h-4 w-4 ml-2" /></Link>
+              <Link href="/free-consultation/">Book Free Consultation <ArrowRight className="h-4 w-4 ml-2" /></Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="rounded-lg h-12 border-slate-200 hover:border-brand-red hover:text-brand-red">
               <DynamicCallLink className="inline-flex items-center"><Phone className="h-4 w-4 mr-2" /><DynamicPhoneText /></DynamicCallLink>

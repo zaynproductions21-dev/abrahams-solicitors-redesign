@@ -20,37 +20,37 @@ const SocialIcon = ({ name }: { name: "facebook" | "twitter" | "linkedin" | "ins
 };
 
 const immigrationLinks = [
-  { label: "Spouse Visa Services", href: "/v6/uk-spouse-visa/" },
-  { label: "British Citizenship", href: "/v6/british-citizenship/" },
-  { label: "Visa Appeals & Reviews", href: "/v6/immigration/" },
-  { label: "Asylum & Human Rights", href: "/v6/asylum-applications/" },
+  { label: "Spouse Visa Services", href: "/uk-spouse-visa/" },
+  { label: "British Citizenship", href: "/british-citizenship/" },
+  { label: "Visa Appeals & Reviews", href: "/immigration/" },
+  { label: "Asylum & Human Rights", href: "/asylum-applications/" },
 ];
 
 const otherLinks = [
-  { label: "Housing Disrepair", href: "/v6/housing-disrepair/" },
-  { label: "Workplace Accidents", href: "/v6/accidents-at-work/" },
-  { label: "Road Traffic Claims", href: "/v6/car-accidents-claims/" },
-  { label: "Serious Injury", href: "/v6/serious-injury-claims/" },
+  { label: "Housing Disrepair", href: "/housing-disrepair/" },
+  { label: "Workplace Accidents", href: "/accidents-at-work/" },
+  { label: "Road Traffic Claims", href: "/car-accidents-claims/" },
+  { label: "Serious Injury", href: "/serious-injury-claims/" },
 ];
 
 const quickLinks = [
-  { label: "About Us", href: "/v6/about-us/" },
-  { label: "Our Team", href: "/v6/our-team/" },
-  { label: "Our Fees", href: "/v6/our-fees/" },
-  { label: "Blog", href: "/v6/blog/" },
-  { label: "Press Releases", href: "/v6/press-releases/" },
-  { label: "Newsletter", href: "/v6/newsletter/" },
-  { label: "FAQs", href: "/v6/faqs/" },
-  { label: "Refer a Friend", href: "/v6/refer-a-friend/" },
-  { label: "Careers", href: "/v6/careers/" },
-  { label: "Free Consultation", href: "/v6/free-consultation/" },
+  { label: "About Us", href: "/about-us/" },
+  { label: "Our Team", href: "/our-team/" },
+  { label: "Our Fees", href: "/our-fees/" },
+  { label: "Blog", href: "/blog/" },
+  { label: "Press Releases", href: "/press-releases/" },
+  { label: "Newsletter", href: "/newsletter/" },
+  { label: "FAQs", href: "/faqs/" },
+  { label: "Refer a Friend", href: "/refer-a-friend/" },
+  { label: "Careers", href: "/careers/" },
+  { label: "Free Consultation", href: "/free-consultation/" },
 ];
 
 const legalLinks = [
-  { label: "Privacy Policy", href: "/v6/privacy-policy/" },
-  { label: "Terms of Business", href: "/v6/terms-of-business/" },
-  { label: "Cookie Policy", href: "/v6/cookie-policy/" },
-  { label: "Website Legal Notice", href: "/v6/website-legal-notice/" },
+  { label: "Privacy Policy", href: "/privacy-policy/" },
+  { label: "Terms of Business", href: "/terms-of-business/" },
+  { label: "Cookie Policy", href: "/cookie-policy/" },
+  { label: "Website Legal Notice", href: "/website-legal-notice/" },
 ];
 
 const socialLinks: { label: string; href: string; icon: "facebook" | "twitter" | "linkedin" | "instagram" | "youtube" }[] = [
@@ -129,7 +129,7 @@ export function V6Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
           {/* Brand + SRA + contact */}
           <div className="lg:col-span-4">
-            <Link href="/v6/" className="flex items-center gap-2 mb-6">
+            <Link href="/" className="flex items-center gap-2 mb-6">
               <Image src="/abrahams-logo.png" alt="Abrahams Solicitors" width={40} height={40} className="h-10 w-10 object-contain bg-white rounded-lg p-1 border border-white/10" />
               <div className="leading-tight">
                 <span className="block text-xl font-bold tracking-tight">Abrahams</span>

@@ -15,7 +15,7 @@ export function TeamStrip() {
             <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-2">Your Solicitor</p>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Three SRA-regulated solicitors. Direct access.</h2>
           </div>
-          <Link href="/v6/our-team/" className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-red hover:underline shrink-0">
+          <Link href="/our-team/" className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-red hover:underline shrink-0">
             Meet the team <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
@@ -24,7 +24,7 @@ export function TeamStrip() {
           {team.map((s) => (
             <Link
               key={s.slug}
-              href={`/v6/our-team/#${s.slug}`}
+              href={`/our-team/#${s.slug}`}
               className="group bg-slate-50/60 border border-slate-100 rounded-xl p-5 hover:border-brand-red/30 hover:bg-white transition-all"
             >
               <h3 className="text-base font-bold text-slate-900 group-hover:text-brand-red transition-colors">{s.name}</h3>

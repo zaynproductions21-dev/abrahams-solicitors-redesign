@@ -54,7 +54,7 @@ export default function PrivacyPolicyPage() {
 
       <h2>Cookies</h2>
       <p>
-        See our <a href="/v6/cookie-policy/">Cookie Policy</a> for the full list of cookies used on this site and how to control them.
+        See our <a href="/cookie-policy/">Cookie Policy</a> for the full list of cookies used on this site and how to control them.
       </p>
 
       <h2>Changes</h2>

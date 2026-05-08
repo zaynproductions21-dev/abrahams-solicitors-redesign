@@ -44,7 +44,7 @@ export function CookieConsent() {
       <h3 className="text-sm font-bold text-slate-900 mb-1.5 pr-6">We use cookies</h3>
       <p className="text-xs text-slate-500 leading-relaxed mb-4">
         We use essential cookies to run the site and analytics cookies to improve it. See our{" "}
-        <Link href="/v6/cookie-policy/" className="text-brand-red font-semibold hover:underline">Cookie Policy</Link>.
+        <Link href="/cookie-policy/" className="text-brand-red font-semibold hover:underline">Cookie Policy</Link>.
       </p>
       <div className="flex gap-2">
         <Button onClick={() => record("accepted")} className="flex-1 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-9 text-xs font-bold uppercase tracking-wide">

@@ -125,7 +125,7 @@ export default function V1AboutPage() {
           </div>
 
           <div className="mt-8 text-center">
-            <Link href="/v6/our-team/" className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-red hover:underline">
+            <Link href="/our-team/" className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-red hover:underline">
               View full team page →
             </Link>
           </div>
@@ -176,7 +176,7 @@ export default function V1AboutPage() {
           <p className="mt-6 text-white/40 text-lg max-w-xl mx-auto">Contact us today for a free consultation.</p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Button asChild size="lg" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-xl text-base h-13 px-8">
-              <Link href="/v6/contact-us/">Book a Consultation</Link>
+              <Link href="/contact-us/">Book a Consultation</Link>
             </Button>
             <Button asChild variant="outline-light" size="lg" className="rounded-xl text-base h-13">
               <DynamicCallLink className="inline-flex items-center"><Phone className="h-4 w-4 mr-2" /><DynamicPhoneText /></DynamicCallLink>

@@ -304,7 +304,7 @@ export function HousingQualifier() {
                 <AlertCircle className="h-3.5 w-3.5 shrink-0 mt-0.5" />
                 <span className="min-w-0 leading-snug">
                   Your details go straight to a solicitor — no third-party brokers. By submitting you agree to our{" "}
-                  <Link href="/v6/privacy-policy/" className="text-brand-red hover:underline whitespace-nowrap">privacy policy</Link>.
+                  <Link href="/privacy-policy/" className="text-brand-red hover:underline whitespace-nowrap">privacy policy</Link>.
                 </span>
               </p>
             </form>

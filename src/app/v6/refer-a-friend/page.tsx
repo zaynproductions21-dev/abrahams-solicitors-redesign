@@ -70,7 +70,7 @@ export default function ReferAFriendPage() {
                     service: caseType,
                     case: notes,
                   }, spam.payload());
-                  window.location.href = "/v6/thank-you/";
+                  window.location.href = "/thank-you/";
                 }}
                 className="bg-white rounded-2xl ring-1 ring-slate-200 shadow-sm p-6 lg:p-8 space-y-5"
               >
@@ -124,7 +124,7 @@ export default function ReferAFriendPage() {
             Give us a call — we&rsquo;ll walk you through how it works.
           </p>
           <Button asChild size="lg" className="mt-6 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 px-8 font-bold uppercase tracking-wide">
-            <Link href="/v6/contact-us/">Contact Us</Link>
+            <Link href="/contact-us/">Contact Us</Link>
           </Button>
         </div>
       </section>

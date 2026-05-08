@@ -33,7 +33,7 @@ export default function V6PressReleasePage() {
     return (
       <div className="py-32 text-center">
         <p className="text-slate-500 mb-4">Release not found.</p>
-        <Link href="/v6/press-releases/" className="text-brand-red font-semibold hover:underline">Back to press releases</Link>
+        <Link href="/press-releases/" className="text-brand-red font-semibold hover:underline">Back to press releases</Link>
       </div>
     );
   }
@@ -42,7 +42,7 @@ export default function V6PressReleasePage() {
     <article>
       <section className="bg-slate-50 py-10 lg:py-14 border-b border-slate-100">
         <div className="max-w-3xl mx-auto px-6 lg:px-8">
-          <Link href="/v6/press-releases/" className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-brand-red transition-colors mb-6">
+          <Link href="/press-releases/" className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-brand-red transition-colors mb-6">
             <ArrowLeft className="h-4 w-4" /> Back to press releases
           </Link>
           <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">Press Release</p>

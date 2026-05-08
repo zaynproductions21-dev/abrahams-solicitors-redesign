@@ -9,7 +9,7 @@ import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone
 import { Phone, Menu, ChevronDown, ArrowRight } from "lucide-react";
 
 function DesktopDropdown({ item }: { item: NavItem }) {
-  const href = item.href === "/" ? "/v6/" : `/v6${item.href}`;
+  const href = item.href === "/" ? "/" : `/v6${item.href}`;
   return (
     <div className="relative group">
       <Link
@@ -40,7 +40,7 @@ function DesktopDropdown({ item }: { item: NavItem }) {
 
 function MobileNavItem({ item, onNavigate }: { item: NavItem; onNavigate: () => void }) {
   const [open, setOpen] = useState(false);
-  const href = item.href === "/" ? "/v6/" : `/v6${item.href}`;
+  const href = item.href === "/" ? "/" : `/v6${item.href}`;
 
   if (!item.children) {
     return (
@@ -98,7 +98,7 @@ export function V6Header() {
               Free Immigration Consultation — Book Now
             </span>
             <Link
-              href="/v6/contact-us/"
+              href="/contact-us/"
               className="inline-flex items-center gap-1 text-xs font-semibold text-brand-red hover:text-brand-red/80 transition-colors"
             >
               Get started <ArrowRight className="h-3 w-3" />
@@ -111,7 +111,7 @@ export function V6Header() {
       <div className="bg-white/95 backdrop-blur-md border-b border-slate-100">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/v6/" className="flex items-center gap-2 shrink-0">
+            <Link href="/" className="flex items-center gap-2 shrink-0">
               <Image
                 src="/abrahams-logo.png"
                 alt="Abrahams Solicitors"
@@ -150,7 +150,7 @@ export function V6Header() {
                 <SheetContent side="right" className="w-[340px] p-0 overflow-y-auto">
                   <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                   <div className="p-6 border-b border-slate-100">
-                    <Link href="/v6/" onClick={closeMobile} className="flex items-center gap-2">
+                    <Link href="/" onClick={closeMobile} className="flex items-center gap-2">
                       <Image
                         src="/abrahams-logo.png"
                         alt="Abrahams Solicitors"
