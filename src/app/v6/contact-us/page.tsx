@@ -69,6 +69,10 @@ export default function V1ContactPage() {
                 onSubmit={async (e) => { e.preventDefault(); setError(""); if (!turnstileToken) { setError("Please complete the security check."); return; } pushFormSubmit({ email, phone }); await submitEnquiry({ source: 'contact-us', name, email, phone, service, case: message }, spam.payload(), turnstileToken); window.location.href = '/thank-you/'; }}
                 className="bg-white rounded-2xl ring-1 ring-slate-200 p-6 sm:p-8 lg:p-10 space-y-5"
               >
+                <div className="space-y-1.5 pb-2 border-b border-slate-100 -mx-6 sm:-mx-8 lg:-mx-10 px-6 sm:px-8 lg:px-10">
+                  <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Book Your Free Consultation</h2>
+                  <p className="text-sm text-slate-500 leading-relaxed">Tell us briefly about your case and a qualified solicitor will call you back within the hour. No call centres, no obligation.</p>
+                </div>
                 {error && <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3">{error}</p>}
                 <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
                 <GclidField />
