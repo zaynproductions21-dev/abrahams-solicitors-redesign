@@ -26,25 +26,24 @@ const nextConfig: NextConfig = {
       { source: "/uk-private-life-visa-ilr/", destination: "/indefinite-leave-to-remain-ilr/", permanent: true },
 
       // ---- Personal Injury pages ---------------------------------------
-      // The previous site had 15 personal-injury sub-pages. The redesign
-      // doesn't have dedicated PI pages yet — all redirect to /contact-us/
-      // until a PI hub page is built. Update destinations here when that
-      // landing page exists.
-      { source: "/personal-injury/", destination: "/contact-us/", permanent: true },
-      { source: "/accidents-at-work/", destination: "/contact-us/", permanent: true },
-      { source: "/employers-duty-of-care/", destination: "/contact-us/", permanent: true },
-      { source: "/back-injury-claims/", destination: "/contact-us/", permanent: true },
-      { source: "/slips-and-trips/", destination: "/contact-us/", permanent: true },
-      { source: "/fall-from-height-claims/", destination: "/contact-us/", permanent: true },
-      { source: "/car-accidents-claims/", destination: "/contact-us/", permanent: true },
-      { source: "/motorcycle-accident-claims/", destination: "/contact-us/", permanent: true },
-      { source: "/passenger-claims/", destination: "/contact-us/", permanent: true },
-      { source: "/pedestrian-claims/", destination: "/contact-us/", permanent: true },
-      { source: "/serious-injury-claims/", destination: "/contact-us/", permanent: true },
-      { source: "/fatal-accident-claims/", destination: "/contact-us/", permanent: true },
-      { source: "/head-and-brain-injury/", destination: "/contact-us/", permanent: true },
-      { source: "/loss-of-sight-claims/", destination: "/contact-us/", permanent: true },
-      { source: "/spinal-injury-claims/", destination: "/contact-us/", permanent: true },
+      // /personal-injury/ is now a bespoke hub page. All 14 sub-pages from
+      // the legacy site (which don't have dedicated v6 equivalents) redirect
+      // there for topical relevance + SEO.
+      // Note: /personal-injury/ itself is NOT redirected — that's the hub.
+      { source: "/accidents-at-work/", destination: "/personal-injury/", permanent: true },
+      { source: "/employers-duty-of-care/", destination: "/personal-injury/", permanent: true },
+      { source: "/back-injury-claims/", destination: "/personal-injury/", permanent: true },
+      { source: "/slips-and-trips/", destination: "/personal-injury/", permanent: true },
+      { source: "/fall-from-height-claims/", destination: "/personal-injury/", permanent: true },
+      { source: "/car-accidents-claims/", destination: "/personal-injury/", permanent: true },
+      { source: "/motorcycle-accident-claims/", destination: "/personal-injury/", permanent: true },
+      { source: "/passenger-claims/", destination: "/personal-injury/", permanent: true },
+      { source: "/pedestrian-claims/", destination: "/personal-injury/", permanent: true },
+      { source: "/serious-injury-claims/", destination: "/personal-injury/", permanent: true },
+      { source: "/fatal-accident-claims/", destination: "/personal-injury/", permanent: true },
+      { source: "/head-and-brain-injury/", destination: "/personal-injury/", permanent: true },
+      { source: "/loss-of-sight-claims/", destination: "/personal-injury/", permanent: true },
+      { source: "/spinal-injury-claims/", destination: "/personal-injury/", permanent: true },
 
       // Core pages and unchanged practice-area slugs are served directly
       // by the proxy + v6 file tree — no redirect entry needed for those
