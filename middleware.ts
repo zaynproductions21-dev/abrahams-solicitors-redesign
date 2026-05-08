@@ -1,8 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 /**
- * Cutover proxy. Runs on every incoming request to map clean URLs to the
- * v6 file tree.
+ * Cutover middleware. Runs on every incoming request to map clean URLs
+ * to the v6 file tree.
  *
  * The rebuilt site lives in `src/app/v6/*`, but visible URLs must be clean —
  * never `/v6/...`.
@@ -21,7 +21,7 @@ import { NextResponse, type NextRequest } from "next/server";
  * file extension (so static assets, sitemap, robots, llms.txt etc all
  * serve as-is from the file system).
  */
-export function proxy(request: NextRequest) {
+export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Skip: API routes, Next internals, static files, well-known files.
