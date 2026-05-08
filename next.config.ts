@@ -20,9 +20,9 @@ const nextConfig: NextConfig = {
       { source: "/make-an-appointment/", destination: "/free-consultation/", permanent: true },
 
       // ---- Immigration sub-pages with no direct v6 equivalent ---------
-      // Redirect to the parent /immigration/ page rather than a generic stub.
-      { source: "/uk-dependent-child-visa/", destination: "/immigration/", permanent: true },
-      { source: "/uk-dependent-parent-visa/", destination: "/immigration/", permanent: true },
+      // /uk-dependent-child-visa/ and /uk-dependent-parent-visa/ now have
+      // bespoke landing pages — they're served by the v6 file tree directly,
+      // no redirect needed.
       { source: "/uk-private-life-visa-ilr/", destination: "/indefinite-leave-to-remain-ilr/", permanent: true },
 
       // ---- Personal Injury pages ---------------------------------------
