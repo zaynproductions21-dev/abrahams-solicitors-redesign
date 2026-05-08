@@ -295,7 +295,7 @@ export default function V6HomePage() {
             ].map((office) => (
               <div key={office.city} className="bg-white rounded-xl border border-slate-100 p-6">
                 <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-4 flex items-center gap-2">
-                  {office.city} Office
+                  {office.city} Office{office.city === "London" && <sup className="text-brand-red">*</sup>}
                   {office.tag && <span className="text-[10px] font-semibold bg-brand-red/10 text-brand-red px-2 py-0.5 rounded normal-case tracking-normal">{office.tag}</span>}
                 </p>
                 <div className="space-y-3">
@@ -308,6 +308,7 @@ export default function V6HomePage() {
                     <a href={`tel:${office.phone.replace(/\s/g, "")}`} className="text-sm text-slate-900 hover:text-brand-red transition-colors">{office.phone}</a>
                   )}</div>
                   <div className="flex items-center gap-3"><Clock className="h-4 w-4 text-slate-300 shrink-0" /><p className="text-sm text-slate-400">Mon &ndash; Fri: 9:00am &ndash; 5:00pm</p></div>
+                  {office.city === "London" && <p className="text-xs text-slate-400 italic pt-1">*Strictly by appointment only</p>}
                 </div>
               </div>
             ))}

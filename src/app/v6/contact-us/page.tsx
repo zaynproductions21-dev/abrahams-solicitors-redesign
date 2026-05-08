@@ -142,7 +142,7 @@ export default function V1ContactPage() {
                 <div key={office.city} className="bg-white rounded-2xl ring-1 ring-slate-200 overflow-hidden">
                   <div className="p-6">
                     <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
-                      {office.city} Office
+                      {office.city} Office{office.city === "London" && <sup className="text-brand-gold">*</sup>}
                       {office.tag && <span className="text-[10px] font-semibold bg-brand-red/10 text-brand-red px-2 py-0.5 rounded normal-case tracking-normal">{office.tag}</span>}
                     </p>
                     <div className="flex items-start gap-3 mb-2">
@@ -160,6 +160,7 @@ export default function V1ContactPage() {
                         {office.phone}
                       </a>
                     )}
+                    {office.city === "London" && <p className="text-xs text-slate-400 italic mt-2">*Strictly by appointment only</p>}
                   </div>
                   <OfficeMap city={office.city} address={office.address} className="rounded-none border-0 border-t border-slate-100" />
                 </div>

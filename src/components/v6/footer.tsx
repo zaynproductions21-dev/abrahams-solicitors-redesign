@@ -197,7 +197,7 @@ export function V6Footer() {
               {offices.map(office => (
                 <div key={office.city}>
                   <h3 className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
-                    {office.city}
+                    {office.city}{office.city === "London" && <sup className="text-brand-gold">*</sup>}
                     {office.tag && (
                       <span className="text-[9px] font-semibold bg-brand-red/15 text-brand-red px-1.5 py-0.5 rounded normal-case tracking-normal">{office.tag}</span>
                     )}
@@ -210,6 +210,7 @@ export function V6Footer() {
                     <Clock className="h-3.5 w-3.5 shrink-0 mt-0.5" />
                     <span>Mon – Fri · 9am – 5pm</span>
                   </div>
+                  {office.city === "London" && <p className="text-[11px] text-white/40 italic mt-2">*Strictly by appointment only</p>}
                 </div>
               ))}
             </div>
