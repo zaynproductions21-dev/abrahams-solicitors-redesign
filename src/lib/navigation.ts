@@ -85,11 +85,11 @@ export const navigation: NavItem[] = [
   },
   {
     label: "Housing",
-    href: "/housing-disrepair-claims/",
+    href: "/housing-disrepair/",
     children: [
           {
                 "label": "Housing Disrepair Claims",
-                "href": "/housing-disrepair-claims/"
+                "href": "/housing-disrepair/"
           }
     ],
   },

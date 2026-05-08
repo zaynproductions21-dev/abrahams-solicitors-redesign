@@ -1019,7 +1019,7 @@ export const immigrationPages: ServicePage[] = [
 
 export const housingPages: ServicePage[] = [
   {
-    "slug": "housing-disrepair-claims",
+    "slug": "housing-disrepair",
     "title": "HOUSING DISREPAIR CLAIMS",
     "metaTitle": "Housing Disrepair Claims Solicitors | No Win No Fee Property Law",
     "metaDescription": "Expert housing disrepair claims solicitors. No win, no fee. Get compensation for poor housing conditions. Free claim assessment available.",

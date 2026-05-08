@@ -7,7 +7,7 @@
 // Default — direct, organic, social, email, referral.
 // Google  — visitor arrived with ?gclid= (Google Ads click).
 // Bing    — visitor arrived with ?msclkid= (Microsoft/Bing Ads click).
-// Housing — fixed override on /v6/housing-disrepair-claims/ regardless
+// Housing — fixed override on /v6/housing-disrepair/ regardless
 //           of source (we don't run paid for housing disrepair).
 
 export type PhoneVariant = "default" | "google" | "bing" | "housing";

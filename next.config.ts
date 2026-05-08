@@ -15,9 +15,14 @@ const nextConfig: NextConfig = {
 
       // ---- Renamed practice-area + booking pages ----------------------
       { source: "/immigration-law/", destination: "/immigration/", permanent: true },
-      { source: "/housing-disrepair/", destination: "/housing-disrepair-claims/", permanent: true },
       { source: "/british-citizenship/", destination: "/british-citizenship-solicitors/", permanent: true },
       { source: "/make-an-appointment/", destination: "/free-consultation/", permanent: true },
+
+      // ---- Reverse redirect — earlier the bespoke housing page lived at
+      // /housing-disrepair-claims/. Now it lives at /housing-disrepair/
+      // (matching the live ad URL). Anything still pointing at the old
+      // slug bounces to the canonical URL.
+      { source: "/housing-disrepair-claims/", destination: "/housing-disrepair/", permanent: true },
 
       // ---- Immigration sub-pages with no direct v6 equivalent ---------
       // /uk-dependent-child-visa/ and /uk-dependent-parent-visa/ now have

@@ -13,7 +13,7 @@ declare global {
 
 /** Returns the phone variant a given pathname + source combination maps to. */
 function pickVariant(pathname: string | null, source: TrafficSource): PhoneVariant {
-  if (pathname && pathname.includes("/housing-disrepair-claims")) return "housing";
+  if (pathname && pathname.includes("/housing-disrepair")) return "housing";
   if (source === "google") return "google";
   if (source === "bing") return "bing";
   return "default";

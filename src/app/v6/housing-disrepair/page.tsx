@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 
 const HOUSING_AUTHOR = team.find(t => t.slug === "sannah-khatoon")!;
-const PAGE_URL = "https://www.abrahamssolicitors.co.uk/housing-disrepair-claims/";
+const PAGE_URL = "https://www.abrahamssolicitors.co.uk/housing-disrepair/";
 
 const ISSUE_CATALOG = [
   { name: "Damp and mould claims", description: "Compensation and repairs for prolonged damp, condensation, and black mould affecting health or property." },
@@ -188,7 +188,7 @@ export default function HousingDisrepairClaimsPage() {
       <JsonLd data={legalServiceWithCatalogSchema({
         name: "Housing Disrepair Claims",
         description: "No Win, No Fee housing disrepair claims against councils, housing associations and private landlords across England and Wales. Compensation and repairs for damp, mould, leaks, broken heating, faulty electrics and unsafe conditions. SRA-regulated firm #809071.",
-        slug: "housing-disrepair-claims",
+        slug: "housing-disrepair",
         author: { name: HOUSING_AUTHOR.name, sraUrl: HOUSING_AUTHOR.sraUrl },
         catalog: ISSUE_CATALOG,
       })} />

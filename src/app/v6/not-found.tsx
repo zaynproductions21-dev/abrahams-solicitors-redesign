@@ -9,7 +9,7 @@ const popular = [
   { label: "UK Spouse Visa Solicitors", href: "/uk-spouse-visa-solicitors/" },
   { label: "British Citizenship", href: "/british-citizenship-solicitors/" },
   { label: "Indefinite Leave to Remain", href: "/indefinite-leave-to-remain-ilr/" },
-  { label: "Housing Disrepair Claims", href: "/housing-disrepair-claims/" },
+  { label: "Housing Disrepair Claims", href: "/housing-disrepair/" },
   { label: "Our Fees", href: "/our-fees/" },
   { label: "Free Consultation", href: "/free-consultation/" },
 ];
