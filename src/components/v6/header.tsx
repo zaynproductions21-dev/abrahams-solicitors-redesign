@@ -9,11 +9,10 @@ import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone
 import { Phone, Menu, ChevronDown, ArrowRight } from "lucide-react";
 
 function DesktopDropdown({ item }: { item: NavItem }) {
-  const href = item.href === "/" ? "/" : `/v6${item.href}`;
   return (
     <div className="relative group">
       <Link
-        href={href}
+        href={item.href}
         className="flex items-center gap-1 px-3 py-2 text-[13px] font-semibold tracking-wide uppercase text-brand-navy hover:text-brand-red transition-colors whitespace-nowrap"
       >
         {item.label}
@@ -25,7 +24,7 @@ function DesktopDropdown({ item }: { item: NavItem }) {
             {item.children.map((child) => (
               <Link
                 key={child.href}
-                href={`/v6${child.href}`}
+                href={child.href}
                 className="block px-4 py-2.5 text-sm text-brand-navy/70 hover:bg-slate-50 hover:text-brand-red rounded-xl transition-colors"
               >
                 {child.label}
@@ -40,12 +39,11 @@ function DesktopDropdown({ item }: { item: NavItem }) {
 
 function MobileNavItem({ item, onNavigate }: { item: NavItem; onNavigate: () => void }) {
   const [open, setOpen] = useState(false);
-  const href = item.href === "/" ? "/" : `/v6${item.href}`;
 
   if (!item.children) {
     return (
       <Link
-        href={href}
+        href={item.href}
         onClick={onNavigate}
         className="block px-6 py-3.5 text-[15px] font-medium text-brand-navy hover:text-brand-red border-b border-slate-100"
       >
@@ -65,13 +63,13 @@ function MobileNavItem({ item, onNavigate }: { item: NavItem; onNavigate: () => 
       </button>
       {open && (
         <div className="bg-slate-50/60 pb-2">
-          <Link href={href} onClick={onNavigate} className="block px-8 py-2.5 text-sm text-brand-navy/70 hover:text-brand-red">
+          <Link href={item.href} onClick={onNavigate} className="block px-8 py-2.5 text-sm text-brand-navy/70 hover:text-brand-red">
             Overview
           </Link>
           {item.children.map((child) => (
             <Link
               key={child.href}
-              href={`/v6${child.href}`}
+              href={child.href}
               onClick={onNavigate}
               className="block px-8 py-2.5 text-sm text-brand-navy/70 hover:text-brand-red"
             >

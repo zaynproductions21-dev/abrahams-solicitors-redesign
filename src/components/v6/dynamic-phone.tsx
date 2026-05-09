@@ -21,15 +21,20 @@ function pickVariant(pathname: string | null, source: TrafficSource): PhoneVaria
 
 /**
  * Hook returning the phone number to display for the current page + traffic
- * source. SSR-safe: returns the default number on the server and during the
- * first client render, then swaps to the correct one after hydration.
+ * source.
+ *
+ * - The pathname-based override (e.g. /housing-disrepair/ → housing number)
+ *   resolves at SSR time, so search engines and zero-JS visitors see the
+ *   correct editorial number for the page.
+ * - The traffic-source override (gclid/msclkid → google/bing number) only
+ *   resolves after hydration because it depends on cookie state the server
+ *   doesn't have. The hook starts on "direct" then upgrades on client mount.
  */
 export function useDisplayPhone(): { number: PhoneNumber; variant: PhoneVariant; source: TrafficSource } {
   const pathname = usePathname();
-  const [state, setState] = useState<{ number: PhoneNumber; variant: PhoneVariant; source: TrafficSource }>({
-    number: PHONE_NUMBERS.default,
-    variant: "default",
-    source: "direct",
+  const [state, setState] = useState<{ number: PhoneNumber; variant: PhoneVariant; source: TrafficSource }>(() => {
+    const variant = pickVariant(pathname, "direct");
+    return { number: PHONE_NUMBERS[variant], variant, source: "direct" };
   });
 
   useEffect(() => {
