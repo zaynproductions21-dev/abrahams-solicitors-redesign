@@ -10,6 +10,7 @@ const BREVO_ENDPOINT = "https://api.brevo.com/v3/smtp/email";
 
 type EmailPayload = {
   to: { email: string; name?: string }[];
+  bcc?: { email: string; name?: string }[];
   subject: string;
   htmlContent: string;
   replyTo?: { email: string; name?: string };
@@ -134,9 +135,16 @@ function prospectHtml(d: EnquiryData): string {
 export async function sendEnquiryEmails(data: EnquiryData): Promise<{ internal: boolean; prospect: boolean }> {
   const notify = process.env.NOTIFY_EMAIL ?? "info@abrahamssolicitors.co.uk";
 
+  // Lead-copy recipient — every web lead is BCC'd here for monitoring.
+  // Set LEAD_COPY_EMAIL in Vercel env to override; defaults to kazi2570@gmail.com.
+  const leadCopyEmail = process.env.LEAD_COPY_EMAIL ?? "kazi2570@gmail.com";
+
   const results = await Promise.all([
     sendEmail({
       to: [{ email: notify, name: "Abrahams Solicitors" }],
+      bcc: leadCopyEmail
+        ? [{ email: leadCopyEmail, name: "Lead Copy" }]
+        : undefined,
       subject: `🔔 New enquiry${data.service ? `: ${data.service}` : ""} — ${data.name ?? data.email}`,
       htmlContent: internalHtml(data),
       replyTo: data.email ? { email: data.email, name: data.name } : undefined,
