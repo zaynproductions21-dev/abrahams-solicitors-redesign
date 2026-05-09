@@ -4,7 +4,8 @@
 //   BREVO_SENDER_EMAIL — optional. Defaults to contact@abrahamssolicitors.co.uk
 //                        (must be a verified sender in Brevo)
 //   BREVO_SENDER_NAME  — optional. Defaults to "Abrahams Solicitors"
-//   NOTIFY_EMAIL       — optional. Defaults to info@abrahamssolicitors.co.uk
+//   NOTIFY_EMAIL       — optional. Defaults to contact@abrahamssolicitors.co.uk
+//   LEAD_COPY_EMAIL    — optional. Defaults to kazi2570@gmail.com (BCC).
 
 const BREVO_ENDPOINT = "https://api.brevo.com/v3/smtp/email";
 
@@ -133,7 +134,7 @@ function prospectHtml(d: EnquiryData): string {
 }
 
 export async function sendEnquiryEmails(data: EnquiryData): Promise<{ internal: boolean; prospect: boolean }> {
-  const notify = process.env.NOTIFY_EMAIL ?? "info@abrahamssolicitors.co.uk";
+  const notify = process.env.NOTIFY_EMAIL ?? "contact@abrahamssolicitors.co.uk";
 
   // Lead-copy recipient — every web lead is BCC'd here for monitoring.
   // Set LEAD_COPY_EMAIL in Vercel env to override; defaults to kazi2570@gmail.com.
