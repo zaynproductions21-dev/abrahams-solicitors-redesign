@@ -29,23 +29,26 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true });
   }
 
-  // Verify Cloudflare Turnstile token
+  // Cloudflare Turnstile is rendered on /contact-us/ but NOT on the other v6
+  // forms (homepage, free-consultation, the housing/PI/visa qualifiers, the
+  // [slug] consultation form). Those forms rely on the honeypot + timestamp
+  // spam guard above. So: when a Turnstile token IS provided, verify it; when
+  // it is NOT provided, fall through to processing.
   const turnstileToken = body["cf-turnstile-response"];
-  if (!turnstileToken) {
-    return NextResponse.json({ success: false, error: "Security check required" }, { status: 400 });
-  }
-  try {
-    const tsRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ secret: process.env.TURNSTILE_SECRET_KEY, response: turnstileToken }),
-    });
-    const tsData = await tsRes.json();
-    if (!tsData.success) {
-      return NextResponse.json({ success: true }); // Silent reject like spam
+  if (turnstileToken) {
+    try {
+      const tsRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ secret: process.env.TURNSTILE_SECRET_KEY, response: turnstileToken }),
+      });
+      const tsData = await tsRes.json();
+      if (!tsData.success) {
+        return NextResponse.json({ success: true }); // Silent reject like spam
+      }
+    } catch {
+      // Verification service unreachable — fail open. Spam guard already passed.
     }
-  } catch {
-    // If verification service is down, let it through (fail open)
   }
 
   const apiKey = process.env.SALESHUB_API_KEY;
