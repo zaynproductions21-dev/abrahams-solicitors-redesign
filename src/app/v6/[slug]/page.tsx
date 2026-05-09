@@ -12,15 +12,18 @@ import { GclidField, MsclkidField } from "@/components/v6/gclid-field";
 import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { TeamStrip } from "@/components/v6/team-strip";
-import { JsonLd, faqPageSchema, breadcrumbSchema, serviceSchema } from "@/components/v6/jsonld";
+import { JsonLd, faqPageSchema, breadcrumbSchema, serviceSchema, personSchema } from "@/components/v6/jsonld";
 import { submitEnquiry } from "@/lib/publishos";
 import {
   CheckCircle2, ArrowRight, Phone, ChevronRight, ChevronDown,
   MessageCircle, Mail, Star, Shield, PoundSterling, Headset,
+  Calendar, Scale, ExternalLink,
 } from "lucide-react";
 import {
   getServicePage, immigrationPages, personalInjuryPages, housingPage,
+  SERVICE_METADATA, DEFAULT_LAST_REVIEWED,
 } from "@/lib/services-data";
+import { team } from "@/lib/team";
 
 function stripHeadingPrefix(text: string): string {
   return text
@@ -113,16 +116,32 @@ export default function V6ServicePage() {
   const isCitizenship = slug.includes("citizenship") || slug.includes("naturalisation");
   const priceLabel = isHousing ? "No Win, No Fee" : "From £240*";
 
+  // E-E-A-T metadata: author byline, last-reviewed date, statutory framework.
+  // Resolved per service from SERVICE_METADATA (Content Quality council, May 2026).
+  const meta = SERVICE_METADATA[slug];
+  const author = meta?.authorSlug ? team.find(t => t.slug === meta.authorSlug) : undefined;
+  const lastReviewed = meta?.lastReviewed ?? (author ? DEFAULT_LAST_REVIEWED : null);
+
   return (
     <>
       <JsonLd data={serviceSchema({ name: stripHeadingPrefix(page.title), description: stripHeadingPrefix(page.heroDescription), slug, priceLabel })} />
       <JsonLd data={breadcrumbSchema([
         { name: "Home", url: "https://www.abrahamssolicitors.co.uk/" },
-        ...(page.parentService && page.parentHref ? [{ name: page.parentService, url: `https://www.abrahamssolicitors.co.uk/v6${page.parentHref}` }] : []),
+        ...(page.parentService && page.parentHref ? [{ name: page.parentService, url: `https://www.abrahamssolicitors.co.uk${page.parentHref}` }] : []),
         { name: stripHeadingPrefix(page.title) },
       ])} />
       {page.faqs && page.faqs.length > 0 && (
         <JsonLd data={faqPageSchema(page.faqs.map(f => ({ question: stripHeadingPrefix(f.question), answer: stripHeadingPrefix(f.answer) })))} />
+      )}
+      {author && (
+        <JsonLd data={personSchema({
+          name: author.name,
+          jobTitle: author.role,
+          sraNumber: author.sraNumber,
+          sraUrl: author.sraUrl,
+          bio: author.short,
+          slug: author.slug,
+        })} />
       )}
       {/* ─── Breadcrumb ─── own row above hero so it reads as navigation */}
       <section className="bg-slate-50/60 border-b border-slate-100">
@@ -185,6 +204,31 @@ export default function V6ServicePage() {
                 </DynamicCallLink>
               </div>
 
+              {/* Author byline (E-E-A-T) — only when an author is mapped for this service */}
+              {author && (
+                <div className="mt-6 flex items-center gap-3 pt-5 border-t border-slate-100">
+                  <div className="w-10 h-10 rounded-full bg-brand-navy text-white flex items-center justify-center font-bold text-sm shrink-0">
+                    {author.name.split(" ").map(n => n[0]).join("")}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-sm text-slate-700">
+                      Reviewed by <Link href="/our-team/" className="font-semibold text-slate-900 hover:text-brand-red">{author.name}</Link> &mdash; {author.role.toLowerCase()}.
+                    </p>
+                    <p className="text-xs text-slate-400">
+                      SRA #{author.sraNumber} &middot; Admitted {author.admittedYear} &middot;{" "}
+                      <a href={author.sraUrl} target="_blank" rel="noopener noreferrer" className="hover:text-brand-red underline-offset-2 hover:underline">
+                        Verify on SRA register
+                      </a>
+                    </p>
+                    {lastReviewed && (
+                      <p className="text-xs text-slate-400 mt-1 flex items-center gap-1">
+                        <Calendar className="h-3 w-3" /> Last reviewed: {lastReviewed}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              )}
+
               {/* Trust strip */}
               <div className="flex items-center gap-6 mt-6 pt-5 border-t border-slate-100">
                 {[
@@ -208,6 +252,41 @@ export default function V6ServicePage() {
       </section>
 
       <TrustBadges />
+
+      {/* ─── Statutory framework — only when the service has cited statutes */}
+      {meta?.statutes && meta.statutes.length > 0 && (
+        <section className="py-10 lg:py-14 bg-slate-50/60 border-y border-slate-100">
+          <div className="max-w-[1100px] mx-auto px-6 lg:px-8">
+            <div className="max-w-2xl mb-8">
+              <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">Your legal framework</p>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">
+                The sources of law that govern this route
+              </h2>
+              <p className="mt-3 text-base text-slate-600 leading-relaxed">
+                We cite each source so you can verify it yourself.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-4">
+              {meta.statutes.map(s => (
+                <div key={s.name} className="bg-white rounded-2xl border border-slate-100 p-5 sm:p-6">
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-brand-red/10 text-brand-red flex items-center justify-center shrink-0">
+                      <Scale className="h-5 w-5" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-sm font-bold text-slate-900">{s.name}</p>
+                      <p className="mt-1.5 text-sm text-slate-600 leading-relaxed">{s.what}</p>
+                      <a href={s.href} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-brand-red hover:underline">
+                        Read source <ExternalLink className="h-3 w-3" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ─── Content sections ─── alternating layout */}
       <section className="py-10 lg:py-14">
@@ -346,11 +425,14 @@ export default function V6ServicePage() {
         </div>
       </section>
 
-      {/* ─── Price footnote ─── */}
+      {/* ─── Price footnote + YMYL disclaimer ─── */}
       <section className="bg-white border-t border-slate-100">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8 py-5">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8 py-5 space-y-2">
           <p className="text-xs text-slate-400 text-center leading-relaxed">
-            *Fixed fee price subject to our free case assessment. All fees are quoted upfront — no hidden charges.
+            *Fixed fee price subject to our free case assessment. All fees are quoted upfront — no hidden charges. UKVI government fees and the Immigration Health Surcharge are separate and change periodically — confirm current rates at gov.uk before applying.
+          </p>
+          <p className="text-xs text-slate-400 text-center leading-relaxed">
+            This page is general guidance, not legal advice. For advice on your circumstances, contact us. Abrahams Solicitors &middot; SRA-regulated firm #809071.{lastReviewed ? ` Last reviewed: ${lastReviewed}.` : ""}
           </p>
         </div>
       </section>
