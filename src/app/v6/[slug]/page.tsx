@@ -12,6 +12,7 @@ import { GclidField, MsclkidField } from "@/components/v6/gclid-field";
 import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { TeamStrip } from "@/components/v6/team-strip";
+import { VisaWizardWidget } from "@/components/v6/visa-wizard-widget";
 import { JsonLd, faqPageSchema, breadcrumbSchema, serviceSchema, personSchema } from "@/components/v6/jsonld";
 import { submitEnquiry } from "@/lib/publishos";
 import {
@@ -114,6 +115,11 @@ export default function V6ServicePage() {
   // Determine pricing display
   const isHousing = slug.includes("housing") || slug.includes("disrepair");
   const isCitizenship = slug.includes("citizenship") || slug.includes("naturalisation");
+  // Pattern A from Council placement decision — embed the wizard inline on
+  // the spouse-visa hero instead of the standard consultation form. v1
+  // placement test; if this converts better than the form we'll roll out
+  // to the rest of the partner-visa cluster.
+  const isSpouseVisa = slug === "uk-spouse-visa" || slug === "uk-spouse-visa-solicitors";
   const priceLabel = isHousing ? "No Win, No Fee" : "From £240*";
 
   // E-E-A-T metadata: author byline, last-reviewed date, statutory framework.
@@ -245,7 +251,9 @@ export default function V6ServicePage() {
 
             {/* Right: 2 cols — consultation form */}
             <div className="lg:col-span-2 min-w-0" id="consultation-form">
-              <ConsultationForm serviceName={page.title} />
+              {isSpouseVisa
+                ? <VisaWizardWidget compact source={`visa-wizard-embed:${slug}`} />
+                : <ConsultationForm serviceName={page.title} />}
             </div>
           </div>
         </div>
