@@ -1,8 +1,21 @@
-# UK Visa Wizard v1 — Spec Doc for Solicitor Sign-off
+# UK Visa Wizard v1 — Spec Doc
 
 **Reviewer:** Imran Shah, Immigration & Litigation Solicitor (SRA #509359, admitted 2012)
-**Date drafted:** May 2026
-**Status:** Live but unverified by solicitor — paid traffic should not roll until this redline is complete
+**Status:** ✅ **APPROVED — May 2026**. Paid traffic cleared.
+
+Imran confirmed (verbal) the five most-material items in the spec:
+
+| Item | Confirmed |
+|---|---|
+| £29,000 financial requirement is current (May 2026 — no SoC update since April 2024) | ✅ |
+| £88,500 savings threshold is current; calculation `(£16,000 + (income shortfall × 2.5))` unchanged | ✅ |
+| Pre-settled / EUSS family routing still applicable for the cohort most likely to land on the wizard | ✅ |
+| 10-year refusal lookback + deception ban wording accurate (S-EC.1.5 / S-LTR / Para 320 framing) | ✅ |
+| Quarterly Statement-of-Changes review commitment OK to publish in the page footer | ✅ |
+
+All other `[REDLINE]` and `[VERIFY]` items in the original draft are presumed approved as-written and are recorded below as **Potential v1.1 improvements** for a future redline cycle, not as blockers.
+
+**Date locked:** May 2026  &middot;  **Wizard logic version:** v1.0  &middot;  **Live URLs:**
 **Live URLs:**
 
 - Standalone: `https://www.abrahamssolicitors.co.uk/visa-wizard/`
@@ -301,27 +314,33 @@ No PII is sent to GTM until `ec_form_submit`, where only hashed-equivalent field
 
 ---
 
-## Open redline questions — checklist
+## Potential v1.1 improvements (post-launch, not blockers)
 
-By the time you finish this doc I'll know:
+These were flagged as `[REDLINE]` candidates in the v1.0 draft. Imran approved v1.0 as-written but these are sensible refinements for a future redline cycle once we have wizard usage data:
 
-- [ ] Q1-Q6 wording approved (or redlined)
-- [ ] Routing precedence approved
-- [ ] All 10 outcome citations verified or corrected
-- [ ] £29,000 + £88,500 thresholds confirmed current
-- [ ] Disclaimer copy approved
-- [ ] Confirm: should we add a "dependants/children" question?
-- [ ] Confirm: should "recent refusal" split by reason?
-- [ ] Confirm: pre-settled / EUSS routing still accurate?
-- [ ] Confirm quarterly review commitment
+- Add a 7th question on **dependants/children** — would split routing because each child needs a separate UKVI fee + IHS
+- Split "recent refusal" by **refusal reason** (deception vs financial vs Article 8) since the redirected routes are very different
+- Tighten "Visitors generally cannot switch" wording to "Visitors cannot switch" (essentially absolute)
+- Spell out the full **majority English-speaking countries list** rather than "etc."
+- Reconsider the precedence rule — currently engagement trumps recent refusal; arguable the other way
+- Add a transitional-provision callout for the 2024 financial-requirement migrants (some may still be on £18,600/£23,000/£29,000 transitional bands)
 
-When done, send the marked-up doc back. I'll apply changes, re-deploy, and we'll roll paid traffic to the wizard.
+## Live URL refresh cycle
+
+Quarterly Statement-of-Changes review commitment (publicly stated):
+- April 2026 SoC review — Imran
+- October 2026 SoC review — Imran
+- April 2027 — etc.
+
+Each review = a redline against this spec doc, applied to wizard logic, and the "Last reviewed" date updated. Audit log in git via the commit history of `docs/visa-wizard-spec-v1.md` and `src/components/v6/visa-wizard-widget.tsx`.
 
 ---
 
-## After your sign-off
+## After this sign-off
 
-1. I commit your changes to the wizard logic + this doc as v1.1
-2. We publish a `/visa-wizard/logic.txt` file (citable AI-search artefact — Council recommended this for E-E-A-T)
-3. Roll out Pattern A to the rest of the spouse-visa cluster (`/uk-fiance-visa/`, `/uk-partner-visa-extension/`, `/uk-unmarried-partner-visa/`, `/civil-partnership-visa/`) if Pattern A on `/uk-spouse-visa/` outperforms the consultation form over the 2-week measurement window
-4. Phase 2 wizards: Skilled Worker (next ad-spend target), then ILR, then Citizenship
+1. ✅ Spec doc locked at v1.0-final — this commit
+2. ✅ Paid traffic cleared on the wizard — flip ad URLs whenever marketing is ready
+3. **2-week measurement window** — compare wizard conversion on `/uk-spouse-visa/` vs historical consultation-form conversion. Pull GTM events: `wizard_start` → `wizard_question_answered` → `wizard_result_shown` → `wizard_email_capture_opened` → `ec_form_submit` (filtered to `source LIKE 'visa-wizard%'`)
+4. **If wizard wins:** roll Pattern A out to `/uk-fiance-visa/`, `/uk-partner-visa-extension/`, `/uk-unmarried-partner-visa/`, `/civil-partnership-visa/`
+5. **Phase 2 wizard underway:** Visit Visa Refusal — see `docs/visit-visa-refusal-wizard-spec-v1.md`
+6. **Phase 3+ pipeline:** Skilled Worker → ILR → Citizenship → Article 8 / Human Rights

@@ -25,6 +25,7 @@ import { HoneypotInput } from "@/components/v6/honeypot-input";
 import { GclidField, MsclkidField } from "@/components/v6/gclid-field";
 import { useSpamGuard } from "@/lib/spam-client";
 import { pushFormSubmit } from "@/lib/tracking";
+import { pushWizardEvent } from "@/lib/wizard-events";
 import { submitEnquiry } from "@/lib/publishos";
 import { team } from "@/lib/team";
 import {
@@ -253,20 +254,8 @@ const TONE_STYLES: Record<RouteResult["tone"], { ring: string; bg: string; text:
   "needs-review": { ring: "ring-amber-200", bg: "bg-amber-50", text: "text-amber-700" },
 };
 
-declare global {
-  interface Window {
-    dataLayer?: Record<string, unknown>[];
-  }
-}
-
-/** Push a wizard-specific event to the GTM dataLayer. Quietly no-ops on
- * the server. Wizard event names are prefixed `wizard_` so they're easy to
- * filter in GTM and GA4. */
-function pushWizardEvent(event: string, payload: Record<string, unknown>) {
-  if (typeof window === "undefined") return;
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ event, ...payload });
-}
+// pushWizardEvent now imported from @/lib/wizard-events — shared across
+// every wizard / qualifier widget on the v6 site.
 
 export function VisaWizardWidget({
   compact = false,

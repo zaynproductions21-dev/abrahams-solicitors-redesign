@@ -1,14 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ArrowRight, ArrowLeft, ShieldCheck, CheckCircle2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { pushFormSubmit } from "@/lib/tracking";
+import { pushWizardEvent } from "@/lib/wizard-events";
 import { useSpamGuard } from "@/lib/spam-client";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
 import { GclidField, MsclkidField } from "@/components/v6/gclid-field";
 import { submitEnquiry } from "@/lib/publishos";
+
+const WIZARD_SOURCE = "housing-qualifier";
 
 const ISSUES = [
   { id: "damp", label: "Damp / condensation" },
@@ -92,6 +95,30 @@ export function HousingQualifier() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState<Strength | null>(null);
   const spam = useSpamGuard();
+
+  // GTM telemetry: fire wizard_start once on first mount, then
+  // wizard_question_answered when each step advances. wizard_result_shown
+  // fires from the result-render branch (after submission, since this
+  // qualifier asks for contact details as part of the qualifier itself
+  // and shows the strength card on submit).
+  const startedRef = useRef(false);
+  useEffect(() => {
+    if (!startedRef.current) {
+      startedRef.current = true;
+      pushWizardEvent("wizard_start", { source: WIZARD_SOURCE });
+    }
+  }, []);
+  const lastResultStrengthRef = useRef<Strength | null>(null);
+  useEffect(() => {
+    if (submitted && lastResultStrengthRef.current !== submitted) {
+      lastResultStrengthRef.current = submitted;
+      pushWizardEvent("wizard_result_shown", {
+        source: WIZARD_SOURCE,
+        route_id: submitted,
+        route_name: STRENGTH_LABEL[submitted].title,
+      });
+    }
+  }, [submitted]);
 
   const toggleIssue = (id: string) =>
     setIssues(prev => (prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]));
@@ -205,7 +232,16 @@ export function HousingQualifier() {
             </div>
 
             <Button
-              onClick={() => setStep(2)}
+              onClick={() => {
+                pushWizardEvent("wizard_question_answered", {
+                  source: WIZARD_SOURCE,
+                  question_id: "issues-and-duration",
+                  question_step: 1,
+                  question_total: 3,
+                  answer: `${issues.join(",")}|${duration}`,
+                });
+                setStep(2);
+              }}
               disabled={!step1Valid}
               className="mt-6 w-full bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 text-sm font-bold uppercase tracking-wide disabled:opacity-40"
             >
@@ -255,7 +291,16 @@ export function HousingQualifier() {
                 <ArrowLeft className="h-4 w-4" />
               </Button>
               <Button
-                onClick={() => setStep(3)}
+                onClick={() => {
+                  pushWizardEvent("wizard_question_answered", {
+                    source: WIZARD_SOURCE,
+                    question_id: "landlord-and-reported",
+                    question_step: 2,
+                    question_total: 3,
+                    answer: `${landlord}|${reported}`,
+                  });
+                  setStep(3);
+                }}
                 disabled={!step2Valid}
                 className="flex-1 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 text-sm font-bold uppercase tracking-wide disabled:opacity-40"
               >

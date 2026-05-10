@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ArrowRight, ArrowLeft, ShieldCheck, CheckCircle2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { pushFormSubmit } from "@/lib/tracking";
+import { pushWizardEvent } from "@/lib/wizard-events";
 import { useSpamGuard } from "@/lib/spam-client";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
 import { GclidField, MsclkidField } from "@/components/v6/gclid-field";
@@ -91,6 +92,28 @@ export function VisaQualifier({
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState<Indicator | null>(null);
   const spam = useSpamGuard();
+
+  // GTM telemetry — same canonical event taxonomy as the rest of the
+  // wizard family. Fires on widget mount and when the result indicator
+  // displays after submission.
+  const startedRef = useRef(false);
+  useEffect(() => {
+    if (!startedRef.current) {
+      startedRef.current = true;
+      pushWizardEvent("wizard_start", { source });
+    }
+  }, [source]);
+  const lastIndicatorRef = useRef<Indicator | null>(null);
+  useEffect(() => {
+    if (submitted && lastIndicatorRef.current !== submitted) {
+      lastIndicatorRef.current = submitted;
+      pushWizardEvent("wizard_result_shown", {
+        source,
+        route_id: submitted,
+        route_name: INDICATOR_LABEL[submitted].title,
+      });
+    }
+  }, [submitted, source]);
 
   const step1Valid = s1 !== "";
   const step2Valid = s2 !== "";
@@ -183,7 +206,16 @@ export function VisaQualifier({
               })}
             </div>
             <Button
-              onClick={() => setStep(2)}
+              onClick={() => {
+                pushWizardEvent("wizard_question_answered", {
+                  source,
+                  question_id: step1.heading,
+                  question_step: 1,
+                  question_total: 3,
+                  answer: s1,
+                });
+                setStep(2);
+              }}
               disabled={!step1Valid}
               className="mt-6 w-full bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 text-sm font-bold uppercase tracking-wide disabled:opacity-40"
             >
@@ -214,7 +246,16 @@ export function VisaQualifier({
                 <ArrowLeft className="h-4 w-4" />
               </Button>
               <Button
-                onClick={() => setStep(3)}
+                onClick={() => {
+                  pushWizardEvent("wizard_question_answered", {
+                    source,
+                    question_id: step2.heading,
+                    question_step: 2,
+                    question_total: 3,
+                    answer: s2,
+                  });
+                  setStep(3);
+                }}
                 disabled={!step2Valid}
                 className="flex-1 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 text-sm font-bold uppercase tracking-wide disabled:opacity-40"
               >
