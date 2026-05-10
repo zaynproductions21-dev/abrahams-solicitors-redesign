@@ -18,7 +18,7 @@
  */
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
@@ -253,6 +253,21 @@ const TONE_STYLES: Record<RouteResult["tone"], { ring: string; bg: string; text:
   "needs-review": { ring: "ring-amber-200", bg: "bg-amber-50", text: "text-amber-700" },
 };
 
+declare global {
+  interface Window {
+    dataLayer?: Record<string, unknown>[];
+  }
+}
+
+/** Push a wizard-specific event to the GTM dataLayer. Quietly no-ops on
+ * the server. Wizard event names are prefixed `wizard_` so they're easy to
+ * filter in GTM and GA4. */
+function pushWizardEvent(event: string, payload: Record<string, unknown>) {
+  if (typeof window === "undefined") return;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event, ...payload });
+}
+
 export function VisaWizardWidget({
   compact = false,
   source = "visa-wizard",
@@ -275,6 +290,39 @@ export function VisaWizardWidget({
     setAnswers(prev => ({ ...prev, [id.replace(/-/g, "_")]: value }));
 
   const result = step >= 6 ? routeFor(answers) : null;
+
+  // ─── GTM telemetry ─────────────────────────────────────────────────────
+  // Fire once on first mount — top-of-funnel count.
+  const startedRef = useRef(false);
+  useEffect(() => {
+    if (!startedRef.current) {
+      startedRef.current = true;
+      pushWizardEvent("wizard_start", { source });
+    }
+  }, [source]);
+
+  // Fire when the result page is shown (anonymous — no email yet) and when
+  // the email capture is opened. The actual email submission keeps using
+  // the existing pushFormSubmit() path so Google Ads + Bing Ads enhanced
+  // conversions tags continue to fire on `ec_form_submit`.
+  const lastTrackedStepRef = useRef<number | null>(null);
+  useEffect(() => {
+    if (lastTrackedStepRef.current === step) return;
+    lastTrackedStepRef.current = step;
+    if (step === QUESTIONS.length && result) {
+      pushWizardEvent("wizard_result_shown", {
+        source,
+        route_id: result.id,
+        route_name: result.name,
+        tone: result.tone,
+      });
+    } else if (step === QUESTIONS.length + 1 && result) {
+      pushWizardEvent("wizard_email_capture_opened", {
+        source,
+        route_id: result.id,
+      });
+    }
+  }, [step, result, source]);
 
   async function handleEmailCapture(e: React.FormEvent) {
     e.preventDefault();
@@ -366,7 +414,16 @@ export function VisaWizardWidget({
               )}
               <Button
                 type="button"
-                onClick={() => setStep(s => s + 1)}
+                onClick={() => {
+                  pushWizardEvent("wizard_question_answered", {
+                    source,
+                    question_id: q.id,
+                    question_step: step + 1,
+                    question_total: QUESTIONS.length,
+                    answer: selected,
+                  });
+                  setStep(s => s + 1);
+                }}
                 disabled={!selected}
                 className="flex-1 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 text-sm font-bold uppercase tracking-wide disabled:opacity-40"
               >

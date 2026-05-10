@@ -13,6 +13,7 @@ import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { TeamStrip } from "@/components/v6/team-strip";
 import { VisaWizardWidget } from "@/components/v6/visa-wizard-widget";
+import { VisaWizardEntryCard } from "@/components/v6/visa-wizard-entry-card";
 import { JsonLd, faqPageSchema, breadcrumbSchema, serviceSchema, personSchema } from "@/components/v6/jsonld";
 import { submitEnquiry } from "@/lib/publishos";
 import {
@@ -115,11 +116,18 @@ export default function V6ServicePage() {
   // Determine pricing display
   const isHousing = slug.includes("housing") || slug.includes("disrepair");
   const isCitizenship = slug.includes("citizenship") || slug.includes("naturalisation");
-  // Pattern A from Council placement decision — embed the wizard inline on
-  // the spouse-visa hero instead of the standard consultation form. v1
-  // placement test; if this converts better than the form we'll roll out
-  // to the rest of the partner-visa cluster.
+  // Pattern A — embed the full wizard inline on the spouse-visa hero
+  // instead of the standard consultation form (v1 placement test).
   const isSpouseVisa = slug === "uk-spouse-visa" || slug === "uk-spouse-visa-solicitors";
+  // Pattern B — show the wizard entry-point CARD (links to /visa-wizard/)
+  // on the immigration hub and the rest of the partner-visa cluster.
+  // Excludes the page that ALREADY embeds the full wizard inline.
+  const isPartnerVisaCluster =
+    slug === "uk-fiance-visa" ||
+    slug === "uk-partner-visa-extension" ||
+    slug === "uk-unmarried-partner-visa" ||
+    slug === "civil-partnership-visa";
+  const showWizardEntryCard = slug === "immigration" || isPartnerVisaCluster;
   const priceLabel = isHousing ? "No Win, No Fee" : "From £240*";
 
   // E-E-A-T metadata: author byline, last-reviewed date, statutory framework.
@@ -260,6 +268,24 @@ export default function V6ServicePage() {
       </section>
 
       <TrustBadges />
+
+      {/* Pattern B — wizard entry-point card on the immigration hub + the
+       *  spouse-visa cluster (cluster pages that don't embed the full wizard). */}
+      {showWizardEntryCard && (
+        <VisaWizardEntryCard
+          surface={slug}
+          headline={
+            slug === "immigration"
+              ? "Not sure which UK visa route fits you?"
+              : `Compare ${stripHeadingPrefix(page.title).toLowerCase()} against other visa routes`
+          }
+          subhead={
+            slug === "immigration"
+              ? "Six plain-English questions, instant route recommendation with the rule reference. Free, no call follows automatically."
+              : "Take our free 60-second wizard. We'll route you to the version of the spouse / partner visa that actually fits your facts — no call follows automatically."
+          }
+        />
+      )}
 
       {/* ─── Statutory framework — only when the service has cited statutes */}
       {meta?.statutes && meta.statutes.length > 0 && (
