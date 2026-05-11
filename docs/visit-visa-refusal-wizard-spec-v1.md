@@ -19,6 +19,8 @@ You and the user agreed: visit-visa **fresh applicants** generally don't need a 
 
 Goal: triage the refusal in 60 seconds and route the visitor to the appropriate next-step conversation with a solicitor. Same Council compliance baseline as Phase 1.
 
+> **CRITICAL CORRECTION applied 11 May 2026 after Imran review:** Visit visas have no right of appeal (Immigration Act 2014) except on human rights / Article 8 grounds, and no administrative review (Appendix AR doesn't cover visit visa refusals). The only formal challenge route is **Pre-Action Protocol → potential Judicial Review** in extreme cases. The 3-month JR time limit applies. Earlier draft incorrectly cited AR as an outcome — now removed. Q2 reframed around recency-for-strategy, not AR window.
+
 ---
 
 ## Council mandates baked in (same as Phase 1)
@@ -52,15 +54,15 @@ Helper: *"Pick the closest match — refusal letters often list multiple reasons
 
 ### Q2. When were you refused?
 
-Helper: *"This affects what remedy is available — administrative review has a 28-day deadline."*
+Helper: *"This affects strategy — very recent refusals may still be within the window where a Pre-Action Protocol challenge is possible; older refusals usually point to a fresh application."*
 
 | Value | Visible label |
 |---|---|
-| `within-28d` | "Within the last 28 days (admin review window OPEN)" |
-| `28d-1y` | "Between 28 days and 1 year ago" |
+| `within-3m` | "Within the last 3 months" |
+| `3m-1y` | "Between 3 months and 1 year ago" |
 | `over-1y` | "More than 1 year ago" |
 
-> **[VERIFY]** Confirm the 28-day admin review window is still 28 calendar days from refusal date (not service date) for visit visa refusals overseas. Some routes have 14-day windows for in-country.
+> **[VERIFY]** The 3-month bucket is sized to the Judicial Review time limit (CPR 54.5 — JR must be brought promptly and in any event within 3 months of the decision). Confirm this is the right framing for visit visa refusals specifically, and that PAP letters are typically sent within that 3-month window.
 
 ### Q3. Where did you apply from?
 
@@ -107,35 +109,34 @@ Listed in **precedence order** — the first rule that matches wins.
 ### Routing precedence
 
 ```
-1. refusal_reason === "deception"             → Section 320 / Suitability — specialist
-2. previous_refusals === "multiple"           → Pattern of refusals — specialist appeal strategy
-3. timing === "within-28d"
-   AND refusal_reason IN (documents, funds)   → Administrative Review (in window)
-4. visit_purpose === "time-sensitive"
-   AND timing === "within-28d"                → Urgent: priority fresh application + Article 8 angle
-5. timing === "over-1y"                       → Fresh application (long-gap reapplication)
-6. timing === "within-28d" OR "28d-1y"        → Fresh application (strengthened evidence)
-7. (default — should rarely hit)              → Refusal review consultation
+1. refusal_reason === "deception"             → Section 320 / Suitability — PAP-or-fresh specialist review
+2. previous_refusals === "multiple"           → Pattern of refusals — specialist consultation
+3. visit_purpose === "time-sensitive"
+   AND timing === "within-3m"                 → Urgent: PAP/JR consideration + priority fresh application
+                                                 (Article 8 family-life angle if family ties)
+4. timing === "over-1y"                       → Fresh application (long-gap reapplication)
+5. timing === "within-3m" OR "3m-1y"          → Fresh application (strengthened evidence)
+6. (default — should rarely hit)              → Refusal review consultation
 ```
 
-> **[REDLINE]** Is this precedence right? Specifically: should rule 4 (urgent + in-window) trump rule 1 (deception)? Probably not — deception finding needs careful handling regardless of urgency. Confirm.
+> **[REDLINE]** Is this precedence right? Specifically: should rule 3 (urgent + recent) trump rule 1 (deception)? Probably not — deception findings need careful handling regardless of urgency, and PAP for a deception finding is itself a specialist piece of work. Confirm.
 
-### Outcome 1 — Section 320 / Suitability — specialist territory
-**Citation:** Paragraph 9.7-9.10 of the Immigration Rules (General Grounds for Refusal) + Suitability provisions S-EC.1.5 / S-LTR.1.6
+### Outcome 1 — Section 320 / Suitability — PAP-or-fresh specialist review
+**Citation:** Paragraph 9.7-9.10 of the Immigration Rules (General Grounds for Refusal) + Suitability provisions S-EC.1.5 / S-LTR.1.6 + Pre-Action Protocol for Judicial Review (CPR PD54)
 **Tone:** needs-review
-**Summary:** *"A refusal citing false representation or deception is the most consequential type — most carry a 10-year ban from re-entering the UK. The route forward depends on whether the deception finding is challenged, accepted, or distinguished. This is specialist territory and shouldn't be handled by a fresh application without solicitor review."*
+**Summary:** *"A refusal citing false representation or deception is the most consequential type — most carry a 10-year ban from re-entering the UK. Visit visas have no administrative review or right of appeal except on human rights grounds, so the route forward is either a carefully-prepared fresh application that addresses the finding head-on, or — where the finding itself looks unlawful — a Pre-Action Protocol letter as the precursor to Judicial Review. This is specialist territory and should not be handled by a routine fresh application without solicitor review."*
 **Considerations:**
-- Get the original refusal letter reviewed — many "deception" findings turn out to be procedural errors that can be challenged
+- Get the original refusal letter reviewed — many "deception" findings turn out to be procedural errors. Where the finding is challengeable, a PAP letter can lead UKVI to withdraw it without a JR claim being issued
 - 10-year ban under Para 9.8.1 / S-EC.1.5 needs precise handling
-- A successful challenge can clear the record entirely; reapplying without challenge can compound the ban
+- A successful PAP can clear the record entirely; a fresh application made without addressing the finding can compound the ban
 - This is exactly where solicitor review pays for itself many times over
 
-> **[VERIFY]** Confirm Para 9.7-9.10 is the current cite (was previously Para 320(7A)/(7B)). Also confirm S-EC.1.5 vs S-EC.1.6 — I want the exact suitability provision number.
+> **[VERIFY]** Confirm Para 9.7-9.10 is the current cite (was previously Para 320(7A)/(7B)). Also confirm S-EC.1.5 vs S-EC.1.6 — I want the exact suitability provision number. Also confirm PAP framing is correct here.
 
-### Outcome 2 — Pattern of refusals — specialist appeal
+### Outcome 2 — Pattern of refusals — specialist consultation
 **Citation:** Cumulative effect under Suitability S-EC.1.4 + Para 9.7-9.10 of the Immigration Rules
 **Tone:** needs-review
-**Summary:** *"Multiple visit visa refusals create a pattern that affects how a fresh application is assessed. Each subsequent refusal becomes harder. The strategy needs to address the cumulative pattern, not just the most-recent refusal."*
+**Summary:** *"Multiple visit visa refusals create a pattern that affects how a fresh application is assessed. Each subsequent refusal becomes harder. The strategy needs to address the cumulative pattern, not just the most-recent refusal. Visit visas have no right of appeal except on human rights grounds, so the work is either a fresh application that addresses the pattern, or — in narrow circumstances — a Pre-Action Protocol where the most recent refusal looks unlawful."*
 **Considerations:**
 - A solicitor will read all your refusal letters together — patterns emerge that single-refusal review misses
 - Sometimes the right strategy is a different visa category entirely
@@ -143,31 +144,19 @@ Listed in **precedence order** — the first rule that matches wins.
 
 > **[VERIFY]** Confirm S-EC.1.4 reference for cumulative effect.
 
-### Outcome 3 — Administrative Review (in window)
-**Citation:** Appendix AR (Administrative Review) — Immigration Rules
-**Tone:** positive (urgent — clock ticking)
-**Summary:** *"You're inside the 28-day administrative review window AND your refusal reason looks like a procedural / case-working error. Administrative review asks UKVI to review their own decision for a case-working error — it's faster and cheaper than a fresh application but only works for specific types of mistake."*
-**Considerations:**
-- 28-day deadline runs from the date of refusal (not the date you saw the letter)
-- AR works for procedural errors (mis-applied evidence, miscalculated funds, missed documents). It does NOT work to add new evidence
-- Cost is £80 (UKVI fee) + solicitor preparation; success rates are higher for clearly procedural mistakes
-- If we're past day 14 already, we should move fast
-
-> **[VERIFY]** Confirm £80 admin review fee is current. Also confirm AR doesn't allow new evidence (sometimes a question for visit visa specifically vs other AR types).
-
-### Outcome 4 — Urgent: time-sensitive event + recent refusal
-**Citation:** Appendix V (Visitor) + Article 8 ECHR (where family event)
+### Outcome 3 — Urgent: time-sensitive event + recent refusal
+**Citation:** Appendix V (Visitor) + Article 8 ECHR (where family event) + Pre-Action Protocol for Judicial Review (where the refusal looks unlawful and the 3-month JR window is open)
 **Tone:** positive (urgent path exists)
-**Summary:** *"A time-sensitive event (wedding, funeral, family medical emergency) plus a recent refusal usually means a fresh application with priority service is the right route — sometimes paired with an Article 8 family-life angle. Same-day decisions are possible in priority cases."*
+**Summary:** *"A time-sensitive event (wedding, funeral, family medical emergency) plus a recent refusal usually means a fresh application with priority service is the right route — and where there is a real Article 8 family-life angle or the refusal itself looks unlawful, a Pre-Action Protocol letter can run in parallel. Same-day decisions are possible in priority cases."*
 **Considerations:**
 - Priority service decisions can come in 5 working days; super-priority in 1 working day
 - For weddings / funerals / serious illness, supporting evidence (e.g. doctor's letter, death certificate) substantially strengthens the application
-- If family ties to the UK are strong, an Article 8 challenge to the original refusal can run in parallel — but only if there are real Convention rights at stake
+- If family ties to the UK are strong and the refusal interfered with Article 8 family life, a PAP letter to UKVI can run in parallel — JR must be brought within 3 months of the original decision (CPR 54.5)
 - Don't apply blindly with priority service — a refused priority application costs more than a thoughtful one
 
 > **[REDLINE]** Should we mention "court hearing" as a category of time-sensitive event, or is that too niche?
 
-### Outcome 5 — Fresh application (long-gap)
+### Outcome 4 — Fresh application (long-gap)
 **Citation:** Appendix V (Visitor) — Immigration Rules
 **Tone:** positive (clean slate)
 **Summary:** *"A refusal more than a year ago largely no longer affects a fresh application — UKVI will see the previous refusal but it's not contemporaneous. The right approach is a strong fresh application that addresses why the original refusal occurred."*
@@ -177,25 +166,25 @@ Listed in **precedence order** — the first rule that matches wins.
 - Circumstances may have changed substantially (new job, marriage, children) — surface those
 - Fresh application is usually the cleanest route here
 
-### Outcome 6 — Fresh application (strengthened evidence)
-**Citation:** Appendix V (Visitor) + Appendix FM-SE-equivalent evidence rules for visitors
+### Outcome 5 — Fresh application (strengthened evidence)
+**Citation:** Appendix V (Visitor) + visitor-equivalent evidence rules
 **Tone:** positive
-**Summary:** *"Most visit-visa refusals are best addressed by a fresh application with strengthened evidence rather than by appealing the existing refusal. The fresh application reaches a different case officer, allows new evidence, and usually decides faster."*
+**Summary:** *"Most visit-visa refusals are best addressed by a fresh application with strengthened evidence rather than by trying to challenge the existing refusal. Visit visas have no administrative review and no right of appeal except on human rights grounds — so the fresh application is generally the cleanest route. It reaches a different case officer, allows new evidence, and usually decides faster than any legal challenge."*
 **Considerations:**
-- Standard visit visas are not appealable except on human rights grounds — fresh application is generally the route
 - Strengthened evidence usually means: clearer funds, better ties documentation, rigorous travel-history disclosure, sponsor letter if visiting family
-- Wait until at least the obvious gaps are fixed before reapplying
+- Wait until at least the obvious gaps in the original application are fixed before reapplying
 - A refused fresh application can stack — get it right second time
+- Where the original refusal itself looks unlawful (e.g. a wrongly-applied deception finding), a Pre-Action Protocol can be considered — but that's specialist work and out-of-scope of a routine fresh application
 
-> **[VERIFY]** "Standard visit visas are not appealable except on human rights grounds" — confirm. Also confirm whether there's a Pre-Action Protocol that applies to visit visa refusals or if it's purely Appendix V territory.
+> **[VERIFY]** Confirmed: visit visas have no admin review and no general right of appeal (Immigration Act 2014). Only formal challenge route is PAP → JR for unlawfulness, or appeal on human rights grounds. Is this framing right for the visitor-facing summary?
 
-### Outcome 7 — Refusal review consultation (default)
+### Outcome 6 — Refusal review consultation (default)
 **Citation:** Appendix V + Appendix AR + general refusal-handling
 **Tone:** mixed
 **Summary:** *"Your circumstances need a more detailed review than a wizard can give. A 30-minute free consultation will go through the refusal letter, your specific facts, and the right next step."*
 **Considerations:**
 - Bring your refusal letter, original application copy, and supporting documents to the call
-- We'll identify whether admin review, fresh application, or specialist appeal fits best
+- We'll identify whether fresh application, Pre-Action Protocol challenge, or specialist consultation fits best
 - Free 30-minute consultation, no obligation
 
 ---
@@ -238,16 +227,16 @@ visit-visa-refusal-wizard-embed:<page-slug>:<route-id>
 By the time you finish this doc I'll know:
 
 - [ ] Q1 refusal-reason buckets approved (or redlined)
-- [ ] Q2 28-day admin review window confirmed accurate
+- [ ] Q2 timing buckets reframed to 3-month / 3m-1y / >1y — sized to JR window — confirm right
 - [ ] Q3 worth keeping or drop (in-country visit visa applications are rare)
 - [ ] Q4 "time-sensitive" bucket confirmed (weddings/funerals/medical/court)
 - [ ] Q5 "multiple refusals" — needs further qualification?
 - [ ] Q6 (potential) — separate "family ties to UK" question?
 - [ ] Routing precedence approved (specifically: deception trumps urgency?)
-- [ ] All 7 outcome citations verified or corrected
+- [ ] All 6 outcome citations verified or corrected (was 7 — admin review outcome removed)
 - [ ] Section 320 / Para 9.7-9.10 framing confirmed current
-- [ ] AR fee (£80) confirmed current
-- [ ] "Standard visit visas not appealable except on human rights grounds" — confirm
+- [ ] PAP framing in Outcomes 1, 2, 3 and 5 — correct as drafted?
+- [ ] Outcome 5 final wording on remedies-not-available — correct framing for visitor-facing copy?
 
 When done, send the marked-up doc back. I'll apply changes, build the wizard, deploy.
 
