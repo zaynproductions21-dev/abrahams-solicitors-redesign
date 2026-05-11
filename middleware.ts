@@ -24,7 +24,10 @@ import { NextResponse, type NextRequest } from "next/server";
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Skip: API routes, Next internals, static files, well-known files.
+  // Skip: API routes, Next internals, static files, well-known files,
+  // and App Router metadata file conventions (icon, apple-icon, opengraph-image,
+  // twitter-image — these are served by Next from app/icon.tsx, app/apple-icon.tsx
+  // etc, and the URLs have NO file extension so the `.` rule below misses them).
   if (
     pathname.startsWith("/api/") ||
     pathname.startsWith("/_next/") ||
@@ -32,6 +35,15 @@ export function middleware(request: NextRequest) {
     pathname === "/robots.txt" ||
     pathname === "/sitemap.xml" ||
     pathname === "/llms.txt" ||
+    pathname === "/icon" ||
+    pathname.startsWith("/icon/") ||
+    pathname === "/apple-icon" ||
+    pathname.startsWith("/apple-icon/") ||
+    pathname === "/opengraph-image" ||
+    pathname.startsWith("/opengraph-image/") ||
+    pathname === "/twitter-image" ||
+    pathname.startsWith("/twitter-image/") ||
+    pathname === "/manifest.webmanifest" ||
     pathname.includes(".")
   ) {
     return NextResponse.next();
