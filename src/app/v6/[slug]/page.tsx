@@ -13,6 +13,7 @@ import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { TeamStrip } from "@/components/v6/team-strip";
 import { VisaWizardWidget } from "@/components/v6/visa-wizard-widget";
+import { VisitVisaRefusalWidget } from "@/components/v6/visit-visa-refusal-widget";
 import { VisaWizardEntryCard } from "@/components/v6/visa-wizard-entry-card";
 import { JsonLd, faqPageSchema, breadcrumbSchema, serviceSchema, personSchema } from "@/components/v6/jsonld";
 import { submitEnquiry } from "@/lib/publishos";
@@ -119,6 +120,9 @@ export default function V6ServicePage() {
   // Pattern A — embed the full wizard inline on the spouse-visa hero
   // instead of the standard consultation form (v1 placement test).
   const isSpouseVisa = slug === "uk-spouse-visa" || slug === "uk-spouse-visa-solicitors";
+  // Pattern A — Phase 2 — embed the visit-visa-refusal wizard on the
+  // /visa-refusal-appeal/ page (same shape as the Spouse Visa embed).
+  const isVisaRefusalAppeal = slug === "visa-refusal-appeal";
   // Pattern B — show the wizard entry-point CARD (links to /visa-wizard/)
   // on the immigration hub and the rest of the partner-visa cluster.
   // Excludes the page that ALREADY embeds the full wizard inline.
@@ -261,6 +265,8 @@ export default function V6ServicePage() {
             <div className="lg:col-span-2 min-w-0" id="consultation-form">
               {isSpouseVisa
                 ? <VisaWizardWidget compact source={`visa-wizard-embed:${slug}`} />
+                : isVisaRefusalAppeal
+                ? <VisitVisaRefusalWidget compact source={`visit-visa-refusal-embed:${slug}`} />
                 : <ConsultationForm serviceName={page.title} />}
             </div>
           </div>
