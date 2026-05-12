@@ -123,15 +123,22 @@ export default function V6ServicePage() {
   // Pattern A — Phase 2 — embed the visit-visa-refusal wizard on the
   // /visa-refusal-appeal/ page (same shape as the Spouse Visa embed).
   const isVisaRefusalAppeal = slug === "visa-refusal-appeal";
-  // Pattern B — show the wizard entry-point CARD (links to /visa-wizard/)
-  // on the immigration hub and the rest of the partner-visa cluster.
-  // Excludes the page that ALREADY embeds the full wizard inline.
+  // Pattern B — show the Spouse Visa wizard entry-point CARD on the
+  // immigration hub and the rest of the partner-visa cluster.
   const isPartnerVisaCluster =
     slug === "uk-fiance-visa" ||
     slug === "uk-partner-visa-extension" ||
     slug === "uk-unmarried-partner-visa" ||
     slug === "civil-partnership-visa";
-  const showWizardEntryCard = slug === "immigration" || isPartnerVisaCluster;
+  const showSpouseWizardCard = slug === "immigration" || isPartnerVisaCluster;
+  // Pattern B (Phase 2) — show the Visit Visa Refusal wizard entry-point
+  // CARD on the immigration hub AND on visit-visa-adjacent pages where a
+  // refused applicant might land. Excludes /visa-refusal-appeal/ which
+  // already embeds the full wizard inline (Pattern A).
+  const showVisitVisaRefusalCard =
+    slug === "immigration" ||
+    slug === "uk-visit-visa" ||
+    slug === "asylum-applications";
   const priceLabel = isHousing ? "No Win, No Fee" : "From £240*";
 
   // E-E-A-T metadata: author byline, last-reviewed date, statutory framework.
@@ -277,9 +284,12 @@ export default function V6ServicePage() {
 
       {/* Pattern B — wizard entry-point card on the immigration hub + the
        *  spouse-visa cluster (cluster pages that don't embed the full wizard). */}
-      {showWizardEntryCard && (
+      {/* Pattern B — Phase 1 Spouse Visa Wizard entry card */}
+      {showSpouseWizardCard && (
         <VisaWizardEntryCard
           surface={slug}
+          href="/visa-wizard/"
+          eyebrow="Free 60-second wizard · Spouse Visa"
           headline={
             slug === "immigration"
               ? "Not sure which UK visa route fits you?"
@@ -290,6 +300,19 @@ export default function V6ServicePage() {
               ? "Six plain-English questions, instant route recommendation with the rule reference. Free, no call follows automatically."
               : "Take our free 60-second wizard. We'll route you to the version of the spouse / partner visa that actually fits your facts — no call follows automatically."
           }
+          cta="Start the wizard"
+        />
+      )}
+
+      {/* Pattern B — Phase 2 Visit Visa Refusal Wizard entry card */}
+      {showVisitVisaRefusalCard && (
+        <VisaWizardEntryCard
+          surface={slug}
+          href="/visit-visa-refusal/"
+          eyebrow="Free 60-second wizard · Visit Visa Refusals"
+          headline="UK visit visa refused? Find the right next step."
+          subhead="Five plain-English questions. We'll route you to the right remedy — a fresh application with strengthened evidence, a Pre-Action Protocol challenge, or a specialist consultation — based on the refusal reason and how long ago it was."
+          cta="Start the refusal wizard"
         />
       )}
 

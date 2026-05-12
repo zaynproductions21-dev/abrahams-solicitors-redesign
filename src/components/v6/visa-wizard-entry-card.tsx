@@ -28,16 +28,26 @@ export function VisaWizardEntryCard({
   headline,
   /** Optional subhead override. */
   subhead,
+  /** Destination URL — defaults to /visa-wizard/ (Phase 1 Spouse Visa).
+   * Pass "/visit-visa-refusal/" for the Phase 2 wizard. */
+  href = "/visa-wizard/",
+  /** Pill label shown above the headline. */
+  eyebrow = "Free 60-second wizard",
+  /** CTA button text. */
+  cta = "Start the wizard",
 }: {
   surface: string;
   headline?: string;
   subhead?: string;
+  href?: string;
+  eyebrow?: string;
+  cta?: string;
 }) {
   return (
     <section className="py-8 lg:py-10 bg-slate-50/40">
       <div className="max-w-[1100px] mx-auto px-6 lg:px-8">
         <Link
-          href="/visa-wizard/"
+          href={href}
           onClick={() => {
             if (typeof window === "undefined") return;
             window.dataLayer = window.dataLayer || [];
@@ -53,7 +63,7 @@ export function VisaWizardEntryCard({
               <Sparkles className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-bold text-brand-gold uppercase tracking-widest mb-1">Free 60-second wizard</p>
+              <p className="text-xs font-bold text-brand-gold uppercase tracking-widest mb-1">{eyebrow}</p>
               <h3 className="text-xl sm:text-2xl font-black leading-tight tracking-tight">
                 {headline ?? "Not sure which UK visa route fits you?"}
               </h3>
@@ -66,7 +76,7 @@ export function VisaWizardEntryCard({
               </p>
             </div>
             <div className="inline-flex items-center gap-2 bg-brand-red group-hover:bg-brand-red-dark text-white rounded-lg px-5 h-12 text-sm font-bold uppercase tracking-wide shrink-0 transition-colors">
-              Start the wizard
+              {cta}
               <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
             </div>
           </div>

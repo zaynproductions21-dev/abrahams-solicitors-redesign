@@ -16,7 +16,46 @@ import {
   Phone, Star, Scale, Home, ArrowRight, MapPin,
   Clock, Award, MessageCircle, Mail,
   Shield, Headset, PoundSterling, Users, ChevronDown,
+  Sparkles, Heart, AlertCircle,
 } from "lucide-react";
+
+// Quick-triage wizards surfaced on the homepage. Each card fires a
+// `wizard_entry_card_clicked` GTM event with `surface: "home"` and the
+// wizard slug so click-through can be filtered in GA4.
+const TRIAGE_WIZARDS = [
+  {
+    icon: Heart,
+    title: "UK Spouse Visa Wizard",
+    description: "6 plain-English questions → which spouse visa route fits your situation, with the rule reference.",
+    href: "/visa-wizard/",
+    slug: "spouse-visa-wizard",
+    eyebrow: "Immigration · Phase 1",
+  },
+  {
+    icon: AlertCircle,
+    title: "UK Visit Visa Refused?",
+    description: "5 questions → PAP challenge, fresh application, or specialist consultation — sized to the 3-month JR window.",
+    href: "/visit-visa-refusal/",
+    slug: "visit-visa-refusal-wizard",
+    eyebrow: "Immigration · Phase 2",
+  },
+  {
+    icon: Home,
+    title: "Housing Disrepair Claim?",
+    description: "Find out in 60 seconds whether your landlord owes you compensation for damp, heating, or structural issues.",
+    href: "/housing-disrepair/",
+    slug: "housing-disrepair-qualifier",
+    eyebrow: "Housing · No Win No Fee",
+  },
+  {
+    icon: Shield,
+    title: "Injured in an Accident?",
+    description: "Free triage — work out whether you have a personal injury claim worth pursuing, before any solicitor call.",
+    href: "/personal-injury/",
+    slug: "personal-injury-qualifier",
+    eyebrow: "Personal Injury · No Win No Fee",
+  },
+] as const;
 
 const services = [
   {
@@ -184,6 +223,62 @@ export default function V6HomePage() {
                   <p className="text-xs text-slate-400 mt-0.5">{item.desc}</p>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Quick triage tools ─── 4 wizards / qualifiers in a 2×2 grid */}
+      <section id="triage" className="py-14 lg:py-20 bg-gradient-to-b from-white to-slate-50/60">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+          <div className="max-w-2xl mb-10 lg:mb-12">
+            <p className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-red uppercase tracking-widest mb-3">
+              <Sparkles className="h-3.5 w-3.5" />
+              Free triage tools
+            </p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 leading-tight tracking-tight">
+              Find your next step in 60 seconds
+            </h2>
+            <p className="mt-4 text-base text-slate-500 leading-relaxed">
+              Skip the form-and-wait. Each tool below routes you to the right legal next step based on a handful of plain-English questions — written and reviewed by our solicitors, with the rule reference for every result. No call follows automatically.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+            {TRIAGE_WIZARDS.map((w) => (
+              <Link
+                key={w.slug}
+                href={w.href}
+                onClick={() => {
+                  if (typeof window === "undefined") return;
+                  window.dataLayer = window.dataLayer || [];
+                  window.dataLayer.push({
+                    event: "wizard_entry_card_clicked",
+                    surface: "home",
+                    wizard: w.slug,
+                  });
+                }}
+                className="group rounded-2xl border-2 border-slate-200 bg-white hover:border-brand-red hover:shadow-lg transition-all p-6 lg:p-7 flex flex-col"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-brand-red/10 group-hover:bg-brand-red group-hover:text-white text-brand-red flex items-center justify-center shrink-0 transition-colors">
+                    <w.icon className="h-6 w-6" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">{w.eyebrow}</p>
+                    <h3 className="text-lg sm:text-xl font-black text-slate-900 leading-tight tracking-tight">
+                      {w.title}
+                    </h3>
+                  </div>
+                </div>
+                <p className="mt-4 text-sm text-slate-500 leading-relaxed flex-1">
+                  {w.description}
+                </p>
+                <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-brand-red group-hover:gap-2.5 transition-all">
+                  Start the wizard
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                </div>
+              </Link>
             ))}
           </div>
         </div>
