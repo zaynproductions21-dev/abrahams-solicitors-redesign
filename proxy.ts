@@ -21,7 +21,7 @@ import { NextResponse, type NextRequest } from "next/server";
  * file extension (so static assets, sitemap, robots, llms.txt etc all
  * serve as-is from the file system).
  */
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Skip: API routes, Next internals, static files, well-known files,
