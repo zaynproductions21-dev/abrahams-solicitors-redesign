@@ -96,6 +96,7 @@ export async function POST(req: NextRequest) {
   // can join the two systems by leadId directly. SalesHub's response shape
   // isn't fixed long-term so we look at several common keys defensively.
   let saleshubLeadId: string | undefined;
+  let saleshubDebug: Record<string, unknown> = {};
   if (apiKey) {
     try {
       const res = await fetch(SALESHUB_ENDPOINT, {
@@ -104,9 +105,16 @@ export async function POST(req: NextRequest) {
         body: JSON.stringify(saleshubPayload),
       });
       results.saleshub = res.ok;
+      saleshubDebug = { status: res.status };
       if (res.ok) {
         try {
           const data = await res.json();
+          saleshubDebug = {
+            ...saleshubDebug,
+            response_keys: data && typeof data === "object" ? Object.keys(data) : null,
+            // Echo back the first 250 chars of the response for inspection (safe — webhook returns IDs/status only)
+            response_preview: JSON.stringify(data).slice(0, 250),
+          };
           // Try common field names — first non-empty wins
           const candidate =
             data?.leadId ?? data?.lead_id ?? data?.enquiryId ?? data?.enquiry_id ??
@@ -114,11 +122,13 @@ export async function POST(req: NextRequest) {
           if (typeof candidate === "string" && candidate.trim()) {
             saleshubLeadId = candidate.trim();
           }
-        } catch {
-          // Non-JSON response — fall back to UUID below
+        } catch (e) {
+          saleshubDebug = { ...saleshubDebug, json_parse_error: e instanceof Error ? e.message : String(e) };
         }
       }
-    } catch {}
+    } catch (e) {
+      saleshubDebug = { fetch_error: e instanceof Error ? e.message : String(e) };
+    }
   }
 
   await saveToPublishOS(saleshubPayload, saleshubLeadId);
@@ -137,10 +147,19 @@ export async function POST(req: NextRequest) {
   }).catch(() => ({ internal: false, prospect: false }));
 
   const emails = await emailPromise;
+  // Include diagnostic info if ?debug=1 is set so we can see what SalesHub returned.
+  const url = new URL(req.url);
+  const debug = url.searchParams.get("debug") === "1";
   return NextResponse.json({
     success: results.saleshub || results.backup,
     ...results,
     notify: emails.internal,
     auto_responder: emails.prospect,
+    ...(debug ? {
+      _debug: {
+        saleshub: saleshubDebug,
+        saleshubLeadIdCaptured: saleshubLeadId ?? null,
+      },
+    } : {}),
   });
 }
