@@ -1,14 +1,14 @@
 import type { MetadataRoute } from "next";
 import { immigrationPages, personalInjuryPages } from "@/lib/services-data";
 
-// Sitemap targets the v6 redesign. Swap the `baseUrl` once the production
-// domain points at Vercel and drop the `/v6` prefix (or move v6 pages to `/`).
-const baseUrl = "https://abrahams-redesign-zayn-productions.vercel.app";
-const PREFIX = "/v6";
+// Sitemap for the production site. URLs are served at the apex —
+// the proxy rewrites clean paths to the /v6/* file tree internally,
+// but the public URLs never expose the /v6 prefix.
+const baseUrl = "https://www.abrahamssolicitors.co.uk";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const p = (path: string) => `${baseUrl}${PREFIX}${path}`;
+  const p = (path: string) => `${baseUrl}${path}`;
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: p("/"), lastModified: now, changeFrequency: "weekly", priority: 1 },
