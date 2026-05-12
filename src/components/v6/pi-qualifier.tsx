@@ -135,7 +135,7 @@ export function PiQualifier() {
       name,
       email,
       phone,
-      service: "Personal Injury",
+      service: "[Wizard] Personal Injury",
       case: caseDetail,
     }, spam.payload());
     setSubmitting(false);

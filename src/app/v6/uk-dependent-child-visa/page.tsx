@@ -216,7 +216,7 @@ export default function UkDependentChildVisaPage() {
             <div className="lg:col-span-2 min-w-0" id="qualifier">
               <VisaQualifier
                 source="uk-dependent-child-visa-qualifier"
-                service="UK Dependent Child Visa"
+                service="[Wizard] UK Dependent Child Visa"
                 step1={{
                   heading: "Where is your child now?",
                   helper: "Pick the closest match.",

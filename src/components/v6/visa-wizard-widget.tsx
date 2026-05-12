@@ -330,7 +330,7 @@ export function VisaWizardWidget({
     await submitEnquiry({
       source: `${source}:${r.id}`,
       name, email, phone,
-      service: "UK Spouse Visa (wizard)",
+      service: "[Wizard] UK Spouse Visa",
       case: caseDetail,
     }, spam.payload());
     setSubmitting(false);

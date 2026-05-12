@@ -300,7 +300,7 @@ export function VisitVisaRefusalWidget({
     await submitEnquiry({
       source: `${source}:${r.id}`,
       name, email, phone,
-      service: "UK Visit Visa Refusal (wizard)",
+      service: "[Wizard] UK Visit Visa Refusal",
       case: caseDetail,
     }, spam.payload());
     setSubmitting(false);

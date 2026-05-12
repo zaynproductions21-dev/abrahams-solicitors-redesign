@@ -145,7 +145,7 @@ export function HousingQualifier() {
       name,
       email,
       phone,
-      service: "Housing Disrepair",
+      service: "[Wizard] Housing Disrepair",
       case: caseDetail,
     }, spam.payload());
     setSubmitting(false);

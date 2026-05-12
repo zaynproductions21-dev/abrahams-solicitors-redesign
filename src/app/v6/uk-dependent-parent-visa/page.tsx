@@ -257,7 +257,7 @@ export default function UkDependentParentVisaPage() {
             <div className="lg:col-span-2 min-w-0" id="qualifier">
               <VisaQualifier
                 source="uk-dependent-parent-visa-qualifier"
-                service="UK Adult Dependent Relative Visa"
+                service="[Wizard] UK Adult Dependent Relative Visa"
                 step1={{
                   heading: "Where is the applicant now?",
                   helper: "And do they have a long-term care need?",
