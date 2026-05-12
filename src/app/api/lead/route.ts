@@ -5,13 +5,22 @@ import { sendEnquiryEmails } from "@/lib/email";
 const SALESHUB_ENDPOINT = "https://app.saleshubcloud.com/api/webhook/form-submission";
 const PUBLISHOS_DB = "https://publishos-eosin.vercel.app/api/db/abrahams_enquiries";
 
-async function saveToPublishOS(payload: Record<string, unknown>) {
+async function saveToPublishOS(
+  payload: Record<string, unknown>,
+  saleshubLeadId?: string,
+) {
   try {
     const existingRes = await fetch(PUBLISHOS_DB, { cache: "no-store" });
     const existing = existingRes.ok ? await existingRes.json() : [];
+    // Prefer SalesHub's lead ID so the offline-conversion pipeline can join
+    // by leadId directly. Fall back to a random UUID if SalesHub didn't
+    // return one (e.g. SalesHub call failed or returned non-JSON).
+    const id = saleshubLeadId && saleshubLeadId.trim()
+      ? saleshubLeadId.trim()
+      : crypto.randomUUID();
     const updated = [
       ...(Array.isArray(existing) ? existing : []),
-      { id: crypto.randomUUID(), submitted_at: new Date().toISOString(), ...payload },
+      { id, submitted_at: new Date().toISOString(), ...payload },
     ];
     await fetch(PUBLISHOS_DB, {
       method: "POST",
@@ -82,6 +91,11 @@ export async function POST(req: NextRequest) {
 
   const results = { saleshub: false, backup: false };
 
+  // POST to SalesHub and capture the lead ID it assigns. That ID must end
+  // up as the PublishOS mirror's `id` so the offline-conversion pipeline
+  // can join the two systems by leadId directly. SalesHub's response shape
+  // isn't fixed long-term so we look at several common keys defensively.
+  let saleshubLeadId: string | undefined;
   if (apiKey) {
     try {
       const res = await fetch(SALESHUB_ENDPOINT, {
@@ -90,10 +104,24 @@ export async function POST(req: NextRequest) {
         body: JSON.stringify(saleshubPayload),
       });
       results.saleshub = res.ok;
+      if (res.ok) {
+        try {
+          const data = await res.json();
+          // Try common field names — first non-empty wins
+          const candidate =
+            data?.leadId ?? data?.lead_id ?? data?.enquiryId ?? data?.enquiry_id ??
+            data?.id ?? data?.data?.leadId ?? data?.data?.id;
+          if (typeof candidate === "string" && candidate.trim()) {
+            saleshubLeadId = candidate.trim();
+          }
+        } catch {
+          // Non-JSON response — fall back to UUID below
+        }
+      }
     } catch {}
   }
 
-  await saveToPublishOS(saleshubPayload);
+  await saveToPublishOS(saleshubPayload, saleshubLeadId);
   results.backup = true;
 
   // Fire notification + auto-responder emails via Brevo in parallel
