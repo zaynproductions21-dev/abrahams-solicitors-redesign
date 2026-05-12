@@ -1,9 +1,14 @@
-# UK Visit Visa REFUSAL Wizard v1 — Spec Doc for Solicitor Sign-off
+# UK Visit Visa REFUSAL Wizard v1.1 — Spec Signed Off
 
 **Reviewer:** Imran Shah, Immigration & Litigation Solicitor (SRA #509359, admitted 2012)
 **Date drafted:** May 2026
-**Status:** Spec only — not yet built. Awaiting redline before any code is written.
+**Date signed off:** 12 May 2026 — all 11 redline/verify items approved as drafted
+**Status:** Sign-off complete. Build can proceed.
 **Phase:** 2 (Phase 1 = Spouse Visa, signed off May 2026)
+
+**Sign-off notes:**
+- All 5 copy/UX [REDLINE] items approved as drafted (Q1 buckets, Q3 keep, Q4 time-sensitive bucket incl. court hearing, Q5 multiple refusals framing, no 6th question on family ties — current routing sufficient)
+- All 6 legal [VERIFY] items confirmed accurate (Q2 3-month JR window per CPR 54.5, deception precedence over urgency, Para 9.7-9.10 + S-EC.1.5, S-EC.1.4 for cumulative, no AR + no general appeal except HR, PAP framing across all four outcomes)
 
 ---
 
