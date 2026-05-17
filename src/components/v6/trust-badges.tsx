@@ -1,4 +1,5 @@
 import { ExternalLink, Shield, Star } from "lucide-react";
+import { RevealOnScroll } from "./reveal-on-scroll";
 
 type Badge = {
   label: string;
@@ -97,7 +98,7 @@ export function TrustBadges() {
   return (
     <section className="border-y border-slate-100 bg-white">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <RevealOnScroll className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {BADGES.map(b => (
             <a
               key={b.label}
@@ -125,7 +126,7 @@ export function TrustBadges() {
               </div>
             </a>
           ))}
-        </div>
+        </RevealOnScroll>
       </div>
     </section>
   );

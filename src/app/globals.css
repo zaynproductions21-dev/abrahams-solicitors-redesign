@@ -116,3 +116,13 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* LCP-safe hero fade: starts at opacity 0.01 (not 0) so browsers can
+   paint the LCP element without delay. Council-approved 400ms duration. */
+@keyframes hero-fade-in {
+  from { opacity: 0.01; }
+  to { opacity: 1; }
+}
+.animate-hero-fade {
+  animation: hero-fade-in 400ms ease-out both;
+}

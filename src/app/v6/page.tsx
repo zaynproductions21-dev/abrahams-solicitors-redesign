@@ -173,7 +173,7 @@ export default function V6HomePage() {
         <div className="relative max-w-[1200px] mx-auto px-6 lg:px-8 py-10 lg:py-14">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left: headline */}
-            <div>
+            <div className="animate-hero-fade">
               <h1 className="text-3xl sm:text-4xl lg:text-[2.5rem] xl:text-[2.75rem] font-black text-slate-900 leading-[1.1] tracking-tight">
                 Expert Legal Support for{" "}
                 <span className="text-brand-red">Immigration, Housing</span>{" "}
