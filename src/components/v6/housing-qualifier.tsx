@@ -125,7 +125,7 @@ export function HousingQualifier() {
 
   const step1Valid = issues.length > 0 && duration !== "";
   const step2Valid = landlord !== "" && reported !== "";
-  const step3Valid = name && email && phone && postcode;
+  const step3Valid = name && phone && postcode;
 
   async function handleSubmit() {
     if (!step3Valid) return;
@@ -323,7 +323,7 @@ export function HousingQualifier() {
               <MsclkidField />
               <input value={name} onChange={e => setName(e.target.value)} placeholder="Your name" required className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red" />
               <div className="grid sm:grid-cols-2 gap-3">
-                <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="Email" required className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red" />
+                <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="Email (optional)" className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red" />
                 <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" placeholder="Phone" required className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red" />
               </div>
               <input value={postcode} onChange={e => setPostcode(e.target.value.toUpperCase())} placeholder="Postcode" required className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red" maxLength={10} />
