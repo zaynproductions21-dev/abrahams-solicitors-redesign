@@ -364,7 +364,7 @@ export function VisaWizardWidget({
         const stateKey = q.id.replace(/-/g, "_");
         const selected = answers[stateKey];
         return (
-          <div className={cardClass}>
+          <div key={`q-${step}`} className={`${cardClass} animate-in fade-in-0 slide-in-from-bottom-1 duration-150`}>
             <h2 className={`${compact ? "text-lg sm:text-xl" : "text-xl sm:text-2xl"} font-black text-slate-900 leading-tight tracking-tight`}>
               {q.heading}
             </h2>
@@ -426,7 +426,7 @@ export function VisaWizardWidget({
 
       {/* Result screen — shown BEFORE asking for email */}
       {step === QUESTIONS.length && result && (
-        <div className={cardClass}>
+        <div className={`${cardClass} animate-in fade-in-0 duration-200`}>
           <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest ring-1 ${TONE_STYLES[result.tone].ring} ${TONE_STYLES[result.tone].bg} ${TONE_STYLES[result.tone].text}`}>
             <Sparkles className="h-3.5 w-3.5" />
             Most relevant route
@@ -490,7 +490,7 @@ export function VisaWizardWidget({
 
       {/* Email capture screen */}
       {step === QUESTIONS.length + 1 && result && (
-        <div className={cardClass}>
+        <div className={`${cardClass} animate-in fade-in-0 slide-in-from-bottom-1 duration-150`}>
           <h2 className={`${compact ? "text-lg sm:text-xl" : "text-xl sm:text-2xl"} font-black text-slate-900 leading-tight tracking-tight`}>
             Email your result — no call, no spam
           </h2>
