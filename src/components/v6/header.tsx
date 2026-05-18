@@ -142,7 +142,7 @@ export function V6Header() {
                 <Phone className="h-5 w-5" />
               </DynamicCallLink>
               <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-                <SheetTrigger className="inline-flex items-center justify-center rounded-xl p-2.5 text-brand-navy hover:bg-slate-50 transition-colors">
+                <SheetTrigger aria-label="Open navigation menu" className="inline-flex items-center justify-center rounded-xl p-2.5 text-brand-navy hover:bg-slate-50 transition-colors">
                   <Menu className="h-5 w-5" />
                 </SheetTrigger>
                 <SheetContent side="right" className="w-[340px] p-0 overflow-y-auto">

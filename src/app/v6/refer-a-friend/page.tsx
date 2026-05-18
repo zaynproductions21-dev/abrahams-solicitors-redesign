@@ -91,7 +91,7 @@ export default function ReferAFriendPage() {
                   </div>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <input value={friendPhone} onChange={e => setFriendPhone(e.target.value)} type="tel" placeholder="Friend&rsquo;s Phone" className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red/20" />
-                    <select value={caseType} onChange={e => setCaseType(e.target.value)} required className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red/20 bg-white">
+                    <select value={caseType} onChange={e => setCaseType(e.target.value)} required aria-label="Case type" className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red/20 bg-white">
                       <option value="">Case Type</option>
                       <option value="immigration">Immigration</option>
                       <option value="housing-disrepair">Housing Disrepair</option>

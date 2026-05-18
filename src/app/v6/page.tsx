@@ -112,7 +112,7 @@ function ConsultationForm({ dark = false }: { dark?: boolean }) {
         <input value={name} onChange={e => setName(e.target.value)} placeholder="Your Name" required className={inputClass} />
         <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="Email Address" required className={inputClass} />
         <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" placeholder="Phone Number" className={inputClass} />
-        <select value={service} onChange={e => setService(e.target.value)} required className={`${inputClass} appearance-none bg-white`}>
+        <select value={service} onChange={e => setService(e.target.value)} required aria-label="Service required" className={`${inputClass} appearance-none bg-white`}>
           <option value="">Service Required</option>
           <option value="immigration">Immigration</option>
           <option value="housing">Housing</option>
@@ -127,7 +127,7 @@ function ConsultationForm({ dark = false }: { dark?: boolean }) {
         </Button>
       </form>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 mt-5 pt-4 border-t border-slate-100">
-        <a href="mailto:info@abrahamssolicitors.co.uk" className="flex items-center gap-2 text-xs text-slate-400 hover:text-brand-red transition-colors">
+        <a href="mailto:info@abrahamssolicitors.co.uk" className="flex items-center gap-2 text-xs text-slate-400 hover:text-brand-red transition-colors underline underline-offset-2 decoration-slate-200 hover:decoration-brand-red/60">
           <Mail className="h-3.5 w-3.5 shrink-0" />info@abrahamssolicitors.co.uk
         </a>
         <DynamicCallLink className="flex items-center gap-2 text-xs text-slate-400 hover:text-brand-red transition-colors">

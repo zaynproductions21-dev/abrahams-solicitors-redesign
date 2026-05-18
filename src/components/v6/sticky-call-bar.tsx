@@ -33,12 +33,14 @@ export function StickyCallBar() {
     const candidate = ["qualifier", "wizard", "free-check"].find(id =>
       document.getElementById(id),
     );
-    if (candidate) setWizardAnchor(`#${candidate}`);
+    // One-time DOM detection on mount; setState is the right tool here.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setWizardAnchor(candidate ? `#${candidate}` : null);
   }, []);
 
   return (
     <div
-      aria-hidden={!visible}
+      inert={!visible}
       className={`md:hidden fixed bottom-0 inset-x-0 z-30 bg-white border-t border-slate-200 shadow-[0_-4px_18px_rgba(15,23,42,0.08)] pr-[68px] transition-transform duration-300 ease-out ${visible ? "translate-y-0" : "translate-y-full"}`}
     >
       <div className={`p-2 ${wizardAnchor ? "grid grid-cols-2 gap-2" : ""}`}>

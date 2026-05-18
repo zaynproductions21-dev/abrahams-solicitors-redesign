@@ -104,7 +104,7 @@ export default function FreeConsultationPage() {
                 </div>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" placeholder="Phone Number" className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red/20" />
-                  <select value={service} onChange={e => setService(e.target.value)} required className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm bg-white focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red/20">
+                  <select value={service} onChange={e => setService(e.target.value)} required aria-label="Service required" className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm bg-white focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red/20">
                     <option value="">Service Required</option>
                     <option value="immigration">Immigration</option>
                     <option value="housing">Housing</option>
