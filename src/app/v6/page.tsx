@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { TrustBadges } from "@/components/v6/trust-badges";
@@ -157,14 +158,15 @@ export default function V6HomePage() {
             Hardcoded to /hero-london.jpg so the bot's generated
             /public/generated/home-hero.webp does NOT replace this photo. */}
         <div className="absolute inset-y-0 right-0 w-[55%] hidden lg:block pointer-events-none overflow-hidden">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/hero-london.jpg"
             alt="Solicitor at the London office of Abrahams Solicitors with the City of London skyline in the background"
             className="w-full h-full object-cover object-center"
             width={1536}
             height={1024}
-            loading="eager"
+            priority
+            sizes="(min-width: 1024px) 55vw, 0px"
+            fetchPriority="high"
           />
           {/* Soft fade on the left edge so the headline text stays legible */}
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent" aria-hidden="true" />
