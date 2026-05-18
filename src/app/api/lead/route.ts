@@ -60,7 +60,17 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  const apiKey = process.env.SALESHUB_API_KEY;
+  // Per-source routing: housing-disrepair leads go to a separate org in
+  // SalesHub Cloud (so Google Ads Smart Bidding for the housing campaign
+  // never crosses signals with the existing immigration campaigns).
+  // Sources `housing-disrepair-qualifier` and `housing-disrepair-exit-intent`
+  // both route to the housing org; everything else (immigration, homepage,
+  // service-page:*) continues to use the default key/org as before.
+  const sourceStr = typeof body.source === "string" ? body.source : "";
+  const isHousingDisrepair = sourceStr.startsWith("housing-disrepair");
+  const apiKey = isHousingDisrepair
+    ? process.env.SALESHUB_API_KEY_HOUSING
+    : process.env.SALESHUB_API_KEY;
 
   // Click IDs — captured client-side from ?gclid=/?gbraid=/?wbraid= (Google)
   // and ?msclkid= (Bing) on landing and forwarded with each lead. SalesHub
