@@ -92,11 +92,16 @@ export async function POST(req: NextRequest) {
     serviceLine: body.serviceLine ?? body.service ?? "",
     message: body.message ?? body.case ?? "",
     pageUrl: body.pageUrl ?? "",
-    ...(gclid ? { gclid } : {}),
+    // Click IDs sent under both the short legacy name AND the SalesHub Cloud
+    // canonical column name (`source_click_id`, `source_traffic_source`) so
+    // whichever name the webhook handler reads, the value lands. Avoids the
+    // silent-drop bug where GCLIDs were arriving at SalesHub but never being
+    // mapped to the `source_click_id` column on the lead row.
+    ...(gclid ? { gclid, source_click_id: gclid } : {}),
     ...(gbraid ? { gbraid } : {}),
     ...(wbraid ? { wbraid } : {}),
     ...(msclkid ? { msclkid } : {}),
-    ...(trafficSource ? { traffic_source: trafficSource } : {}),
+    ...(trafficSource ? { traffic_source: trafficSource, source_traffic_source: trafficSource } : {}),
   };
 
   const results = { saleshub: false, backup: false };
