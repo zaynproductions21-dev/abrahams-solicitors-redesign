@@ -27,6 +27,7 @@ import { useSpamGuard } from "@/lib/spam-client";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
 import { GclidField, MsclkidField } from "@/components/v6/gclid-field";
 import { submitEnquiry } from "@/lib/publishos";
+import { VisaWizardWidget } from "@/components/v6/visa-wizard-widget";
 
 const PAGE_URL = "https://www.abrahamssolicitors.co.uk/uk-spouse-visa-from-us/";
 const LAST_REVIEWED = "May 2026";
@@ -180,6 +181,7 @@ export default function SpouseVisaFromUSPageInner() {
 
       <Hero />
       <TrustBadges />
+      <WizardSection />
       <ProcessExplainer />
       <PricingBlock />
       <Why900Anchor />
@@ -441,6 +443,25 @@ function Field({ label, value, onChange, type = "text", autoComplete, placeholde
         className="w-full rounded-lg border-2 border-slate-200 bg-white px-3 py-2.5 text-sm sm:text-base text-slate-900 focus:border-brand-red focus:outline-none transition-colors"
       />
     </label>
+  );
+}
+
+function WizardSection() {
+  return (
+    <section className="py-10 lg:py-14 bg-white border-b border-slate-100">
+      <div className="max-w-[1100px] mx-auto px-6 lg:px-8">
+        <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">Not sure which route?</p>
+        <h2 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">
+          Six-question check — which UK partner-visa route fits?
+        </h2>
+        <p className="mt-3 text-base text-slate-600 leading-relaxed max-w-2xl">
+          Plain-English questions covering relationship type, financial position, and your timing. No call follows automatically — we only email the result if you ask. The wizard handles spouse, fiancé(e), and unmarried-partner routes, and works equally well for US-resident applicants.
+        </p>
+        <div className="mt-6">
+          <VisaWizardWidget />
+        </div>
+      </div>
+    </section>
   );
 }
 
