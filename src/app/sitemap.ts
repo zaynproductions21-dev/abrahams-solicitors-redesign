@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: p("/contact-us/"), lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: p("/our-fees/"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: p("/free-consultation/"), lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: p("/uk-spouse-visa-from-us/"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: p("/faqs/"), lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: p("/blog/"), lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     { url: p("/press-releases/"), lastModified: now, changeFrequency: "weekly", priority: 0.5 },
