@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM Council Report — ILR + Citizenship Wizards (Abrahams Solicitors)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background: #f8f9fc;
+    color: #0f172a;
+    line-height: 1.6;
+    padding: 32px 16px;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  .header {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: #fff;
+    border-radius: 14px;
+    padding: 32px 36px;
+    margin-bottom: 24px;
+    box-shadow: 0 10px 40px -10px rgba(99,102,241,0.4);
+  }
+  .header .eyebrow {
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    opacity: 0.88;
+    margin-bottom: 8px;
+  }
+  .header h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+  .header .meta { font-size: 14px; opacity: 0.92; }
+  .verdict-card {
+    background: #fff;
+    border: 1px solid #e8ecf0;
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+  }
+  .verdict-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+  }
+  .verdict-approved { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+  .verdict-changes  { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+  .verdict-rejected { background: #fee2e2; color: #b91c1c; border: 1px solid #fecaca; }
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 14px;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  h2::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 22px;
+    background: #6366f1;
+    border-radius: 3px;
+  }
+  h3 { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: #0f172a; }
+  p { margin: 0 0 10px; color: #334155; font-size: 14px; }
+  ul, ol { padding-left: 22px; margin: 0 0 12px; color: #334155; font-size: 14px; }
+  li { margin-bottom: 6px; }
+  .advisor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+  .advisor-card {
+    background: #fff;
+    border: 1px solid #e8ecf0;
+    border-radius: 14px;
+    padding: 22px 24px;
+    box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+  }
+  .advisor-card .role {
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #6366f1;
+    margin-bottom: 4px;
+  }
+  .advisor-card .name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #0f172a;
+  }
+  .advisor-card .mini-verdict {
+    display: inline-block;
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fcd34d;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .advisor-card p { font-size: 13px; }
+  .advisor-card ol { font-size: 13px; padding-left: 18px; }
+  .peer-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 16px 0 24px;
+    font-size: 13px;
+  }
+  .peer-table th, .peer-table td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid #e8ecf0;
+  }
+  .peer-table th {
+    background: #f8f9fc;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #64748b;
+  }
+  .peer-table tr:last-child td { border-bottom: none; }
+  .changes-list ol { padding-left: 24px; }
+  .changes-list h3 {
+    margin-top: 18px;
+    color: #6366f1;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .timeline {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 13px;
+    margin: 12px 0 16px;
+  }
+  .timeline th, .timeline td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid #e8ecf0;
+    vertical-align: top;
+  }
+  .timeline th {
+    background: #f8f9fc;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #64748b;
+  }
+  .timeline .day { font-weight: 700; color: #6366f1; white-space: nowrap; }
+  .timeline tr.gate td { background: #fef3c7; }
+  .timeline tr.gate .day { color: #92400e; }
+  .risk-card {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border: 1px solid #fcd34d;
+    border-radius: 14px;
+    padding: 22px 26px;
+    margin-bottom: 24px;
+  }
+  .risk-card .risk-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #92400e;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .risk-card .risk-value {
+    font-size: 22px;
+    font-weight: 800;
+    color: #92400e;
+    margin-bottom: 8px;
+  }
+  .risk-card p { color: #78350f; }
+  .footer {
+    text-align: center;
+    font-size: 12px;
+    color: #94a3b8;
+    margin-top: 32px;
+    padding: 16px;
+  }
+  .footer strong { color: #64748b; }
+  .placement-badge {
+    display: inline-block;
+    background: #ecfdf5;
+    color: #047857;
+    border: 1px solid #a7f3d0;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 6px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="eyebrow">LLM Council Verdict · Abrahams Solicitors</div>
+    <h1>ILR + British Citizenship Wizards</h1>
+    <div class="meta">20 May 2026 · 5 advisors + chairman synthesis · Reviewed by Imran Shah (SRA #509359, admitted 2012)</div>
+  </div>
+
+  <div class="verdict-card" style="border:2px solid #047857; background:linear-gradient(135deg,#ecfdf5 0%,#ffffff 100%);">
+    <div class="verdict-badge verdict-approved" style="font-size:13px; padding:8px 16px;">&#10003; Approved by Imran Shah &mdash; 20 May 2026</div>
+    <h2 style="color:#047857;">Status: cleared to build</h2>
+    <p><strong>Both wizards (ILR + British Citizenship) approved</strong> per the chairman's recommended changes below. Engine refactor (D0&ndash;D2) may proceed immediately. ILR wizard targets launch on D10 (30 May 2026); Citizenship wizard on D26 (15 June 2026), subject to spec-stage redlines.</p>
+    <p style="margin-top:10px; font-size:13px; color:#64748b;"><strong>Approval scope (wholesale):</strong> council framework AND line-level question wording, route copy, and routing logic locked in <code>ilr-wizard-spec-v1.md</code> and <code>citizenship-wizard-spec-v1.md</code>. No further sign-off gate before launch. <code>[VERIFY]</code> markers in those specs are confirm-during-build items, not blocking redlines.</p>
+  </div>
+
+  <div class="verdict-card">
+    <div class="verdict-badge verdict-changes">Approved with changes</div>
+    <h2>Headline</h2>
+    <p>Build the two wizards. <strong>Refactor the existing <code>VisaWizardWidget</code> to be config-driven first.</strong> Ship ILR (8–9 questions) before Citizenship (4–5 questions). Separate URLs. Imran's named sign-off on each route card is the irreplaceable gate.</p>
+    <p style="margin-top: 12px;">All 5 advisors said APPROVE WITH CHANGES — no rejection. The strongest convergence: variable question length, plain-English literacy fixes, and "not sure → solicitor" safety routing. The strongest dissent: scope creep into a six-wizard journey engine — deferred to Q3.</p>
+  </div>
+
+  <h2>Five Advisors — Round 1 Verdicts</h2>
+  <div class="advisor-grid">
+
+    <div class="advisor-card">
+      <div class="role">Advisor A · Contrarian</div>
+      <div class="name">Hunt for fatal flaws</div>
+      <div class="mini-verdict">Approve with changes</div>
+      <p>ILR has 7+ overlapping routes — a 6-Q tree can misroute a Tier 2 ICT switcher into "5-year ILR" → SRA complaint risk. Absences rules differ by route. "Not sure" routing unspecified. Wizard outputs could constitute reserved-activity framing under SRA Principle 7.</p>
+      <ol>
+        <li>"Not sure" → solicitor route only.</li>
+        <li>Add Q0: "Switched visa categories in 5 years?" → solicitor if yes.</li>
+        <li>Remove "British by birth" option; link to gov.uk.</li>
+        <li>Visible "Indicative only" disclaimer.</li>
+        <li>6-year anonymised routing-decision log.</li>
+        <li>Imran personal sign-off + quarterly review.</li>
+      </ol>
+    </div>
+
+    <div class="advisor-card">
+      <div class="role">Advisor B · First Principles</div>
+      <div class="name">Question every assumption</div>
+      <div class="mini-verdict">Approve with changes</div>
+      <p>Symmetry is wrong. ILR is a richer multi-route decision; Citizenship is a gating check on top of ILR. Force-fitting 6Q on both creates false confidence on ILR and padding on Citizenship. Same engine, variable length.</p>
+      <ol>
+        <li>ILR 8–9Q; add dependants, prior refusals, continuous lawful gap.</li>
+        <li>Citizenship 4–5Q; drop redundancies implied by ILR.</li>
+        <li>Separate URLs (Placement B).</li>
+        <li>Confidence-level badge on result.</li>
+        <li>Feedback loop: which route triggers enquiry.</li>
+      </ol>
+    </div>
+
+    <div class="advisor-card">
+      <div class="role">Advisor C · Expansionist</div>
+      <div class="name">Find the 10× upside</div>
+      <div class="mini-verdict">Approve with changes</div>
+      <p>The real prize is a lifetime visa-journey engine. The same client returns 3–4 times: Spouse → FLR(M) → ILR → Citizenship → Child Registration → Sponsorship. Each result is a future re-engagement trigger. Adjacent wizards: FLR(M), MN1, Dependent, Skilled-Worker switch, EUSS late.</p>
+      <ol>
+        <li>Opt-in PDF checklist + timeline at result.</li>
+        <li>CRM <code>next_trigger_date</code> for re-engagement.</li>
+        <li>Calendar embed at every actionable result.</li>
+        <li>Programmatic SEO pages per route combo.</li>
+        <li>Roadmap FLR(M), MN1, Dependent wizards.</li>
+        <li>Cross-link wizard outputs.</li>
+      </ol>
+    </div>
+
+    <div class="advisor-card">
+      <div class="role">Advisor D · Outsider</div>
+      <div class="name">No domain knowledge — would I get it?</div>
+      <div class="mini-verdict">Approve with changes</div>
+      <p>I'm a French dev, 6 years here, married to a Brit. I Google "how to become British." I don't know if I need ILR or Citizenship. "EUSS pre-settled" → guess wrong. "s.6(1)" sounds like a tax form. "Continuous residence broken" scares me. The wizard works for someone already 60% educated.</p>
+      <ol>
+        <li>10-sec "Which wizard?" chooser at top.</li>
+        <li>Hover-tooltips on every acronym.</li>
+        <li>Plain-English helper under each Q.</li>
+        <li>Rename "s.6(1)" → "Standard citizenship route".</li>
+        <li>"Continuous residence broken" → "Long trips may have reset your clock".</li>
+        <li>"Not sure? That's normal — we'll explain."</li>
+      </ol>
+    </div>
+
+    <div class="advisor-card">
+      <div class="role">Advisor E · Executor</div>
+      <div class="name">Ship it — what's the action plan?</div>
+      <div class="mini-verdict">Approve with changes</div>
+      <p>1 day per wizard is optimistic — realistic 2.5 days each. The 563-line widget hardcodes spouse logic. Refactor to config-driven first or fork three times. GTM events reuse with a <code>wizard_type</code> param. Ship ILR first (higher search volume), Citizenship 2 weeks later.</p>
+      <ol>
+        <li>Refactor widget to config-driven before wizard #2.</li>
+        <li>Add <code>wizard_type</code> to all GTM events.</li>
+        <li>Ship ILR first, Citizenship +2 weeks.</li>
+        <li>2.5 days/wizard budget, not 1.</li>
+        <li>Imran sign-off gate before launch.</li>
+      </ol>
+    </div>
+
+  </div>
+
+  <h2>Round 2 — Peer Review</h2>
+  <table class="peer-table">
+    <thead>
+      <tr>
+        <th>Advisor</th>
+        <th>Most agree with</th>
+        <th>Most disagree with</th>
+        <th>Position</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>A · Contrarian</strong></td><td>B (false symmetry)</td><td>C (scaling before safety)</td><td>Refined — adopt B's variable length + D's tooltips</td></tr>
+      <tr><td><strong>B · First Principles</strong></td><td>E (config refactor)</td><td>C (over-builds before validating)</td><td>Refined — adopt A's "not sure → solicitor" + D's tooltips</td></tr>
+      <tr><td><strong>C · Expansionist</strong></td><td>B (rejects 6Q symmetry)</td><td>A ("not sure" wall kills funnel)</td><td>Refined — adopt E's refactor + B's confidence badges + D's tooltips</td></tr>
+      <tr><td><strong>D · Outsider</strong></td><td>A (harder safety teeth)</td><td>C (premature scope creep)</td><td>Refined — adopt A's solicitor route + "indicative only" disclaimer</td></tr>
+      <tr><td><strong>E · Executor</strong></td><td>B (variable length)</td><td>C (scope creep)</td><td>Refined — adopt variable length + safety log + tooltips on day 1</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Chairman Synthesis — Recommended Changes</h2>
+  <div class="verdict-card changes-list">
+    <h3>Engine Refactor (Before Any Wizard #2 Work)</h3>
+    <ol>
+      <li>Refactor <code>VisaWizardWidget</code> to accept a config prop: <code>{ questions[], routes[], scoringFn, wizardType, lastReviewed, author }</code>.</li>
+      <li>Add <code>wizard_type</code> parameter to all GTM events.</li>
+      <li>Support variable question count from day 1.</li>
+    </ol>
+
+    <h3>ILR Wizard (8–9 Questions)</h3>
+    <ol start="4">
+      <li>Add Q0: "Have you switched visa categories in the last 5 years?" → solicitor route if yes.</li>
+      <li>Add: dependants, prior ILR refusals, continuous lawful status gap.</li>
+      <li>Any "not sure" answer → force solicitor route. No pathway shown.</li>
+      <li>Confidence-level badge on result card (high / medium / low).</li>
+    </ol>
+
+    <h3>Citizenship Wizard (4–5 Questions)</h3>
+    <ol start="8">
+      <li>Drop redundancies implied by holding ILR (English B1 + Life in UK Test already evidenced at ILR stage — verify with Imran).</li>
+      <li>Remove "British by birth" option; link to gov.uk check tool.</li>
+      <li>Same "not sure" → solicitor route.</li>
+    </ol>
+
+    <h3>Language &amp; UX (Outsider Pack)</h3>
+    <ol start="11">
+      <li>10-sec "Which wizard?" chooser at top of <code>/visa-wizard/</code>: "Can you stay forever? (ILR) / Can you get a passport? (Citizenship) / Bringing a partner? (Spouse Visa)".</li>
+      <li>Hover-tooltips on every acronym: EUSS, ILR, B1, s.6(1), CEFR, Appendix FM.</li>
+      <li>Plain-English helper under each question (e.g. "Life in UK Test = 24-question online quiz, £50").</li>
+      <li>Rename result routes — "s.6(1)" → "Standard citizenship route"; "Continuous residence broken" → "Long trips may have reset your clock — let's check".</li>
+      <li>"Not sure? That's normal — we'll explain." reassurance copy.</li>
+    </ol>
+
+    <h3>Safety &amp; SRA Hygiene</h3>
+    <ol start="16">
+      <li>Visible disclaimer above every result: "Indicative only. Not legal advice. Eligibility confirmed only after document review."</li>
+      <li>Log every routing decision (anonymised) for 6 years — SRA evidence trail.</li>
+      <li>Imran personally signs off route logic at launch and reviews quarterly. "Last reviewed" date stamped on every result card.</li>
+    </ol>
+
+    <h3>Light-Touch Upside (v1.1)</h3>
+    <ol start="19">
+      <li>Opt-in "Email me a personalised PDF checklist + timeline" at result step.</li>
+      <li>CRM <code>next_trigger_date</code> tag for cross-wizard re-engagement (ILR-eligible today → Citizenship reminder at +12 months).</li>
+    </ol>
+
+    <h3>Deferred to Q3 2026 Review</h3>
+    <ul>
+      <li>Programmatic landing pages per route combination.</li>
+      <li>Six-wizard journey engine (FLR(M), MN1, Dependent, Skilled-Worker switch, EUSS late).</li>
+      <li>Calendar booking embed at every result.</li>
+    </ul>
+  </div>
+
+  <h2>Placement</h2>
+  <div class="verdict-card">
+    <p>
+      <span class="placement-badge">✓ Adopted</span>
+      <strong>Option B — Separate URLs.</strong> <code>/ilr-wizard/</code> and <code>/citizenship-wizard/</code> as standalone canonical pages, with the same widget embedded on the host LPs <code>/indefinite-leave-to-remain-ilr/</code> and <code>/british-citizenship/</code>. <code>/visa-wizard/</code> becomes the chooser hub.
+    </p>
+    <p style="margin-top:8px; color:#64748b; font-size:13px;">
+      Distinct search intent, distinct schema, distinct QS signals. Embed pattern proven on <code>/uk-spouse-visa/</code>.
+    </p>
+  </div>
+
+  <h2>Final Action Plan</h2>
+  <table class="timeline">
+    <thead>
+      <tr><th>Day</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="day">D0 – D2</td><td>Refactor <code>VisaWizardWidget</code> to config-driven. Add <code>wizard_type</code> to GTM. Ship behind a feature flag.</td></tr>
+      <tr><td class="day">D3 – D5</td><td>Draft ILR JSON: 8–9 questions, 6 routes, safety routing, plain-English tooltips. Send to Imran for line-by-line review.</td></tr>
+      <tr><td class="day">D6 – D8</td><td>Build <code>/ilr-wizard/</code> standalone. Wire <code>/api/lead</code> with <code>wizard_type=ilr</code>. Routing-decision logger. Mobile QA on iPhone SE / Pixel 6a.</td></tr>
+      <tr class="gate"><td class="day">D9 · GATE</td><td><strong>Imran sign-off on the 6 ILR route cards + question text.</strong> No launch without this.</td></tr>
+      <tr><td class="day">D10</td><td>Launch <code>/ilr-wizard/</code>. Embed on <code>/indefinite-leave-to-remain-ilr/</code>. Submit URL inspection in GSC.</td></tr>
+      <tr><td class="day">D11 – D17</td><td>Monitor: completion %, route distribution, enquiry conversion, mobile LCP. Daily check.</td></tr>
+      <tr><td class="day">D18 – D21</td><td>Draft Citizenship JSON: 4–5 questions, ~5 routes. Imran review.</td></tr>
+      <tr><td class="day">D22 – D24</td><td>Build <code>/citizenship-wizard/</code>. Embed on <code>/british-citizenship/</code>.</td></tr>
+      <tr class="gate"><td class="day">D25 · GATE</td><td><strong>Imran sign-off on Citizenship routes.</strong></td></tr>
+      <tr><td class="day">D26</td><td>Launch Citizenship wizard.</td></tr>
+      <tr><td class="day">D33</td><td>7-day Citizenship review. Decide whether to revisit C's expansion roadmap.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="risk-card">
+    <div class="risk-label">Risk Rating</div>
+    <div class="risk-value">Medium</div>
+    <p><strong>Biggest risk:</strong> wrong-route harm to a real user if the safety gates ("not sure → solicitor", switched-category Q0, document-review disclaimer, Imran sign-off) are skipped or weakened to ship faster.</p>
+    <p style="margin-top: 8px;"><strong>Mitigation:</strong> Imran's named sign-off on each route card is the irreplaceable gate. Everything else can be patched post-launch.</p>
+  </div>
+
+  <div class="footer">
+    Generated by the PublishOS LLM Council · 5 advisors + chairman synthesis · 20 May 2026<br>
+    <strong>For approval by Imran Shah, Director / Principal Solicitor — Abrahams Solicitors (SRA #509359, firm #809071)</strong>
+  </div>
+
+</div>
+</body>
+</html>

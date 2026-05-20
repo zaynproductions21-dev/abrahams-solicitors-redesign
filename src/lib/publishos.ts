@@ -74,7 +74,13 @@ export type Enquiry = {
 export async function submitEnquiry(
   payload: Omit<Enquiry, "id" | "submitted_at">,
   spam?: { _hp: string; _t: number },
-  turnstileToken?: string
+  turnstileToken?: string,
+  /**
+   * Optional wizard metadata. When set, the API route tags the SalesHub
+   * lead with `wizard_type` so the offline conversion pipeline can join
+   * wizard leads back to the right ad campaign.
+   */
+  meta?: { wizardType?: "ilr" | "citizenship" | "spouse" },
 ): Promise<boolean> {
   try {
     // Pull captured click IDs (Google + Bing) so the API route can forward
@@ -112,6 +118,7 @@ export async function submitEnquiry(
         ...(wbraid ? { wbraid } : {}),
         ...(msclkid ? { msclkid } : {}),
         traffic_source,
+        ...(meta?.wizardType ? { wizard_type: meta.wizardType } : {}),
         ...(spam ?? {}),
         ...(turnstileToken ? { "cf-turnstile-response": turnstileToken } : {}),
       }),

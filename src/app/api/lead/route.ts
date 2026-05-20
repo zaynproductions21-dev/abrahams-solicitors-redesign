@@ -81,6 +81,14 @@ export async function POST(req: NextRequest) {
   const wbraid = typeof body.wbraid === "string" ? body.wbraid : "";
   const msclkid = typeof body.msclkid === "string" ? body.msclkid : "";
   const trafficSource = typeof body.traffic_source === "string" ? body.traffic_source : "";
+  // Wizard-type tag: set by the wizard widgets so the CRM + offline-conversion
+  // pipeline can join leads back to the originating wizard (ilr / citizenship /
+  // spouse). Whitelist the values so a hostile client can't write arbitrary
+  // strings into the CRM column.
+  const wizardTypeRaw = typeof body.wizard_type === "string" ? body.wizard_type : "";
+  const wizardType = ["ilr", "citizenship", "spouse"].includes(wizardTypeRaw)
+    ? wizardTypeRaw
+    : "";
 
   const saleshubPayload = {
     firstName: body.firstName ?? body.name?.split(" ")[0] ?? "",
@@ -102,6 +110,10 @@ export async function POST(req: NextRequest) {
     ...(wbraid ? { wbraid } : {}),
     ...(msclkid ? { msclkid } : {}),
     ...(trafficSource ? { traffic_source: trafficSource, source_traffic_source: trafficSource } : {}),
+    // Wizard tag goes under both the short name and a `source_wizard_type`
+    // alias, matching the GCLID dual-write pattern — whichever column name
+    // the SalesHub webhook handler reads, the value lands.
+    ...(wizardType ? { wizard_type: wizardType, source_wizard_type: wizardType } : {}),
   };
 
   const results = { saleshub: false, backup: false };

@@ -13,6 +13,9 @@ import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { TeamStrip } from "@/components/v6/team-strip";
 import { VisaWizardWidget } from "@/components/v6/visa-wizard-widget";
+import { WizardWidget } from "@/components/v6/wizard-widget";
+import { ILR_WIZARD_CONFIG } from "@/lib/wizards/ilr-config";
+import { CITIZENSHIP_WIZARD_CONFIG } from "@/lib/wizards/citizenship-config";
 import { VisitVisaRefusalWidget } from "@/components/v6/visit-visa-refusal-widget";
 import { VisaWizardEntryCard } from "@/components/v6/visa-wizard-entry-card";
 import { JsonLd, faqPageSchema, breadcrumbSchema, serviceSchema, personSchema } from "@/components/v6/jsonld";
@@ -123,6 +126,15 @@ export default function V6ServicePage() {
   // Pattern A — Phase 2 — embed the visit-visa-refusal wizard on the
   // /visa-refusal-appeal/ page (same shape as the Spouse Visa embed).
   const isVisaRefusalAppeal = slug === "visa-refusal-appeal";
+  // Pattern A — Phase 3 — embed the ILR + Citizenship wizards on their
+  // host LPs. Council-approved spec docs at:
+  //   docs/ilr-wizard-spec-v1.md
+  //   docs/citizenship-wizard-spec-v1.md
+  // Both signed off by Imran Shah on 20 May 2026.
+  const isIlrPage = slug === "indefinite-leave-to-remain-ilr";
+  const isCitizenshipPage =
+    slug === "british-citizenship-solicitors" ||
+    slug === "british-citizenship-naturalisation";
   // Pattern B — show the Spouse Visa wizard entry-point CARD on the
   // immigration hub and the rest of the partner-visa cluster.
   const isPartnerVisaCluster =
@@ -274,6 +286,10 @@ export default function V6ServicePage() {
                 ? <VisaWizardWidget compact source={`visa-wizard-embed:${slug}`} />
                 : isVisaRefusalAppeal
                 ? <VisitVisaRefusalWidget compact source={`visit-visa-refusal-embed:${slug}`} />
+                : isIlrPage
+                ? <WizardWidget config={ILR_WIZARD_CONFIG} compact source={`ilr-wizard-embed:${slug}`} />
+                : isCitizenshipPage
+                ? <WizardWidget config={CITIZENSHIP_WIZARD_CONFIG} compact source={`citizenship-wizard-embed:${slug}`} />
                 : <ConsultationForm serviceName={page.title} />}
             </div>
           </div>
