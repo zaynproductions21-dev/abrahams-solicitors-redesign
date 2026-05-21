@@ -5,6 +5,7 @@ import Link from "next/link";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { updateGtmConsent } from "./google-tag-manager";
+import { updateUetConsent } from "./bing-uet";
 
 const COOKIE_KEY = "abrahams-cookie-consent-v1";
 
@@ -27,6 +28,7 @@ export function CookieConsent() {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: decision === "accepted" ? "cookie_consent_granted" : "cookie_consent_denied" });
     updateGtmConsent(decision);
+    updateUetConsent(decision);
     setVisible(false);
   };
 

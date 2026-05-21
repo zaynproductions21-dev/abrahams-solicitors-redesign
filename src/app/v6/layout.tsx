@@ -5,6 +5,7 @@ import { CookieConsent } from "@/components/v6/cookie-consent";
 import { ChatWidgets } from "@/components/v6/chat-widgets";
 import { StickyCallBar } from "@/components/v6/sticky-call-bar";
 import { GoogleTagManager } from "@/components/v6/google-tag-manager";
+import { BingUet } from "@/components/v6/bing-uet";
 import { GclidCapture } from "@/components/v6/gclid-capture";
 import { JsonLd, organisationSchema } from "@/components/v6/jsonld";
 
@@ -18,6 +19,7 @@ export default function V6Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className={poppins.className}>
       <GoogleTagManager />
+      <BingUet />
       <GclidCapture />
       <JsonLd data={organisationSchema()} />
       <style>{`
