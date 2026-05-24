@@ -3,18 +3,25 @@ import { isSpamSubmission } from "@/lib/spam";
 import { sendEnquiryEmails } from "@/lib/email";
 
 const SALESHUB_ENDPOINT = "https://app.saleshubcloud.com/api/webhook/form-submission";
-const PUBLISHOS_DB = "https://publishos-eosin.vercel.app/api/db/abrahams_enquiries";
+const PUBLISHOS_DB_IMMIGRATION = "https://publishos-eosin.vercel.app/api/db/abrahams_enquiries";
+const PUBLISHOS_DB_HOUSING = "https://publishos-eosin.vercel.app/api/db/abrahams_housing_enquiries";
 
+/**
+ * Mirror the lead into PublishOS Redis. Housing-disrepair sources go into a
+ * SEPARATE collection so the housing offline-conversion pipeline can join
+ * GCLIDs → CRM stages without crossing signals with immigration. The two
+ * pipelines have different CPAs, different case-fee profiles, and feed
+ * different Google Ads conversion actions.
+ */
 async function saveToPublishOS(
   payload: Record<string, unknown>,
-  saleshubLeadId?: string,
+  saleshubLeadId: string | undefined,
+  isHousingDisrepair: boolean,
 ) {
+  const url = isHousingDisrepair ? PUBLISHOS_DB_HOUSING : PUBLISHOS_DB_IMMIGRATION;
   try {
-    const existingRes = await fetch(PUBLISHOS_DB, { cache: "no-store" });
+    const existingRes = await fetch(url, { cache: "no-store" });
     const existing = existingRes.ok ? await existingRes.json() : [];
-    // Prefer SalesHub's lead ID so the offline-conversion pipeline can join
-    // by leadId directly. Fall back to a random UUID if SalesHub didn't
-    // return one (e.g. SalesHub call failed or returned non-JSON).
     const id = saleshubLeadId && saleshubLeadId.trim()
       ? saleshubLeadId.trim()
       : crypto.randomUUID();
@@ -22,7 +29,7 @@ async function saveToPublishOS(
       ...(Array.isArray(existing) ? existing : []),
       { id, submitted_at: new Date().toISOString(), ...payload },
     ];
-    await fetch(PUBLISHOS_DB, {
+    await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updated),
@@ -158,7 +165,7 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  await saveToPublishOS(saleshubPayload, saleshubLeadId);
+  await saveToPublishOS(saleshubPayload, saleshubLeadId, isHousingDisrepair);
   results.backup = true;
 
   // Fire notification + auto-responder emails via Brevo in parallel
