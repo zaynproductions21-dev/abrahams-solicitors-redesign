@@ -51,11 +51,34 @@ import {
 } from "lucide-react";
 
 const PAGE_URL = "https://www.abrahamssolicitors.co.uk/adequate-maintenance-calculator/";
-const LAST_REVIEWED = "May 2026";
-const RATES_AS_OF = "April 2025";
+const LAST_REVIEWED = "June 2026";
+const RATES_AS_OF = "April 2026";
 const AUTHOR = team.find((t) => t.slug === "humaira-anjum")!;
 
 // ─── Calculator data ────────────────────────────────────────────────────
+//
+// Income Support rates verified against the DWP "Benefit and pension rates
+// 2026 to 2027" publication (last updated 16 February 2026, effective from
+// 6 April 2026). Verified by Claude on 1 June 2026 from gov.uk.
+//
+// Composite thresholds below = personal allowance (single OR couple) + the
+// dependent-child personal allowance (£87.88) per child. The Family Premium
+// has been abolished for new Income Support claims since 30 April 2016, so
+// it isn't added.
+//
+// IMPORTANT — IS is now closed to new claimants under UC migration, but the
+// published IS rates remain the legal benchmark for the adequate-maintenance
+// test because the case-law (KA Pakistan, AM Ethiopia) was anchored to IS
+// before UC existed. The Home Office continues to apply IS rates for this
+// test even where the sponsor would in practice be on UC.
+//
+// Next review: April 2027 uprating order (typically published November 2026,
+// effective 6 April 2027).
+
+const IS_PERSONAL_ALLOWANCE_SINGLE_25_PLUS = 95.55;
+const IS_PERSONAL_ALLOWANCE_SINGLE_UNDER_25 = 75.65;
+const IS_PERSONAL_ALLOWANCE_COUPLE = 150.15;
+const IS_CHILD_AMOUNT = 87.88;
 
 type FamilyKey =
   | "single-25-plus"
@@ -67,13 +90,34 @@ type FamilyKey =
   | "couple-4-children";
 
 const IS_RATES: Record<FamilyKey, { label: string; weekly: number }> = {
-  "single-25-plus": { label: "Single applicant, 25 or over", weekly: 90.5 },
-  "single-18-24": { label: "Single applicant, 18 to 24", weekly: 71.7 },
-  couple: { label: "Couple (no children)", weekly: 114.85 },
-  "couple-1-child": { label: "Couple + 1 child", weekly: 149.9 },
-  "couple-2-children": { label: "Couple + 2 children", weekly: 184.95 },
-  "couple-3-children": { label: "Couple + 3 children", weekly: 219.0 },
-  "couple-4-children": { label: "Couple + 4 children (+£35.05 each beyond)", weekly: 254.05 },
+  "single-25-plus": {
+    label: "Single applicant, 25 or over",
+    weekly: IS_PERSONAL_ALLOWANCE_SINGLE_25_PLUS,
+  },
+  "single-18-24": {
+    label: "Single applicant, 18 to 24",
+    weekly: IS_PERSONAL_ALLOWANCE_SINGLE_UNDER_25,
+  },
+  couple: {
+    label: "Couple (no children)",
+    weekly: IS_PERSONAL_ALLOWANCE_COUPLE,
+  },
+  "couple-1-child": {
+    label: "Couple + 1 child",
+    weekly: IS_PERSONAL_ALLOWANCE_COUPLE + IS_CHILD_AMOUNT,
+  },
+  "couple-2-children": {
+    label: "Couple + 2 children",
+    weekly: IS_PERSONAL_ALLOWANCE_COUPLE + 2 * IS_CHILD_AMOUNT,
+  },
+  "couple-3-children": {
+    label: "Couple + 3 children",
+    weekly: IS_PERSONAL_ALLOWANCE_COUPLE + 3 * IS_CHILD_AMOUNT,
+  },
+  "couple-4-children": {
+    label: `Couple + 4 children (+${"£" + IS_CHILD_AMOUNT.toFixed(2)} each beyond)`,
+    weekly: IS_PERSONAL_ALLOWANCE_COUPLE + 4 * IS_CHILD_AMOUNT,
+  },
 };
 
 const QUALIFYING_BENEFITS = [
@@ -517,8 +561,8 @@ export default function AdequateMaintenanceCalculatorPageInner() {
             <div className="lg:col-span-2 min-w-0">
               <div className="bg-slate-50 rounded-2xl border border-slate-200 p-5 sm:p-6">
                 <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">Quick reference</p>
-                <p className="text-sm font-bold text-slate-900 mb-3">Weekly Income Support thresholds</p>
-                <p className="text-xs text-slate-500 mb-3">Rates as of {RATES_AS_OF}.</p>
+                <p className="text-sm font-bold text-slate-900 mb-1">Weekly adequate-maintenance thresholds</p>
+                <p className="text-xs text-slate-500 mb-3">Income Support rates &mdash; effective from 6 April {RATES_AS_OF.split(" ")[1]}.</p>
                 <ul className="space-y-1.5 text-sm">
                   {Object.values(IS_RATES).map((r) => (
                     <li key={r.label} className="flex items-baseline justify-between gap-3 text-slate-700">
@@ -527,6 +571,11 @@ export default function AdequateMaintenanceCalculatorPageInner() {
                     </li>
                   ))}
                 </ul>
+                <p className="mt-4 text-[11px] text-slate-500 leading-snug">
+                  Income Support is closed to new claimants since UC migration, but its rates remain
+                  the legal benchmark for the adequate-maintenance test under{" "}
+                  <em>KA (Pakistan) [2006]</em>.
+                </p>
               </div>
             </div>
           </div>
