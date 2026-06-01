@@ -1,5 +1,12 @@
 // Auto-generated from PublishOS page copy — last sync: 2026-04-22T20:01:43.204Z
 // Run: npx tsx scripts/sync-copy.ts
+//
+// MANUAL ADDITION (2026-05-20): "FLR(M) Visa Extension" inserted under
+// Immigration → children. This is a Google Ads landing page (not a
+// PublishOS-managed service page) so the next sync-copy.ts run will
+// drop it unless this entry is preserved or the LP is added to the
+// PublishOS pages collection. See docs/llms.txt or the LP at
+// /flr-visa-extension/.
 
 export type NavItem = {
   label: string;
@@ -16,6 +23,10 @@ export const navigation: NavItem[] = [
           {
                 "label": "UK Spouse Visa Solicitors",
                 "href": "/uk-spouse-visa-solicitors/"
+          },
+          {
+                "label": "FLR(M) Visa Extension",
+                "href": "/flr-visa-extension/"
           },
           {
                 "label": "British Citizenship Solicitors",
