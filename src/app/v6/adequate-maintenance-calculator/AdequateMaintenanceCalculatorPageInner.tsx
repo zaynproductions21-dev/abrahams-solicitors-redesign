@@ -80,11 +80,14 @@ const QUALIFYING_BENEFITS = [
   "Personal Independence Payment (PIP)",
   "Disability Living Allowance (DLA)",
   "Attendance Allowance",
-  "Carer's Allowance",
+  "Carer's Allowance (paid to the sponsor for caring for a disabled person who themselves receives a qualifying benefit)",
   "Armed Forces Independence Payment (AFIP)",
-  "War Disablement Pension (or armed forces compensation scheme equivalent)",
+  "War Disablement Pension",
+  "Armed Forces Compensation Scheme — Guaranteed Income Payment",
   "Severe Disablement Allowance",
-  "Industrial Injuries Disablement Benefit (with constant attendance allowance)",
+  "Industrial Injuries Disablement Benefit paid with Constant Attendance Allowance",
+  "Constant Attendance Allowance (standalone, under the War Pensions Scheme)",
+  "Mobility Supplement (War Pensions Scheme)",
 ];
 
 const FAQS = [
@@ -161,23 +164,23 @@ function VerdictCard({
     pass: {
       ring: "border-emerald-300 bg-emerald-50",
       badge: "bg-emerald-100 text-emerald-800",
-      badgeText: "Likely meets the test",
-      title: "Your figures meet the adequate maintenance threshold.",
-      body: `Available weekly income after housing costs is ${moneyGbp(margin)} above the Income Support level for your household. That's a positive signal — but the Home Office still reviews evidence, accommodation adequacy, and the relationship itself.`,
+      badgeText: "Arithmetic pass — evidence assessment still needed",
+      title: "The maths suggests you meet the test.",
+      body: `Available weekly income after housing costs is ${moneyGbp(margin)} above the Income Support level for your household. That's a positive signal — but adequate maintenance also turns on the durability of the sponsor's benefit award (PIP reassessment dates can fall inside the visa cycle), accommodation adequacy under the Housing Health and Safety Rating System (room count and suitability, not just cost), and the strength of the relationship evidence. The maths is one part of the case, not the whole case.`,
     },
     marginal: {
       ring: "border-amber-300 bg-amber-50",
       badge: "bg-amber-100 text-amber-800",
-      badgeText: "Marginal — needs scrutiny",
-      title: "Your figures are within £10 of the line.",
-      body: `Available weekly income is ${moneyGbp(margin)} ${margin >= 0 ? "above" : "below"} the threshold. Caseworkers treat marginal cases sceptically — a single bill change can flip the result. Most refusals we see in this zone are recoverable with a stronger evidence pack and a slightly different budgeting argument. Book a 15-min call before you submit.`,
+      badgeText: "Borderline — solicitor review essential",
+      title: "Your figures sit within £5 either side of the line.",
+      body: `Available weekly income is ${moneyGbp(margin)} ${margin >= 0 ? "above" : "below"} the threshold. Borderline cases are exactly where caseworkers refuse and exactly where good evidence wins. A single bill change can flip the result. Most refusals we see in this zone are recoverable with a stronger evidence pack and a slightly different budgeting argument. Book a 15-minute call before you submit — this is not a case to file unrepresented.`,
     },
     fail: {
       ring: "border-rose-300 bg-rose-50",
       badge: "bg-rose-100 text-rose-800",
-      badgeText: "Below the line — but options exist",
-      title: "Your figures fall short of the threshold.",
-      body: `Available weekly income is ${moneyGbp(Math.abs(margin))} below the Income Support level. That doesn't end the case — third-party support, additional qualifying benefits the sponsor may not yet be claiming, or savings drawdown can bridge the gap. These arguments are fact-sensitive; a free 15-min call is the right next step.`,
+      badgeText: "Arithmetic shortfall — but routes exist",
+      title: "The maths falls short — but the case may still be winnable.",
+      body: `Available weekly income is ${moneyGbp(Math.abs(margin))} below the Income Support level on the figures you entered. That doesn't end the case. Third-party support (a credit-worthy family member or friend who undertakes to maintain the household), additional qualifying benefits the sponsor may be entitled to but not yet claiming, accommodation cost reductions, or savings drawdown can each bridge the gap. These arguments are fact-sensitive — a free 15-minute call is the right next step.`,
     },
   } as const;
   const v = verdictMap[verdict];
@@ -230,14 +233,18 @@ function ConsultationForm({ verdict }: { verdict: "pass" | "marginal" | "fail" |
     if (!firstName || !email || !phone) return;
     setSubmitting(true);
     pushFormSubmit({ email, phone });
+    // Verdict is NOT included in `source` — that field is processed by the
+    // CRM as a campaign tag and would persist legal-status-flavoured data
+    // (DPA Article 9 concern flagged by the council). Verdict is captured
+    // in the `case` field which sits under "Original message" in SalesHub.
     await submitEnquiry(
       {
-        source: `adequate-maintenance-calculator:${verdict ?? "no-verdict"}`,
+        source: "adequate-maintenance-calculator-lp",
         name: `${firstName} ${lastName}`.trim(),
         email,
         phone,
         service: "[LP] Adequate Maintenance Calculator",
-        case: `User reached calculator verdict: ${verdict ?? "(no verdict captured)"}. Wants a 15-min scoping call to confirm.`,
+        case: `Visitor used the adequate-maintenance calculator and wants a 15-min scoping call to confirm. Calculator self-assessment outcome: ${verdict ?? "(not captured)"}.`,
       },
       spam.payload(),
     );
@@ -357,33 +364,48 @@ function FaqAccordion() {
 export default function AdequateMaintenanceCalculatorPageInner() {
   const [sponsorBenefit, setSponsorBenefit] = useState<"yes" | "no" | "not-sure" | "">("");
   const [family, setFamily] = useState<FamilyKey | "">("");
-  const [incomeWeekly, setIncomeWeekly] = useState("");
-  const [housingWeekly, setHousingWeekly] = useState("");
+  const [incomeMode, setIncomeMode] = useState<"monthly" | "weekly">("monthly");
+  const [housingMode, setHousingMode] = useState<"monthly" | "weekly">("monthly");
+  const [incomeAmount, setIncomeAmount] = useState("");
+  const [housingAmount, setHousingAmount] = useState("");
   const [calculated, setCalculated] = useState(false);
 
+  // 52 / 12 = 4.333… weeks per month. Multiply monthly by 12/52 to get
+  // weekly equivalent; weekly stays weekly. This is the HM Treasury /
+  // DWP convention for benefit-rate conversion.
+  const monthlyToWeekly = (n: number) => n * (12 / 52);
+
   const calc = useMemo(() => {
-    const income = parseFloat(incomeWeekly) || 0;
-    const housing = parseFloat(housingWeekly) || 0;
-    const available = Math.max(0, income - housing);
+    const rawIncome = parseFloat(incomeAmount) || 0;
+    const rawHousing = parseFloat(housingAmount) || 0;
+    const incomeWeekly = incomeMode === "monthly" ? monthlyToWeekly(rawIncome) : rawIncome;
+    const housingWeekly = housingMode === "monthly" ? monthlyToWeekly(rawHousing) : rawHousing;
+    const available = Math.max(0, incomeWeekly - housingWeekly);
     const threshold = family ? IS_RATES[family].weekly : 0;
-    return { income, housing, available, threshold };
-  }, [incomeWeekly, housingWeekly, family]);
+    return { income: incomeWeekly, housing: housingWeekly, available, threshold };
+  }, [incomeAmount, housingAmount, incomeMode, housingMode, family]);
+
+  // Marginal buffer reduced from £10 to £5 after council review
+  // (1 June 2026). £10 against a £114.85 threshold was 8.7% — that's a
+  // meaningful shortfall, not "marginal". £5 (~4%) is closer to a true
+  // rounding zone but still flags borderline cases for solicitor review.
+  const MARGINAL_BUFFER = 5;
 
   const verdict: "pass" | "marginal" | "fail" | "solicitor" | null = useMemo(() => {
     if (!calculated) return null;
     if (sponsorBenefit === "not-sure" || !family) return "solicitor";
     const margin = calc.available - calc.threshold;
-    if (margin >= 10) return "pass";
-    if (margin >= -10) return "marginal";
+    if (margin >= MARGINAL_BUFFER) return "pass";
+    if (margin >= -MARGINAL_BUFFER) return "marginal";
     return "fail";
   }, [calculated, sponsorBenefit, family, calc.available, calc.threshold]);
 
   const canCalc =
     sponsorBenefit === "yes" &&
     !!family &&
-    !!incomeWeekly &&
-    !!housingWeekly &&
-    parseFloat(incomeWeekly) > 0;
+    !!incomeAmount &&
+    !!housingAmount &&
+    parseFloat(incomeAmount) > 0;
 
   return (
     <>
@@ -451,13 +473,15 @@ export default function AdequateMaintenanceCalculatorPageInner() {
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-5xl font-black text-slate-900 leading-[1.05] tracking-tight">
-                Adequate Maintenance Calculator
+                Can someone on PIP, DLA or Carer&rsquo;s Allowance sponsor a UK spouse visa?
               </h1>
               <p id="hero-lead" className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
-                If your UK sponsor receives PIP, DLA, Carer&rsquo;s Allowance, Attendance Allowance,
-                AFIP or a War Disablement Pension, the <strong className="text-slate-900">£29,000
-                minimum income requirement may not apply to your spouse-visa case</strong>. Instead,
-                you need to meet the <em>adequate maintenance</em> test. Check in 60 seconds below.
+                <strong className="text-slate-900">Yes &mdash; in most cases.</strong> If your UK
+                sponsor receives Personal Independence Payment, Disability Living Allowance,
+                Attendance Allowance, Carer&rsquo;s Allowance, AFIP or a War Disablement Pension,
+                the £29,000 minimum income requirement <strong className="text-slate-900">does not
+                apply</strong>. Instead, the lower <em>adequate maintenance</em> test does. This
+                free calculator checks whether your household meets it.
               </p>
 
               <div className="mt-6 flex flex-wrap items-center gap-3">
@@ -586,11 +610,15 @@ export default function AdequateMaintenanceCalculatorPageInner() {
 
             {/* Step 2 — Family composition */}
             <div className={`bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 ${sponsorBenefit === "no" ? "opacity-40 pointer-events-none" : ""}`}>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Step 2 of 4 &middot; Family composition</p>
-              <h3 className="text-lg font-black text-slate-900 leading-tight">Who lives in the household?</h3>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Step 2 of 4 &middot; Household</p>
+              <h3 className="text-lg font-black text-slate-900 leading-tight">
+                How many people will live in the UK household once the applicant arrives?
+              </h3>
               <p className="mt-2 text-sm text-slate-500">
-                Children &mdash; including British citizen children who don&rsquo;t need a visa &mdash; count
-                toward the threshold.
+                Count only the people who will share the home: the UK sponsor, the visa applicant,
+                and any dependent children (including British citizen children). Adult relatives
+                who live separately don&rsquo;t count, even if they help financially. Children means
+                anyone under 18 still living with you.
               </p>
               <select
                 value={family}
@@ -609,42 +637,80 @@ export default function AdequateMaintenanceCalculatorPageInner() {
             {/* Step 3 — Income */}
             <div className={`bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 ${sponsorBenefit === "no" ? "opacity-40 pointer-events-none" : ""}`}>
               <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Step 3 of 4 &middot; Income</p>
-              <h3 className="text-lg font-black text-slate-900 leading-tight">Weekly net household income (£)</h3>
+              <h3 className="text-lg font-black text-slate-900 leading-tight">Net household income (£)</h3>
               <p className="mt-2 text-sm text-slate-500">
                 Take-home pay after tax and National Insurance, plus the qualifying benefit itself
-                (PIP, Carer&rsquo;s Allowance, etc.) and any other regular income. Use a weekly figure
-                &mdash; divide monthly amounts by 4.33.
+                (PIP, Carer&rsquo;s Allowance, etc.) and any other regular income coming into the
+                household.
               </p>
+              <div className="mt-3 flex gap-2 mb-2">
+                {[
+                  { value: "monthly", label: "Monthly" },
+                  { value: "weekly", label: "Weekly" },
+                ].map((o) => (
+                  <button
+                    key={o.value}
+                    type="button"
+                    onClick={() => { setIncomeMode(o.value as "monthly" | "weekly"); setCalculated(false); }}
+                    className={`px-3 py-1.5 rounded-lg border text-xs font-semibold transition-colors ${
+                      incomeMode === o.value
+                        ? "border-brand-red bg-brand-red/5 text-slate-900"
+                        : "border-slate-200 text-slate-600 hover:border-slate-300"
+                    }`}
+                  >
+                    {o.label}
+                  </button>
+                ))}
+              </div>
               <input
                 type="number"
                 inputMode="decimal"
                 min={0}
                 step={1}
-                value={incomeWeekly}
-                onChange={(e) => { setIncomeWeekly(e.target.value); setCalculated(false); }}
-                placeholder="e.g. 350"
-                className="mt-3 w-full px-3 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red"
+                value={incomeAmount}
+                onChange={(e) => { setIncomeAmount(e.target.value); setCalculated(false); }}
+                placeholder={incomeMode === "monthly" ? "e.g. 1,500" : "e.g. 350"}
+                className="w-full px-3 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red"
               />
             </div>
 
             {/* Step 4 — Housing */}
             <div className={`bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 ${sponsorBenefit === "no" ? "opacity-40 pointer-events-none" : ""}`}>
               <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Step 4 of 4 &middot; Housing costs</p>
-              <h3 className="text-lg font-black text-slate-900 leading-tight">Weekly housing costs (£)</h3>
+              <h3 className="text-lg font-black text-slate-900 leading-tight">Housing costs (£)</h3>
               <p className="mt-2 text-sm text-slate-500">
                 Rent or mortgage payments + council tax + essential utilities (gas, electricity,
                 water) + buildings insurance + ground rent. Exclude broadband, TV, phone,
                 subscriptions, gym, entertainment.
               </p>
+              <div className="mt-3 flex gap-2 mb-2">
+                {[
+                  { value: "monthly", label: "Monthly" },
+                  { value: "weekly", label: "Weekly" },
+                ].map((o) => (
+                  <button
+                    key={o.value}
+                    type="button"
+                    onClick={() => { setHousingMode(o.value as "monthly" | "weekly"); setCalculated(false); }}
+                    className={`px-3 py-1.5 rounded-lg border text-xs font-semibold transition-colors ${
+                      housingMode === o.value
+                        ? "border-brand-red bg-brand-red/5 text-slate-900"
+                        : "border-slate-200 text-slate-600 hover:border-slate-300"
+                    }`}
+                  >
+                    {o.label}
+                  </button>
+                ))}
+              </div>
               <input
                 type="number"
                 inputMode="decimal"
                 min={0}
                 step={1}
-                value={housingWeekly}
-                onChange={(e) => { setHousingWeekly(e.target.value); setCalculated(false); }}
-                placeholder="e.g. 180"
-                className="mt-3 w-full px-3 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red"
+                value={housingAmount}
+                onChange={(e) => { setHousingAmount(e.target.value); setCalculated(false); }}
+                placeholder={housingMode === "monthly" ? "e.g. 800" : "e.g. 180"}
+                className="w-full px-3 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red"
               />
             </div>
 
@@ -664,16 +730,42 @@ export default function AdequateMaintenanceCalculatorPageInner() {
 
             {/* Verdict */}
             {verdict && (
-              <div className="mt-2">
+              <div className="mt-2 space-y-4">
+                {/* Above-verdict disclaimer per council recommendation (1 June 2026) */}
+                <div className="rounded-xl border-2 border-amber-300 bg-amber-50 p-4 sm:p-5 text-sm text-amber-900 leading-relaxed">
+                  <p className="font-bold mb-1.5">Before reading the verdict — what this calculator doesn&rsquo;t check</p>
+                  <ul className="space-y-1.5 list-disc pl-5">
+                    <li>
+                      <strong>Benefit durability</strong> &mdash; PIP, DLA and Carer&rsquo;s
+                      Allowance can be reassessed and reduced. If the award is up for review
+                      inside the visa cycle, the Home Office may treat the income as not
+                      sustainable.
+                    </li>
+                    <li>
+                      <strong>Accommodation adequacy</strong> &mdash; the Home Office checks bedroom
+                      count and suitability for the household size, not just cost. A 1-bed flat for
+                      a couple + 2 children fails this even if the maths passes.
+                    </li>
+                    <li>
+                      <strong>Third-party support and savings</strong> &mdash; these can bridge
+                      shortfalls but are case-sensitive arguments not captured here.
+                    </li>
+                    <li>
+                      <strong>Rate currency</strong> &mdash; Income Support rates are uprated each
+                      April. The figures below are <strong>{RATES_AS_OF}</strong>. Verify against
+                      the rates in force on the date of your application before relying on the
+                      verdict.
+                    </li>
+                  </ul>
+                </div>
+
                 <VerdictCard
                   verdict={verdict}
                   available={calc.available}
                   threshold={calc.threshold}
                   family={(family || "single-25-plus") as FamilyKey}
                 />
-                <div className="mt-4">
-                  <ConsultationForm verdict={verdict} />
-                </div>
+                <ConsultationForm verdict={verdict} />
               </div>
             )}
           </div>
@@ -742,9 +834,10 @@ export default function AdequateMaintenanceCalculatorPageInner() {
           <div className="mt-6 p-4 sm:p-5 rounded-xl bg-white border border-slate-200 text-sm text-slate-600 leading-relaxed flex items-start gap-3">
             <Scale className="h-4 w-4 shrink-0 mt-0.5 text-brand-red" />
             <span>
-              Statutory authority: Appendix FM, paragraph E-ECP.3.3 of the Immigration Rules. Case
-              law: <em>KA (Pakistan) [2006] UKAIT 00065</em>, <em>AM (3rd party support) Ethiopia
-              [2008] UKAIT 00058</em>, and <em>MM (Lebanon) v SSHD [2017] UKSC 10</em>.
+              Statutory authority: Appendix FM, paragraph E-ECP.3.3 of the Immigration Rules
+              (and the equivalent provisions for in-country extension and ILR). Case law: <em>KA
+              and Others (adequacy of maintenance) Pakistan [2006] UKAIT 00065</em> and <em>AM
+              (3rd party support) Ethiopia [2008] UKAIT 00058</em>.
             </span>
           </div>
         </div>
