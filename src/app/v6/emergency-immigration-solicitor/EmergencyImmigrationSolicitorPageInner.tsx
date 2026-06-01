@@ -39,6 +39,7 @@ import { GclidField, MsclkidField } from "@/components/v6/gclid-field";
 import { useSpamGuard } from "@/lib/spam-client";
 import { pushFormSubmit } from "@/lib/tracking";
 import { submitEnquiry } from "@/lib/publishos";
+import { pushWizardEvent } from "@/lib/wizard-events";
 import {
   JsonLd, faqPageSchema, breadcrumbSchema, speakableSchema, personSchema,
   legalServiceWithCatalogSchema,
@@ -89,13 +90,27 @@ function HeroForm({ id = "emergency-form" }: { id?: string }) {
   const [situation, setSituation] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [started, setStarted] = useState(false);
   const spam = useSpamGuard();
+
+  // Fire emergency_form_started once on first interaction so we can measure
+  // form abandonment (form_started without form_submitted = bounce after
+  // interest, the most actionable signal for paid-traffic optimisation).
+  function markStarted() {
+    if (started) return;
+    setStarted(true);
+    pushWizardEvent("emergency_form_started", { source: "emergency-immigration-solicitor-lp" });
+  }
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!name || !phone) return;
     setSubmitting(true);
     pushFormSubmit({ email: "", phone });
+    pushWizardEvent("emergency_form_submitted", {
+      source: "emergency-immigration-solicitor-lp",
+      situation: situation || "not-specified",
+    });
     await submitEnquiry(
       {
         source: "emergency-immigration-solicitor-lp",
@@ -149,6 +164,7 @@ function HeroForm({ id = "emergency-form" }: { id?: string }) {
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
+          onFocus={markStarted}
           placeholder="Your name"
           required
           className="w-full px-3 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red"
@@ -156,6 +172,7 @@ function HeroForm({ id = "emergency-form" }: { id?: string }) {
         <input
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
+          onFocus={markStarted}
           type="tel"
           placeholder="UK phone number"
           required
@@ -164,6 +181,7 @@ function HeroForm({ id = "emergency-form" }: { id?: string }) {
         <select
           value={situation}
           onChange={(e) => setSituation(e.target.value)}
+          onFocus={markStarted}
           className="w-full px-3 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red bg-white"
         >
           <option value="">Quick category (optional)</option>
@@ -199,14 +217,26 @@ function FaqAccordion() {
         <div key={q.question} className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
           <button
             type="button"
-            onClick={() => setOpenIdx(openIdx === i ? null : i)}
+            onClick={() => {
+              const opening = openIdx !== i;
+              if (opening) {
+                pushWizardEvent("emergency_faq_expanded", {
+                  source: "emergency-immigration-solicitor-lp",
+                  question_id: `inline-${i}`,
+                  question: q.question,
+                });
+              }
+              setOpenIdx(opening ? i : null);
+            }}
             className="w-full flex items-center justify-between gap-3 px-5 py-4 text-left hover:bg-slate-50/60"
+            aria-expanded={openIdx === i}
+            aria-controls={`emergency-faq-${i}`}
           >
             <span className="text-sm sm:text-base font-bold text-slate-900">{q.question}</span>
             <ChevronDown className={`h-4 w-4 text-slate-400 shrink-0 transition-transform ${openIdx === i ? "rotate-180" : ""}`} />
           </button>
           {openIdx === i && (
-            <div className="px-5 pb-5 text-sm text-slate-600 leading-relaxed speakable-faq-answer">
+            <div id={`emergency-faq-${i}`} className="px-5 pb-5 text-sm text-slate-600 leading-relaxed speakable-faq-answer">
               {q.answer}
             </div>
           )}
@@ -214,6 +244,16 @@ function FaqAccordion() {
       ))}
     </div>
   );
+}
+
+/** Centralised emergency_phone_tap event — fired by every DynamicCallLink
+ *  on the page (hero CTA, inline dawn-raid link, final navy CTA, sticky
+ *  mobile bar). The `placement` payload tells us which CTA converted. */
+function trackEmergencyPhoneTap(placement: string) {
+  pushWizardEvent("emergency_phone_tap", {
+    source: "emergency-immigration-solicitor-lp",
+    placement,
+  });
 }
 
 export default function EmergencyImmigrationSolicitorPageInner() {
@@ -299,7 +339,10 @@ export default function EmergencyImmigrationSolicitorPageInner() {
 
               {/* Primary CTA — phone first */}
               <div className="mt-6">
-                <DynamicCallLink className="inline-flex items-center justify-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-base font-bold uppercase tracking-wide px-7 h-14 w-full sm:w-auto">
+                <DynamicCallLink
+                  className="inline-flex items-center justify-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-base font-bold uppercase tracking-wide px-7 h-14 w-full sm:w-auto"
+                  onClick={() => trackEmergencyPhoneTap("hero")}
+                >
                   <Phone className="h-5 w-5" />
                   Call now &mdash; <DynamicPhoneText />
                 </DynamicCallLink>
@@ -457,7 +500,12 @@ export default function EmergencyImmigrationSolicitorPageInner() {
               obstruct or argue with officers.</strong> Silence is a right; antagonism damages the
               case. Don&rsquo;t sign anything &mdash; at the address or at a removal centre &mdash;
               without legal advice. If officers are at the door right now,{" "}
-              <DynamicCallLink className="text-brand-red font-bold underline">call us</DynamicCallLink>{" "}
+              <DynamicCallLink
+                className="text-brand-red font-bold underline"
+                onClick={() => trackEmergencyPhoneTap("dawn-raid-inline")}
+              >
+                call us
+              </DynamicCallLink>{" "}
               before you open it.
             </p>
           </div>
@@ -628,7 +676,10 @@ export default function EmergencyImmigrationSolicitorPageInner() {
             out of hours we return your call within 30 minutes.
           </p>
           <div className="mt-7 flex flex-col sm:flex-row items-stretch justify-center gap-3">
-            <DynamicCallLink className="inline-flex items-center justify-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-base font-bold uppercase tracking-wide h-14 px-7">
+            <DynamicCallLink
+              className="inline-flex items-center justify-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-base font-bold uppercase tracking-wide h-14 px-7"
+              onClick={() => trackEmergencyPhoneTap("final-cta")}
+            >
               <Phone className="h-5 w-5" />
               <DynamicPhoneText />
             </DynamicCallLink>
@@ -648,7 +699,10 @@ export default function EmergencyImmigrationSolicitorPageInner() {
         role="region"
         aria-label="Emergency call bar"
       >
-        <DynamicCallLink className="flex items-center justify-center gap-2 w-full py-3.5 text-white font-bold uppercase tracking-wide text-sm">
+        <DynamicCallLink
+          className="flex items-center justify-center gap-2 w-full py-3.5 text-white font-bold uppercase tracking-wide text-sm"
+          onClick={() => trackEmergencyPhoneTap("sticky-mobile-bar")}
+        >
           <Phone className="h-4 w-4" />
           Tap to Call &mdash; <DynamicPhoneText />
         </DynamicCallLink>

@@ -90,6 +90,7 @@ export function DynamicCallLink({
   showIcon = false,
   iconClassName,
   ariaLabel,
+  onClick,
 }: {
   className?: string;
   style?: CSSProperties;
@@ -98,12 +99,22 @@ export function DynamicCallLink({
   showIcon?: boolean;
   iconClassName?: string;
   ariaLabel?: string;
+  /**
+   * Optional consumer hook for page-specific telemetry. Fires AFTER the
+   * existing trackPhoneClick() so the universal phone-click tracking
+   * always runs first. Used by /emergency-immigration-solicitor/ to
+   * emit `emergency_phone_tap` for call-vs-form-split analytics.
+   */
+  onClick?: () => void;
 }) {
   const { number, variant, source } = useDisplayPhone();
   return (
     <a
       href={`tel:${number.tel}`}
-      onClick={() => trackPhoneClick(number, variant, source)}
+      onClick={() => {
+        trackPhoneClick(number, variant, source);
+        onClick?.();
+      }}
       className={className}
       style={style}
       aria-label={ariaLabel ?? `Call ${number.display}`}
