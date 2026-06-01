@@ -22,6 +22,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { TeamStrip } from "@/components/v6/team-strip";
+import { AdequateMaintenanceCallout } from "@/components/v6/adequate-maintenance-callout";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
 import { GclidField, MsclkidField } from "@/components/v6/gclid-field";
 import { useSpamGuard } from "@/lib/spam-client";
@@ -471,13 +472,18 @@ export default function FlrVisaExtensionPageInner() {
               application goes in.
             </p>
           </div>
-          <div className="mt-6">
+          <div className="mt-6 flex flex-wrap gap-3">
             <Button
               asChild
               className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide px-6 h-12"
             >
               <a href="#consultation-form">Check Your Income Position — Free Call</a>
             </Button>
+          </div>
+
+          {/* Cross-link to the AM calculator for the disability-sponsor cohort */}
+          <div className="mt-6">
+            <AdequateMaintenanceCallout />
           </div>
         </div>
       </section>

@@ -16,6 +16,7 @@ import { VisaWizardWidget } from "@/components/v6/visa-wizard-widget";
 import { WizardWidget } from "@/components/v6/wizard-widget";
 import { ILR_WIZARD_CONFIG } from "@/lib/wizards/ilr-config";
 import { CITIZENSHIP_WIZARD_CONFIG } from "@/lib/wizards/citizenship-config";
+import { AdequateMaintenanceCallout } from "@/components/v6/adequate-maintenance-callout";
 import { VisitVisaRefusalWidget } from "@/components/v6/visit-visa-refusal-widget";
 import { VisaWizardEntryCard } from "@/components/v6/visa-wizard-entry-card";
 import { JsonLd, faqPageSchema, breadcrumbSchema, serviceSchema, personSchema } from "@/components/v6/jsonld";
@@ -330,6 +331,21 @@ export default function V6ServicePage() {
           subhead="Five plain-English questions. We'll route you to the right remedy — a fresh application with strengthened evidence, a Pre-Action Protocol challenge, or a specialist consultation — based on the refusal reason and how long ago it was."
           cta="Start the refusal wizard"
         />
+      )}
+
+      {/* Adequate Maintenance Calculator cross-link — partner-visa cluster only.
+       *  Shows on /uk-spouse-visa/, /uk-spouse-visa-solicitors/, /uk-fiance-visa/,
+       *  /uk-partner-visa-extension/, /uk-unmarried-partner-visa/, and
+       *  /civil-partnership-visa/. The disability-sponsor cohort lands on these
+       *  pages, sees "£29,000 financial requirement", and assumes the case is
+       *  hopeless. This callout signals the exemption + routes them to the
+       *  calculator at /adequate-maintenance-calculator/. */}
+      {(isSpouseVisa || isPartnerVisaCluster) && (
+        <section className="py-8 lg:py-10 bg-white">
+          <div className="max-w-[1100px] mx-auto px-6 lg:px-8">
+            <AdequateMaintenanceCallout />
+          </div>
+        </section>
       )}
 
       {/* ─── Statutory framework — only when the service has cited statutes */}
