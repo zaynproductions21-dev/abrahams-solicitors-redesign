@@ -43,5 +43,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: page.slug === "personal-injury" ? 0.9 : 0.7,
   }));
 
-  return [...staticPages, ...immigrationRoutes, ...piRoutes];
+  // Bespoke standalone landing pages + wizards. These don't go through the
+  // [slug] template (each has its own file in src/app/v6/*) and so don't
+  // appear in immigrationPages from services-data.ts. Without explicit
+  // sitemap entries, Google's crawl is slower and these pages miss the
+  // "submitted by site owner" signal that helps with indexation latency.
+  //
+  // Add new bespoke pages here whenever a new wizard / calculator / LP
+  // ships outside the [slug] template.
+  const bespokeRoutes: MetadataRoute.Sitemap = [
+    { url: p("/emergency-immigration-solicitor/"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: p("/emergency-immigration-faq/"), lastModified: now, changeFrequency: "weekly", priority: 0.7 },
+    { url: p("/adequate-maintenance-calculator/"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: p("/flr-visa-extension/"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: p("/skilled-worker-wizard/"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: p("/ilr-wizard/"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: p("/citizenship-wizard/"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: p("/visa-wizard/"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: p("/visit-visa-refusal/"), lastModified: now, changeFrequency: "weekly", priority: 0.7 },
+    { url: p("/housing-disrepair/"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+  ];
+
+  return [...staticPages, ...immigrationRoutes, ...piRoutes, ...bespokeRoutes];
 }
