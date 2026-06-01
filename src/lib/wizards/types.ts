@@ -45,6 +45,13 @@ export type RouteResult = {
   considerations: string[];
   tone: RouteTone;
   confidence?: Confidence;
+  /**
+   * Set true for outcomes that are deliberately *not* an instructable
+   * legal case — e.g. the Skilled Worker wizard's "job-search deflection"
+   * route. Used by the WizardWidget to soften the email-capture wording
+   * ("we won't auto-call") and surface a "no automatic follow-up" note.
+   */
+  noFollowUp?: boolean;
 };
 
 export type WizardConfig = {
@@ -52,7 +59,7 @@ export type WizardConfig = {
    * Used in GTM events, CRM tagging, and as the URL slug for routing-decision logs.
    * Must match the spec doc's `wizardType` value.
    */
-  wizardType: "ilr" | "citizenship" | "spouse";
+  wizardType: "ilr" | "citizenship" | "spouse" | "skilled-worker";
 
   /** Visible above the progress bar — e.g. "ILR Wizard". */
   brandName: string;

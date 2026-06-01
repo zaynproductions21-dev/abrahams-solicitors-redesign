@@ -80,7 +80,7 @@ export async function submitEnquiry(
    * lead with `wizard_type` so the offline conversion pipeline can join
    * wizard leads back to the right ad campaign.
    */
-  meta?: { wizardType?: "ilr" | "citizenship" | "spouse" },
+  meta?: { wizardType?: "ilr" | "citizenship" | "spouse" | "skilled-worker" },
 ): Promise<boolean> {
   try {
     // Pull captured click IDs (Google + Bing) so the API route can forward

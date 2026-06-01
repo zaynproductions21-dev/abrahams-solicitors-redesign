@@ -1,9 +1,10 @@
-# UK Skilled Worker Triage Wizard v1 — Spec for Redline
+# UK Skilled Worker Triage Wizard v1 — Spec Doc
 
 **Reviewer:** Imran Shah, Immigration & Litigation Solicitor (SRA #509359, admitted 2012)
 **Date drafted:** 12 May 2026
-**Status:** Awaiting Imran sign-off
-**Phase:** 3 (Phase 1 = Spouse Visa live, Phase 2 = Visit Visa Refusal live)
+**Status:** ✅ **APPROVED — 1 June 2026.** Wholesale sign-off on the question wording, outcome copy, and routing precedence below. Build cleared to ship.
+**Phase:** 3 (Phase 1 = Spouse Visa live, Phase 2 = Visit Visa Refusal live, Phase 3 = Skilled Worker — this — and Phase 4 = ILR + Citizenship)
+**Date locked:** 1 June 2026 · **Wizard logic version:** v1.0 · **Target live date:** 1 June 2026
 
 ---
 

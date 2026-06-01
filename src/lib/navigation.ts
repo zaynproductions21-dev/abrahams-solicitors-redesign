@@ -33,6 +33,10 @@ export const navigation: NavItem[] = [
                 "href": "/adequate-maintenance-calculator/"
           },
           {
+                "label": "Skilled Worker Visa Wizard",
+                "href": "/skilled-worker-wizard/"
+          },
+          {
                 "label": "British Citizenship Solicitors",
                 "href": "/british-citizenship-solicitors/"
           },

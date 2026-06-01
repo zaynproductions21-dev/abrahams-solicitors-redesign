@@ -112,7 +112,7 @@ export async function POST(req: NextRequest) {
   // spouse). Whitelist the values so a hostile client can't write arbitrary
   // strings into the CRM column.
   const wizardTypeRaw = typeof body.wizard_type === "string" ? body.wizard_type : "";
-  const wizardType = ["ilr", "citizenship", "spouse"].includes(wizardTypeRaw)
+  const wizardType = ["ilr", "citizenship", "spouse", "skilled-worker"].includes(wizardTypeRaw)
     ? wizardTypeRaw
     : "";
 
