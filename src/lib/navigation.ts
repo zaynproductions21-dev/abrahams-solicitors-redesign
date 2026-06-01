@@ -29,6 +29,10 @@ export const navigation: NavItem[] = [
                 "href": "/flr-visa-extension/"
           },
           {
+                "label": "Adequate Maintenance Calculator",
+                "href": "/adequate-maintenance-calculator/"
+          },
+          {
                 "label": "British Citizenship Solicitors",
                 "href": "/british-citizenship-solicitors/"
           },
