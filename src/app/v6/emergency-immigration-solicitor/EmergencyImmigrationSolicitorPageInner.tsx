@@ -64,7 +64,7 @@ const FAQS = [
   {
     question: "Is the 24-hour line answered by a solicitor or a call handler?",
     answer:
-      "Out of hours (evenings, weekends, bank holidays) a duty solicitor returns your call within 30 minutes. The first answer may be a recorded message that confirms your number and triggers the on-call solicitor — that's how the rota is structured so the person who calls you back has the authority to act, not just to take a message. Mon–Fri 9am–6pm calls are answered live by a qualified team member who takes instructions immediately.",
+      "Mon–Fri 9am–6pm calls are answered live by a qualified team member who takes instructions immediately. Out of hours (evenings, weekends, bank holidays), the line takes your number through a recorded message and triggers the on-call solicitor — we aim to call you back within 30 minutes, or by 9am the next working day at the latest. The on-call rota is structured so the person who calls back is qualified to act, not just to take a message.",
   },
   {
     question: "Can I get legal aid for an immigration emergency?",
@@ -77,9 +77,9 @@ const FAQS = [
       "Not necessarily. Out-of-time appeals are possible where you have an exceptional reason (medical emergency, bereavement of an immediate family member, catastrophic service failure). The application weakens with every day, so the right time to call is the moment you realise. If an extension is refused, a fresh claim under Paragraph 353 of the Immigration Rules may still be available where there's new evidence or a new legal ground.",
   },
   {
-    question: "Why not just call OISC, Citizens Advice or the Home Office helpline?",
+    question: "Do I need a solicitor specifically, or is general immigration advice enough?",
     answer:
-      "OISC-regulated advisers and Citizens Advice do important work on non-emergency immigration applications. They are not, however, authorised to file emergency injunctions in the Upper Tribunal or High Court, and they cannot represent you on a judicial review or a same-day removal challenge. The Home Office helpline cannot give legal advice. If removal is scheduled in days or someone is in detention, you need an SRA-regulated solicitor with out-of-hours capacity. That's what this number is for.",
+      "For non-emergency immigration applications, general advice services do good work. An emergency case is different. Filing in the Upper Tribunal or High Court, representing on judicial review, or running a same-day removal challenge are reserved activities that only an SRA-regulated solicitor (or an authorised barrister via a solicitor) can do. If removal is scheduled in days, someone is in detention, or a court order is needed, you need a solicitor with out-of-hours capacity. That's what this number is for.",
   },
 ];
 
@@ -121,9 +121,9 @@ function HeroForm({ id = "emergency-form" }: { id?: string }) {
           Got it. {name.split(" ")[0]} — we&rsquo;re on it.
         </h3>
         <p className="mt-3 text-sm text-slate-600 leading-relaxed">
-          A duty solicitor will call you back within <strong>30 minutes</strong> on{" "}
-          <strong>{phone}</strong>. If your case is genuinely emergency and you can&rsquo;t wait,
-          call <DynamicPhoneText /> now.
+          A duty solicitor aims to call you back on <strong>{phone}</strong> within{" "}
+          <strong>30 minutes</strong> &mdash; or by 9am the next working day at the latest. If
+          your case is genuinely emergency and you can&rsquo;t wait, call <DynamicPhoneText /> now.
         </p>
       </div>
     );
@@ -136,11 +136,11 @@ function HeroForm({ id = "emergency-form" }: { id?: string }) {
         <p className="text-xs font-bold text-brand-red uppercase tracking-widest">Urgent callback request</p>
       </div>
       <h3 className="text-lg sm:text-xl font-black text-slate-900 tracking-tight">
-        Need a call back within 30 minutes?
+        Leave your number — we&rsquo;ll call you back.
       </h3>
       <p className="mt-2 text-xs text-slate-500 leading-relaxed">
-        For genuine immigration emergencies — detention, removal directions, dawn raid, urgent
-        deadline. SRA #809071.
+        For genuine immigration emergencies &mdash; detention, removal directions, dawn raid, urgent
+        deadline. We aim to call within 30 minutes; by 9am next working day at the latest. SRA #809071.
       </p>
       <form onSubmit={onSubmit} className="mt-4 space-y-2">
         <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
@@ -183,8 +183,8 @@ function HeroForm({ id = "emergency-form" }: { id?: string }) {
           {submitting ? "Sending..." : "Request Urgent Callback"}
         </Button>
         <p className="text-xs text-slate-400 leading-snug">
-          Or call <DynamicPhoneText /> &mdash; answered Mon&ndash;Fri 9am&ndash;6pm; out-of-hours,
-          a duty solicitor returns your call within 30 minutes.
+          Or call <DynamicPhoneText /> &mdash; we answer 24/7. If we&rsquo;re on another emergency,
+          a duty solicitor aims to call you back within 30 minutes.
         </p>
       </form>
     </div>
@@ -285,12 +285,16 @@ export default function EmergencyImmigrationSolicitorPageInner() {
               <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-5xl font-black text-slate-900 leading-[1.05] tracking-tight">
                 If someone you love has just been taken, or there are officers at your door, call us now.
               </h1>
+              <p className="mt-3 text-base sm:text-lg font-semibold text-slate-800 leading-snug max-w-2xl">
+                Take a breath. You&rsquo;ve found the right people. We do this work, including at 3am.
+              </p>
               <p id="hero-lead" className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
                 You&rsquo;re probably reading this because someone has just been detained, or there
                 are immigration officers at the door, or you&rsquo;re holding a Home Office letter
-                with a flight date on it. We do this work. We have stopped removals with hours to
-                spare and filed injunctions out-of-hours through the duty-judge system. The most
-                useful thing you can do right now is pick up the phone.
+                with a flight date on it. {AUTHOR.name} is experienced in urgent removal and
+                injunction matters, including out-of-hours filings via the Upper Tribunal /
+                Administrative Court duty-judge system. The most useful thing you can do right now
+                is pick up the phone.
               </p>
 
               {/* Primary CTA — phone first */}
@@ -300,21 +304,22 @@ export default function EmergencyImmigrationSolicitorPageInner() {
                   Call now &mdash; <DynamicPhoneText />
                 </DynamicCallLink>
                 <p className="mt-2 text-xs text-slate-500">
-                  Out of hours, a duty solicitor returns your call within 30 minutes. First call is
-                  free. SRA-regulated. No call centres.
+                  Call us 24/7. If we&rsquo;re already on another emergency, a duty solicitor aims
+                  to call you back within 30 minutes &mdash; or by 9am the next working day at the
+                  latest. First call is free. SRA-regulated.
                 </p>
               </div>
 
               {/* Trust strip */}
               <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs sm:text-sm font-semibold text-slate-600">
                 <span className="inline-flex items-center gap-1.5">
-                  <Clock className="h-4 w-4 text-brand-red" /> 30-min callback out of hours
+                  <Clock className="h-4 w-4 text-brand-red" /> 24/7 availability
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <ShieldCheck className="h-4 w-4 text-brand-red" /> SRA-regulated solicitors
                 </span>
                 <span className="inline-flex items-center gap-1.5">
-                  <Gavel className="h-4 w-4 text-brand-red" /> Out-of-hours injunctions filed
+                  <Gavel className="h-4 w-4 text-brand-red" /> Duty-judge injunction route
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <CheckCircle2 className="h-4 w-4 text-brand-red" /> First call free
@@ -564,27 +569,28 @@ export default function EmergencyImmigrationSolicitorPageInner() {
         <div className="max-w-[920px] mx-auto px-6 lg:px-8">
           <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">Why us</p>
           <h2 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">
-            SRA-regulated solicitors &mdash; not a call centre, not an OISC adviser
+            SRA-regulated, named-solicitor practice
           </h2>
           <div className="mt-5 space-y-4 text-base text-slate-600 leading-relaxed">
             <p>
               We are authorised and regulated by the Solicitors Regulation Authority &mdash; firm{" "}
               <strong>#809071</strong>. SRA regulation matters in an emergency because it gives you
               real recourse if anything goes wrong: a statutory regulator, the Solicitors
-              Disciplinary Tribunal as a backstop, and the SRA Compensation Fund.
+              Disciplinary Tribunal as a backstop, and the SRA Compensation Fund. SRA-regulated
+              solicitors are also authorised to file Upper Tribunal and High Court applications,
+              and to represent on judicial review and same-day removal challenges &mdash; which is
+              the specific capability an emergency case needs.
             </p>
-            <div className="rounded-xl bg-amber-50 border border-amber-200 p-4 sm:p-5 text-sm text-amber-900 leading-relaxed">
-              <p><strong>OISC and Citizens Advice do important work</strong> on non-emergency immigration applications. They are not, however, authorised to file emergency injunctions in the Upper Tribunal or High Court, and they cannot represent on a judicial review or a same-day removal challenge. If removal is scheduled in days or someone is in detention, you need an SRA-regulated solicitor with out-of-hours capacity. That&rsquo;s what this number is for.</p>
-            </div>
             <p>
               <strong>{AUTHOR.name}</strong> leads our emergency practice. {AUTHOR.long.split("\n")[0]}
             </p>
             <p>
-              <strong>The 24-hour promise &mdash; honestly framed.</strong> Mon&ndash;Fri 9am&ndash;6pm
-              calls are answered live by a qualified team member who takes instructions
-              immediately. Out of hours (evenings, weekends, bank holidays including Christmas
-              Day), a duty solicitor returns your call within 30 minutes. The on-call rota means
-              the person who calls back has the authority to act, not just to take a message.
+              <strong>The 24-hour promise.</strong> Mon&ndash;Fri 9am&ndash;6pm calls are answered
+              live by a qualified team member who takes instructions immediately. Out of hours
+              (evenings, weekends, bank holidays including Christmas Day), the on-call rota aims
+              for a duty solicitor to call you back within 30 minutes &mdash; or by 9am the next
+              working day at the latest. The rota is structured so the person who calls back is
+              qualified to act on the case, not just to take a message.
             </p>
             <p>
               <strong>Legal aid</strong> is available for asylum cases and for challenging the
@@ -644,7 +650,7 @@ export default function EmergencyImmigrationSolicitorPageInner() {
       >
         <DynamicCallLink className="flex items-center justify-center gap-2 w-full py-3.5 text-white font-bold uppercase tracking-wide text-sm">
           <Phone className="h-4 w-4" />
-          Call Now &mdash; <DynamicPhoneText />
+          Tap to Call &mdash; <DynamicPhoneText />
         </DynamicCallLink>
       </div>
     </>
