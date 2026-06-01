@@ -21,6 +21,10 @@ export const navigation: NavItem[] = [
     href: "/immigration/",
     children: [
           {
+                "label": "🆘 24/7 Emergency Help",
+                "href": "/emergency-immigration-solicitor/"
+          },
+          {
                 "label": "UK Spouse Visa Solicitors",
                 "href": "/uk-spouse-visa-solicitors/"
           },
