@@ -1,4 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "ignoreCommand": "node scripts/should-build.js"
+  "ignoreCommand": "node scripts/should-build.js",
+  "crons": [
+    {
+      "path": "/api/lead/health-check",
+      "schedule": "15 9 * * *"
+    }
+  ]
 }

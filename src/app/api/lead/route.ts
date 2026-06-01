@@ -17,6 +17,11 @@ async function saveToPublishOS(
   payload: Record<string, unknown>,
   saleshubLeadId: string | undefined,
   isHousingDisrepair: boolean,
+  saleshubSyncContext: {
+    synced: boolean;
+    status?: number | null;
+    error?: string;
+  },
 ): Promise<string> {
   const id = saleshubLeadId && saleshubLeadId.trim()
     ? saleshubLeadId.trim()
@@ -27,7 +32,17 @@ async function saveToPublishOS(
     const existing = existingRes.ok ? await existingRes.json() : [];
     const updated = [
       ...(Array.isArray(existing) ? existing : []),
-      { id, submitted_at: new Date().toISOString(), ...payload },
+      {
+        id,
+        submitted_at: new Date().toISOString(),
+        ...payload,
+        // Audit metadata — added 2026-06-01 after the Daniel Moreschi
+        // incident. Makes orphan detection trivial: any mirror row with
+        // saleshub_synced === false never reached the CRM.
+        saleshub_synced: saleshubSyncContext.synced,
+        saleshub_status: saleshubSyncContext.status ?? null,
+        ...(saleshubSyncContext.error ? { saleshub_error: saleshubSyncContext.error } : {}),
+      },
     ];
     await fetch(url, {
       method: "POST",
@@ -169,7 +184,16 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  const mirrorId = await saveToPublishOS(saleshubPayload, saleshubLeadId, isHousingDisrepair);
+  const saleshubStatus = typeof saleshubDebug.status === "number" ? saleshubDebug.status : null;
+  const saleshubError = typeof saleshubDebug.fetch_error === "string"
+    ? saleshubDebug.fetch_error
+    : (typeof saleshubDebug.json_parse_error === "string" ? saleshubDebug.json_parse_error : undefined);
+  const mirrorId = await saveToPublishOS(
+    saleshubPayload,
+    saleshubLeadId,
+    isHousingDisrepair,
+    { synced: results.saleshub, status: saleshubStatus, error: saleshubError },
+  );
   results.backup = true;
 
   // Silent-failure safeguard: when an API key WAS configured (so SalesHub
@@ -182,19 +206,15 @@ export async function POST(req: NextRequest) {
   // 3d0cd7c1-1d04-4568-a3cb-33111d7b15b2 — SalesHub returned non-2xx at
   // 10:58 UTC and the lead was only recovered manually).
   if (apiKey && !results.saleshub) {
-    const status = typeof saleshubDebug.status === "number" ? saleshubDebug.status : null;
     const responsePreview = typeof saleshubDebug.response_preview === "string"
       ? saleshubDebug.response_preview
       : undefined;
-    const fetchError = typeof saleshubDebug.fetch_error === "string"
-      ? saleshubDebug.fetch_error
-      : (typeof saleshubDebug.json_parse_error === "string" ? saleshubDebug.json_parse_error : undefined);
     // Log to Vercel function output too — gives a server-side audit trail
     // even if the alert email itself fails to deliver.
     console.error("[lead] SalesHub sync failed", {
       mirrorId,
-      saleshubStatus: status,
-      saleshubError: fetchError,
+      saleshubStatus,
+      saleshubError,
       source: saleshubPayload.source,
       email: saleshubPayload.email,
     });
@@ -210,9 +230,9 @@ export async function POST(req: NextRequest) {
       },
       {
         mirrorId,
-        saleshubStatus: status,
+        saleshubStatus,
         saleshubResponsePreview: responsePreview,
-        saleshubError: fetchError,
+        saleshubError,
       },
     ).catch((err) => {
       console.error("[lead] sendSyncFailureAlert failed", err);
