@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isSpamSubmission } from "@/lib/spam";
-import { sendEnquiryEmails } from "@/lib/email";
+import { sendEnquiryEmails, sendSyncFailureAlert } from "@/lib/email";
 
 const SALESHUB_ENDPOINT = "https://app.saleshubcloud.com/api/webhook/form-submission";
 const PUBLISHOS_DB_IMMIGRATION = "https://publishos-eosin.vercel.app/api/db/abrahams_enquiries";
@@ -17,14 +17,14 @@ async function saveToPublishOS(
   payload: Record<string, unknown>,
   saleshubLeadId: string | undefined,
   isHousingDisrepair: boolean,
-) {
+): Promise<string> {
+  const id = saleshubLeadId && saleshubLeadId.trim()
+    ? saleshubLeadId.trim()
+    : crypto.randomUUID();
   const url = isHousingDisrepair ? PUBLISHOS_DB_HOUSING : PUBLISHOS_DB_IMMIGRATION;
   try {
     const existingRes = await fetch(url, { cache: "no-store" });
     const existing = existingRes.ok ? await existingRes.json() : [];
-    const id = saleshubLeadId && saleshubLeadId.trim()
-      ? saleshubLeadId.trim()
-      : crypto.randomUUID();
     const updated = [
       ...(Array.isArray(existing) ? existing : []),
       { id, submitted_at: new Date().toISOString(), ...payload },
@@ -35,6 +35,10 @@ async function saveToPublishOS(
       body: JSON.stringify(updated),
     });
   } catch {}
+  // Always return the id we attempted to save under — even if the mirror
+  // write itself failed — so the sync-failure alert email can include it
+  // for the duty solicitor to look up later.
+  return id;
 }
 
 export async function POST(req: NextRequest) {
@@ -165,8 +169,55 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  await saveToPublishOS(saleshubPayload, saleshubLeadId, isHousingDisrepair);
+  const mirrorId = await saveToPublishOS(saleshubPayload, saleshubLeadId, isHousingDisrepair);
   results.backup = true;
+
+  // Silent-failure safeguard: when an API key WAS configured (so SalesHub
+  // was expected to succeed) but the push failed, fire an alert email to
+  // the duty solicitor so the lead isn't silently lost. Without this the
+  // failure surfaces only when the prospect chases — by which point the
+  // "we'll call within the hour" auto-responder is hours old.
+  //
+  // Added 2026-06-01 after the Daniel Moreschi incident (mirror id
+  // 3d0cd7c1-1d04-4568-a3cb-33111d7b15b2 — SalesHub returned non-2xx at
+  // 10:58 UTC and the lead was only recovered manually).
+  if (apiKey && !results.saleshub) {
+    const status = typeof saleshubDebug.status === "number" ? saleshubDebug.status : null;
+    const responsePreview = typeof saleshubDebug.response_preview === "string"
+      ? saleshubDebug.response_preview
+      : undefined;
+    const fetchError = typeof saleshubDebug.fetch_error === "string"
+      ? saleshubDebug.fetch_error
+      : (typeof saleshubDebug.json_parse_error === "string" ? saleshubDebug.json_parse_error : undefined);
+    // Log to Vercel function output too — gives a server-side audit trail
+    // even if the alert email itself fails to deliver.
+    console.error("[lead] SalesHub sync failed", {
+      mirrorId,
+      saleshubStatus: status,
+      saleshubError: fetchError,
+      source: saleshubPayload.source,
+      email: saleshubPayload.email,
+    });
+    void sendSyncFailureAlert(
+      {
+        name: body.name ?? `${saleshubPayload.firstName} ${saleshubPayload.lastName}`.trim(),
+        email: saleshubPayload.email,
+        phone: saleshubPayload.phone,
+        service: saleshubPayload.serviceLine || saleshubPayload.subject,
+        message: saleshubPayload.message,
+        source: saleshubPayload.source,
+        pageUrl: saleshubPayload.pageUrl,
+      },
+      {
+        mirrorId,
+        saleshubStatus: status,
+        saleshubResponsePreview: responsePreview,
+        saleshubError: fetchError,
+      },
+    ).catch((err) => {
+      console.error("[lead] sendSyncFailureAlert failed", err);
+    });
+  }
 
   // Fire notification + auto-responder emails via Brevo in parallel
   // with the response — don't block the user on SMTP.

@@ -133,6 +133,91 @@ function prospectHtml(d: EnquiryData): string {
 </body></html>`;
 }
 
+/**
+ * Fired when /api/lead successfully accepts a submission BUT the SalesHub
+ * webhook push fails (5xx, network error, or unparseable response). Without
+ * this alert the failure is silent — the lead lands in the PublishOS mirror
+ * but never reaches the CRM, and you only find out when the prospect
+ * follows up days later.
+ *
+ * Sent to NOTIFY_EMAIL + LEAD_COPY_EMAIL so the duty solicitor sees it
+ * within minutes and can replay the lead manually via /api/lead?debug=1
+ * or push into SalesHub through the UI.
+ *
+ * Triggered by the Daniel Moreschi incident — 2026-06-01 10:58:55Z.
+ */
+export async function sendSyncFailureAlert(
+  data: EnquiryData,
+  context: {
+    mirrorId: string;
+    saleshubStatus?: number | null;
+    saleshubResponsePreview?: string;
+    saleshubError?: string;
+  },
+): Promise<boolean> {
+  const notify = process.env.NOTIFY_EMAIL ?? "contact@abrahamssolicitors.co.uk";
+  const leadCopyEmail = process.env.LEAD_COPY_EMAIL ?? "kazi2570@gmail.com";
+
+  const subjectLabel = data.name || data.email || "unknown";
+  const subject = `🚨 SALESHUB SYNC FAILED — ${subjectLabel} (lead landed in backup mirror only)`;
+
+  const ctxRows = [
+    ["Mirror id", context.mirrorId],
+    ["SalesHub HTTP status", context.saleshubStatus != null ? String(context.saleshubStatus) : "(no response — network/timeout)"],
+    ["SalesHub response", context.saleshubResponsePreview ?? "(empty)"],
+    ["SalesHub error", context.saleshubError ?? "(none)"],
+  ]
+    .map(
+      ([k, v]) =>
+        `<tr><td style="padding:6px 12px;color:#64748b;font-size:12px;text-transform:uppercase;letter-spacing:0.06em;font-weight:700;border-bottom:1px solid #e8ecf0;">${escapeHtml(k)}</td><td style="padding:6px 12px;color:#0f172a;font-size:13px;border-bottom:1px solid #e8ecf0;"><code style="background:#f1f5f9;padding:2px 6px;border-radius:4px;">${escapeHtml(v)}</code></td></tr>`,
+    )
+    .join("");
+
+  const leadRows = [
+    ["Name", data.name ?? "(none)"],
+    ["Email", data.email],
+    ["Phone", data.phone ?? "(none)"],
+    ["Service", data.service ?? "(none)"],
+    ["Source", data.source ?? "(none)"],
+    ["Page URL", data.pageUrl ?? "(none)"],
+  ]
+    .map(
+      ([k, v]) =>
+        `<tr><td style="padding:6px 12px;color:#64748b;font-size:12px;text-transform:uppercase;letter-spacing:0.06em;font-weight:700;">${escapeHtml(k)}</td><td style="padding:6px 12px;color:#0f172a;font-size:13px;">${escapeHtml(v)}</td></tr>`,
+    )
+    .join("");
+
+  const messageBlock = data.message
+    ? `<div style="margin-top:18px;padding:16px 20px;background:#f8fafc;border-radius:10px;border:1px solid #e8ecf0;"><p style="margin:0 0 6px;font-size:12px;color:#64748b;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;">Original message</p><p style="margin:0;color:#334155;font-size:14px;line-height:1.6;white-space:pre-wrap;">${escapeHtml(data.message)}</p></div>`
+    : "";
+
+  const html = `<!doctype html><html><body style="margin:0;padding:0;background:#f8f9fc;font-family:-apple-system,Segoe UI,Roboto,Helvetica,sans-serif;">
+<div style="max-width:680px;margin:20px auto;background:#fff;border-radius:14px;overflow:hidden;border:2px solid #b91c1c;">
+  <div style="background:#b91c1c;padding:18px 28px;">
+    <p style="margin:0;color:#fef2f2;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">⚠️ Operations alert · Abrahams Solicitors</p>
+    <h1 style="margin:6px 0 0;color:#fff;font-size:22px;font-weight:800;">SalesHub sync failed for a real lead</h1>
+  </div>
+  <div style="padding:24px 28px;color:#0f172a;line-height:1.6;font-size:14px;">
+    <p style="margin:0 0 14px;"><strong>What this means:</strong> /api/lead received a valid enquiry, wrote it to the PublishOS backup mirror, and sent the auto-responder &mdash; but the push to SalesHub Cloud failed. The prospect is <strong>not yet in your CRM workflow</strong>. They got a "we'll call within the hour" email and may be waiting.</p>
+    <p style="margin:0 0 14px;"><strong>What to do:</strong> open the lead below in the PublishOS dashboard or replay it via <code style="background:#f1f5f9;padding:2px 6px;border-radius:4px;">POST /api/lead?debug=1</code> with <code style="background:#f1f5f9;padding:2px 6px;border-radius:4px;">source="<prev>-recovery"</code>. SalesHub may already be healthy &mdash; the failure was likely transient.</p>
+    <p style="margin:18px 0 6px;font-size:11px;color:#64748b;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">Lead</p>
+    <table style="width:100%;border-collapse:collapse;border:1px solid #e8ecf0;border-radius:8px;overflow:hidden;">${leadRows}</table>
+    ${messageBlock}
+    <p style="margin:18px 0 6px;font-size:11px;color:#64748b;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">SalesHub failure context</p>
+    <table style="width:100%;border-collapse:collapse;border:1px solid #e8ecf0;border-radius:8px;overflow:hidden;">${ctxRows}</table>
+    <p style="margin:24px 0 0;font-size:12px;color:#64748b;">This alert fires automatically from <code style="background:#f1f5f9;padding:2px 6px;border-radius:4px;">src/app/api/lead/route.ts</code> when the SalesHub webhook returns a non-2xx response or throws. Configured by the LEAD_COPY_EMAIL and NOTIFY_EMAIL env vars.</p>
+  </div>
+</div>
+</body></html>`;
+
+  return sendEmail({
+    to: [{ email: notify, name: "Abrahams Solicitors Ops" }],
+    bcc: leadCopyEmail ? [{ email: leadCopyEmail, name: "Lead Copy" }] : undefined,
+    subject,
+    htmlContent: html,
+  });
+}
+
 export async function sendEnquiryEmails(data: EnquiryData): Promise<{ internal: boolean; prospect: boolean }> {
   const notify = process.env.NOTIFY_EMAIL ?? "contact@abrahamssolicitors.co.uk";
 
