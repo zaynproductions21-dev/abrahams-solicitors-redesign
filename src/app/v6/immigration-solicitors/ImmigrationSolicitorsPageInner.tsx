@@ -346,10 +346,10 @@ export default function ImmigrationSolicitorsPageInner() {
                 UK Immigration Solicitors &mdash; direct access, no call centres.
               </h1>
               <p id="hero-lead" className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
-                Speak to a <strong>named SRA-regulated solicitor</strong> on your first call &mdash;
-                not a call handler, not a junior. Fixed fees agreed in writing before any work
-                starts. Spouse visas, FLR(M), ILR, citizenship, refusal appeals and Skilled Worker
-                sponsorship. Free 30-minute consultation.
+                Speak to a <strong>named SRA-regulated solicitor</strong>{" "}
+                on your first call &mdash; not a call handler, not a junior. Fixed fees agreed in
+                writing before any work starts. Spouse visas, FLR(M), ILR, citizenship, refusal
+                appeals and Skilled Worker sponsorship. Free 30-minute consultation.
               </p>
 
               {/* Primary CTAs */}
