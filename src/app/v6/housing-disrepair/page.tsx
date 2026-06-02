@@ -27,24 +27,30 @@
 import type { Metadata } from "next";
 import HousingDisrepairPageInner from "./HousingDisrepairPageInner";
 
+// Title intentionally drops the "London" qualifier — the housing-disrepair
+// Google Ads campaigns target London AND Birmingham (with Manchester +
+// Northern Cities pending). Hard-coding "London" in the title causes a
+// message-match break for Birmingham searchers clicking Birmingham ads
+// (QS penalty). City-specific URLs (/london/, /birmingham/) are a future
+// task once volume justifies the split. Changed 2026-06-02 per QS audit.
 export const metadata: Metadata = {
-  title: "Housing Disrepair Solicitors London | No Win No Fee | Abrahams",
+  title: "Housing Disrepair Solicitors | No Win No Fee Claims | Abrahams",
   description:
-    "Housing disrepair solicitors in London. Damp, mould, leaks — claim against your landlord. No win no fee. SRA-regulated firm #809071. Free assessment.",
+    "Housing disrepair solicitors covering London, Birmingham & nationwide. Damp, mould, leaks — claim against your landlord. No win, no fee. SRA-regulated firm #809071. Free case check.",
   alternates: {
     canonical: "https://www.abrahamssolicitors.co.uk/housing-disrepair/",
   },
   openGraph: {
-    title: "Housing Disrepair Solicitors London | No Win No Fee | Abrahams",
+    title: "Housing Disrepair Solicitors | No Win No Fee Claims | Abrahams",
     description:
-      "No-win-no-fee housing disrepair claims for damp, mould, leaks, broken heating and unsafe conditions. SRA-regulated. Free 60-second case check.",
+      "No-win-no-fee housing disrepair claims for damp, mould, leaks, broken heating and unsafe conditions. London, Birmingham & nationwide. SRA-regulated. Free case check.",
     url: "https://www.abrahamssolicitors.co.uk/housing-disrepair/",
     type: "website",
     locale: "en_GB",
   },
   twitter: {
     card: "summary",
-    title: "Housing Disrepair Solicitors London | No Win No Fee | Abrahams",
+    title: "Housing Disrepair Solicitors | No Win No Fee | Abrahams",
     description:
       "No-win-no-fee housing disrepair claims. SRA-regulated. Free case check.",
   },

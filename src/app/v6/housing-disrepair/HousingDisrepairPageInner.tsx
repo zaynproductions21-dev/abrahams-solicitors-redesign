@@ -1,11 +1,13 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { TeamStrip } from "@/components/v6/team-strip";
 import { HousingQualifier } from "@/components/v6/housing-qualifier";
+import { HousingSimpleForm } from "@/components/v6/housing-simple-form";
 import {
   JsonLd,
   faqPageSchema,
@@ -18,8 +20,17 @@ import { team } from "@/lib/team";
 import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
 import {
   Phone, ChevronRight, ChevronDown, ShieldCheck, CheckCircle2,
-  AlertCircle, Star, Scale, FileCheck2, Clock, BadgeCheck, X,
+  AlertCircle, Star, Scale, FileCheck2, Clock, BadgeCheck,
 } from "lucide-react";
+
+// Lazy-load ExitIntent — it's a desktop-only modal that only fires after
+// 8s of engagement + mouseleave. Shipping its JS in the initial bundle
+// hurts mobile LCP for the 80%+ mobile traffic that will never see it.
+// ssr: false because it relies on window/document and Touch detection.
+const ExitIntent = dynamic(
+  () => import("@/components/v6/housing-exit-intent").then(m => m.ExitIntent),
+  { ssr: false },
+);
 
 const HOUSING_AUTHOR = team.find(t => t.slug === "sannah-khatoon")!;
 const PAGE_URL = "https://www.abrahamssolicitors.co.uk/housing-disrepair/";
@@ -80,108 +91,14 @@ const STATUTES = [
   { name: "Pre-Action Protocol for Housing Conditions Claims (England)", what: "The court-set process all housing disrepair solicitors must follow before issuing proceedings — notice, surveyor inspection, response window, then settlement or court." },
 ];
 
-function ExitIntent() {
-  const [open, setOpen] = useState(false);
-  const [shown, setShown] = useState(false);
-  const [phone, setPhone] = useState("");
-  const [done, setDone] = useState(false);
-
-  useEffect(() => {
-    if (shown) return;
-    if (typeof window === "undefined") return;
-    // Skip on touch devices entirely — exit intent is a desktop pattern,
-    // and iOS Safari fires synthetic mouseleave events that misfire here.
-    const isTouch =
-      "ontouchstart" in window ||
-      navigator.maxTouchPoints > 0 ||
-      window.matchMedia("(pointer: coarse)").matches;
-    if (isTouch) return;
-    if (window.innerWidth < 1024) return;
-
-    // Require ~8 seconds of engagement before arming the trigger so it
-    // doesn't fire on a quick bounce.
-    const armed = { current: false };
-    const armTimer = setTimeout(() => { armed.current = true; }, 8000);
-
-    const handler = (e: MouseEvent) => {
-      if (!armed.current) return;
-      if (e.clientY <= 0 && !shown) {
-        setOpen(true);
-        setShown(true);
-      }
-    };
-    document.addEventListener("mouseleave", handler);
-    return () => {
-      clearTimeout(armTimer);
-      document.removeEventListener("mouseleave", handler);
-    };
-  }, [shown]);
-
-  if (!open) return null;
-  return (
-    <div className="fixed inset-0 z-[200] bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4" onClick={() => setOpen(false)}>
-      <div className="bg-white rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative" onClick={e => e.stopPropagation()}>
-        <button onClick={() => setOpen(false)} aria-label="Close" className="absolute top-4 right-4 text-slate-400 hover:text-slate-700">
-          <X className="h-5 w-5" />
-        </button>
-        {done ? (
-          <div className="py-4 text-center">
-            <CheckCircle2 className="h-10 w-10 text-emerald-500 mx-auto mb-3" />
-            <h3 className="text-xl font-black text-slate-900">Got it. We&rsquo;ll text shortly.</h3>
-            <p className="mt-2 text-sm text-slate-500">A solicitor will message you with a free 30-second case check.</p>
-          </div>
-        ) : (
-          <>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-brand-red/10 text-brand-red uppercase tracking-widest">
-              Wait — quick free check
-            </div>
-            <h3 className="mt-4 text-2xl font-black text-slate-900 tracking-tight">Not sure if you have a claim?</h3>
-            <p className="mt-2 text-sm text-slate-500 leading-relaxed">Drop your number — a solicitor will text you a 30-second case check, no spam, no follow-ups unless you want them.</p>
-            <form
-              onSubmit={async (e) => {
-                e.preventDefault();
-                if (!phone) return;
-                try {
-                  await fetch("/api/lead", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                      source: "housing-disrepair-exit-intent",
-                      phone,
-                      service: "Housing Disrepair (SMS check)",
-                      message: "Exit-intent SMS opt-in for free case check",
-                      "cf-turnstile-response": "exit-intent-bypass",
-                    }),
-                  });
-                } catch {}
-                setDone(true);
-              }}
-              className="mt-5 flex flex-col sm:flex-row gap-2"
-            >
-              <input
-                value={phone}
-                onChange={e => setPhone(e.target.value)}
-                type="tel"
-                placeholder="07xxx xxxxxx"
-                required
-                className="flex-1 px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red"
-              />
-              <Button type="submit" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 px-5 text-sm font-bold uppercase tracking-wide">
-                Text me
-              </Button>
-            </form>
-            <p className="mt-3 text-xs text-slate-400">
-              SRA-regulated firm #809071. Your number is not shared.
-            </p>
-          </>
-        )}
-      </div>
-    </div>
-  );
-}
-
 export default function HousingDisrepairPageInner() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  // Wizard expansion — the simple form is the default; the 5-step
+  // HousingQualifier is opt-in via the "Take our 60-second case check"
+  // link. Hides the wizard on first render so paid-traffic mobile users
+  // don't have to scroll past it. Identified 2026-06-02 in QS audit
+  // (task #64) as the dominant CVR killer on this LP.
+  const [showWizard, setShowWizard] = useState(false);
 
   return (
     <>
@@ -222,12 +139,16 @@ export default function HousingDisrepairPageInner() {
         </div>
       </section>
 
-      {/* ─── Hero ─── headline left, qualifier right */}
+      {/* ─── Hero ─── H1+sub on left → form on right on desktop.
+          On mobile: H1+sub → form → lead/CTAs/byline/trust strip
+          (form ordering via `order-2 lg:order-none` so paid-traffic
+          mobile users see the form within the first viewport).
+          Rebuilt 2026-06-02 from QS audit (task #64).  */}
       <section className="relative bg-white border-b border-slate-100 overflow-hidden">
         <div className="relative max-w-[1200px] mx-auto px-6 lg:px-8 py-10 lg:py-14">
           <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
-            {/* Left: 3 cols */}
-            <div className="lg:col-span-3 min-w-0">
+            {/* Block A — Headlines + visible phone (mobile order 1, desktop col 1-3) */}
+            <div className="lg:col-span-3 min-w-0 order-1 lg:order-none">
               <div className="flex flex-wrap items-center gap-3 mb-4">
                 <span className="text-xs font-bold text-brand-red uppercase tracking-widest">Housing Disrepair Solicitors</span>
                 <span className="text-xs font-bold text-white bg-brand-red px-3 py-1 rounded-full">No Win, No Fee</span>
@@ -237,30 +158,77 @@ export default function HousingDisrepairPageInner() {
                 </span>
               </div>
 
+              {/* Visible phone above H1 — Google Ads mobile UX rubric weights
+                  visible click-to-call numbers as a positive signal. Was
+                  hidden behind a button before the QS audit. */}
+              <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-slate-700">
+                <Phone className="h-4 w-4 text-brand-red" />
+                <span>Speak to a solicitor now —</span>
+                <DynamicCallLink className="text-brand-red font-bold hover:underline">
+                  <DynamicPhoneText />
+                </DynamicCallLink>
+              </div>
+
+              {/* H1 — keyword-matched for top-spending ad keywords:
+                  "housing disrepair solicitors", "housing disrepair claim",
+                  "claim against my landlord". Reframed 2026-06-02 from
+                  "Damp, mould or repairs your landlord keeps fobbing off?"
+                  (creative but had zero keyword match → LP QS = 2). */}
               <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-5xl font-black text-slate-900 leading-[1.05] tracking-tight">
-                Damp, mould or repairs your landlord keeps fobbing off?
+                Housing Disrepair Solicitors — No Win No Fee Claims for Damp, Mould &amp; Leaks
               </h1>
               <p className="mt-3 text-base sm:text-lg font-semibold text-slate-700 tracking-tight">
-                Housing Disrepair Solicitors &mdash; No Win, No Fee. London &amp; nationwide coverage.
+                Landlord ignoring damp, mould, leaks or broken heating? Compensation and repairs — typically £1,500–£15,000.
               </p>
+            </div>
 
+            {/* Block B — Form (mobile order 2 → appears within first viewport
+                on mobile; desktop col 4-5). Simple form is default; 5-step
+                wizard is opt-in via the "60-second case check" link below. */}
+            <div className="lg:col-span-2 min-w-0 order-2 lg:order-none" id="qualifier">
+              <HousingSimpleForm />
+
+              {/* Opt-in to the original 5-step qualifier for users who want
+                  the pre-qualifying check. Hidden by default so paid traffic
+                  isn't overwhelmed with form choice. */}
+              <div className="mt-4">
+                {!showWizard ? (
+                  <button
+                    type="button"
+                    onClick={() => setShowWizard(true)}
+                    className="w-full text-sm font-semibold text-slate-600 hover:text-brand-red transition-colors py-2 inline-flex items-center justify-center gap-1.5"
+                  >
+                    Not sure if you have a claim?
+                    <span className="text-brand-red">Take the free 60-second check →</span>
+                  </button>
+                ) : (
+                  <div className="mt-2 pt-4 border-t border-slate-200">
+                    <p className="text-xs text-slate-500 mb-3 font-medium uppercase tracking-wider">Free case-strength check</p>
+                    <HousingQualifier />
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Block C — Lead paragraph + remaining CTAs + author byline +
+                trust strip (mobile order 3 → renders below form; desktop
+                col 1-3, naturally flows under Block A in grid row 2). */}
+            <div className="lg:col-span-3 min-w-0 order-3 lg:order-none">
               {/* 55-word definitional lead — Speakable target */}
-              <p id="hero-lead" className="mt-5 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
+              <p id="hero-lead" className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
                 Housing disrepair is when a landlord fails to keep your home in a state of repair after notice. Under <strong className="text-slate-900">Section 11 of the Landlord and Tenant Act 1985</strong> they must repair the structure, exterior and core services. If they have not, you can claim compensation and a court order forcing repairs.
               </p>
 
-              {/* Triple CTA */}
-              <div className="mt-7 flex flex-wrap items-center gap-3">
+              {/* Secondary CTAs — call is duplicated here for users who
+                  scroll the lead paragraph */}
+              <div className="mt-5 flex flex-wrap items-center gap-3">
                 <DynamicCallLink className="inline-flex items-center justify-center bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide px-6 h-12">
                   <Phone className="h-4 w-4 mr-2" />
                   <DynamicPhoneText />
                 </DynamicCallLink>
                 <Button asChild variant="outline" size="lg" className="rounded-lg text-sm font-semibold h-12 border-slate-300 text-slate-800 hover:border-brand-red hover:text-brand-red">
-                  <a href="#qualifier">Free 60-second check</a>
+                  <a href="#qualifier">Use the form above</a>
                 </Button>
-                <a href="#qualifier" className="text-sm font-semibold text-brand-red hover:underline">
-                  Or request a callback →
-                </a>
               </div>
 
               {/* Author byline */}
@@ -293,11 +261,6 @@ export default function HousingDisrepairPageInner() {
                   </div>
                 ))}
               </div>
-            </div>
-
-            {/* Right: qualifier */}
-            <div className="lg:col-span-2 min-w-0" id="qualifier">
-              <HousingQualifier />
             </div>
           </div>
         </div>
