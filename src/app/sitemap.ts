@@ -62,6 +62,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: p("/visa-wizard/"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: p("/visit-visa-refusal/"), lastModified: now, changeFrequency: "weekly", priority: 0.7 },
     { url: p("/housing-disrepair/"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: p("/immigration-solicitors/"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
   ];
 
   return [...staticPages, ...immigrationRoutes, ...piRoutes, ...bespokeRoutes];
