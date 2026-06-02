@@ -41,6 +41,14 @@ export const navigation: NavItem[] = [
                 "href": "/skilled-worker-wizard/"
           },
           {
+                "label": "ILR / Settlement Wizard",
+                "href": "/ilr-wizard/"
+          },
+          {
+                "label": "British Citizenship Wizard",
+                "href": "/citizenship-wizard/"
+          },
+          {
                 "label": "British Citizenship Solicitors",
                 "href": "/british-citizenship-solicitors/"
           },

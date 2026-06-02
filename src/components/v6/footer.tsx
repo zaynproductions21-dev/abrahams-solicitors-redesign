@@ -20,9 +20,12 @@ const SocialIcon = ({ name }: { name: "facebook" | "twitter" | "linkedin" | "ins
 };
 
 const immigrationLinks = [
+  { label: "🆘 24/7 Emergency Help", href: "/emergency-immigration-solicitor/" },
   { label: "Spouse Visa Services", href: "/uk-spouse-visa/" },
-  { label: "British Citizenship", href: "/british-citizenship/" },
-  { label: "Visa Appeals & Reviews", href: "/immigration/" },
+  { label: "FLR(M) Visa Extension", href: "/flr-visa-extension/" },
+  { label: "British Citizenship", href: "/british-citizenship-solicitors/" },
+  { label: "Indefinite Leave to Remain", href: "/indefinite-leave-to-remain-ilr/" },
+  { label: "Visa Appeals & Reviews", href: "/visa-refusal-appeal/" },
   { label: "Asylum & Human Rights", href: "/asylum-applications/" },
 ];
 
@@ -31,6 +34,17 @@ const otherLinks = [
   { label: "Workplace Accidents", href: "/accidents-at-work/" },
   { label: "Road Traffic Claims", href: "/car-accidents-claims/" },
   { label: "Serious Injury", href: "/serious-injury-claims/" },
+];
+
+const toolLinks = [
+  { label: "Spouse Visa Wizard", href: "/visa-wizard/" },
+  { label: "FLR(M) Extension Calculator", href: "/flr-visa-extension/" },
+  { label: "ILR Settlement Wizard", href: "/ilr-wizard/" },
+  { label: "British Citizenship Wizard", href: "/citizenship-wizard/" },
+  { label: "Skilled Worker Wizard", href: "/skilled-worker-wizard/" },
+  { label: "Adequate Maintenance Calculator", href: "/adequate-maintenance-calculator/" },
+  { label: "Visit Visa Refusal Wizard", href: "/visit-visa-refusal/" },
+  { label: "Emergency Immigration FAQ", href: "/emergency-immigration-faq/" },
 ];
 
 const quickLinks = [
@@ -181,7 +195,13 @@ export function V6Footer() {
                 </ul>
               </div>
               <div>
-                <h3 className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">Quick Links</h3>
+                <h3 className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">Free Tools &amp; Wizards</h3>
+                <ul className="space-y-2">
+                  {toolLinks.map(l => (
+                    <li key={l.label}><Link href={l.href} className="text-sm text-white/50 hover:text-white transition-colors">{l.label}</Link></li>
+                  ))}
+                </ul>
+                <h3 className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4 mt-6">Quick Links</h3>
                 <ul className="space-y-2">
                   {quickLinks.map(l => (
                     <li key={l.label}><Link href={l.href} className="text-sm text-white/50 hover:text-white transition-colors">{l.label}</Link></li>
