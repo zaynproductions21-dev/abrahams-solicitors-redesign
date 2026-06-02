@@ -90,10 +90,27 @@ export async function POST(req: NextRequest) {
   // SalesHub Cloud (so Google Ads Smart Bidding for the housing campaign
   // never crosses signals with the existing immigration campaigns).
   // Sources `housing-disrepair-qualifier` and `housing-disrepair-exit-intent`
-  // both route to the housing org; everything else (immigration, homepage,
-  // service-page:*) continues to use the default key/org as before.
+  // both route to the housing org via the source prefix check below.
+  //
+  // ALSO route to housing when the service/serviceLine field is "housing"
+  // even if the source string isn't a housing-disrepair-prefixed value —
+  // catches the case where someone submits via /contact-us/ (which sends
+  // source: "contact-us") and picks "Housing" from the service dropdown.
+  // Identified 2026-06-02 from a real lead (Kerry Oliver) who submitted via
+  // /housing-disrepair/ correctly on 30 May, then re-submitted via
+  // /contact-us/ on 1 June with serviceLine:"housing" — the second
+  // submission was mis-routed into the immigration mirror under the old
+  // source-only check. Without this addition, every Housing-dropdown lead
+  // from contact-us / wizard fallback forms ends up cross-contaminating
+  // the immigration mirror.
   const sourceStr = typeof body.source === "string" ? body.source : "";
-  const isHousingDisrepair = sourceStr.startsWith("housing-disrepair");
+  const serviceStr = typeof body.service === "string" ? body.service.toLowerCase() : "";
+  const serviceLineStr = typeof body.serviceLine === "string" ? body.serviceLine.toLowerCase() : "";
+  const isHousingDisrepair =
+    sourceStr.startsWith("housing-disrepair")
+    || serviceStr === "housing"
+    || serviceLineStr === "housing"
+    || serviceLineStr.includes("housing disrepair");
   const apiKey = isHousingDisrepair
     ? process.env.SALESHUB_API_KEY_HOUSING
     : process.env.SALESHUB_API_KEY;
