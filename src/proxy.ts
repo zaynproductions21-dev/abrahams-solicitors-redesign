@@ -28,6 +28,16 @@ export function proxy(request: NextRequest) {
   // and App Router metadata file conventions (icon, apple-icon, opengraph-image,
   // twitter-image — these are served by Next from app/icon.tsx, app/apple-icon.tsx
   // etc, and the URLs have NO file extension so the `.` rule below misses them).
+  //
+  // Also skip /immigration-solicitors-direct/ — its file lives OUTSIDE the
+  // /v6/ tree (at src/app/immigration-solicitors-direct/) so the proxy
+  // must NOT prepend /v6/. The route uses its own minimal layout — no
+  // V6Header / V6Footer — for the paid-traffic A/B per Council Track A.
+  // Without this carve-out the proxy rewrites to /v6/immigration-solicitors-direct/
+  // which doesn't exist → fallthrough to /v6/[slug]/ (the dynamic
+  // services template) renders a wrong page.
+  // Added 2026-06-03 after spotting x-matched-path: /v6/[slug] on the
+  // live URL when it should have been /immigration-solicitors-direct.
   if (
     pathname.startsWith("/api/") ||
     pathname.startsWith("/_next/") ||
@@ -44,6 +54,9 @@ export function proxy(request: NextRequest) {
     pathname === "/twitter-image" ||
     pathname.startsWith("/twitter-image/") ||
     pathname === "/manifest.webmanifest" ||
+    pathname === "/immigration-solicitors-direct" ||
+    pathname === "/immigration-solicitors-direct/" ||
+    pathname.startsWith("/immigration-solicitors-direct/") ||
     pathname.includes(".")
   ) {
     return NextResponse.next();
