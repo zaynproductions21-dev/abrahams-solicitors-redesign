@@ -28,16 +28,73 @@ import { submitEnquiry } from "@/lib/publishos";
 
 const FORM_SOURCE = "housing-disrepair-simple-form";
 
+// Landlord-type filter. Per Imran (2026-06-02), Abrahams only takes
+// Council and Housing Association housing-disrepair cases — private
+// landlord cases don't meet the firm's commercial criteria. Capturing
+// this at the form level (and showing a redirect for private leads)
+// gates 75% of currently-misfit traffic before it ever reaches SalesHub.
+type Landlord = "" | "council" | "ha" | "private";
+
 export function HousingSimpleForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [postcode, setPostcode] = useState("");
+  const [landlord, setLandlord] = useState<Landlord>("");
   const [problem, setProblem] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  // gateBlocked is true when a private-landlord lead is selected — we show
+  // a polite redirect instead of accepting the submission. Lead is NOT
+  // sent to SalesHub or the abrahams_housing_enquiries mirror.
+  const [gateBlocked, setGateBlocked] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const spam = useSpamGuard();
+
+  // Private-landlord redirect state — shown instead of posting to /api/lead.
+  // Tenants of private landlords still deserve a clear next step (Citizens
+  // Advice, Shelter), even though Abrahams cannot take their case.
+  if (gateBlocked) {
+    return (
+      <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 sm:p-7">
+        <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-amber-100 text-amber-700 mb-3">
+          <AlertCircle className="h-5 w-5" />
+        </div>
+        <h3 className="text-lg font-black text-slate-900 tracking-tight">
+          We don&rsquo;t take private-landlord cases — but here&rsquo;s where to get help
+        </h3>
+        <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+          Our housing-disrepair team specialises in Council and Housing
+          Association tenancies. For private rentals, these free services
+          are best-placed to help:
+        </p>
+        <ul className="mt-3 space-y-2 text-sm">
+          <li>
+            <a href="https://www.shelter.org.uk/get_help" target="_blank" rel="noopener noreferrer" className="font-semibold text-brand-red hover:underline">
+              Shelter — free housing advice →
+            </a>
+          </li>
+          <li>
+            <a href="https://www.citizensadvice.org.uk/housing/" target="_blank" rel="noopener noreferrer" className="font-semibold text-brand-red hover:underline">
+              Citizens Advice — housing →
+            </a>
+          </li>
+          <li>
+            <a href="https://www.gov.uk/private-renting-complaints" target="_blank" rel="noopener noreferrer" className="font-semibold text-brand-red hover:underline">
+              Gov.uk — complain about a private landlord →
+            </a>
+          </li>
+        </ul>
+        <button
+          type="button"
+          onClick={() => { setGateBlocked(false); setLandlord(""); }}
+          className="mt-5 text-xs font-semibold text-slate-500 hover:text-brand-red underline-offset-2 hover:underline"
+        >
+          Wrong selection? Change landlord type
+        </button>
+      </div>
+    );
+  }
 
   if (submitted) {
     return (
@@ -83,15 +140,30 @@ export function HousingSimpleForm() {
           e.preventDefault();
           if (submitting) return;
           setError(null);
+          // Landlord-type gate — block private-landlord submissions BEFORE
+          // hitting GTM / SalesHub. Show redirect screen instead. We don't
+          // want these in the conversion signal for Smart Bidding (they
+          // dilute the council/HA target) and we don't want them clogging
+          // SalesHub or the housing mirror.
+          if (landlord === "private") {
+            setGateBlocked(true);
+            return;
+          }
+          if (!landlord) {
+            setError("Please select your landlord type.");
+            return;
+          }
           setSubmitting(true);
           try {
             // GTM telemetry (mirrors pushFormSubmit pattern used elsewhere
             // on the site — Enhanced Conversions for Leads picks this up).
             pushFormSubmit({ email, phone });
-            // Pack postcode + problem into `case` field to match the
-            // Enquiry type. service:"housing" triggers the smart-routing
+            // Pack postcode + landlord + problem into `case` field to match
+            // the Enquiry type. service:"housing" triggers the smart-routing
             // path in api/lead/route.ts → routes to housing mirror.
+            const landlordLabel = landlord === "council" ? "Council" : "Housing Association";
             const caseDetail = [
+              `Landlord: ${landlordLabel}`,
               postcode ? `Postcode: ${postcode}` : null,
               problem ? `Problem: ${problem}` : null,
               "Submitted via simple-form (paid traffic path)",
@@ -180,6 +252,27 @@ export function HousingSimpleForm() {
             autoComplete="postal-code"
             className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red/30"
           />
+        </div>
+
+        {/* Landlord-type gate — required. Private-landlord selection
+            short-circuits the submit and shows a redirect screen rather
+            than reaching SalesHub. Council and HA are accepted. */}
+        <div>
+          <label htmlFor="hsf-landlord" className="block text-xs font-semibold text-slate-600 mb-1.5">
+            Who is your landlord?
+          </label>
+          <select
+            id="hsf-landlord"
+            required
+            value={landlord}
+            onChange={(e) => setLandlord(e.target.value as Landlord)}
+            className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm bg-white focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red/30"
+          >
+            <option value="">Select landlord type…</option>
+            <option value="council">Council</option>
+            <option value="ha">Housing Association</option>
+            <option value="private">Private landlord</option>
+          </select>
         </div>
 
         <div>

@@ -169,16 +169,21 @@ export default function HousingDisrepairPageInner() {
                 </DynamicCallLink>
               </div>
 
-              {/* H1 — keyword-matched for top-spending ad keywords:
-                  "housing disrepair solicitors", "housing disrepair claim",
-                  "claim against my landlord". Reframed 2026-06-02 from
-                  "Damp, mould or repairs your landlord keeps fobbing off?"
-                  (creative but had zero keyword match → LP QS = 2). */}
+              {/* H1 — keyword-matched for top-spending ad keywords AND
+                  audience-filtered for Council/HA tenants (the only segment
+                  Abrahams commercially takes — private landlord cases are
+                  redirected at the form layer to Shelter/CAB).
+                  Reframed twice on 2026-06-02:
+                  (1) creative→keyword-match: from "Damp, mould or repairs
+                      your landlord keeps fobbing off?" (zero keyword match → QS 2)
+                  (2) keyword-match→audience-fit: added "Council & Housing
+                      Association" to filter intent up-front, reducing wasted
+                      clicks on private-landlord searchers. */}
               <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-5xl font-black text-slate-900 leading-[1.05] tracking-tight">
-                Housing Disrepair Solicitors — No Win No Fee Claims for Damp, Mould &amp; Leaks
+                Council &amp; Housing Association Disrepair Claims — No Win No Fee
               </h1>
               <p className="mt-3 text-base sm:text-lg font-semibold text-slate-700 tracking-tight">
-                Landlord ignoring damp, mould, leaks or broken heating? Compensation and repairs — typically £1,500–£15,000.
+                Damp, mould, leaks, broken heating or unsafe conditions? Specialist housing disrepair solicitors for Council and Housing Association tenants. Typical settlements £1,500–£15,000.
               </p>
             </div>
 
