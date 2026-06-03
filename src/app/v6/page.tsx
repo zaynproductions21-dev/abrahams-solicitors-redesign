@@ -164,7 +164,32 @@ export default function V6HomePage() {
         {/* Orange/red diagonal accent */}
         <div className="absolute top-20 right-[30%] w-64 h-64 bg-brand-red/5 rounded-full blur-3xl" />
 
-        {/* Hero image — desktop only, behind the consultation form.
+        {/* MOBILE hero image — same /hero-london.jpg as desktop, placed on
+            the right side of the heading row. Crops to focus on the
+            woman's face/torso (object-right keeps her visible when the
+            container is narrow). Strong white-from-left gradient keeps the
+            headline + sub-text on the left fully readable. Hidden on
+            lg+ since the desktop version below handles that breakpoint.
+            Added 2026-06-04 per mobile mockup request. */}
+        <div className="absolute inset-y-0 right-0 w-[60%] sm:w-[55%] lg:hidden pointer-events-none overflow-hidden">
+          <Image
+            src="/hero-london.jpg"
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover object-right"
+            width={1536}
+            height={1024}
+            sizes="(max-width: 1023px) 60vw, 0px"
+            priority
+            fetchPriority="high"
+          />
+          {/* Stronger white fade on mobile so headline + body copy keep
+              high contrast over the image. Right-side stays clearer so
+              the woman's face shows through. */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/30" aria-hidden="true" />
+        </div>
+
+        {/* DESKTOP hero image — unchanged. Behind the consultation form.
             Hardcoded to /hero-london.jpg so the bot's generated
             /public/generated/home-hero.webp does NOT replace this photo. */}
         <div className="absolute inset-y-0 right-0 w-[55%] hidden lg:block pointer-events-none overflow-hidden">
