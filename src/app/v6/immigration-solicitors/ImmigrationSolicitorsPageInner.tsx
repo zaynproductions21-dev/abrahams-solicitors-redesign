@@ -233,9 +233,13 @@ function HeroForm({ id = "consultation-form" }: { id?: string }) {
           placeholder="UK phone number" required
           autoComplete="tel" inputMode="tel"
           className="w-full px-3 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red" />
+        {/* Placeholder shortened — full "What's your matter? (optional)"
+            was clipping to "What's your matter? (option" on iOS Safari
+            because the native dropdown chevron reserves ~30px of right
+            padding. Mobile QA Tier 3 follow-up. */}
         <select value={matter} onChange={(e) => setMatter(e.target.value)} onFocus={markStarted}
           className="w-full px-3 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red bg-white">
-          <option value="">What's your matter? (optional)</option>
+          <option value="">Your matter (optional)</option>
           <option value="spouse-visa">Spouse / partner visa</option>
           <option value="flr-m">FLR(M) extension</option>
           <option value="ilr">Indefinite Leave to Remain</option>
@@ -378,9 +382,13 @@ export default function ImmigrationSolicitorsPageInner() {
               {/* Primary CTAs — both w-full on mobile, side-by-side natural width on tablet+.
                   Em-dash replaced with colon to avoid mid-button line break at 375px.
                   Mobile QA 2026-06-03. */}
+              {/* Phone label "Call now:" — text-sm + whitespace-nowrap +
+                  tighter px-4 on mobile so the full number fits on one
+                  line. Was wrapping to "0203 051" / "7760" at text-base
+                  + uppercase + tracking. Mobile QA Tier 3 follow-up. */}
               <div className="mt-6 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
                 <DynamicCallLink
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-base font-bold uppercase sm:tracking-wide px-7 h-14"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm sm:text-base font-bold uppercase sm:tracking-wide px-4 sm:px-7 h-14 whitespace-nowrap"
                   onClick={() => trackPhoneTap("hero")}
                 >
                   <Phone className="h-5 w-5" />
