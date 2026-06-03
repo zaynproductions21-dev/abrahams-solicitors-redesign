@@ -113,7 +113,17 @@ function ConsultationForm({ dark = false }: { dark?: boolean }) {
         <input value={name} onChange={e => setName(e.target.value)} placeholder="Your Name" required className={inputClass} />
         <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="Email Address" required className={inputClass} />
         <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" placeholder="Phone Number" className={inputClass} />
-        <select value={service} onChange={e => setService(e.target.value)} required aria-label="Service required" className={`${inputClass} appearance-none bg-white`}>
+        {/* Chevron caret added via inline background-image SVG. `appearance-none`
+            strips the native iOS Safari dropdown arrow — without our own
+            chevron users can't tell this is a dropdown. Mobile QA Tier 3. */}
+        <select
+          value={service}
+          onChange={e => setService(e.target.value)}
+          required
+          aria-label="Service required"
+          className={`${inputClass} appearance-none bg-white bg-no-repeat bg-[length:1rem] bg-[right_0.75rem_center] pr-9`}
+          style={{ backgroundImage: "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 8 4 4 4-4'/%3E%3C/svg%3E\")" }}
+        >
           <option value="">Service Required</option>
           <option value="immigration">Immigration</option>
           <option value="housing">Housing</option>
@@ -214,7 +224,7 @@ export default function V6HomePage() {
               { icon: Headset, title: "Direct Solicitor Access", desc: "Speak to your lawyer directly" },
               { icon: PoundSterling, title: "Fixed Fees", desc: "Clear pricing, no surprises" },
               { icon: Shield, title: "SRA Regulated", desc: "Solicitors Regulation Authority" },
-              { icon: Users, title: "Nationwide Coverage", desc: "London &amp; Yorkshire offices, video consultations UK-wide" },
+              { icon: Users, title: "Nationwide Coverage", desc: "London & Yorkshire offices, video consultations UK-wide" },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3">
                 <div className="w-10 h-10 rounded-lg bg-brand-red/8 flex items-center justify-center shrink-0">

@@ -218,13 +218,16 @@ export function HousingQualifier() {
             </div>
 
             <p className="mt-6 text-sm font-semibold text-slate-900">How long has it been a problem?</p>
+            {/* py-3 (≥44px effective tap target with line-height) per
+                iOS HIG. Was py-2.5 = ~42px which is borderline.
+                Mobile QA Tier 3. */}
             <div className="mt-2 grid grid-cols-2 gap-2">
               {DURATIONS.map(d => (
                 <button
                   key={d.value}
                   type="button"
                   onClick={() => setDuration(d.value)}
-                  className={`px-3 py-2.5 rounded-lg border text-sm font-medium transition-colors ${duration === d.value ? "border-brand-red bg-brand-red/5 text-slate-900" : "border-slate-200 text-slate-600 hover:border-slate-300"}`}
+                  className={`px-3 py-3 rounded-lg border text-sm font-medium transition-colors ${duration === d.value ? "border-brand-red bg-brand-red/5 text-slate-900" : "border-slate-200 text-slate-600 hover:border-slate-300"}`}
                 >
                   {d.label}
                 </button>
@@ -354,7 +357,10 @@ export function HousingQualifier() {
                   )}
                 </Button>
               </div>
-              <p className="text-xs text-slate-400 flex items-start gap-1.5 pt-1">
+              {/* pt-3 (was pt-1) — the privacy-policy disclaimer was
+                  hugging the submit button uncomfortably on mobile.
+                  Mobile QA Tier 3. */}
+              <p className="text-xs text-slate-400 flex items-start gap-1.5 pt-3">
                 <AlertCircle className="h-3.5 w-3.5 shrink-0 mt-0.5" />
                 <span className="min-w-0 leading-snug">
                   Your details go straight to a solicitor — no third-party brokers. By submitting you agree to our{" "}

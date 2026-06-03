@@ -242,7 +242,11 @@ function VerdictCard({
       <h3 className="mt-3 text-xl sm:text-2xl font-black text-slate-900 tracking-tight">{v.title}</h3>
       <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">{v.body}</p>
 
-      <div className="mt-5 grid grid-cols-2 gap-3 text-sm">
+      {/* Verdict stat cards — stacked on phones, side-by-side on
+          tablet+. grid-cols-2 at 375px gave each card ~155px which
+          cramped the Threshold sub-label (family composition).
+          Mobile QA Tier 3. */}
+      <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
         <div className="rounded-lg bg-white border border-slate-200 p-3">
           <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Available weekly</p>
           <p className="text-lg font-black text-slate-900">{moneyGbp(available)}</p>

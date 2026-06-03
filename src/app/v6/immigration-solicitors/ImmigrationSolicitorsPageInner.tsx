@@ -347,8 +347,12 @@ export default function ImmigrationSolicitorsPageInner() {
         <div className="relative max-w-[1200px] mx-auto px-6 lg:px-8 py-10 lg:py-14">
           <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
             <div className="lg:col-span-3 min-w-0">
-              <div className="flex flex-wrap items-center gap-3 mb-4">
-                <span className="text-xs font-bold text-brand-red uppercase tracking-widest">UK Immigration Solicitors</span>
+              {/* Hero badge row — tightened gap-2 (was gap-3) so the
+                  three pills fit on 2 rows max at 375px. Eyebrow label
+                  hidden on phones (`hidden sm:inline`) since the H1
+                  immediately below repeats the keyword. Mobile QA Tier 3. */}
+              <div className="flex flex-wrap items-center gap-2 mb-4">
+                <span className="hidden sm:inline text-xs font-bold text-brand-red uppercase tracking-widest">UK Immigration Solicitors</span>
                 <span className="inline-flex items-center gap-1 text-xs font-bold bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full border border-emerald-200">
                   <ShieldCheck className="h-3 w-3" /> SRA-Regulated #809071
                 </span>
@@ -357,8 +361,12 @@ export default function ImmigrationSolicitorsPageInner() {
                 </span>
               </div>
 
+              {/* H1 — em-dash replaced with `: ` on mobile (was forcing
+                  the phrase to wrap mid-statement). Desktop keeps the
+                  typographic em-dash via the responsive span swap.
+                  Mobile QA Tier 3. */}
               <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-5xl font-black text-slate-900 leading-[1.05] tracking-tight">
-                UK Immigration Solicitors &mdash; direct access, no call centres.
+                UK Immigration Solicitors<span className="sm:hidden">: </span><span className="hidden sm:inline"> &mdash; </span>direct access, no call centres.
               </h1>
               <p id="hero-lead" className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
                 Speak to a <strong>named SRA-regulated solicitor</strong>{" "}
@@ -383,12 +391,14 @@ export default function ImmigrationSolicitorsPageInner() {
                 </Button>
               </div>
 
-              {/* Trust strip */}
-              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs sm:text-sm font-semibold text-slate-600">
-                <span className="inline-flex items-center gap-1.5"><Award className="h-4 w-4 text-brand-red" /> SRA-regulated firm</span>
-                <span className="inline-flex items-center gap-1.5"><Briefcase className="h-4 w-4 text-brand-red" /> Named solicitor on every case</span>
-                <span className="inline-flex items-center gap-1.5"><PoundSterling className="h-4 w-4 text-brand-red" /> Fixed fees from £750</span>
-                <span className="inline-flex items-center gap-1.5"><Clock className="h-4 w-4 text-brand-red" /> Callback within 1 working hour</span>
+              {/* Trust strip — 2-col grid on mobile (was 4 one-per-line
+                  items eating ~7rem vertical above the fold), inline-flex
+                  with wrap on tablet+. Mobile QA Tier 3. */}
+              <div className="mt-6 grid grid-cols-2 sm:flex sm:flex-wrap sm:items-center gap-x-5 gap-y-2 text-xs sm:text-sm font-semibold text-slate-600">
+                <span className="inline-flex items-center gap-1.5"><Award className="h-4 w-4 text-brand-red shrink-0" /> SRA-regulated firm</span>
+                <span className="inline-flex items-center gap-1.5"><Briefcase className="h-4 w-4 text-brand-red shrink-0" /> Named solicitor</span>
+                <span className="inline-flex items-center gap-1.5"><PoundSterling className="h-4 w-4 text-brand-red shrink-0" /> Fees from £750</span>
+                <span className="inline-flex items-center gap-1.5"><Clock className="h-4 w-4 text-brand-red shrink-0" /> 1-hour callback</span>
               </div>
 
               {/* Author byline */}
@@ -410,9 +420,17 @@ export default function ImmigrationSolicitorsPageInner() {
               </div>
 
               {/* Offices strip */}
+              {/* Office strip — short form on mobile (city + postcode),
+                  full street address on tablet+. Mobile QA Tier 3:
+                  full strings were wrapping mid-address at 375px and
+                  reading messy. */}
               <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-1 text-xs text-slate-500">
-                <span className="inline-flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5 text-brand-red" /> London &middot; Suite 10, Atlas House, 1 King Street, EC2V 8AU</span>
-                <span className="inline-flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5 text-brand-red" /> Bradford &middot; Listerhills Science Park, BD7 1HR</span>
+                <span className="inline-flex items-center gap-1.5">
+                  <MapPin className="h-3.5 w-3.5 text-brand-red shrink-0" />
+                  <span className="sm:hidden">London EC2V &middot; Bradford BD7</span>
+                  <span className="hidden sm:inline">London &middot; Suite 10, Atlas House, 1 King Street, EC2V 8AU</span>
+                </span>
+                <span className="hidden sm:inline-flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5 text-brand-red shrink-0" /> Bradford &middot; Listerhills Science Park, BD7 1HR</span>
               </div>
             </div>
 
