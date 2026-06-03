@@ -3,10 +3,34 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { navigation, type NavItem } from "@/lib/navigation";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
 import { Phone, Menu, ChevronDown, ArrowRight } from "lucide-react";
+
+/**
+ * Per-page nav filtering. Some pages need a leaner site nav to avoid
+ * "generalist drift" — the visible nav items must match the page's
+ * paid-traffic intent. The largest example: a £150/day Google Ads
+ * visitor lands on /immigration-solicitors/ and seeing "Housing" in the
+ * top nav signals "this firm isn't an immigration specialist", hurting
+ * trust + bouncing them out before they call.
+ *
+ * Council 2026-06-03 (Track C) — Outsider advisor explicit; First
+ * Principles + Contrarian implicit. Filter rules below scoped narrowly
+ * by exact path match so other pages' nav is unaffected.
+ */
+function filterNavigationForPath(items: NavItem[], pathname: string | null): NavItem[] {
+  if (!pathname) return items;
+  // /immigration-solicitors/ — drop the top-level "Housing" item to
+  // present as an immigration specialist. Housing is still reachable
+  // via the footer (full site nav lives there).
+  if (pathname === "/immigration-solicitors" || pathname === "/immigration-solicitors/") {
+    return items.filter((i) => i.label !== "Housing");
+  }
+  return items;
+}
 
 function DesktopDropdown({ item }: { item: NavItem }) {
   return (
@@ -84,6 +108,8 @@ function MobileNavItem({ item, onNavigate }: { item: NavItem; onNavigate: () => 
 
 export function V6Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+  const filteredNavigation = filterNavigationForPath(navigation, pathname);
   const closeMobile = () => setMobileOpen(false);
 
   return (
@@ -125,7 +151,7 @@ export function V6Header() {
             </Link>
 
             <nav className="hidden xl:flex items-center mx-8">
-              {navigation.map((item) => (
+              {filteredNavigation.map((item) => (
                 <DesktopDropdown key={item.href} item={item} />
               ))}
             </nav>
@@ -163,7 +189,7 @@ export function V6Header() {
                     </Link>
                   </div>
                   <nav>
-                    {navigation.map((item) => (
+                    {filteredNavigation.map((item) => (
                       <MobileNavItem key={item.href} item={item} onNavigate={closeMobile} />
                     ))}
                   </nav>

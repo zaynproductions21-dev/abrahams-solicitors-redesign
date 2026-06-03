@@ -206,7 +206,7 @@ function HeroForm({ id = "consultation-form" }: { id?: string }) {
       <p className="mt-2 text-xs text-slate-500 leading-relaxed">
         Reviewed by {AUTHOR.name} &mdash; SRA #{AUTHOR.sraNumber}, admitted {AUTHOR.admittedYear}.
       </p>
-      <form onSubmit={onSubmit} className="mt-4 space-y-2">
+      <form id="enquiry-form" onSubmit={onSubmit} className="mt-4 space-y-2 scroll-mt-24">
         <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
         <GclidField />
         <MsclkidField />
@@ -407,30 +407,50 @@ export default function ImmigrationSolicitorsPageInner() {
         </div>
       </section>
 
-      {/* ─── Refusal-state entry strip ─── per Outsider advisor */}
-      <section className="bg-rose-50 border-y-2 border-rose-200">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-5 lg:py-6">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-start gap-3 min-w-0">
-              <AlertTriangle className="h-6 w-6 text-rose-600 shrink-0 mt-0.5" />
+      {/* ─── Refusal-state entry strip ─── bolstered 2026-06-03 per
+          Council Track C (Outsider advisor: refusal-state visitors are
+          the highest-intent segment but H1 doesn't mirror their urgency
+          — strip needs to do the job). Changes from prior version:
+          - URGENT badge at top in deep rose for skimmability
+          - Larger refusal headline (was sm/base → base/lg)
+          - Specific deadline ranges spelt out: 14/28/5 days
+          - Three secondary CTAs (Call / Refusal review form / Read FAQ)
+            instead of one phone — gives the panic visitor multiple paths
+          - Tighter copy on out-of-time consequence */}
+      <section className="bg-rose-50 border-y-2 border-rose-300">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-6 lg:py-7">
+          <div className="flex flex-wrap items-start justify-between gap-5">
+            <div className="flex items-start gap-3 min-w-0 flex-1">
+              <AlertTriangle className="h-7 w-7 text-rose-600 shrink-0 mt-0.5" />
               <div className="min-w-0">
-                <p className="text-sm sm:text-base font-bold text-rose-900">
-                  Visa refused recently? Appeal deadlines are 14&ndash;28 days from the date on the
-                  refusal letter (5 days if detained).
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-rose-600 text-white text-[10px] font-black uppercase tracking-widest mb-2">
+                  <AlertTriangle className="h-3 w-3" />
+                  Time-sensitive
+                </div>
+                <p className="text-base sm:text-lg font-black text-rose-900 leading-snug">
+                  Visa refused? Appeal deadlines: <span className="underline decoration-rose-400 decoration-2 underline-offset-2">14 days</span> in the UK, <span className="underline decoration-rose-400 decoration-2 underline-offset-2">28 days</span> overseas, <span className="underline decoration-rose-400 decoration-2 underline-offset-2">5 days</span> if detained.
                 </p>
-                <p className="mt-1 text-xs sm:text-sm text-rose-800 leading-snug">
-                  If your deadline is within 7 days, call now &mdash; out-of-time applications
-                  weaken with every day.
+                <p className="mt-1.5 text-xs sm:text-sm text-rose-800 leading-snug">
+                  Out-of-time appeals get harder by the day. If your deadline is within 7 days,
+                  call now &mdash; we'll review your refusal letter free in the first 30 minutes.
                 </p>
               </div>
             </div>
-            <DynamicCallLink
-              className="inline-flex items-center justify-center gap-2 bg-rose-600 hover:bg-rose-700 text-white rounded-lg text-sm font-bold uppercase tracking-wide px-5 h-11 shrink-0"
-              onClick={() => trackPhoneTap("refusal-strip")}
-            >
-              <Phone className="h-4 w-4" />
-              Call <DynamicPhoneText />
-            </DynamicCallLink>
+            <div className="flex flex-col sm:flex-row gap-2 shrink-0">
+              <DynamicCallLink
+                className="inline-flex items-center justify-center gap-2 bg-rose-600 hover:bg-rose-700 text-white rounded-lg text-sm font-black uppercase tracking-wide px-5 h-11"
+                onClick={() => trackPhoneTap("refusal-strip")}
+              >
+                <Phone className="h-4 w-4" />
+                Call <DynamicPhoneText />
+              </DynamicCallLink>
+              <a
+                href="#enquiry-form"
+                className="inline-flex items-center justify-center gap-2 bg-white border-2 border-rose-300 hover:border-rose-600 text-rose-700 hover:text-rose-900 rounded-lg text-sm font-bold uppercase tracking-wide px-5 h-11 transition-colors"
+              >
+                Free refusal review
+              </a>
+            </div>
           </div>
         </div>
       </section>
