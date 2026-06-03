@@ -312,8 +312,12 @@ export default function EmergencyImmigrationSolicitorPageInner() {
       {/* ─── Hero ─── */}
       <section className="relative bg-white border-b border-slate-100 overflow-hidden">
         <div className="relative max-w-[1200px] mx-auto px-6 lg:px-8 py-10 lg:py-14">
+          {/* Mobile order: H1+CTAs visible first (order-1), then form
+              (order-2). On desktop both columns side-by-side via lg:order-none.
+              Without this paid-traffic mobile sees 1000+px of hero copy
+              before the form is reachable. Mobile QA 2026-06-03. */}
           <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
-            <div className="lg:col-span-3 min-w-0">
+            <div className="lg:col-span-3 min-w-0 order-1 lg:order-none">
               <div className="flex flex-wrap items-center gap-3 mb-4">
                 <span className="text-xs font-bold text-brand-red uppercase tracking-widest">Emergency Immigration Help</span>
                 <span className="text-xs font-bold text-white bg-brand-red px-3 py-1 rounded-full">24/7 incl. bank holidays</span>
@@ -344,7 +348,7 @@ export default function EmergencyImmigrationSolicitorPageInner() {
                   onClick={() => trackEmergencyPhoneTap("hero")}
                 >
                   <Phone className="h-5 w-5" />
-                  Call now &mdash; <DynamicPhoneText />
+                  Call now: <DynamicPhoneText />
                 </DynamicCallLink>
                 <p className="mt-2 text-xs text-slate-500">
                   Call us 24/7. If we&rsquo;re already on another emergency, a duty solicitor aims
@@ -391,7 +395,7 @@ export default function EmergencyImmigrationSolicitorPageInner() {
             </div>
 
             {/* Right: callback form */}
-            <div className="lg:col-span-2 min-w-0">
+            <div className="lg:col-span-2 min-w-0 order-2 lg:order-none">
               <HeroForm />
             </div>
           </div>
@@ -665,7 +669,11 @@ export default function EmergencyImmigrationSolicitorPageInner() {
       <TeamStrip />
 
       {/* ─── Final CTA ─── */}
-      <section className="py-12 lg:py-16 bg-brand-navy">
+      {/* Final navy CTA — pb-20 lg:pb-0 prevents the lg:hidden sticky
+          mobile call bar (renders fixed bottom-0, ~52px tall) from
+          overlapping the "Call now. Don't wait." button below. Mobile
+          QA 2026-06-03. */}
+      <section className="py-12 lg:py-16 bg-brand-navy pb-20 lg:pb-16">
         <div className="max-w-[920px] mx-auto px-6 lg:px-8 text-center">
           <p className="text-xs font-bold text-brand-gold uppercase tracking-widest mb-3">Call now. Don&rsquo;t wait.</p>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight tracking-tight">

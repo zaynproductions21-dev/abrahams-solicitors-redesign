@@ -362,16 +362,24 @@ export default function FlrVisaExtensionPageInner() {
                 </span>
               </div>
 
-              {/* Triple CTA */}
-              <div className="mt-6 flex flex-wrap items-center gap-3">
+              {/* Hero CTAs — stack full-width on phones (was wrapping
+                  "Get a Free 15-Min Scoping Call" to 2 lines at 375px
+                  + orphaning the phone button on its own row). Side-by-
+                  side natural width on tablet+. Responsive label drops
+                  "15-Min" on mobile to fit; full text on desktop.
+                  Mobile QA 2026-06-03. */}
+              <div className="mt-6 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
                 <Button
                   asChild
                   size="lg"
-                  className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase tracking-wide px-6 h-12"
+                  className="w-full sm:w-auto bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-sm font-bold uppercase sm:tracking-wide px-6 h-12"
                 >
-                  <a href="#consultation-form">Get a Free 15-Min Scoping Call</a>
+                  <a href="#consultation-form">
+                    <span className="sm:hidden">Free Scoping Call</span>
+                    <span className="hidden sm:inline">Get a Free 15-Min Scoping Call</span>
+                  </a>
                 </Button>
-                <DynamicCallLink className="inline-flex items-center justify-center rounded-lg text-sm font-semibold h-12 px-5 border border-slate-300 text-slate-800 hover:border-brand-red hover:text-brand-red bg-transparent">
+                <DynamicCallLink className="w-full sm:w-auto inline-flex items-center justify-center rounded-lg text-sm font-semibold h-12 px-5 border border-slate-300 text-slate-800 hover:border-brand-red hover:text-brand-red bg-transparent">
                   <Phone className="h-4 w-4 mr-2" />
                   <DynamicPhoneText />
                 </DynamicCallLink>

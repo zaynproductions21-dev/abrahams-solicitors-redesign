@@ -115,7 +115,12 @@ const IS_RATES: Record<FamilyKey, { label: string; weekly: number }> = {
     weekly: IS_PERSONAL_ALLOWANCE_COUPLE + 3 * IS_CHILD_AMOUNT,
   },
   "couple-4-children": {
-    label: `Couple + 4 children (+${"£" + IS_CHILD_AMOUNT.toFixed(2)} each beyond)`,
+    // Shortened 2026-06-03 from "Couple + 4 children (+£87.88 each
+    // beyond)". The parenthetical was overflowing iOS Safari's <option>
+    // truncation (~30 chars) and the quick-reference list on 375px.
+    // The per-child amount is documented in the body content above so
+    // it's not lost. Mobile QA.
+    label: "Couple + 4 children",
     weekly: IS_PERSONAL_ALLOWANCE_COUPLE + 4 * IS_CHILD_AMOUNT,
   },
 };
@@ -566,8 +571,13 @@ export default function AdequateMaintenanceCalculatorPageInner() {
                 <ul className="space-y-1.5 text-sm">
                   {Object.values(IS_RATES).map((r) => (
                     <li key={r.label} className="flex items-baseline justify-between gap-3 text-slate-700">
-                      <span className="leading-snug">{r.label}</span>
-                      <span className="font-bold text-slate-900 tabular-nums">{moneyGbp(r.weekly)}</span>
+                      {/* min-w-0 lets the label shrink + wrap cleanly
+                          instead of pushing the right-aligned price
+                          off-screen on narrow mobile widths. The price
+                          stays in a fixed-width column via shrink-0.
+                          Mobile QA 2026-06-03. */}
+                      <span className="leading-snug min-w-0">{r.label}</span>
+                      <span className="font-bold text-slate-900 tabular-nums shrink-0">{moneyGbp(r.weekly)}</span>
                     </li>
                   ))}
                 </ul>

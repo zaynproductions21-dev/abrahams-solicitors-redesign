@@ -210,19 +210,28 @@ function HeroForm({ id = "consultation-form" }: { id?: string }) {
         <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
         <GclidField />
         <MsclkidField />
+        {/* Form fields wired with autoComplete + inputMode so iOS AutoFill
+            fills name/email/phone in one tap, and the correct mobile
+            keyboard appears for each field (no alpha keyboard on phone).
+            Mobile QA 2026-06-03 — was a meaningful CVR leak per Apple's
+            documented HIG. */}
         <div className="grid grid-cols-2 gap-2">
           <input value={firstName} onChange={(e) => setFirstName(e.target.value)} onFocus={markStarted}
             placeholder="First name" required
+            autoComplete="given-name"
             className="px-3 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red" />
           <input value={lastName} onChange={(e) => setLastName(e.target.value)} onFocus={markStarted}
             placeholder="Last name"
+            autoComplete="family-name"
             className="px-3 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red" />
         </div>
         <input value={email} onChange={(e) => setEmail(e.target.value)} onFocus={markStarted} type="email"
           placeholder="Email" required
+          autoComplete="email" inputMode="email"
           className="w-full px-3 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red" />
         <input value={phone} onChange={(e) => setPhone(e.target.value)} onFocus={markStarted} type="tel"
           placeholder="UK phone number" required
+          autoComplete="tel" inputMode="tel"
           className="w-full px-3 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red" />
         <select value={matter} onChange={(e) => setMatter(e.target.value)} onFocus={markStarted}
           className="w-full px-3 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red bg-white">
@@ -358,16 +367,18 @@ export default function ImmigrationSolicitorsPageInner() {
                 appeals and Skilled Worker sponsorship. Free 30-minute consultation.
               </p>
 
-              {/* Primary CTAs */}
-              <div className="mt-6 flex flex-wrap items-center gap-3">
+              {/* Primary CTAs — both w-full on mobile, side-by-side natural width on tablet+.
+                  Em-dash replaced with colon to avoid mid-button line break at 375px.
+                  Mobile QA 2026-06-03. */}
+              <div className="mt-6 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
                 <DynamicCallLink
-                  className="inline-flex items-center justify-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-base font-bold uppercase tracking-wide px-7 h-14"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg text-base font-bold uppercase sm:tracking-wide px-7 h-14"
                   onClick={() => trackPhoneTap("hero")}
                 >
                   <Phone className="h-5 w-5" />
-                  Call now &mdash; <DynamicPhoneText />
+                  Call now: <DynamicPhoneText />
                 </DynamicCallLink>
-                <Button asChild size="lg" className="bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-sm font-bold uppercase tracking-wide px-6 h-14">
+                <Button asChild size="lg" className="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-sm font-bold uppercase sm:tracking-wide px-6 h-14">
                   <a href="#consultation-form">Or request a callback</a>
                 </Button>
               </div>
@@ -524,7 +535,16 @@ export default function ImmigrationSolicitorsPageInner() {
               <tbody className="divide-y divide-slate-100">
                 {FIXED_FEES.map((row) => (
                   <tr key={row.service}>
-                    <td className="px-4 py-3 text-slate-900 font-medium">{row.service}</td>
+                    <td className="px-4 py-3 text-slate-900 font-medium">
+                      {row.service}
+                      {/* Plus-government-fees note rendered inline on
+                          mobile (under the service name) because the
+                          dedicated column is hidden via sm:table-cell.
+                          Without this the "vague pricing" trap returns
+                          for the 100% mobile paid traffic. Mobile QA
+                          2026-06-03. */}
+                      <span className="block sm:hidden mt-1 text-[11px] font-normal text-slate-500 leading-snug">{row.note}</span>
+                    </td>
                     <td className="px-4 py-3 text-slate-900 font-black whitespace-nowrap">{row.fee}<span className="ml-1 text-xs font-normal text-slate-500">+ VAT</span></td>
                     <td className="px-4 py-3 text-slate-500 text-xs hidden sm:table-cell">{row.note}</td>
                   </tr>
@@ -639,7 +659,11 @@ export default function ImmigrationSolicitorsPageInner() {
       </section>
 
       {/* ─── Final CTA ─── */}
-      <section className="py-12 lg:py-16 bg-brand-navy">
+      {/* Final navy CTA — pb-20 lg:pb-0 prevents the lg:hidden sticky
+          mobile call bar (~52px tall, position:fixed bottom-0) from
+          overlapping the "Speak to a solicitor today" button + the
+          footer copy. Mobile QA 2026-06-03. */}
+      <section className="py-12 lg:py-16 bg-brand-navy pb-20 lg:pb-16">
         <div className="max-w-[920px] mx-auto px-6 lg:px-8 text-center">
           <p className="text-xs font-bold text-brand-gold uppercase tracking-widest mb-3">Ready when you are</p>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight tracking-tight">

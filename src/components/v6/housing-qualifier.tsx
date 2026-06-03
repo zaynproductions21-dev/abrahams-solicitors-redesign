@@ -337,12 +337,21 @@ export function HousingQualifier() {
                 >
                   <ArrowLeft className="h-4 w-4" />
                 </Button>
+                {/* Responsive label: "Get assessment" on phones (fits
+                    next to the back-arrow button without truncate-clip),
+                    full "Get free assessment" on tablet+. Was clipping
+                    to "Get free assess…" on 375px. Mobile QA 2026-06-03. */}
                 <Button
                   type="submit"
                   disabled={!step3Valid || submitting}
-                  className="flex-1 min-w-0 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 text-sm font-bold uppercase tracking-normal sm:tracking-wide disabled:opacity-40 px-3 truncate"
+                  className="flex-1 min-w-0 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 text-sm font-bold uppercase tracking-normal sm:tracking-wide disabled:opacity-40 px-3"
                 >
-                  {submitting ? "Sending..." : "Get free assessment"}
+                  {submitting ? "Sending..." : (
+                    <>
+                      <span className="sm:hidden">Get assessment</span>
+                      <span className="hidden sm:inline">Get free assessment</span>
+                    </>
+                  )}
                 </Button>
               </div>
               <p className="text-xs text-slate-400 flex items-start gap-1.5 pt-1">
