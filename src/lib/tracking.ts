@@ -56,6 +56,20 @@ export function pushFormSubmit({
   const { gclid, gbraid, wbraid, msclkid } = getStoredGclid();
   const traffic_source = getTrafficSource();
 
+  // lp_variant: identifies which Immigration Solicitors LP variant the
+  // submission came from. Used to split CPA / CVR by A/B variant in
+  // GA4 + Looker Studio. Undefined on every other page (omitted).
+  // Spec: docs/abrahams-immigration-solicitors-ab-spec-2026-06-03.md
+  let lp_variant: "canonical" | "direct" | undefined = undefined;
+  if (typeof window !== "undefined") {
+    const p = window.location.pathname;
+    if (p === "/immigration-solicitors-direct" || p === "/immigration-solicitors-direct/") {
+      lp_variant = "direct";
+    } else if (p === "/immigration-solicitors" || p === "/immigration-solicitors/") {
+      lp_variant = "canonical";
+    }
+  }
+
   window.dataLayer.push({
     event: "ec_form_submit",
     user_data,
@@ -64,5 +78,6 @@ export function pushFormSubmit({
     ...(gbraid ? { gbraid } : {}),
     ...(wbraid ? { wbraid } : {}),
     ...(msclkid ? { msclkid } : {}),
+    ...(lp_variant ? { lp_variant } : {}),
   });
 }

@@ -19,6 +19,20 @@
 import type { Metadata } from "next";
 import ImmigrationSolicitorsPageInner from "@/app/v6/immigration-solicitors/ImmigrationSolicitorsPageInner";
 
+// NOTE on lead attribution: the inner component currently submits leads
+// with source: "immigration-solicitors-lp" regardless of which variant
+// the visitor landed on. For clean A/B reporting in SalesHub /
+// PublishOS we'd want this URL to tag leads as
+// "immigration-solicitors-direct" instead. Deferred to a follow-up
+// commit because changing it requires either (a) plumbing a prop
+// through ImmigrationSolicitorsPageInner or (b) the inner reading
+// usePathname() and varying source by URL. Both are clean but neither
+// is a 5-minute change. For now the A/B is split via:
+//   - GA4 dimension lp_variant (lives on every event)
+//   - Google Ads landing-page report (URL-aware natively)
+// which is sufficient for the 14-day CPA comparison. See spec at
+// docs/abrahams-immigration-solicitors-ab-spec-2026-06-03.md.
+
 export const metadata: Metadata = {
   title: "UK Immigration Solicitors — Direct Access | Abrahams",
   description:

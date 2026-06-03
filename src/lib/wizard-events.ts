@@ -33,9 +33,41 @@ declare global {
   }
 }
 
+/**
+ * Derive the landing-page A/B variant from the current URL. Returns
+ * undefined on routes that aren't part of an active A/B — so the
+ * dimension isn't pushed for pages where it's meaningless.
+ *
+ * Currently tracking:
+ *   /immigration-solicitors/         → "canonical"
+ *   /immigration-solicitors-direct/  → "direct"
+ *
+ * Used as a custom dimension on every GTM/GA4 event so we can split
+ * CPA / CVR / engagement metrics by variant. Spec: see
+ *   docs/abrahams-immigration-solicitors-ab-spec-2026-06-03.md
+ */
+function deriveLpVariant(): string | undefined {
+  if (typeof window === "undefined") return undefined;
+  const p = window.location.pathname;
+  if (p === "/immigration-solicitors-direct" || p === "/immigration-solicitors-direct/") {
+    return "direct";
+  }
+  if (p === "/immigration-solicitors" || p === "/immigration-solicitors/") {
+    return "canonical";
+  }
+  return undefined;
+}
+
 /** Push a wizard-namespaced event to the GTM dataLayer. No-op on the server. */
 export function pushWizardEvent(event: string, payload: Record<string, unknown>): void {
   if (typeof window === "undefined") return;
   window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ event, ...payload });
+  const lpVariant = deriveLpVariant();
+  window.dataLayer.push({
+    event,
+    ...payload,
+    // Only attach lp_variant on pages where it's defined — avoids
+    // pushing `lp_variant: undefined` from unrelated wizard pages.
+    ...(lpVariant ? { lp_variant: lpVariant } : {}),
+  });
 }
