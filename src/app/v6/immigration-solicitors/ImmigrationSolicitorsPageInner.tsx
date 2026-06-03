@@ -419,8 +419,13 @@ export default function ImmigrationSolicitorsPageInner() {
           - Tighter copy on out-of-time consequence */}
       <section className="bg-rose-50 border-y-2 border-rose-300">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-6 lg:py-7">
-          <div className="flex flex-wrap items-start justify-between gap-5">
-            <div className="flex items-start gap-3 min-w-0 flex-1">
+          {/* Layout: stacked on mobile/tablet (text on top, full-width
+              buttons below), side-by-side on lg+. The previous flex-wrap
+              approach collapsed the text column to ~1-character-per-line
+              on phones because shrink-0 on the right column ate the
+              available width. Fixed 2026-06-03 from a mobile QA screen. */}
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5">
+            <div className="flex items-start gap-3 min-w-0 lg:flex-1">
               <AlertTriangle className="h-7 w-7 text-rose-600 shrink-0 mt-0.5" />
               <div className="min-w-0">
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-rose-600 text-white text-[10px] font-black uppercase tracking-widest mb-2">
@@ -436,9 +441,9 @@ export default function ImmigrationSolicitorsPageInner() {
                 </p>
               </div>
             </div>
-            <div className="flex flex-col sm:flex-row gap-2 shrink-0">
+            <div className="flex flex-col sm:flex-row gap-2 lg:shrink-0 w-full lg:w-auto">
               <DynamicCallLink
-                className="inline-flex items-center justify-center gap-2 bg-rose-600 hover:bg-rose-700 text-white rounded-lg text-sm font-black uppercase tracking-wide px-5 h-11"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-rose-600 hover:bg-rose-700 text-white rounded-lg text-sm font-black uppercase tracking-wide px-5 h-11"
                 onClick={() => trackPhoneTap("refusal-strip")}
               >
                 <Phone className="h-4 w-4" />
@@ -446,7 +451,7 @@ export default function ImmigrationSolicitorsPageInner() {
               </DynamicCallLink>
               <a
                 href="#enquiry-form"
-                className="inline-flex items-center justify-center gap-2 bg-white border-2 border-rose-300 hover:border-rose-600 text-rose-700 hover:text-rose-900 rounded-lg text-sm font-bold uppercase tracking-wide px-5 h-11 transition-colors"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white border-2 border-rose-300 hover:border-rose-600 text-rose-700 hover:text-rose-900 rounded-lg text-sm font-bold uppercase tracking-wide px-5 h-11 transition-colors"
               >
                 Free refusal review
               </a>
