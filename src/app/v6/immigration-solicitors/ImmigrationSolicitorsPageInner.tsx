@@ -235,9 +235,15 @@ function HeroForm({ id = "consultation-form" }: { id?: string }) {
           <option value="skilled-worker">Skilled Worker / sponsorship</option>
           <option value="other">Other immigration matter</option>
         </select>
+        {/* Button text shortened 2026-06-03 from "Book Free 30-Min
+            Consultation" (30 chars + uppercase + tracking-wide → clipped
+            on phones at ~370px wide). The 30-min detail is already in
+            the form heading above so dropping it from the button costs
+            no information. Also drops tracking-wide on phones via the
+            sm: breakpoint — keeps the desktop look, fits the phone. */}
         <Button type="submit" disabled={!firstName || !email || !phone || submitting}
-          className="w-full bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 text-sm font-bold uppercase tracking-wide disabled:opacity-40">
-          {submitting ? "Sending..." : "Book Free 30-Min Consultation"}
+          className="w-full bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 text-sm font-bold uppercase sm:tracking-wide disabled:opacity-40">
+          {submitting ? "Sending..." : "Book Free Consultation"}
         </Button>
         <p className="text-xs text-slate-400 leading-snug">
           Or call <DynamicPhoneText /> &mdash; Mon&ndash;Fri 9am&ndash;6pm.
