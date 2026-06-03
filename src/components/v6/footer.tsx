@@ -255,9 +255,13 @@ export function V6Footer() {
               </a>
             ))}
           </div>
-          <div className="flex items-center gap-3">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40">We Accept</span>
-            <div className="flex items-center gap-1.5">
+          {/* Payment row — stacks "We Accept" label above wrapped logos
+              on mobile (5 logos × ~60px + label was overflowing 375px
+              viewport, clipping "WE" off the left edge). Inline on
+              tablet+. Mobile QA Tier 3 follow-up. */}
+          <div className="flex flex-col items-center sm:flex-row sm:items-center gap-2 sm:gap-3 max-w-full">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40 shrink-0">We Accept</span>
+            <div className="flex flex-wrap items-center justify-center gap-1.5">
               {PAYMENT_LOGOS.map(({ label, Logo }) => (
                 <span key={label} aria-label={label} title={label}><Logo /></span>
               ))}
