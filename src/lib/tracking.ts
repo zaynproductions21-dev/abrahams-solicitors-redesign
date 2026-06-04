@@ -34,6 +34,21 @@ export function toE164(raw: string, defaultCountry: "+44" = "+44"): string | nul
   return candidate;
 }
 
+export function pushWhatsAppClick(): void {
+  if (typeof window === "undefined") return;
+  window.dataLayer = window.dataLayer || [];
+  const { gclid, gbraid, wbraid, msclkid } = getStoredGclid();
+  const traffic_source = getTrafficSource();
+  window.dataLayer.push({
+    event: "whatsapp_click",
+    traffic_source,
+    ...(gclid ? { gclid } : {}),
+    ...(gbraid ? { gbraid } : {}),
+    ...(wbraid ? { wbraid } : {}),
+    ...(msclkid ? { msclkid } : {}),
+  });
+}
+
 export function pushFormSubmit({
   email,
   phone,

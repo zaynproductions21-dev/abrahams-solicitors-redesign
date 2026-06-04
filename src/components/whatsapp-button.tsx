@@ -1,6 +1,7 @@
 "use client";
 
 import { MessageCircle } from "lucide-react";
+import { pushWhatsAppClick } from "@/lib/tracking";
 
 export function WhatsAppButton() {
   return (
@@ -9,6 +10,7 @@ export function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
+      onClick={pushWhatsAppClick}
       className="fixed bottom-6 left-6 z-40 flex items-center gap-2.5 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 pl-4 pr-5 py-3 group"
     >
       <MessageCircle className="h-5 w-5 fill-white" />

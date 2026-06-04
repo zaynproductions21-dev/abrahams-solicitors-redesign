@@ -8,6 +8,7 @@ import {
   shouldShowWidget,
   type WidgetSettings,
 } from "@/lib/widget-settings";
+import { pushWhatsAppClick } from "@/lib/tracking";
 
 export function FooterWhatsApp() {
   const [settings, setSettings] = useState<WidgetSettings | null>(null);
@@ -26,6 +27,7 @@ export function FooterWhatsApp() {
       href="https://wa.me/447476548311?text=Hi%2C%20I%27d%20like%20to%20discuss%20my%20case%20with%20a%20solicitor."
       target="_blank"
       rel="noopener noreferrer"
+      onClick={pushWhatsAppClick}
       className="inline-flex items-center gap-2.5 bg-[#25D366] hover:bg-[#1ea856] text-white rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors shadow-sm"
     >
       <MessageCircle className="h-4 w-4 fill-white" />
