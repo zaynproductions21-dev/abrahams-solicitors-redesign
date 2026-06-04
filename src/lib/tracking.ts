@@ -39,6 +39,8 @@ export function pushWhatsAppClick(): void {
   window.dataLayer = window.dataLayer || [];
   const { gclid, gbraid, wbraid, msclkid } = getStoredGclid();
   const traffic_source = getTrafficSource();
+
+  // Fire dataLayer event (GTM passthrough for any existing tags)
   window.dataLayer.push({
     event: "whatsapp_click",
     traffic_source,
@@ -47,6 +49,17 @@ export function pushWhatsAppClick(): void {
     ...(wbraid ? { wbraid } : {}),
     ...(msclkid ? { msclkid } : {}),
   });
+
+  // Fire Google Ads conversion directly — AW-17750102452/xv2GCK2B67gcELSj9I9C
+  // "WhatsApp Click" conversion action (value £24, Primary, CONTACT category)
+  const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+  if (typeof w.gtag === "function") {
+    w.gtag("event", "conversion", {
+      send_to: "AW-17750102452/xv2GCK2B67gcELSj9I9C",
+      value: 24.0,
+      currency: "GBP",
+    });
+  }
 }
 
 export function pushFormSubmit({
