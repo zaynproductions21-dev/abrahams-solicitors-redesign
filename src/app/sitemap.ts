@@ -63,6 +63,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: p("/visit-visa-refusal/"), lastModified: now, changeFrequency: "weekly", priority: 0.7 },
     { url: p("/housing-disrepair/"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: p("/immigration-solicitors/"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    // Undefended-territory immigration explainers (Council-approved, signed off
+    // by Imran Shah). Informational + GEO/AI-citation; satellites link up to the
+    // emergency page / immigration money pages.
+    { url: p("/section-120-notice/"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: p("/is91r-notice-of-detention/"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: p("/bail401-immigration-bail/"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: p("/asylum-credibility-interview/"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: p("/detained-duty-advice-scheme/"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: p("/immigration-dawn-raids/"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
   ];
 
   return [...staticPages, ...immigrationRoutes, ...piRoutes, ...bespokeRoutes];
