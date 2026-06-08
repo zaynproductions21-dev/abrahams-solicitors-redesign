@@ -84,13 +84,8 @@ export function organisationSchema() {
         ],
         identifier: { "@type": "PropertyValue", name: "SRA", value: "809071" },
         priceRange: "££",
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.95",
-          reviewCount: "116",
-          bestRating: "5",
-          worstRating: "1",
-        },
+        // aggregateRating removed: no verifiable on-site review source backs a
+        // ratingValue/reviewCount. Reinstate only with audited review data.
         sameAs: [
           "https://www.facebook.com/AbrahamsSolicitors/",
           "https://x.com/Abrahamssolic",

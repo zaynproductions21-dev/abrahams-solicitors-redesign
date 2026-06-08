@@ -82,13 +82,8 @@ const jsonLd = {
     opens: "09:00",
     closes: "17:30",
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5.0",
-    reviewCount: "120",
-    bestRating: "5",
-    worstRating: "1",
-  },
+  // aggregateRating removed: no verifiable on-site review source backs a
+  // ratingValue/reviewCount. Reinstate only with audited review data.
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Legal Services",
