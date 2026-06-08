@@ -22,7 +22,7 @@ import { TrustBadges } from "@/components/v6/trust-badges";
 import { TeamStrip } from "@/components/v6/team-strip";
 import { VisitVisaRefusalWidget } from "@/components/v6/visit-visa-refusal-widget";
 import {
-  JsonLd, breadcrumbSchema, personSchema,
+  JsonLd, breadcrumbSchema, personSchema, faqPageSchema,
 } from "@/components/v6/jsonld";
 import { team } from "@/lib/team";
 import {
@@ -32,6 +32,34 @@ import {
 const PAGE_URL = "https://www.abrahamssolicitors.co.uk/visit-visa-refusal/";
 const LAST_REVIEWED = "May 2026";
 const AUTHOR = team.find(t => t.slug === "imran-shah")!;
+
+const VISIT_REFUSAL_FAQS = [
+  {
+    question: "Can I appeal a UK visit visa refusal?",
+    answer:
+      "In almost all cases, no. A standard visitor visa refusal usually carries no right of appeal and no administrative review. The realistic options are to make a fresh, better-evidenced application, or — where a human-rights issue or an unlawful decision arises — to consider a limited legal challenge such as a Pre-Action Protocol letter and, if necessary, Judicial Review (which is tightly time-limited). For most refusals, reapplying with stronger evidence is the practical route.",
+  },
+  {
+    question: "How soon can I reapply after a visit visa refusal?",
+    answer:
+      "There is no fixed waiting period — you can reapply as soon as you are ready. But reapplying immediately without addressing the reason for refusal usually leads to another refusal. The better approach is to read the refusal letter carefully, fix the specific concerns the decision-maker raised, and only reapply once your evidence genuinely answers them.",
+  },
+  {
+    question: "What evidence strengthens a re-application?",
+    answer:
+      "It depends on the refusal reason, but commonly: clearer evidence of your finances and how the trip is funded; stronger ties to your home country showing you will leave the UK at the end of the visit; a credible, well-documented itinerary; and, where relevant, proper sponsor and accommodation details. Each reason in the refusal letter should be answered directly with documents rather than assertions. Decisions are made by the Home Office on the facts of each case.",
+  },
+  {
+    question: "Will a refusal harm my future applications?",
+    answer:
+      "A simple refusal must be disclosed in future applications but does not automatically bar you. However, where a refusal includes a finding that you used false documents or made a false representation, that can trigger a re-entry ban and serious suitability consequences under the suitability and paragraph 9 grounds. Those cases are far more serious and should be taken to a solicitor before any further application.",
+  },
+  {
+    question: "Do I need a solicitor for a visit visa refusal?",
+    answer:
+      "Not always — a straightforward refusal can sometimes be addressed with a stronger fresh application. But advice is worth taking where there has been more than one refusal, where the refusal alleges deception or false documents, where there is a possible human-rights or unlawful-decision angle, or where you are unsure how to answer the reasons given. A solicitor can read the refusal letter against your original application and advise on the most realistic next step.",
+  },
+];
 
 export default function VisitVisaRefusalPage() {
   return (
@@ -49,6 +77,7 @@ export default function VisitVisaRefusalPage() {
         bio: AUTHOR.short,
         slug: AUTHOR.slug,
       })} />
+      <JsonLd data={faqPageSchema(VISIT_REFUSAL_FAQS)} />
 
       {/* Breadcrumb */}
       <section className="bg-slate-50/60 border-b border-slate-100">
@@ -145,6 +174,89 @@ export default function VisitVisaRefusalPage() {
               </li>
             </ul>
           </div>
+        </div>
+      </section>
+
+      {/* Depth: understanding visit visa refusals */}
+      <section className="py-10 lg:py-14 bg-slate-50/40 border-t border-slate-100">
+        <div className="max-w-[920px] mx-auto px-6 lg:px-8">
+          <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">
+            Understanding visit visa refusals
+          </p>
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">
+            Why visit visas are refused &mdash; and what you can actually do
+          </h2>
+          <div className="mt-5 space-y-4 text-base text-slate-600 leading-relaxed">
+            <p>
+              A UK Standard Visitor visa refusal is frustrating, but it is rarely the end of the road.
+              The key thing to understand is that the realistic next step is almost always a fresh,
+              better-evidenced application rather than an appeal &mdash; because standard visit visa
+              refusals usually carry <strong>no right of appeal and no administrative review</strong>.
+              Understanding the reason for refusal, and answering it with evidence, is what matters.
+            </p>
+          </div>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">Common refusal reasons</h3>
+          <ul className="mt-3 space-y-2 text-base text-slate-600 leading-relaxed list-disc pl-5">
+            <li><strong>Not a genuine visitor</strong> &mdash; the decision-maker is not satisfied you genuinely intend to visit and will leave the UK at the end of your stay.</li>
+            <li><strong>Finances</strong> &mdash; insufficient or unexplained funds, or unclear evidence of how the trip is paid for.</li>
+            <li><strong>Sponsor / accommodation</strong> &mdash; weak or missing detail about where you will stay and who is supporting the visit.</li>
+            <li><strong>Immigration history</strong> &mdash; previous overstays, refusals or breaches that raise doubt.</li>
+            <li><strong>Mandatory refusals</strong> &mdash; suitability issues under the suitability and paragraph 9 grounds, including a finding of false documents or false representations.</li>
+          </ul>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">Appeal, review, or reapply?</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            Standard visit visa refusals <strong>usually carry no right of appeal and no
+            administrative review</strong>. In practice that leaves two paths: a fresh application
+            with stronger evidence, or &mdash; only where a human-rights issue or an unlawful decision
+            genuinely arises &mdash; a limited legal challenge such as a Pre-Action Protocol letter and,
+            if needed, Judicial Review, which is strictly time-limited. For most refusals, reapplying
+            is the right route.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">Addressing each refusal reason with evidence</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            The refusal letter sets out each concern. A strong re-application answers them one by one
+            with documents rather than assertions &mdash; clearer financial evidence, stronger ties to
+            your home country, a credible itinerary, and proper sponsor and accommodation details.
+            The official information is at{" "}
+            <a href="https://www.gov.uk/standard-visitor" target="_blank" rel="noopener noreferrer" className="text-brand-red hover:underline">gov.uk</a>.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">When a refusal is more serious</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            A finding of <strong>false documents or false representations</strong> is in a different
+            category &mdash; it can trigger a re-entry ban and serious suitability consequences. These
+            cases should be taken to a solicitor before any further application, because the wrong move
+            can make matters worse.
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-10 lg:py-14 border-t border-slate-100">
+        <div className="max-w-[920px] mx-auto px-6 lg:px-8">
+          <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">
+            Frequently asked questions
+          </p>
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">
+            UK visit visa refusal &mdash; common questions
+          </h2>
+          <dl className="mt-6 divide-y divide-slate-100">
+            {VISIT_REFUSAL_FAQS.map((f) => (
+              <div key={f.question} className="py-5">
+                <dt className="text-lg font-bold text-slate-900">{f.question}</dt>
+                <dd className="mt-2 text-base text-slate-600 leading-relaxed">{f.answer}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-6 text-sm text-slate-500 leading-relaxed">
+            This page is general information about UK visit visa refusals, reviewed by{" "}
+            <Link href="/our-team/" className="font-semibold text-slate-700 hover:text-brand-red">{AUTHOR.name}</Link>{" "}
+            (SRA #{AUTHOR.sraNumber}). It is not a substitute for tailored legal advice, and outcomes
+            depend on the full evidence of your case.
+          </p>
         </div>
       </section>
 

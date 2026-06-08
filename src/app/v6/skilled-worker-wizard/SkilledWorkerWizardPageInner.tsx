@@ -27,7 +27,7 @@ import { TrustBadges } from "@/components/v6/trust-badges";
 import { TeamStrip } from "@/components/v6/team-strip";
 import { WizardWidget } from "@/components/v6/wizard-widget";
 import { SKILLED_WORKER_WIZARD_CONFIG } from "@/lib/wizards/skilled-worker-config";
-import { JsonLd, breadcrumbSchema, personSchema } from "@/components/v6/jsonld";
+import { JsonLd, breadcrumbSchema, personSchema, faqPageSchema } from "@/components/v6/jsonld";
 import { team } from "@/lib/team";
 import {
   ChevronRight, ShieldCheck, Info, AlertCircle, Calendar, ExternalLink,
@@ -36,6 +36,39 @@ import {
 const PAGE_URL = "https://www.abrahamssolicitors.co.uk/skilled-worker-wizard/";
 const LAST_REVIEWED = "June 2026";
 const AUTHOR = team.find((t) => t.slug === "imran-shah")!;
+
+const SKILLED_WORKER_FAQS = [
+  {
+    question: "Do I need a job offer and a sponsor for a Skilled Worker visa?",
+    answer:
+      "Yes. The Skilled Worker route requires a job offer from a UK employer who holds a Home Office sponsor licence, and the employer must assign you a Certificate of Sponsorship for an eligible role. A solicitor cannot find you a sponsor — that is recruitment, not legal work — but the official register of licensed sponsors is published on GOV.UK, and once you have a real offer the application itself is instructable.",
+  },
+  {
+    question: "What salary do I need for a Skilled Worker visa?",
+    answer:
+      "The role must normally be paid at or above both a general salary threshold for the route and the specific 'going rate' for the occupation code, whichever is higher (with some routes and discounts applying in particular cases). These figures are set by the Home Office and change, so we do not quote them as fixed amounts — check the current thresholds and the going-rate tables for your occupation code on gov.uk, and we will confirm them against your Certificate of Sponsorship on the consultation.",
+  },
+  {
+    question: "Is there an English language requirement?",
+    answer:
+      "Yes. Skilled Worker applicants must usually show English at level B1 (on the CEFR scale) in speaking, listening, reading and writing, which can be met by an approved test, a qualifying degree taught in English, or by being a national of a majority-English-speaking country, among other ways. The current accepted methods are listed on gov.uk.",
+  },
+  {
+    question: "Can I bring my family on a Skilled Worker visa?",
+    answer:
+      "In many cases yes — a partner and children can usually apply as your dependants, subject to meeting the relevant requirements and evidence. Dependant rules have changed over time for some routes, so the current position for your situation should be checked before you plan.",
+  },
+  {
+    question: "Can I switch into the Skilled Worker route from inside the UK?",
+    answer:
+      "Often yes. Many people already in the UK on another eligible route can switch into the Skilled Worker route without leaving the country, provided they meet the requirements. Visitors generally cannot switch in-country. Whether switching is possible depends on your current status, so it should be confirmed before applying.",
+  },
+  {
+    question: "Does the Skilled Worker visa lead to settlement (ILR)?",
+    answer:
+      "Yes — the Skilled Worker route can lead to indefinite leave to remain after a qualifying period of continuous residence, provided you continue to meet the route's requirements and the settlement criteria at that point (including any English and Life in the UK Test requirements). The qualifying period and the rules can change, so confirm the current settlement requirements on gov.uk.",
+  },
+];
 
 export default function SkilledWorkerWizardPageInner() {
   return (
@@ -57,6 +90,7 @@ export default function SkilledWorkerWizardPageInner() {
           slug: AUTHOR.slug,
         })}
       />
+      <JsonLd data={faqPageSchema(SKILLED_WORKER_FAQS)} />
 
       {/* Breadcrumb */}
       <section className="bg-slate-50/60 border-b border-slate-100">
@@ -234,6 +268,99 @@ export default function SkilledWorkerWizardPageInner() {
               </li>
             </ul>
           </div>
+        </div>
+      </section>
+
+      {/* Depth: understanding the Skilled Worker route */}
+      <section className="py-10 lg:py-14 bg-slate-50/40 border-t border-slate-100">
+        <div className="max-w-[920px] mx-auto px-6 lg:px-8">
+          <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">
+            Understanding the Skilled Worker visa
+          </p>
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">
+            How the Skilled Worker route works
+          </h2>
+          <div className="mt-5 space-y-4 text-base text-slate-600 leading-relaxed">
+            <p>
+              The Skilled Worker visa is the UK&rsquo;s main work route. It is a sponsored,
+              points-based route: you need a job offer from a licensed sponsor, the role and salary
+              must qualify, and you must meet the English requirement. Done correctly it can lead to
+              settlement, and a partner and children can usually come too.
+            </p>
+          </div>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">Eligibility at a glance</h3>
+          <ul className="mt-3 space-y-2 text-base text-slate-600 leading-relaxed list-disc pl-5">
+            <li>A <strong>job offer from a Home Office-licensed sponsor</strong> and a valid <strong>Certificate of Sponsorship</strong>.</li>
+            <li>The role at the <strong>required skill level (RQF3 or above)</strong> for an eligible occupation code.</li>
+            <li>Salary at or above both the route&rsquo;s <strong>general threshold</strong> and the <strong>going rate</strong> for the occupation code &mdash; the actual figures are set by the Home Office, so check the current thresholds and going-rate tables on gov.uk.</li>
+            <li><strong>English language</strong> at level B1 across the four skills.</li>
+          </ul>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">The points-based system</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            The route works on points: you must score the required total from a combination of a job
+            offer from an approved sponsor, the job being at an appropriate skill level, the right
+            salary, and English at the required level. Some elements are mandatory; others can be
+            traded against each other in defined ways.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">Switching in-country</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            Many people already in the UK on an eligible route can <strong>switch</strong> into the
+            Skilled Worker route without leaving the country, provided they meet the requirements.
+            Visitors generally cannot. Whether you can switch depends on your current status.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">Dependants</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            A partner and children can usually apply as your <strong>dependants</strong>, subject to
+            meeting the relevant requirements and evidence. Dependant rules have changed for some
+            routes, so the current position should be checked for your circumstances.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">The path to settlement</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            The Skilled Worker route can lead to <strong>indefinite leave to remain</strong> after a
+            qualifying period of continuous residence, subject to continuing to meet the route&rsquo;s
+            requirements and the settlement criteria at that point. The qualifying period and rules
+            can change &mdash; confirm the current requirements on{" "}
+            <a href="https://www.gov.uk/skilled-worker-visa" target="_blank" rel="noopener noreferrer" className="text-brand-red hover:underline">gov.uk</a>.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">Sponsor duties</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            Sponsorship comes with ongoing duties on the employer &mdash; record-keeping, reporting
+            changes, and complying with the sponsor guidance. If a sponsor licence is suspended or
+            revoked it can affect the workers it sponsors, which is one of the situations this wizard
+            flags for urgent review.
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-10 lg:py-14 border-t border-slate-100">
+        <div className="max-w-[920px] mx-auto px-6 lg:px-8">
+          <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">
+            Frequently asked questions
+          </p>
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">
+            Skilled Worker visa &mdash; common questions
+          </h2>
+          <dl className="mt-6 divide-y divide-slate-100">
+            {SKILLED_WORKER_FAQS.map((f) => (
+              <div key={f.question} className="py-5">
+                <dt className="text-lg font-bold text-slate-900">{f.question}</dt>
+                <dd className="mt-2 text-base text-slate-600 leading-relaxed">{f.answer}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-6 text-sm text-slate-500 leading-relaxed">
+            This page is general information about the Skilled Worker route, reviewed by{" "}
+            <Link href="/our-team/" className="font-semibold text-slate-700 hover:text-brand-red">{AUTHOR.name}</Link>{" "}
+            (SRA #{AUTHOR.sraNumber}). It is not a substitute for tailored legal advice, and outcomes
+            depend on the full evidence of your case.
+          </p>
         </div>
       </section>
 
