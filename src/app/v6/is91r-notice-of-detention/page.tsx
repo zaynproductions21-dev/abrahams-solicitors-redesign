@@ -30,9 +30,24 @@ const faqs = [
       "No. It explains the reasons for detention. A removal decision is separate, though the two can be connected.",
   },
   {
+    question: "What is the difference between an IS91 and an IS91R?",
+    answer:
+      "The IS91 is the detention authority — the document that authorises and records the detention, held by the detaining location. The IS91R is the written notice given to the detained person setting out the reasons and factors behind the decision to detain. You should normally receive an IS91R; the IS91 sits with the detaining authority.",
+  },
+  {
+    question: "What reasons are usually given on an IS91R?",
+    answer:
+      "The form sets out the power to detain and selects from standard reasons and factors — for example that removal is imminent, that there is a risk of absconding, that the person has insufficient close ties to make it likely they will stay in one place, or that they have previously failed to comply with conditions. A solicitor checks whether those stated reasons are actually justified on the facts.",
+  },
+  {
     question: "Can detention be challenged?",
     answer:
       "Yes — detention must be lawful and justified. The reasons on the IS91R can be tested through a bail application or a legal challenge.",
+  },
+  {
+    question: "How long can someone be detained under immigration powers?",
+    answer:
+      "There is no fixed maximum, but detention is constrained by the Hardial Singh principles: a person may only be detained for a period that is reasonable in all the circumstances, and only where removal is realistically in prospect within that period. If those limits are exceeded, continued detention can become unlawful.",
   },
   {
     question: "How soon should we act?",
@@ -63,6 +78,39 @@ export default function Is91rPage() {
         </ul>
         <p>It is usually issued alongside the IS91 (the detention authority document held by the detaining location).</p>
 
+        <h2>IS91 vs IS91R: the difference</h2>
+        <p>
+          It helps to keep two documents apart. The <strong>IS91</strong> is the <em>detention authority</em> &mdash; the internal document that authorises the detaining location to hold the person. It is the legal instruction to detain. The <strong>IS91R</strong> is the <em>written reasons</em> notice given <em>to the detainee</em> &mdash; it tells the person, in writing, why they are being held.
+        </p>
+        <p>
+          You should normally be given an IS91R when you are detained. If a detained person has not received written reasons, that is itself something a solicitor will want to look at, because people are entitled to know the basis on which they are being deprived of their liberty.
+        </p>
+
+        <h2>The standard reasons on the form</h2>
+        <p>The IS91R sets out the statutory power to detain and then identifies the reasons and factors the Home Office relies on. These are drawn from a standard list, and commonly include:</p>
+        <ul>
+          <li>that <strong>removal is imminent</strong>;</li>
+          <li>that there is a <strong>risk of absconding</strong> if released;</li>
+          <li>that the person has <strong>insufficient close ties</strong> (for example a settled address or family) to make it likely they will stay in one place; and</li>
+          <li>that the person has <strong>previously failed to comply</strong> with conditions or has used deception.</li>
+        </ul>
+        <p>The value of the notice is that it pins the Home Office to a stated case &mdash; which can then be tested against the actual facts.</p>
+
+        <h2>Detention and the Hardial Singh principles</h2>
+        <p>
+          Immigration detention is not open-ended. The courts have long held, under what are known as the <strong>Hardial Singh principles</strong>, that the power to detain is limited: a person may be detained only for a period that is <strong>reasonable in all the circumstances</strong>, and only where <strong>removal is realistically in prospect</strong> within that period. The Home Office must also act with reasonable diligence to effect removal. If detention drifts beyond what is reasonable, or removal is no longer realistically achievable, continued detention can become unlawful even if it was lawful at the start.
+        </p>
+
+        <h2>Detention reviews and the route out</h2>
+        <p>
+          Detention is meant to be reviewed at regular intervals, and the justification for holding someone should be kept under review as time passes. For most people, the practical route out of detention is a <a href="/bail401-immigration-bail/">bail application (BAIL401)</a>, which can be made to the First-tier Tribunal. Where detention is unlawful &mdash; rather than simply ripe for bail &mdash; the lawfulness of detention can be challenged by judicial review.
+        </p>
+
+        <h2>How a solicitor challenges the stated reasons</h2>
+        <p>
+          A solicitor will scrutinise each reason on the IS91R against the evidence: is removal genuinely imminent, or is there an obstacle that makes it unrealistic? Does the person in fact have close ties and a fixed address that undercut an &ldquo;absconding&rdquo; risk? Is the detention review history sound? Where the stated reasons do not hold up &mdash; or detention has simply gone on too long under the Hardial Singh principles &mdash; the solicitor can press for release through bail or, in the right case, challenge unlawful detention directly.
+        </p>
+
         <h2>Why it matters</h2>
         <p>
           The IS91R is important because immigration detention must be lawful and justified. The reasons and factors set out on the notice are the Home Office&rsquo;s stated basis for holding you &mdash; and they can be <strong>challenged</strong> if detention is unlawful, has lasted unreasonably long, or is no longer justified.
@@ -85,8 +133,14 @@ export default function Is91rPage() {
         <h2>Frequently asked questions</h2>
         <h3>Is an IS91R the same as a removal decision?</h3>
         <p>No. It explains the reasons for <em>detention</em>. A removal decision is separate, though the two can be connected.</p>
+        <h3>What is the difference between an IS91 and an IS91R?</h3>
+        <p>The IS91 is the detention authority &mdash; the document that authorises and records the detention, held by the detaining location. The IS91R is the written notice given to the detained person setting out the reasons and factors behind the decision to detain. You should normally receive an IS91R; the IS91 sits with the detaining authority.</p>
+        <h3>What reasons are usually given on an IS91R?</h3>
+        <p>The form sets out the power to detain and selects from standard reasons and factors &mdash; for example that removal is imminent, that there is a risk of absconding, that the person has insufficient close ties to make it likely they will stay in one place, or that they have previously failed to comply with conditions. A solicitor checks whether those stated reasons are actually justified on the facts.</p>
         <h3>Can detention be challenged?</h3>
         <p>Yes &mdash; detention must be lawful and justified. The reasons on the IS91R can be tested through a bail application or a legal challenge.</p>
+        <h3>How long can someone be detained under immigration powers?</h3>
+        <p>There is no fixed maximum, but detention is constrained by the Hardial Singh principles: a person may only be detained for a period that is reasonable in all the circumstances, and only where removal is realistically in prospect within that period. If those limits are exceeded, continued detention can become unlawful.</p>
         <h3>How soon should we act?</h3>
         <p>As soon as possible &mdash; get advice the same day where you can.</p>
 

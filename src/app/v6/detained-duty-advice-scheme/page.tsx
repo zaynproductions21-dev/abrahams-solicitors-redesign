@@ -31,6 +31,16 @@ const faqs = [
       "The initial duty appointment is free regardless of means. Ongoing representation may be covered by legal aid or arranged privately.",
   },
   {
+    question: "Who is eligible for a DDAS appointment?",
+    answer:
+      "Anyone held in a participating immigration removal centre can request a duty appointment, irrespective of nationality or means. The initial session is open to detained people generally; what differs from person to person is whether ongoing representation afterwards is funded by legal aid, which depends on your case and your means.",
+  },
+  {
+    question: "Does legal aid cover ongoing detention and bail work?",
+    answer:
+      "It may. Legal aid for detained immigration and bail work is administered by the Legal Aid Agency and generally depends on a means test and a merits test. The thresholds change, so check the current position on GOV.UK and the Legal Aid Agency, and ask a solicitor whether your case qualifies.",
+  },
+  {
     question: "Can my family arrange a solicitor while I'm detained?",
     answer:
       "Yes. A family member can instruct a solicitor on your behalf to visit or call you.",
@@ -60,8 +70,34 @@ export default function DdasPage() {
         </p>
         <p>A DDAS appointment gives you a short initial session &mdash; typically around 30 minutes &mdash; to talk through your situation and get first advice on your options.</p>
 
-        <h2>Who can use it</h2>
+        <h2>Who can use it and where it operates</h2>
         <p>Anyone held in a participating immigration removal centre can request a DDAS appointment, irrespective of nationality or ability to pay for the initial session.</p>
+        <p>
+          The scheme operates in immigration removal centres in England, with appointments delivered by immigration solicitors and advisers who attend on a rota. The scheme is administered through the <strong>Legal Aid Agency</strong>, which contracts the providers who staff the surgeries. Because the centre estate and the providers change over time, you can confirm the current arrangements at a particular centre via GOV.UK.
+        </p>
+
+        <h2>The free surgery vs ongoing representation</h2>
+        <p>
+          It is important to understand the difference between the two things the scheme involves. The <strong>duty surgery appointment</strong> is a short, free session &mdash; typically around half an hour &mdash; available regardless of means. Its job is to give you first advice and to identify your options, not to run your whole case.
+        </p>
+        <p>
+          <strong>Ongoing representation</strong> &mdash; preparing and presenting a bail application, challenging detention, or progressing an asylum or human-rights claim &mdash; is a separate step. It may be taken on by the duty provider or another solicitor, and it may be funded by legal aid where your case qualifies, or arranged privately.
+        </p>
+
+        <h2>How legal aid applies to detained work</h2>
+        <p>
+          Legal aid for detained immigration and bail work is administered by the <strong>Legal Aid Agency</strong> and generally turns on two tests: a <strong>means test</strong> (your financial circumstances) and a <strong>merits test</strong> (whether the case is sufficiently strong to justify funding). The detailed thresholds and the categories of work in scope can change, so it is best to <strong>check the current position on GOV.UK and with the Legal Aid Agency</strong>, and to ask a solicitor to assess whether you qualify in your particular case.
+        </p>
+
+        <h2>How to access a surgery</h2>
+        <p>
+          If you are detained, you can ask staff at the immigration removal centre to book you onto the duty advice surgery, or a family member or friend outside can help arrange advice. Bringing your detention papers and any Home Office letters to the appointment makes the short session far more productive.
+        </p>
+
+        <h2>What a solicitor does after the surgery</h2>
+        <p>
+          Following the duty session, a solicitor who takes your case on can prepare and run a <a href="/bail401-immigration-bail/">bail application (BAIL401)</a>, advise on and challenge the lawfulness of your detention, and progress the underlying immigration or asylum claim &mdash; gathering evidence, drafting statements, and representing you at any hearing. The surgery is the entry point; sustained representation is what carries the case forward.
+        </p>
 
         <h2>What happens in a DDAS appointment</h2>
         <ul>
@@ -84,6 +120,10 @@ export default function DdasPage() {
         <h2>Frequently asked questions</h2>
         <h3>Is DDAS advice really free?</h3>
         <p>The initial duty appointment is free regardless of means. Ongoing representation may be covered by legal aid or arranged privately.</p>
+        <h3>Who is eligible for a DDAS appointment?</h3>
+        <p>Anyone held in a participating immigration removal centre can request a duty appointment, irrespective of nationality or means. The initial session is open to detained people generally; what differs from person to person is whether ongoing representation afterwards is funded by legal aid, which depends on your case and your means.</p>
+        <h3>Does legal aid cover ongoing detention and bail work?</h3>
+        <p>It may. Legal aid for detained immigration and bail work is administered by the Legal Aid Agency and generally depends on a means test and a merits test. The thresholds change, so check the current position on GOV.UK and the Legal Aid Agency, and ask a solicitor whether your case qualifies.</p>
         <h3>Can my family arrange a solicitor while I&rsquo;m detained?</h3>
         <p>Yes. A family member can instruct a solicitor on your behalf to visit or call you.</p>
         <h3>How quickly can I get a bail application in?</h3>

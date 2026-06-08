@@ -36,6 +36,16 @@ const faqs = [
       "You are generally not obliged to answer questions that could incriminate you, and you can ask to speak to a solicitor first.",
   },
   {
+    question: "Should I sign anything officers put in front of me?",
+    answer:
+      "Be very careful. Do not sign documents you do not understand, and in particular do not sign anything agreeing to leave the UK voluntarily without first taking legal advice. Signing the wrong document can have serious consequences for your immigration position. Ask to speak to a solicitor before signing.",
+  },
+  {
+    question: "What usually happens after a dawn raid?",
+    answer:
+      "Depending on the circumstances, a person may be arrested and taken into immigration detention, served with an IS91/IS91R setting out the reasons for detention, and given removal directions. From detention, the route out is usually a bail application, and a solicitor can also check whether the detention is lawful.",
+  },
+  {
     question: "What should an employer do during a right-to-work visit?",
     answer:
       "Stay cooperative, ask for ID, keep records of the visit, and take legal advice before responding to any penalty notice.",
@@ -60,6 +70,14 @@ export default function ImmigrationDawnRaidsPage() {
         </p>
         <p>These visits are stressful and fast-moving, so knowing your rights in advance matters.</p>
 
+        <h2>The powers officers use</h2>
+        <p>
+          Immigration officers exercise powers given to them under the Immigration Acts. Broadly, a visit may take place either <strong>with a warrant</strong> &mdash; obtained from a court to enter and search premises &mdash; or, in some circumstances, <strong>without a warrant</strong> where the law allows it, for example certain business or right-to-work inspections, or where there is power to arrest. Officers can have powers to enter, search premises, and search and arrest individuals, but those powers have limits and conditions attached to them.
+        </p>
+        <p>
+          Because the basis of a visit affects what officers are entitled to do, it is reasonable and sensible to ask, calmly, to see identification and to understand the legal basis on which they are attending.
+        </p>
+
         <h2>Your rights during a visit</h2>
         <ul>
           <li><strong>Ask to see identification and any warrant.</strong> You can ask officers to show ID and explain the legal basis for the visit.</li>
@@ -69,14 +87,36 @@ export default function ImmigrationDawnRaidsPage() {
           <li><strong>Stay calm, be polite, and do not obstruct officers</strong> &mdash; but you are not obliged to volunteer information that could harm your position.</li>
         </ul>
 
+        <h2>What typically follows a visit</h2>
+        <p>Where officers act on a visit, the sequence that follows often includes some or all of:</p>
+        <ul>
+          <li><strong>Arrest</strong> of a person suspected of an immigration offence or who is liable to removal;</li>
+          <li><strong>Detention</strong> under immigration powers;</li>
+          <li>service of an <a href="/is91r-notice-of-detention/">IS91/IS91R</a> setting out the reasons for detention; and</li>
+          <li><strong>removal directions</strong> in due course where removal is intended.</li>
+        </ul>
+        <p>Each of these steps can be examined and, where appropriate, challenged &mdash; which is why getting a solicitor involved quickly matters.</p>
+
         <h2>If you are detained</h2>
         <p>
           If you are taken into immigration detention, you can access free initial advice through the <a href="/detained-duty-advice-scheme/">Detained Duty Advice Scheme (DDAS)</a>, and a solicitor can help you apply for <a href="/bail401-immigration-bail/">immigration bail (BAIL401)</a> and challenge the lawfulness of your detention.
         </p>
 
-        <h2>For businesses</h2>
+        <h2>Practical steps to take immediately</h2>
+        <ul>
+          <li><strong>Stay calm and do not obstruct officers</strong>, but do not volunteer information that could harm your position.</li>
+          <li><strong>Ask to call a solicitor</strong> as early as you can.</li>
+          <li><strong>Note what happens</strong> &mdash; the time, officers&rsquo; names or numbers, and what is said and done.</li>
+          <li><strong>Do not sign anything</strong> you do not understand, especially a voluntary departure document, without advice.</li>
+          <li><strong>Tell a family member or friend</strong> where you are so they can help arrange representation if you are detained.</li>
+        </ul>
+
+        <h2>For businesses: illegal-working civil penalties</h2>
         <p>
-          If officers attend your workplace for a right-to-work check, you may face a <strong>civil penalty</strong> for each worker found without the right to work, unless you can show a statutory excuse from compliant right-to-work checks. Take advice before responding to a penalty notice.
+          If officers attend your workplace for a right-to-work check, you may face a <strong>civil penalty</strong> for each worker found without the right to work, unless you can show a <strong>statutory excuse</strong> from having carried out compliant right-to-work checks before employment began. The penalty regime sits under the illegal-working provisions of the Immigration Acts, and penalty levels and the detail of the checks change over time &mdash; check the current position on GOV.UK.
+        </p>
+        <p>
+          If you receive a <strong>civil penalty notice</strong>, there is usually a process to object and then to appeal, with deadlines. Keep records of the visit and your right-to-work documentation, and take advice before responding so any statutory-excuse argument is properly made within time.
         </p>
 
         <h2>How Abrahams Solicitors can help</h2>
@@ -89,6 +129,10 @@ export default function ImmigrationDawnRaidsPage() {
         <p>Not always &mdash; it depends on the type and basis of the visit. You can still ask to see identification and the legal basis.</p>
         <h3>Can I refuse to answer questions?</h3>
         <p>You are generally not obliged to answer questions that could incriminate you, and you can ask to speak to a solicitor first.</p>
+        <h3>Should I sign anything officers put in front of me?</h3>
+        <p>Be very careful. Do not sign documents you do not understand, and in particular do not sign anything agreeing to leave the UK voluntarily without first taking legal advice. Signing the wrong document can have serious consequences for your immigration position. Ask to speak to a solicitor before signing.</p>
+        <h3>What usually happens after a dawn raid?</h3>
+        <p>Depending on the circumstances, a person may be arrested and taken into immigration detention, served with an IS91/IS91R setting out the reasons for detention, and given removal directions. From detention, the route out is usually a bail application, and a solicitor can also check whether the detention is lawful.</p>
         <h3>What should an employer do during a right-to-work visit?</h3>
         <p>Stay cooperative, ask for ID, keep records of the visit, and take legal advice before responding to any penalty notice.</p>
 
