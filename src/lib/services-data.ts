@@ -1,4 +1,4 @@
-// Auto-generated from PublishOS page copy — last sync: 2026-04-22T20:01:43.200Z
+// Auto-generated from PublishOS page copy — last sync: 2026-06-08T13:55:47.008Z
 // Run: npx tsx scripts/sync-copy.ts
 
 export interface ServicePage {
@@ -1110,6 +1110,61 @@ export const immigrationPages: ServicePage[] = [
 ];
 
 export const housingPages: ServicePage[] = [
+  {
+    "slug": "housing-disrepair-claims",
+    "title": "HOUSING DISREPAIR CLAIMS",
+    "metaTitle": "Housing Disrepair Claims Solicitors | No Win No Fee Property Law",
+    "metaDescription": "Expert housing disrepair claims solicitors. No win, no fee. Get compensation for poor housing conditions. Free claim assessment available.",
+    "heroTitle": "Get Compensation For Housing Disrepair",
+    "heroDescription": "Living in damp, cold or dangerous conditions? Your landlord's ignored your complaints?",
+    "badge": "Housing Law",
+    "sections": [
+      {
+        "title": "Housing Disrepair Claims We Handle",
+        "content": "Our housing disrepair claims solicitors handle all types of property disrepair cases:\n\nDamp and Mould Issues\n• Black mould on walls and ceilings\n• Rising damp from poor maintenance\n• Condensation problems due to inadequate ventilation\n• Health impacts from prolonged exposure\n\nStructural Problems\n• Leaking roofs and faulty guttering\n• Broken windows and door frames\n• Unsafe stairs and flooring\n• Electrical hazards and faulty wiring\n\nHeating and Plumbing Failures\n• No heating during winter months\n• Broken boilers and radiators\n• Blocked drains and sewage problems\n• Hot water system failures\n\nPest Infestations\n• Rat and mice problems\n• Cockroach infestations\n• Inadequate pest control measures\n• Health risks from vermin\n\nWhether you're dealing with housing association disrepair or a claim against a private landlord, we can help. A landlord's repairing obligations are set out in section 11 of the Landlord and Tenant Act 1985 and the Homes (Fitness for Human Habitation) Act 2018, and most claims follow the Pre-Action Protocol for Housing Conditions Claims (England)."
+      },
+      {
+        "title": "Housing Disrepair Compensation You Could Claim",
+        "content": "Our housing disrepair compensation claims typically recover:\n\nGeneral Damages (Pain & Suffering)\n• Minor discomfort: £1,000 - £3,000\n• Moderate health impact: £3,000 - £8,000\n• Severe health consequences: £8,000 - £15,000+\n• Permanent health damage: £15,000+\n\nSpecial Damages (Financial Losses)\n• Rent reduction for uninhabitable periods\n• Alternative accommodation costs\n• Damaged belongings and furniture\n• Medical expenses and treatments\n• Utility bill increases due to poor insulation\n\nAggravated Damages\n• Landlord's deliberate disregard for complaints\n• Harassment or retaliatory behaviour\n• Failure to follow proper procedures\n\nThe amount recoverable depends on how long the disrepair has continued, the severity of the conditions, the effect on your health and any financial losses you can evidence. Every claim is assessed on its own facts, and we will give you a realistic view of your case at your free assessment. Past results do not guarantee any particular outcome."
+      },
+      {
+        "title": "No Win No Fee Housing Disrepair Claims",
+        "content": "All our housing disrepair claims work on a no win, no fee basis:\n\nHow Our No Win No Fee Works:\n• No upfront legal costs to pay\n• No hidden charges or surprise bills\n• You only pay if we win your case\n• After the Event (ATE) insurance protects you\n• Landlord pays our costs when we win\n\nWhat's Covered:\n✓ Free initial claim assessment\n✓ All legal work and court proceedings\n✓ Expert witness reports\n✓ Property inspections and surveys\n✓ Negotiation with landlords and insurers\n\nTransparent Pricing Promise\nWe'll explain exactly what you'll pay (only if your claim succeeds) before any work begins. No call centres — you deal directly with your dedicated solicitor from day one. A Conditional Fee Agreement (no win, no fee) is offered in suitable cases, usually backed by After the Event insurance."
+      },
+      {
+        "title": "Building Your Housing Disrepair Claim Evidence",
+        "content": "Strong evidence is crucial for successful housing disrepair claims. Here's what our solicitors help you gather:\n\nPhotographic Evidence\n• Date-stamped photos of all disrepair issues\n• Before and after shots showing deterioration\n• Close-up images of damage and hazards\n• Wide shots showing extent of problems\n\nWritten Records\n• All complaint letters to your landlord\n• Landlord responses (or lack thereof)\n• Repair requests and communication logs\n• Tenancy agreements and rent payment records\n\nMedical Evidence\n• GP reports linking health issues to housing conditions\n• Hospital records for disrepair-related treatments\n• Prescription records for respiratory problems\n• Mental health impact assessments\n\nExpert Reports\n• Independent property surveys\n• Damp and mould specialist assessments\n• Structural engineer reports for serious defects\n• Environmental health officer inspections\n\nThe Housing Disrepair Claim Process:\n1. Free Assessment - We evaluate your case within 24 hours\n2. Evidence Collection - Our team helps gather all necessary proof\n3. Letter of Claim - Formal notification to your landlord\n4. Expert Inspection - Independent survey of the property\n5. Negotiation - We negotiate maximum compensation\n6. Settlement - Most cases settle without court proceedings\n\nAverage time for housing disrepair claims: 4-8 months from start to settlement."
+      },
+      {
+        "title": "Expert Landlord Negotiation Services",
+        "content": "Our housing disrepair claims solicitors excel at landlord negotiations, securing fair settlements without lengthy court battles:\n\nOur Negotiation Approach:\n• Present compelling evidence packages\n• Calculate accurate compensation figures\n• Apply pressure through formal legal procedures\n• Threaten court action when necessary\n• Negotiate from a position of strength\n\nCommon Landlord Tactics We Counter:\n❌ \"The damage was caused by tenant lifestyle\"\n❌ \"Repairs are planned but delayed due to circumstances\"\n❌ \"The property met standards when let\"\n❌ \"Tenant didn't report issues properly\"\n❌ \"Insurance won't cover these problems\"\n\nWhy Landlords Settle:\n• Court costs far exceed settlement amounts\n• Public records affect their reputation\n• Insurance companies prefer quick resolution\n• Risk of higher damages if case goes to trial\n\nHousing Association vs Private Landlord Claims:\n\nHousing Associations typically have:\n• Clear complaint procedures\n• Insurance arrangements for claims\n• Professional property management\n\nPrivate Landlords often show:\n• Initial resistance to claims\n• Less formal procedures\n• Need for stronger legal pressure\n\nRegardless of landlord type, our solicitors adapt their approach to pursue fair compensation for your housing disrepair claim."
+      },
+      {
+        "title": "Start Your Housing Disrepair Claim Today",
+        "content": "Don't suffer in silence whilst paying rent for substandard accommodation. Our housing disrepair claims solicitors are ready to fight for the compensation you deserve.\n\nWhy Choose Abrahams Solicitors for Your Housing Disrepair Claim:\n• No Win, No Fee available in suitable cases — no upfront costs or hidden charges\n• Direct Solicitor Access — no call centres, you speak to qualified lawyers\n• Nationwide Service — we help tenants across England and Wales\n• Free Assessment — honest advice on the strength of your claim\n• A clear, protocol-compliant approach from the first letter of claim\n\nNext Steps:\n1. Free Consultation - Discuss your housing issues\n2. Case Assessment - We evaluate your claim strength\n3. No Obligation Quote - Clear explanation of process and costs\n4. Start Your Claim - We begin work immediately\n\nDon't let poor housing conditions continue affecting your health and wellbeing. Call our housing disrepair claims solicitors today.\n\n\nA housing disrepair claim is legal action against your landlord for failing to maintain your property in proper condition. You qualify if you're experiencing issues like damp, mould, heating problems, structural defects, or pest infestations that your landlord hasn't fixed after being notified. Both private tenants and housing association tenants can make claims.\n\n\nMost housing disrepair claims take 4-8 months from start to settlement. Simple cases with clear evidence might settle within 3 months, whilst complex cases involving serious health impacts or disputed evidence can take 12+ months. We'll keep you updated throughout and work to resolve your claim as quickly as possible.\n\n\nKey criteria include: 1) You must be a tenant with a valid tenancy agreement, 2) The disrepair must exist and affect your use/enjoyment of the property, 3) You must have notified your landlord about the problems, 4) The landlord must have failed to carry out reasonable repairs within a reasonable time, 5) You must have suffered loss, inconvenience or health impacts as a result.\n\n\nYes, housing disrepair claims against private landlords are very common and often successful. Private landlords have the same legal obligations as housing associations to maintain their properties. In fact, private landlord cases sometimes result in higher compensation due to less formal complaint procedures and longer response times to repair requests."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What is a housing disrepair claim and do I qualify?",
+        "answer": "A housing disrepair claim is legal action against your landlord for failing to maintain your property in proper condition. You qualify if you're experiencing issues like damp, mould, heating problems, structural defects, or pest infestations that your landlord hasn't fixed after being notified. Both private tenants and housing association tenants can make claims."
+      },
+      {
+        "question": "How long does a housing disrepair claim take to complete?",
+        "answer": "Most housing disrepair claims take 4-8 months from start to settlement. Simple cases with clear evidence might settle within 3 months, whilst complex cases involving serious health impacts or disputed evidence can take 12+ months. We'll keep you updated throughout and work to resolve your claim as quickly as possible."
+      },
+      {
+        "question": "What are the housing disrepair claims criteria I need to meet?",
+        "answer": "Key criteria include: 1) You must be a tenant with a valid tenancy agreement, 2) The disrepair must exist and affect your use/enjoyment of the property, 3) You must have notified your landlord about the problems, 4) The landlord must have failed to carry out reasonable repairs within a reasonable time, 5) You must have suffered loss, inconvenience or health impacts as a result."
+      },
+      {
+        "question": "Can I make housing disrepair claims against private landlords?",
+        "answer": "Yes, housing disrepair claims against private landlords are very common and often successful. Private landlords have the same legal obligations as housing associations to maintain their properties. In fact, private landlord cases sometimes result in higher compensation due to less formal complaint procedures and longer response times to repair requests."
+      }
+    ],
+    "parentService": "Housing Law",
+    "parentHref": "/housing-disrepair/"
+  },
   {
     "slug": "housing-disrepair",
     "title": "HOUSING DISREPAIR CLAIMS",

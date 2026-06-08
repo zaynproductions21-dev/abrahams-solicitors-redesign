@@ -31,6 +31,13 @@ async function main() {
   const teamMatch = existingFile.match(/export const teamMembers[\s\S]*$/);
   const teamBlock = teamMatch ? teamMatch[0] : "";
 
+  // Preserve the hand-maintained statutory metadata block (DEFAULT_LAST_REVIEWED
+  // + SERVICE_METADATA — author bylines and GOV.UK/legislation links). It is not
+  // sourced from KV, so without re-injecting it here every sync would strip it
+  // and break the `src/app/v6/[slug]/page.tsx` import.
+  const metaMatch = existingFile.match(/\/\*\* Default last-reviewed[\s\S]*?\n};\n/);
+  const metaBlock = metaMatch ? metaMatch[0] : "";
+
   // Build the new file
   const lines: string[] = [
     `// Auto-generated from PublishOS page copy — last sync: ${new Date().toISOString()}`,
@@ -90,6 +97,7 @@ async function main() {
     else otherPages.push(page);
   }
 
+  if (metaBlock) lines.push(metaBlock);
   lines.push(`export const immigrationPages: ServicePage[] = ${JSON.stringify(immigrationPages, null, 2)};`);
   lines.push(``);
   lines.push(`export const housingPages: ServicePage[] = ${JSON.stringify(housingPages, null, 2)};`);
