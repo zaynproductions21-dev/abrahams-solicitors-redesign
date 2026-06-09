@@ -153,7 +153,7 @@ function HeroForm({ id = "consultation-form" }: { id?: string }) {
     e.preventDefault();
     if (!firstName || !email || !phone) return;
     setSubmitting(true);
-    pushFormSubmit({ email, phone });
+    pushFormSubmit({ email, phone, firstName, lastName });
     pushWizardEvent("immigration_solicitors_lp_form_submitted", {
       source: "immigration-solicitors-lp",
       matter: matter || "not-specified",

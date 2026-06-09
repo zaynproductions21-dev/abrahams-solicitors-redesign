@@ -65,17 +65,36 @@ export function pushWhatsAppClick(): void {
 export function pushFormSubmit({
   email,
   phone,
+  firstName,
+  lastName,
 }: {
   email?: string;
   phone?: string;
+  firstName?: string;
+  lastName?: string;
 }): void {
   if (typeof window === "undefined") return;
   window.dataLayer = window.dataLayer || [];
-  const user_data: Record<string, string> = {};
+  const user_data: Record<string, unknown> = {};
   if (email) user_data.email = email.trim();
   if (phone) {
     const normalised = toE164(phone);
     if (normalised) user_data.phone_number = normalised;
+  }
+  if (firstName || lastName) {
+    user_data.address = {
+      ...(firstName ? { first_name: firstName.trim() } : {}),
+      ...(lastName ? { last_name: lastName.trim() } : {}),
+    };
+  }
+
+  // Pass user data to gtag directly for Enhanced Conversions — this is the
+  // explicit in-page signal Google needs to stop falling back to Automatic
+  // mode (form-scan heuristics). gtag hashes the values client-side before
+  // transmitting; raw PII never leaves the browser unencrypted.
+  const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+  if (typeof w.gtag === "function" && Object.keys(user_data).length > 0) {
+    w.gtag("set", "user_data", user_data);
   }
 
   // Pull the persisted click IDs (Google + Bing) so the GTM conversion
