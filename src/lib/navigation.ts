@@ -1,20 +1,5 @@
-// Auto-generated from PublishOS page copy — last sync: 2026-04-22T20:01:43.204Z
+// Auto-generated from PublishOS page copy — last sync: 2026-06-08T13:55:47.011Z
 // Run: npx tsx scripts/sync-copy.ts
-//
-// MANUAL ADDITIONS — these entries are NOT in the PublishOS pages
-// collection and the next sync-copy.ts run will drop them unless they
-// are preserved here OR the LPs are added to PublishOS.
-//
-//   • "FLR(M) Visa Extension" (2026-05-20) — /flr-visa-extension/
-//   • "UK Immigration Solicitors" (2026-06-03) — /immigration-solicitors/
-//
-// The A/B sister page /immigration-solicitors-direct/ is INTENTIONALLY
-// omitted from nav — it has noindex,nofollow + canonical →
-// /immigration-solicitors/ and is reachable only via the £150/day
-// Solicitors ad group (Council Track A, doc:
-// publishos/docs/abrahams-immigration-solicitors-ab-spec-2026-06-03.md).
-// Adding it to the nav would defeat the canonical's organic role and
-// pollute the A/B test set.
 
 export type NavItem = {
   label: string;
@@ -25,69 +10,35 @@ export type NavItem = {
 export const navigation: NavItem[] = [
   { label: "Home", href: "/" },
   {
-    label: "Immigration",
+    label: "Immigration Law",
     href: "/immigration/",
     children: [
           {
-                "label": "🆘 24/7 Emergency Help",
-                "href": "/emergency-immigration-solicitor/"
-          },
-          {
-                // MANUAL ADDITION (2026-06-03): canonical paid-LP twin.
-                // Stays in nav for organic discoverability — same
-                // exception pattern as FLR(M) below. The A/B variant
-                // /immigration-solicitors-direct/ is INTENTIONALLY
-                // omitted (noindex, paid-only).
-                // Watch out for sync-copy.ts overwriting this entry.
-                "label": "UK Immigration Solicitors",
-                "href": "/immigration-solicitors/"
-          },
-          {
-                "label": "UK Spouse Visa Solicitors",
+                "label": "UK SPOUSE VISA SOLICITORS",
                 "href": "/uk-spouse-visa-solicitors/"
           },
           {
-                "label": "FLR(M) Visa Extension",
-                "href": "/flr-visa-extension/"
-          },
-          {
-                "label": "Adequate Maintenance Calculator",
-                "href": "/adequate-maintenance-calculator/"
-          },
-          {
-                "label": "Skilled Worker Visa Wizard",
-                "href": "/skilled-worker-wizard/"
-          },
-          {
-                "label": "ILR / Settlement Wizard",
-                "href": "/ilr-wizard/"
-          },
-          {
-                "label": "British Citizenship Wizard",
-                "href": "/citizenship-wizard/"
-          },
-          {
-                "label": "British Citizenship Solicitors",
+                "label": "BRITISH CITIZENSHIP SOLICITORS",
                 "href": "/british-citizenship-solicitors/"
           },
           {
-                "label": "Sponsor Licence Applications",
+                "label": "SPONSOR LICENCE APPLICATIONS",
                 "href": "/sponsor-licence-applications/"
           },
           {
-                "label": "Indefinite Leave To Remain",
+                "label": "INDEFINITE LEAVE TO REMAIN",
                 "href": "/indefinite-leave-to-remain-ilr/"
           },
           {
-                "label": "UK Visa Applications",
+                "label": "UK VISA APPLICATIONS",
                 "href": "/uk-visa-applications/"
           },
           {
-                "label": "Visa Refusal & Appeals Hub",
+                "label": "VISA REFUSAL & APPEALS HUB",
                 "href": "/visa-refusal-appeal/"
           },
           {
-                "label": "Immigration",
+                "label": "immigration",
                 "href": "/immigration/"
           },
           {
@@ -95,15 +46,15 @@ export const navigation: NavItem[] = [
                 "href": "/uk-spouse-visa/"
           },
           {
-                "label": "UK Visit Visa",
+                "label": "uk visit visa",
                 "href": "/uk-visit-visa/"
           },
           {
-                "label": "UK Ancestry Visa",
+                "label": "uk ancestry visa",
                 "href": "/uk-ancestry-visa/"
           },
           {
-                "label": "UK Fiance Visa",
+                "label": "uk fiance visa",
                 "href": "/uk-fiance-visa/"
           },
           {
@@ -115,29 +66,33 @@ export const navigation: NavItem[] = [
                 "href": "/uk-unmarried-partner-visa/"
           },
           {
-                "label": "Civil Partnership Visa",
+                "label": "civil partnership visa",
                 "href": "/civil-partnership-visa/"
           },
           {
-                "label": "UK Visa Extensions Renewals",
+                "label": "uk visa extensions renewals",
                 "href": "/uk-visa-extensions-renewals/"
           },
           {
-                "label": "Asylum Applications",
+                "label": "asylum applications",
                 "href": "/asylum-applications/"
           },
           {
-                "label": "EU Settlement Scheme",
+                "label": "eu settlement scheme",
                 "href": "/eu-settlement-scheme/"
           }
     ],
   },
   {
-    label: "Housing",
-    href: "/housing-disrepair/",
+    label: "Housing Law",
+    href: "/housing-disrepair-claims/",
     children: [
           {
-                "label": "Housing Disrepair Claims",
+                "label": "HOUSING DISREPAIR CLAIMS",
+                "href": "/housing-disrepair-claims/"
+          },
+          {
+                "label": "HOUSING DISREPAIR CLAIMS",
                 "href": "/housing-disrepair/"
           }
     ],

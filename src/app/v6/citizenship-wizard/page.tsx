@@ -21,7 +21,7 @@ import { TrustBadges } from "@/components/v6/trust-badges";
 import { TeamStrip } from "@/components/v6/team-strip";
 import { WizardWidget } from "@/components/v6/wizard-widget";
 import { CITIZENSHIP_WIZARD_CONFIG } from "@/lib/wizards/citizenship-config";
-import { JsonLd, breadcrumbSchema, personSchema } from "@/components/v6/jsonld";
+import { JsonLd, breadcrumbSchema, personSchema, faqPageSchema } from "@/components/v6/jsonld";
 import { team } from "@/lib/team";
 import {
   ChevronRight, ShieldCheck, Info, AlertCircle, Calendar, ExternalLink,
@@ -30,6 +30,44 @@ import {
 const PAGE_URL = "https://www.abrahamssolicitors.co.uk/citizenship-wizard/";
 const LAST_REVIEWED = "May 2026";
 const AUTHOR = team.find((t) => t.slug === "imran-shah")!;
+
+const CITIZENSHIP_FAQS = [
+  {
+    question: "How long must I have lived in the UK before I can apply for naturalisation?",
+    answer:
+      "Under section 6(1) of the British Nationality Act 1981 the residence requirement is commonly 5 years' lawful residence in the UK, and you must usually have held indefinite leave to remain or settled status for at least 12 months before you apply. If you are married to or the civil partner of a British citizen you may apply under section 6(2) after 3 years' residence, and the extra 12-month wait after settlement does not apply to that route. Always confirm the current residence and absence requirements for your route on GOV.UK.",
+  },
+  {
+    question: "Can I apply for British citizenship online?",
+    answer:
+      "Naturalisation is applied for on Home Office form AN; the application is started online but you book and attend a biometrics appointment afterwards, and supporting documents are submitted as directed. It is not an instant online grant. Because the good-character and absence questions can be involved, many people choose to have the application checked before it is submitted.",
+  },
+  {
+    question: "I have EU settled status — can I use that to naturalise?",
+    answer:
+      "Settled status under the EU Settlement Scheme is a form of indefinite leave and can count as the settled status needed for naturalisation. You will still normally need to have held it for 12 months (unless applying as the spouse of a British citizen under section 6(2)) and to meet the residence, absence, good-character, Life in the UK Test and English requirements. The day-counting of absences in your qualifying period should be checked against the published Home Office guidance on GOV.UK.",
+  },
+  {
+    question: "What is the good-character requirement?",
+    answer:
+      "Applicants aged 10 or over must satisfy the Home Office that they are of good character. This covers matters such as criminal convictions, immigration breaches, deception, financial soundness (including tax and bankruptcy) and similar issues. It is assessed on the whole picture rather than a single checkbox, so where there is any history it is worth taking advice before applying.",
+  },
+  {
+    question: "Will I have to give up my current nationality? Is dual nationality allowed?",
+    answer:
+      "The UK permits dual (and multiple) nationality, so becoming a British citizen does not require you to renounce another nationality as far as UK law is concerned. However, some other countries do not allow their nationals to hold another citizenship — you should check the rules of your country of origin separately, as that is a matter for that country's law, not the UK's.",
+  },
+  {
+    question: "Do I still have to pass the Life in the UK Test and an English test?",
+    answer:
+      "Yes — most applicants must have passed the Life in the UK Test and meet the English language requirement (usually level B1 speaking and listening), unless they are exempt by age or another ground. Many people already met these at the ILR stage, but the requirements still apply at naturalisation.",
+  },
+  {
+    question: "What happens after I am approved — and what if I am refused?",
+    answer:
+      "If approved, you are invited to a citizenship ceremony where you make an oath or affirmation and pledge; your citizenship dates from the ceremony. If an application is refused, you can usually ask for reconsideration of the decision or make a fresh, better-evidenced application addressing the reason for refusal — there is no general right of appeal against a naturalisation refusal. The Home Office application fee is set by the Home Office and changes periodically, so check the current amount at gov.uk.",
+  },
+];
 
 export default function CitizenshipWizardPage() {
   return (
@@ -51,6 +89,7 @@ export default function CitizenshipWizardPage() {
           slug: AUTHOR.slug,
         })}
       />
+      <JsonLd data={faqPageSchema(CITIZENSHIP_FAQS)} />
 
       {/* Breadcrumb */}
       <section className="bg-slate-50/60 border-b border-slate-100">
@@ -216,6 +255,104 @@ export default function CitizenshipWizardPage() {
               </li>
             </ul>
           </div>
+        </div>
+      </section>
+
+      {/* Depth: understanding naturalisation */}
+      <section className="py-10 lg:py-14 bg-slate-50/40 border-t border-slate-100">
+        <div className="max-w-[920px] mx-auto px-6 lg:px-8">
+          <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">
+            Understanding British citizenship
+          </p>
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">
+            Naturalisation and registration, explained
+          </h2>
+          <div className="mt-5 space-y-4 text-base text-slate-600 leading-relaxed">
+            <p>
+              Becoming a British citizen as an adult almost always means{" "}
+              <strong>naturalisation</strong> under the British Nationality Act 1981. It is the
+              final step after settlement &mdash; you must already hold indefinite leave to remain
+              or settled status, and meet a set of residence, character and knowledge requirements.
+              Children usually become British a different way (registration), and some people are
+              already British by birth or descent without realising it.
+            </p>
+          </div>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">The main routes</h3>
+          <ul className="mt-3 space-y-2 text-base text-slate-600 leading-relaxed list-disc pl-5">
+            <li><strong>Naturalisation under section 6(1)</strong> &mdash; the standard adult route, based on 5 years&rsquo; residence plus holding ILR/settled status for 12 months.</li>
+            <li><strong>Naturalisation under section 6(2)</strong> &mdash; for spouses and civil partners of British citizens, based on 3 years&rsquo; residence; the extra 12-month wait after settlement does not apply.</li>
+            <li><strong>Registration of children</strong> &mdash; a separate application family for those under 18, with its own rules.</li>
+          </ul>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">Residence and holding settled status</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            Most adults need <strong>5 years&rsquo;</strong> lawful residence (or <strong>3 years</strong>{" "}
+            if married to a British citizen) and, for the section 6(1) route, to have held ILR or
+            settled status for <strong>12 months</strong> before applying. EU Settlement Scheme settled
+            status can count as the settled status required.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">Absences from the UK</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            There are published limits on the days you can spend outside the UK during your qualifying
+            period, and the Home Office can exercise discretion in some cases. The day-count rules
+            change and are applied carefully, so check the current naturalisation guidance on{" "}
+            <a href="https://www.gov.uk/apply-citizenship-indefinite-leave-to-remain" target="_blank" rel="noopener noreferrer" className="text-brand-red hover:underline">GOV.UK</a>{" "}
+            and take advice if your absences are borderline.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">Life in the UK Test and English</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            Most applicants must have passed the <strong>Life in the UK Test</strong> and meet the{" "}
+            <strong>English language requirement</strong> (usually B1 speaking and listening), unless
+            exempt by age or another ground.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">Good character</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            Applicants aged 10 or over must satisfy the <strong>good-character requirement</strong>.
+            This looks at criminal history, immigration breaches, deception and financial matters
+            among others, assessed on the whole picture. Where there is any history, it is best
+            addressed properly rather than left to chance.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">The ceremony and dual nationality</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            If approved you attend a <strong>citizenship ceremony</strong> and make an oath or
+            affirmation and pledge; your citizenship dates from that ceremony. The UK allows{" "}
+            <strong>dual nationality</strong>, so you do not have to renounce another citizenship as
+            far as UK law is concerned &mdash; though you should check whether your country of origin
+            permits it. The Home Office application fee is set by the Home Office and changes
+            periodically &mdash; check the current amount at{" "}
+            <a href="https://www.gov.uk/apply-citizenship-indefinite-leave-to-remain" target="_blank" rel="noopener noreferrer" className="text-brand-red hover:underline">gov.uk</a>.
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-10 lg:py-14 border-t border-slate-100">
+        <div className="max-w-[920px] mx-auto px-6 lg:px-8">
+          <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">
+            Frequently asked questions
+          </p>
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">
+            British citizenship &mdash; common questions
+          </h2>
+          <dl className="mt-6 divide-y divide-slate-100">
+            {CITIZENSHIP_FAQS.map((f) => (
+              <div key={f.question} className="py-5">
+                <dt className="text-lg font-bold text-slate-900">{f.question}</dt>
+                <dd className="mt-2 text-base text-slate-600 leading-relaxed">{f.answer}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-6 text-sm text-slate-500 leading-relaxed">
+            This page is general information about British citizenship, reviewed by{" "}
+            <Link href="/our-team/" className="font-semibold text-slate-700 hover:text-brand-red">{AUTHOR.name}</Link>{" "}
+            (SRA #{AUTHOR.sraNumber}). It is not a substitute for tailored legal advice, and outcomes
+            depend on the full evidence of your case.
+          </p>
         </div>
       </section>
 

@@ -3,12 +3,46 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle2, ArrowRight, Phone } from "lucide-react";
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
+import { JsonLd, faqPageSchema } from "@/components/v6/jsonld";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Our Fees",
-  description: "Clear, transparent legal fees. Fixed pricing for immigration services. No win, no fee for housing and personal injury claims.",
+  description: "Clear, transparent legal fees. Fixed-fee immigration work agreed in writing before we start; no win, no fee for housing disrepair and personal injury; legal aid where available.",
 };
+
+const FEE_FAQS = [
+  {
+    question: "Are your immigration fees really fixed?",
+    answer:
+      "Yes. For most immigration work we agree a fixed fee in writing before any work begins, so you are not exposed to open-ended hourly billing. The figures shown are starting points (“from”) for straightforward cases; your exact fixed fee is confirmed after a free assessment of your circumstances, and any higher fee for a more complex case is agreed with you in advance.",
+  },
+  {
+    question: "Are Home Office and court fees included in your price?",
+    answer:
+      "No. Government charges — the Home Office application fee, the Immigration Health Surcharge, biometric enrolment, and any tribunal or court fees — are set by the government and paid in addition to our legal fee. These amounts change periodically, so check the current figures on GOV.UK; we will always tell you which apply to your case.",
+  },
+  {
+    question: "What does “no win, no fee” mean for housing or personal injury claims?",
+    answer:
+      "For most housing disrepair and personal injury claims we can act under a Conditional Fee Agreement (“no win, no fee”). You pay nothing up front, and where the claim succeeds our costs are usually recovered from the other side, typically with After the Event insurance in place. We explain any deduction from your compensation before you sign anything.",
+  },
+  {
+    question: "Could I get legal aid?",
+    answer:
+      "Some work — including asylum claims and certain immigration detention matters — may be covered by legal aid, subject to the means and merits tests set by the Legal Aid Agency. We can check whether you are likely to qualify; you can also read the current eligibility rules on GOV.UK.",
+  },
+  {
+    question: "Is the initial consultation free?",
+    answer:
+      "Yes. We offer a free initial consultation in which a qualified solicitor assesses your case, explains your options honestly, and gives you a clear fee quote. There is no obligation to instruct us afterwards.",
+  },
+  {
+    question: "What happens if my case turns out to be more complex?",
+    answer:
+      "If your matter needs more work than a standard case — for example a previous refusal, extensive evidence, or an appeal — we agree any higher fixed fee with you in writing before that work starts. You will not receive a surprise bill.",
+  },
+];
 
 const feeCategories = [
   {
@@ -57,6 +91,7 @@ const included = [
 export default function V1FeesPage() {
   return (
     <>
+      <JsonLd data={faqPageSchema(FEE_FAQS)} />
       {/* Hero */}
       <section className="bg-brand-navy py-12 lg:py-16">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
@@ -122,6 +157,62 @@ export default function V1FeesPage() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* How our pricing works */}
+      <section className="py-12 lg:py-16">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8">
+          <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">How Our Pricing Works</p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy leading-tight">Clear fees, agreed before we start</h2>
+
+          <h3 className="mt-8 text-lg font-bold text-brand-navy">Fixed fees, agreed in writing</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            For most immigration work we agree a <strong>fixed fee in writing</strong> before any work
+            begins, set out in your client-care letter. The prices above are starting points for
+            straightforward cases; your exact fee is confirmed after a free assessment. Where a case is
+            more complex &mdash; a previous refusal, extensive evidence, or an appeal &mdash; any higher
+            fixed fee is agreed with you in advance, never billed as a surprise.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-brand-navy">Government fees are separate</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            Home Office application fees, the Immigration Health Surcharge, biometric enrolment, and any
+            tribunal or court fees are set by the government and paid in addition to our legal fee. These
+            amounts change periodically, so confirm the current figures at{" "}
+            <a href="https://www.gov.uk" target="_blank" rel="noopener noreferrer" className="text-brand-red hover:underline">gov.uk</a>.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-brand-navy">No win, no fee for housing and injury claims</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            Most housing disrepair and personal injury claims can be run under a Conditional Fee
+            Agreement. You pay nothing up front; where the claim succeeds our costs are usually recovered
+            from the other side, typically with After the Event insurance in place. We explain any
+            deduction from your compensation before you sign.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-brand-navy">Legal aid where available</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            Some work &mdash; including asylum and certain detention matters &mdash; may be covered by
+            legal aid, subject to the means and merits tests set by the Legal Aid Agency. We can check
+            whether you are likely to qualify.
+          </p>
+        </div>
+      </section>
+
+      {/* Fees FAQ */}
+      <section className="py-12 lg:py-16 bg-slate-50 border-t border-slate-100">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8">
+          <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">Fees &mdash; Common Questions</p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy leading-tight">Your questions about cost</h2>
+          <dl className="mt-8 divide-y divide-slate-200">
+            {FEE_FAQS.map((f) => (
+              <div key={f.question} className="py-5">
+                <dt className="text-base font-bold text-brand-navy">{f.question}</dt>
+                <dd className="mt-2 text-base text-slate-600 leading-relaxed">{f.answer}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 

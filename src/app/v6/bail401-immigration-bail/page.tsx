@@ -30,14 +30,29 @@ const faqs = [
       "Bail hearings are usually listed quickly after a valid application is made. A solicitor can advise on timing for your case.",
   },
   {
+    question: "Can I apply for bail more than once?",
+    answer:
+      "Yes. If bail is refused you can usually apply again, particularly where your circumstances have changed — for example a new release address, a new Financial Condition Supporter, or the passage of time without removal. The Tribunal can restrict repeat applications within a short period if there has been no material change, so timing and fresh evidence matter.",
+  },
+  {
+    question: "What does a Financial Condition Supporter actually do?",
+    answer:
+      "A Financial Condition Supporter (formerly called a surety) offers a sum of money that may be forfeited if you breach your bail conditions. They provide evidence of who they are, their relationship to you, and that the funds are genuinely available. A credible supporter who knows you well can reassure the Tribunal that you will comply with your conditions.",
+  },
+  {
+    question: "What if I have removal directions?",
+    answer:
+      "Where removal is genuinely imminent, the Tribunal can refuse bail and, within a defined window before a removal date, the Secretary of State's consent may be required for a grant. Imminent removal is only one factor, and detention must still be lawful, so it is important to get advice quickly about both bail and any challenge to the removal itself.",
+  },
+  {
     question: "Do I need a Financial Condition Supporter?",
     answer:
       "Not always, but offering one can strengthen an application. A solicitor can advise on what your case needs.",
   },
   {
-    question: "What happens if bail is refused?",
+    question: "How much does an immigration bail application cost?",
     answer:
-      "You can usually apply again, particularly if circumstances change. Get advice on the best timing and what to strengthen.",
+      "There is no Tribunal fee to apply for immigration bail, but you may have legal costs for representation. Legal aid may be available for detained immigration and bail work depending on your means and the merits of your case — check the current position on GOV.UK and ask a solicitor whether you qualify.",
   },
 ];
 
@@ -59,6 +74,45 @@ export default function Bail401Page() {
         </p>
         <p>
           Immigration bail allows release from detention subject to <strong>conditions</strong> &mdash; for example reporting, a residence requirement, electronic monitoring, or a financial condition.
+        </p>
+
+        <h2>The legal basis for immigration bail</h2>
+        <p>
+          Immigration bail is governed by <strong>Schedule 10 to the Immigration Act 2016</strong>. Schedule 10 replaced the older patchwork of &ldquo;temporary admission&rdquo; and bail provisions with a single framework. Under it, a person who is liable to be detained under immigration powers may instead be granted immigration bail &mdash; whether or not they are actually in detention at the time.
+        </p>
+        <p>
+          There are two routes to a grant. The <strong>Secretary of State</strong> (the Home Office) can grant bail directly, and the <strong>First-tier Tribunal</strong> can grant bail on application. The BAIL401 is the form used to apply to the Tribunal. Where a removal date is set within a short, defined window, Schedule 10 can require the Secretary of State&rsquo;s consent before the Tribunal grants bail. You can read Schedule 10 on <a href="https://www.legislation.gov.uk/ukpga/2016/19/schedule/10" rel="nofollow">legislation.gov.uk</a>.
+        </p>
+
+        <h2>Bail conditions</h2>
+        <p>A grant of immigration bail almost always comes with conditions. Schedule 10 allows the Tribunal or the Home Office to impose conditions including:</p>
+        <ul>
+          <li><strong>Reporting</strong> &mdash; attending a reporting centre or police station at set intervals.</li>
+          <li><strong>Residence</strong> &mdash; living at a specified address.</li>
+          <li><strong>Electronic monitoring</strong> &mdash; in some cases a tag or location-monitoring condition.</li>
+          <li><strong>A financial condition</strong> &mdash; a sum that may be forfeited on a breach, often supported by a Financial Condition Supporter.</li>
+          <li><strong>Restrictions on study or work</strong> &mdash; conditions limiting employment or study.</li>
+        </ul>
+        <p>Conditions must be appropriate to the individual case, and a solicitor can argue for proportionate conditions that you can realistically comply with.</p>
+
+        <h2>The Financial Condition Supporter</h2>
+        <p>
+          A <strong>Financial Condition Supporter</strong> (previously called a surety) offers a sum of money that can be forfeited if you breach your conditions. They do not usually pay anything up front; instead they promise the sum and provide evidence that the money is genuinely available. The Tribunal will want to see who the supporter is, how they know you, and that they understand their obligations &mdash; so supporting documents such as identification, proof of address, and evidence of funds are important. A credible supporter who knows you well can reassure the Tribunal that you are likely to comply.
+        </p>
+
+        <h2>What the Tribunal weighs</h2>
+        <p>When deciding a bail application, the Tribunal balances a range of factors, including:</p>
+        <ul>
+          <li>the <strong>risk of absconding</strong> and your likelihood of complying with conditions;</li>
+          <li>your <strong>compliance history</strong> with immigration controls;</li>
+          <li>whether <strong>removal is imminent</strong> and realistically in prospect;</li>
+          <li>any risk to the public; and</li>
+          <li>your <strong>ties to the UK</strong>, including family and private life (Article 8 considerations).</li>
+        </ul>
+
+        <h2>After a grant or refusal</h2>
+        <p>
+          If bail is granted, you are released subject to your conditions, and breaching them can lead to re-detention. If bail is <strong>refused</strong>, you can usually apply again &mdash; particularly where circumstances change &mdash; though the Tribunal can limit repeat applications within a short period where there has been no material change. Separately, where detention is unlawful (for example it has lasted unreasonably long or removal is no longer realistically in prospect), it can be challenged by <strong>judicial review</strong>, which is a different route from a bail application and can in principle lead to release and a damages claim.
         </p>
 
         <h2>How an immigration bail application works</h2>
@@ -85,10 +139,16 @@ export default function Bail401Page() {
         <h2>Frequently asked questions</h2>
         <h3>How long does it take to get a bail hearing?</h3>
         <p>Bail hearings are usually listed quickly after a valid application is made. A solicitor can advise on timing for your case.</p>
+        <h3>Can I apply for bail more than once?</h3>
+        <p>Yes. If bail is refused you can usually apply again, particularly where your circumstances have changed &mdash; for example a new release address, a new Financial Condition Supporter, or the passage of time without removal. The Tribunal can restrict repeat applications within a short period if there has been no material change, so timing and fresh evidence matter.</p>
+        <h3>What does a Financial Condition Supporter actually do?</h3>
+        <p>A Financial Condition Supporter (formerly called a surety) offers a sum of money that may be forfeited if you breach your bail conditions. They provide evidence of who they are, their relationship to you, and that the funds are genuinely available. A credible supporter who knows you well can reassure the Tribunal that you will comply with your conditions.</p>
+        <h3>What if I have removal directions?</h3>
+        <p>Where removal is genuinely imminent, the Tribunal can refuse bail and, within a defined window before a removal date, the Secretary of State&rsquo;s consent may be required for a grant. Imminent removal is only one factor, and detention must still be lawful, so it is important to get advice quickly about both bail and any challenge to the removal itself.</p>
         <h3>Do I need a Financial Condition Supporter?</h3>
         <p>Not always, but offering one can strengthen an application. A solicitor can advise on what your case needs.</p>
-        <h3>What happens if bail is refused?</h3>
-        <p>You can usually apply again, particularly if circumstances change. Get advice on the best timing and what to strengthen.</p>
+        <h3>How much does an immigration bail application cost?</h3>
+        <p>There is no Tribunal fee to apply for immigration bail, but you may have legal costs for representation. Legal aid may be available for detained immigration and bail work depending on your means and the merits of your case &mdash; check the current position on GOV.UK and ask a solicitor whether you qualify.</p>
 
         <h2>Who reviewed this page</h2>
         <p>

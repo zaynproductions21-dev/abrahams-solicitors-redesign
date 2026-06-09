@@ -74,6 +74,54 @@ export default function V1AboutPage() {
         </div>
       </section>
 
+      {/* What we do */}
+      <section className="py-12 lg:py-16 border-t border-slate-100">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8">
+          <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">What We Do</p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy leading-tight">Three areas of law, handled properly</h2>
+          <div className="mt-6 space-y-4 text-base text-slate-600 leading-relaxed">
+            <p>
+              We focus on three areas where good preparation makes a real difference to people&rsquo;s
+              lives, and where being SRA-regulated matters.
+            </p>
+          </div>
+
+          <h3 className="mt-8 text-lg font-bold text-brand-navy">Immigration &amp; nationality</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            Spouse and family visas under Appendix FM, Indefinite Leave to Remain, British citizenship,
+            sponsor licences, asylum and protection claims, visa refusals and appeals, and urgent
+            detention work. We prepare each application against the current Immigration Rules and explain
+            honestly where a requirement is difficult to meet.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-brand-navy">Housing disrepair</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            Claims against social and private landlords who have failed to deal with damp, mould,
+            leaks, heating failures and other disrepair &mdash; using a landlord&rsquo;s repairing
+            obligations under section 11 of the Landlord and Tenant Act 1985 and the Homes (Fitness for
+            Human Habitation) Act 2018, and following the Pre-Action Protocol for Housing Conditions
+            Claims. Most housing claims are run on a no-win, no-fee basis.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-brand-navy">Personal injury</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            Workplace accidents, road traffic claims and serious injury, also on a no-win, no-fee basis
+            in suitable cases. We assess each claim on its facts and explain any deduction from your
+            compensation before you proceed.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-brand-navy">Regulated and accountable</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            Abrahams Solicitors is authorised and regulated by the Solicitors Regulation Authority
+            (firm No. 809071), and each of our solicitors appears on the{" "}
+            <Link href="/our-team/" className="text-brand-red hover:underline">SRA register</Link>. If
+            something ever goes wrong, we have a clear complaints procedure and you can also raise
+            concerns with the SRA or the Legal Ombudsman. Past results do not guarantee any particular
+            outcome &mdash; every matter is decided on its own facts.
+          </p>
+        </div>
+      </section>
+
       {/* Meet the Team */}
       <section className="py-12 lg:py-16 bg-slate-50/60 border-t border-slate-100">
         <div className="max-w-3xl mx-auto px-6 lg:px-8">

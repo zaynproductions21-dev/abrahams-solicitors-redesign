@@ -22,7 +22,7 @@ import { TrustBadges } from "@/components/v6/trust-badges";
 import { TeamStrip } from "@/components/v6/team-strip";
 import { WizardWidget } from "@/components/v6/wizard-widget";
 import { ILR_WIZARD_CONFIG } from "@/lib/wizards/ilr-config";
-import { JsonLd, breadcrumbSchema, personSchema } from "@/components/v6/jsonld";
+import { JsonLd, breadcrumbSchema, personSchema, faqPageSchema } from "@/components/v6/jsonld";
 import { team } from "@/lib/team";
 import {
   ChevronRight, ShieldCheck, Info, AlertCircle, Calendar,
@@ -31,6 +31,44 @@ import {
 const PAGE_URL = "https://www.abrahamssolicitors.co.uk/ilr-wizard/";
 const LAST_REVIEWED = "May 2026";
 const AUTHOR = team.find((t) => t.slug === "imran-shah")!;
+
+const ILR_FAQS = [
+  {
+    question: "How long do I need to have lived in the UK to apply for ILR?",
+    answer:
+      "It depends on your route. Most work and family routes qualify for indefinite leave to remain after 5 years of continuous lawful residence; the long-residence route is based on 10 years of continuous lawful residence; and some routes (for example certain Global Talent and partner-of-British-citizen cases) can be shorter. The wizard helps identify which route fits your circumstances — always confirm the current qualifying period for your route on GOV.UK.",
+  },
+  {
+    question: "How many days can I spend outside the UK without breaking continuous residence?",
+    answer:
+      "For most settlement routes the rule is no more than 180 days' absence in any rolling 12-month period across the qualifying years. The way absences are counted has changed over time and differs by route, so excessive or borderline absences should be checked carefully — see the Home Office long-residence and continuous-residence guidance on GOV.UK, and take advice if you are close to the limit.",
+  },
+  {
+    question: "Do I have to pass the Life in the UK Test and an English test for ILR?",
+    answer:
+      "Yes — most ILR applicants must pass the Life in the UK Test and meet the English language requirement (usually B1 speaking and listening), unless they are exempt (for example by age, or on certain protection routes). A relevant UK degree can meet the English requirement but does not remove the Life in the UK Test.",
+  },
+  {
+    question: "What happens if I have an absence over the limit, a gap in my leave, or a complex history?",
+    answer:
+      "Excess absences, gaps in leave, time on different visa categories, or suitability issues (such as previous refusals or criminal matters) do not automatically end your eligibility, but they need careful handling. Where the wizard reaches one of these fact patterns it routes you to a solicitor rather than guessing, because the outcome turns on the full evidence.",
+  },
+  {
+    question: "How much does an ILR application cost?",
+    answer:
+      "The Home Office application fee (and any optional priority service) is set by the Home Office and changes periodically, so check the current amount at gov.uk before you apply. The Immigration Health Surcharge is generally not payable for ILR itself. Our own fixed fee for preparing the application is agreed in writing before any work begins.",
+  },
+  {
+    question: "Can I travel outside the UK while my ILR application is pending?",
+    answer:
+      "It is usually best not to. If your existing leave expires while the application is pending you remain in the UK lawfully under section 3C leave, but that protection does not cover travel — leaving the UK can be treated as withdrawing the application. Speak to a solicitor before making any travel plans during the decision period.",
+  },
+  {
+    question: "How soon after getting ILR can I apply for British citizenship?",
+    answer:
+      "Most people can apply for naturalisation 12 months after being granted ILR, provided they meet the residence, good-character and other requirements (those married to a British citizen may not need to wait the extra 12 months). We can help you plan the timing of a citizenship application after settlement.",
+  },
+];
 
 export default function IlrWizardPage() {
   return (
@@ -52,6 +90,7 @@ export default function IlrWizardPage() {
           slug: AUTHOR.slug,
         })}
       />
+      <JsonLd data={faqPageSchema(ILR_FAQS)} />
 
       {/* Breadcrumb */}
       <section className="bg-slate-50/60 border-b border-slate-100">
@@ -205,6 +244,101 @@ export default function IlrWizardPage() {
               </li>
             </ul>
           </div>
+        </div>
+      </section>
+
+      {/* Depth: understanding ILR */}
+      <section className="py-10 lg:py-14 bg-slate-50/40 border-t border-slate-100">
+        <div className="max-w-[920px] mx-auto px-6 lg:px-8">
+          <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">
+            Understanding UK settlement
+          </p>
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">
+            Indefinite Leave to Remain (ILR), explained
+          </h2>
+          <div className="mt-5 space-y-4 text-base text-slate-600 leading-relaxed">
+            <p>
+              Indefinite Leave to Remain &mdash; also called <strong>settlement</strong> &mdash; is
+              permanent immigration status in the UK. Once you have ILR there is no time limit on your
+              stay, you are free of most visa conditions, and after a further qualifying period you can
+              usually apply for British citizenship. Because settlement is decided on the whole of your
+              immigration history, the route you qualify under and the continuity of your residence
+              both matter.
+            </p>
+          </div>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">The main routes to ILR</h3>
+          <ul className="mt-3 space-y-2 text-base text-slate-600 leading-relaxed list-disc pl-5">
+            <li><strong>Five-year work routes</strong> &mdash; for example Skilled Worker, after five years of continuous qualifying residence.</li>
+            <li><strong>Five-year family routes</strong> &mdash; partner or parent under Appendix FM.</li>
+            <li><strong>Long residence</strong> &mdash; based on a continuous period of lawful residence (the qualifying period and how it is counted are set out in the Home Office long-residence guidance).</li>
+            <li><strong>Protection routes</strong> &mdash; settlement following refugee status or humanitarian protection.</li>
+            <li><strong>Other routes</strong> &mdash; including Global Talent and certain business routes, some of which can settle sooner.</li>
+          </ul>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            Confirm the current qualifying period for your route on{" "}
+            <a href="https://www.gov.uk/indefinite-leave-to-remain" target="_blank" rel="noopener noreferrer" className="text-brand-red hover:underline">GOV.UK</a>.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">Continuous residence and absences</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            Most settlement routes require your residence to have been continuous, with no more than{" "}
+            <strong>180 days&rsquo; absence in any rolling 12-month period</strong>. The way absences
+            are counted has changed over time and varies by route, so if you are close to the limit, or
+            have gaps in your leave, that needs checking carefully before you apply.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">Life in the UK Test and English language</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            Most applicants must pass the <strong>Life in the UK Test</strong> and meet the{" "}
+            <strong>English language requirement</strong> (usually B1 speaking and listening), unless
+            exempt by age or on certain protection routes. A relevant UK degree can satisfy the English
+            requirement but does not remove the Life in the UK Test.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">Suitability and good character</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            The Home Office also assesses suitability &mdash; criminal history, previous breaches or
+            deception, and similar issues can affect an application. These do not automatically end your
+            eligibility, but they should be addressed properly rather than left to chance.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">Fees, processing and what happens after</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            The Home Office application fee and any optional priority service are set by the Home Office
+            and change periodically &mdash; check the current amounts at{" "}
+            <a href="https://www.gov.uk/indefinite-leave-to-remain" target="_blank" rel="noopener noreferrer" className="text-brand-red hover:underline">gov.uk</a>.
+            Once granted, ILR is evidenced digitally (or by a biometric residence permit on older
+            grantings). After 12 months with settled status &mdash; and subject to the good-character and
+            residence rules &mdash; many people go on to apply for British citizenship. ILR can lapse if
+            you spend a long continuous period outside the UK, so keep that in mind once settled.
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-10 lg:py-14 border-t border-slate-100">
+        <div className="max-w-[920px] mx-auto px-6 lg:px-8">
+          <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">
+            Frequently asked questions
+          </p>
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">
+            UK settlement (ILR) &mdash; common questions
+          </h2>
+          <dl className="mt-6 divide-y divide-slate-100">
+            {ILR_FAQS.map((f) => (
+              <div key={f.question} className="py-5">
+                <dt className="text-lg font-bold text-slate-900">{f.question}</dt>
+                <dd className="mt-2 text-base text-slate-600 leading-relaxed">{f.answer}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-6 text-sm text-slate-500 leading-relaxed">
+            This page is general information about UK settlement, reviewed by{" "}
+            <Link href="/our-team/" className="font-semibold text-slate-700 hover:text-brand-red">{AUTHOR.name}</Link>{" "}
+            (SRA #{AUTHOR.sraNumber}). It is not a substitute for tailored legal advice, and outcomes
+            depend on the full evidence of your case.
+          </p>
         </div>
       </section>
 
