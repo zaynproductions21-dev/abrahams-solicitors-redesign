@@ -157,8 +157,8 @@ export function V6Header() {
             </nav>
 
             <div className="hidden xl:flex items-center gap-3">
-              <DynamicCallLink className="inline-flex items-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg px-5 h-10 text-sm font-semibold">
-                <Phone className="h-4 w-4" />
+              <DynamicCallLink className="inline-flex items-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg px-5 h-10 text-sm font-semibold whitespace-nowrap">
+                <Phone className="h-4 w-4 shrink-0" />
                 <DynamicPhoneText />
               </DynamicCallLink>
             </div>
