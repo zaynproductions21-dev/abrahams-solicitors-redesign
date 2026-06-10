@@ -34,11 +34,42 @@ export function toE164(raw: string, defaultCountry: "+44" = "+44"): string | nul
   return candidate;
 }
 
+const EC_USER_DATA_KEY = "abrahams-ec-user-data";
+
+// Persist user_data to sessionStorage after a form submit so that
+// non-form conversions (WhatsApp click, call click) in the same session
+// can also carry Enhanced Conversion signals.
+function storeEcUserData(user_data: Record<string, string>): void {
+  try {
+    if (Object.keys(user_data).length > 0) {
+      sessionStorage.setItem(EC_USER_DATA_KEY, JSON.stringify(user_data));
+    }
+  } catch { /* sessionStorage unavailable — non-fatal */ }
+}
+
+// Retrieve previously stored user_data (from any form submit this session).
+function loadEcUserData(): Record<string, string> | null {
+  try {
+    const raw = sessionStorage.getItem(EC_USER_DATA_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
 export function pushWhatsAppClick(): void {
   if (typeof window === "undefined") return;
   window.dataLayer = window.dataLayer || [];
   const { gclid, gbraid, wbraid, msclkid } = getStoredGclid();
   const traffic_source = getTrafficSource();
+
+  // If this session included a form submit, enrich the conversion with the
+  // stored user_data so Enhanced Conversions can match this WhatsApp click.
+  const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+  const stored = loadEcUserData();
+  if (typeof w.gtag === "function" && stored) {
+    w.gtag("set", "user_data", stored);
+  }
 
   // Fire dataLayer event (GTM passthrough for any existing tags)
   window.dataLayer.push({
@@ -52,7 +83,6 @@ export function pushWhatsAppClick(): void {
 
   // Fire Google Ads conversion directly — AW-17750102452/xv2GCK2B67gcELSj9I9C
   // "WhatsApp Click" conversion action (value £24, Primary, CONTACT category)
-  const w = window as unknown as { gtag?: (...args: unknown[]) => void };
   if (typeof w.gtag === "function") {
     w.gtag("event", "conversion", {
       send_to: "AW-17750102452/xv2GCK2B67gcELSj9I9C",
@@ -101,9 +131,12 @@ export function pushFormSubmit({
   // Set user_data on the gtag tracker so Enhanced Conversions picks it up
   // when GTM fires the Google Ads conversion tag in response to ec_form_submit.
   // gtag('set') does not fire a conversion — it just enriches the next one.
+  // Also persist to sessionStorage so non-form conversions (WhatsApp, call)
+  // later in the same session can carry the same Enhanced Conversion signal.
   const w = window as unknown as { gtag?: (...args: unknown[]) => void };
-  if (typeof w.gtag === "function" && Object.keys(user_data).length > 0) {
-    w.gtag("set", "user_data", user_data);
+  if (Object.keys(user_data).length > 0) {
+    if (typeof w.gtag === "function") w.gtag("set", "user_data", user_data);
+    storeEcUserData(user_data);
   }
 
   window.dataLayer.push({
