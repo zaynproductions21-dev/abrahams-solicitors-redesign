@@ -98,6 +98,14 @@ export function pushFormSubmit({
     }
   }
 
+  // Set user_data on the gtag tracker so Enhanced Conversions picks it up
+  // when GTM fires the Google Ads conversion tag in response to ec_form_submit.
+  // gtag('set') does not fire a conversion — it just enriches the next one.
+  const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+  if (typeof w.gtag === "function" && Object.keys(user_data).length > 0) {
+    w.gtag("set", "user_data", user_data);
+  }
+
   window.dataLayer.push({
     event: "ec_form_submit",
     user_data,
