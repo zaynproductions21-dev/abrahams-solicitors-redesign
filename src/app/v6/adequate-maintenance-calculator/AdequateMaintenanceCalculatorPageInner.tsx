@@ -423,6 +423,13 @@ export default function AdequateMaintenanceCalculatorPageInner() {
   const [housingAmount, setHousingAmount] = useState("");
   const [calculated, setCalculated] = useState(false);
 
+  // Wizard state — show one step at a time to eliminate vertical scroll.
+  // currentStep advances on user action; previous steps collapse to a
+  // one-line summary with a "change" affordance. showAll bypasses the
+  // wizard for users who want to see every question at once.
+  const [currentStep, setCurrentStep] = useState<1 | 2 | 3 | 4>(1);
+  const [showAll, setShowAll] = useState(false);
+
   // 52 / 12 = 4.333… weeks per month. Multiply monthly by 12/52 to get
   // weekly equivalent; weekly stays weekly. This is the HM Treasury /
   // DWP convention for benefit-rate conversion.
@@ -606,179 +613,361 @@ export default function AdequateMaintenanceCalculatorPageInner() {
             Run the test on your figures
           </h2>
           <p className="mt-3 text-base text-slate-600 leading-relaxed">
-            Four questions. We&rsquo;ll show you whether your household clears the adequate maintenance
-            threshold, sits in the marginal zone, or falls short &mdash; with an honest read on what
-            to do next.
+            Four quick questions. We&rsquo;ll show you whether your household clears the adequate
+            maintenance threshold, sits in the marginal zone, or falls short.
           </p>
 
-          <div className="mt-6 space-y-4">
-            {/* Step 1 — Sponsor benefit gate */}
-            <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6">
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Step 1 of 4 &middot; Sponsor benefit gate</p>
-              <h3 className="text-lg font-black text-slate-900 leading-tight">
-                Does your UK sponsor receive any of these qualifying benefits?
-              </h3>
-              <p className="mt-2 text-sm text-slate-500">
-                Adequate maintenance only applies if at least one qualifying benefit is in payment to the sponsor.
-              </p>
-              <ul className="mt-3 grid sm:grid-cols-2 gap-x-4 gap-y-1 text-xs text-slate-600">
-                {QUALIFYING_BENEFITS.map((b) => (
-                  <li key={b} className="flex items-start gap-1.5">
-                    <CheckCircle2 className="h-3 w-3 text-brand-red shrink-0 mt-0.5" />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {[
-                  { value: "yes", label: "Yes" },
-                  { value: "no", label: "No" },
-                  { value: "not-sure", label: "Not sure" },
-                ].map((o) => (
-                  <button
-                    key={o.value}
-                    type="button"
-                    onClick={() => { setSponsorBenefit(o.value as "yes" | "no" | "not-sure"); setCalculated(false); }}
-                    className={`px-4 py-2 rounded-lg border text-sm font-semibold transition-colors ${
-                      sponsorBenefit === o.value
-                        ? "border-brand-red bg-brand-red/5 text-slate-900"
-                        : "border-slate-200 text-slate-700 hover:border-slate-300"
-                    }`}
-                  >
-                    {o.label}
-                  </button>
-                ))}
+          {/* ─── Wizard progress bar ─── */}
+          {!showAll && (
+            <div className="mt-6 mb-4 flex items-center justify-between gap-4">
+              <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+                {[1, 2, 3, 4].map((n) => {
+                  const isCurrent = currentStep === n;
+                  const isDone = n < currentStep;
+                  return (
+                    <div key={n} className="flex items-center gap-2 sm:gap-3 flex-1">
+                      <div
+                        className={`flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-colors ${
+                          isDone
+                            ? "bg-brand-red text-white"
+                            : isCurrent
+                              ? "bg-brand-red/10 text-brand-red border-2 border-brand-red"
+                              : "bg-slate-200 text-slate-500"
+                        }`}
+                        aria-label={`Step ${n}${isDone ? " — done" : isCurrent ? " — current" : ""}`}
+                      >
+                        {isDone ? <CheckCircle2 className="h-4 w-4" /> : n}
+                      </div>
+                      {n < 4 && (
+                        <div className={`h-0.5 flex-1 rounded-full ${isDone ? "bg-brand-red" : "bg-slate-200"}`} />
+                      )}
+                    </div>
+                  );
+                })}
               </div>
-
-              {sponsorBenefit === "no" && (
-                <div className="mt-4 p-4 rounded-xl bg-amber-50 border border-amber-200 text-sm text-amber-900 leading-relaxed">
-                  <strong>Adequate maintenance doesn&rsquo;t apply to your case.</strong> Without a
-                  qualifying benefit in payment, the standard £29,000 minimum income requirement
-                  applies. See our{" "}
-                  <Link href="/flr-visa-extension/" className="font-bold underline">FLR(M) Visa Extension</Link>{" "}
-                  page or{" "}
-                  <Link href="/uk-spouse-visa/" className="font-bold underline">spouse visa</Link>{" "}
-                  page for the standard route.
-                </div>
-              )}
-              {sponsorBenefit === "not-sure" && (
-                <div className="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-700 leading-relaxed">
-                  <strong>That&rsquo;s normal.</strong> If you&rsquo;re not sure whether the sponsor&rsquo;s
-                  benefit qualifies, book a free 15-minute call below and we&rsquo;ll check the award
-                  letter together. Continue with the calculator anyway and we&rsquo;ll flag the result
-                  as needing solicitor review.
-                </div>
-              )}
-            </div>
-
-            {/* Step 2 — Family composition */}
-            <div className={`bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 ${sponsorBenefit === "no" ? "opacity-40 pointer-events-none" : ""}`}>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Step 2 of 4 &middot; Household</p>
-              <h3 className="text-lg font-black text-slate-900 leading-tight">
-                How many people will live in the UK household once the applicant arrives?
-              </h3>
-              <p className="mt-2 text-sm text-slate-500">
-                Count only the people who will share the home: the UK sponsor, the visa applicant,
-                and any dependent children (including British citizen children). Adult relatives
-                who live separately don&rsquo;t count, even if they help financially. Children means
-                anyone under 18 still living with you.
-              </p>
-              <select
-                value={family}
-                onChange={(e) => { setFamily(e.target.value as FamilyKey | ""); setCalculated(false); }}
-                className="mt-3 w-full px-3 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red bg-white"
+              <button
+                type="button"
+                onClick={() => setShowAll(true)}
+                className="hidden sm:inline text-xs font-semibold text-slate-500 hover:text-brand-red underline-offset-2 hover:underline whitespace-nowrap"
               >
-                <option value="">Choose your household type…</option>
-                {Object.entries(IS_RATES).map(([key, r]) => (
-                  <option key={key} value={key}>
-                    {r.label} &mdash; {moneyGbp(r.weekly)}/week threshold
-                  </option>
-                ))}
-              </select>
+                Show all questions
+              </button>
             </div>
+          )}
+          {showAll && (
+            <div className="mt-6 mb-4 flex items-center justify-end">
+              <button
+                type="button"
+                onClick={() => { setShowAll(false); setCurrentStep(1); }}
+                className="text-xs font-semibold text-slate-500 hover:text-brand-red underline-offset-2 hover:underline"
+              >
+                ← Back to wizard view
+              </button>
+            </div>
+          )}
 
-            {/* Step 3 — Income */}
-            <div className={`bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 ${sponsorBenefit === "no" ? "opacity-40 pointer-events-none" : ""}`}>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Step 3 of 4 &middot; Income</p>
-              <h3 className="text-lg font-black text-slate-900 leading-tight">Net household income (£)</h3>
-              <p className="mt-2 text-sm text-slate-500">
-                Take-home pay after tax and National Insurance, plus the qualifying benefit itself
-                (PIP, Carer&rsquo;s Allowance, etc.) and any other regular income coming into the
-                household.
-              </p>
-              <div className="mt-3 flex gap-2 mb-2">
-                {[
-                  { value: "monthly", label: "Monthly" },
-                  { value: "weekly", label: "Weekly" },
-                ].map((o) => (
+          <div className="space-y-4">
+            {/* ─── Step 1 — Sponsor benefit gate ─── */}
+            {(() => {
+              const isActive = showAll || currentStep === 1;
+              const isCollapsed = !showAll && currentStep > 1 && sponsorBenefit !== "";
+              if (isCollapsed) {
+                const label =
+                  sponsorBenefit === "yes" ? "Yes" : sponsorBenefit === "no" ? "No" : "Not sure";
+                return (
                   <button
-                    key={o.value}
                     type="button"
-                    onClick={() => { setIncomeMode(o.value as "monthly" | "weekly"); setCalculated(false); }}
-                    className={`px-3 py-1.5 rounded-lg border text-xs font-semibold transition-colors ${
-                      incomeMode === o.value
-                        ? "border-brand-red bg-brand-red/5 text-slate-900"
-                        : "border-slate-200 text-slate-600 hover:border-slate-300"
-                    }`}
+                    onClick={() => setCurrentStep(1)}
+                    className="w-full bg-white rounded-2xl border border-slate-200 px-5 py-3.5 flex items-center justify-between gap-3 text-left hover:border-slate-300 transition-colors"
                   >
-                    {o.label}
+                    <div className="flex items-center gap-3 min-w-0">
+                      <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
+                      <span className="text-sm text-slate-600">
+                        <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Step 1 ·</span>{" "}
+                        Sponsor benefit:{" "}
+                        <strong className="text-slate-900">{label}</strong>
+                      </span>
+                    </div>
+                    <span className="text-xs font-semibold text-brand-red shrink-0">Change</span>
                   </button>
-                ))}
-              </div>
-              <input
-                type="number"
-                inputMode="decimal"
-                min={0}
-                step={1}
-                value={incomeAmount}
-                onChange={(e) => { setIncomeAmount(e.target.value); setCalculated(false); }}
-                placeholder={incomeMode === "monthly" ? "e.g. 1,500" : "e.g. 350"}
-                className="w-full px-3 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red"
-              />
-            </div>
+                );
+              }
+              if (!isActive) return null;
+              return (
+                <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6">
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Step 1 of 4 &middot; Sponsor benefit gate</p>
+                  <h3 className="text-lg font-black text-slate-900 leading-tight">
+                    Does your UK sponsor receive a qualifying benefit?
+                  </h3>
+                  <p className="mt-2 text-sm text-slate-500">
+                    Adequate maintenance only applies if at least one qualifying benefit is in payment to the sponsor (PIP, DLA, Carer&rsquo;s Allowance, etc.).
+                  </p>
+                  <details className="mt-3 group">
+                    <summary className="cursor-pointer text-xs font-semibold text-brand-red hover:text-brand-red-dark inline-flex items-center gap-1 list-none">
+                      <ChevronDown className="h-3 w-3 transition-transform group-open:rotate-180" />
+                      See the {QUALIFYING_BENEFITS.length} qualifying benefits
+                    </summary>
+                    <ul className="mt-3 grid sm:grid-cols-2 gap-x-4 gap-y-1 text-xs text-slate-600">
+                      {QUALIFYING_BENEFITS.map((b) => (
+                        <li key={b} className="flex items-start gap-1.5">
+                          <CheckCircle2 className="h-3 w-3 text-brand-red shrink-0 mt-0.5" />
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {[
+                      { value: "yes", label: "Yes" },
+                      { value: "no", label: "No" },
+                      { value: "not-sure", label: "Not sure" },
+                    ].map((o) => (
+                      <button
+                        key={o.value}
+                        type="button"
+                        onClick={() => {
+                          const v = o.value as "yes" | "no" | "not-sure";
+                          setSponsorBenefit(v);
+                          setCalculated(false);
+                          if (!showAll && v !== "no") setCurrentStep(2);
+                        }}
+                        className={`px-4 py-2 rounded-lg border text-sm font-semibold transition-colors ${
+                          sponsorBenefit === o.value
+                            ? "border-brand-red bg-brand-red/5 text-slate-900"
+                            : "border-slate-200 text-slate-700 hover:border-slate-300"
+                        }`}
+                      >
+                        {o.label}
+                      </button>
+                    ))}
+                  </div>
 
-            {/* Step 4 — Housing */}
-            <div className={`bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 ${sponsorBenefit === "no" ? "opacity-40 pointer-events-none" : ""}`}>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Step 4 of 4 &middot; Housing costs</p>
-              <h3 className="text-lg font-black text-slate-900 leading-tight">Housing costs (£)</h3>
-              <p className="mt-2 text-sm text-slate-500">
-                Rent or mortgage payments + council tax + essential utilities (gas, electricity,
-                water) + buildings insurance + ground rent. Exclude broadband, TV, phone,
-                subscriptions, gym, entertainment.
-              </p>
-              <div className="mt-3 flex gap-2 mb-2">
-                {[
-                  { value: "monthly", label: "Monthly" },
-                  { value: "weekly", label: "Weekly" },
-                ].map((o) => (
+                  {sponsorBenefit === "no" && (
+                    <div className="mt-4 p-4 rounded-xl bg-amber-50 border border-amber-200 text-sm text-amber-900 leading-relaxed">
+                      <strong>Adequate maintenance doesn&rsquo;t apply to your case.</strong> Without a
+                      qualifying benefit in payment, the standard £29,000 minimum income requirement
+                      applies. See our{" "}
+                      <Link href="/flr-visa-extension/" className="font-bold underline">FLR(M) Visa Extension</Link>{" "}
+                      page or{" "}
+                      <Link href="/uk-spouse-visa/" className="font-bold underline">spouse visa</Link>{" "}
+                      page for the standard route.
+                    </div>
+                  )}
+                  {sponsorBenefit === "not-sure" && (
+                    <div className="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-700 leading-relaxed">
+                      <strong>That&rsquo;s normal.</strong> Continue and we&rsquo;ll flag your result
+                      as needing solicitor review.
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
+
+            {/* ─── Step 2 — Family composition ─── */}
+            {sponsorBenefit !== "no" && (() => {
+              const isActive = showAll || currentStep === 2;
+              const isCollapsed = !showAll && currentStep > 2 && !!family;
+              if (isCollapsed) {
+                return (
                   <button
-                    key={o.value}
                     type="button"
-                    onClick={() => { setHousingMode(o.value as "monthly" | "weekly"); setCalculated(false); }}
-                    className={`px-3 py-1.5 rounded-lg border text-xs font-semibold transition-colors ${
-                      housingMode === o.value
-                        ? "border-brand-red bg-brand-red/5 text-slate-900"
-                        : "border-slate-200 text-slate-600 hover:border-slate-300"
-                    }`}
+                    onClick={() => setCurrentStep(2)}
+                    className="w-full bg-white rounded-2xl border border-slate-200 px-5 py-3.5 flex items-center justify-between gap-3 text-left hover:border-slate-300 transition-colors"
                   >
-                    {o.label}
+                    <div className="flex items-center gap-3 min-w-0">
+                      <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
+                      <span className="text-sm text-slate-600 truncate">
+                        <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Step 2 ·</span>{" "}
+                        <strong className="text-slate-900">{IS_RATES[family as FamilyKey].label}</strong>
+                      </span>
+                    </div>
+                    <span className="text-xs font-semibold text-brand-red shrink-0">Change</span>
                   </button>
-                ))}
-              </div>
-              <input
-                type="number"
-                inputMode="decimal"
-                min={0}
-                step={1}
-                value={housingAmount}
-                onChange={(e) => { setHousingAmount(e.target.value); setCalculated(false); }}
-                placeholder={housingMode === "monthly" ? "e.g. 800" : "e.g. 180"}
-                className="w-full px-3 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red"
-              />
-            </div>
+                );
+              }
+              if (!isActive) return null;
+              return (
+                <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6">
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Step 2 of 4 &middot; Household</p>
+                  <h3 className="text-lg font-black text-slate-900 leading-tight">
+                    Who will live in the UK household once the applicant arrives?
+                  </h3>
+                  <p className="mt-2 text-sm text-slate-500">
+                    Count the UK sponsor, the visa applicant, and any dependent children under 18 sharing the home.
+                  </p>
+                  <select
+                    value={family}
+                    onChange={(e) => {
+                      const v = e.target.value as FamilyKey | "";
+                      setFamily(v);
+                      setCalculated(false);
+                      if (!showAll && v) setCurrentStep(3);
+                    }}
+                    className="mt-3 w-full px-3 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red bg-white"
+                  >
+                    <option value="">Choose your household type…</option>
+                    {Object.entries(IS_RATES).map(([key, r]) => (
+                      <option key={key} value={key}>
+                        {r.label} &mdash; {moneyGbp(r.weekly)}/week threshold
+                      </option>
+                    ))}
+                  </select>
+                  {!showAll && (
+                    <div className="mt-3 flex justify-between gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setCurrentStep(1)}
+                        className="text-xs font-semibold text-slate-500 hover:text-brand-red"
+                      >
+                        ← Back
+                      </button>
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
 
-            {/* Calculate button */}
-            {sponsorBenefit !== "no" && (
+            {/* ─── Step 3 — Income ─── */}
+            {sponsorBenefit !== "no" && (() => {
+              const isActive = showAll || currentStep === 3;
+              const incomeReady = !!incomeAmount && parseFloat(incomeAmount) > 0;
+              const isCollapsed = !showAll && currentStep > 3 && incomeReady;
+              if (isCollapsed) {
+                return (
+                  <button
+                    type="button"
+                    onClick={() => setCurrentStep(3)}
+                    className="w-full bg-white rounded-2xl border border-slate-200 px-5 py-3.5 flex items-center justify-between gap-3 text-left hover:border-slate-300 transition-colors"
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
+                      <span className="text-sm text-slate-600 truncate">
+                        <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Step 3 ·</span>{" "}
+                        Income:{" "}
+                        <strong className="text-slate-900">{moneyGbp(parseFloat(incomeAmount))} {incomeMode === "monthly" ? "/mo" : "/wk"}</strong>
+                      </span>
+                    </div>
+                    <span className="text-xs font-semibold text-brand-red shrink-0">Change</span>
+                  </button>
+                );
+              }
+              if (!isActive) return null;
+              return (
+                <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6">
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Step 3 of 4 &middot; Income</p>
+                  <h3 className="text-lg font-black text-slate-900 leading-tight">Net household income (£)</h3>
+                  <p className="mt-2 text-sm text-slate-500">
+                    Take-home pay after tax + the qualifying benefit itself + any other regular household income.
+                  </p>
+                  <div className="mt-3 flex gap-2 mb-2">
+                    {[
+                      { value: "monthly", label: "Monthly" },
+                      { value: "weekly", label: "Weekly" },
+                    ].map((o) => (
+                      <button
+                        key={o.value}
+                        type="button"
+                        onClick={() => { setIncomeMode(o.value as "monthly" | "weekly"); setCalculated(false); }}
+                        className={`px-3 py-1.5 rounded-lg border text-xs font-semibold transition-colors ${
+                          incomeMode === o.value
+                            ? "border-brand-red bg-brand-red/5 text-slate-900"
+                            : "border-slate-200 text-slate-600 hover:border-slate-300"
+                        }`}
+                      >
+                        {o.label}
+                      </button>
+                    ))}
+                  </div>
+                  <input
+                    type="number"
+                    inputMode="decimal"
+                    min={0}
+                    step={1}
+                    value={incomeAmount}
+                    onChange={(e) => { setIncomeAmount(e.target.value); setCalculated(false); }}
+                    placeholder={incomeMode === "monthly" ? "e.g. 1,500" : "e.g. 350"}
+                    className="w-full px-3 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red"
+                  />
+                  {!showAll && (
+                    <div className="mt-3 flex justify-between gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setCurrentStep(2)}
+                        className="text-xs font-semibold text-slate-500 hover:text-brand-red"
+                      >
+                        ← Back
+                      </button>
+                      <Button
+                        type="button"
+                        onClick={() => setCurrentStep(4)}
+                        disabled={!incomeReady}
+                        className="bg-brand-navy hover:bg-brand-navy/90 text-white rounded-lg px-5 h-10 text-sm font-semibold disabled:opacity-40"
+                      >
+                        Next <ArrowRight className="h-4 w-4 ml-1.5" />
+                      </Button>
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
+
+            {/* ─── Step 4 — Housing ─── */}
+            {sponsorBenefit !== "no" && (() => {
+              const isActive = showAll || currentStep === 4;
+              if (!isActive) return null;
+              return (
+                <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6">
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Step 4 of 4 &middot; Housing costs</p>
+                  <h3 className="text-lg font-black text-slate-900 leading-tight">Housing costs (£)</h3>
+                  <p className="mt-2 text-sm text-slate-500">
+                    Rent/mortgage + council tax + essential utilities + buildings insurance. Exclude broadband, TV, subscriptions.
+                  </p>
+                  <div className="mt-3 flex gap-2 mb-2">
+                    {[
+                      { value: "monthly", label: "Monthly" },
+                      { value: "weekly", label: "Weekly" },
+                    ].map((o) => (
+                      <button
+                        key={o.value}
+                        type="button"
+                        onClick={() => { setHousingMode(o.value as "monthly" | "weekly"); setCalculated(false); }}
+                        className={`px-3 py-1.5 rounded-lg border text-xs font-semibold transition-colors ${
+                          housingMode === o.value
+                            ? "border-brand-red bg-brand-red/5 text-slate-900"
+                            : "border-slate-200 text-slate-600 hover:border-slate-300"
+                        }`}
+                      >
+                        {o.label}
+                      </button>
+                    ))}
+                  </div>
+                  <input
+                    type="number"
+                    inputMode="decimal"
+                    min={0}
+                    step={1}
+                    value={housingAmount}
+                    onChange={(e) => { setHousingAmount(e.target.value); setCalculated(false); }}
+                    placeholder={housingMode === "monthly" ? "e.g. 800" : "e.g. 180"}
+                    className="w-full px-3 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red"
+                  />
+                  {!showAll && (
+                    <div className="mt-3 flex justify-start">
+                      <button
+                        type="button"
+                        onClick={() => setCurrentStep(3)}
+                        className="text-xs font-semibold text-slate-500 hover:text-brand-red"
+                      >
+                        ← Back
+                      </button>
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
+
+            {/* Calculate button — shown on Step 4 (wizard) or always (showAll) */}
+            {sponsorBenefit !== "no" && (showAll || currentStep === 4) && (
               <Button
                 type="button"
                 onClick={() => setCalculated(true)}
