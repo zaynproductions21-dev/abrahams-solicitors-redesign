@@ -6,6 +6,7 @@ import { ChatWidgets } from "@/components/v6/chat-widgets";
 import { StickyCallBar } from "@/components/v6/sticky-call-bar";
 import { GoogleTagManager } from "@/components/v6/google-tag-manager";
 import { BingUet } from "@/components/v6/bing-uet";
+import { BingUetEvents } from "@/components/v6/bing-uet-events";
 import { GclidCapture } from "@/components/v6/gclid-capture";
 import { JsonLd, organisationSchema } from "@/components/v6/jsonld";
 
@@ -20,6 +21,7 @@ export default function V6Layout({ children }: { children: React.ReactNode }) {
     <div className={poppins.className}>
       <GoogleTagManager />
       <BingUet />
+      <BingUetEvents />
       <GclidCapture />
       <JsonLd data={organisationSchema()} />
       <style>{`
