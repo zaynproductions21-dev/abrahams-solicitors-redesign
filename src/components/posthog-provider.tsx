@@ -3,21 +3,41 @@
 import posthog from 'posthog-js'
 import { PostHogProvider as PHProvider, usePostHog } from 'posthog-js/react'
 import { usePathname, useSearchParams } from 'next/navigation'
-import { useEffect, Suspense } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 
-const POSTHOG_KEY = 'phc_rJmyyFtKADpwEYUz9ufrd9cREaaoDq37ZeUrAyek5fnM'
-const POSTHOG_HOST = 'https://eu.i.posthog.com'
+// Privacy-hardened, consent-gated PostHog for a legal/immigration site.
+// - Loads ONLY after the visitor accepts via the cookie banner (cookie-consent.tsx).
+// - Session replay masks ALL inputs and ALL text; profiles only for identified users.
+// - Key/host come from env — nothing fires until NEXT_PUBLIC_POSTHOG_KEY is set.
+const POSTHOG_KEY = process.env.NEXT_PUBLIC_POSTHOG_KEY || ''
+const POSTHOG_HOST = process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://eu.i.posthog.com'
+const COOKIE_KEY = 'abrahams-cookie-consent-v1'
+const CONSENT_EVENT = 'abrahams:consent-changed'
 
-if (typeof window !== 'undefined' && !posthog.__loaded) {
+function hasConsent(): boolean {
+  if (typeof window === 'undefined') return false
+  try {
+    const raw = window.localStorage.getItem(COOKIE_KEY)
+    if (!raw) return false
+    const parsed = JSON.parse(raw)
+    return parsed?.decision === 'accepted'
+  } catch {
+    return false
+  }
+}
+
+let initialised = false
+function initPostHog() {
+  if (initialised || !POSTHOG_KEY || typeof window === 'undefined' || posthog.__loaded) return
+  initialised = true
   posthog.init(POSTHOG_KEY, {
     api_host: POSTHOG_HOST,
-    capture_pageview: false, // We capture manually for SPA route changes
+    capture_pageview: false, // captured manually for SPA route changes (below)
     capture_pageleave: true,
-    autocapture: true, // Auto-capture clicks, form submissions, etc.
+    autocapture: true, // clicks/navigation — input values are never captured
     person_profiles: 'identified_only',
+    session_recording: { maskAllInputs: true, maskTextSelector: '*' },
   })
-
-  // Tag all events with site identifier for multi-site filtering
   posthog.register({
     site: 'abrahams',
     site_name: 'Abrahams Solicitors',
@@ -95,12 +115,30 @@ function TrackPhoneClicks() {
 }
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
+  const [ready, setReady] = useState(false)
+
+  useEffect(() => {
+    const activate = () => {
+      if (hasConsent()) {
+        initPostHog()
+        setReady(true)
+      }
+    }
+    activate()
+    window.addEventListener(CONSENT_EVENT, activate)
+    return () => window.removeEventListener(CONSENT_EVENT, activate)
+  }, [])
+
   return (
     <PHProvider client={posthog}>
-      <Suspense fallback={null}>
-        <PostHogPageView />
-      </Suspense>
-      <TrackPhoneClicks />
+      {ready && (
+        <>
+          <Suspense fallback={null}>
+            <PostHogPageView />
+          </Suspense>
+          <TrackPhoneClicks />
+        </>
+      )}
       {children}
     </PHProvider>
   )

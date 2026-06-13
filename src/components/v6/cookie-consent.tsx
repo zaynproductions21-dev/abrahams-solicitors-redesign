@@ -29,6 +29,8 @@ export function CookieConsent() {
     window.dataLayer.push({ event: decision === "accepted" ? "cookie_consent_granted" : "cookie_consent_denied" });
     updateGtmConsent(decision);
     updateUetConsent(decision);
+    // Notify PostHogProvider so consent-gated, masked analytics load immediately.
+    try { window.dispatchEvent(new CustomEvent("abrahams:consent-changed", { detail: decision })); } catch {}
     setVisible(false);
   };
 
