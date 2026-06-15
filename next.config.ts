@@ -2,6 +2,20 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   trailingSlash: true,
+
+  // Don't append trailing slashes to the PostHog reverse-proxy paths below.
+  skipTrailingSlashRedirect: true,
+
+  // First-party PostHog reverse proxy: analytics route through this site's own
+  // /ingest path (no third party in the data path) for this legal site.
+  // proxy.ts skips /ingest/* so these rewrites apply.
+  async rewrites() {
+    return [
+      { source: "/ingest/static/:path*", destination: "https://eu-assets.i.posthog.com/static/:path*" },
+      { source: "/ingest/:path*", destination: "https://eu.i.posthog.com/:path*" },
+    ];
+  },
+
   async redirects() {
     return [
       // ---- Legacy WordPress blog posts → new blog slugs ---------------

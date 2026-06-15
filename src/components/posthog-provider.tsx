@@ -10,7 +10,9 @@ import { useEffect, useState, Suspense } from 'react'
 // - Session replay masks ALL inputs and ALL text; profiles only for identified users.
 // - Key/host come from env — nothing fires until NEXT_PUBLIC_POSTHOG_KEY is set.
 const POSTHOG_KEY = process.env.NEXT_PUBLIC_POSTHOG_KEY || ''
-const POSTHOG_HOST = process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://eu.i.posthog.com'
+// First-party reverse proxy: analytics route through this site's own /ingest path
+// (rewritten to PostHog in next.config + skipped in proxy.ts) — no third party.
+const POSTHOG_HOST = '/ingest'
 const COOKIE_KEY = 'abrahams-cookie-consent-v1'
 const CONSENT_EVENT = 'abrahams:consent-changed'
 
@@ -32,6 +34,7 @@ function initPostHog() {
   initialised = true
   posthog.init(POSTHOG_KEY, {
     api_host: POSTHOG_HOST,
+    ui_host: 'https://eu.posthog.com',
     capture_pageview: false, // captured manually for SPA route changes (below)
     capture_pageleave: true,
     autocapture: true, // clicks/navigation — input values are never captured

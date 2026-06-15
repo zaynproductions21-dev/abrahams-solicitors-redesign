@@ -40,6 +40,7 @@ export function proxy(request: NextRequest) {
   // live URL when it should have been /immigration-solicitors-direct.
   if (
     pathname.startsWith("/api/") ||
+    pathname.startsWith("/ingest/") ||
     pathname.startsWith("/_next/") ||
     pathname === "/favicon.ico" ||
     pathname === "/robots.txt" ||
