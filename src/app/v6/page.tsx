@@ -214,7 +214,7 @@ export default function V6HomePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-[2.5rem] xl:text-[2.75rem] font-black text-slate-900 leading-[1.1] tracking-tight">
                 Expert Legal Support for{" "}
                 <span className="text-brand-red">Immigration, Housing</span>{" "}
-                &amp; Citizenship.
+                &amp; Citizenship in Bradford &amp; London.
               </h1>
               <p className="mt-4 text-lg text-slate-500 leading-relaxed max-w-md">
                 Fixed fees. Direct solicitor access. No call centres. We handle your case from start to finish.

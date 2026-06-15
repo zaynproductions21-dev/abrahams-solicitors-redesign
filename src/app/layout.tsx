@@ -17,7 +17,7 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: "Immigration Solicitors London | Housing Law | Abrahams Solicitors",
+    default: "Immigration Solicitors Bradford & London | Housing Law | Abrahams Solicitors",
     template: "%s | Abrahams Solicitors",
   },
   description:
