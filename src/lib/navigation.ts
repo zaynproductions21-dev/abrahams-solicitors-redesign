@@ -10,7 +10,7 @@ export type NavItem = {
 export const navigation: NavItem[] = [
   { label: "Home", href: "/" },
   {
-    label: "Immigration Law",
+    label: "Immigration Solicitors",
     href: "/immigration/",
     children: [
           {
@@ -38,8 +38,8 @@ export const navigation: NavItem[] = [
                 "href": "/visa-refusal-appeal/"
           },
           {
-                "label": "immigration",
-                "href": "/immigration/"
+                "label": "Immigration Solicitors",
+                "href": "/immigration-solicitors/"
           },
           {
                 "label": "UK Spouse Visa",

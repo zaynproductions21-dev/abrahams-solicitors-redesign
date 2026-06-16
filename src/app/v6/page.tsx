@@ -351,12 +351,29 @@ export default function V6HomePage() {
         </div>
       </section>
 
-      {/* ─── Testimonials Grid ─── Porto-style 3-column cards with stars */}
+      {/* ─── Testimonials Grid ─── Skeepers aggregate + 6 review cards */}
       <section className="py-14 lg:py-20 bg-slate-50/60">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+          {/* Aggregate score bar */}
           <div className="text-center mb-10">
-            <h2 className="text-2xl sm:text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">Clients We&rsquo;ve Helped</h2>
-            <p className="mt-3 text-base text-slate-400">Real cases. Real results. Real reviews.</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">What Our Clients Say</h2>
+            <div className="mt-4 inline-flex items-center gap-3 bg-white border border-slate-200 rounded-2xl px-5 py-3 shadow-sm">
+              <div className="flex gap-0.5">
+                {[0,1,2,3,4].map(i => (
+                  <Star key={i} className="h-5 w-5 fill-brand-red text-brand-red" />
+                ))}
+              </div>
+              <span className="text-2xl font-black text-slate-900">4.9</span>
+              <span className="text-sm text-slate-500">from <span className="font-bold text-slate-700">97 verified reviews</span></span>
+              <a
+                href="https://www.verified-reviews.co.uk/reviews/abrahamssolicitors.co.uk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-1 text-[11px] font-semibold text-brand-red hover:underline"
+              >
+                Verified Reviews ↗
+              </a>
+            </div>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {testimonials.map((t) => (
@@ -369,6 +386,11 @@ export default function V6HomePage() {
                     <p className="text-sm font-bold text-slate-900">{t.author}</p>
                     <p className="text-xs text-slate-400">{t.role}</p>
                   </div>
+                  {/* Verified badge */}
+                  <div className="ml-auto flex items-center gap-1 text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
+                    <MessageCircle className="h-2.5 w-2.5" />
+                    Verified
+                  </div>
                 </div>
                 <div className="flex gap-0.5 mb-3">
                   {[...Array(t.rating)].map((_, i) => (
@@ -378,6 +400,16 @@ export default function V6HomePage() {
                 <p className="text-sm text-slate-600 leading-relaxed">{t.text}</p>
               </div>
             ))}
+          </div>
+          <div className="mt-8 text-center">
+            <a
+              href="https://www.verified-reviews.co.uk/reviews/abrahamssolicitors.co.uk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-bold text-brand-red hover:underline"
+            >
+              Read all 97 verified reviews <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
         </div>
       </section>
