@@ -64,6 +64,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: p("/housing-disrepair/"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: p("/immigration-solicitors/"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: p("/immigration-solicitor-bradford/"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: p("/immigration-solicitor-essex/"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: p("/immigration-solicitor-manchester/"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     // Undefended-territory immigration explainers (Council-approved, signed off
     // by Imran Shah). Informational + GEO/AI-citation; satellites link up to the
     // emergency page / immigration money pages.

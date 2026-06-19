@@ -42,6 +42,18 @@ export const navigation: NavItem[] = [
                 "href": "/immigration-solicitors/"
           },
           {
+                "label": "Immigration Solicitor Bradford",
+                "href": "/immigration-solicitor-bradford/"
+          },
+          {
+                "label": "Immigration Solicitor Essex",
+                "href": "/immigration-solicitor-essex/"
+          },
+          {
+                "label": "Immigration Solicitor Manchester",
+                "href": "/immigration-solicitor-manchester/"
+          },
+          {
                 "label": "UK Spouse Visa",
                 "href": "/uk-spouse-visa/"
           },
