@@ -365,14 +365,12 @@ export default function V6HomePage() {
               </div>
               <span className="text-2xl font-black text-slate-900">4.9</span>
               <span className="text-sm text-slate-500">from <span className="font-bold text-slate-700">97 verified reviews</span></span>
-              <a
-                href="https://www.verified-reviews.co.uk/reviews/abrahamssolicitors.co.uk"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/reviews/"
                 className="ml-1 text-[11px] font-semibold text-brand-red hover:underline"
               >
-                Verified Reviews ↗
-              </a>
+                Verified Reviews →
+              </Link>
             </div>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -402,14 +400,12 @@ export default function V6HomePage() {
             ))}
           </div>
           <div className="mt-8 text-center">
-            <a
-              href="https://www.verified-reviews.co.uk/reviews/abrahamssolicitors.co.uk"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/reviews/"
               className="inline-flex items-center gap-2 text-sm font-bold text-brand-red hover:underline"
             >
               Read all 97 verified reviews <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
           </div>
         </div>
       </section>

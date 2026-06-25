@@ -497,14 +497,12 @@ export default function ImmigrationSolicitorBradfordPageInner() {
             ))}
           </div>
           <p className="text-center mt-6">
-            <a
-              href="https://www.verified-reviews.co.uk/reviews/abrahamssolicitors.co.uk"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/reviews/"
               className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-red hover:underline"
             >
               Read all 97 verified reviews <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
           </p>
         </div>
       </section>
