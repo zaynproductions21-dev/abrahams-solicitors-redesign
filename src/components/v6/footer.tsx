@@ -51,6 +51,7 @@ const quickLinks = [
   { label: "About Us", href: "/about-us/" },
   { label: "Our Team", href: "/our-team/" },
   { label: "Our Fees", href: "/our-fees/" },
+  { label: "Reviews", href: "/reviews/" },
   { label: "Blog", href: "/blog/" },
   { label: "Press Releases", href: "/press-releases/" },
   { label: "Newsletter", href: "/newsletter/" },

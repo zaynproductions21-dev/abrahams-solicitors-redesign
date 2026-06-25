@@ -41,7 +41,7 @@ const BADGES: Badge[] = [
     sublabel: "Independent client feedback",
     rating: "4.9",
     reviews: "97 reviews",
-    href: "https://www.verified-reviews.co.uk/reviews/abrahamssolicitors.co.uk",
+    href: "/reviews/",
     icon: "skeepers",
   },
 ];
@@ -99,12 +99,14 @@ export function TrustBadges() {
     <section className="border-y border-slate-100 bg-white">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-6">
         <RevealOnScroll className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-          {BADGES.map(b => (
+          {BADGES.map(b => {
+            const isInternal = b.href.startsWith("/");
+            return (
             <a
               key={b.label}
               href={b.href}
-              target="_blank"
-              rel="noopener noreferrer"
+              target={isInternal ? undefined : "_blank"}
+              rel={isInternal ? undefined : "noopener noreferrer"}
               className="group flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-100 hover:border-brand-red/20 hover:bg-slate-50/60 transition-colors"
             >
               <BadgeIcon kind={b.icon} />
@@ -125,7 +127,8 @@ export function TrustBadges() {
                 )}
               </div>
             </a>
-          ))}
+          );
+          })}
         </RevealOnScroll>
       </div>
     </section>
