@@ -3,37 +3,31 @@
 /**
  * Skeepers / Verified Reviews — embedded review widget.
  *
- * Currently renders the BRAND CAROUSEL widget (the only review-listing
- * widget configured in the Skeepers backoffice for this account). When a
- * dedicated List Brand widget is created in the Skeepers dashboard later,
- * swap SKEEPERS_WIDGET_TYPE → "list" and update SKEEPERS_WIDGET_UUID to
- * the new widget's id; everything else stays as-is.
+ * Renders the BRAND LIST widget on /reviews/, which is the new web-component
+ * style widget Skeepers introduced in mid-2026 (announcement email June 2026).
+ * Older widgets (Carousel, Badge) still use the legacy per-widget script
+ * pattern and live in trust-badges.tsx / the home page.
  *
- * The widget is two parts: a target div with a Skeepers-specific class
- * and a script tag pointing at widgets.rr.skeepers.io with the merchant
- * UUID and the widget UUID baked into the URL. The script is lazy-loaded
- * so it does not compete with the page's LCP.
+ * The new pattern is two parts:
+ *   - a universal loader script (widgets.rr.skeepers.io/widgets/loader.js)
+ *   - a custom HTML element <skp-brand-widget-list ...> wired to a specific
+ *     widget by solution-instance-id + widget-id.
  *
- * To swap to a future List widget:
- *   1. In Skeepers backoffice: Display reviews → Integrate my widgets →
- *      List → Integrate, copy the new widget UUID from the script URL.
- *   2. Set SKEEPERS_WIDGET_TYPE = "list" and SKEEPERS_WIDGET_UUID to that
- *      uuid. Container class stays the same pattern.
+ * Configuration values come from the merchant's Skeepers backoffice
+ * (Display reviews → Integrate my widgets → List → Integrate).
+ *
+ * Performance: loader script uses strategy="lazyOnload" so it does not
+ * compete with the page's LCP — the widget is below the fold.
  */
 
+import { createElement } from "react";
 import Script from "next/script";
 
 // ─── Skeepers configuration ────────────────────────────────────────────
 const SKEEPERS_CONFIGURED = true;
-const SKEEPERS_MERCHANT_UUID = "05e45d6a-f5da-d744-cde2-d610aceec3fd";
-const SKEEPERS_WIDGET_TYPE: "carousel" | "list" = "carousel";
-const SKEEPERS_WIDGET_UUID = "80426ae2-bd6f-4220-8249-afeed0b9de3c";
-// Carousel-only — number of slides visible at once. Skeepers ignores
-// this attribute on list widgets.
-const SKEEPERS_SLIDES_COUNT = 4;
-
-const SKEEPERS_SCRIPT_SRC =
-  `https://widgets.rr.skeepers.io/${SKEEPERS_WIDGET_TYPE}/${SKEEPERS_MERCHANT_UUID}/${SKEEPERS_WIDGET_UUID}.js`;
+const SKEEPERS_LOADER_SRC = "https://widgets.rr.skeepers.io/widgets/loader.js";
+const SKEEPERS_SOLUTION_INSTANCE_ID = "8ce6baa6-3144-4df7-81d4-db35b7a9b71b";
+const SKEEPERS_WIDGET_ID = "95379c50-00f3-45f9-a585-0d9ae73ea027";
 
 export function SkeepersListWidget({ fallbackUrl }: { fallbackUrl: string }) {
   if (!SKEEPERS_CONFIGURED) {
@@ -58,24 +52,16 @@ export function SkeepersListWidget({ fallbackUrl }: { fallbackUrl: string }) {
     );
   }
 
-  if (SKEEPERS_WIDGET_TYPE === "carousel") {
-    return (
-      <>
-        <div
-          className="skeepers_carousel_container"
-          data-slides-count={SKEEPERS_SLIDES_COUNT}
-        />
-        <Script src={SKEEPERS_SCRIPT_SRC} strategy="lazyOnload" defer charSet="utf-8" />
-      </>
-    );
-  }
-
-  // SKEEPERS_WIDGET_TYPE === "list" — wired for the day Skeepers' List
-  // Brand widget is created in the dashboard.
+  // Use createElement to render the Skeepers custom element. JSX would
+  // need a global module augmentation for the unknown <skp-...> tag;
+  // createElement is type-safe without that ceremony.
   return (
     <>
-      <div id="netreviews_list_widget" />
-      <Script src={SKEEPERS_SCRIPT_SRC} strategy="lazyOnload" defer charSet="utf-8" />
+      {createElement("skp-brand-widget-list", {
+        "solution-instance-id": SKEEPERS_SOLUTION_INSTANCE_ID,
+        "widget-id": SKEEPERS_WIDGET_ID,
+      })}
+      <Script src={SKEEPERS_LOADER_SRC} strategy="lazyOnload" />
     </>
   );
 }
