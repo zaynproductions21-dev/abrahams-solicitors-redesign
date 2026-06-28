@@ -1,5 +1,10 @@
-// Auto-generated from PublishOS page copy — last sync: 2026-06-08T13:55:47.011Z
-// Run: npx tsx scripts/sync-copy.ts
+// Manually maintained — last auto-sync 2026-06-08; subsequent edits by hand.
+// If the PublishOS sync script (scripts/sync-copy.ts) is re-run it will
+// overwrite these labels; back up first.
+//
+// Convention: Title Case for all child items, with these terms always
+// uppercase: UK, ILR, EU. Acronyms in parentheses also uppercase (e.g.
+// "Indefinite Leave to Remain (ILR)").
 
 export type NavItem = {
   label: string;
@@ -13,100 +18,33 @@ export const navigation: NavItem[] = [
     label: "Immigration Solicitors",
     href: "/immigration/",
     children: [
-          {
-                "label": "UK SPOUSE VISA SOLICITORS",
-                "href": "/uk-spouse-visa-solicitors/"
-          },
-          {
-                "label": "BRITISH CITIZENSHIP SOLICITORS",
-                "href": "/british-citizenship-solicitors/"
-          },
-          {
-                "label": "SPONSOR LICENCE APPLICATIONS",
-                "href": "/sponsor-licence-applications/"
-          },
-          {
-                "label": "INDEFINITE LEAVE TO REMAIN",
-                "href": "/indefinite-leave-to-remain-ilr/"
-          },
-          {
-                "label": "UK VISA APPLICATIONS",
-                "href": "/uk-visa-applications/"
-          },
-          {
-                "label": "VISA REFUSAL & APPEALS HUB",
-                "href": "/visa-refusal-appeal/"
-          },
-          {
-                "label": "Immigration Solicitors",
-                "href": "/immigration-solicitors/"
-          },
-          {
-                "label": "Immigration Solicitor Bradford",
-                "href": "/immigration-solicitor-bradford/"
-          },
-          {
-                "label": "Immigration Solicitor Essex",
-                "href": "/immigration-solicitor-essex/"
-          },
-          {
-                "label": "Immigration Solicitor Manchester",
-                "href": "/immigration-solicitor-manchester/"
-          },
-          {
-                "label": "UK Spouse Visa",
-                "href": "/uk-spouse-visa/"
-          },
-          {
-                "label": "uk visit visa",
-                "href": "/uk-visit-visa/"
-          },
-          {
-                "label": "uk ancestry visa",
-                "href": "/uk-ancestry-visa/"
-          },
-          {
-                "label": "uk fiance visa",
-                "href": "/uk-fiance-visa/"
-          },
-          {
-                "label": "UK Partner Visa Extension",
-                "href": "/uk-partner-visa-extension/"
-          },
-          {
-                "label": "UK Unmarried Partner Visa",
-                "href": "/uk-unmarried-partner-visa/"
-          },
-          {
-                "label": "civil partnership visa",
-                "href": "/civil-partnership-visa/"
-          },
-          {
-                "label": "uk visa extensions renewals",
-                "href": "/uk-visa-extensions-renewals/"
-          },
-          {
-                "label": "asylum applications",
-                "href": "/asylum-applications/"
-          },
-          {
-                "label": "eu settlement scheme",
-                "href": "/eu-settlement-scheme/"
-          }
+      { label: "UK Spouse Visa Solicitors", href: "/uk-spouse-visa-solicitors/" },
+      { label: "British Citizenship Solicitors", href: "/british-citizenship-solicitors/" },
+      { label: "Sponsor Licence Applications", href: "/sponsor-licence-applications/" },
+      { label: "Indefinite Leave to Remain (ILR)", href: "/indefinite-leave-to-remain-ilr/" },
+      { label: "UK Visa Applications", href: "/uk-visa-applications/" },
+      { label: "Visa Refusal & Appeals Hub", href: "/visa-refusal-appeal/" },
+      { label: "Immigration Solicitors", href: "/immigration-solicitors/" },
+      { label: "Immigration Solicitor Bradford", href: "/immigration-solicitor-bradford/" },
+      { label: "Immigration Solicitor Essex", href: "/immigration-solicitor-essex/" },
+      { label: "Immigration Solicitor Manchester", href: "/immigration-solicitor-manchester/" },
+      { label: "UK Spouse Visa", href: "/uk-spouse-visa/" },
+      { label: "UK Visit Visa", href: "/uk-visit-visa/" },
+      { label: "UK Ancestry Visa", href: "/uk-ancestry-visa/" },
+      { label: "UK Fiancé Visa", href: "/uk-fiance-visa/" },
+      { label: "UK Partner Visa Extension", href: "/uk-partner-visa-extension/" },
+      { label: "UK Unmarried Partner Visa", href: "/uk-unmarried-partner-visa/" },
+      { label: "Civil Partnership Visa", href: "/civil-partnership-visa/" },
+      { label: "UK Visa Extensions & Renewals", href: "/uk-visa-extensions-renewals/" },
+      { label: "Asylum Applications", href: "/asylum-applications/" },
+      { label: "EU Settlement Scheme", href: "/eu-settlement-scheme/" },
     ],
   },
   {
     label: "Housing Law",
     href: "/housing-disrepair-claims/",
     children: [
-          {
-                "label": "HOUSING DISREPAIR CLAIMS",
-                "href": "/housing-disrepair-claims/"
-          },
-          {
-                "label": "HOUSING DISREPAIR CLAIMS",
-                "href": "/housing-disrepair/"
-          }
+      { label: "Housing Disrepair Claims", href: "/housing-disrepair-claims/" },
     ],
   },
   { label: "About Us", href: "/about-us/" },
