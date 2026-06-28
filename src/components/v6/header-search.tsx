@@ -131,9 +131,9 @@ export function HeaderSearch({
                 type="button"
                 aria-label="Close search"
                 onClick={() => setOpen(false)}
-                className="sm:hidden p-1 text-slate-400 hover:text-slate-600"
+                className="inline-flex items-center justify-center h-8 w-8 rounded-full text-slate-400 hover:text-slate-900 hover:bg-slate-100 transition-colors"
               >
-                <X className="h-5 w-5" />
+                <X className="h-4 w-4" />
               </button>
             </div>
 
