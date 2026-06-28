@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { navigation, type NavItem } from "@/lib/navigation";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
+import { HeaderSearch } from "@/components/v6/header-search";
 import { Phone, Menu, ChevronDown, ArrowRight } from "lucide-react";
 
 /**
@@ -157,6 +158,7 @@ export function V6Header() {
             </nav>
 
             <div className="hidden xl:flex items-center gap-3">
+              <HeaderSearch />
               <DynamicCallLink className="inline-flex items-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg px-5 h-10 text-sm font-semibold whitespace-nowrap">
                 <Phone className="h-4 w-4 shrink-0" />
                 <DynamicPhoneText />
@@ -164,6 +166,7 @@ export function V6Header() {
             </div>
 
             <div className="flex xl:hidden items-center gap-2">
+              <HeaderSearch />
               <DynamicCallLink className="inline-flex items-center justify-center rounded-xl p-2.5 text-brand-red hover:bg-brand-red/5 transition-colors" ariaLabel="Call us">
                 <Phone className="h-5 w-5" />
               </DynamicCallLink>
