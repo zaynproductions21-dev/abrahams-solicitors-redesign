@@ -25,7 +25,7 @@ import { pushFormSubmit } from "@/lib/tracking";
 import { pushWizardEvent } from "@/lib/wizard-events";
 import { useSpamGuard } from "@/lib/spam-client";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
-import { GclidField, MsclkidField } from "@/components/v6/gclid-field";
+import { GclidField, MsclkidField, UtmFields } from "@/components/v6/gclid-field";
 import { submitEnquiry } from "@/lib/publishos";
 import { VisaWizardWidget } from "@/components/v6/visa-wizard-widget";
 
@@ -405,6 +405,7 @@ function SpouseVisaFromUSInlineForm() {
       <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
       <GclidField />
       <MsclkidField />
+      <UtmFields />
 
       <button
         type="submit"

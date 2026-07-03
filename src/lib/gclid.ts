@@ -17,6 +17,17 @@ export const WBRAID_COOKIE = "abrahams_wbraid";
 export const MSCLKID_COOKIE = "abrahams_msclkid";
 export const TRAFFIC_SOURCE_COOKIE = "abrahams_traffic_source";
 export const GCLID_LS_KEY = "abrahams.gclid";
+
+// UTM parameters — captured alongside the click IDs. The Google Ads tracking
+// template appends utm_source=google, utm_medium=cpc, utm_campaign={campaign.name},
+// utm_content={adgroup.name}, utm_term={keyword} on every ad click so the
+// SalesHub CRM can attribute a lead to the specific campaign / ad group / keyword.
+export const UTM_SOURCE_COOKIE = "abrahams_utm_source";
+export const UTM_MEDIUM_COOKIE = "abrahams_utm_medium";
+export const UTM_CAMPAIGN_COOKIE = "abrahams_utm_campaign";
+export const UTM_CONTENT_COOKIE = "abrahams_utm_content";
+export const UTM_TERM_COOKIE = "abrahams_utm_term";
+
 const TTL_DAYS = 90;
 
 type Identifier = "gclid" | "gbraid" | "wbraid" | "msclkid";
@@ -84,6 +95,40 @@ export function captureGclidFromUrl(): void {
   if (capturedSource) {
     setCookie(TRAFFIC_SOURCE_COOKIE, capturedSource, TTL_DAYS);
   }
+
+  // UTMs — persisted independently of click IDs. A referral-only visit
+  // (organic UTM in an email or newsletter, no gclid/msclkid) still gets
+  // stamped for attribution downstream. Same 90-day TTL as the click IDs.
+  const UTM_MAP: Record<string, string> = {
+    utm_source: UTM_SOURCE_COOKIE,
+    utm_medium: UTM_MEDIUM_COOKIE,
+    utm_campaign: UTM_CAMPAIGN_COOKIE,
+    utm_content: UTM_CONTENT_COOKIE,
+    utm_term: UTM_TERM_COOKIE,
+  };
+  Object.keys(UTM_MAP).forEach((key) => {
+    const value = params.get(key);
+    if (value && value.length > 0 && value.length < 512) {
+      setCookie(UTM_MAP[key], value, TTL_DAYS);
+    }
+  });
+}
+
+/** Returns the most recently captured UTM parameters. */
+export function getStoredUtms(): {
+  utm_source: string | null;
+  utm_medium: string | null;
+  utm_campaign: string | null;
+  utm_content: string | null;
+  utm_term: string | null;
+} {
+  return {
+    utm_source: readCookie(UTM_SOURCE_COOKIE),
+    utm_medium: readCookie(UTM_MEDIUM_COOKIE),
+    utm_campaign: readCookie(UTM_CAMPAIGN_COOKIE),
+    utm_content: readCookie(UTM_CONTENT_COOKIE),
+    utm_term: readCookie(UTM_TERM_COOKIE),
+  };
 }
 
 /** Returns the most recently captured click identifiers. */

@@ -30,7 +30,7 @@ import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
-import { GclidField, MsclkidField } from "@/components/v6/gclid-field";
+import { GclidField, MsclkidField, UtmFields } from "@/components/v6/gclid-field";
 import { useSpamGuard } from "@/lib/spam-client";
 import { pushFormSubmit } from "@/lib/tracking";
 import { pushWizardEvent } from "@/lib/wizard-events";
@@ -471,6 +471,7 @@ export function VisitVisaRefusalWidget({
             <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
             <GclidField />
             <MsclkidField />
+            <UtmFields />
             <input value={name} onChange={e => setName(e.target.value)} placeholder="Your name" required className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red" />
             <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="Email" required className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red" />
             <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" placeholder="Phone (optional — only if you want a call)" className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red" />

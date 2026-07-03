@@ -24,7 +24,7 @@ import { TrustBadges } from "@/components/v6/trust-badges";
 import { TeamStrip } from "@/components/v6/team-strip";
 import { AdequateMaintenanceCallout } from "@/components/v6/adequate-maintenance-callout";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
-import { GclidField, MsclkidField } from "@/components/v6/gclid-field";
+import { GclidField, MsclkidField, UtmFields } from "@/components/v6/gclid-field";
 import { useSpamGuard } from "@/lib/spam-client";
 import { pushFormSubmit } from "@/lib/tracking";
 import { submitEnquiry } from "@/lib/publishos";
@@ -190,6 +190,7 @@ function PrimaryForm({ id = "consultation-form" }: { id?: string }) {
         <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
         <GclidField />
         <MsclkidField />
+        <UtmFields />
         <div className="grid grid-cols-2 gap-2">
           <input
             value={firstName}

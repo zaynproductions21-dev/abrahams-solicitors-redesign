@@ -7,7 +7,7 @@ import { Phone, Clock, Shield, Headset, MessageCircle, CheckCircle2 } from "luci
 import { pushFormSubmit } from "@/lib/tracking";
 import { useSpamGuard } from "@/lib/spam-client";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
-import { GclidField, MsclkidField } from "@/components/v6/gclid-field";
+import { GclidField, MsclkidField, UtmFields } from "@/components/v6/gclid-field";
 import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { submitEnquiry } from "@/lib/publishos";
@@ -95,6 +95,7 @@ export default function FreeConsultationPage() {
                 <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
                 <GclidField />
                 <MsclkidField />
+                <UtmFields />
                 <h3 className="text-xl font-bold text-slate-900">Book your call</h3>
                 <p className="text-sm text-slate-500 -mt-2">We aim to respond within one working day.</p>
 
