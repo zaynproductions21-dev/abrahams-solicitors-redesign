@@ -131,6 +131,13 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* Call Intelligence DNI: swaps the displayed phone number to a campaign
+            tracking number for paid visitors (utm_campaign/gclid). No-ops for
+            organic traffic and for campaigns whose number pool is empty. */}
+        <script
+          src="https://call-tracking-nine.vercel.app/api/call-tracking/snippet?clientId=cl_mnxclw6q"
+          async
+        />
         <PostHogProvider>
           {children}
         </PostHogProvider>
