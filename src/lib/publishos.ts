@@ -90,14 +90,21 @@ export async function submitEnquiry(
     let wbraid = "";
     let msclkid = "";
     let traffic_source = "direct";
+    let utm_source = "", utm_medium = "", utm_campaign = "", utm_content = "", utm_term = "";
     if (typeof window !== "undefined") {
-      const { getStoredGclid, getTrafficSource } = await import("@/lib/gclid");
+      const { getStoredGclid, getTrafficSource, getStoredUtms } = await import("@/lib/gclid");
       const ids = getStoredGclid();
       gclid = ids.gclid || "";
       gbraid = ids.gbraid || "";
       wbraid = ids.wbraid || "";
       msclkid = ids.msclkid || "";
       traffic_source = getTrafficSource();
+      const utms = getStoredUtms();
+      utm_source = utms.utm_source || "";
+      utm_medium = utms.utm_medium || "";
+      utm_campaign = utms.utm_campaign || "";
+      utm_content = utms.utm_content || "";
+      utm_term = utms.utm_term || "";
     }
 
     const res = await fetch("/api/lead", {
@@ -118,6 +125,11 @@ export async function submitEnquiry(
         ...(wbraid ? { wbraid } : {}),
         ...(msclkid ? { msclkid } : {}),
         traffic_source,
+        ...(utm_source ? { utm_source } : {}),
+        ...(utm_medium ? { utm_medium } : {}),
+        ...(utm_campaign ? { utm_campaign } : {}),
+        ...(utm_content ? { utm_content } : {}),
+        ...(utm_term ? { utm_term } : {}),
         ...(meta?.wizardType ? { wizard_type: meta.wizardType } : {}),
         ...(spam ?? {}),
         ...(turnstileToken ? { "cf-turnstile-response": turnstileToken } : {}),

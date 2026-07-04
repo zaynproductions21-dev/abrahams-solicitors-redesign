@@ -124,6 +124,11 @@ export async function POST(req: NextRequest) {
   const wbraid = typeof body.wbraid === "string" ? body.wbraid : "";
   const msclkid = typeof body.msclkid === "string" ? body.msclkid : "";
   const trafficSource = typeof body.traffic_source === "string" ? body.traffic_source : "";
+  const utmSource = typeof body.utm_source === "string" ? body.utm_source : "";
+  const utmMedium = typeof body.utm_medium === "string" ? body.utm_medium : "";
+  const utmCampaign = typeof body.utm_campaign === "string" ? body.utm_campaign : "";
+  const utmContent = typeof body.utm_content === "string" ? body.utm_content : "";
+  const utmTerm = typeof body.utm_term === "string" ? body.utm_term : "";
   // Wizard-type tag: set by the wizard widgets so the CRM + offline-conversion
   // pipeline can join leads back to the originating wizard (ilr / citizenship /
   // spouse). Whitelist the values so a hostile client can't write arbitrary
@@ -153,6 +158,11 @@ export async function POST(req: NextRequest) {
     ...(wbraid ? { wbraid } : {}),
     ...(msclkid ? { msclkid } : {}),
     ...(trafficSource ? { traffic_source: trafficSource, source_traffic_source: trafficSource } : {}),
+    ...(utmSource ? { utm_source: utmSource } : {}),
+    ...(utmMedium ? { utm_medium: utmMedium } : {}),
+    ...(utmCampaign ? { utm_campaign: utmCampaign, source_campaign: utmCampaign } : {}),
+    ...(utmContent ? { utm_content: utmContent } : {}),
+    ...(utmTerm ? { utm_term: utmTerm, source_keyword: utmTerm } : {}),
     // Wizard tag goes under both the short name and a `source_wizard_type`
     // alias, matching the GCLID dual-write pattern — whichever column name
     // the SalesHub webhook handler reads, the value lands.
