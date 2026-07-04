@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
-import { GclidField, MsclkidField } from "@/components/v6/gclid-field";
+import { GclidField, MsclkidField, UtmFields } from "@/components/v6/gclid-field";
 import { useSpamGuard } from "@/lib/spam-client";
 import { pushFormSubmit } from "@/lib/tracking";
 import { pushWizardEvent } from "@/lib/wizard-events";
@@ -161,6 +161,7 @@ function HeroForm() {
         <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
         <GclidField />
         <MsclkidField />
+        <UtmFields />
         <div className="grid grid-cols-2 gap-3">
           <input
             value={firstName}

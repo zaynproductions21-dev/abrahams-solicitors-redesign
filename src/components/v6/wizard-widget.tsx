@@ -26,7 +26,7 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
-import { GclidField, MsclkidField } from "@/components/v6/gclid-field";
+import { GclidField, MsclkidField, UtmFields } from "@/components/v6/gclid-field";
 import { useSpamGuard } from "@/lib/spam-client";
 import { pushFormSubmit } from "@/lib/tracking";
 import { pushWizardEvent } from "@/lib/wizard-events";
@@ -388,6 +388,7 @@ export function WizardWidget({
             <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
             <GclidField />
             <MsclkidField />
+            <UtmFields />
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}

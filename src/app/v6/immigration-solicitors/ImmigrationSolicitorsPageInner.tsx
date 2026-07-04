@@ -28,7 +28,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
-import { GclidField, MsclkidField } from "@/components/v6/gclid-field";
+import { GclidField, MsclkidField, UtmFields } from "@/components/v6/gclid-field";
 import { useSpamGuard } from "@/lib/spam-client";
 import { pushFormSubmit } from "@/lib/tracking";
 import { pushWizardEvent } from "@/lib/wizard-events";
@@ -210,6 +210,7 @@ function HeroForm({ id = "consultation-form" }: { id?: string }) {
         <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
         <GclidField />
         <MsclkidField />
+        <UtmFields />
         {/* Form fields wired with autoComplete + inputMode so iOS AutoFill
             fills name/email/phone in one tap, and the correct mobile
             keyboard appears for each field (no alpha keyboard on phone).

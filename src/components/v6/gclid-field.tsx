@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getStoredGclid } from "@/lib/gclid";
+import { getStoredGclid, getStoredUtms } from "@/lib/gclid";
 
 /**
  * Hidden form field that auto-populates with the captured Google Click ID.
@@ -57,5 +57,53 @@ export function MsclkidField({ id = "msclkid_field" }: { id?: string }) {
       autoComplete="off"
       aria-hidden="true"
     />
+  );
+}
+
+/**
+ * Hidden form fields for the 5 UTM parameters — source/medium/campaign/
+ * content/term. Google Ads' tracking template appends all 5 on every
+ * ad click; SalesHub reads them to attribute leads to specific
+ * campaigns / ad groups / keywords.
+ *
+ * One drop-in component that emits all 5 hidden inputs at once; use
+ * <UtmFields /> alongside <GclidField /> and <MsclkidField /> in any form.
+ */
+export function UtmFields() {
+  const [values, setValues] = useState({
+    utm_source: "",
+    utm_medium: "",
+    utm_campaign: "",
+    utm_content: "",
+    utm_term: "",
+  });
+
+  useEffect(() => {
+    const u = getStoredUtms();
+    setValues({
+      utm_source: u.utm_source || "",
+      utm_medium: u.utm_medium || "",
+      utm_campaign: u.utm_campaign || "",
+      utm_content: u.utm_content || "",
+      utm_term: u.utm_term || "",
+    });
+  }, []);
+
+  return (
+    <>
+      {(Object.keys(values) as Array<keyof typeof values>).map((key) => (
+        <input
+          key={key}
+          type="hidden"
+          id={`${key}_field`}
+          name={key}
+          value={values[key]}
+          readOnly
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+        />
+      ))}
+    </>
   );
 }

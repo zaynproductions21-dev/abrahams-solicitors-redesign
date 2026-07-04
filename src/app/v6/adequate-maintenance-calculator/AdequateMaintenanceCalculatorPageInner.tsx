@@ -35,7 +35,7 @@ import { Button } from "@/components/ui/button";
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { TeamStrip } from "@/components/v6/team-strip";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
-import { GclidField, MsclkidField } from "@/components/v6/gclid-field";
+import { GclidField, MsclkidField, UtmFields } from "@/components/v6/gclid-field";
 import { useSpamGuard } from "@/lib/spam-client";
 import { pushFormSubmit } from "@/lib/tracking";
 import { submitEnquiry } from "@/lib/publishos";
@@ -341,6 +341,7 @@ function ConsultationForm({ verdict }: { verdict: "pass" | "marginal" | "fail" |
         <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
         <GclidField />
         <MsclkidField />
+        <UtmFields />
         <div className="grid grid-cols-2 gap-2">
           <input
             value={firstName}

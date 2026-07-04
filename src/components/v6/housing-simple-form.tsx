@@ -23,7 +23,7 @@ import { Button } from "@/components/ui/button";
 import { pushFormSubmit } from "@/lib/tracking";
 import { useSpamGuard } from "@/lib/spam-client";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
-import { GclidField, MsclkidField } from "@/components/v6/gclid-field";
+import { GclidField, MsclkidField, UtmFields } from "@/components/v6/gclid-field";
 import { submitEnquiry } from "@/lib/publishos";
 
 const FORM_SOURCE = "housing-disrepair-simple-form";
@@ -195,6 +195,7 @@ export function HousingSimpleForm() {
         <HoneypotInput value={spam.honeypot} onChange={spam.setHoneypot} />
         <GclidField />
         <MsclkidField />
+        <UtmFields />
 
         <div>
           <label htmlFor="hsf-name" className="sr-only">Your name</label>
