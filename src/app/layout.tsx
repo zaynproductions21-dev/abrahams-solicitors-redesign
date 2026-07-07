@@ -135,7 +135,7 @@ export default function RootLayout({
             tracking number for paid visitors (utm_campaign/gclid). No-ops for
             organic traffic and for campaigns whose number pool is empty. */}
         <script
-          src="https://call-tracking-nine.vercel.app/api/call-tracking/snippet?clientId=cl_mnxclw6q"
+          src="https://app.calltrace.co.uk/api/call-tracking/snippet?clientId=cl_mnxclw6q"
           async
         />
         <PostHogProvider>

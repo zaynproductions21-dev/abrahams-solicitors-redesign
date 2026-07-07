@@ -1,14 +1,11 @@
-// Dynamic Number Insertion config for the v6 site.
+// Phone number config for the v6 site.
 //
-// Each visitor sees one of these numbers depending on where they came
-// from. The call-tracking platform on the receiving end uses the
-// dialled number to attribute the call back to the ad source.
-//
-// Default — direct, organic, social, email, referral.
-// Google  — visitor arrived with ?gclid= (Google Ads click).
-// Bing    — visitor arrived with ?msclkid= (Microsoft/Bing Ads click).
-// Housing — fixed override on /v6/housing-disrepair/ regardless
-//           of source (we don't run paid for housing disrepair).
+// Every variant renders the firm's real sales group line at SSR time.
+// Per-campaign tracking numbers are swapped in client-side by the CallTrace
+// DNI snippet (see layout.tsx): paid visitors (utm_campaign/gclid present)
+// get a pool number matching their campaign; organic visitors keep the
+// real line. The snippet matches this exact number, so all variants must
+// stay on it for the swap to find its target.
 
 export type PhoneVariant = "default" | "google" | "bing" | "housing";
 
@@ -22,10 +19,10 @@ export type PhoneNumber = {
 };
 
 export const PHONE_NUMBERS: Record<PhoneVariant, PhoneNumber> = {
-  default: { display: "0203 355 9823", tel: "02033559823", e164: "+442033559823" },
-  google:  { display: "0203 051 7887", tel: "02030517887", e164: "+442030517887" },
-  bing:    { display: "0203 051 7760", tel: "02030517760", e164: "+442030517760" },
-  housing: { display: "0203 051 7823", tel: "02030517823", e164: "+442030517823" },
+  default: { display: "0203 051 7732", tel: "02030517732", e164: "+442030517732" },
+  google:  { display: "0203 051 7732", tel: "02030517732", e164: "+442030517732" },
+  bing:    { display: "0203 051 7732", tel: "02030517732", e164: "+442030517732" },
+  housing: { display: "0203 051 7732", tel: "02030517732", e164: "+442030517732" },
 };
 
 /** Bradford office direct dial — static, not part of DNI. */
