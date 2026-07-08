@@ -18,11 +18,14 @@ export type PhoneNumber = {
   e164: string;
 };
 
+// Public advertised line — what organic/SEO/direct/social/email visitors see
+// (and call). Paid visitors get this swapped to a campaign tracking number by
+// the CallTrace snippet, which targets this number and the sales group line.
 export const PHONE_NUMBERS: Record<PhoneVariant, PhoneNumber> = {
-  default: { display: "0203 051 7732", tel: "02030517732", e164: "+442030517732" },
-  google:  { display: "0203 051 7732", tel: "02030517732", e164: "+442030517732" },
-  bing:    { display: "0203 051 7732", tel: "02030517732", e164: "+442030517732" },
-  housing: { display: "0203 051 7732", tel: "02030517732", e164: "+442030517732" },
+  default: { display: "0203 355 9823", tel: "02033559823", e164: "+442033559823" },
+  google:  { display: "0203 355 9823", tel: "02033559823", e164: "+442033559823" },
+  bing:    { display: "0203 355 9823", tel: "02033559823", e164: "+442033559823" },
+  housing: { display: "0203 355 9823", tel: "02033559823", e164: "+442033559823" },
 };
 
 /** Bradford office direct dial — static, not part of DNI. */
