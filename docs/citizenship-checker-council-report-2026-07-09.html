@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM Council Report — Citizenship Registration Checker | Abrahams Solicitors</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #6366f1;
+    --primary-soft: #eef2ff;
+    --green: #059669;
+    --green-soft: #ecfdf5;
+    --amber: #f59e0b;
+    --amber-soft: #fffbeb;
+    --red: #dc2626;
+    --red-soft: #fef2f2;
+    --slate-900: #0f172a;
+    --slate-700: #334155;
+    --slate-500: #64748b;
+    --slate-300: #cbd5e1;
+    --slate-100: #f1f5f9;
+    --bg: #f8f9fc;
+    --border: #e8ecf0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--slate-900);
+    margin: 0;
+    padding: 40px 20px;
+    line-height: 1.5;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header {
+    background: linear-gradient(135deg, var(--primary) 0%, #8b5cf6 100%);
+    color: white;
+    padding: 32px;
+    border-radius: 14px;
+    margin-bottom: 24px;
+  }
+  header .eyebrow { text-transform: uppercase; font-size: 11px; letter-spacing: 0.15em; opacity: 0.85; font-weight: 700; }
+  header h1 { margin: 8px 0 6px; font-size: 28px; font-weight: 800; line-height: 1.2; }
+  header .meta { opacity: 0.85; font-size: 14px; }
+  .verdict-badge {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin-top: 16px;
+  }
+  .verdict-approved-w-changes { background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); color: #fbbf24; }
+  .risk-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-left: 8px;
+  }
+  .risk-medium { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+  section.card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  section.card h2 {
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0 0 16px;
+    color: var(--slate-900);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  section.card h2 .num { color: var(--primary); font-size: 14px; font-weight: 700; letter-spacing: 0.05em; }
+  ul.plain { margin: 0; padding-left: 22px; color: var(--slate-700); font-size: 14px; }
+  ul.plain li { margin-bottom: 8px; }
+  ol.changes { margin: 0; padding-left: 22px; color: var(--slate-700); font-size: 14px; }
+  ol.changes li { margin-bottom: 12px; }
+  ol.changes li strong { color: var(--slate-900); }
+  .advisor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 12px;
+  }
+  .advisor {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+    background: white;
+  }
+  .advisor .name { font-weight: 800; font-size: 15px; color: var(--slate-900); margin-bottom: 4px; }
+  .advisor .role { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--slate-500); margin-bottom: 12px; }
+  .advisor .verdict-mini {
+    display: inline-block;
+    background: var(--amber-soft);
+    color: var(--amber);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+  .advisor .position { font-size: 13px; color: var(--slate-700); font-style: italic; margin-bottom: 10px; }
+  .advisor .risk { font-size: 12px; color: var(--slate-500); border-top: 1px solid var(--border); padding-top: 10px; margin-top: 12px; }
+  .advisor .risk strong { color: var(--red); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .action-plan {
+    background: var(--primary-soft);
+    border: 1px solid var(--primary);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .action-plan h2 { color: var(--primary); }
+  .action-step {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+  .action-step:last-child { margin-bottom: 0; }
+  .action-step .num-circle {
+    background: var(--primary);
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .action-step .step-body { flex: 1; }
+  .action-step .step-title { font-weight: 700; font-size: 14px; color: var(--slate-900); margin-bottom: 4px; }
+  .action-step .step-detail { font-size: 13px; color: var(--slate-700); }
+  .deferred {
+    background: var(--slate-100);
+    border: 1px dashed var(--slate-300);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .deferred h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--slate-500); margin: 0 0 12px; }
+  .deferred ul { margin: 0; padding-left: 20px; color: var(--slate-500); font-size: 13px; }
+  .deferred ul li { margin-bottom: 6px; }
+  .peer-review-note {
+    background: var(--green-soft);
+    border-left: 3px solid var(--green);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--slate-700);
+  }
+  .peer-review-note strong { color: var(--green); }
+  footer { text-align: center; color: var(--slate-500); font-size: 12px; padding-top: 24px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="eyebrow">LLM Council Report · YMYL Legal Wizard Build</div>
+    <h1>British Citizenship Registration Entitlement Checker</h1>
+    <div class="meta">Abrahams Solicitors · 2026-07-09 · 6 advisors + peer review + Chairman synthesis</div>
+    <div class="verdict-badge verdict-approved-w-changes">✓ Approved with changes<span class="risk-badge risk-medium">Risk: Medium</span></div>
+  </header>
+
+  <section class="card">
+    <h2><span class="num">01</span> Consensus points</h2>
+    <ul class="plain">
+      <li>Gap in the market is real; differentiation from existing naturalisation wizard is genuine</li>
+      <li>Static passage-level HTML for each route is required, not optional (universally agreed after peer review)</li>
+      <li>Author E-E-A-T byline with SRA link + Person / LegalService / FAQPage schema are YMYL table-stakes</li>
+      <li>Route titles must be human-first, statute-second — no user sees "s.4B route" as a headline</li>
+      <li>Cannibalisation risk resolved by locked URL + H1 + title-tag differentiation with existing wizard</li>
+      <li>Solicitor sign-off on the routing decision matrix must come BEFORE code, not after</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">02</span> Advisor round-1 positions</h2>
+    <div class="advisor-grid">
+      <div class="advisor">
+        <div class="name">Contrarian</div>
+        <div class="role">Fatal-flaw hunter</div>
+        <div class="verdict-mini">Approve w/ changes</div>
+        <div class="position">"Concept is defensible but the spec under-mitigates YMYL/SRA exposure and misroutes at least one non-academic nationality edge case."</div>
+        <div class="risk"><strong>Biggest risk:</strong> Misrouting a Windrush-generation user or a s.1(3)/s.1(4)-entitled UK-born adult on an SRA-regulated firm's site.</div>
+      </div>
+      <div class="advisor">
+        <div class="name">First Principles</div>
+        <div class="role">Reframe / assumptions</div>
+        <div class="verdict-mini">Approve w/ changes</div>
+        <div class="position">"Problem framing sharp, but the solution over-engineers a new artefact when the existing /citizenship-wizard/ can absorb this."</div>
+        <div class="risk"><strong>Biggest risk:</strong> Two overlapping wizards on the same domain competing for citizenship intent.</div>
+      </div>
+      <div class="advisor">
+        <div class="name">Expansionist</div>
+        <div class="role">Overlooked upside</div>
+        <div class="verdict-mini">Approve w/ changes</div>
+        <div class="position">"Ship it, but treat this as the front door of a Nationality-as-a-Service business unit, not a one-off SEO widget."</div>
+        <div class="risk"><strong>Biggest risk:</strong> Never wiring PDF checklists / email nurture / paid-tier ladder — leaving 80% of upside on the table.</div>
+      </div>
+      <div class="advisor">
+        <div class="name">Outsider</div>
+        <div class="role">Layperson UX</div>
+        <div class="verdict-mini">Approve w/ changes</div>
+        <div class="position">"Genuinely helpful but the spec leaks legal jargon into user surfaces and treats the CTA as a default rather than earned."</div>
+        <div class="risk"><strong>Biggest risk:</strong> A layperson hits a page titled "s.4B route" and bounces because it reads like more homework.</div>
+      </div>
+      <div class="advisor">
+        <div class="name">Executor</div>
+        <div class="role">Delivery / velocity</div>
+        <div class="verdict-mini">Approve w/ changes</div>
+        <div class="position">"Ship v0.1 this week — pattern exists, 4hr build + 2hr solicitor review is realistic if scope is locked before code."</div>
+        <div class="risk"><strong>Biggest risk:</strong> Imran reviews routing after code exists, finds a misrouted edge case, and we rebuild — 4hr becomes 10hr.</div>
+      </div>
+      <div class="advisor">
+        <div class="name">SEO Strategist</div>
+        <div class="role">Organic / YMYL / GEO</div>
+        <div class="verdict-mini">Approve w/ changes</div>
+        <div class="position">"Long-tail registration keywords are winnable, but the spec ships without E-E-A-T, schema, and passage-extraction scaffolding that YMYL requires."</div>
+        <div class="risk"><strong>Biggest risk:</strong> Outputs render only as JS states with no static HTML — page ranks weakly and gets zero AI Overview citations.</div>
+      </div>
+    </div>
+    <div class="peer-review-note">
+      <strong>Peer review outcome:</strong> 6/6 advisors named the SEO Strategist's static-HTML + schema critique as the strongest peer contribution. 5/6 flagged the Executor's "ship this week" as underweighting legal routing risk. Only the Executor changed position — conceded static HTML and s.1(3)/s.1(4) coverage must land in v0.1.
+    </div>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">03</span> Key disagreements resolved</h2>
+    <ul class="plain">
+      <li><strong>Velocity vs safety (Contrarian vs Executor):</strong> Resolved in Contrarian's favour — routing matrix signed off pre-code + s.1(3)/s.1(4) coverage added.</li>
+      <li><strong>New URL vs extend existing (First Principles vs the room):</strong> Resolved against First Principles — differentiated URL, but with locked H1/title/canonical signals mandatory.</li>
+      <li><strong>v1 scope (Expansionist vs Executor):</strong> Resolved in Executor's favour — Expansionist's items captured for v2, don't block v1 ship.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">04</span> Blind spots the original spec missed</h2>
+    <ul class="plain">
+      <li>s.1(3) / s.1(4) automatic-British-at-birth branches for UK-born adults</li>
+      <li>GDPR lawful basis / consent on wizard-to-CTA data capture</li>
+      <li>Person / LegalService / FAQPage / HowTo schema markup</li>
+      <li>Visible dated solicitor byline on-page (not just in config)</li>
+      <li>Backlink outreach as a shipping workstream</li>
+      <li>Emotional register / opener acknowledging that nationality is personal</li>
+      <li>Route-appropriate CTAs — blanket "book a call" is unearned on simple routes</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">05</span> Recommended changes — v0.1 must-haves</h2>
+    <ol class="changes">
+      <li><strong>Static route explainers below the wizard.</strong> Each route as a crawlable H2 section with statute name, 150-250 words, FAQPage + HowTo schema.</li>
+      <li><strong>Author E-E-A-T + schema block.</strong> Visible "Reviewed by Imran Shah, SRA #509359" byline with dated stamp; Person schema with sameAs → SRA register; LegalService schema; References section citing BNA 1981 + NABA 2022 + Home Office guidance.</li>
+      <li><strong>Route titles human-first, statute-second.</strong> "You may be able to register as British because you were born here and lived here your whole life (legal basis: s.4B)".</li>
+      <li><strong>Add s.1(3) + s.1(4) coverage.</strong> Two extra questions on parents' current UK immigration status + UK residence since birth. Question count 6 → 8.</li>
+      <li><strong>Cap "not sure" branching.</strong> ≥2 "not sure"s → soft explainer, not immediate sales handoff.</li>
+      <li><strong>Lock URL + H1 + title-tag differentiation.</strong> URL <code>/british-citizenship-registration-checker/</code>; H1 "British Citizenship Registration Entitlement Checker"; title targets "registration" not "naturalisation"; cross-link both wizards.</li>
+      <li><strong>Route-appropriate CTAs.</strong> "Already British" → first-passport guide, no call. Simple registrations → documents guide + call. Discretionary routes (s.4L / s.3(1)) → call + Windrush-specific triage skipping standard CTA funnel.</li>
+      <li><strong>Routing decision matrix signed off by Imran BEFORE code.</strong> Explicit truth table Q1-Q8 → route.</li>
+      <li><strong>Hardcoded top-of-results disclaimer banner.</strong> "This is general information, not legal advice. No solicitor-client relationship is created until we accept your instructions in writing."</li>
+      <li><strong>Quarterly statute review cadence</strong> (not annual). Hard date in wizard config header, owned by Imran.</li>
+    </ol>
+  </section>
+
+  <div class="deferred">
+    <h3>Deferred to v2 — captured, not blocking</h3>
+    <ul>
+      <li>Email nurture sequence per route</li>
+      <li>Paid tier CTA ladder (£29 letter / £149 review / £499 form-prep / £1500 full app)</li>
+      <li>8 dedicated indexable pillar pages per route</li>
+      <li>Backlink outreach sprint (Windrush advocacy, Commonwealth associations, university student services)</li>
+    </ul>
+  </div>
+
+  <div class="action-plan">
+    <h2><span class="num" style="color:var(--primary)">→</span> Final action plan</h2>
+    <div class="action-step">
+      <div class="num-circle">1</div>
+      <div class="step-body">
+        <div class="step-title">This week — draft + sign-off</div>
+        <div class="step-detail">Update spec to v0.2 with all 10 changes. Draft routing decision matrix (Q1-Q8 truth table). Send to Imran as Phase-4 redline email. Book his 2hr slot 48h out. No coding until truth table is signed.</div>
+      </div>
+    </div>
+    <div class="action-step">
+      <div class="num-circle">2</div>
+      <div class="step-body">
+        <div class="step-title">On sign-off — build</div>
+        <div class="step-detail">Fork ilr-wizard config. Implement 8 questions + 6 routes (defer s.4L + s.3(1) discretionary to consultation-only). Write static passage-level HTML with statute-named H2s. Wire Person + LegalService + FAQPage + HowTo schema. Add author byline block + quarterly review date field.</div>
+      </div>
+    </div>
+    <div class="action-step">
+      <div class="num-circle">3</div>
+      <div class="step-body">
+        <div class="step-title">Ship</div>
+        <div class="step-detail">Solicitor walkthrough on preview URL → merge → deploy to <code>/british-citizenship-registration-checker/</code>. Submit to GSC. Add cross-links to /citizenship-wizard/ and vice-versa. 30-day GSC + Ads CTR review. Quarterly review flag for October 2026.</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="card">
+    <h2 style="color: var(--amber)"><span class="num">⚠</span> Biggest risk to watch</h2>
+    <p style="margin: 0; font-size: 15px; color: var(--slate-700);">Misrouting a Windrush-generation user or an s.1(3)/s.1(4)-entitled UK-born adult on an SRA-regulated firm's site is a Guardian-headline reputational risk, not just a technical one. Mitigation: Change #4 (add s.1(3)/s.1(4) coverage) + Change #7 (Windrush-specific triage) + Change #8 (Imran-signed routing matrix pre-code).</p>
+  </section>
+
+  <footer>
+    Council: Contrarian · First Principles · Expansionist · Outsider · Executor · SEO Strategist · Chairman.
+    Report generated 2026-07-09. Full transcript: <code>docs/citizenship-checker-council-transcript-2026-07-09.md</code>.
+  </footer>
+</div>
+</body>
+</html>
