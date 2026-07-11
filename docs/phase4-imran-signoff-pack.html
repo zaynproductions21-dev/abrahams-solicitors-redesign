@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Phase 4 — Citizenship Registration Checker</title>
+<style>
+@page { size: A4; margin: 20mm 18mm 20mm 18mm; }
+* { box-sizing: border-box; }
+body { font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif; color: #0f172a; font-size: 10.5pt; line-height: 1.5; margin: 0; }
+h1 { font-size: 22pt; font-weight: 800; margin: 0 0 4pt; letter-spacing: -0.01em; color: #0f172a; }
+h2 { font-size: 14pt; font-weight: 700; margin: 22pt 0 10pt; color: #0f172a; border-bottom: 1pt solid #e2e8f0; padding-bottom: 6pt; page-break-after: avoid; }
+h3 { font-size: 12pt; font-weight: 700; margin: 16pt 0 8pt; color: #0f172a; page-break-after: avoid; }
+h4 { font-size: 10.5pt; font-weight: 700; margin: 10pt 0 4pt; color: #334155; }
+p { margin: 0 0 8pt; }
+ul, ol { margin: 0 0 10pt; padding-left: 22pt; }
+li { margin-bottom: 4pt; }
+strong { color: #0f172a; }
+em { color: #334155; }
+code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 9.5pt; background: #f1f5f9; padding: 1pt 4pt; border-radius: 3pt; color: #6366f1; }
+pre { background: #f1f5f9; border: 1pt solid #e2e8f0; border-radius: 4pt; padding: 10pt; overflow: auto; font-size: 9pt; }
+pre code { background: transparent; padding: 0; color: #0f172a; }
+table { border-collapse: collapse; width: 100%; margin: 10pt 0; font-size: 9.5pt; page-break-inside: avoid; }
+th, td { border: 1pt solid #e2e8f0; padding: 6pt 8pt; text-align: left; vertical-align: top; }
+th { background: #f8fafc; font-weight: 700; color: #0f172a; }
+blockquote { border-left: 3pt solid #6366f1; margin: 10pt 0; padding: 0 0 0 14pt; color: #334155; }
+hr { border: 0; border-top: 1pt solid #e2e8f0; margin: 18pt 0; }
+.cover { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white; padding: 40pt 32pt; margin: -20mm -18mm 24pt; page-break-after: always; }
+.cover .eyebrow { text-transform: uppercase; font-size: 9pt; letter-spacing: 0.15em; opacity: 0.85; font-weight: 700; margin-bottom: 8pt; }
+.cover h1 { color: white; font-size: 26pt; margin: 0 0 8pt; }
+.cover .meta { opacity: 0.85; font-size: 11pt; margin-bottom: 24pt; }
+.cover .verdict { background: rgba(255,255,255,0.15); border: 1pt solid rgba(255,255,255,0.4); border-radius: 6pt; padding: 12pt 16pt; margin-top: 16pt; }
+.cover .verdict .label { text-transform: uppercase; font-size: 9pt; letter-spacing: 0.1em; opacity: 0.85; font-weight: 700; }
+.cover .verdict .value { font-size: 15pt; font-weight: 800; margin-top: 4pt; }
+.cover .signoff-list { margin-top: 24pt; background: rgba(255,255,255,0.1); border-radius: 6pt; padding: 14pt 18pt; }
+.cover .signoff-list h3 { color: white; font-size: 11pt; margin: 0 0 8pt; }
+.cover .signoff-list ol { color: white; opacity: 0.95; padding-left: 18pt; margin: 0; font-size: 10.5pt; }
+.cover .signoff-list li { margin-bottom: 4pt; }
+.section-break { page-break-before: always; }
+.section-intro { background: #eef2ff; border-left: 3pt solid #6366f1; padding: 10pt 14pt; margin: 0 0 18pt; border-radius: 0 4pt 4pt 0; }
+.section-intro strong { color: #4338ca; }
+</style></head>
+<body>
+
+<div class="cover">
+  <div class="eyebrow">Abrahams Solicitors · Phase 4 wizard build</div>
+  <h1>British Citizenship Registration Entitlement Checker</h1>
+  <div class="meta">Solicitor sign-off pack for <strong style="color:white;">Imran Shah, SRA #509359</strong><br>Prepared: 2026-07-10</div>
+
+  <div class="verdict">
+    <div class="label">LLM Council verdict</div>
+    <div class="value">Approved with changes · Risk: Medium</div>
+  </div>
+
+  <div class="signoff-list">
+    <h3>What you're being asked to approve</h3>
+    <ol>
+      <li>Routing decision matrix (Appendix A) — the truth table that gates the build</li>
+      <li>6 REDLINE items (your preference — copy, UX, tone)</li>
+      <li>7 VERIFY items (your sign-off as SRA-regulated solicitor — statute accuracy)</li>
+      <li>Legal disclaimer banner wording</li>
+      <li>First-reviewed date + quarterly review-due cadence</li>
+    </ol>
+  </div>
+</div>
+
+<div class="section-intro"><strong>Section 1 — Cover email.</strong> The 13 numbered items are listed inside this email. Please reply with your answers, either inline or in a marked-up copy of the spec below.</div>
+
+<h2>Cover email — 13 items for review</h2>
+<p>Imran,</p>
+<p>Phases 1 (Spouse), 2 (Visit Visa Refusal), and 3 (Skilled Worker) are all live. Phase 4 is the new <strong>British Citizenship Registration Entitlement Checker</strong> — the sister wizard to the naturalisation one, targeting the gap gov.uk's <code>/check-british-citizenship</code> leaves behind.</p>
+<p>The idea: someone lands on gov.uk asking "am I British?", gets a dry yes/no, and has no obvious next step — especially if the answer is "you're not British but you can REGISTER under s.4A / s.4B / s.4D / s.4L / s.1(3) / s.1(4)". gov.uk actively omits the registration routes. That's our differentiator: we do those cases, they don't cover them.</p>
+<p><strong>Important — this went through the full LLM council this week</strong> before I sent it to you. The council flagged 10 material changes that I've already baked into v0.2 of the spec (attached). The biggest ones you should be aware of because they change legal exposure:</p>
+<ul>
+<li>Question count went from 6 to <strong>8</strong> — added coverage of s.1(3) (parent settled/naturalised while applicant still a child) and s.1(4) (10-year UK residence for UK-born adults). Both branches were missing from v0.1 and would have misrouted UK-born adults with post-birth-settled parents.</li>
+<li><strong>Routing decision matrix (Appendix A)</strong> — Q1-Q8 truth table mapping every input combination to a single route. <strong>We will not write any code until you sign this off.</strong> That's the biggest change from Phase 2/3 — routing sign-off before build, not after, so we don't rebuild the routing table twice.</li>
+<li><strong>Windrush-specific triage</strong> — dedicated route that skips the standard "book a call" funnel and offers a priority named-solicitor callback within 1 working hour. Council flagged misrouting a Windrush claimant as our highest reputational risk.</li>
+<li>Route titles are now human-first, statute-in-parens — no user ever sees "s.4B route" as an answer headline.</li>
+</ul>
+<p>Same review pattern as Phase 2/3 — <code>[REDLINE]</code> items are your preference, <code>[VERIFY]</code> items are your sign-off as the SRA-regulated solicitor. Spec is attached; please reply with the doc marked up, or just answer the 13 numbered items below if quicker.</p>
+<p><strong>6 items where I need your preference (copy / UX / tone)</strong></p>
+<ol>
+<li><strong>Windrush triage empathetic copy.</strong> The v0.2 spec says the Windrush route "acknowledges the Windrush injustice explicitly (empathetic tone)" and offers priority callback within 1 working hour. Do you want to write that opening paragraph yourself, or shall I draft and you redline? Given the sensitivity here I want your voice on it.</li>
+<li><strong>"Already British — no call button" outcome.</strong> Post-1983 UK birth with British/settled parent. Currently outputs "You're already British — here's how to get evidence" + first-passport guide + document checklist, <strong>no call button</strong>. Right call, or should there still be a soft "if you have concerns, here's a free call" fallback?</li>
+<li><strong>s.4L / s.3(1) discretionary routes.</strong> v0.2 defers both to "Complex — call needed" in v1 (they're consultation outputs in practice, per the Executor advisor's recommendation). Agree? Or is one of them safe enough to route confidently in v1?</li>
+<li><strong>Cross-link copy on <code>/citizenship-wizard/</code>.</strong> The existing naturalisation wizard needs a descriptive-anchor cross-link block pointing at the new registration checker. Suggested anchor: "Not sure if you need to naturalise or if you might already be entitled to register as British? Try our Registration Entitlement Checker." Right tone / accurate wording?</li>
+<li><strong>"You're already British — how to get evidence" for pre-1983 births.</strong> Pre-1983 born-in-UK adults have complex rules (mother-transmitted citizenship etc). Should we route them all to "Complex — call needed" in v1, or is there a safe confident branch you're happy with?</li>
+<li><strong>First-reviewed date + first quarterly review-due date.</strong> Spec says quarterly review cadence. What date do you want stamped as "last reviewed by Imran Shah" on the byline, and what's the next quarterly review date you're committing to?</li>
+</ol>
+<p><strong>7 items where I need your sign-off as the SRA-regulated solicitor (legal accuracy)</strong></p>
+<ol>
+<li><strong>Routing decision matrix (Appendix A) — the big one.</strong> The v0.2 spec has a priority list of 10 routes and route-precedence rules. I'll attach a spreadsheet with the full Q1-Q8 truth table (every 4×4×4×4×3×2×3 combination) for your line-by-line sign-off. <strong>This is the deliverable that gates code — nothing gets built until this is signed.</strong></li>
+<li><strong>s.1(3) framing.</strong> Q4 covers "parents' current UK immigration status" for the s.1(3) branch (parent settled/naturalised before child turned 18). Confirm this is the right shape and the routing logic (Q1=UK + Q3=non-British + Q4=parent-now-ILR-or-British → s.1(3)) is legally correct.</li>
+<li><strong>s.1(4) framing.</strong> Q5 covers "lived in UK most of your life since birth" for the s.1(4) 10-year-residence route. Confirm the 10-year threshold framing is right for user-facing copy and the routing logic (Q1=UK + Q3=non-British + Q4=no-ILR + Q5=10+ years → s.1(4)) is correct.</li>
+<li><strong>s.4A / s.4B / s.4D references.</strong> Currently citing British Nationality Act 1981, s.4A / s.4B / s.4D. Confirm these are the current in-force numbers and NABA 2022 didn't renumber them.</li>
+<li><strong>s.4L NABA 2022 framing.</strong> v0.2 routes s.4L cases via the Windrush triage OR "Complex — call needed". Confirm this is the safer approach for v1 given the discretion involved.</li>
+<li><strong>Legal disclaimer banner copy.</strong> The exact wording is in the spec ("This checker gives general information only, not legal advice. No solicitor-client relationship is created until we accept your instructions in writing. Abrahams Solicitors is authorised and regulated by the SRA #809071..."). Confirm this satisfies your Principle 2 / 7 / Code para 8.6 view.</li>
+<li><strong>References section at page bottom.</strong> Currently citing: British Nationality Act 1981 (legislation.gov.uk), NABA 2022, Home Office nationality policy guidance. Anything essential missing from that list?</li>
+</ol>
+<p>Once the truth table is signed and the 13 items above are answered, build is ~6 hours (spec was 4hr in v0.1; +2hr for the static route-explainer content + schema wiring the council mandated). I'd aim to have it live within a week of your sign-off. Standalone page at <code>/british-citizenship-registration-checker/</code> with descriptive cross-links to <code>/citizenship-wizard/</code>.</p>
+<p>Anything in here you'd like to talk through on a call rather than mark up, let me know — happy to set up 30 minutes.</p>
+<p>Best,
+Mohammed</p>
+
+<div class="section-break"></div>
+<div class="section-intro"><strong>Section 2 — Full spec v0.2.</strong> This is what will be built once you've signed off Appendix A (routing matrix) and the 13 items above. All 10 LLM council must-haves are baked in.</div>
+
+<h2>Spec v0.2</h2>
+<h1>British Citizenship Registration Entitlement Checker — Spec v0.2 (POST-COUNCIL, awaiting solicitor sign-off)</h1>
+<p><strong>Client:</strong> Abrahams Solicitors (SRA-regulated UK immigration firm, Bradford + London)
+<strong>Named solicitor:</strong> Imran Shah, SRA #509359
+<strong>Version:</strong> v0.2 (incorporates 10 v0.1-council must-haves — Council report <code>docs/citizenship-checker-council-report-2026-07-09.html</code>, verdict APPROVED WITH CHANGES, risk MEDIUM)
+<strong>Status:</strong> Awaiting Imran Shah's redline sign-off before code</p>
+<hr />
+<h2>Council changes baked in (all v0.1 must-haves)</h2>
+<ul>
+<li>✅ 6 → 8 questions (adds s.1(3) automatic-British + s.1(4) 10-yr-residence coverage)</li>
+<li>✅ Static passage-level HTML route explainers below the wizard</li>
+<li>✅ Author E-E-A-T block (byline + dated stamp + SRA link + schema)</li>
+<li>✅ Route titles human-first, statute-second</li>
+<li>✅ Route-appropriate CTAs (no blanket "book a call")</li>
+<li>✅ "Not sure" branching capped</li>
+<li>✅ URL / H1 / title-tag differentiation locked</li>
+<li>✅ Hardcoded top-of-results disclaimer banner</li>
+<li>✅ Routing decision matrix appendix (below) — awaiting Imran sign-off before code</li>
+<li>✅ Quarterly statute review cadence (not annual)</li>
+</ul>
+<hr />
+<h2>Positioning</h2>
+<p><strong>NOT</strong> a gov.uk clone. Positioned as: <strong>"You asked gov.uk 'am I British?' — here's what to do next, especially if the answer is 'you can register'."</strong></p>
+<p>Target long-tail queries where gov.uk is weak or absent:
+- "am I British by descent"
+- "British citizenship through grandparent"
+- "Windrush citizenship registration"
+- "s.4B British citizenship"
+- "s.4L unfairness discretion"
+- "consular birth registration"
+- "British Overseas Territories citizen naturalisation"
+- "s.1(3) automatic British citizenship"</p>
+<h2>URL / H1 / title lockdown</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>URL</strong></td>
+<td><code>/british-citizenship-registration-checker/</code></td>
+</tr>
+<tr>
+<td><strong>H1</strong></td>
+<td>British Citizenship Registration Entitlement Checker</td>
+</tr>
+<tr>
+<td><strong>Title tag</strong></td>
+<td><code>Am I British? Registration Entitlement Checker | Abrahams Solicitors</code></td>
+</tr>
+<tr>
+<td><strong>Primary keyword</strong></td>
+<td>British citizenship <strong>registration</strong></td>
+</tr>
+<tr>
+<td><strong>NOT targeting</strong></td>
+<td>"naturalisation" (owned by existing <code>/citizenship-wizard/</code>)</td>
+</tr>
+<tr>
+<td><strong>Cross-links</strong></td>
+<td>Descriptive-anchor block on both wizards linking to the other + hub page <code>/british-citizenship/</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Wizard flow — 8 questions (was 6)</h2>
+<ol>
+<li><strong>Where were you born?</strong></li>
+<li>UK / British Overseas Territory / abroad to a British parent / abroad to non-British parents / not sure</li>
+<li><strong>What was your father's status at your birth?</strong></li>
+<li>British / non-British / not sure / not applicable</li>
+<li><strong>What was your mother's status at your birth?</strong></li>
+<li>British / non-British / not sure / not applicable</li>
+<li><strong>NEW — What is your parents' current UK immigration status?</strong> <em>(covers s.1(3) — parent later settled/naturalised while applicant was still under 18)</em></li>
+<li>One or both now have ILR or British citizenship / on a UK visa but not ILR yet / no UK status / not sure / not applicable</li>
+<li><strong>NEW — Have you lived in the UK for most of your life since birth?</strong> <em>(covers s.1(4) — 10-year UK residence rule for those born in UK)</em></li>
+<li>Yes — 10+ years continuous UK residence since birth / partial UK residence / mainly lived abroad / not sure</li>
+<li><strong>Are you a citizen of a British Overseas Territory (BOT)?</strong></li>
+<li>Yes (which one) / No / Not sure</li>
+<li><strong>Your age now?</strong></li>
+<li>Under 18 / 18+</li>
+<li><strong>Have you ever tried to obtain a British passport?</strong></li>
+<li>Never / Applied and refused / Applied and granted</li>
+</ol>
+<h3>"Not sure" cap rule (new)</h3>
+<ul>
+<li><strong>≥2 "not sure" answers</strong> → soft explainer route, NOT immediate CTA funnel. Copy: "Nationality routes hinge on details you may not have to hand. Rather than guess, we'll email you a document checklist so you can gather the facts first — no call needed until you're ready."</li>
+</ul>
+<h2>Outputs (route mapping — full truth table in appendix)</h2>
+<p>Route titles are <strong>human-first, statute-second</strong> — the statute goes in parentheses at the end, never in the headline.</p>
+<table>
+<thead>
+<tr>
+<th>Human-first route title</th>
+<th>Statute basis</th>
+<th>CTA style</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>You're already British — here's how to get evidence</strong> <em>(post-1983 UK birth, at least one parent British/settled)</em></td>
+<td>BNA 1981 s.1(1)</td>
+<td>First-passport guide + document checklist — <strong>no call button</strong></td>
+</tr>
+<tr>
+<td><strong>You may automatically be British at birth because your parent settled while you were still a child (legal basis: s.1(3))</strong></td>
+<td>BNA 1981 s.1(3)</td>
+<td>Free 30-min call — evidence gathering</td>
+</tr>
+<tr>
+<td><strong>You may be entitled to register as British because you've lived in the UK for 10+ years since birth (legal basis: s.1(4))</strong></td>
+<td>BNA 1981 s.1(4)</td>
+<td>Free 30-min call — application prep</td>
+</tr>
+<tr>
+<td><strong>You may be British by descent — but you'll need consular birth registration</strong> <em>(abroad-to-British-parent)</em></td>
+<td>BNA 1981 s.2 + consular process</td>
+<td>Consular registration guide + call button</td>
+</tr>
+<tr>
+<td><strong>You can register as a British citizen because you're already a British Overseas Territories citizen (legal basis: s.4A)</strong></td>
+<td>BNA 1981 s.4A</td>
+<td>Documents guide + call button</td>
+</tr>
+<tr>
+<td><strong>You may be able to register as British because you were born here and lived here your whole life (legal basis: s.4B / s.4D)</strong> — stateless minor and BOTC minor routes</td>
+<td>BNA 1981 s.4B / s.4D</td>
+<td>Free call — safeguarding + application prep</td>
+</tr>
+<tr>
+<td><strong>You may qualify to naturalise instead — here's how</strong> <em>(adult, no British parent, no BOT, no UK birth registration route)</em></td>
+<td>BNA 1981 s.6(1)</td>
+<td>Cross-link to <code>/citizenship-wizard/</code> (naturalisation)</td>
+</tr>
+<tr>
+<td><strong>This looks complex — a call is the right next step</strong> <em>(any ≥2 "not sure"; discretionary s.4L / s.3(1) HS routes; contested cases)</em></td>
+<td>s.3(1), s.4L, or fact-sensitive</td>
+<td>Free 30-min call with named solicitor</td>
+</tr>
+<tr>
+<td><strong>Windrush-specific route — priority callback, no funnel</strong> <em>(refused-passport + long UK residence + 1960s-1980s indicators)</em></td>
+<td>s.4L unfairness discretion / historical anomaly review</td>
+<td><strong>Skips standard CTA funnel</strong> — direct named-solicitor callback within one working hour</td>
+</tr>
+</tbody>
+</table>
+<h3>Windrush-specific triage rule</h3>
+<p>If Q7 = refused-passport AND Q4/Q5 indicators suggest 1960s-1980s Commonwealth arrival: the wizard routes to a <strong>Windrush-specific outcome page</strong> that:
+1. Acknowledges the Windrush injustice explicitly (empathetic tone)
+2. Skips the standard "book a 30-min slot" funnel
+3. Offers a <strong>priority named-solicitor callback within 1 working hour</strong>
+4. Provides links to Windrush Compensation Scheme + JCWI + Windrush Justice Clinic (external, non-competing)
+5. Explicitly states <strong>no fee for the initial callback</strong></p>
+<h2>Static route explainers (SEO / GEO layer — NEW)</h2>
+<p>Below the interactive wizard, render each of the 9 route explanations as a <strong>static, crawlable H2 section</strong> so AI Overviews, ChatGPT, and Perplexity can extract passage-level answers.</p>
+<p>Each route section:
+- <code>&lt;h2&gt;</code> heading = the human-first route title (statute name in parentheses at end)
+- 150–250 words of static content
+- Numbered "who this applies to" list (crawlable)
+- FAQ subsection with FAQPage schema
+- HowTo subsection with HowTo schema (for routes that map to a document-prep flow)
+- "Next step" CTA at the bottom of each section</p>
+<p>Wizard becomes the <strong>interactive layer</strong> OVER indexable content, not a replacement for it.</p>
+<h2>Author E-E-A-T block (NEW)</h2>
+<p>Rendered near the top of the page and again in the footer:</p>
+<ul>
+<li><strong>Visible byline:</strong> "Reviewed by Imran Shah, Solicitor, SRA #509359 · Last reviewed [DATE]"</li>
+<li><strong>Person schema</strong> (JSON-LD) with <code>sameAs</code> link to Imran's SRA register entry</li>
+<li><strong>LegalService schema</strong> on the page as a whole</li>
+<li><strong>Sources / References section</strong> at page bottom, citing:</li>
+<li>British Nationality Act 1981 (link to legislation.gov.uk)</li>
+<li>Nationality and Borders Act 2022 (NABA 2022 — s.4L introduction)</li>
+<li>Home Office nationality policy guidance (link to gov.uk)</li>
+<li><strong>"How this checker is kept accurate" note:</strong> references quarterly review cadence + council report reference</li>
+</ul>
+<h2>Legal disclaimer banner (hardcoded — top of results)</h2>
+<p>Rendered as a persistent banner above every wizard result page. Exact copy:</p>
+<blockquote>
+<p><strong>This checker gives general information only, not legal advice.</strong> No solicitor-client relationship is created until we accept your instructions in writing. Abrahams Solicitors is authorised and regulated by the Solicitors Regulation Authority (SRA #809071). If you rely on the checker's suggestion to make an application decision, please confirm with a qualified solicitor first.</p>
+</blockquote>
+<h2>Scope OUT (deliberate — deferred to v2 or later)</h2>
+<p>Captured from the Expansionist advisor but not blocking v0.1 ship:
+- Email nurture sequence per route (v2)
+- Paid tier CTA ladder — £29 letter / £149 review / £499 form-prep / £1,500 full app (v2)
+- 8 dedicated pillar pages per route (v2)
+- Backlink outreach sprint (v2 — after initial ranking data)</p>
+<p>Permanently out of scope:
+- Deprived-of-citizenship cases (consultation-only)
+- Renouncing / reinstating British nationality (low search volume)
+- Adopted-by-non-British-citizen edge cases</p>
+<h2>Success metrics (90-day)</h2>
+<ul>
+<li>Ranks page 1 for <strong>≥3 registration long-tail queries</strong> in the target list</li>
+<li>Delivers <strong>≥5 warm leads/month</strong> via CTA</li>
+<li>Doesn't cannibalise <code>/citizenship-wizard/</code> — GSC 30-day monitoring</li>
+<li>Windrush route delivers ≥1 priority callback (validates the empathetic triage design)</li>
+</ul>
+<h2>Design (follows existing wizard pattern)</h2>
+<ul>
+<li>One question at a time, progress bar (matches AM calculator wizard)</li>
+<li>Confidence badges: HIGH / MEDIUM / LOW on every actionable route</li>
+<li>Legal citations displayed in the format: "Legal basis: British Nationality Act 1981, s.4A"</li>
+<li>Always couched: "your answers suggest X" — never "you are X"</li>
+<li>Same wizard-widget.tsx pattern as ilr-wizard, skilled-worker-wizard, visa-wizard</li>
+</ul>
+<h2>Freshness / review cadence (NEW — quarterly, not annual)</h2>
+<ul>
+<li>Config file header field: <code>LAST_REVIEWED_BY_IMRAN: "YYYY-MM-DD"</code> and <code>NEXT_REVIEW_DUE: "YYYY-MM-DD"</code> (quarterly)</li>
+<li>Nationality statute drifts (NABA 2022 introduced s.4L; forthcoming BOTC amendments in view)</li>
+<li>Quarterly review flag: 2026-10-10, 2027-01-10, 2027-04-10, 2027-07-10</li>
+</ul>
+<hr />
+<h2>APPENDIX A — Routing Decision Matrix (Q1-Q8 truth table)</h2>
+<p><strong>⚠️ THIS SECTION AWAITS IMRAN SHAH'S SIGN-OFF BEFORE ANY CODE IS WRITTEN. ⚠️</strong></p>
+<p>Truth table maps each (Q1, Q3, Q4, Q5, Q6, Q7, Q8) input tuple to a single route. Q2 is diagnostic-only (paired with Q3 for parental-status analysis).</p>
+<h3>Route priority (higher wins where multiple would fit)</h3>
+<ol>
+<li><strong>Windrush triage</strong> — Q8=refused + Q5=10+ years UK + implied 1960s-80s arrival pattern</li>
+<li><strong>You're already British</strong> — Q1=UK + Q3=British-at-birth</li>
+<li><strong>s.1(3) automatic-British-later</strong> — Q1=UK + Q3=non-British + Q4=parent-now-ILR-or-British</li>
+<li><strong>s.1(4) 10-yr UK residence</strong> — Q1=UK + Q3=non-British + Q4=parent-not-ILR + Q5=10+ years</li>
+<li><strong>s.4A BOTC → British</strong> — Q6=Yes (any BOT) + Q7=adult</li>
+<li><strong>s.4B stateless minor</strong> — Q1=UK + Q3=neither British + Q5=continuous UK + Q7=under-18</li>
+<li><strong>s.4D BOTC minor</strong> — Q6=Yes + Q7=under-18</li>
+<li><strong>British by descent — consular registration</strong> — Q1=abroad-to-British-parent + Q3=British-at-birth</li>
+<li><strong>Naturalise instead</strong> — Q1=abroad-to-non-British + adult + no BOT + no s.1/s.4 route applies</li>
+<li><strong>Complex / call needed</strong> — ≥2 "not sure" OR discretionary s.4L/s.3(1) fact pattern</li>
+</ol>
+<p><em>(Full truth table with all 4×4×4×4×3×2×3 combinations to be attached as a spreadsheet for Imran's sign-off before code.)</em></p>
+<h3>Deferred to consultation-only in v1 (not routed by wizard)</h3>
+<ul>
+<li><strong>s.3(1) minor at HS discretion</strong> — always outputs "Complex — call needed" in v1</li>
+<li><strong>s.4L unfairness discretion</strong> — routed via Windrush triage when Windrush indicators present; otherwise "Complex — call needed"</li>
+</ul>
+<hr />
+<h2>APPENDIX B — Copy tone rules</h2>
+<ul>
+<li><strong>Never lead with statute in a route title.</strong> Statute in parens at end, never at start.</li>
+<li><strong>Always couched.</strong> "Your answers suggest…" / "You may be able to…" / "It looks like you could…" — never "You are entitled to X."</li>
+<li><strong>Empathetic on discretionary/Windrush routes.</strong> Acknowledge that nationality is emotional and personal.</li>
+<li><strong>CTA-appropriate.</strong> Simple routes → guide + optional call. Discretionary → call. Windrush → priority callback.</li>
+<li><strong>Plain English first.</strong> Any statute name explained on first appearance ("s.4A — a route that lets British Overseas Territories citizens register as British citizens").</li>
+</ul>
+<hr />
+<h2>APPENDIX C — Deferred to v2 (captured, not blocking)</h2>
+<ol>
+<li><strong>PDF checklist per route</strong> — email-gated download</li>
+<li><strong>Route-tagged 5-email nurture sequence</strong> — for wizard completions that didn't book</li>
+<li><strong>Paid tier CTA ladder</strong> — £29 letter / £149 review / £499 form-prep / £1,500 full app</li>
+<li><strong>8 dedicated pillar pages</strong> — one per route, indexable, linked from the wizard result screen</li>
+<li><strong>Backlink outreach sprint</strong> — Windrush advocacy (JCWI, Runnymede Trust, Windrush Justice Clinic), Commonwealth associations, university international student services</li>
+</ol>
+<hr />
+<h2>Ready to build when</h2>
+<ul>
+<li>[ ] Imran Shah signs off on the routing decision matrix (Appendix A)</li>
+<li>[ ] Imran Shah signs off on the copy tone rules (Appendix B)</li>
+<li>[ ] Imran Shah confirms Windrush triage escalation path (priority callback within 1 working hour)</li>
+<li>[ ] Imran Shah confirms first-reviewed date + first quarterly review-due date</li>
+</ul>
+<p>Once signed: 4-6 hr build (was 4hr in v0.1 — +2hr for static route explainer content + schema wiring); ship to preview → solicitor walkthrough → merge → deploy.</p>
+
+</body></html>
