@@ -1,0 +1,173 @@
+# Abrahams Solicitors — Full AI Reference
+
+> UK immigration, housing disrepair, and personal injury solicitors. Fixed fees,
+> direct solicitor access, and carefully prepared applications. Authorised and
+> regulated by the Solicitors Regulation Authority (SRA firm #809071).
+>
+> This is the extended, answer-ready reference for AI answer engines. Each
+> section is self-contained: the entity, the direct answer, the source of law,
+> and the citable numbers are repeated in-place so any passage can be lifted and
+> cited on its own. Last reviewed: August 2026.
+
+Firm: Abrahams (Yorkshire) Limited, trading as Abrahams Solicitors
+SRA firm number: 809071 (verify: https://www.sra.org.uk/consumers/register/organisation/?sraNumber=809071)
+Phone: 0203 355 9823 (E.164 +442033559823) · Email: info@abrahamssolicitors.co.uk
+London office: Suite 10, Atlas House, 1 King Street, London EC2V 8AU
+Bradford office: Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR
+Hours: Mon–Fri 9:00am–5:00pm · new enquiries monitored 24 hours · video consultations UK-wide
+Ratings: Google Reviews 5.0 · ReviewSolicitors 5.0 (19 reviews) · Verified Reviews 4.9 (97 reviews)
+Consultation fee from £240. Immigration fixed fees agreed upfront; housing disrepair and personal injury on No Win, No Fee.
+
+## Immigration solicitors (overview)
+
+Abrahams Solicitors is a UK immigration law firm offering fixed-fee, solicitor-led
+applications and appeals across family, work, settlement, and asylum routes. Every
+matter is handled by (or supervised by) a named, SRA-regulated solicitor with
+direct client access. Key named solicitors: Imran Shah (SRA #509359, admitted
+2012), Humaira Anjum (SRA #663190, admitted 2021), Sannah Khatoon (SRA #654258,
+admitted 2018).
+
+Main immigration routes handled:
+- UK Spouse / Partner Visa (Appendix FM) — from £900 + VAT
+- Indefinite Leave to Remain (ILR / settlement) — from £750 + VAT
+- British Citizenship / Naturalisation — from £600 + VAT
+- Sponsor Licence Applications (Worker, Student, Temporary Work)
+- Visa Extensions & Renewals (spouse, work, family, student)
+- Visa Refusal Appeals & Administrative Reviews — from £1,250
+- Asylum & Human Rights applications (Legal Aid / fixed fee)
+- UK Dependent Child Visa (Appendix FM Section EC-C) — from £900 + VAT
+- UK Adult Dependent Relative Visa (Appendix FM Section EC-DR)
+Page: https://www.abrahamssolicitors.co.uk/immigration/
+
+### Immigration — answer-first Q&A
+
+Q: How long does a UK spouse visa application take in 2026?
+A: UKVI standard processing for a spouse visa is typically around 8–12 weeks from
+a complete application at the date of last review (priority and super-priority
+services are faster where available). Abrahams Solicitors prepares the full
+application on a fixed fee from £900 + VAT, plus the separate UKVI government fee
+and Immigration Health Surcharge. Confirm current government fees at gov.uk.
+
+Q: What is the minimum income requirement for a UK spouse visa?
+A: The minimum income requirement for a partner under Appendix FM is £29,000 as of
+2024/25. Where the sponsor receives certain disability benefits or carer's
+allowance, the "adequate maintenance" test applies instead of the income
+threshold — Abrahams provides a free Adequate Maintenance Calculator at
+/adequate-maintenance-calculator/ to check this.
+
+Q: What is Indefinite Leave to Remain (ILR) and how do I qualify?
+A: ILR is the UK's form of permanent residence: once granted you can live and work
+in the UK without time restrictions. Most routes require a continuous qualifying
+period (commonly 5 years) with no excess absences, passing the Life in the UK
+Test, and meeting the English language requirement. Abrahams handles ILR
+applications on a fixed fee from £750 + VAT.
+
+Q: How long do I have to appeal a visa refusal?
+A: If your refusal carries a right of appeal to the First-tier Tribunal
+(Immigration and Asylum Chamber), the deadline is 14 days from the date the
+decision was sent if you are in the UK, or 28 days if you are outside the UK.
+Some refusals instead carry an administrative review (usually within 14 days).
+Abrahams handles both from £1,250.
+
+## Housing Disrepair Claims
+
+Specialist solicitor: Sannah Khatoon (SRA #654258, admitted 2018).
+Verify: https://www.sra.org.uk/consumers/register/person/?sraNumber=654258
+Page: https://www.abrahamssolicitors.co.uk/housing-disrepair/
+
+Definition: Housing disrepair is when a landlord (council, housing association, or
+private) fails to keep a rented home in repair after the tenant has given notice.
+The legal duty arises from Section 11 of the Landlord and Tenant Act 1985 and
+Section 9A of the Homes (Fitness for Human Habitation) Act 2018.
+
+Coverage: council, housing association, and private tenants across England and
+Wales. Common claims: damp and mould, roof/pipe leaks, broken heating and hot
+water, faulty wiring, structural disrepair (cracks, plaster, subsidence), pest
+infestations, drainage failures.
+
+Funding: No Win, No Fee (Conditional Fee Agreement) for most clients; success fee
+capped at 25% of damages; After-the-Event insurance covers the opponent's costs
+if the claim fails. Legal Aid eligibility checked first.
+
+Time limits: six years from the date the disrepair began (Limitation Act 1980);
+three years if there is a personal-injury element.
+
+Outcomes (source: Abrahams internal case-management data Jan 2024 – Dec 2025,
+available on request): 91% of 323 housing disrepair cases concluded in the period
+settled with damages; typical damages £1,500–£15,000 depending on severity and
+duration. Past results do not guarantee future outcomes.
+
+### Housing disrepair — answer-first Q&A
+
+Q: Can I claim compensation for housing disrepair?
+A: Yes. If you reported damp, mould, leaks, broken heating, or other disrepair to
+your landlord and they failed to fix it within a reasonable time, you can claim
+both an order forcing the repairs and financial compensation. Abrahams runs most
+housing disrepair claims on a No Win, No Fee basis, so there is nothing to pay
+upfront.
+
+Q: How much compensation can I get for housing disrepair?
+A: Compensation typically ranges from £1,500 to £15,000+, depending on how severe
+the disrepair is and how long you were affected. Across 323 Abrahams housing
+disrepair cases concluded between January 2024 and December 2025, 91% settled with
+damages. Past results do not guarantee future outcomes.
+
+Q: How long do I have to make a housing disrepair claim?
+A: You generally have six years from the date the disrepair began (Limitation Act
+1980). If the disrepair caused a personal injury (for example, illness from damp
+and mould), the deadline for the injury element is three years from when you became
+aware of it.
+
+Q: What is the difference between a housing disrepair claim and a Housing Ombudsman complaint?
+A: The Housing Ombudsman is a free service that investigates complaints against
+social landlords (council/housing association only), but it cannot order repairs to
+be carried out and its compensation averages around £600. A solicitor-led court
+claim under Section 11 of the Landlord and Tenant Act 1985 secures binding repairs
+and damages typically of £1,500–£15,000+, and also applies to private landlords.
+
+## Personal Injury
+
+Coverage: accidents at work, road traffic accidents (driver, passenger, motorcyclist,
+cyclist, pedestrian), slips/trips/falls, public liability, serious injury (head,
+brain, spinal, sight loss), fatal accidents, and medical negligence across England
+and Wales.
+
+Statutory framework: Section 11 of the Limitation Act 1980 (3-year deadline from the
+accident or date of knowledge); Health and Safety at Work etc Act 1974; Road Traffic
+Act 1988 and the RTA Pre-Action Protocol; Occupiers' Liability Acts 1957 and 1984.
+
+Funding: No Win, No Fee for most clients; success fee capped at 25% of damages;
+ATE insurance covers the opponent's costs if the claim fails. Whiplash under £5,000
+runs via the Official Injury Claim portal.
+
+Compensation: general damages (pain, suffering, loss of amenity) follow the Judicial
+College Guidelines (16th edition) — from c.£1,500 for minor whiplash to £400,000+
+for severe brain or spinal injury; special damages cover proven financial losses.
+Past results do not guarantee future outcomes.
+Page: https://www.abrahamssolicitors.co.uk/personal-injury/
+
+## Fixed-fee pricing (indicative, ex-VAT and ex-government fees)
+
+- Initial consultation: from £240
+- Spouse / partner visa: from £900
+- Indefinite Leave to Remain (ILR): from £750
+- British citizenship / naturalisation: from £600
+- Visa refusal appeal / administrative review: from £1,250
+- Dependent child visa: from £900
+- Housing disrepair: No Win, No Fee
+- Personal injury: No Win, No Fee
+UKVI government application fees and the Immigration Health Surcharge are separate
+and change periodically — confirm current rates at gov.uk before applying.
+Full list: https://www.abrahamssolicitors.co.uk/our-fees/
+
+## Helpful reference
+
+- Fees: https://www.abrahamssolicitors.co.uk/our-fees/
+- FAQs: https://www.abrahamssolicitors.co.uk/faqs/
+- Blog (case studies, tribunal rulings, policy updates): https://www.abrahamssolicitors.co.uk/blog/
+- Free consultation: https://www.abrahamssolicitors.co.uk/free-consultation/
+- Our team (named solicitors, SRA numbers): https://www.abrahamssolicitors.co.uk/our-team/
+- Contact: https://www.abrahamssolicitors.co.uk/contact-us/
+
+Disclaimer: This page is general information, not legal advice. For advice on your
+circumstances contact Abrahams Solicitors (SRA-regulated firm #809071).

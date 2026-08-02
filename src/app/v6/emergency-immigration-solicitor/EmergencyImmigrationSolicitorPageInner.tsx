@@ -236,11 +236,14 @@ function FaqAccordion() {
             <span className="text-sm sm:text-base font-bold text-slate-900">{q.question}</span>
             <ChevronDown className={`h-4 w-4 text-slate-400 shrink-0 transition-transform ${openIdx === i ? "rotate-180" : ""}`} />
           </button>
-          {openIdx === i && (
-            <div id={`emergency-faq-${i}`} className="px-5 pb-5 text-sm text-slate-600 leading-relaxed speakable-faq-answer">
-              {q.answer}
+          {/* GEO: answer stays in the DOM always (collapsed via CSS grid). */}
+          <div className={`grid transition-[grid-template-rows] duration-200 ease-out ${openIdx === i ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+            <div className="overflow-hidden">
+              <div id={`emergency-faq-${i}`} className="px-5 pb-5 text-sm text-slate-600 leading-relaxed speakable-faq-answer">
+                {q.answer}
+              </div>
             </div>
-          )}
+          </div>
         </div>
       ))}
     </div>

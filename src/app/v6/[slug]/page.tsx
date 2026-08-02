@@ -459,14 +459,23 @@ export default function V6ServicePage() {
               <div className="space-y-3">
                 {page.faqs.map((faq, i) => (
                   <div key={i} className="border border-slate-200 rounded-xl overflow-hidden">
-                    <button onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                      className="flex items-center justify-between gap-4 w-full p-5 text-left text-sm font-bold text-slate-900 hover:text-brand-red transition-colors">
-                      {stripHeadingPrefix(faq.question)}
-                      <ChevronDown className={`h-4 w-4 shrink-0 text-brand-red transition-transform duration-200 ${openFaq === i ? "rotate-180" : ""}`} />
-                    </button>
-                    {openFaq === i && (
-                      <div className="px-5 pb-5 text-sm text-slate-500 leading-relaxed border-t border-slate-100 pt-4">{stripHeadingPrefix(faq.answer)}</div>
-                    )}
+                    {/* Question as an h3 so AI engines parse the Q&A structure. */}
+                    <h3 className="m-0">
+                      <button onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                        aria-expanded={openFaq === i}
+                        className="flex items-center justify-between gap-4 w-full p-5 text-left text-sm font-bold text-slate-900 hover:text-brand-red transition-colors">
+                        {stripHeadingPrefix(faq.question)}
+                        <ChevronDown className={`h-4 w-4 shrink-0 text-brand-red transition-transform duration-200 ${openFaq === i ? "rotate-180" : ""}`} />
+                      </button>
+                    </h3>
+                    {/* GEO: the answer stays in the server-rendered DOM always
+                        (visually collapsed via a CSS grid row) so AI crawlers can
+                        read and cite it — never conditionally mounted. */}
+                    <div className={`grid transition-[grid-template-rows] duration-200 ease-out ${openFaq === i ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+                      <div className="overflow-hidden">
+                        <div className="px-5 pb-5 text-sm text-slate-500 leading-relaxed border-t border-slate-100 pt-4">{stripHeadingPrefix(faq.answer)}</div>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>

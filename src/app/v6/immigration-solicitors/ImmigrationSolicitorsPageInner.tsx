@@ -273,18 +273,24 @@ function FaqAccordion() {
     <div className="space-y-3">
       {FAQS.map((q, i) => (
         <div key={q.question} className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
-          <button type="button"
-            onClick={() => setOpenIdx(openIdx === i ? null : i)}
-            className="w-full flex items-center justify-between gap-3 px-5 py-4 text-left hover:bg-slate-50/60"
-            aria-expanded={openIdx === i} aria-controls={`is-faq-${i}`}>
-            <span className="text-sm sm:text-base font-bold text-slate-900">{q.question}</span>
-            <ChevronDown className={`h-4 w-4 text-slate-400 shrink-0 transition-transform ${openIdx === i ? "rotate-180" : ""}`} />
-          </button>
-          {openIdx === i && (
-            <div id={`is-faq-${i}`} className="px-5 pb-5 text-sm text-slate-600 leading-relaxed speakable-faq-answer">
-              {q.answer}
+          <h3 className="m-0">
+            <button type="button"
+              onClick={() => setOpenIdx(openIdx === i ? null : i)}
+              className="w-full flex items-center justify-between gap-3 px-5 py-4 text-left text-sm sm:text-base font-bold text-slate-900 hover:bg-slate-50/60"
+              aria-expanded={openIdx === i} aria-controls={`is-faq-${i}`}>
+              <span>{q.question}</span>
+              <ChevronDown className={`h-4 w-4 text-slate-400 shrink-0 transition-transform ${openIdx === i ? "rotate-180" : ""}`} />
+            </button>
+          </h3>
+          {/* GEO: answer stays in the server-rendered DOM always (collapsed via
+              CSS grid) so AI crawlers can read and cite it. */}
+          <div className={`grid transition-[grid-template-rows] duration-200 ease-out ${openIdx === i ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+            <div className="overflow-hidden">
+              <div id={`is-faq-${i}`} className="px-5 pb-5 text-sm text-slate-600 leading-relaxed speakable-faq-answer">
+                {q.answer}
+              </div>
             </div>
-          )}
+          </div>
         </div>
       ))}
     </div>

@@ -599,20 +599,26 @@ function FaqSection({ openFaq, setOpenFaq }: {
             const open = openFaq === i;
             return (
               <div key={i}>
-                <button
-                  type="button"
-                  onClick={() => setOpenFaq(open ? null : i)}
-                  aria-expanded={open}
-                  className="w-full flex items-start justify-between gap-4 text-left px-5 sm:px-6 py-4 hover:bg-slate-50 transition-colors"
-                >
-                  <span className="text-sm sm:text-base font-bold text-slate-900 leading-snug">{f.question}</span>
-                  <ChevronDown className={`h-5 w-5 text-slate-400 shrink-0 mt-0.5 transition-transform ${open ? "rotate-180" : ""}`} />
-                </button>
-                {open && (
-                  <div id={`faq-answer-${i}`} className="px-5 sm:px-6 pb-5 -mt-1 text-sm sm:text-[15px] text-slate-600 leading-relaxed">
-                    {f.answer}
+                <h3 className="m-0">
+                  <button
+                    type="button"
+                    onClick={() => setOpenFaq(open ? null : i)}
+                    aria-expanded={open}
+                    className="w-full flex items-start justify-between gap-4 text-left px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-slate-900 leading-snug hover:bg-slate-50 transition-colors"
+                  >
+                    <span>{f.question}</span>
+                    <ChevronDown className={`h-5 w-5 text-slate-400 shrink-0 mt-0.5 transition-transform ${open ? "rotate-180" : ""}`} />
+                  </button>
+                </h3>
+                {/* GEO: answer stays in the server-rendered DOM always (collapsed
+                    via CSS grid) so AI crawlers can read and cite it. */}
+                <div className={`grid transition-[grid-template-rows] duration-200 ease-out ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+                  <div className="overflow-hidden">
+                    <div id={`faq-answer-${i}`} className="px-5 sm:px-6 pb-5 text-sm sm:text-[15px] text-slate-600 leading-relaxed">
+                      {f.answer}
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
             );
           })}

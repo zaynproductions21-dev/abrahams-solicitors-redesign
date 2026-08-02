@@ -474,16 +474,22 @@ export default function UkDependentParentVisaPage() {
             <div className="lg:col-span-2 space-y-3">
               {FAQS.map((f, i) => (
                 <div key={i} className="border border-slate-200 rounded-xl overflow-hidden bg-white">
-                  <button
-                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="flex items-center justify-between gap-4 w-full p-5 text-left text-sm sm:text-base font-bold text-slate-900 hover:text-brand-red transition-colors"
-                  >
-                    {f.question}
-                    <ChevronDown className={`h-4 w-4 shrink-0 text-brand-red transition-transform ${openFaq === i ? "rotate-180" : ""}`} />
-                  </button>
-                  {openFaq === i && (
-                    <div id={`faq-answer-${i}`} className="px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4" dangerouslySetInnerHTML={{ __html: f.answer }} />
-                  )}
+                  <h3 className="m-0">
+                    <button
+                      onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                      aria-expanded={openFaq === i}
+                      className="flex items-center justify-between gap-4 w-full p-5 text-left text-sm sm:text-base font-bold text-slate-900 hover:text-brand-red transition-colors"
+                    >
+                      {f.question}
+                      <ChevronDown className={`h-4 w-4 shrink-0 text-brand-red transition-transform ${openFaq === i ? "rotate-180" : ""}`} />
+                    </button>
+                  </h3>
+                  {/* GEO: answer stays in the DOM always (collapsed via CSS grid). */}
+                  <div className={`grid transition-[grid-template-rows] duration-200 ease-out ${openFaq === i ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+                    <div className="overflow-hidden">
+                      <div id={`faq-answer-${i}`} className="px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4" dangerouslySetInnerHTML={{ __html: f.answer }} />
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
