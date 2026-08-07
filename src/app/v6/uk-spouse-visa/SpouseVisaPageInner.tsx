@@ -58,7 +58,7 @@ const HOW_IT_WORKS = [
     body: "You get the total fee in writing, scope clearly defined, before any work begins. No hourly surprises.",
   },
   {
-    n: 3, title: "Application prep",
+    n: 3, title: "Case & evidence preparation",
     body: "Your dedicated solicitor builds the case file — financial evidence, relationship documentation, supporting letters. Reviewed line by line for refusal-risk before submission.",
   },
   {
@@ -144,10 +144,10 @@ export default function SpouseVisaPageInner() {
         slug: "uk-spouse-visa",
         author: { name: AUTHOR.name, sraUrl: AUTHOR.sraUrl },
         catalog: [
-          { name: "Spouse Visa application", description: "Initial application under Appendix FM for the spouse of a British citizen or settled person." },
-          { name: "Fiancé(e) Visa application", description: "6-month leave to enter for the fiancé(e) of a British citizen or settled person, to marry in the UK and switch into the spouse route." },
-          { name: "Civil Partner Visa application", description: "Application under Appendix FM for the civil partner of a British citizen or settled person." },
-          { name: "Unmarried Partner Visa application", description: "Application for partners in a relationship akin to marriage who have lived together for at least 2 years before applying." },
+          { name: "Spouse Visa legal representation", description: "Legal representation under Appendix FM for the spouse of a British citizen or settled person." },
+          { name: "Fiancé(e) Visa legal representation", description: "6-month leave to enter for the fiancé(e) of a British citizen or settled person, to marry in the UK and switch into the spouse route." },
+          { name: "Civil Partner Visa legal representation", description: "Legal representation under Appendix FM for the civil partner of a British citizen or settled person." },
+          { name: "Unmarried Partner Visa legal representation", description: "Application for partners in a relationship akin to marriage who have lived together for at least 2 years before applying." },
           { name: "Spouse Visa extension (FLR-M)", description: "2.5-year extension applications under Appendix FM after the initial leave period." },
           { name: "Spouse Visa refusal — challenge or fresh application", description: "Administrative review, Pre-Action Protocol, or a strengthened fresh application following a refusal." },
         ],
@@ -241,7 +241,7 @@ function Hero() {
               UK Spouse Visa Solicitors — Fixed-Scope Fees, Direct Solicitor Access
             </h1>
             <p id="hero-lead" className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
-              SRA-regulated immigration specialists handling spouse, fiancé, civil partner and unmarried partner visa applications. <strong className="text-slate-900">From £900</strong> for standard cases, quoted in writing on a free 15-minute scoping call before you commit.
+              SRA-regulated immigration solicitors advising and representing spouse, fiancé, civil partner and unmarried partner clients under Appendix FM. <strong className="text-slate-900">From £900</strong> for standard cases, quoted in writing on a free 15-minute scoping call before you commit.
             </p>
 
             {/* Eligibility 3-bullet check */}
@@ -474,7 +474,7 @@ function PricingBlock() {
       <div className="max-w-[920px] mx-auto px-6 lg:px-8">
         <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">Fees</p>
         <h2 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">
-          From <span className="text-brand-red">£900</span> for standard spouse visa applications
+          Fixed-fee spouse visa legal representation — from <span className="text-brand-red">£900</span>
         </h2>
         <p id="pricing-summary" className="mt-4 text-base text-slate-600 leading-relaxed max-w-2xl">
           Fees vary by case complexity, number of dependants, and Home Office charges (Immigration Health Surcharge, biometric, application fees — paid separately to UKVI). Free 15-minute scoping call — we quote the full fee in writing before you commit.
@@ -487,7 +487,7 @@ function PricingBlock() {
               <h3 className="text-base font-bold text-slate-900">Standard case — from £900</h3>
             </div>
             <ul className="space-y-1.5 text-sm text-slate-600">
-              <li>Complete application preparation</li>
+              <li>Complete case preparation &amp; evidence review</li>
               <li>Financial + relationship evidence review</li>
               <li>Supporting cover letter to UKVI</li>
               <li>Direct solicitor access until decision</li>
