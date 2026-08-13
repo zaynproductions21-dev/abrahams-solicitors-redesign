@@ -28,9 +28,11 @@ Compliance heads-up — third-party trackers firing before cookie consent (we're
 >
 > **What I'm doing about it, and what I want from you.**
 >
-> The fix has two parts. I'm shipping the technical side this week — Google Consent Mode v2 wired into the site's cookie banner, the duplicate PostHog GTM tag deleted, and all non-essential GTM tags reconfigured to fire only after the visitor accepts. Bing UET conversion attribution stays working because Consent Mode v2 supports a "denied but track anonymously" mode for ad platforms that's ICO-compatible. I'll also swap Microsoft Clarity to a masked-input configuration matching the one we already use for PostHog.
+> Good news on the fix: the site-side of Google Consent Mode v2 is **already in place** in our code — checked today, `dataLayer` defaults are set to `denied` before GTM loads, and the banner already pushes `cookie_consent_granted` / `cookie_consent_denied` events on user action. So the site is signalling consent correctly. The problem is that the tags inside our GTM container weren't set to LISTEN to those signals — they fire regardless. That's a 20-minute click-through in the GTM UI, no code change on the site.
 >
-> Full technical playbook is in the attached document (`docs/gtm-consent-audit-2026-08-13.md`) if you want to see the detail. It runs to about 20 clicks in the GTM UI plus one small code change on the site.
+> Plan: delete the duplicate PostHog GTM tag, gate the consent-required tags (Meta Pixel, TikTok Pixel, Microsoft Clarity) on the existing `cookie_consent_granted` event, keep the ad conversion tags running (Google Ads, Bing UET) but with Consent Mode v2's cookieless/modelled mode — ICO-compatible, no lost attribution. Also swap Microsoft Clarity to a masked-input configuration matching the one we already use for PostHog.
+>
+> Full click-by-click playbook is in the attached document (`docs/gtm-consent-audit-2026-08-13.md`) if you want to see it. I can execute it if you send me the GTM login, or hand to a contractor.
 >
 > **From you I'd like:**
 >

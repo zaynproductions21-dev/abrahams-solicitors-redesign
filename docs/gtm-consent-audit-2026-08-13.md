@@ -3,7 +3,7 @@
 **Container:** `GTM-MPNJCTN7`
 **Access:** GTM UI at https://tagmanager.google.com (needs the Google account with edit rights on GTM-MPNJCTN7 — likely `uk.ppc.online.marketing@gmail.com` per prior notes)
 **Estimated time:** 20-30 min click-through + one publish
-**Prerequisites:** the companion site-side PR that ships Consent Mode v2 dataLayer signals from the cookie banner (see "Site-side prerequisite" section at bottom)
+**Prerequisites:** none — site-side Consent Mode v2 wiring is already in place (see "Site-side" section at bottom for what's already done). This is 100% a GTM-container change.
 
 ---
 
@@ -68,7 +68,7 @@ If the container doesn't already have a Consent Initialization tag:
 1. Left nav → **Triggers** → **New**
 2. **Trigger name**: "Cookie Consent Accepted"
 3. **Trigger Type**: Custom Event
-4. **Event name** (exact): `abrahams_consent_accepted`
+4. **Event name** (exact): `cookie_consent_granted`
 5. **Fire on**: All Custom Events
 6. Save
 
@@ -128,39 +128,20 @@ Do these in a **fresh incognito window** (or use the MCP browser tab — clear l
 
 ---
 
-## Site-side prerequisite (Consent Mode v2 dataLayer wiring)
+## Site-side — ✅ ALREADY DONE (no code change needed)
 
-For any of this to work, the cookie banner needs to push consent state to `dataLayer` so GTM's Consent Initialization tag can pick it up. This is a small code change I'll ship as a separate PR ahead of you executing the GTM playbook.
+Verified on 2026-08-13: the existing site code already:
 
-Expected `dataLayer` writes from the banner:
+- Bootstraps `dataLayer` + `gtag` **before** GTM loads (`src/components/v6/google-tag-manager.tsx`)
+- Sets Consent Mode v2 defaults (all `denied` except `security_storage` + `functionality_storage`) via `gtag('consent', 'default', ...)`
+- Replays stored consent decisions on repeat visits via `gtag('consent', 'update', ...)` BEFORE GTM runs
+- Pushes `cookie_consent_granted` / `cookie_consent_denied` events to `dataLayer` when the user clicks Accept / Decline (`src/components/v6/cookie-consent.tsx`)
+- Calls `updateGtmConsent()` + `updateUetConsent()` on user action for immediate `gtag('consent', 'update', ...)` propagation
+- Fires an `abrahams:consent-changed` DOM event so the React PostHog provider picks it up
 
-```js
-// On banner load, immediately (before user interaction):
-window.dataLayer.push({
-  event: 'default_consent',
-  ad_storage: 'denied',
-  ad_user_data: 'denied',
-  ad_personalization: 'denied',
-  analytics_storage: 'denied',
-});
+**So the Consent Mode v2 signals ARE reaching GTM correctly.** The tags inside GTM ignore them because they're not configured to check — that's the bug fixed by the playbook above.
 
-// On user clicking "Accept":
-window.dataLayer.push({
-  event: 'abrahams_consent_accepted',
-  ad_storage: 'granted',
-  ad_user_data: 'granted',
-  ad_personalization: 'granted',
-  analytics_storage: 'granted',
-});
-
-// On user clicking "Reject":
-window.dataLayer.push({
-  event: 'abrahams_consent_rejected',
-  // (leave all storage denied — Consent Mode v2 still allows modelled conversions)
-});
-```
-
-This code goes into the existing `src/components/v6/cookie-consent.tsx` (or wherever the banner lives) — I'll write it as PR #11 with a preview URL you can eyeball before merging.
+**Trigger event name for Step 3**: `cookie_consent_granted` (already pushed to dataLayer by the banner — no code change required).
 
 ---
 
