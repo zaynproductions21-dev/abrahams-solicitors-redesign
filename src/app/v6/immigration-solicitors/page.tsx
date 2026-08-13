@@ -28,6 +28,13 @@
 import type { Metadata } from "next";
 import ImmigrationSolicitorsPageInner from "./ImmigrationSolicitorsPageInner";
 
+// Prerender at build time — the shell is a pure server component wrapping a
+// client-only interactive form. Making this static stops Google AdsBot from
+// hitting a cold Vercel function on ad-click and keeps LCP predictable.
+// All request-time behaviour (DynamicPhoneText from cookies, form submit,
+// Skeepers widget) already lives inside the client component below.
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "UK Immigration Solicitors — SRA-Regulated, 4.9★ from 97 Reviews | Abrahams",
   description:

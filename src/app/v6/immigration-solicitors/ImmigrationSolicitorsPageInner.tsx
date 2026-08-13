@@ -316,7 +316,7 @@ export default function ImmigrationSolicitorsPageInner() {
         data={legalServiceWithCatalogSchema({
           name: "UK Immigration Solicitors — Abrahams Solicitors",
           description:
-            "SRA-regulated immigration solicitors. Spouse visas, FLR(M) extensions, ILR, British citizenship, refusal appeals, Skilled Worker sponsorship, judicial review. Fixed fees from £750. Direct solicitor access — no call centres. Firm #809071.",
+            "SRA-regulated immigration solicitors providing legal representation on partner-route matters, FLR(M) extensions, settlement, British citizenship, refusal appeals, Skilled Worker sponsorship and judicial review. Fixed fees from £750. Direct solicitor access — no call centres. Firm #809071.",
           slug: "immigration-solicitors",
           author: { name: AUTHOR.name, sraUrl: AUTHOR.sraUrl },
           catalog: [
@@ -382,8 +382,8 @@ export default function ImmigrationSolicitorsPageInner() {
               <p id="hero-lead" className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
                 Speak to a <strong>named SRA-regulated solicitor</strong>{" "}
                 on your first call &mdash; not a call handler, not a junior. Fixed fees agreed in
-                writing before any work starts. Spouse visas, FLR(M), ILR, citizenship, refusal
-                appeals and Skilled Worker sponsorship. Free 30-minute consultation.
+                writing before any work starts. Legal representation on partner-route matters, FLR(M)
+                extensions, settlement, citizenship, refusal appeals and Skilled Worker sponsorship. Free 30-minute consultation.
               </p>
 
               {/* Primary CTAs — both w-full on mobile, side-by-side natural width on tablet+.
