@@ -23,10 +23,26 @@
  * Pattern matches /flr-visa-extension/, /emergency-immigration-solicitor/
  * — server-component shell exports page-specific metadata; client inner
  * carries the interactive UI.
+ *
+ * Perf: JSON-LD schema is generated here (server) so the schema
+ * generators + FAQ array aren't shipped as client JavaScript. The client
+ * inner reads FAQS from ./data (which the server also imports below).
  */
 
 import type { Metadata } from "next";
 import ImmigrationSolicitorsPageInner from "./ImmigrationSolicitorsPageInner";
+import {
+  JsonLd,
+  faqPageSchema,
+  breadcrumbSchema,
+  speakableSchema,
+  personSchema,
+  legalServiceWithCatalogSchema,
+} from "@/components/v6/jsonld";
+import { team } from "@/lib/team";
+import { FAQS } from "./data";
+
+const AUTHOR = team.find((t) => t.slug === "imran-shah")!;
 
 export const metadata: Metadata = {
   title: "UK Immigration Solicitors — SRA-Regulated, 4.9★ from 97 Reviews | Abrahams",
@@ -52,5 +68,45 @@ export const metadata: Metadata = {
 };
 
 export default function ImmigrationSolicitorsPage() {
-  return <ImmigrationSolicitorsPageInner />;
+  return (
+    <>
+      <JsonLd
+        data={legalServiceWithCatalogSchema({
+          name: "UK Immigration Solicitors — Abrahams Solicitors",
+          description:
+            "SRA-regulated immigration solicitors. Spouse visas, FLR(M) extensions, ILR, British citizenship, refusal appeals, Skilled Worker sponsorship, judicial review. Fixed fees from £750. Direct solicitor access — no call centres. Firm #809071.",
+          slug: "immigration-solicitors",
+          author: { name: AUTHOR.name, sraUrl: AUTHOR.sraUrl },
+          catalog: [
+            { name: "Spouse / partner visa applications and extensions", description: "Appendix FM entry clearance, FLR(M) 30-month extensions, and indefinite leave after 5 years on the partner route." },
+            { name: "Indefinite Leave to Remain (ILR / settlement)", description: "5-year and 10-year long-residence routes, refugee/HP settlement, EUSS Settled Status." },
+            { name: "British citizenship by naturalisation", description: "Standard 5-year route, spouse-route 3-year, and discretion cases." },
+            { name: "Visa refusal appeals and judicial review", description: "First-tier and Upper Tribunal appeals, Pre-Action Protocol letters, JR in the Administrative Court." },
+            { name: "Skilled Worker sponsorship and ILR", description: "Switching, extension, 60-day grace period after sponsor revocation, and 5-year settlement." },
+            { name: "Sponsor licence applications and compliance", description: "A-rating applications, governance reviews, and compliance audits." },
+          ],
+        })}
+      />
+      <JsonLd
+        data={personSchema({
+          name: AUTHOR.name,
+          jobTitle: AUTHOR.role,
+          sraNumber: AUTHOR.sraNumber,
+          sraUrl: AUTHOR.sraUrl,
+          bio: AUTHOR.short,
+          slug: AUTHOR.slug,
+        })}
+      />
+      <JsonLd data={faqPageSchema([...FAQS])} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", url: "https://www.abrahamssolicitors.co.uk/" },
+          { name: "Immigration", url: "https://www.abrahamssolicitors.co.uk/immigration/" },
+          { name: "Immigration Solicitors" },
+        ])}
+      />
+      <JsonLd data={speakableSchema(["#hero-lead", ".speakable-faq-answer"])} />
+      <ImmigrationSolicitorsPageInner />
+    </>
+  );
 }

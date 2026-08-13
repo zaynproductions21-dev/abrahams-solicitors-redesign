@@ -8,6 +8,12 @@
     "start": "next start",
     "lint": "eslint"
   },
+  "browserslist": [
+    ">0.3%",
+    "not dead",
+    "not op_mini all",
+    "supports es6-module"
+  ],
   "dependencies": {
     "@base-ui/react": "^1.4.0",
     "@radix-ui/react-slot": "^1.2.4",

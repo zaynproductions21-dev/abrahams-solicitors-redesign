@@ -33,12 +33,9 @@ import { useSpamGuard } from "@/lib/spam-client";
 import { pushFormSubmit } from "@/lib/tracking";
 import { pushWizardEvent } from "@/lib/wizard-events";
 import { submitEnquiry } from "@/lib/publishos";
-import {
-  JsonLd, faqPageSchema, breadcrumbSchema, speakableSchema, personSchema,
-  legalServiceWithCatalogSchema,
-} from "@/components/v6/jsonld";
 import { team } from "@/lib/team";
 import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
+import { FAQS } from "./data";
 import {
   Phone, ChevronRight, ChevronDown, ShieldCheck, CheckCircle2, AlertCircle,
   AlertTriangle, Clock, Calendar, Star, Sparkles, PoundSterling, MapPin,
@@ -100,33 +97,9 @@ const TESTIMONIALS = [
   },
 ];
 
-const FAQS = [
-  {
-    question: "How much does an immigration solicitor cost?",
-    answer:
-      "We work on fixed fees, agreed in writing before any work starts — so you know the total cost before we begin. Most spouse visa, FLR(M), ILR and citizenship applications start from £750 to £900 plus VAT, with the UKVI government fee and Immigration Health Surcharge paid separately to the Home Office. Complex cases (previous refusal, gap in leave, dependants, judicial review) are quoted individually after a free 30-minute scoping call. Interest-free payment plans are available across most matters.",
-  },
-  {
-    question: "Is the first call really free?",
-    answer:
-      "Yes — the first 30 minutes is free, with no obligation. You speak directly to a qualified solicitor (not a call handler or a junior paralegal). We use the call to identify the right route, flag any complications, and give you a written fixed-fee quote afterwards if you want to instruct. If we can't help you, we'll tell you straight and point you to who can.",
-  },
-  {
-    question: "What's the difference between an immigration solicitor and an OISC adviser?",
-    answer:
-      "Solicitors are regulated by the SRA and can act on every category of immigration work — applications, appeals, judicial review, High Court and Upper Tribunal proceedings. OISC-regulated advisers are authorised at three levels; only Level 3 advisers can take appeals to Tribunal. For straightforward applications either is fine. For refusals, appeals, urgent injunctions, or anything that may reach a court, you need an SRA-regulated solicitor.",
-  },
-  {
-    question: "Do I have to come to your office or can we work remotely?",
-    answer:
-      "Almost all of our immigration work is done remotely. We use phone, video (Zoom, WhatsApp), and secure document upload — we don't require you to travel to our office for any application work. We have offices in London and Bradford if you prefer face-to-face meetings, but it's not necessary. We act for clients across England and Wales, plus UK nationals and partners overseas filing for entry clearance.",
-  },
-  {
-    question: "What happens on a visa refusal — how fast do I need to act?",
-    answer:
-      "Appeal deadlines are short: 14 days from the date on the refusal letter if you're in the UK, 28 days if you're overseas, 5 working days if you're detained. Out-of-time appeals are possible with an exceptional reason (medical emergency, bereavement, catastrophic service failure) but weaken with every day. If a deadline is within 7 days, call us today on 0203 355 9823. The earlier we have the refusal letter, the more options remain on the table.",
-  },
-];
+// FAQS moved to ./data so both the interactive accordion below AND the
+// FAQPage JSON-LD (now rendered server-side in page.tsx) can consume it
+// without shipping schema generators as client JavaScript.
 
 // ─── Form ──────────────────────────────────────────────────────────────
 
@@ -311,34 +284,9 @@ function trackPhoneTap(placement: string) {
 export default function ImmigrationSolicitorsPageInner() {
   return (
     <>
-      {/* ─── Schema markup ─── */}
-      <JsonLd
-        data={legalServiceWithCatalogSchema({
-          name: "UK Immigration Solicitors — Abrahams Solicitors",
-          description:
-            "SRA-regulated immigration solicitors. Spouse visas, FLR(M) extensions, ILR, British citizenship, refusal appeals, Skilled Worker sponsorship, judicial review. Fixed fees from £750. Direct solicitor access — no call centres. Firm #809071.",
-          slug: "immigration-solicitors",
-          author: { name: AUTHOR.name, sraUrl: AUTHOR.sraUrl },
-          catalog: [
-            { name: "Spouse / partner visa applications and extensions", description: "Appendix FM entry clearance, FLR(M) 30-month extensions, and indefinite leave after 5 years on the partner route." },
-            { name: "Indefinite Leave to Remain (ILR / settlement)", description: "5-year and 10-year long-residence routes, refugee/HP settlement, EUSS Settled Status." },
-            { name: "British citizenship by naturalisation", description: "Standard 5-year route, spouse-route 3-year, and discretion cases." },
-            { name: "Visa refusal appeals and judicial review", description: "First-tier and Upper Tribunal appeals, Pre-Action Protocol letters, JR in the Administrative Court." },
-            { name: "Skilled Worker sponsorship and ILR", description: "Switching, extension, 60-day grace period after sponsor revocation, and 5-year settlement." },
-            { name: "Sponsor licence applications and compliance", description: "A-rating applications, governance reviews, and compliance audits." },
-          ],
-        })}
-      />
-      <JsonLd data={personSchema({ name: AUTHOR.name, jobTitle: AUTHOR.role, sraNumber: AUTHOR.sraNumber, sraUrl: AUTHOR.sraUrl, bio: AUTHOR.short, slug: AUTHOR.slug })} />
-      <JsonLd data={faqPageSchema(FAQS)} />
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: "Home", url: "https://www.abrahamssolicitors.co.uk/" },
-          { name: "Immigration", url: "https://www.abrahamssolicitors.co.uk/immigration/" },
-          { name: "Immigration Solicitors" },
-        ])}
-      />
-      <JsonLd data={speakableSchema(["#hero-lead", ".speakable-faq-answer"])} />
+      {/* Schema markup (legalService, person, FAQPage, breadcrumb, speakable)
+          is rendered in the server component wrapper at ./page.tsx so the
+          schema generators aren't shipped as client JavaScript. */}
 
       {/* ─── Breadcrumb ─── */}
       <section className="bg-slate-50/60 border-b border-slate-100">
