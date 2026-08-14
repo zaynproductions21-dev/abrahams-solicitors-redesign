@@ -74,8 +74,16 @@ export function GoogleTagManager() {
         `}
       </Script>
 
-      {/* 2. GTM container */}
-      <Script id="gtm-loader" strategy="afterInteractive">
+      {/* 2. GTM container.
+          Loaded lazyOnload (after the window load event) rather than
+          afterInteractive: GTM pulls in the marketing pixels (Meta, TikTok,
+          Google Ads/GA), whose script execution was ~380ms of main-thread
+          blocking time inside the TBT window, and their parallel download
+          contended for bandwidth with the LCP hero image. Deferring the
+          container moves all of that past the critical window. Attribution is
+          preserved — form/phone/consent events queue in dataLayer (bootstrapped
+          beforeInteractive above) and flush once the container loads. */}
+      <Script id="gtm-loader" strategy="lazyOnload">
         {`
           (function(w,d,s,l,i){
             w[l]=w[l]||[];
