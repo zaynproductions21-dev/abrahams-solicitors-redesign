@@ -4,7 +4,7 @@ export const metadata = { title: "Privacy Policy" };
 
 export default function PrivacyPolicyPage() {
   return (
-    <LegalPage eyebrow="Legal" title="Privacy Policy" lastUpdated="24 April 2026">
+    <LegalPage eyebrow="Legal" title="Privacy Policy" lastUpdated="14 August 2026">
       <p>
         Abrahams (Yorkshire) Limited (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;) is a law firm authorised and regulated by the Solicitors Regulation Authority (SRA number 809071). This policy explains how we collect, use and protect your personal data when you visit abrahamssolicitors.co.uk or engage us as your solicitor.
       </p>
@@ -52,9 +52,15 @@ export default function PrivacyPolicyPage() {
         You can ask us to access, correct, delete or restrict the personal data we hold about you, object to processing, or ask for a copy in a portable format. Email <a href="mailto:info@abrahamssolicitors.co.uk">info@abrahamssolicitors.co.uk</a> to exercise any of these rights. You can also complain to the ICO at <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer">ico.org.uk</a>.
       </p>
 
-      <h2>Cookies</h2>
+      <h2>Cookies and analytics</h2>
       <p>
-        See our <a href="/cookie-policy/">Cookie Policy</a> for the full list of cookies used on this site and how to control them.
+        We use cookies and similar tracking technologies to run the site, understand how visitors use it, and measure the results of our advertising. Nothing that identifies you personally is set until you accept the cookie banner. Before you accept, only strictly necessary cookies run (session state and your consent choice); Google Ads and Google Analytics may load in a <strong>limited, aggregated, cookie-less mode</strong> so we can measure ad performance without identifying you &mdash; this is how Google&rsquo;s Consent Mode v2 works and it does not create a profile of your visit. Behavioural advertising pixels (Meta / Facebook, TikTok, Bing) and session-recording tools (Microsoft Clarity, PostHog) do not load at all until you accept.
+      </p>
+      <p>
+        If you accept, cookies are set by us and by our tracking providers as listed in our <a href="/cookie-policy/">Cookie Policy</a>. If you decline, or later change your mind, the corresponding cookies are not set (or are cleared when the browser next closes). Session-recording tools mask form input values and personal text by default, so even if you accept we do not receive the actual text you type into consultation forms.
+      </p>
+      <p>
+        Your consent choice is stored on your device in local storage (<code>abrahams-cookie-consent-v1</code>). To change it, clear that storage entry and reload the page &mdash; the banner will reappear.
       </p>
 
       <h2>Changes</h2>
