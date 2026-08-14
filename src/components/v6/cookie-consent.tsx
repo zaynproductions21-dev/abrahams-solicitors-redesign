@@ -9,6 +9,37 @@ import { updateUetConsent } from "./bing-uet";
 
 const COOKIE_KEY = "abrahams-cookie-consent-v1";
 
+// The GTM container (GTM-MPNJCTN7) inherits variables + tags from the
+// legacy WordPress site that used the Complianz cookie plugin. Its
+// "Consent Mode (Google + Microsoft tags) - Update" tag fires on the
+// Custom Event `consentUpdated` and reads two Lookup Table variables:
+//
+//   {{Lookup Table - Marketing cookie}}   reads 1st party cookie `cmplz_marketing`
+//   {{Lookup Table - Statics cookie}}     reads 1st party cookie `cmplz_statistics`
+//
+// Each lookup maps `allow` → `granted`, default → `denied`. Without those
+// cookies being set to `allow` and the `consentUpdated` event being
+// pushed, the container never learns the visitor accepted — Google Ads /
+// GA4 / Bing UET all stay in Consent-Mode-denied even after our banner
+// records acceptance. The site therefore has to write the four cmplz_*
+// cookies + push `consentUpdated`, mirroring what Complianz would have
+// done on the old WP install.
+//
+// This entire shim can be deleted the day the GTM container is cleaned
+// of Complianz cookie references — see docs/gtm-consent-audit-2026-08-13.md
+// for that follow-up.
+const CMPLZ_COOKIES = ["cmplz_marketing", "cmplz_statistics", "cmplz_functional", "cmplz_preferences"] as const;
+const CMPLZ_TTL_DAYS = 365;
+
+function setComplianzCookies(decision: Consent) {
+  if (typeof document === "undefined") return;
+  const value = decision === "accepted" ? "allow" : "deny";
+  const expires = new Date(Date.now() + CMPLZ_TTL_DAYS * 24 * 60 * 60 * 1000).toUTCString();
+  for (const name of CMPLZ_COOKIES) {
+    document.cookie = `${name}=${value};expires=${expires};path=/;SameSite=Lax`;
+  }
+}
+
 type Consent = "accepted" | "rejected";
 
 export function CookieConsent() {
@@ -25,8 +56,15 @@ export function CookieConsent() {
     try {
       window.localStorage.setItem(COOKIE_KEY, JSON.stringify({ decision, at: new Date().toISOString() }));
     } catch {}
+    // Set the Complianz-shim cookies BEFORE pushing the consentUpdated
+    // event — GTM's Lookup Table variables read the cookie value when
+    // the tag fires, so the cookies must exist first.
+    setComplianzCookies(decision);
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: decision === "accepted" ? "cookie_consent_granted" : "cookie_consent_denied" });
+    // Trigger GTM's "Consent Mode - Update" tag which fires on this event
+    // name and reads the cmplz_* cookies set above.
+    window.dataLayer.push({ event: "consentUpdated" });
     updateGtmConsent(decision);
     updateUetConsent(decision);
     // Notify PostHogProvider so consent-gated, masked analytics load immediately.
