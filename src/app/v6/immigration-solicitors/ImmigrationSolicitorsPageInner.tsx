@@ -51,7 +51,7 @@ const AUTHOR = team.find((t) => t.slug === "imran-shah")!;
 
 const FIXED_FEES = [
   {
-    service: "Spouse visa (first application)",
+    service: "Spouse / partner route",
     fee: "From £900",
     note: "Plus UKVI fees (£1,938 + IHS)",
   },
@@ -71,7 +71,7 @@ const FIXED_FEES = [
     note: "Plus UKVI fee (£1,580 + ceremony £80)",
   },
   {
-    service: "Visa refusal appeal (FTT IAC)",
+    service: "Refusal appeal (FTT IAC)",
     fee: "Quoted individually",
     note: "Free 30-min review of refusal letter first",
   },
@@ -85,7 +85,7 @@ const FIXED_FEES = [
 const TESTIMONIALS = [
   {
     name: "Daniel & Sara",
-    service: "Spouse visa appeal",
+    service: "Partner route appeal",
     text: "After a brutal refusal we were close to giving up. Imran walked us through the grounds line by line, rebuilt the evidence pack, and won the appeal. Honest from day one — never sold us a result he couldn't deliver.",
   },
   {
@@ -104,7 +104,7 @@ const FAQS = [
   {
     question: "How much does an immigration solicitor cost?",
     answer:
-      "We work on fixed fees, agreed in writing before any work starts — so you know the total cost before we begin. Most spouse visa, FLR(M), ILR and citizenship applications start from £750 to £900 plus VAT, with the UKVI government fee and Immigration Health Surcharge paid separately to the Home Office. Complex cases (previous refusal, gap in leave, dependants, judicial review) are quoted individually after a free 30-minute scoping call. Interest-free payment plans are available across most matters.",
+      "We work on fixed fees, agreed in writing before any work starts — so you know the total cost before we begin. Most partner-route, FLR(M), settlement and citizenship matters start from £750 to £900 plus VAT, with any UKVI government fee and Immigration Health Surcharge paid separately by you to the Home Office. Complex cases (previous refusal, gap in leave, dependants, judicial review) are quoted individually after a free 30-minute scoping call. Interest-free payment plans are available across most matters.",
   },
   {
     question: "Is the first call really free?",
@@ -114,15 +114,15 @@ const FAQS = [
   {
     question: "What's the difference between an immigration solicitor and an OISC adviser?",
     answer:
-      "Solicitors are regulated by the SRA and can act on every category of immigration work — applications, appeals, judicial review, High Court and Upper Tribunal proceedings. OISC-regulated advisers are authorised at three levels; only Level 3 advisers can take appeals to Tribunal. For straightforward applications either is fine. For refusals, appeals, urgent injunctions, or anything that may reach a court, you need an SRA-regulated solicitor.",
+      "Solicitors are regulated by the SRA and can act on every category of immigration work — casework, appeals, judicial review, High Court and Upper Tribunal proceedings. OISC-regulated advisers are authorised at three levels; only Level 3 advisers can take appeals to Tribunal. For straightforward matters either is fine. For refusals, appeals, urgent injunctions, or anything that may reach a court, you need an SRA-regulated solicitor.",
   },
   {
     question: "Do I have to come to your office or can we work remotely?",
     answer:
-      "Almost all of our immigration work is done remotely. We use phone, video (Zoom, WhatsApp), and secure document upload — we don't require you to travel to our office for any application work. We have offices in London and Bradford if you prefer face-to-face meetings, but it's not necessary. We act for clients across England and Wales, plus UK nationals and partners overseas filing for entry clearance.",
+      "Almost all of our immigration work is done remotely. We use phone, video (Zoom, WhatsApp), and secure document upload — we don't require you to travel to our office. We have offices in London and Bradford if you prefer face-to-face meetings, but it's not necessary. We act for clients across England and Wales, plus UK nationals and partners overseas seeking entry clearance.",
   },
   {
-    question: "What happens on a visa refusal — how fast do I need to act?",
+    question: "What happens after a Home Office refusal — how fast do I need to act?",
     answer:
       "Appeal deadlines are short: 14 days from the date on the refusal letter if you're in the UK, 28 days if you're overseas, 5 working days if you're detained. Out-of-time appeals are possible with an exceptional reason (medical emergency, bereavement, catastrophic service failure) but weaken with every day. If a deadline is within 7 days, call us today on 0203 355 9823. The earlier we have the refusal letter, the more options remain on the table.",
   },
@@ -241,11 +241,11 @@ function HeroForm({ id = "consultation-form" }: { id?: string }) {
         <select value={matter} onChange={(e) => setMatter(e.target.value)} onFocus={markStarted}
           className="w-full px-3 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red bg-white">
           <option value="">Your matter (optional)</option>
-          <option value="spouse-visa">Spouse / partner visa</option>
+          <option value="spouse-visa">Spouse / partner route</option>
           <option value="flr-m">FLR(M) extension</option>
           <option value="ilr">Indefinite Leave to Remain</option>
           <option value="citizenship">British citizenship</option>
-          <option value="refusal-appeal">Visa refusal / appeal</option>
+          <option value="refusal-appeal">Refusal / appeal</option>
           <option value="skilled-worker">Skilled Worker / sponsorship</option>
           <option value="other">Other immigration matter</option>
         </select>
@@ -316,16 +316,16 @@ export default function ImmigrationSolicitorsPageInner() {
         data={legalServiceWithCatalogSchema({
           name: "UK Immigration Solicitors — Abrahams Solicitors",
           description:
-            "SRA-regulated immigration solicitors. Spouse visas, FLR(M) extensions, ILR, British citizenship, refusal appeals, Skilled Worker sponsorship, judicial review. Fixed fees from £750. Direct solicitor access — no call centres. Firm #809071.",
+            "SRA-regulated immigration solicitors providing legal representation on partner-route matters, FLR(M) extensions, settlement, British citizenship, refusal appeals, Skilled Worker sponsorship and judicial review. Fixed fees from £750. Direct solicitor access — no call centres. Firm #809071.",
           slug: "immigration-solicitors",
           author: { name: AUTHOR.name, sraUrl: AUTHOR.sraUrl },
           catalog: [
-            { name: "Spouse / partner visa applications and extensions", description: "Appendix FM entry clearance, FLR(M) 30-month extensions, and indefinite leave after 5 years on the partner route." },
+            { name: "Spouse & partner route legal representation", description: "Appendix FM entry clearance, FLR(M) 30-month extensions, and indefinite leave after 5 years on the partner route." },
             { name: "Indefinite Leave to Remain (ILR / settlement)", description: "5-year and 10-year long-residence routes, refugee/HP settlement, EUSS Settled Status." },
             { name: "British citizenship by naturalisation", description: "Standard 5-year route, spouse-route 3-year, and discretion cases." },
-            { name: "Visa refusal appeals and judicial review", description: "First-tier and Upper Tribunal appeals, Pre-Action Protocol letters, JR in the Administrative Court." },
+            { name: "Refusal appeals and judicial review", description: "First-tier and Upper Tribunal appeals, Pre-Action Protocol letters, JR in the Administrative Court." },
             { name: "Skilled Worker sponsorship and ILR", description: "Switching, extension, 60-day grace period after sponsor revocation, and 5-year settlement." },
-            { name: "Sponsor licence applications and compliance", description: "A-rating applications, governance reviews, and compliance audits." },
+            { name: "Sponsor licence advice and compliance", description: "A-rating support, governance reviews, and compliance audits." },
           ],
         })}
       />
@@ -382,8 +382,8 @@ export default function ImmigrationSolicitorsPageInner() {
               <p id="hero-lead" className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
                 Speak to a <strong>named SRA-regulated solicitor</strong>{" "}
                 on your first call &mdash; not a call handler, not a junior. Fixed fees agreed in
-                writing before any work starts. Spouse visas, FLR(M), ILR, citizenship, refusal
-                appeals and Skilled Worker sponsorship. Free 30-minute consultation.
+                writing before any work starts. Legal representation on partner-route matters, FLR(M)
+                extensions, settlement, citizenship, refusal appeals and Skilled Worker sponsorship. Free 30-minute consultation.
               </p>
 
               {/* Primary CTAs — both w-full on mobile, side-by-side natural width on tablet+.
@@ -483,7 +483,7 @@ export default function ImmigrationSolicitorsPageInner() {
                   Time-sensitive
                 </div>
                 <p className="text-base sm:text-lg font-black text-rose-900 leading-snug">
-                  Visa refused? Appeal deadlines: <span className="underline decoration-rose-400 decoration-2 underline-offset-2">14 days</span> in the UK, <span className="underline decoration-rose-400 decoration-2 underline-offset-2">28 days</span> overseas, <span className="underline decoration-rose-400 decoration-2 underline-offset-2">5 days</span> if detained.
+                  Refused by the Home Office? Appeal deadlines: <span className="underline decoration-rose-400 decoration-2 underline-offset-2">14 days</span> in the UK, <span className="underline decoration-rose-400 decoration-2 underline-offset-2">28 days</span> overseas, <span className="underline decoration-rose-400 decoration-2 underline-offset-2">5 days</span> if detained.
                 </p>
                 <p className="mt-1.5 text-xs sm:text-sm text-rose-800 leading-snug">
                   Out-of-time appeals get harder by the day. If your deadline is within 7 days,
@@ -635,7 +635,7 @@ export default function ImmigrationSolicitorsPageInner() {
             {[
               { title: "Free 30-min scoping call", body: "You speak directly to a solicitor &mdash; same day if you call Mon–Fri 9am–6pm, otherwise we call back within one working hour. We identify the right route and flag any complications.", icon: Phone },
               { title: "Fixed-fee quote in writing", body: "Within 24 hours of the call we send a written fixed-fee quote covering the scope of work and a timeline. You decide whether to instruct &mdash; no obligation, no follow-up sales calls.", icon: PoundSterling },
-              { title: "We handle the case end-to-end", body: "Once instructed we build the evidence bundle, draft the application, submit to UKVI or the Tribunal, and handle any further-information requests. You stay informed throughout; we don't disappear after instruction.", icon: Briefcase },
+              { title: "We handle the case end-to-end", body: "Once instructed we build the evidence bundle, prepare the case, handle submissions to UKVI or the Tribunal, and respond to any further-information requests. You stay informed throughout; we don't disappear after instruction.", icon: Briefcase },
             ].map((s, i) => (
               <li key={s.title} className="flex items-start gap-4">
                 <div className="w-9 h-9 rounded-full bg-brand-red text-white flex items-center justify-center font-black shrink-0">{i + 1}</div>
