@@ -68,6 +68,12 @@ export function GoogleTagManager() {
                   ad_personalization: granted ? 'granted' : 'denied',
                   analytics_storage: granted ? 'granted' : 'denied'
                 });
+                // Replay the granted signal as a dataLayer event on every page
+                // load so consent-gated Custom HTML pixels (Meta / TikTok /
+                // Clarity) fire for already-consented returning visitors — the
+                // CookieConsent banner only emits this on the Accept *click*,
+                // which never happens again once a decision is stored.
+                if (granted) window.dataLayer.push({ event: 'cookie_consent_granted' });
               }
             } catch (e) {}
           })();
