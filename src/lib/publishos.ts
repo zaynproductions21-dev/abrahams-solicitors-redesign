@@ -89,15 +89,23 @@ export async function submitEnquiry(
     let gbraid = "";
     let wbraid = "";
     let msclkid = "";
+    // Meta click identifiers — the CRM-side counterpart to gclid. Used by the
+    // Conversions API for CRM sync to match website leads back to a Meta click
+    // when there's no Meta lead_id (which only lead-ad submissions carry).
+    let fbclid = "";
+    let fbc = "";
     let traffic_source = "direct";
     let utm_source = "", utm_medium = "", utm_campaign = "", utm_content = "", utm_term = "";
     if (typeof window !== "undefined") {
-      const { getStoredGclid, getTrafficSource, getStoredUtms } = await import("@/lib/gclid");
+      const { getStoredGclid, getStoredMetaIds, getTrafficSource, getStoredUtms } = await import("@/lib/gclid");
       const ids = getStoredGclid();
       gclid = ids.gclid || "";
       gbraid = ids.gbraid || "";
       wbraid = ids.wbraid || "";
       msclkid = ids.msclkid || "";
+      const metaIds = getStoredMetaIds();
+      fbclid = metaIds.fbclid || "";
+      fbc = metaIds.fbc || "";
       traffic_source = getTrafficSource();
       const utms = getStoredUtms();
       utm_source = utms.utm_source || "";
@@ -124,6 +132,8 @@ export async function submitEnquiry(
         ...(gbraid ? { gbraid } : {}),
         ...(wbraid ? { wbraid } : {}),
         ...(msclkid ? { msclkid } : {}),
+        ...(fbclid ? { fbclid } : {}),
+        ...(fbc ? { fbc } : {}),
         traffic_source,
         ...(utm_source ? { utm_source } : {}),
         ...(utm_medium ? { utm_medium } : {}),

@@ -5,7 +5,7 @@
 // the GTM Google Ads + Microsoft Ads conversion tags can read directly
 // off the dataLayer.
 
-import { getStoredGclid, getTrafficSource } from "@/lib/gclid";
+import { getStoredGclid, getStoredMetaIds, getTrafficSource } from "@/lib/gclid";
 
 declare global {
   interface Window {
@@ -61,6 +61,7 @@ export function pushWhatsAppClick(): void {
   if (typeof window === "undefined") return;
   window.dataLayer = window.dataLayer || [];
   const { gclid, gbraid, wbraid, msclkid } = getStoredGclid();
+  const { fbclid } = getStoredMetaIds();
   const traffic_source = getTrafficSource();
 
   // If this session included a form submit, enrich the conversion with the
@@ -79,6 +80,7 @@ export function pushWhatsAppClick(): void {
     ...(gbraid ? { gbraid } : {}),
     ...(wbraid ? { wbraid } : {}),
     ...(msclkid ? { msclkid } : {}),
+    ...(fbclid ? { fbclid } : {}),
   });
 
   // Fire Google Ads conversion directly — AW-17750102452/xv2GCK2B67gcELSj9I9C
@@ -112,6 +114,7 @@ export function pushFormSubmit({
   // tags for each network can attach them to the conversion event, and
   // the resolved traffic source for any per-source routing.
   const { gclid, gbraid, wbraid, msclkid } = getStoredGclid();
+  const { fbclid } = getStoredMetaIds();
   const traffic_source = getTrafficSource();
 
   // lp_variant: identifies which Immigration Solicitors LP variant the
@@ -147,6 +150,7 @@ export function pushFormSubmit({
     ...(gbraid ? { gbraid } : {}),
     ...(wbraid ? { wbraid } : {}),
     ...(msclkid ? { msclkid } : {}),
+    ...(fbclid ? { fbclid } : {}),
     ...(lp_variant ? { lp_variant } : {}),
   });
 }
