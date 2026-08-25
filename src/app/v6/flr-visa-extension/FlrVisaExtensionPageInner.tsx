@@ -362,7 +362,8 @@ export default function FlrVisaExtensionPageInner() {
                   <Star className="h-4 w-4 text-amber-500 fill-amber-500" /> 4.9 from 97 reviews
                 </span>
                 <span className="inline-flex items-center gap-1.5">
-                  <PoundSterling className="h-4 w-4 text-brand-red" /> Fixed fees from £900
+                  <PoundSterling className="h-4 w-4 text-brand-red" />
+                  <Link href="/our-fees/" className="underline decoration-brand-red/40 hover:decoration-brand-red">Fixed fees from £900</Link>
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <Clock className="h-4 w-4 text-brand-red" /> Free 15-min call

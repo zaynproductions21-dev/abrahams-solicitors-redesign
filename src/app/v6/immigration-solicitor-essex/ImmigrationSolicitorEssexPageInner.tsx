@@ -399,7 +399,7 @@ export default function ImmigrationSolicitorEssexPageInner() {
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-slate-400 mt-3">All fees plus VAT at 20%. Interest-free payment plans available on request.</p>
+          <p className="text-xs text-slate-400 mt-3">Fees exclude VAT &mdash; whether VAT applies depends on where you are treated as living for VAT purposes. <Link href="/our-fees/" className="text-brand-red hover:underline">See our full fee schedule and VAT position</Link>. Interest-free payment plans available on request.</p>
         </div>
       </section>
 

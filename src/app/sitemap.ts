@@ -27,6 +27,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: p("/terms-of-business/"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     { url: p("/website-legal-notice/"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     { url: p("/cookie-policy/"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+    { url: p("/complaints/"), lastModified: now, changeFrequency: "yearly", priority: 0.4 },
+    { url: p("/accessibility/"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+    { url: p("/fraud-warning/"), lastModified: now, changeFrequency: "yearly", priority: 0.4 },
   ];
 
   const immigrationRoutes: MetadataRoute.Sitemap = immigrationPages.map((page) => ({

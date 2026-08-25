@@ -62,10 +62,14 @@ const quickLinks = [
 ];
 
 const legalLinks = [
-  { label: "Privacy Policy", href: "/privacy-policy/" },
-  { label: "Terms of Business", href: "/terms-of-business/" },
+  { label: "Complaints", href: "/complaints/" },
+  { label: "Our Fees", href: "/our-fees/" },
+  { label: "Privacy Notice", href: "/privacy-policy/" },
   { label: "Cookie Policy", href: "/cookie-policy/" },
-  { label: "Website Legal Notice", href: "/website-legal-notice/" },
+  { label: "Legal Notices", href: "/website-legal-notice/" },
+  { label: "Accessibility", href: "/accessibility/" },
+  { label: "Fraud Warning", href: "/fraud-warning/" },
+  { label: "Terms of Business", href: "/terms-of-business/" },
 ];
 
 const socialLinks: { label: string; href: string; icon: "facebook" | "twitter" | "linkedin" | "instagram" | "youtube" }[] = [
@@ -77,8 +81,8 @@ const socialLinks: { label: string; href: string; icon: "facebook" | "twitter" |
 ];
 
 const offices: { city: string; address: string; tag?: string }[] = [
+  { city: "Bradford", address: "Unit 20, Listerhills Science Park,\nCampus Road, Bradford BD7 1HR", tag: "Registered office" },
   { city: "London", address: "Suite 10, Atlas House,\n1 King Street,\nLondon EC2V 8AU" },
-  { city: "Bradford", address: "Unit 20, Listerhills Science Park,\nCampus Road, Bradford BD7 1HR", tag: "New Office" },
 ];
 
 function VisaLogo() {

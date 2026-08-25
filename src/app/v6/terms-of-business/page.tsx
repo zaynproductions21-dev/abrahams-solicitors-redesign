@@ -11,7 +11,7 @@ export default function TermsOfBusinessPage() {
 
       <h2>Who we are</h2>
       <p>
-        Abrahams (Yorkshire) Limited is a company registered in England &amp; Wales and authorised and regulated by the Solicitors Regulation Authority (SRA number 809071). Our registered office is Suite 10, Atlas House, 1 King Street, London EC2V 8AU.
+        Abrahams (Yorkshire) Limited (company number 12942685) is a company registered in England &amp; Wales and authorised and regulated by the Solicitors Regulation Authority (SRA number 809071). Our registered office is Unit 20, Listerhills Science Park, Campus Road, Bradford, BD7 1HR. VAT number GB491643276.
       </p>
 
       <h2>Our service</h2>
@@ -41,7 +41,7 @@ export default function TermsOfBusinessPage() {
 
       <h2>Complaints</h2>
       <p>
-        If you&rsquo;re unhappy with our service, please tell us first. Our complaints partner will respond within eight weeks. If you&rsquo;re not satisfied with the outcome you can contact the Legal Ombudsman (within six months of our final response) at <a href="https://www.legalombudsman.org.uk" target="_blank" rel="noopener noreferrer">legalombudsman.org.uk</a>, 0300 555 0333.
+        If you&rsquo;re unhappy with our service, please see our <a href="/complaints/">complaints procedure</a>. We will respond within eight weeks. If you&rsquo;re not satisfied with our final response you can contact the Legal Ombudsman within six months at <a href="https://www.legalombudsman.org.uk" target="_blank" rel="noopener noreferrer">legalombudsman.org.uk</a>, PO Box 6167, Slough SL1 0EH, 0300 555 0333.
       </p>
 
       <h2>Professional indemnity insurance</h2>

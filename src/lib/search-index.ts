@@ -83,10 +83,13 @@ export const SEARCH_INDEX: SearchEntry[] = [
   { title: "Refer a Friend", href: "/refer-a-friend/", description: "Refer someone and earn a thank-you reward", category: "Resources", keywords: ["referral", "reward"] },
 
   // ─── Legal ───────────────────────────────────────────────────────
-  { title: "Privacy Policy", href: "/privacy-policy/", description: "How we handle your personal data", category: "Legal", keywords: ["gdpr", "data"] },
-  { title: "Cookie Policy", href: "/cookie-policy/", description: "Cookies used on this website", category: "Legal" },
-  { title: "Terms of Business", href: "/terms-of-business/", description: "Engagement terms and complaints procedure", category: "Legal", keywords: ["complaints"] },
-  { title: "Website Legal Notice", href: "/website-legal-notice/", description: "Regulatory disclosure for this website", category: "Legal" },
+  { title: "Complaints", href: "/complaints/", description: "How to complain about our service or charges; Legal Ombudsman details", category: "Legal", keywords: ["complaint", "ombudsman"] },
+  { title: "Privacy Notice", href: "/privacy-policy/", description: "How we handle your personal data", category: "Legal", keywords: ["gdpr", "data", "privacy"] },
+  { title: "Cookie Policy", href: "/cookie-policy/", description: "Cookies used on this website and how to change your choices", category: "Legal", keywords: ["cookies", "preferences", "consent"] },
+  { title: "Terms of Business", href: "/terms-of-business/", description: "Engagement terms", category: "Legal" },
+  { title: "Legal Notices", href: "/website-legal-notice/", description: "Company, registered office, SRA, VAT and ICO registration", category: "Legal", keywords: ["registered office", "sra", "vat"] },
+  { title: "Accessibility statement", href: "/accessibility/", description: "How we make our site and services accessible; adjustments on request", category: "Legal", keywords: ["accessibility", "wcag", "adjustments"] },
+  { title: "Fraud warning", href: "/fraud-warning/", description: "Read this before sending money — our bank details do not change", category: "Legal", keywords: ["fraud", "scam", "bank details"] },
 ];
 
 // Lowercase the searchable haystack once at module load. The matcher does

@@ -137,8 +137,8 @@ export default function V1ContactPage() {
               </div>
 
               {[
-                { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU", phone: "0203 355 9823", tag: "" },
-                { city: "Bradford", address: "Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR", phone: "0333 339 6004", tag: "New Office" },
+                { city: "Bradford", address: "Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR", phone: "0333 339 6004", tag: "Registered office" },
+                { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU", phone: "0203 355 9823", tag: "By appointment only" },
               ].map((office) => (
                 <div key={office.city} className="bg-white rounded-2xl ring-1 ring-slate-200 overflow-hidden">
                   <div className="p-6">

@@ -49,7 +49,7 @@ export default function V6BlogPage() {
                   <div className="aspect-[16/9] bg-slate-100 overflow-hidden">
                     <SlotImage
                       slot={`blog-cover-${post.slug}`}
-                      fallbackSrc={post.cover_image || `https://placehold.co/1200x675/dc2626/ffffff/png?text=${encodeURIComponent(post.category || "Legal Insight")}&font=playfair-display`}
+                      fallbackSrc={post.cover_image || "/placeholders/blog-cover.svg"}
                       alt={`${post.title} — editorial cover image for Abrahams Solicitors blog post${post.category ? ` in the ${post.category} category` : ""}`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       type="blog-cover"
