@@ -19,9 +19,13 @@
 
 const YOSHKI_SRC: string | undefined = process.env.NEXT_PUBLIC_SRA_BADGE_IFRAME;
 
-function todayDisplay(): string {
-  return new Date().toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" }).toUpperCase();
-}
+// No self-generated "last verified" date is rendered anywhere in this
+// component. SRA Transparency Rule 4.1 is satisfied only by the real
+// Yoshki-served digital badge (set NEXT_PUBLIC_SRA_BADGE_IFRAME after
+// completing mySRA domain registration + 24h sync). Any client-side
+// `new Date()` next to a shield reads as a live verification stamp when
+// it is not — see Abrahams-CCL-ToB-v2-2026-08-21/DEV-PROMPT-website.md
+// Item 1. Do not re-add.
 
 export function SraBadge() {
   if (YOSHKI_SRC) {
@@ -33,10 +37,14 @@ export function SraBadge() {
         className="inline-block"
         aria-label="SRA regulated law firm — click to verify"
       >
+        {/* MUST render at Yoshki's default 275x163 — resizing requires
+            written permission from sra@yoshki.com (SRA Transparency
+            Rule 4.1 + Yoshki terms). Re-flow the surrounding grid to
+            fit the badge; do not scale the badge to fit the grid. */}
         <iframe
           src={YOSHKI_SRC}
-          width={140}
-          height={150}
+          width={275}
+          height={163}
           frameBorder={0}
           scrolling="no"
           style={{ border: 0, display: "block" }}
@@ -74,9 +82,9 @@ export function SraBadge() {
       <div className="flex items-center justify-between pt-2 border-t border-slate-200">
         <span className="inline-flex items-center gap-1 text-[10px] font-bold tracking-widest text-slate-700 uppercase">
           <svg viewBox="0 0 10 10" className="h-2 w-2 fill-current"><path d="M0 5l5-5v3h5v4H5v3z" /></svg>
-          Learn more
+          Verify on SRA register
         </span>
-        <span className="text-[10px] font-semibold text-slate-400 tracking-wide">{todayDisplay()}</span>
+        <span className="text-[10px] font-semibold text-slate-400 tracking-wide">SRA #809071</span>
       </div>
     </a>
   );

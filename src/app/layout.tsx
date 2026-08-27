@@ -62,16 +62,16 @@ const jsonLd = {
   address: [
     {
       "@type": "PostalAddress",
-      streetAddress: "Suite 10, Atlas House, 1 King Street",
-      addressLocality: "London",
-      postalCode: "EC2V 8AU",
+      streetAddress: "Unit 20, Listerhills Science Park, Campus Road",
+      addressLocality: "Bradford",
+      postalCode: "BD7 1HR",
       addressCountry: "GB",
     },
     {
       "@type": "PostalAddress",
-      streetAddress: "Unit 20, Listerhills Science Park, Campus Road",
-      addressLocality: "Bradford",
-      postalCode: "BD7 1HR",
+      streetAddress: "Suite 10, Atlas House, 1 King Street",
+      addressLocality: "London",
+      postalCode: "EC2V 8AU",
       addressCountry: "GB",
     },
   ],

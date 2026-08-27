@@ -44,7 +44,7 @@ export default function V1AboutPage() {
           <div className="rounded-3xl overflow-hidden aspect-[21/9] bg-slate-100">
             <SlotImage
               slot="about-firm-hero"
-              fallbackSrc="https://placehold.co/2100x900/e2e8f0/0b1e4a/png?text=Abrahams+Solicitors+Office&font=playfair-display"
+              fallbackSrc="/placeholders/about-firm.svg"
               alt="Abrahams Solicitors — interior of the London office with solicitors meeting clients in a professional, welcoming environment"
               className="w-full h-full object-cover"
               type="about"
@@ -189,8 +189,8 @@ export default function V1AboutPage() {
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             {[
-              { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU", phone: "0203 355 9823", tag: "" },
-              { city: "Bradford", address: "Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR", phone: "0333 339 6004", tag: "New Office" },
+              { city: "Bradford", address: "Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR", phone: "0333 339 6004", tag: "Registered office" },
+              { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU", phone: "0203 355 9823", tag: "By appointment only" },
             ].map((office) => (
               <div key={office.city} className="bg-white rounded-2xl ring-1 ring-slate-200 overflow-hidden">
                 <div className="p-8 lg:p-10">

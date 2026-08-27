@@ -1,229 +1,269 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, ArrowRight, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
-import { JsonLd, faqPageSchema } from "@/components/v6/jsonld";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Our Fees",
-  description: "Clear, transparent legal fees. Fixed-fee immigration work agreed in writing before we start; no win, no fee for housing disrepair and personal injury; legal aid where available.",
+  title: "Immigration — our prices",
+  description:
+    "What our immigration services cost. Fixed fees agreed in writing before we start, exclusive of VAT. Home Office fees and disbursements set out separately.",
 };
 
-const FEE_FAQS = [
-  {
-    question: "Are your immigration fees really fixed?",
-    answer:
-      "Yes. For most immigration work we agree a fixed fee in writing before any work begins, so you are not exposed to open-ended hourly billing. The figures shown are starting points (“from”) for straightforward cases; your exact fixed fee is confirmed after a free assessment of your circumstances, and any higher fee for a more complex case is agreed with you in advance.",
-  },
-  {
-    question: "Are Home Office and court fees included in your price?",
-    answer:
-      "No. Government charges — the Home Office application fee, the Immigration Health Surcharge, biometric enrolment, and any tribunal or court fees — are set by the government and paid in addition to our legal fee. These amounts change periodically, so check the current figures on GOV.UK; we will always tell you which apply to your case.",
-  },
-  {
-    question: "What does “no win, no fee” mean for housing or personal injury claims?",
-    answer:
-      "For most housing disrepair and personal injury claims we can act under a Conditional Fee Agreement (“no win, no fee”). You pay nothing up front, and where the claim succeeds our costs are usually recovered from the other side, typically with After the Event insurance in place. We explain any deduction from your compensation before you sign anything.",
-  },
-  {
-    question: "Could I get legal aid?",
-    answer:
-      "Some work — including asylum claims and certain immigration detention matters — may be covered by legal aid, subject to the means and merits tests set by the Legal Aid Agency. We can check whether you are likely to qualify; you can also read the current eligibility rules on GOV.UK.",
-  },
-  {
-    question: "Is the initial consultation free?",
-    answer:
-      "Yes. We offer a free initial consultation in which a qualified solicitor assesses your case, explains your options honestly, and gives you a clear fee quote. There is no obligation to instruct us afterwards.",
-  },
-  {
-    question: "What happens if my case turns out to be more complex?",
-    answer:
-      "If your matter needs more work than a standard case — for example a previous refusal, extensive evidence, or an appeal — we agree any higher fixed fee with you in writing before that work starts. You will not receive a surprise bill.",
-  },
-];
+// Compliance page — reproduces the SRA Transparency Rule 1.5 / 1.6 copy
+// from Abrahams-CCL-ToB-v2-2026-08-21/review-pack/website/
+// web-price-transparency-v1.0.docx and DEV-ADDENDUM-vat-confirmed.md.
+// All fee/VAT/total figures carry "From". The four-row VAT
+// place-of-supply table must be reproduced in full — do not collapse to
+// "prices exclude VAT" (rows 3 and 4 are counter-intuitive and pull in
+// opposite directions; removing them would make the page wrong for
+// asylum and no-leave clients). Do not use the words "exempt",
+// "zero-rated" or "VAT free" anywhere on this page.
 
-const feeCategories = [
-  {
-    title: "Immigration Law",
-    highlight: "Fixed Fees",
-    items: [
-      { service: "Spouse Visa Application", price: "From £900*" },
-      { service: "British Citizenship", price: "From £600*" },
-      { service: "Visa Extensions", price: "From £900*" },
-      { service: "ILR Application", price: "From £750*" },
-      { service: "Visa Refusal Appeals", price: "From £1,250*" },
-      { service: "Asylum Application", price: "Legal Aid / Fixed Fee" },
-      { service: "Visit Visa", price: "From £500*" },
-    ],
-  },
-  {
-    title: "Housing Disrepair",
-    highlight: "No Win, No Fee",
-    items: [
-      { service: "Disrepair Claims", price: "No Win, No Fee" },
-      { service: "Compensation Claims", price: "No Win, No Fee" },
-      { service: "Court Proceedings", price: "No Win, No Fee" },
-    ],
-  },
-  {
-    title: "Personal Injury",
-    highlight: "No Win, No Fee",
-    items: [
-      { service: "Workplace Accidents", price: "No Win, No Fee" },
-      { service: "Road Traffic Claims", price: "No Win, No Fee" },
-      { service: "Serious Injury", price: "No Win, No Fee" },
-      { service: "Fatal Accidents", price: "No Win, No Fee" },
-    ],
-  },
-];
+const th = "py-2.5 px-3 text-left font-semibold text-slate-900 border-b border-slate-200 text-sm";
+const td = "py-2.5 px-3 align-top text-sm text-slate-700 border-b border-slate-100";
 
-const included = [
-  "Free initial consultation",
-  "Dedicated solicitor from day one",
-  "All correspondence and communication",
-  "Document preparation and review",
-  "Liaison with authorities on your behalf",
-  "Regular case updates",
-];
-
-export default function V1FeesPage() {
+export default function OurFeesPage() {
   return (
     <>
-      <JsonLd data={faqPageSchema(FEE_FAQS)} />
-      {/* Hero */}
       <section className="bg-brand-navy py-12 lg:py-16">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">Our Fees</p>
           <h1 className="text-4xl lg:text-6xl font-bold text-white leading-tight max-w-3xl">
-            Clear, Transparent Pricing
+            Immigration &mdash; our prices
           </h1>
-          <p className="mt-6 text-lg text-white/50 max-w-2xl leading-relaxed">
-            We believe in honest, upfront pricing. No hidden charges, no surprise bills. Know your costs before we begin.
+          <p className="mt-6 text-lg text-white/60 max-w-2xl leading-relaxed">
+            Last updated: 24 August 2026. Fixed fees agreed in writing before we start &mdash; and confirmed to you in full, in a written quote, before you commit to anything.
           </p>
         </div>
       </section>
 
       <TrustBadges />
 
-      {/* Fee Cards */}
       <section className="py-12 lg:py-16">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
-            {feeCategories.map((cat) => (
-              <div key={cat.title} className="bg-white rounded-2xl ring-1 ring-slate-200 overflow-hidden">
-                <div className="bg-brand-navy p-6">
-                  <h3 className="text-lg font-bold text-white">{cat.title}</h3>
-                  <p className="text-brand-gold text-sm font-medium mt-1">{cat.highlight}</p>
-                </div>
-                <div className="p-6">
-                  <div className="space-y-4">
-                    {cat.items.map((item) => (
-                      <div key={item.service} className="flex items-center justify-between py-2 border-b border-slate-100 last:border-0">
-                        <span className="text-sm text-brand-navy/80">{item.service}</span>
-                        <span className="text-sm font-semibold text-brand-navy">{item.price}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <Button asChild className="w-full mt-6 bg-brand-red hover:bg-brand-red-dark text-white rounded-xl">
-                    <Link href="/contact-us/">Get a Quote<ArrowRight className="h-4 w-4 ml-2" /></Link>
-                  </Button>
-                </div>
-              </div>
-            ))}
-          </div>
-          <p className="text-xs text-slate-500 text-center mt-10 max-w-2xl mx-auto leading-relaxed">
-            *Fixed fee price subject to our free case assessment. Complex cases may require an additional quote, which we&rsquo;ll always agree with you in writing before any work begins.
+        <div className="max-w-3xl mx-auto px-6 lg:px-8">
+          <p className="text-base text-slate-600 leading-relaxed">
+            This page sets out what our immigration services cost. It covers applications made to the Home Office. Prices are reviewed regularly, and Home Office fees usually change each spring.
           </p>
-        </div>
-      </section>
+          <p className="mt-4 text-base text-slate-600 leading-relaxed">
+            If your matter is not listed here, or you would like a quote for something more complex, please call us on <DynamicCallLink className="text-brand-red font-semibold hover:underline"><DynamicPhoneText /></DynamicCallLink> and we will give you a figure before you commit to anything.
+          </p>
 
-      {/* What's Included */}
-      <section className="py-12 lg:py-16 bg-slate-50">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <h2 className="mt-12 text-2xl font-bold text-slate-900">Our fees</h2>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            We work on an agreed fee basis for most immigration applications. An agreed fee cannot be increased, and it is agreed with you in writing before we start.
+          </p>
+
+          <div className="mt-6 overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr>
+                  <th className={th}>Service</th>
+                  <th className={th}>Our fee (excluding VAT)</th>
+                  <th className={th}>VAT at 20%</th>
+                  <th className={th}>Total for a UK-resident client</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td className={td}>Spouse / partner visa application</td><td className={td}>From £900</td><td className={td}>From £180</td><td className={td}><strong>From £1,080</strong></td></tr>
+                <tr><td className={td}>Visa extension</td><td className={td}>From £900</td><td className={td}>From £180</td><td className={td}><strong>From £1,080</strong></td></tr>
+                <tr><td className={td}>Indefinite leave to remain</td><td className={td}>From £750</td><td className={td}>From £150</td><td className={td}><strong>From £900</strong></td></tr>
+                <tr><td className={td}>British citizenship</td><td className={td}>From £600</td><td className={td}>From £120</td><td className={td}><strong>From £720</strong></td></tr>
+                <tr><td className={td}>Visit visa</td><td className={td}>From £500</td><td className={td}>From £100</td><td className={td}><strong>From £600</strong></td></tr>
+                <tr><td className={td}>Visa refusal appeal</td><td className={td}>From £1,250</td><td className={td}>From £250</td><td className={td}><strong>From £1,500</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div className="mt-6 rounded-2xl bg-slate-50 ring-1 ring-slate-200 p-5 sm:p-6">
+            <p className="text-base text-slate-700 leading-relaxed">
+              <strong>These are &ldquo;from&rdquo; prices.</strong> They are the starting fee for a straightforward matter of that type, and they exclude VAT. Because the fee is a starting figure, the VAT and the total are starting figures too. We give you an exact quote, in writing, before you commit to anything.
+            </p>
+          </div>
+
+          <p className="mt-6 text-base text-slate-600 leading-relaxed">
+            Where a matter is more complex than the description above &mdash; for example where there is a previous refusal, a criminal record, a gap in immigration history, or an unusual financial position &mdash; we will tell you before we start, and we will agree a different fee with you in writing.
+          </p>
+
+          <h2 className="mt-12 text-2xl font-bold text-slate-900">VAT</h2>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            We are VAT registered. Our VAT registration number is <strong>GB491643276</strong>.
+          </p>
+          <p className="mt-4 text-base text-slate-600 leading-relaxed">
+            <strong>Whether VAT is charged on our fees depends on where you are treated as living for VAT purposes.</strong> This is a rule about the place of supply of legal services, not a discount or an exemption &mdash; and it means the same application can cost different amounts for different clients.
+          </p>
+
+          <div className="mt-6 overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr>
+                  <th className={th}>Your situation</th>
+                  <th className={th}>UK VAT on our fee</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className={td}>You live <strong>outside the UK</strong> &mdash; for example a spouse or visit visa applicant applying from abroad</td>
+                  <td className={td}><strong>No UK VAT</strong></td>
+                </tr>
+                <tr>
+                  <td className={td}>You live <strong>in the UK</strong> and hold permission to be here, or you are British or settled</td>
+                  <td className={td}><strong>20%</strong></td>
+                </tr>
+                <tr>
+                  <td className={td}>You are <strong>in the UK but have never been granted permission to remain</strong> &mdash; including while an asylum claim is pending</td>
+                  <td className={td}><strong>No UK VAT</strong></td>
+                </tr>
+                <tr>
+                  <td className={td}>You <strong>were granted permission which has since expired or been revoked</strong>, and your immigration position is not yet concluded</td>
+                  <td className={td}><strong>20%</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p className="mt-6 text-base text-slate-600 leading-relaxed">
+            The table above shows VAT at 20%, which is the position for most clients living in the UK. <strong>If no UK VAT applies to you, you pay the fee in the &ldquo;our fee&rdquo; column and nothing more &mdash; there is no VAT to add.</strong>
+          </p>
+          <p className="mt-4 text-base text-slate-600 leading-relaxed">
+            <strong>Who pays the bill does not change this.</strong> If you are applying from abroad and a family member in the UK pays our invoice, you remain our client and the treatment follows your position, not theirs. If instead we are instructed by, and act for, the UK-based sponsor rather than the applicant, VAT is charged in the normal way. <strong>We will confirm in writing which applies to you before you commit to anything.</strong>
+          </p>
+          <p className="mt-4 text-base text-slate-600 leading-relaxed">
+            If your circumstances change during your matter &mdash; in particular if you are granted permission to remain &mdash; the VAT position may change from that point, and we will tell you.
+          </p>
+
+          <h2 className="mt-12 text-2xl font-bold text-slate-900">What is not included</h2>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">Our fee covers the work described below. It does not include:</p>
+          <ul className="mt-4 list-disc pl-6 space-y-1.5 text-base text-slate-600 leading-relaxed">
+            <li>any appeal, administrative review or judicial review following a refusal;</li>
+            <li>any separate application for a dependant not named in your quote;</li>
+            <li>any application for British citizenship or naturalisation;</li>
+            <li>advice on tax, or on the law of any country other than England and Wales; or</li>
+            <li>Home Office fees, the Immigration Health Surcharge, or other disbursements &mdash; see below.</li>
+          </ul>
+          <p className="mt-4 text-base text-slate-600 leading-relaxed">If you need any of these, we will give you a separate written quote first.</p>
+
+          <h2 className="mt-12 text-2xl font-bold text-slate-900">Disbursements</h2>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            Disbursements are payments we make to others on your behalf. They are in addition to our fees.
+          </p>
+          <div className="mt-6 overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr>
+                  <th className={th}>Disbursement</th>
+                  <th className={th}>Amount</th>
+                  <th className={th}>VAT</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td className={td}>Home Office application fee &mdash; indefinite leave to remain</td><td className={td}>£3,226</td><td className={td}>No VAT</td></tr>
+                <tr><td className={td}>Home Office application fee &mdash; partner, outside the UK</td><td className={td}>£2,064</td><td className={td}>No VAT</td></tr>
+                <tr><td className={td}>Home Office application fee &mdash; partner, inside the UK</td><td className={td}>£1,407</td><td className={td}>No VAT</td></tr>
+                <tr><td className={td}>Immigration Health Surcharge</td><td className={td}>£1,035 per year, per adult</td><td className={td}>No VAT</td></tr>
+                <tr><td className={td}>Immigration Health Surcharge &mdash; child under 18</td><td className={td}>£776 per year</td><td className={td}>No VAT</td></tr>
+                <tr><td className={td}>Biometric enrolment</td><td className={td}>£0 to £200</td><td className={td}>May carry VAT</td></tr>
+                <tr><td className={td}>Home Office super priority service (in the UK, optional)</td><td className={td}>£1,000</td><td className={td}>No VAT</td></tr>
+                <tr><td className={td}>Home Office priority service (outside the UK, optional)</td><td className={td}>£500</td><td className={td}>No VAT</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4 text-base text-slate-600 leading-relaxed">
+            Home Office fees and the Immigration Health Surcharge are set by the Government, not by us. They change from time to time, usually in the spring. The amount you pay is the amount in force on the day your application is submitted. The figures above are those in force from 8 April 2026, and are due for review by 1 April 2027 &mdash; call us if you are reading this after that date and we have not yet updated it.
+          </p>
+
+          <h2 className="mt-12 text-2xl font-bold text-slate-900">What we do for you</h2>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">For a standard application, our fee covers:</p>
+          <ol className="mt-4 list-decimal pl-6 space-y-2 text-base text-slate-600 leading-relaxed">
+            <li><strong>Initial assessment</strong> &mdash; reviewing your circumstances and confirming which route applies to you and whether you meet the requirements.</li>
+            <li><strong>Document review</strong> &mdash; checking your evidence against Home Office requirements and telling you what is missing.</li>
+            <li><strong>Preparing the application</strong> &mdash; completing the application form and preparing any supporting representations.</li>
+            <li><strong>Submission</strong> &mdash; submitting the application and arranging your biometrics appointment.</li>
+            <li><strong>Correspondence with the Home Office</strong> &mdash; responding on your behalf to any queries before a decision.</li>
+            <li><strong>The decision</strong> &mdash; advising you on the decision when it is received.</li>
+          </ol>
+          <p className="mt-4 text-base text-slate-600 leading-relaxed">
+            We will also give you our written assessment of the prospects of success of your application, including any weaknesses, once we have reviewed your documents.
+          </p>
+
+          <h2 className="mt-12 text-2xl font-bold text-slate-900">How long it takes</h2>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            These are Home Office processing times, not ours. They are targets and not guarantees, and complex cases take longer.
+          </p>
+          <div className="mt-6 overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr>
+                  <th className={th}>Application</th>
+                  <th className={th}>Usual timescale</th>
+                  <th className={th}>With the optional priority service</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td className={td}>Partner &mdash; applying from outside the UK</td><td className={td}>Around 12 weeks</td><td className={td}>Up to 30 working days</td></tr>
+                <tr><td className={td}>Partner &mdash; applying from inside the UK</td><td className={td}>Around 8 weeks</td><td className={td}>Usually next working day</td></tr>
+                <tr><td className={td}>Indefinite leave to remain</td><td className={td}>Up to 6 months</td><td className={td}>Usually next working day</td></tr>
+                <tr><td className={td}>Fee waiver</td><td className={td}>Around 4 to 8 weeks</td><td className={td}>Not available</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4 text-base text-slate-600 leading-relaxed">
+            There is no next-working-day super priority service for family or settlement applications made from outside the UK.
+          </p>
+          <p className="mt-4 text-base text-slate-600 leading-relaxed">
+            Our own work &mdash; preparing and submitting your application &mdash; begins as soon as we have your documents. We agree a timetable with you at the outset, and the main variable is how quickly documents reach us.
+          </p>
+
+          <h2 className="mt-12 text-2xl font-bold text-slate-900">Who will do your work</h2>
+          <div className="mt-6 space-y-6">
             <div>
-              <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">What&apos;s Included</p>
-              <h2 className="text-3xl lg:text-5xl font-bold text-brand-navy leading-tight">No Hidden Extras</h2>
-              <p className="mt-5 text-lg text-slate-500 leading-relaxed">Every fee quoted includes all the essentials. You won&apos;t be charged extra for basic services.</p>
+              <p className="text-base font-bold text-slate-900">Imran Shah &mdash; Solicitor and Director, Immigration &amp; Litigation</p>
+              <p className="mt-1 text-base text-slate-600 leading-relaxed">
+                Admitted as a solicitor of England and Wales, regulated by the SRA (SRA number 509359). Imran leads the immigration team and supervises all immigration matters.
+              </p>
             </div>
-            <div className="space-y-4">
-              {included.map((item) => (
-                <div key={item} className="flex items-center gap-3 bg-white rounded-xl ring-1 ring-slate-200 px-5 py-4">
-                  <CheckCircle2 className="h-5 w-5 text-brand-gold shrink-0" />
-                  <span className="text-brand-navy font-medium">{item}</span>
-                </div>
-              ))}
+            <div>
+              <p className="text-base font-bold text-slate-900">Humaira Anjum &mdash; Solicitor, Immigration &amp; Litigation</p>
+              <p className="mt-1 text-base text-slate-600 leading-relaxed">
+                Admitted as a solicitor of England and Wales, regulated by the SRA (SRA number 663190).
+              </p>
+            </div>
+            <div>
+              <p className="text-base font-bold text-slate-900">Sannah Khatoon &mdash; Solicitor, Litigation &amp; Housing Disrepair</p>
+              <p className="mt-1 text-base text-slate-600 leading-relaxed">
+                Admitted as a solicitor of England and Wales, regulated by the SRA (SRA number 654258).
+              </p>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* How our pricing works */}
-      <section className="py-12 lg:py-16">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8">
-          <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">How Our Pricing Works</p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy leading-tight">Clear fees, agreed before we start</h2>
-
-          <h3 className="mt-8 text-lg font-bold text-brand-navy">Fixed fees, agreed in writing</h3>
-          <p className="mt-3 text-base text-slate-600 leading-relaxed">
-            For most immigration work we agree a <strong>fixed fee in writing</strong> before any work
-            begins, set out in your client-care letter. The prices above are starting points for
-            straightforward cases; your exact fee is confirmed after a free assessment. Where a case is
-            more complex &mdash; a previous refusal, extensive evidence, or an appeal &mdash; any higher
-            fixed fee is agreed with you in advance, never billed as a surprise.
+          <p className="mt-6 text-base text-slate-600 leading-relaxed">
+            All immigration matters are supervised by Imran Shah, Solicitor and Director.
           </p>
 
-          <h3 className="mt-8 text-lg font-bold text-brand-navy">Government fees are separate</h3>
+          <h2 className="mt-12 text-2xl font-bold text-slate-900">Complaints</h2>
           <p className="mt-3 text-base text-slate-600 leading-relaxed">
-            Home Office application fees, the Immigration Health Surcharge, biometric enrolment, and any
-            tribunal or court fees are set by the government and paid in addition to our legal fee. These
-            amounts change periodically, so confirm the current figures at{" "}
-            <a href="https://www.gov.uk" target="_blank" rel="noopener noreferrer" className="text-brand-red hover:underline">gov.uk</a>.
+            If you are unhappy with our service or our charges, please see our <Link href="/complaints/" className="text-brand-red font-semibold hover:underline">complaints procedure</Link>. Our complaints service is free.
           </p>
 
-          <h3 className="mt-8 text-lg font-bold text-brand-navy">No win, no fee for housing and injury claims</h3>
+          <h2 className="mt-12 text-2xl font-bold text-slate-900">Regulatory information</h2>
           <p className="mt-3 text-base text-slate-600 leading-relaxed">
-            Most housing disrepair and personal injury claims can be run under a Conditional Fee
-            Agreement. You pay nothing up front; where the claim succeeds our costs are usually recovered
-            from the other side, typically with After the Event insurance in place. We explain any
-            deduction from your compensation before you sign.
+            Abrahams Solicitors is the trading style of Abrahams (Yorkshire) Ltd, registered in England and Wales, company number 12942685. Registered office: Unit 20, Listerhills Science Park, Campus Road, Bradford, BD7 1HR. VAT number GB491643276.
           </p>
-
-          <h3 className="mt-8 text-lg font-bold text-brand-navy">Legal aid where available</h3>
-          <p className="mt-3 text-base text-slate-600 leading-relaxed">
-            Some work &mdash; including asylum and certain detention matters &mdash; may be covered by
-            legal aid, subject to the means and merits tests set by the Legal Aid Agency. We can check
-            whether you are likely to qualify.
+          <p className="mt-4 text-base text-slate-600 leading-relaxed">
+            Authorised and regulated by the Solicitors Regulation Authority, SRA number 809071.
           </p>
         </div>
       </section>
 
-      {/* Fees FAQ */}
-      <section className="py-12 lg:py-16 bg-slate-50 border-t border-slate-100">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8">
-          <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">Fees &mdash; Common Questions</p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy leading-tight">Your questions about cost</h2>
-          <dl className="mt-8 divide-y divide-slate-200">
-            {FEE_FAQS.map((f) => (
-              <div key={f.question} className="py-5">
-                <dt className="text-base font-bold text-brand-navy">{f.question}</dt>
-                <dd className="mt-2 text-base text-slate-600 leading-relaxed">{f.answer}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
-
-      {/* CTA */}
       <section className="bg-brand-navy py-12 lg:py-16">
         <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">Get Your Free Quote Today</h2>
-          <p className="mt-6 text-white/40 text-lg max-w-xl mx-auto">Speak to us about your case and we&apos;ll provide a clear, fixed fee quote.</p>
+          <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">Get your written quote</h2>
+          <p className="mt-6 text-white/50 text-lg max-w-xl mx-auto">
+            Speak to us about your case and we will confirm your fixed fee, VAT position and any disbursements in writing before you commit to anything.
+          </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Button asChild size="lg" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-xl text-base h-13 px-8">
-              <Link href="/contact-us/">Request a Quote</Link>
+              <Link href="/contact-us/">Request a quote</Link>
             </Button>
             <Button asChild variant="outline-light" size="lg" className="rounded-xl text-base h-13">
               <DynamicCallLink className="inline-flex items-center"><Phone className="h-4 w-4 mr-2" /><DynamicPhoneText /></DynamicCallLink>

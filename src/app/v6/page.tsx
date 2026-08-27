@@ -339,7 +339,7 @@ export default function V6HomePage() {
               <div className={`bg-slate-50 rounded-2xl aspect-[4/3] overflow-hidden relative ${i % 2 === 1 ? "lg:[direction:ltr]" : ""}`}>
                 <SlotImage
                   slot={`home-service-${i + 1}`}
-                  fallbackSrc={`https://placehold.co/1200x900/f1f5f9/dc2626/png?text=${encodeURIComponent(service.title)}&font=playfair-display`}
+                  fallbackSrc="/placeholders/service-visual.svg"
                   alt={`${service.title} — professional editorial photograph representing ${service.title.toLowerCase()} solicitor services at Abrahams Solicitors UK`}
                   className="w-full h-full object-cover"
                   type="service"
@@ -460,8 +460,8 @@ export default function V6HomePage() {
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight text-center mb-10">Our Offices</h2>
           <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {[
-              { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU", phone: "0203 355 9823", transport: "Bank, Mansion House, Cannon Street", tag: "" },
-              { city: "Bradford", address: "Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR", phone: "0333 339 6004", transport: "Bradford Interchange", tag: "New Office" },
+              { city: "Bradford", address: "Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR", phone: "0333 339 6004", transport: "Bradford Interchange", tag: "Registered office" },
+              { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU", phone: "0203 355 9823", transport: "Bank, Mansion House, Cannon Street", tag: "By appointment only" },
             ].map((office) => (
               <div key={office.city} className="bg-white rounded-xl border border-slate-100 p-6">
                 <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-4 flex items-center gap-2">

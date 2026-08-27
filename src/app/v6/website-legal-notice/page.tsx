@@ -1,43 +1,84 @@
 import { LegalPage } from "@/components/v6/legal-page";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Website Legal Notice" };
+export const metadata: Metadata = {
+  title: "Legal notices",
+  description:
+    "Regulatory and company information for Abrahams Solicitors: registered office, company number, SRA number, VAT and ICO registration.",
+};
 
-export default function WebsiteLegalNoticePage() {
+export default function LegalNoticesPage() {
   return (
-    <LegalPage eyebrow="Legal" title="Website Legal Notice" lastUpdated="24 April 2026">
-      <h2>About this website</h2>
+    <LegalPage eyebrow="Legal" title="Legal notices" lastUpdated="24 August 2026">
+      <h2>Who we are</h2>
       <p>
-        This website is operated by Abrahams (Yorkshire) Limited, a company registered in England &amp; Wales. We are authorised and regulated by the Solicitors Regulation Authority (SRA number 809071). Our registered office is Suite 10, Atlas House, 1 King Street, London EC2V 8AU.
+        Abrahams Solicitors is the trading style of Abrahams (Yorkshire) Ltd, a limited company registered in England and Wales.
+      </p>
+      <ul>
+        <li>Company number: 12942685</li>
+        <li>Incorporated: 12 October 2020, England and Wales</li>
+        <li>Registered office: Unit 20, Listerhills Science Park, Campus Road, Bradford, BD7 1HR</li>
+        <li>VAT number: GB491643276</li>
+        <li>ICO registration: ZB638524</li>
+        <li>Telephone: 0203 355 9823</li>
+        <li>Email: <a href="mailto:info@abrahamssolicitors.co.uk">info@abrahamssolicitors.co.uk</a></li>
+      </ul>
+      <p>A list of Directors is available for inspection at our registered office.</p>
+
+      <h2>Our offices</h2>
+      <p>
+        <strong>Bradford (registered office)</strong><br />
+        Unit 20, Listerhills Science Park, Campus Road, Bradford, BD7 1HR<br />
+        Monday to Friday, 9.00am to 5.00pm &middot; 0333 339 6004
+      </p>
+      <p>
+        <strong>London</strong><br />
+        Suite 10, Atlas House, 1 King Street, London EC2V 8AU<br />
+        Monday to Friday, 9.00am to 5.00pm, by appointment only &middot; 0203 355 9823
       </p>
 
-      <h2>Not legal advice</h2>
+      <h2>Regulatory information</h2>
       <p>
-        Information on this website is general in nature. It is not, and is not intended to be, legal advice on which you should act. Please get in touch before making any decisions so we can give advice tailored to your circumstances.
+        Abrahams Solicitors is authorised and regulated by the Solicitors Regulation Authority, SRA number 809071.
+      </p>
+      <p>
+        Our professional title is solicitor, granted in England and Wales. We are subject to the SRA Standards and Regulations, including the SRA Code of Conduct, which can be found at{" "}
+        <a href="https://www.sra.org.uk" target="_blank" rel="noopener noreferrer">www.sra.org.uk</a>.
+      </p>
+      <p>
+        The term &ldquo;partner&rdquo; where used refers to a Director, Employee or Consultant of the firm with equivalent standing and qualifications. It does not imply that any person is carrying on business in partnership for the purposes of the Partnership Act 1890.
       </p>
 
-      <h2>Accuracy</h2>
+      <h2>Professional indemnity insurance</h2>
       <p>
-        We try to keep everything here accurate and up to date, but laws, fees and procedures change. We don&rsquo;t guarantee the site is free from errors or always current. We won&rsquo;t be liable for any loss arising from use of the site.
+        We carry professional indemnity insurance in accordance with the SRA Indemnity Insurance Rules. Details of our insurers and the territorial coverage of that insurance are available on request from our registered office.
       </p>
 
-      <h2>Links to third-party sites</h2>
+      <h2>Complaints</h2>
+      <p>Please see our <a href="/complaints/">complaints page</a>.</p>
+
+      <h2>Content on this website</h2>
       <p>
-        Where we link to external sites we do so for information only. We don&rsquo;t control those sites and aren&rsquo;t responsible for their content or availability.
+        The content of this website is provided for general information only. It is not legal advice and should not be relied on as legal advice. Immigration law and the Immigration Rules change frequently, and information that was accurate when published may not be accurate when you read it. You should always take advice on your own circumstances before acting.
+      </p>
+      <p>We accept no liability for any loss arising from reliance on the content of this website.</p>
+      <p>
+        Reading this website, or contacting us through it, does not create a solicitor-client relationship. We only act for you once we have agreed to do so in writing and you have received our Client Care Letter and Terms of Business.
       </p>
 
-      <h2>Intellectual property</h2>
+      <h2>Copyright</h2>
       <p>
-        All content on this site (text, images, branding, design) is owned by or licensed to Abrahams (Yorkshire) Limited and protected by UK and international copyright law. You may view, print and download content for personal, non-commercial use. You may not reproduce, republish or distribute any content without our prior written permission.
+        The content of this website is &copy; Abrahams (Yorkshire) Ltd unless otherwise stated. You may view and print pages for your own use. You may not reproduce or republish any part of this website without our written permission.
       </p>
 
-      <h2>Jurisdiction</h2>
+      <h2>Links to other websites</h2>
       <p>
-        This notice is governed by English law. Any dispute will be subject to the exclusive jurisdiction of the courts of England and Wales.
+        Where we link to another website, we do so for convenience. We do not control those sites and are not responsible for their content.
       </p>
 
-      <h2>Contact</h2>
+      <h2>Governing law</h2>
       <p>
-        Questions about the site or content: <a href="mailto:info@abrahamssolicitors.co.uk">info@abrahamssolicitors.co.uk</a> or 0203 355 9823.
+        These notices are governed by the law of England and Wales, and the courts of England and Wales have exclusive jurisdiction.
       </p>
     </LegalPage>
   );
