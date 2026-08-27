@@ -226,7 +226,7 @@ export default function OurFeesPage() {
             <div>
               <p className="text-base font-bold text-slate-900">Humaira Anjum &mdash; Solicitor, Immigration &amp; Litigation</p>
               <p className="mt-1 text-base text-slate-600 leading-relaxed">
-                Admitted as a solicitor of England and Wales, regulated by the SRA (SRA number 663190). Imran leads the immigration team and supervises all immigration matters.
+                Admitted as a solicitor of England and Wales, regulated by the SRA (SRA number 663190). Humaira leads the immigration team and supervises all immigration matters.
               </p>
             </div>
             <div>
@@ -237,7 +237,7 @@ export default function OurFeesPage() {
             </div>
           </div>
           <p className="mt-6 text-base text-slate-600 leading-relaxed">
-            All immigration matters are supervised by Imran Shah, Solicitor and Director.
+            All immigration matters are supervised by Humaira Anjum, Solicitor. All housing matters are supervised by George Melvin, Chartered Legal Executive.
           </p>
 
           <h2 className="mt-12 text-2xl font-bold text-slate-900">Complaints</h2>
