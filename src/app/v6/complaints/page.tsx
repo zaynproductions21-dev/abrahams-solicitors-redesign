@@ -28,7 +28,7 @@ export default function ComplaintsPage() {
         You can complain in any way that suits you &mdash; by phone, email, letter or in person. You do not need to use any particular form of words.
       </p>
       <p>
-        If your complaint is about Imran Shah personally, it will be dealt with by Humaira Anjum, Solicitor instead.
+        If your complaint is about Imran Shah personally, it will be dealt with by Sannah Khatoon, Solicitor (SRA number 654258) instead.
       </p>
       <p>
         If you would find it easier to complain in another language, or need this information in another format, please tell us and we will arrange it.
