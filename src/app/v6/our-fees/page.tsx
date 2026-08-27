@@ -220,13 +220,13 @@ export default function OurFeesPage() {
             <div>
               <p className="text-base font-bold text-slate-900">Imran Shah &mdash; Solicitor and Director, Immigration &amp; Litigation</p>
               <p className="mt-1 text-base text-slate-600 leading-relaxed">
-                Admitted as a solicitor of England and Wales, regulated by the SRA (SRA number 509359). Imran leads the immigration team and supervises all immigration matters.
+                Admitted as a solicitor of England and Wales, regulated by the SRA (SRA number 509359).
               </p>
             </div>
             <div>
               <p className="text-base font-bold text-slate-900">Humaira Anjum &mdash; Solicitor, Immigration &amp; Litigation</p>
               <p className="mt-1 text-base text-slate-600 leading-relaxed">
-                Admitted as a solicitor of England and Wales, regulated by the SRA (SRA number 663190).
+                Admitted as a solicitor of England and Wales, regulated by the SRA (SRA number 663190). Imran leads the immigration team and supervises all immigration matters.
               </p>
             </div>
             <div>
