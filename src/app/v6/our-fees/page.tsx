@@ -170,7 +170,7 @@ export default function OurFeesPage() {
             </table>
           </div>
           <p className="mt-4 text-base text-slate-600 leading-relaxed">
-            Home Office fees and the Immigration Health Surcharge are set by the Government, not by us. They change from time to time, usually in the spring. The amount you pay is the amount in force on the day your application is submitted. The figures above are those in force from 8 April 2026.
+            Home Office fees and the Immigration Health Surcharge are set by the Government, not by us. They change from time to time, usually in the spring. The amount you pay is the amount in force on the day your application is submitted. The figures above are those in force from 8 April 2026, and are due for review by 1 April 2027 &mdash; call us if you are reading this after that date and we have not yet updated it.
           </p>
 
           <h2 className="mt-12 text-2xl font-bold text-slate-900">What we do for you</h2>
