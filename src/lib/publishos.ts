@@ -44,9 +44,18 @@ export type FaqItem = {
   status: "draft" | "published";
 };
 
-async function fetchCollection<T>(name: string): Promise<T[]> {
+/**
+ * `revalidateSeconds` lets a server-rendered page opt into ISR. The default
+ * stays "no-store" so every existing caller keeps its current behaviour — but
+ * an explicit no-store overrides a page's `export const revalidate`, so a page
+ * that wants to be cached has to say so here.
+ */
+async function fetchCollection<T>(name: string, revalidateSeconds?: number): Promise<T[]> {
   try {
-    const res = await fetch(`${API_BASE}/${name}`, { cache: "no-store" });
+    const res = await fetch(
+      `${API_BASE}/${name}`,
+      revalidateSeconds ? { next: { revalidate: revalidateSeconds } } : { cache: "no-store" },
+    );
     if (!res.ok) return [];
     const data = await res.json();
     return Array.isArray(data) ? data : [];
@@ -58,7 +67,8 @@ async function fetchCollection<T>(name: string): Promise<T[]> {
 export const getBlogPosts = () => fetchCollection<BlogPost>("abrahams_blog");
 export const getPressReleases = () => fetchCollection<PressRelease>("abrahams_press");
 export const getNewsletters = () => fetchCollection<NewsletterIssue>("abrahams_newsletters");
-export const getFaqs = () => fetchCollection<FaqItem>("abrahams_faqs");
+export const getFaqs = (revalidateSeconds?: number) =>
+  fetchCollection<FaqItem>("abrahams_faqs", revalidateSeconds);
 
 export type Enquiry = {
   id: string;
