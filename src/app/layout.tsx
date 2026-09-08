@@ -141,6 +141,22 @@ export default function RootLayout({
         <PostHogProvider>
           {children}
         </PostHogProvider>
+        {/* CONSENT-GATED, unlike the own-brand sites. Abrahams runs a cookie
+            banner and is a regulated firm, so this waits for the
+            cookie_consent_granted dataLayer event before reporting anything.
+            GoogleTagManager replays that event on every page load for visitors
+            who already accepted, so returning users are covered without a
+            second prompt. It stores nothing either way. */}
+        {/*
+            AI-engine referral beacon. Reports which assistant sent a visit to
+            publishos /api/ai-referral. Stores NOTHING on the device - no cookie, no
+            localStorage, no sessionStorage - so it carries no PECR consent duty. The
+            reload guard reads Navigation Timing rather than writing a flag.
+            Source of truth: publishos public/ai-referral.js. */}
+        <script
+          id="ai-referral"
+          dangerouslySetInnerHTML={{ __html: `!function(){var C="cl_mnxclw6q",E="https://www.publishos.co.uk/api/ai-referral",H=[[/(^|\\.)chatgpt\\.com$/i,"ChatGPT"],[/(^|\\.)chat\\.openai\\.com$/i,"ChatGPT"],[/(^|\\.)openai\\.com$/i,"ChatGPT"],[/(^|\\.)perplexity\\.ai$/i,"Perplexity"],[/(^|\\.)gemini\\.google\\.com$/i,"Gemini"],[/(^|\\.)copilot\\.microsoft\\.com$/i,"Copilot"],[/(^|\\.)claude\\.ai$/i,"Claude"],[/(^|\\.)meta\\.ai$/i,"Meta AI"],[/(^|\\.)you\\.com$/i,"You.com"],[/(^|\\.)grok\\.com$/i,"Grok"]],P=[[/chatgpt|openai/i,"ChatGPT"],[/perplexity/i,"Perplexity"],[/gemini|bard/i,"Gemini"],[/copilot/i,"Copilot"],[/claude|anthropic/i,"Claude"],[/grok/i,"Grok"]];function d(){try{var p=new URLSearchParams(location.search),k=["utm_source","ref","source"];for(var i=0;i<k.length;i++){var v=p.get(k[i]);if(v)for(var j=0;j<P.length;j++)if(P[j][0].test(v))return P[j][1]}}catch(e){}if(document.referrer)try{var h=new URL(document.referrer).hostname;for(var n=0;n<H.length;n++)if(H[n][0].test(h))return H[n][1]}catch(e){}return null}function f(){try{var n=performance.getEntriesByType("navigation")[0];if(n&&n.type)return n.type==="navigate"}catch(e){}return true}function s(g){try{fetch(E,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({clientId:C,url:location.origin+location.pathname+location.search,referrer:document.referrer||""}),keepalive:!0,mode:"cors"})["catch"](function(){})}catch(e){}}var g=d();if(!g||!f())return;var sent=false;function go(){if(sent)return;sent=true;window.dataLayer.push({event:"ai_referral",ai_engine:g,ai_landing_path:location.pathname});s(g)}window.dataLayer=window.dataLayer||[];for(var q=0;q<window.dataLayer.length;q++){var e0=window.dataLayer[q];if(e0&&e0.event==="cookie_consent_granted"){go();break}}if(!sent){var op=window.dataLayer.push;window.dataLayer.push=function(){var r=op.apply(this,arguments);for(var z=0;z<arguments.length;z++){var a=arguments[z];if(a&&a.event==="cookie_consent_granted")go()}return r}}}();` }}
+        />
       </body>
     </html>
   );
