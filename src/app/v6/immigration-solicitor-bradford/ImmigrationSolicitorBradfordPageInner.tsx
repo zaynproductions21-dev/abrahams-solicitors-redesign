@@ -10,6 +10,7 @@ import { useSpamGuard } from "@/lib/spam-client";
 import { pushFormSubmit } from "@/lib/tracking";
 import { pushWizardEvent } from "@/lib/wizard-events";
 import { submitEnquiry } from "@/lib/publishos";
+import { team } from "@/lib/team";
 import {
   JsonLd,
   faqPageSchema,
@@ -32,6 +33,8 @@ import {
 const BASE_URL = "https://www.abrahamssolicitors.co.uk";
 const BRADFORD_TEL = "03333396004";
 const BRADFORD_TEL_DISPLAY = "0333 339 6004";
+// Named reviewer for E-E-A-T (2026 YMYL requirement): Imran Shah leads immigration.
+const AUTHOR = team.find((t) => t.slug === "imran-shah")!;
 
 const FIXED_FEES = [
   { service: "Spouse visa (first application)", fee: "From £900", note: "Plus UKVI fees (£1,938 + IHS)" },
@@ -312,6 +315,9 @@ export default function ImmigrationSolicitorBradfordPageInner() {
               </h1>
               <p className="mt-4 text-lg text-slate-500 leading-relaxed max-w-md">
                 SRA-regulated immigration solicitors with a Bradford office. Spouse visas, ILR, citizenship, and visa appeals — all on fixed fees agreed upfront.
+              </p>
+              <p className="mt-3 text-xs text-slate-500 leading-relaxed max-w-md">
+                Reviewed by <Link href="/our-team/" className="font-semibold text-slate-700 hover:text-brand-red">{AUTHOR.name}</Link> &mdash; SRA #{AUTHOR.sraNumber}, admitted {AUTHOR.admittedYear}. <a href={AUTHOR.sraUrl} target="_blank" rel="noopener noreferrer" className="hover:text-brand-red underline-offset-2 hover:underline">Verify on the SRA register</a>.
               </p>
 
               {/* Trust pills */}
