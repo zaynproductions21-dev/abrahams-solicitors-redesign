@@ -59,7 +59,7 @@ const SUPERSEDED = [
 // together or one drifts. `NEXT_HOURLY_REVIEW_DUE` is a soft
 // reminder — bump it when a new schedule ships.
 const NEXT_HOURLY_REVIEW_DUE = "2027-09-30";
-const RATES_JSON = resolve(__dirname, "../hourly-rates.json");
+const RATES_JSON = resolve(__dirname, "../config/hourly-rates.json");
 const rates = JSON.parse(readFileSync(RATES_JSON, "utf8"));
 
 const page = readFileSync(PAGE, "utf8");

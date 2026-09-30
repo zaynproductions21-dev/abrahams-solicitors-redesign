@@ -1,22 +1,30 @@
 // Shared source of truth for the firm's hourly rates.
 //
-// The RAW figures live in `hourly-rates.json` at the repo root, which is
-// mirrored to the CRM at the same path. Both consumers must import the
-// JSON, not hardcode the numbers — TOB-IMM clause 9.4 commits the firm
-// to an annual review, and two hardcoded copies will drift, with the
-// one that drifts being the one nobody looks at (per the DocsCheck
-// fee-uprating incident the firm cites).
+// The RAW figures live in `config/hourly-rates.json` — the same path
+// the CRM uses. Both repos are mirrors; a coordinated commit touching
+// `config/hourly-rates.json` in each is unambiguously the annual
+// review under TOB-IMM clause 9.4. Both consumers import the JSON;
+// neither hardcodes the numbers, because two hardcoded copies would
+// drift and the one that drifts is the one nobody looks at (the
+// DocsCheck ILR-fee incident the firm cites).
+//
+// The CRM side has an equivalent validator at `shared/hourly-rates.ts`
+// (see the CRM Claude's implementation); this file plays the same
+// role on the website.
 //
 // When the firm revises rates:
-//   1. File a NEW schedule_id at the top of hourly-rates.json (do not
-//      edit the existing one — CCLs enclose a specific schedule and
-//      must remain bound to what they enclosed).
-//   2. Update BOTH mirrors — this file's JSON + the CRM's copy —
-//      in the same review.
-//   3. Run `npm run check:fees` to prove the /our-fees/ page renders
-//      the new values.
+//   1. File a NEW schedule_id at the top of config/hourly-rates.json
+//      (do not edit the existing one — CCLs enclose a specific
+//      schedule and must remain bound to what they enclosed).
+//   2. Land the identical change in BOTH repos in the same review
+//      window — the CRM's config/hourly-rates.json + this repo's
+//      config/hourly-rates.json. Diff the two after the update to
+//      prove there is no residual delta.
+//   3. Run `npm run check:fees` on this repo to prove /our-fees/
+//      still renders the shared source (import + iteration checks)
+//      and the arithmetic is right.
 
-import raw from "../../hourly-rates.json";
+import raw from "../../config/hourly-rates.json";
 
 export type HourlyRateRow = {
   grade_key: "solicitor_over_8" | "solicitor_over_4" | "paralegal_caseworker";
