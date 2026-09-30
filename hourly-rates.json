@@ -1,0 +1,33 @@
+{
+  "schedule_id": "HOURLY-RATES-2026-09-30",
+  "version": "1.0",
+  "effective_from": "2026-09-30",
+  "approved_by": "Imran Shah, COLP",
+  "approved_on": "2026-09-30",
+  "next_review_due": "2027-09-30",
+  "note": "SINGLE SOURCE OF TRUTH for firm hourly rates. Mirrored between the website (this file at repo root) and the CRM (config/hourly-rates.json). TOB-IMM clause 9.4 commits the firm to annual review — update BOTH mirrors together, not one, and file a new schedule_id rather than editing this one so client care letters bound to the old schedule stay bound to what they enclosed.",
+  "unit_of_time_recording": "one tenth of an hour",
+  "rates": [
+    {
+      "grade_key": "solicitor_over_8",
+      "grade_label": "Solicitor with over 8 years' experience",
+      "hourly_rate": 288.00,
+      "vat_at_20": 57.60,
+      "total_uk_resident": 345.60
+    },
+    {
+      "grade_key": "solicitor_over_4",
+      "grade_label": "Solicitor with over 4 years' experience",
+      "hourly_rate": 247.00,
+      "vat_at_20": 49.40,
+      "total_uk_resident": 296.40
+    },
+    {
+      "grade_key": "paralegal_caseworker",
+      "grade_label": "Paralegal caseworker",
+      "hourly_rate": 142.00,
+      "vat_at_20": 28.40,
+      "total_uk_resident": 170.40
+    }
+  ]
+}

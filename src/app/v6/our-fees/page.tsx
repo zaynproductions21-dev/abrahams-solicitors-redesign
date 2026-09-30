@@ -3,23 +3,46 @@ import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
+import { HOURLY_RATES, fmtGbp } from "@/lib/hourly-rates";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Immigration — our prices",
   description:
-    "What our immigration services cost. Fixed fees agreed in writing before we start, exclusive of VAT. Home Office fees and disbursements set out separately.",
+    "What our immigration services cost. Fixed fees, published hourly rates, and Home Office disbursements set out separately. Approved by Imran Shah, COLP, 30 September 2026.",
 };
 
-// Compliance page — reproduces the SRA Transparency Rule 1.5 / 1.6 copy
-// from Abrahams-CCL-ToB-v2-2026-08-21/review-pack/website/
-// web-price-transparency-v1.0.docx and DEV-ADDENDUM-vat-confirmed.md.
-// All fee/VAT/total figures carry "From". The four-row VAT
-// place-of-supply table must be reproduced in full — do not collapse to
-// "prices exclude VAT" (rows 3 and 4 are counter-intuitive and pull in
-// opposite directions; removing them would make the page wrong for
-// asylum and no-leave clients). Do not use the words "exempt",
-// "zero-rated" or "VAT free" anywhere on this page.
+// Compliance page — WEB-PRICE-IMM v1.1, approved by Imran Shah, COLP,
+// 30 September 2026. Base copy from
+// Abrahams-CCL-ToB-v2-2026-08-21/review-pack/website/
+// web-price-transparency-v1.0.docx + DEV-ADDENDUM-vat-confirmed.md;
+// v1.1 additions from ~/Downloads/web-price-transparency-v1.1.md +
+// WEBSITE-BRIEF-v2.3.md (published hourly rates + early-termination
+// position + "Who will do your work" restructured to admission dates
+// with paralegal caseworkers named and supervision spelled out).
+//
+// SRA Transparency Rule 1.5 checklist covered here:
+//   - total cost / range of costs (main fee table + hourly rates)
+//   - basis of charges — fixed fees AND hourly rates
+//   - disbursements + VAT on them
+//   - whether VAT is included in the stated fees (four-row place of supply)
+//   - services included ("What we do for you")
+//   - key stages and typical timescales
+//   - qualifications and experience — admission DATES not typed years
+//     (a typed "14 years' PQE" rots silently; an admission date is
+//     independently checkable on the SRA register)
+//
+// The four-row VAT place-of-supply table must be reproduced in full —
+// do not collapse to "prices exclude VAT" (rows 3 and 4 are
+// counter-intuitive and pull in opposite directions; removing them
+// would make the page wrong for asylum and no-leave clients). Do not
+// use the words "exempt", "zero-rated" or "VAT free" anywhere on this
+// page.
+//
+// Hourly rates read from `hourly-rates.json` at the repo root, which is
+// mirrored to the CRM at `config/hourly-rates.json`. TOB-IMM clause 9.4
+// commits the firm to annual review — update BOTH mirrors together,
+// file a new schedule_id, and run `npm run check:fees`.
 
 const th = "py-2.5 px-3 text-left font-semibold text-slate-900 border-b border-slate-200 text-sm";
 const td = "py-2.5 px-3 align-top text-sm text-slate-700 border-b border-slate-100";
@@ -34,7 +57,7 @@ export default function OurFeesPage() {
             Immigration &mdash; our prices
           </h1>
           <p className="mt-6 text-lg text-white/60 max-w-2xl leading-relaxed">
-            Last updated: 24 August 2026. Fixed fees agreed in writing before we start &mdash; and confirmed to you in full, in a written quote, before you commit to anything.
+            Last updated: 30 September 2026. Fixed fees, agreed in writing before you commit to anything. Hourly rates published below for the small number of matters we charge by the hour.
           </p>
         </div>
       </section>
@@ -76,7 +99,53 @@ export default function OurFeesPage() {
             </table>
           </div>
 
-          <div className="mt-6 rounded-2xl bg-slate-50 ring-1 ring-slate-200 p-5 sm:p-6">
+          <h3 className="mt-10 text-lg font-bold text-slate-900">If we charge by the hour</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            Almost all of our immigration work is charged at a fixed fee, agreed with you in writing before we start. Where we agree instead that work will be charged by the hour, these are our rates. They also apply where we calculate a charge for work already carried out if you end an agreement early.
+          </p>
+
+          <div className="mt-6 overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr>
+                  <th className={th}>Who is doing the work</th>
+                  <th className={th}>Hourly rate</th>
+                  <th className={th}>VAT at 20%</th>
+                  <th className={th}>Total for a UK-resident client</th>
+                </tr>
+              </thead>
+              <tbody>
+                {HOURLY_RATES.rates.map((r) => (
+                  <tr key={r.grade_key}>
+                    <td className={td}>{r.grade_label}</td>
+                    <td className={td}>{fmtGbp(r.hourly_rate)}</td>
+                    <td className={td}>{fmtGbp(r.vat_at_20)}</td>
+                    <td className={td}><strong>{fmtGbp(r.total_uk_resident)}</strong></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <p className="mt-4 text-base text-slate-600 leading-relaxed">
+            Time is recorded in units of {HOURLY_RATES.unit_of_time_recording}. Where a paralegal caseworker is dealing with your matter day to day, a solicitor supervises the file and remains responsible for the work. <strong>There is no separate charge for supervision.</strong>
+          </p>
+          <p className="mt-4 text-base text-slate-600 leading-relaxed">
+            We review these rates once a year and will tell you in writing before any increase takes effect.
+          </p>
+
+          <h3 className="mt-10 text-lg font-bold text-slate-900">If you end the agreement early</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            If you instruct us and then decide not to go ahead, you pay for the work we have already done, as a proportion of your agreed fee. <strong>You will never pay more than that proportion, however much time has been spent.</strong>
+          </p>
+          <p className="mt-4 text-base text-slate-600 leading-relaxed">
+            Your Client Care Letter sets out, stage by stage, exactly what that proportion is and what it comes to in pounds for your matter &mdash; before you decide whether to instruct us. The charge for opening your file and completing identity checks is limited to <strong>&pound;200 for each applicant</strong>.
+          </p>
+          <p className="mt-4 text-base text-slate-600 leading-relaxed">
+            Once the work is complete &mdash; your application submitted, your legal representations ready to send, or your written advice sent &mdash; no refund is due.
+          </p>
+
+          <div className="mt-8 rounded-2xl bg-slate-50 ring-1 ring-slate-200 p-5 sm:p-6">
             <p className="text-base text-slate-700 leading-relaxed">
               <strong>These are &ldquo;from&rdquo; prices.</strong> They are the starting fee for a straightforward matter of that type, and they exclude VAT. Because the fee is a starting figure, the VAT and the total are starting figures too. We give you an exact quote, in writing, before you commit to anything.
             </p>
@@ -216,28 +285,59 @@ export default function OurFeesPage() {
           </p>
 
           <h2 className="mt-12 text-2xl font-bold text-slate-900">Who will do your work</h2>
-          <div className="mt-6 space-y-6">
+
+          <h3 className="mt-6 text-lg font-bold text-slate-900">Solicitors</h3>
+          <div className="mt-4 space-y-6">
             <div>
               <p className="text-base font-bold text-slate-900">Imran Shah &mdash; Solicitor and Director, Immigration &amp; Litigation</p>
               <p className="mt-1 text-base text-slate-600 leading-relaxed">
-                Admitted as a solicitor of England and Wales, regulated by the SRA (SRA number 509359).
+                Admitted as a solicitor of England and Wales on <strong>16 April 2012</strong>. Regulated by the SRA, SRA number 509359. Imran leads the immigration team.
               </p>
             </div>
             <div>
-              <p className="text-base font-bold text-slate-900">Humaira Anjum &mdash; Solicitor, Immigration &amp; Litigation</p>
+              <p className="text-base font-bold text-slate-900">Humaira Anjum &mdash; Consultant Solicitor, Immigration &amp; Litigation</p>
               <p className="mt-1 text-base text-slate-600 leading-relaxed">
-                Admitted as a solicitor of England and Wales, regulated by the SRA (SRA number 663190). Humaira leads the immigration team and supervises all immigration matters.
+                Admitted as a solicitor of England and Wales on <strong>22 September 2021</strong>. Regulated by the SRA, SRA number 663190. Humaira supervises our paralegal caseworkers.
               </p>
             </div>
             <div>
               <p className="text-base font-bold text-slate-900">Sannah Khatoon &mdash; Solicitor, Litigation &amp; Housing Disrepair</p>
               <p className="mt-1 text-base text-slate-600 leading-relaxed">
-                Admitted as a solicitor of England and Wales, regulated by the SRA (SRA number 654258).
+                Admitted as a solicitor of England and Wales on <strong>15 January 2021</strong>. Regulated by the SRA, SRA number 654258.
               </p>
             </div>
           </div>
-          <p className="mt-6 text-base text-slate-600 leading-relaxed">
-            All immigration matters are supervised by Humaira Anjum, Solicitor. All housing matters are supervised by George Melvin, Chartered Legal Executive.
+          <p className="mt-4 text-base text-slate-600 leading-relaxed">
+            You can check any of our solicitors on the <a href="https://www.sra.org.uk/consumers/register/" target="_blank" rel="noopener noreferrer" className="text-brand-red font-semibold hover:underline">SRA register</a>.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">Paralegal caseworkers</h3>
+          <div className="mt-4 space-y-6">
+            <div>
+              <p className="text-base font-bold text-slate-900">Esha Shah &mdash; Paralegal caseworker, Immigration</p>
+              <p className="mt-1 text-base text-slate-600 leading-relaxed">
+                Over 5 years&rsquo; experience in immigration casework.
+              </p>
+            </div>
+            <div>
+              <p className="text-base font-bold text-slate-900">Aqsa Ullah &mdash; Paralegal caseworker, Immigration</p>
+              <p className="mt-1 text-base text-slate-600 leading-relaxed">
+                Over 5 years&rsquo; experience in immigration casework.
+              </p>
+            </div>
+          </div>
+          <p className="mt-4 text-base text-slate-600 leading-relaxed">
+            Esha and Aqsa are paralegal caseworkers. They are not solicitors, and their work is supervised by <strong>Humaira Anjum</strong>, Consultant Solicitor, who remains accountable for it.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">Supervision</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            Esha Shah and Aqsa Ullah are supervised by <strong>Humaira Anjum</strong>, Consultant Solicitor. Imran Shah and Sannah Khatoon are responsible for their own files.
+          </p>
+
+          <h3 className="mt-8 text-lg font-bold text-slate-900">Who will handle your matter</h3>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            Depending on the type and complexity of your matter, your day-to-day contact may be a solicitor or a paralegal caseworker. <strong>Your Client Care Letter tells you exactly who is handling your matter, what their role is, and which solicitor supervises them.</strong> If you would prefer a solicitor to handle your matter throughout, please tell us at the outset and we will confirm whether that is possible and what it would cost.
           </p>
 
           <h2 className="mt-12 text-2xl font-bold text-slate-900">Complaints</h2>
