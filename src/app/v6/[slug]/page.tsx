@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { pushFormSubmit } from "@/lib/tracking";
 import { SlotImage } from "@/components/slot-image";
@@ -117,7 +117,12 @@ export default function V6ServicePage() {
   const page = getServicePage(slug);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  if (!page) return <div className="py-40 text-center text-slate-400">Page not found</div>;
+  // getServicePage now returns null for slugs not in the allowlist
+  // (see services-data.ts for why). Trigger the App Router's proper
+  // not-found handling instead of rendering an inline "Page not found"
+  // string, so unknown slugs return a real 404 status (and stop
+  // generating enquiries via the previously-fabricated page).
+  if (!page) notFound();
 
   // Determine pricing display
   const isHousing = slug.includes("housing") || slug.includes("disrepair");

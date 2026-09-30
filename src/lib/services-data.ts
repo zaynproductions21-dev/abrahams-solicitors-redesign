@@ -1409,9 +1409,21 @@ export const locationPages: ServicePage[] = [
 
 export const personalInjuryPages: ServicePage[] = [];
 
-export function getServicePage(slug: string): ServicePage {
-  const found = [...immigrationPages, ...housingPages, ...locationPages, ...personalInjuryPages].find(p => p.slug === slug);
-  if (found) return found;
-  const title = slug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
-  return { slug, title, metaTitle: title + " | Abrahams Solicitors", metaDescription: "Expert legal advice from Abrahams Solicitors. Fixed fees, direct solicitor access.", heroTitle: title, heroDescription: "Contact Abrahams Solicitors for expert legal advice.", badge: "Legal Services", sections: [{ title: "About This Service", content: "Please contact us to discuss your case. We offer a free initial consultation with no obligation." }], faqs: [] };
+export function getServicePage(slug: string): ServicePage | null {
+  // Return null for any slug not in the allowlist. The previous fallback
+  // synthesised a fake service page for ANY slug — title-casing the URL
+  // segment and rendering the same generic "Please contact us" copy with
+  // a live enquiry form. That is how /terms became a "Terms case"
+  // consultation offer, and the same pattern would fabricate a page for
+  // any other unmapped slug (bot-typed, misspelled, external referrer,
+  // whatever). Every fabricated page carried a working form that POSTed
+  // to submitEnquiry with `service: <title-cased-slug>` and
+  // `source: service-page:<title-cased-slug>`, so the fabricated pages
+  // were producing real leads with nonsense subjects. See
+  // WEBSITE-BRIEF-terms-page.md (30 Sep 2026) for the underlying story.
+  //
+  // The 23 real service pages live in the four arrays below. Add new
+  // slugs to the appropriate array; do not restore the string-title
+  // fallback.
+  return [...immigrationPages, ...housingPages, ...locationPages, ...personalInjuryPages].find(p => p.slug === slug) ?? null;
 }
