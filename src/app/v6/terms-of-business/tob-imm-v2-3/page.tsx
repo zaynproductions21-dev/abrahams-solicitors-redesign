@@ -1,35 +1,44 @@
 import { LegalPage } from "@/components/v6/legal-page";
 import type { Metadata } from "next";
 
-// Template TOB-IMM v2.1, effective 24 August 2026.
-// Supersedes TOB-IMM v2.0 (21 Aug 2026). Amended by Imran Shah on
-// 24 August 2026 (registered office, Legal Ombudsman address, ICO number).
+// Template TOB-IMM v2.3, effective 30 September 2026.
+// Supersedes TOB-IMM v2.2 (12 Sep 2026). Amended by Imran Shah on
+// 30 September 2026 — cancellation schedule pointer (13.8A), refund
+// mechanics (13.8B), 13.6 deferral to 13.8/13.8A for fixed fees,
+// 13.6A initial-consultation carve-out, 13.9 additional-work fresh
+// 14-day right, section 16 restructure (16.1-16.3 split for fixed-fee
+// immigration matters held in business account, remainder for
+// client-account holdings), 17.10A electronic-signature records.
+//
+// Lineage:
+//   Terms of Business - Immigration (undated, unversioned) ->
+//   TOB-IMM v2.0 (21 Aug 2026) -> v2.1 (24 Aug 2026) ->
+//   v2.2 (12 Sep 2026) -> v2.3 (30 Sep 2026).
 //
 // CLAUSE NUMBERING IS LOCKED. Client Care Letters record which version
 // they enclosed and the clause numbers are cross-referenced from
 // three other documents (CCL, CHP, client declaration). Do not
 // renumber or re-order clauses without producing a new template_version
-// approved by the owner. See Abrahams-CCL-ToB-v2-2026-08-21/
-// for-website-dev/terms-of-business-v2.1.md.
+// approved by the owner. See ~/Downloads/APPROVED-Terms-of-Business-v2.3.md
+// for the verbatim source.
+//
+// Note: v2.3 as approved contains a duplicate clause number "16.12"
+// (both the deposit-provider clause and the cash-payments clause carry
+// 16.12). Reproduced verbatim — do not silently renumber to 16.15,
+// that would be a substantive change to a locked document. Flag it to
+// Imran if unnoticed.
 
 export const metadata: Metadata = {
-  title: "Terms of Business (superseded — TOB-IMM v2.1)",
+  title: "Terms of Business",
   description:
-    "Superseded Terms of Business (v2.1, in force 24 August to 12 September 2026). Retained for clients whose Client Care Letter enclosed this version. Current version is v2.3.",
-  robots: { index: false, follow: true },
+    "Terms of Business (v2.3) applicable to all work Abrahams Solicitors do for you. Read together with your Client Care Letter.",
 };
 
-export default function TermsOfBusinessPage() {
+export default function TermsOfBusinessV23Page() {
   return (
-    <LegalPage eyebrow="Legal · TOB-IMM v2.1 · SUPERSEDED" title="Terms of Business" lastUpdated="24 August 2026">
-      <div className="not-prose mb-6 rounded-2xl border-l-4 border-amber-500 bg-amber-50 p-5 sm:p-6">
-        <p className="text-sm font-bold text-amber-900 mb-1">This version has been superseded.</p>
-        <p className="text-sm text-amber-900 leading-relaxed">
-          TOB-IMM v2.1 was in force from <strong>24 August 2026 to 12 September 2026</strong> and is superseded by <a href="/terms-of-business/tob-imm-v2-3/" className="underline font-semibold">TOB-IMM v2.3</a> (the current version). This page is retained because Client Care Letters issued during that window enclose v2.1, and your matter is governed by the version your letter enclosed. If your Client Care Letter names v2.1, this is your version. If it names v2.2, see <a href="/terms-of-business/tob-imm-v2-2/" className="underline font-semibold">v2.2</a>. If it names v2.3 or a later version, follow the link to the current Terms.
-        </p>
-      </div>
+    <LegalPage eyebrow="Legal · TOB-IMM v2.3" title="Terms of Business" lastUpdated="30 September 2026">
       <p>
-        <strong>Version 2.1 &middot; In force from 24 August 2026.</strong> Supersedes v2.0 (21 August 2026). Superseded by v2.2 on 12 September 2026 and by v2.3 on 30 September 2026. Your Client Care Letter records the version of these Terms of Business that applies to your matter.
+        <strong>Version 2.3 &middot; In force from 30 September 2026.</strong> Supersedes v2.2 (12 September 2026). Your Client Care Letter records the version of these Terms of Business that applies to your matter. If your letter names v2.1 or v2.2, those versions remain published at their own permanent URLs and continue to govern your matter.
       </p>
 
       <h2>1. About us</h2>
@@ -150,8 +159,20 @@ export default function TermsOfBusinessPage() {
       <p><strong>13.3</strong> If your matter does not conclude, or we are prevented from continuing to act because of our legal or professional obligations, we will charge you for the work we have actually done. Where a fixed fee has been agreed, those charges will not exceed the fixed fee. Where an agreed fee has been charged under clause 7, the fee remains payable in accordance with that clause.</p>
       <p><strong>13.4</strong> If we cease acting for you, we shall where relevant inform the court or tribunal that we no longer act and apply to be removed from their records. We may charge you for doing so at our hourly rates applicable at the relevant time.</p>
       <p><strong>13.5</strong> <strong>Your cancellation rights.</strong> If you are a consumer and this Agreement was made away from our business premises (for example at your home or place of work), or was made at a distance without us meeting you face to face, you have the right to cancel this Agreement <strong>within 14 days</strong> of the date of the Agreement, under the <strong>Consumer Contracts (Information, Cancellation and Additional Charges) Regulations 2013</strong>. You do not have to give a reason.</p>
-      <p><strong>13.6</strong> We will not begin work during that 14-day cancellation period unless you expressly ask us to. If you ask us to start work within the cancellation period and then cancel, you will be liable for the costs and expenses reasonably incurred up to the point of cancellation. If, at your request, the agreed service has been performed in full within the cancellation period, your right to cancel ends.</p>
+      <p><strong>13.6</strong> We will not begin work during that 14-day cancellation period unless you expressly ask us to. If you ask us to start work within the cancellation period and then cancel, you will be liable for the costs and expenses reasonably incurred up to the point of cancellation. If, at your request, the agreed service has been performed in full within the cancellation period, your right to cancel ends. Where a fixed fee has been agreed, the amount payable is calculated under clauses 13.8 and 13.8A rather than by reference to costs incurred.</p>
+      <p><strong>13.6A</strong> Every matter begins with an initial consultation, and that consultation is a service in its own right. Where you have asked us to provide it within the 14-day cancellation period, the consultation has been performed in full once it has taken place. Your right to cancel the consultation ends at that point and the consultation fee is not refundable. This does not affect your right to cancel any further work that has not yet been performed.</p>
       <p><strong>13.7</strong> To cancel, you need only tell us clearly in writing before the 14-day period expires, using the contact details in your Client Care Letter. A cancellation form is provided with your Client Declaration.</p>
+      <p><strong>13.8</strong> Where the application work forms part of the services described in your Client Care Letter, that work begins when you accept the advice recorded in your Advice Slip. Your cancellation rights under clause 13.5 ran from the date of this Agreement and are not renewed at that point. You may still end this Agreement at any time under clause 13.1. If you do so before the application work is complete, you will pay for the work actually carried out up to that point, calculated as a proportion of the total agreed fee for that work, and any balance you have paid in advance will be refunded to you within 14 days.</p>
+      <p><strong>13.8A</strong> Where you end this Agreement before the work is complete, the proportion of the agreed fee payable for the work already done is set out in the schedule in your Client Care Letter. That schedule tells you, for each stage of the work, what you will pay if you end this Agreement after that stage. You will not be charged more than the proportion shown, whatever time has been spent on your matter.</p>
+      <p><strong>13.8B How we work out and pay a refund.</strong> Where you end this Agreement and you have paid us more than the amount payable under clause 13.8A, we will refund the difference. In working out that difference we will deduct:</p>
+      <ul>
+        <li>(a) the proportion of the agreed fee payable under clause 13.8A for the work already done; and</li>
+        <li>(b) any expense we have already paid on your behalf, or have committed to pay and cannot recover, such as a fee paid to the Home Office. We will tell you what these are and whether any part can be recovered from the organisation concerned.</li>
+      </ul>
+      <p>We will make the refund within 14 days of the day you tell us you are ending this Agreement, using the same method you used to pay us. We will not pay a refund to a different person or account unless you ask us in writing and we are satisfied that we may properly do so.</p>
+      <p>If you do not agree the amount we have calculated, we will still refund within that period the amount that is not in dispute, and we will deal with the remainder under our complaints procedure. Where we and you agree a wider settlement of any claim between us, that agreement will record what is payable and when.</p>
+      <p>Where the amount payable under clause 13.8A is more than you have already paid, the difference remains payable and we will send you a bill for it.</p>
+      <p><strong>13.9</strong> If you instruct us to carry out work that was not described in your Client Care Letter, we will write to you setting out the additional work and what it will cost before we begin. That letter forms a separate agreement, and where it is made at a distance or away from our premises you will have a fresh 14-day right to cancel it under clause 13.5.</p>
 
       <h2>14. Financial services</h2>
       <p><strong>14.1</strong> The Law Society of England and Wales is a designated professional body under Part XX of the Financial Services and Markets Act 2000, which means we may carry on certain regulated activities without being regulated by the Financial Conduct Authority. This means we may be able to provide limited financial services to you where such services arise out of, or are complementary to, the provision of legal services.</p>
@@ -181,17 +202,26 @@ export default function TermsOfBusinessPage() {
       </ul>
 
       <h2>16. Client money and interest</h2>
-      <p><strong>16.1</strong> We will account to you for a sum in lieu of interest on money we hold for you where it is fair and reasonable to do so in all the circumstances, in accordance with the SRA Accounts Rules.</p>
-      <p><strong>16.2</strong> Our policy seeks to provide a fair and reasonable outcome for both our clients and this practice, and is kept under review.</p>
-      <p><strong>16.3</strong> The rate of interest available on client accounts is significantly lower than the rate obtainable on other bank or building society accounts. This reflects the fact that immediate access is required to client accounts in order to comply with the SRA Accounts Rules and to facilitate the smooth completion of transactions. It is therefore unlikely that funds held by us will attract as much interest as if you had invested them yourself.</p>
-      <p><strong>16.4</strong> All interest arising from cleared funds held on behalf of a trust will be credited to the trust, whether those funds are held in a general client account or a separate designated client account.</p>
-      <p><strong>16.5</strong> For cleared funds paid into general client accounts, we shall account for interest unless the amount of interest calculated on the balance held is &pound;20 or less, or the client money was held in cleared funds for a period of five working days or less.</p>
-      <p><strong>16.6</strong> All other clients shall be paid interest at the rate payable on the practice&rsquo;s client account from time to time, unless there are specific circumstances leading the client to contract out of the right to receive interest payments, for example where the client&rsquo;s religious beliefs prohibit the receipt of interest.</p>
-      <p><strong>16.7</strong> Where sums of money are held in relation to separate matters for the same client, the money relating to the different matters shall be treated separately unless it is fair and reasonable in the circumstances to consider them together.</p>
-      <p><strong>16.8</strong> We will usually account to you for interest at the conclusion of your matter, but may in some cases consider it appropriate to account to you at intervals throughout.</p>
-      <p><strong>16.9</strong> Unless otherwise agreed in writing, if we receive sums to hold on your behalf we may deposit that money with any bank or financial institution (a &ldquo;deposit provider&rdquo;) of our choosing. We comply with applicable law and regulatory rules in respect of such deposits.</p>
-      <p><strong>16.10</strong> We shall not be liable for any loss which you or any third party may suffer in connection with an Insolvency Event occurring in relation to any deposit provider with whom we have deposited funds, save to the extent that such loss was caused or contributed to by our breach of clause 16.9. In this clause an &ldquo;Insolvency Event&rdquo; means the deposit provider becoming unable to pay its debts as they fall due, the value of its assets being less than its liabilities, a moratorium being declared in respect of its indebtedness, or any winding-up, administration, receivership, or analogous procedure being commenced in respect of it in any jurisdiction.</p>
-      <p><strong>16.11</strong> If an Insolvency Event occurs in relation to a deposit provider holding money we have deposited on your behalf, you agree that we may disclose to the Financial Services Compensation Scheme (&ldquo;FSCS&rdquo;) all relevant details in our possession about you and the money we hold on your behalf. If you do not wish us to make such a disclosure, please notify our data protection contact in writing at our registered office. Please note that by withholding consent you may forfeit any right to receive compensation from the FSCS. FSCS compensation for deposits is limited to &pound;85,000 for any individual&rsquo;s total deposit with that provider, including their personal finances. Further information is available at <a href="https://www.fscs.org.uk" target="_blank" rel="noopener noreferrer">www.fscs.org.uk</a> or on 0800 678 1100.</p>
+      <p><strong>16.1 How this clause applies.</strong> We hold a client account. Whether your money is held in it depends on the type of work we are doing for you. Clause 16.2 applies to immigration matters charged at a fixed fee. Clause 16.4 onwards applies where we hold money for you in our client account.</p>
+      <p><strong>16.2 Immigration matters charged at a fixed fee.</strong></p>
+      <ul>
+        <li>(a) We agree a fixed fee with you at the outset. We will normally send you a request for payment, called a proforma invoice, before the work begins. When you pay, we send you a VAT invoice and a receipt. If you would prefer to receive the VAT invoice before you pay, please tell us and we will issue it first.</li>
+        <li>(b) Money you pay us for our fees, and for expenses we will incur on your behalf, is held in our <strong>business account and not in our client account</strong>. We are telling you this in advance because the SRA Accounts Rules require us to do so where money of this kind is held outside a client account.</li>
+        <li>(c) If at any point there is no longer a proper reason for us to hold your money, we will return it to you promptly and confirm to you that we have done so.</li>
+        <li>(d) Because your money is not held in our client account, the provisions about interest on client accounts at clause 16.4 onwards do not apply to your matter.</li>
+      </ul>
+      <p><strong>16.3</strong> The remainder of this clause applies only where we hold money for you in our client account.</p>
+      <p><strong>16.4</strong> We will account to you for a sum in lieu of interest on money we hold for you where it is fair and reasonable to do so in all the circumstances, in accordance with the SRA Accounts Rules.</p>
+      <p><strong>16.5</strong> Our policy seeks to provide a fair and reasonable outcome for both our clients and this practice, and is kept under review.</p>
+      <p><strong>16.6</strong> The rate of interest available on client accounts is significantly lower than the rate obtainable on other bank or building society accounts. This reflects the fact that immediate access is required to client accounts in order to comply with the SRA Accounts Rules and to facilitate the smooth completion of transactions. It is therefore unlikely that funds held by us will attract as much interest as if you had invested them yourself.</p>
+      <p><strong>16.7</strong> All interest arising from cleared funds held on behalf of a trust will be credited to the trust, whether those funds are held in a general client account or a separate designated client account.</p>
+      <p><strong>16.8</strong> For cleared funds paid into general client accounts, we shall account for interest unless the amount of interest calculated on the balance held is &pound;20 or less, or the client money was held in cleared funds for a period of five working days or less.</p>
+      <p><strong>16.9</strong> All other clients shall be paid interest at the rate payable on the practice&rsquo;s client account from time to time, unless there are specific circumstances leading the client to contract out of the right to receive interest payments, for example where the client&rsquo;s religious beliefs prohibit the receipt of interest.</p>
+      <p><strong>16.10</strong> Where sums of money are held in relation to separate matters for the same client, the money relating to the different matters shall be treated separately unless it is fair and reasonable in the circumstances to consider them together.</p>
+      <p><strong>16.11</strong> We will usually account to you for interest at the conclusion of your matter, but may in some cases consider it appropriate to account to you at intervals throughout.</p>
+      <p><strong>16.12</strong> Unless otherwise agreed in writing, if we receive sums to hold on your behalf we may deposit that money with any bank or financial institution (a &ldquo;deposit provider&rdquo;) of our choosing. We comply with applicable law and regulatory rules in respect of such deposits.</p>
+      <p><strong>16.13</strong> We shall not be liable for any loss which you or any third party may suffer in connection with an Insolvency Event occurring in relation to any deposit provider with whom we have deposited funds, save to the extent that such loss was caused or contributed to by our breach of clause 16.42. In this clause an &ldquo;Insolvency Event&rdquo; means the deposit provider becoming unable to pay its debts as they fall due, the value of its assets being less than its liabilities, a moratorium being declared in respect of its indebtedness, or any winding-up, administration, receivership, or analogous procedure being commenced in respect of it in any jurisdiction.</p>
+      <p><strong>16.14</strong> If an Insolvency Event occurs in relation to a deposit provider holding money we have deposited on your behalf, you agree that we may disclose to the Financial Services Compensation Scheme (&ldquo;FSCS&rdquo;) all relevant details in our possession about you and the money we hold on your behalf. If you do not wish us to make such a disclosure, please notify our data protection contact in writing at our registered office. Please note that by withholding consent you may forfeit any right to receive compensation from the FSCS. FSCS compensation for deposits is limited to &pound;85,000 for any individual&rsquo;s total deposit with that provider, including their personal finances. Further information is available at <a href="https://www.fscs.org.uk" target="_blank" rel="noopener noreferrer">www.fscs.org.uk</a> or on 0800 678 1100.</p>
       <p><strong>16.12 Cash payments.</strong> We will not accept payments from you in cash of more than &pound;500, whether to settle our bill, to pay money on account, or otherwise. This limit applies to each matter in which we act for you, not to each transaction. We shall not be liable to you for any losses you may suffer as a result of our refusal to accept cash payments over that limit.</p>
 
       <h2>17. Data protection and confidentiality</h2>
@@ -205,6 +235,7 @@ export default function TermsOfBusinessPage() {
       <p><strong>17.8</strong> Where you provide us with an email address for sending material to, you are responsible for ensuring your arrangements are sufficiently secure and confidential to protect your interests. You must tell us if this method of communication is not secure so that we can use an alternative.</p>
       <p><strong>17.9</strong> We take reasonable steps to protect the integrity of our computer systems by screening for viruses on email sent and received. We expect you to do the same.</p>
       <p><strong>17.10 Telephone.</strong> We do not routinely record incoming and outgoing telephone calls. However, if you call and leave a message, or your call is answered by an approved outsourced provider, your call will be recorded for quality monitoring, training, the investigation of complaints and disputes, and staff protection. Our legal basis for recording calls is our legitimate interest in having that information available for those purposes. Call recordings may be disclosed to third parties if required to settle a dispute, to report abusive behaviour, or if required by law.</p>
+      <p><strong>17.10A Electronic signature records.</strong> Where you sign a document electronically using the secure link and one-time code we send you, we keep a record of that signing session. It includes the times the link and code were issued and used, the IP address our server sees, your browser details, an approximate location inferred from that IP address, and an exact copy of the document as it was displayed to you at the moment you signed. We keep this to evidence what was agreed. <strong>The inferred location is approximate and is not proof of where you were.</strong> These records are held under restricted access for the same period as your file.</p>
       <p><strong>17.11 Security of data and files.</strong> It is very unlikely that we will change our bank account details during the course of your matter. <strong>We will never contact you by email to tell you that our details have changed.</strong> If you receive any communication purporting to be from this firm which you consider suspicious, however slight your concern, please contact our office by telephone straight away.</p>
       <p><strong>17.12</strong> During your matter we may hold information both electronically and in paper format. We will use all reasonable measures to keep your information confidential and will advise you immediately if we believe any information has been accessed without authorisation. We have procedures in place to ensure your information is only seen by staff with a legitimate reason for accessing your file.</p>
       <p><strong>17.13 Retention.</strong> Once your matter has concluded we will hold your file for at least six years from the date the matter is closed, in line with our retention policy. After that period we will destroy the file securely and/or delete it from our electronic records.</p>
@@ -253,7 +284,7 @@ export default function TermsOfBusinessPage() {
       <p><strong>22.2</strong> Except as stated in clause 15.8, a person who is not a party to this Agreement has no right under the Contracts (Rights of Third Parties) Act 1999 to enforce any of its terms.</p>
 
       <p className="mt-12 pt-6 border-t border-slate-200 text-xs text-slate-500 italic">
-        TOB-IMM v2.1 &middot; In force from 24 August 2026 &middot; Abrahams (Yorkshire) Ltd &middot; Company 12942685 &middot; SRA 809071 &middot; VAT GB491643276
+        TOB-IMM v2.3 &middot; In force from 30 September 2026 &middot; Abrahams (Yorkshire) Ltd &middot; Company 12942685 &middot; SRA 809071 &middot; VAT GB491643276
       </p>
     </LegalPage>
   );

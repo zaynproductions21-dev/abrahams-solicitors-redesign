@@ -34,7 +34,7 @@ import { redirect } from "next/navigation";
 //   4. Update the CRM's Client Care Letter template to reference the
 //      versioned URL going forward, not the unversioned root.
 
-const CURRENT_TOB_PATH = "/terms-of-business/tob-imm-v2-1/";
+const CURRENT_TOB_PATH = "/terms-of-business/tob-imm-v2-3/";
 
 export default function TermsOfBusinessIndex() {
   redirect(CURRENT_TOB_PATH);

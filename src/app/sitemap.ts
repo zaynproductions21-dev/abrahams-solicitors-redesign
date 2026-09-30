@@ -26,6 +26,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: p("/privacy-policy/"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     { url: p("/terms-of-business/"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     { url: p("/terms-of-business/tob-imm-v2-1/"), lastModified: now, changeFrequency: "yearly", priority: 0.2 },
+    { url: p("/terms-of-business/tob-imm-v2-2/"), lastModified: now, changeFrequency: "yearly", priority: 0.2 },
+    { url: p("/terms-of-business/tob-imm-v2-3/"), lastModified: now, changeFrequency: "yearly", priority: 0.2 },
     { url: p("/website-legal-notice/"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     { url: p("/cookie-policy/"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     { url: p("/complaints/"), lastModified: now, changeFrequency: "yearly", priority: 0.4 },
