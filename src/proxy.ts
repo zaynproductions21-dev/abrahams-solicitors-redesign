@@ -60,12 +60,16 @@ export function proxy(request: NextRequest) {
     pathname.startsWith("/immigration-solicitors-direct/") ||
     // Extension-at-end-of-path check — replaces the broader `.includes(".")`
     // rule that would misidentify a versioned URL like
-    // /terms-of-business/tob-imm-v2.1/ (dot inside the slug, but no file
-    // extension) as a static asset and skip the /v6/* rewrite. A real
-    // file request ends in `.ext`, e.g. /favicon.ico, /robots.txt,
-    // /sitemap.xml, /_next/static/foo.js, so match dot-then-alphanum at
-    // end of the path only.
-    /\.[a-zA-Z0-9]+$/.test(pathname)
+    // /terms-of-business/tob-imm-v2.1/ (dot inside the slug, no file
+    // extension) as a static asset and skip the /v6/* rewrite.
+    //
+    // Real file requests end in dot-letter-then-1-to-4-alphanum, e.g.
+    // .ico, .txt, .xml, .js, .mjs, .css, .png, .webp, .woff, .woff2.
+    // Requiring the FIRST character after the dot to be a letter
+    // excludes "trailing dot then digit" patterns like the `.1` in
+    // /terms-of-business/tob-imm-v2.1 (no-trailing-slash form), which
+    // the earlier `[a-zA-Z0-9]+` pass mistook for an extension.
+    /\.[a-zA-Z][a-zA-Z0-9]{1,4}$/.test(pathname)
   ) {
     return NextResponse.next();
   }
