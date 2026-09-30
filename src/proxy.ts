@@ -58,7 +58,14 @@ export function proxy(request: NextRequest) {
     pathname === "/immigration-solicitors-direct" ||
     pathname === "/immigration-solicitors-direct/" ||
     pathname.startsWith("/immigration-solicitors-direct/") ||
-    pathname.includes(".")
+    // Extension-at-end-of-path check — replaces the broader `.includes(".")`
+    // rule that would misidentify a versioned URL like
+    // /terms-of-business/tob-imm-v2.1/ (dot inside the slug, but no file
+    // extension) as a static asset and skip the /v6/* rewrite. A real
+    // file request ends in `.ext`, e.g. /favicon.ico, /robots.txt,
+    // /sitemap.xml, /_next/static/foo.js, so match dot-then-alphanum at
+    // end of the path only.
+    /\.[a-zA-Z0-9]+$/.test(pathname)
   ) {
     return NextResponse.next();
   }
