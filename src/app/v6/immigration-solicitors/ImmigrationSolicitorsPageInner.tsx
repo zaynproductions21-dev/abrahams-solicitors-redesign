@@ -445,7 +445,7 @@ export default function ImmigrationSolicitorsPageInner() {
                   <span className="sm:hidden">London EC2V &middot; Bradford BD7</span>
                   <span className="hidden sm:inline">London &middot; Suite 10, Atlas House, 1 King Street, EC2V 8AU</span>
                 </span>
-                <span className="hidden sm:inline-flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5 text-brand-red shrink-0" /> Bradford &middot; Listerhills Science Park, BD7 1HR</span>
+                <Link href="/immigration-solicitor-bradford/" className="hidden sm:inline-flex items-center gap-1.5 hover:text-brand-red transition-colors"><MapPin className="h-3.5 w-3.5 text-brand-red shrink-0" /> Bradford &middot; Listerhills Science Park, BD7 1HR</Link>
               </div>
             </div>
 

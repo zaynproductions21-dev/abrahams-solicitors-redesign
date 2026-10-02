@@ -33,32 +33,80 @@ const BASE_URL = "https://www.abrahamssolicitors.co.uk";
 const BRADFORD_TEL = "03333396004";
 const BRADFORD_TEL_DISPLAY = "0333 339 6004";
 
+// Google Business Profile for the Bradford office (cid from the live listing).
+// Used for sameAs + hasMap so the page and the GBP resolve to one entity.
+const GBP_URL = "https://www.google.com/maps?cid=15089368944767082385";
+// BD7 1HR centroid (Ordnance Survey via postcodes.io).
+const OFFICE_LAT = 53.792899;
+const OFFICE_LON = -1.769853;
+// GOV.UK court and tribunal finder entry for the hearing centre that lists
+// Bradford immigration and asylum appeals.
+const TRIBUNAL_URL = "https://www.find-court-tribunal.service.gov.uk/courts/bradford-tribunal-hearing-centre";
+
+const GOV_FEE_NOTE = "Paid separately to the Home Office — check the current figure on GOV.UK";
+
+// Our own fixed fees mirror /our-fees/ exactly. Home Office fees and the
+// Immigration Health Surcharge change, so we point at GOV.UK rather than
+// printing a figure here that can go stale.
 const FIXED_FEES = [
-  { service: "Spouse visa (first application)", fee: "From £900", note: "Plus UKVI fees (£1,938 + IHS)" },
-  { service: "FLR(M) extension", fee: "From £900", note: "Plus UKVI fee (£1,048 + IHS)" },
-  { service: "Indefinite Leave to Remain", fee: "From £750", note: "Plus UKVI fee (£3,029)" },
-  { service: "British Citizenship (naturalisation)", fee: "From £900", note: "Plus UKVI fee (£1,580 + ceremony £80)" },
-  { service: "Visa refusal appeal (FTT IAC)", fee: "Quoted individually", note: "Free 30-min refusal letter review" },
-  { service: "Skilled Worker switching / extension", fee: "From £900", note: "Plus UKVI fee + IHS" },
+  { service: "Spouse / partner visa application", fee: "From £900", note: GOV_FEE_NOTE },
+  { service: "Visa extension (FLR(M) / FLR(FP))", fee: "From £900", note: GOV_FEE_NOTE },
+  { service: "Indefinite Leave to Remain", fee: "From £750", note: GOV_FEE_NOTE },
+  { service: "British citizenship (naturalisation)", fee: "From £900", note: GOV_FEE_NOTE },
+  { service: "Visa refusal appeal (First-tier Tribunal)", fee: "From £1,250", note: "Free 30-minute refusal letter review first" },
+  { service: "Skilled Worker switching / extension", fee: "From £900", note: GOV_FEE_NOTE },
 ];
 
-const TESTIMONIALS = [
+// Independent review aggregates, each read from the platform that hosts it.
+// We do not reproduce client quotes on this page: outcome claims in immigration
+// matters are not something a prospective client can verify, and we will not
+// imply a result we cannot guarantee. Visitors can read every review at source.
+const REVIEW_SOURCES = [
   {
-    name: "Daniel & Sara",
-    service: "Spouse visa appeal",
-    text: "After a brutal refusal we were close to giving up. The solicitor walked us through the grounds line by line, rebuilt the evidence pack, and won the appeal. Honest from day one — never sold us a result they couldn't deliver.",
+    platform: "Verified Reviews (Skeepers)",
+    rating: "4.9",
+    count: 97,
+    note: "Collected and hosted independently. We can reply to a review — we cannot edit or delete one.",
+    href: "https://www.verified-reviews.co.uk/reviews/abrahamssolicitors.co.uk",
+    cta: "Read all 97 at source",
   },
   {
-    name: "Priya",
-    service: "FLR(M) extension",
-    text: "Direct contact with the solicitor throughout — no call centres, no junior handlers. The £29,000 financial threshold change happened mid-way through our planning but we were guided through it perfectly. Approved in 6 weeks.",
-  },
-  {
-    name: "Marek",
-    service: "Skilled Worker → ILR",
-    text: "10 years on Skilled Worker, then a sponsor licence issue that nearly derailed everything. Abrahams got the variation through inside the grace period and then the ILR a year later. Worth every penny.",
+    platform: "Google Business Profile",
+    rating: "4.7",
+    count: 60,
+    note: "Left on the Google listing for our Bradford office at Listerhills Science Park.",
+    href: GBP_URL,
+    cta: "Read the Google reviews",
   },
 ];
+
+// Named, SRA-registered solicitors who run Bradford immigration files. Every
+// number below is checkable on the SRA register via the link on the card.
+const BRADFORD_SOLICITORS = [
+  {
+    name: "Imran Shah",
+    role: "Immigration & Litigation Solicitor",
+    sra: "509359",
+    sraUrl: "https://www.sra.org.uk/consumers/register/person/?sraNumber=509359",
+    admitted: "Qualified April 2012",
+    blurb: "Takes the cases that need methodical, careful preparation — spouse visa refusals, ILR appeals, judicial review, and Home Office disputes that have already gone wrong once.",
+  },
+  {
+    name: "Humaira Anjum",
+    role: "Immigration & Litigation Solicitor",
+    sra: "663190",
+    sraUrl: "https://higher-rights.sra.org.uk/consumers/register/person/?sraNumber=663190",
+    admitted: "Qualified September 2021",
+    blurb: "Works on family routes — spouse and partner visas, fiancé visas, unmarried partner applications and extensions. The person most of our Bradford families deal with day to day.",
+  },
+];
+
+// BD-postcode areas inside the Bradford district, then the wider patch.
+const BRADFORD_AREAS = [
+  "Bradford city centre", "Listerhills", "Great Horton", "Manningham", "Heaton",
+  "Thornbury", "Bowling", "Little Horton", "Shipley", "Bingley", "Keighley", "Ilkley",
+];
+const WIDER_AREAS = ["Leeds", "Halifax", "Huddersfield", "Dewsbury", "Wakefield", "West Yorkshire"];
 
 const FAQS = [
   {
@@ -82,9 +130,24 @@ const FAQS = [
       "Our Bradford solicitors handle the full range of immigration matters: spouse and partner visas, FLR(M) extensions, ILR (Indefinite Leave to Remain), British citizenship (naturalisation), Skilled Worker visas, visa refusal appeals to the First-tier Tribunal, and Judicial Review. We also handle asylum applications and human rights claims.",
   },
   {
+    question: "Where will my immigration appeal be heard if I live in Bradford?",
+    answer:
+      "Appeals against Home Office refusals go to the First-tier Tribunal (Immigration and Asylum Chamber). For people living in Bradford and the surrounding district, the hearing is normally listed at Bradford Tribunal Hearing Centre, Phoenix House, Rushton Avenue, Thornbury, Bradford BD3 7BH — the same venue hears immigration and asylum appeals alongside benefits cases. You can confirm the venue and its contact details on the GOV.UK court and tribunal finder. Our Listerhills office is a few miles across the city, so we can prepare your bundle and witness statements with you in person and get you to the hearing without a long journey.",
+  },
+  {
+    question: "Which solicitor will handle my case?",
+    answer:
+      "A named solicitor on the SRA register, not a case handler. Imran Shah (SRA number 509359, qualified April 2012) takes immigration and litigation files that need methodical preparation — spouse visa refusals, ILR appeals and judicial review. Humaira Anjum (SRA number 663190, qualified September 2021) works on family routes including spouse, partner, fiancé and unmarried partner applications. You can check either of them yourself on the Solicitors Regulation Authority register. Abrahams Solicitors is the trading style of Abrahams (Yorkshire) Ltd, SRA firm number 809071.",
+  },
+  {
+    question: "Which areas of Bradford and West Yorkshire do you cover?",
+    answer:
+      "We act for clients across the Bradford district — the BD postcodes covering the city centre, Listerhills, Great Horton, Manningham, Heaton, Thornbury, Bowling, Little Horton, Shipley, Bingley, Keighley and Ilkley — plus Leeds, Halifax, Huddersfield, Dewsbury and Wakefield. Outside West Yorkshire we act for clients across England and Wales, and for British citizens and settled partners sponsoring an application from overseas.",
+  },
+  {
     question: "My visa was refused — how fast do I need to act in Bradford?",
     answer:
-      "Appeal deadlines are strict: 14 days from the refusal letter date if you're in the UK, 28 days if overseas, 5 working days if detained. Late appeals are possible but harder with every day that passes. If your deadline is within 7 days, call our Bradford line now: 0333 339 6004.",
+      "Appeal deadlines are strict: 14 days from the refusal letter date if you're in the UK, 28 days if overseas, and 5 working days if you are detained. Always check the deadline printed on your own decision letter — that date is the one that governs your case. A late appeal is possible but gets harder with every day that passes. If your deadline falls inside the next 7 days, call our Bradford line now: 0333 339 6004.",
   },
 ];
 
@@ -250,6 +313,11 @@ export default function ImmigrationSolicitorBradfordPageInner() {
     telephone: `+44${BRADFORD_TEL.slice(1)}`,
     areaServed: [
       { "@type": "City", name: "Bradford" },
+      { "@type": "City", name: "Shipley" },
+      { "@type": "City", name: "Keighley" },
+      { "@type": "City", name: "Bingley" },
+      { "@type": "City", name: "Ilkley" },
+      { "@type": "AdministrativeArea", name: "City of Bradford" },
       { "@type": "AdministrativeArea", name: "West Yorkshire" },
     ],
     address: {
@@ -265,12 +333,33 @@ export default function ImmigrationSolicitorBradfordPageInner() {
       opens: "09:00",
       closes: "17:00",
     },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: OFFICE_LAT,
+      longitude: OFFICE_LON,
+    },
+    hasMap: GBP_URL,
+    // Ties this page to the Bradford Google Business Profile so the two
+    // resolve to one entity rather than two competing local signals.
+    sameAs: [GBP_URL],
+    // Aggregate is the independently hosted Verified Reviews (Skeepers) score
+    // for abrahamssolicitors.co.uk, identified and linked in the Reviews
+    // section below so a visitor can check it at source.
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.9",
       bestRating: "5",
+      worstRating: "1",
       reviewCount: "97",
     },
+    employee: BRADFORD_SOLICITORS.map(sol => ({
+      "@type": "Person",
+      name: sol.name,
+      jobTitle: sol.role,
+      url: sol.sraUrl,
+      identifier: { "@type": "PropertyValue", name: "SRA", value: sol.sra },
+      worksFor: { "@id": `${BASE_URL}#organization` },
+    })),
   };
 
   return (
@@ -318,7 +407,7 @@ export default function ImmigrationSolicitorBradfordPageInner() {
               <div className="mt-6 flex flex-wrap gap-2">
                 {[
                   { icon: Shield, text: "SRA Regulated #809071" },
-                  { icon: Star, text: "4.9 ★ from 97 reviews" },
+                  { icon: Star, text: "4.9 ★ · 97 verified reviews" },
                   { icon: PoundSterling, text: "Fixed fees from £750" },
                   { icon: MapPin, text: "Bradford office: BD7 1HR" },
                 ].map(p => (
@@ -422,7 +511,10 @@ export default function ImmigrationSolicitorBradfordPageInner() {
                 Our Bradford Immigration Office
               </h2>
               <p className="mt-4 text-base text-slate-500 leading-relaxed">
-                We have a dedicated Bradford office for face-to-face immigration consultations. We also serve clients across Leeds, Halifax, Huddersfield, Keighley, and the wider West Yorkshire area — in person or remotely.
+                We&rsquo;re at Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR, open Monday to Friday, 9am to 5pm. The office sits just west of the city centre near the University of Bradford, within easy reach of Bradford Interchange and Bradford Forster Square by bus or a short taxi ride, with parking on site.
+              </p>
+              <p className="mt-3 text-base text-slate-500 leading-relaxed">
+                Bring the refusal letter if you have one, your passport, any previous Home Office correspondence, and evidence of income or savings if your case has a financial requirement. And if you can&rsquo;t get to Listerhills, just say so when you call &mdash; almost all of our immigration work runs by phone, video and secure document upload, and no application route requires you to come in person.
               </p>
               <div className="mt-6 space-y-3">
                 <div className="flex items-start gap-3">
@@ -454,55 +546,177 @@ export default function ImmigrationSolicitorBradfordPageInner() {
               </Button>
             </div>
             <div className="bg-white rounded-2xl border border-slate-200 p-6 space-y-4">
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Areas we cover</p>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Across the Bradford district</p>
               <div className="flex flex-wrap gap-2">
-                {["Bradford", "Leeds", "Halifax", "Huddersfield", "Keighley", "Shipley", "Bingley", "Dewsbury", "Wakefield", "Harrogate", "York", "West Yorkshire"].map(area => (
+                {BRADFORD_AREAS.map(area => (
+                  <span key={area} className="text-[12px] font-semibold text-slate-700 bg-slate-50 border border-slate-200 px-3 py-1 rounded-full">
+                    {area}
+                  </span>
+                ))}
+              </div>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest pt-2">And the wider patch</p>
+              <div className="flex flex-wrap gap-2">
+                {WIDER_AREAS.map(area => (
                   <span key={area} className="text-[12px] font-semibold text-slate-700 bg-slate-50 border border-slate-200 px-3 py-1 rounded-full">
                     {area}
                   </span>
                 ))}
               </div>
               <p className="text-xs text-slate-400 mt-2">
-                We also act for clients across England and Wales and for UK nationals and partners overseas filing for entry clearance.
+                Outside West Yorkshire we act for clients across England and Wales, and for British citizens and settled partners sponsoring an application from overseas.
               </p>
+              <a
+                href={GBP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-red hover:underline pt-1"
+              >
+                <MapPin className="h-4 w-4" />
+                Find the Bradford office on Google Maps
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─── Reviews ─── */}
+      {/* ─── Where a Bradford appeal is heard (local-authority content) ─── */}
       <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">What Our Clients Say</h2>
-            <div className="mt-4 inline-flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-2xl px-5 py-3">
-              <div className="flex gap-0.5">
-                {[0,1,2,3,4].map(i => <Star key={i} className="h-4 w-4 fill-brand-red text-brand-red" />)}
+          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16">
+            <div className="lg:col-span-3">
+              <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">Local, in the way that counts</p>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 leading-tight tracking-tight">
+                Where a Bradford Immigration Appeal Is Actually Heard
+              </h2>
+              <div className="mt-5 space-y-4 text-base text-slate-500 leading-relaxed">
+                <p>
+                  If the Home Office refuses your application and you have a right of appeal, it goes to the First-tier Tribunal (Immigration and Asylum Chamber). For people in Bradford and the surrounding area, that hearing is normally listed at <strong className="text-slate-700">Bradford Tribunal Hearing Centre, Phoenix House, Rushton Avenue, Thornbury, Bradford BD3 7BH</strong> &mdash; the same venue handles immigration and asylum appeals alongside benefits cases. You can confirm the venue and its contact details on the{" "}
+                  <a href={TRIBUNAL_URL} target="_blank" rel="noopener noreferrer" className="text-brand-red hover:underline font-semibold">
+                    GOV.UK court and tribunal finder
+                  </a>.
+                </p>
+                <p>
+                  That matters more than it sounds. An appeal is won or lost on the bundle you file and the witnesses you put in front of the judge. Our office at Listerhills Science Park is a few miles across the city from Phoenix House, so we can sit down with you in person, take a witness statement, go through the refusal letter line by line, and get you to the hearing without a stressful journey on the morning it counts. None of that is possible when your solicitor is a call centre three hundred miles away.
+                </p>
+                <p>
+                  If your refusal letter is already in your hand, check the appeal deadline before you do anything else. Deadlines in immigration appeals are short, and the tribunal doesn&rsquo;t have to extend them.
+                </p>
               </div>
-              <span className="text-xl font-black text-slate-900">4.9</span>
-              <span className="text-sm text-slate-500">from <strong className="text-slate-700">97 verified reviews</strong></span>
+              <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+                <Link href="/visa-refusal-appeal/" className="text-brand-red font-semibold hover:underline">Visa refusal and appeals &rarr;</Link>
+                <Link href="/uk-spouse-visa/" className="text-brand-red font-semibold hover:underline">Spouse visa applications &rarr;</Link>
+                <Link href="/indefinite-leave-to-remain-ilr/" className="text-brand-red font-semibold hover:underline">Indefinite Leave to Remain &rarr;</Link>
+              </div>
             </div>
+
+            <aside className="lg:col-span-2">
+              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Hearing centre</p>
+                <p className="mt-3 text-sm font-bold text-slate-900">Bradford Tribunal Hearing Centre</p>
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  Phoenix House, Rushton Avenue, Thornbury, Bradford BD3 7BH
+                </p>
+                <dl className="mt-4 space-y-2 text-sm">
+                  <div className="flex gap-2">
+                    <dt className="text-slate-400 shrink-0">Hears:</dt>
+                    <dd className="text-slate-700 font-medium">Immigration and asylum, benefits</dd>
+                  </div>
+                  <div className="flex gap-2">
+                    <dt className="text-slate-400 shrink-0">Source:</dt>
+                    <dd>
+                      <a href={TRIBUNAL_URL} target="_blank" rel="noopener noreferrer" className="text-brand-red hover:underline font-medium">
+                        GOV.UK court finder
+                      </a>
+                    </dd>
+                  </div>
+                </dl>
+                <p className="mt-4 text-xs text-slate-400 leading-relaxed">
+                  Venue listings and contact details can change. Always check the current entry on GOV.UK, and work to the deadline printed on your own decision letter.
+                </p>
+              </div>
+            </aside>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {TESTIMONIALS.map(t => (
-              <div key={t.name} className="bg-white rounded-xl border border-slate-200 p-6">
-                <div className="flex gap-0.5 mb-3">
-                  {[0,1,2,3,4].map(i => <Star key={i} className="h-3.5 w-3.5 fill-brand-red text-brand-red" />)}
-                </div>
-                <p className="text-sm text-slate-600 leading-relaxed mb-4">&ldquo;{t.text}&rdquo;</p>
-                <div>
-                  <p className="text-sm font-bold text-slate-900">{t.name}</p>
-                  <p className="text-xs text-slate-400">{t.service}</p>
-                </div>
+        </div>
+      </section>
+
+      {/* ─── Named solicitors (E-E-A-T) ─── */}
+      <section className="py-14 lg:py-20 bg-slate-50/60 border-y border-slate-100">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+          <div className="max-w-2xl mb-10">
+            <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">Who does the work</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 leading-tight tracking-tight">
+              Who Will Actually Handle Your Case
+            </h2>
+            <p className="mt-4 text-base text-slate-500 leading-relaxed">
+              You deal with a named solicitor on the SRA register. Not a case handler.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {BRADFORD_SOLICITORS.map(sol => (
+              <div key={sol.sra} className="bg-white rounded-xl border border-slate-200 p-6">
+                <h3 className="text-lg font-black text-slate-900 tracking-tight">{sol.name}</h3>
+                <p className="text-sm font-semibold text-brand-red mt-0.5">{sol.role}</p>
+                <p className="text-xs text-slate-400 mt-1">{sol.admitted}</p>
+                <p className="text-sm text-slate-600 leading-relaxed mt-4">{sol.blurb}</p>
+                <a
+                  href={sol.sraUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 mt-4 text-sm font-bold text-brand-red hover:underline"
+                >
+                  <Shield className="h-3.5 w-3.5" />
+                  Check SRA number {sol.sra}
+                </a>
               </div>
             ))}
           </div>
-          <p className="text-center mt-6">
+          <p className="text-sm text-slate-400 mt-6 leading-relaxed max-w-3xl">
+            You can check either of them on the Solicitors Regulation Authority register. We&rsquo;d rather you did. Abrahams Solicitors is the trading style of Abrahams (Yorkshire) Ltd, an SRA-regulated firm, firm number 809071. <Link href="/our-team/" className="text-brand-red hover:underline font-semibold">Meet the full team</Link>.
+          </p>
+        </div>
+      </section>
+
+      {/* ─── Reviews — independent sources only, no quoted outcome claims ─── */}
+      <section className="py-14 lg:py-20 bg-white">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+          <div className="max-w-2xl mb-10">
+            <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">Verified reviews</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 leading-tight tracking-tight">
+              What Clients Say &mdash; Checkable at Source
+            </h2>
+            <p className="mt-4 text-base text-slate-500 leading-relaxed">
+              Both scores below are hosted by the platform that collected them, not by us. Follow either link and read every review yourself. We don&rsquo;t publish client quotes about case outcomes on this page &mdash; no solicitor can promise a result, and a quote implying one wouldn&rsquo;t be fair to you.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {REVIEW_SOURCES.map(src => (
+              <div key={src.platform} className="bg-white rounded-xl border border-slate-200 p-6">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">{src.platform}</p>
+                <div className="mt-3 flex items-center gap-3">
+                  <div className="flex gap-0.5">
+                    {[0, 1, 2, 3, 4].map(i => <Star key={i} className="h-4 w-4 fill-brand-red text-brand-red" />)}
+                  </div>
+                  <span className="text-2xl font-black text-slate-900">{src.rating}</span>
+                  <span className="text-sm text-slate-500">from <strong className="text-slate-700">{src.count} reviews</strong></span>
+                </div>
+                <p className="text-sm text-slate-500 leading-relaxed mt-3">{src.note}</p>
+                <a
+                  href={src.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 mt-4 text-sm font-bold text-brand-red hover:underline"
+                >
+                  {src.cta} <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+            ))}
+          </div>
+          <p className="text-center mt-8">
             <Link
               href="/reviews/"
               className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-red hover:underline"
             >
-              Read all 97 verified reviews <ArrowRight className="h-4 w-4" />
+              See the full review page <ArrowRight className="h-4 w-4" />
             </Link>
           </p>
         </div>
@@ -589,7 +803,7 @@ export default function ImmigrationSolicitorBradfordPageInner() {
                 "Written fixed-fee quote before any work starts",
                 "Bradford office + UK-wide remote service",
                 "SRA-regulated firm #809071",
-                "4.9 ★ from 97 verified client reviews",
+                "4.9 ★ from 97 independently hosted Verified Reviews",
               ].map(point => (
                 <div key={point} className="flex items-center gap-3">
                   <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />

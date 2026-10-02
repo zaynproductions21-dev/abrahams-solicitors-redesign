@@ -200,6 +200,21 @@ export default function SpouseVisaPageInner() {
 
       <TeamStrip />
 
+      {/* Contextual inlink to the Bradford city page — the spouse-visa cluster is
+          our strongest ranking asset, so it is the most useful page to pass
+          internal equity from. */}
+      <section className="py-6 border-y border-slate-100 bg-slate-50/40">
+        <div className="max-w-[1100px] mx-auto px-6 lg:px-8">
+          <p className="text-sm text-slate-500 leading-relaxed">
+            In West Yorkshire? We take spouse visa instructions in person at our Bradford office on Listerhills Science Park &mdash;{" "}
+            <Link href="/immigration-solicitor-bradford/" className="text-brand-red font-semibold hover:underline">
+              immigration solicitors in Bradford
+            </Link>{" "}
+            has the office details, the areas we cover and where Bradford appeals are heard.
+          </p>
+        </div>
+      </section>
+
       {/* ── FAQ section with schema markup ──────────────────────────── */}
       <FaqSection openFaq={openFaq} setOpenFaq={setOpenFaq} />
 

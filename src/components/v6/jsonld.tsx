@@ -13,6 +13,13 @@ export function JsonLd({ data }: { data: Record<string, unknown> }) {
 
 const BASE_URL = "https://www.abrahamssolicitors.co.uk";
 const TELEPHONE = "+442033559823";
+// Bradford office direct dial — this is the number on the Google Business
+// Profile for BD7 1HR, so the office node must carry it rather than the London
+// line, or the NAP in our own markup contradicts our own GBP.
+const BRADFORD_TELEPHONE = "+443333396004";
+// Bradford Google Business Profile (cid from the live listing) + BD7 1HR
+// centroid, so the office node and the GBP resolve to one local entity.
+const BRADFORD_GBP_URL = "https://www.google.com/maps?cid=15089368944767082385";
 
 const OFFICES = [
   {
@@ -39,15 +46,24 @@ const OFFICES = [
     "@type": "LocalBusiness",
     "@id": `${BASE_URL}#office-bradford`,
     name: "Abrahams Solicitors — Bradford",
-    telephone: TELEPHONE,
+    telephone: BRADFORD_TELEPHONE,
     email: "info@abrahamssolicitors.co.uk",
+    url: `${BASE_URL}/immigration-solicitor-bradford/`,
     address: {
       "@type": "PostalAddress",
       streetAddress: "Unit 20, Listerhills Science Park, Campus Road",
       addressLocality: "Bradford",
+      addressRegion: "West Yorkshire",
       postalCode: "BD7 1HR",
       addressCountry: "GB",
     },
+    geo: { "@type": "GeoCoordinates", latitude: 53.792899, longitude: -1.769853 },
+    hasMap: BRADFORD_GBP_URL,
+    sameAs: [BRADFORD_GBP_URL],
+    areaServed: [
+      { "@type": "City", name: "Bradford" },
+      { "@type": "AdministrativeArea", name: "West Yorkshire" },
+    ],
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -93,6 +109,7 @@ export function organisationSchema() {
           ratingCount: "97",
         },
         sameAs: [
+          BRADFORD_GBP_URL,
           "https://www.facebook.com/AbrahamsSolicitors/",
           "https://x.com/Abrahamssolic",
           "https://www.instagram.com/AbrahamsSolicitors/",

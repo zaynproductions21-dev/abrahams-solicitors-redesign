@@ -24,7 +24,7 @@ import { submitEnquiry } from "@/lib/publishos";
 import {
   CheckCircle2, ArrowRight, Phone, ChevronRight, ChevronDown,
   MessageCircle, Mail, Star, Shield, PoundSterling, Headset,
-  Calendar, Scale, ExternalLink,
+  Calendar, Scale, ExternalLink, MapPin,
 } from "lucide-react";
 import {
   getServicePage, immigrationPages, personalInjuryPages, housingPage,
@@ -165,6 +165,20 @@ export default function V6ServicePage() {
   const meta = SERVICE_METADATA[slug];
   const author = meta?.authorSlug ? team.find(t => t.slug === meta.authorSlug) : undefined;
   const lastReviewed = meta?.lastReviewed ?? (author ? DEFAULT_LAST_REVIEWED : null);
+
+  // Anchor text for the Bradford city-page inlink. Picked by slug so the anchor
+  // profile varies across service pages instead of repeating one exact-match
+  // phrase on every one of them.
+  const isImmigrationService = !isHousing && !personalInjuryPages.some(pi => pi.slug === slug);
+  const BRADFORD_ANCHORS = [
+    "our Bradford immigration solicitors",
+    "immigration solicitors in Bradford",
+    "our Bradford office",
+    "Bradford immigration law",
+  ];
+  const bradfordAnchor = BRADFORD_ANCHORS[
+    Array.from(slug).reduce((acc, ch) => acc + ch.charCodeAt(0), 0) % BRADFORD_ANCHORS.length
+  ];
 
   return (
     <>
@@ -443,6 +457,30 @@ export default function V6ServicePage() {
           </div>
         </div>
       </section>
+
+      {/* ─── Bradford local strip ───
+          Contextual inlink from every immigration service page to the Bradford
+          city page. That page sits far below the homepage for "immigration
+          solicitors bradford" largely because nothing internal points at it;
+          the anchor rotates by slug so the profile isn't 20 identical
+          exact-match anchors. */}
+      {isImmigrationService && (
+        <section className="py-8 border-b border-slate-100">
+          <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+              <MapPin className="h-5 w-5 text-brand-red shrink-0" />
+              <p className="text-sm text-slate-500 leading-relaxed">
+                Based in West Yorkshire? Our registered office is at Listerhills Science Park in Bradford, and Bradford
+                immigration appeals are listed locally at Phoenix House. See{" "}
+                <Link href="/immigration-solicitor-bradford/" className="text-brand-red font-semibold hover:underline">
+                  {bradfordAnchor}
+                </Link>{" "}
+                for office details, the areas we cover and the solicitors who run Bradford files.
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ─── FAQ ─── Porto-style split layout */}
       {page.faqs && page.faqs.length > 0 && (
