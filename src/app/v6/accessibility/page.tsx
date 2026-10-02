@@ -2,6 +2,7 @@ import { LegalPage } from "@/components/v6/legal-page";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://www.abrahamssolicitors.co.uk/accessibility/" },
   title: "Accessibility statement",
   description:
     "How we work to make our website and services accessible, adjustments available on request, and how to tell us if something is not working.",

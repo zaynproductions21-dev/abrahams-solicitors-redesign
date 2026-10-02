@@ -3,6 +3,7 @@ import { CookiePreferencesControl } from "@/components/v6/cookie-preferences-con
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://www.abrahamssolicitors.co.uk/cookie-policy/" },
   title: "Cookie policy",
   description:
     "Which cookies Abrahams Solicitors uses, which require consent, and how to change your cookie choices at any time.",

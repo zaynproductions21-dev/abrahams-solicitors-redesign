@@ -2,6 +2,7 @@ import { LegalPage } from "@/components/v6/legal-page";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://www.abrahamssolicitors.co.uk/complaints/" },
   title: "Complaints",
   description:
     "How to complain about our service or charges, and how to escalate to the Legal Ombudsman or the SRA. We do not charge for handling complaints.",

@@ -2,6 +2,7 @@ import { LegalPage } from "@/components/v6/legal-page";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://www.abrahamssolicitors.co.uk/privacy-policy/" },
   title: "Privacy notice",
   description:
     "How Abrahams Solicitors collects and uses your personal data, our lawful bases, who we share it with, how long we keep it, and your rights.",

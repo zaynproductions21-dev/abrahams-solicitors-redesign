@@ -22,7 +22,12 @@ export const metadata: Metadata = {
   },
   description:
     "UK immigration & housing solicitors. Fixed fees, direct solicitor access nationwide. Spouse visas, citizenship, disrepair claims. Free consultation.",
-  metadataBase: new URL("https://abrahamssolicitors.co.uk"),
+  // www is the canonical host: the apex 308-redirects to it, every bespoke page
+  // hardcodes the www form, and the Google Business Profile's website field is
+  // the only place the apex is still advertised. With the apex here, every
+  // relative metadata value — the homepage's own canonical included — resolved
+  // to a URL that immediately redirects.
+  metadataBase: new URL("https://www.abrahamssolicitors.co.uk"),
   openGraph: {
     type: "website",
     locale: "en_GB",
@@ -41,7 +46,13 @@ export const metadata: Metadata = {
     site: "@Abrahamssolic",
     creator: "@Abrahamssolic",
   },
-  alternates: { canonical: "/" },
+  // NO `alternates.canonical` here, deliberately. Metadata canonicals are
+  // inherited by every descendant page that doesn't set its own, and most of
+  // this site's pages are client components that cannot set one — so a root
+  // canonical of "/" made 48 URLs declare themselves duplicates of the
+  // homepage. The homepage now sets its own in src/app/v6/page.tsx; pages
+  // without an explicit canonical emit none and self-canonicalise, which is
+  // correct behaviour rather than a wrong signal.
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
 };
 

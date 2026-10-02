@@ -7,6 +7,7 @@ import { HOURLY_RATES, fmtGbp } from "@/lib/hourly-rates";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://www.abrahamssolicitors.co.uk/our-fees/" },
   title: "Immigration — our prices",
   description:
     "What our immigration services cost. Fixed fees, published hourly rates, and Home Office disbursements set out separately. Approved by Imran Shah, COLP, 30 September 2026.",
