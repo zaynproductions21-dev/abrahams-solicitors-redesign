@@ -35,7 +35,10 @@ import type { Metadata } from "next";
 import SpouseVisaPageInner from "./SpouseVisaPageInner";
 
 export const metadata: Metadata = {
-  title: "UK Spouse Visa Solicitors — From £900 Fixed Scope | Abrahams",
+  // `absolute` — the root layout's template appends "| Abrahams Solicitors",
+  // and this title already ended in "| Abrahams", so the rendered <title> read
+  // "... | Abrahams | Abrahams Solicitors".
+  title: { absolute: "UK Spouse Visa Solicitors — Fixed Fee from £900 | Abrahams Solicitors" },
   description:
     "UK spouse visa solicitors. Fixed-scope fees from £900. Reply within 24 hours, Mon-Fri. SRA-regulated firm #809071. Free 15-min scoping call with a named solicitor before you commit.",
   alternates: {
