@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { TrustBadges } from "@/components/v6/trust-badges";
+import { VerifiedReviews } from "@/components/v6/verified-reviews";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
 import { GclidField, MsclkidField, UtmFields } from "@/components/v6/gclid-field";
 import { useSpamGuard } from "@/lib/spam-client";
@@ -30,6 +31,8 @@ import {
 } from "lucide-react";
 
 const BASE_URL = "https://www.abrahamssolicitors.co.uk";
+const REVIEW_INTRO =
+  "Both scores below are hosted by the platform that collected them, not by us — and they cover the firm as a whole, not just our Essex caseload. Follow either link and read every review yourself.";
 const ESSEX_TEL = "03333396004";
 const ESSEX_TEL_DISPLAY = "0333 339 6004";
 
@@ -42,23 +45,7 @@ const FIXED_FEES = [
   { service: "Skilled Worker switching / extension", fee: "From £900", note: "Plus UKVI fee + IHS" },
 ];
 
-const TESTIMONIALS = [
-  {
-    name: "Daniel & Sara",
-    service: "Spouse visa appeal",
-    text: "After a brutal refusal we were close to giving up. The solicitor walked us through the grounds line by line, rebuilt the evidence pack, and won the appeal. Honest from day one — never sold us a result they couldn't deliver.",
-  },
-  {
-    name: "Priya",
-    service: "FLR(M) extension",
-    text: "Direct contact with the solicitor throughout — no call centres, no junior handlers. The £29,000 financial threshold change happened mid-way through our planning but we were guided through it perfectly. Approved in 6 weeks.",
-  },
-  {
-    name: "Marek",
-    service: "Skilled Worker → ILR",
-    text: "10 years on Skilled Worker, then a sponsor licence issue that nearly derailed everything. Abrahams got the variation through inside the grace period and then the ILR a year later. Worth every penny.",
-  },
-];
+
 
 const FAQS = [
   {
@@ -261,12 +248,10 @@ export default function ImmigrationSolicitorEssexPageInner() {
       opens: "09:00",
       closes: "17:00",
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      bestRating: "5",
-      reviewCount: "97",
-    },
+    // No aggregateRating on this node: the firm-wide Skeepers score is not a
+    // rating of this location, and self-serving location ratings are exactly
+    // what Google's structured-data policy excludes. The real, sourced figures
+    // are published and linked in the VerifiedReviews block instead.
   };
 
   return (
@@ -305,13 +290,13 @@ export default function ImmigrationSolicitorEssexPageInner() {
                 — Fixed Fees, Direct Access.
               </h1>
               <p className="mt-4 text-lg text-slate-500 leading-relaxed max-w-md">
-                SRA-regulated solicitors — not unregulated advisors — handling spouse visas, ILR, citizenship and visa refusal appeals across all of Essex. Fixed fees agreed in writing before we start, and 4.9 stars from 97 verified client reviews.
+                SRA-regulated solicitors — not unregulated advisors — handling spouse visas, ILR, citizenship and visa refusal appeals across all of Essex. Fixed fees agreed in writing before we start, and 4.9 stars from 97 independently hosted Verified Reviews.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-2">
                 {[
                   { icon: Shield, text: "SRA Regulated #809071" },
-                  { icon: Star, text: "4.9 ★ from 97 reviews" },
+                  { icon: Star, text: "4.9 ★ · 97 verified reviews" },
                   { icon: PoundSterling, text: "Fixed fees from £750" },
                   { icon: MapPin, text: "London office: EC2V 8AU" },
                 ].map(p => (
@@ -460,42 +445,7 @@ export default function ImmigrationSolicitorEssexPageInner() {
         </div>
       </section>
 
-      <section className="py-14 lg:py-20 bg-white">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">What Our Clients Say</h2>
-            <div className="mt-4 inline-flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-2xl px-5 py-3">
-              <div className="flex gap-0.5">
-                {[0,1,2,3,4].map(i => <Star key={i} className="h-4 w-4 fill-brand-red text-brand-red" />)}
-              </div>
-              <span className="text-xl font-black text-slate-900">4.9</span>
-              <span className="text-sm text-slate-500">from <strong className="text-slate-700">97 verified reviews</strong></span>
-            </div>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {TESTIMONIALS.map(t => (
-              <div key={t.name} className="bg-white rounded-xl border border-slate-200 p-6">
-                <div className="flex gap-0.5 mb-3">
-                  {[0,1,2,3,4].map(i => <Star key={i} className="h-3.5 w-3.5 fill-brand-red text-brand-red" />)}
-                </div>
-                <p className="text-sm text-slate-600 leading-relaxed mb-4">&ldquo;{t.text}&rdquo;</p>
-                <div>
-                  <p className="text-sm font-bold text-slate-900">{t.name}</p>
-                  <p className="text-xs text-slate-400">{t.service}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <p className="text-center mt-6">
-            <Link
-              href="/reviews/"
-              className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-red hover:underline"
-            >
-              Read all 97 verified reviews <ArrowRight className="h-4 w-4" />
-            </Link>
-          </p>
-        </div>
-      </section>
+      <VerifiedReviews intro={REVIEW_INTRO} />
 
       <section className="py-14 lg:py-20 bg-slate-50/60 border-t border-slate-100">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
@@ -576,7 +526,7 @@ export default function ImmigrationSolicitorEssexPageInner() {
                 "Written fixed-fee quote before any work starts",
                 "London office + remote service across all of Essex",
                 "SRA-regulated firm #809071",
-                "4.9 ★ from 97 verified client reviews",
+                "4.9 ★ from 97 independently hosted Verified Reviews",
               ].map(point => (
                 <div key={point} className="flex items-center gap-3">
                   <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
