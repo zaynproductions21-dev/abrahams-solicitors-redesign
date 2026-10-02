@@ -2,6 +2,7 @@ import { LegalPage } from "@/components/v6/legal-page";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://www.abrahamssolicitors.co.uk/fraud-warning/" },
   title: "Fraud warning",
   description:
     "Read this before sending money to anyone claiming to be from Abrahams Solicitors. Our bank details do not change. Call us on 0203 355 9823 to check.",

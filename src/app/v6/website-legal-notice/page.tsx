@@ -2,6 +2,7 @@ import { LegalPage } from "@/components/v6/legal-page";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://www.abrahamssolicitors.co.uk/website-legal-notice/" },
   title: "Legal notices",
   description:
     "Regulatory and company information for Abrahams Solicitors: registered office, company number, SRA number, VAT and ICO registration.",

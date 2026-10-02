@@ -9,6 +9,7 @@ import { team } from "@/lib/team";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://www.abrahamssolicitors.co.uk/about-us/" },
   title: "About Us",
   description: "Meet the experienced legal team at Abrahams Solicitors. Immigration, housing, and personal injury specialists in London and Bradford.",
 };
