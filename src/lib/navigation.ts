@@ -18,7 +18,7 @@ export const navigation: NavItem[] = [
     label: "Immigration Solicitors",
     href: "/immigration/",
     children: [
-      { label: "UK Spouse Visa Solicitors", href: "/uk-spouse-visa-solicitors/" },
+      { label: "UK Spouse Visa Requirements", href: "/uk-spouse-visa-solicitors/" },
       { label: "British Citizenship Solicitors", href: "/british-citizenship-solicitors/" },
       { label: "Sponsor Licence Applications", href: "/sponsor-licence-applications/" },
       { label: "Indefinite Leave to Remain (ILR)", href: "/indefinite-leave-to-remain-ilr/" },
@@ -42,9 +42,9 @@ export const navigation: NavItem[] = [
   },
   {
     label: "Housing Law",
-    href: "/housing-disrepair-claims/",
+    href: "/housing-disrepair/",
     children: [
-      { label: "Housing Disrepair Claims", href: "/housing-disrepair-claims/" },
+      { label: "Housing Disrepair Claims", href: "/housing-disrepair/" },
     ],
   },
   { label: "About Us", href: "/about-us/" },

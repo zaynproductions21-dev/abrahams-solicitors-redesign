@@ -132,66 +132,51 @@ async function main() {
   console.log(`  Location: ${locationPages.length}`);
   console.log(`  Other: ${otherPages.length}`);
 
-  // ── Auto-generate navigation.ts from pages with copy ──
-  console.log("\nGenerating navigation.ts from pages with copy...");
+  // ── Navigation: REPORT ONLY, never overwrite ───────────────────────────
+  //
+  // This script used to regenerate src/lib/navigation.ts from KV. It must not:
+  // the nav is a hand-curated information architecture and KV cannot describe
+  // it. Three ways the generated version was worse than the file it replaced:
+  //
+  //  1. Labels came from each record's `title`, which is UPPERCASE in KV, so
+  //     the dropdown rendered as "BRITISH CITIZENSHIP SOLICITORS" and
+  //     "INDEFINITE LEAVE TO REMAIN" — losing both the Title Case convention
+  //     and the "(ILR)" acronym.
+  //  2. `locationChildren` was built and then never pushed into the output, so
+  //     every location page silently dropped out of the nav while the closing
+  //     log line still claimed it had written them.
+  //  3. The bespoke city pages (/immigration-solicitor-bradford/ and the
+  //     Essex/Manchester equivalents) and /immigration-solicitors/ have no KV
+  //     record at all, so generation could only ever delete them.
+  //
+  // So: reconcile and report, and leave the editing to a human.
+  console.log("\nNavigation (src/lib/navigation.ts) — report only, not rewritten:");
+  const navSrc = fs.existsSync("src/lib/navigation.ts")
+    ? fs.readFileSync("src/lib/navigation.ts", "utf8")
+    : "";
+  const navHrefs = new Set<string>(
+    [...navSrc.matchAll(/href"?:\s*"([^"]+)"/g)].map((m: any) => m[1]),
+  );
+  const copySlugs: string[] = [...immigrationPages, ...housingPages, ...locationPages]
+    .map((p: any) => `/${p.slug}/`);
 
-  const immigrationChildren = immigrationPages.map((p: any) => ({
-    label: cleanTitle(p.title),
-    href: `/${p.slug}/`,
-  }));
-
-  const housingChildren = housingPages.map((p: any) => ({
-    label: cleanTitle(p.title),
-    href: `/${p.slug}/`,
-  }));
-
-  const locationChildren = locationPages.map((p: any) => ({
-    label: cleanTitle(p.title),
-    href: `/${p.slug}/`,
-  }));
-
-  const navLines = [
-    `// Auto-generated from PublishOS page copy — last sync: ${new Date().toISOString()}`,
-    `// Run: npx tsx scripts/sync-copy.ts`,
-    ``,
-    `export type NavItem = {`,
-    `  label: string;`,
-    `  href: string;`,
-    `  children?: NavItem[];`,
-    `};`,
-    ``,
-    `export const navigation: NavItem[] = [`,
-    `  { label: "Home", href: "/" },`,
-    `  {`,
-    `    label: "Immigration Law",`,
-    `    href: "/immigration/",`,
-    `    children: ${JSON.stringify(immigrationChildren, null, 6).split("\n").map((l, i) => i === 0 ? l : "    " + l).join("\n")},`,
-    `  },`,
-  ];
-
-  if (housingChildren.length > 0) {
-    navLines.push(`  {`);
-    navLines.push(`    label: "Housing Law",`);
-    navLines.push(`    href: "/${housingPages[0]?.slug || "housing-disrepair"}/",`);
-    navLines.push(`    children: ${JSON.stringify(housingChildren, null, 6).split("\n").map((l, i) => i === 0 ? l : "    " + l).join("\n")},`);
-    navLines.push(`  },`);
+  const missingFromNav = copySlugs.filter(h => !navHrefs.has(h));
+  if (missingFromNav.length) {
+    console.log("  Has copy but is not linked from the nav — consider adding:");
+    for (const h of missingFromNav) console.log(`    + ${h}`);
   }
-
-  navLines.push(`  { label: "About Us", href: "/about-us/" },`);
-  navLines.push(`  { label: "Our Fees", href: "/our-fees/" },`);
-  navLines.push(`  { label: "Contact", href: "/contact-us/" },`);
-  navLines.push(`];`);
-  navLines.push(``);
-
-  // Preserve team members from existing navigation.ts
-  const existingNav = fs.existsSync("src/lib/navigation.ts") ? fs.readFileSync("src/lib/navigation.ts", "utf8") : "";
-  const teamMembersMatch = existingNav.match(/export const teamMembers[\s\S]*$/);
-  if (teamMembersMatch) {
-    navLines.push(teamMembersMatch[0]);
+  const navWithoutCopy = [...navHrefs].filter(
+    h => h.startsWith("/") && h !== "/" && !copySlugs.includes(h),
+  );
+  if (navWithoutCopy.length) {
+    console.log("  In the nav with no KV copy record (bespoke pages — expected, listed to confirm):");
+    for (const h of navWithoutCopy) console.log(`    \u00b7 ${h}`);
   }
+  if (!missingFromNav.length && !navWithoutCopy.length) {
+    console.log("  In sync — nothing to reconcile.");
+  }
+  console.log("  Edit src/lib/navigation.ts by hand. Title Case; UK, ILR and EU stay uppercase.");
 
-  fs.writeFileSync("src/lib/navigation.ts", navLines.join("\n"));
-  console.log(`Written src/lib/navigation.ts with ${immigrationChildren.length} immigration + ${housingChildren.length} housing + ${locationChildren.length} location nav items`);
 }
 
 function cleanTitle(t: string): string {
