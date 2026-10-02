@@ -24,7 +24,7 @@ import { submitEnquiry } from "@/lib/publishos";
 import {
   CheckCircle2, ArrowRight, Phone, ChevronRight, ChevronDown,
   MessageCircle, Mail, Star, Shield, PoundSterling, Headset,
-  Calendar, Scale, ExternalLink, MapPin,
+  Calendar, Scale, ExternalLink, MapPin, BadgeCheck,
 } from "lucide-react";
 import {
   getServicePage, immigrationPages, personalInjuryPages, housingPage,
@@ -179,6 +179,20 @@ export default function ServicePageInner({ slug }: { slug: string }) {
     "civil-partnership-visa": "our spouse visa page",
   };
   const partnerClusterAnchor = PARTNER_CLUSTER_ANCHORS[slug] ?? "our UK spouse visa page";
+
+  // Pages that should point at the ILR page, with the sentence that makes the
+  // link make sense from where the reader is standing.
+  const ILR_NEIGHBOURS: Record<string, string> = {
+    "british-citizenship-solicitors":
+      "Naturalisation normally comes after settlement, and you usually need to have held indefinite leave to remain for 12 months before you can apply.",
+    "uk-partner-visa-extension":
+      "An extension is the middle step. The 5-year partner route ends in settlement, and the absence rule that decides it is already running during your extension.",
+    "uk-visa-extensions-renewals":
+      "Most extensions are a step towards settlement, and the continuous-residence clock that decides your ILR application is already ticking.",
+    "uk-ancestry-visa":
+      "The UK Ancestry route leads to settlement after 5 years, and it has its own counting rule for the qualifying period.",
+  };
+  const ilrNeighbourLine = ILR_NEIGHBOURS[slug];
   const BRADFORD_ANCHORS = [
     "our Bradford immigration solicitors",
     "immigration solicitors in Bradford",
@@ -466,6 +480,28 @@ export default function ServicePageInner({ slug }: { slug: string }) {
           </div>
         </div>
       </section>
+
+      {/* ─── ILR neighbour inlink ───
+          /indefinite-leave-to-remain-ilr/ ranks #17 on three commercial terms
+          with almost no internal support — footer, 404 and the Bradford page
+          were its only inbound links. These are its nearest topical
+          neighbours. */}
+      {ilrNeighbourLine && (
+        <section className="py-8 bg-slate-50/50 border-b border-slate-100">
+          <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+              <BadgeCheck className="h-5 w-5 text-brand-red shrink-0" />
+              <p className="text-sm text-slate-500 leading-relaxed">
+                {ilrNeighbourLine}{" "}
+                <Link href="/indefinite-leave-to-remain-ilr/" className="text-brand-red font-semibold hover:underline">
+                  Our indefinite leave to remain solicitors
+                </Link>{" "}
+                set out the continuous-residence and absence rules, including how to audit your own travel history before you apply.
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ─── Partner-cluster inlink ───
           The spouse-visa landing page owns the commercial "spouse visa
