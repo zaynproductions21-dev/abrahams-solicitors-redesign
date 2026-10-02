@@ -560,8 +560,8 @@ export default function FlrVisaExtensionPageInner() {
                 body: "Apply after your current leave expires and you risk overstayer status, which carries a 12-month re-entry ban on top of any refusal. We file inside the deadline window.",
               },
               {
-                title: "Discretionary refusals that are hard to appeal",
-                body: "Many FLR(M) refusals are on suitability or evidential grounds with no statutory right of appeal — only an administrative review, which is slower and harder to win than getting the original application right.",
+                title: "Refusals are harder to win than to prevent",
+                body: "An FLR(M) refusal on suitability or evidential grounds does carry a right of appeal to the First-tier Tribunal on human rights grounds — a partner refusal under Appendix FM refuses a human rights claim. But an appeal takes months and costs more than the original application, and you spend that time waiting on a decision you could have had first time. We would rather get it right from the start.",
               },
             ].map((r) => (
               <div key={r.title} className="bg-white rounded-2xl border border-slate-100 p-5 sm:p-6">

@@ -165,7 +165,7 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: "What happens if my spouse visa is refused?",
     answer:
-      "Refusals under Appendix FM usually come down to financial evidence in the wrong format, relationship evidence that is thin on the period the caseworker cares about, or missing documents — the refusals section above sets out the full list. What you can do next depends on the decision that was made: an appeal, an administrative review, a fresh application and a judicial review are different routes with different time limits, and your refusal notice states which applies to you and by when. Read that notice first. Our refusal-appeal work starts at £1,250 plus VAT, and we review the refusal letter free on the scoping call before quoting — sometimes a fresh application is the better path, sometimes the refusal itself is challengeable. We tell you straight either way.",
+      "Refusals under Appendix FM usually come down to financial evidence in the wrong format, relationship evidence that is thin on the period the caseworker cares about, or missing documents — the refusals section above sets out the full list. A refusal of a partner application under Appendix FM is treated as a refusal of a human rights claim, which means it carries a right of appeal to the First-tier Tribunal (Immigration and Asylum Chamber) on Article 8 grounds under section 82 of the Nationality, Immigration and Asylum Act 2002. The deadline is 14 days from the date the decision was sent if you are inside the UK, and 28 days if you are outside it — but work to the date on your own refusal notice, not to this page. An appeal is not the only route: a fresh application addressing the refusal reasons is sometimes faster and cheaper, and judicial review exists where the decision was unlawful rather than simply wrong on the evidence. Our refusal-appeal work starts at £1,250 plus VAT, and we review the refusal letter free on the scoping call before quoting. We tell you straight either way.",
   },
   {
     question: "Do I need a solicitor for a UK Spouse Visa or can I apply myself?",
@@ -797,7 +797,16 @@ function Requirements() {
           </ul>
           <div className="mt-6 rounded-2xl border-2 border-brand-red/20 bg-brand-red/5 p-5">
             <p className="text-base text-slate-700 leading-relaxed">
-              If you&rsquo;ve already been refused, read the refusal notice before you do anything else. It sets out what you can do next and the deadline for doing it, and the route open to you depends on the decision that was made. An appeal, an administrative review, a fresh application, and a judicial review are all different things with different time limits. We review the notice free on the scoping call and tell you which one actually applies to your decision &mdash; because starting down the wrong one burns the deadline on the right one.
+              If you&rsquo;ve already been refused, read the refusal notice before you do anything else. The clock is already running.
+            </p>
+            <p className="mt-3 text-base text-slate-700 leading-relaxed">
+              A refusal of a partner application under Appendix FM is treated as a refusal of a human rights claim &mdash; which means it carries a right of appeal to the First-tier Tribunal (Immigration and Asylum Chamber) on Article 8 grounds under{" "}
+              <a href="https://www.legislation.gov.uk/ukpga/2002/41/section/82" target="_blank" rel="noopener noreferrer" className="text-brand-red font-semibold hover:underline">
+                section 82 of the Nationality, Immigration and Asylum Act 2002
+              </a>. The deadline is <strong>14 days</strong> from the date the decision was sent if you&rsquo;re inside the UK, and <strong>28 days</strong> if you&rsquo;re outside it. Your refusal notice states the exact deadline that applies to your case &mdash; work to that date, not to this page.
+            </p>
+            <p className="mt-3 text-base text-slate-700 leading-relaxed">
+              An appeal isn&rsquo;t the only option. A fresh application that directly addresses the reasons for refusal is sometimes faster and cheaper, and judicial review is available where the decision was unlawful rather than simply wrong on the evidence. We review the notice free on the scoping call and tell you which route actually fits your situation &mdash; because going down the wrong one burns the deadline on the right one.
             </p>
             <Link href="/visa-refusal-appeal/" className="inline-flex items-center gap-1.5 mt-3 text-sm font-bold text-brand-red hover:underline">
               More on visa refusals and appeals <ChevronRight className="h-4 w-4" />
