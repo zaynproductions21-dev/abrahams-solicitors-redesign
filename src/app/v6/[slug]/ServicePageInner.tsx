@@ -169,6 +169,16 @@ export default function ServicePageInner({ slug }: { slug: string }) {
   // profile varies across service pages instead of repeating one exact-match
   // phrase on every one of them.
   const isImmigrationService = !isHousing && !personalInjuryPages.some(pi => pi.slug === slug);
+
+  // Anchor for the partner-cluster inlink to /uk-spouse-visa/, chosen per slug
+  // so the four sibling routes don't all use the same exact-match phrase.
+  const PARTNER_CLUSTER_ANCHORS: Record<string, string> = {
+    "uk-fiance-visa": "our UK spouse visa solicitors page",
+    "uk-partner-visa-extension": "the UK spouse visa guide",
+    "uk-unmarried-partner-visa": "spouse visa requirements and evidence",
+    "civil-partnership-visa": "our spouse visa page",
+  };
+  const partnerClusterAnchor = PARTNER_CLUSTER_ANCHORS[slug] ?? "our UK spouse visa page";
   const BRADFORD_ANCHORS = [
     "our Bradford immigration solicitors",
     "immigration solicitors in Bradford",
@@ -456,6 +466,30 @@ export default function ServicePageInner({ slug }: { slug: string }) {
           </div>
         </div>
       </section>
+
+      {/* ─── Partner-cluster inlink ───
+          The spouse-visa landing page owns the commercial "spouse visa
+          solicitor(s)" terms (council, 2 Oct 2026). These sibling routes are
+          the most topically relevant pages on the site to pass equity from,
+          and they previously linked to it only via the nav dropdown. The
+          anchor varies by slug so the cluster doesn't send one repeated
+          exact-match phrase. */}
+      {isPartnerVisaCluster && (
+        <section className="py-8 bg-slate-50/50 border-b border-slate-100">
+          <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+              <Scale className="h-5 w-5 text-brand-red shrink-0" />
+              <p className="text-sm text-slate-500 leading-relaxed">
+                All four Appendix FM partner routes share the same financial requirement and the same evidence rules. The worked
+                savings examples, the document checklist, the published decision times and the refusal grounds are all set out on{" "}
+                <Link href="/uk-spouse-visa/" className="text-brand-red font-semibold hover:underline">
+                  {partnerClusterAnchor}
+                </Link>.
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ─── Bradford local strip ───
           Contextual inlink from every immigration service page to the Bradford

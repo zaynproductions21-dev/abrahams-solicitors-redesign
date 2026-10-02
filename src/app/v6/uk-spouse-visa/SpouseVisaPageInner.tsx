@@ -16,6 +16,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   ShieldCheck, CheckCircle2, ChevronRight, Phone, Clock,
   FileCheck2, Scale, BadgeCheck, Calendar, ExternalLink, ChevronDown,
+  PoundSterling, AlertTriangle, Hourglass,
 } from "lucide-react";
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { TeamStrip } from "@/components/v6/team-strip";
@@ -91,6 +92,60 @@ const TESTIMONIALS = [
   },
 ];
 
+// GOV.UK sources for the requirement sections below. Figures verified against
+// these pages on 2 Oct 2026; the copy defers to GOV.UK rather than presenting
+// any of them as settled, because the thresholds and waiting times move.
+const GOV_APPENDIX_FM =
+  "https://www.gov.uk/guidance/immigration-rules/immigration-rules-appendix-fm-family-members";
+const GOV_WAIT_TIMES =
+  "https://www.gov.uk/guidance/visa-decision-waiting-times-applications-outside-the-uk";
+
+const DOCUMENT_GROUPS = [
+  {
+    title: "Your relationship",
+    detail: "Marriage or civil partnership certificate, evidence of how the relationship developed, messages and travel records, and cohabitation evidence where the route needs it.",
+  },
+  {
+    title: "The money",
+    detail: "Payslips and matching personal bank statements covering the period your category requires, an employer letter confirming the role and salary, your P60, tax returns and accounts if you\u2019re self-employed, and six months of statements for any savings relied on.",
+  },
+  {
+    title: "Where you\u2019ll live",
+    detail: "Tenancy agreement or mortgage statement, and a letter from the owner plus room details if you\u2019re staying with family.",
+  },
+  {
+    title: "English language",
+    detail: "An approved secure English language test at the level required for your stage, or evidence that you\u2019re exempt \u2014 a degree taught in English, for instance, or nationality of an exempt country. Check which level and which exemptions apply to your route on GOV.UK.",
+  },
+  {
+    title: "Identity and health",
+    detail: "Current and previous passports, and a tuberculosis certificate if you\u2019re applying from a listed country.",
+  },
+];
+
+const REFUSAL_REASONS = [
+  {
+    title: "Financial evidence in the wrong format, or covering the wrong number of months",
+    detail: "Appendix FM-SE is prescriptive, and a payslip set that doesn\u2019t line up with the bank statements behind it is a refusal waiting to happen.",
+  },
+  {
+    title: "The relationship not being accepted as genuine and subsisting",
+    detail: "Usually because the evidence is thin on the period the caseworker actually cares about, rather than thin overall.",
+  },
+  {
+    title: "Missing or wrong-level English language evidence",
+    detail: "Or a missing tuberculosis certificate where one was required.",
+  },
+  {
+    title: "Accommodation and maintenance concerns",
+    detail: "Particularly where the couple will be living with relatives.",
+  },
+  {
+    title: "Suitability",
+    detail: "Previous breaches of immigration law, deception in an earlier application, or criminality.",
+  },
+];
+
 const FAQS: { question: string; answer: string }[] = [
   {
     question: "How much does a UK Spouse Visa solicitor cost in 2026?",
@@ -100,17 +155,17 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: "What income do I need to sponsor a spouse visa under the 2026 rules?",
     answer:
-      "The minimum income requirement under Appendix FM is currently £29,000 gross per year for the UK-based sponsor, with no separate child uplift since the April 2024 change. If you don't meet the income figure on salary alone, you can rely on cash savings (the threshold is £88,500 held for 6 months), self-employment income, pension income, or non-employment income from rental properties or investments. The evidence requirements are strict — payslips, P60s, employment confirmation letters, bank statements covering the relevant period. Missing the right format or the right number of months is one of the most common refusal reasons.",
+      "The minimum income requirement under Appendix FM is £29,000 gross per year for the UK-based sponsor (paragraph E-LTRP.3.1(a)), in force since 11 April 2024. Check the current figure on GOV.UK before you rely on it. If you don't meet it on salary alone, cash savings work on a formula rather than a flat number: £16,000 plus two and a half times the shortfall, normally held for at least 6 months — so £88,500 if the sponsor has no qualifying income, but £38,500 if the sponsor earns £20,000. Self-employment, pension and non-employment income such as rent or dividends also count. New applications carry no separate child uplift, but applications running on the pre-April-2024 basis keep the transitional threshold of £18,600 plus £3,800 for the first child and £2,400 for each additional child, capped at £29,000. See the worked examples in the financial requirement section above.",
   },
   {
     question: "How long does a UK Spouse Visa application take to be decided?",
     answer:
-      "UKVI's published service standard for out-of-country spouse visa applications is around 12 weeks; in-country applications (extensions and switches) are usually decided in around 8 weeks. Priority service decisions come within 5 working days, and Super Priority service decisions within 1 working day — both attract an additional UKVI fee on top of the standard application fee. Processing times vary by visa application centre and case complexity. We give you a realistic timeline at the scoping call so you can plan around weddings, travel, or work commitments.",
+      "GOV.UK publishes a 12-week decision time for partner and spouse applications made from outside the UK; in-country extensions and switches are usually quicker. Priority and super priority services are available at extra cost on many routes and cut the wait substantially. Waiting times are published per route and they change, so check the current figure on GOV.UK before planning around it — and see the timelines section above. We give you a realistic range at the scoping call so you can plan around weddings, travel, or work commitments.",
   },
   {
     question: "What happens if my spouse visa is refused?",
     answer:
-      "Visa refusals under Appendix FM usually result from one of: insufficient financial evidence, weak relationship evidence, or document errors. Most spouse visa refusals don't carry a right of appeal — but they can be challenged via Administrative Review (a paper-based UKVI re-decision), a fresh application addressing the refusal reasons, or a Pre-Action Protocol letter and Judicial Review if the refusal is unlawful. Our refusal-appeal work starts at £1,250 plus VAT. We do a free review of the refusal letter on the scoping call before quoting — sometimes a fresh application is the better path, sometimes the refusal itself is challengeable. We tell you straight either way.",
+      "Refusals under Appendix FM usually come down to financial evidence in the wrong format, relationship evidence that is thin on the period the caseworker cares about, or missing documents — the refusals section above sets out the full list. What you can do next depends on the decision that was made: an appeal, an administrative review, a fresh application and a judicial review are different routes with different time limits, and your refusal notice states which applies to you and by when. Read that notice first. Our refusal-appeal work starts at £1,250 plus VAT, and we review the refusal letter free on the scoping call before quoting — sometimes a fresh application is the better path, sometimes the refusal itself is challengeable. We tell you straight either way.",
   },
   {
     question: "Do I need a solicitor for a UK Spouse Visa or can I apply myself?",
@@ -194,6 +249,9 @@ export default function SpouseVisaPageInner() {
 
       {/* ── How it works ───────────────────────────────────────── */}
       <HowItWorks />
+
+      {/* ── Requirements, checklist, timelines, refusals ────────── */}
+      <Requirements />
 
       {/* ── Testimonials ─────────────────────────────────────── */}
       <Testimonials />
@@ -597,6 +655,175 @@ function Testimonials() {
 // ---------------------------------------------------------------------------
 // FAQ section — uses faqPageSchema markup (added at page top)
 // ---------------------------------------------------------------------------
+
+/**
+ * Requirements / checklist / timelines / refusals.
+ *
+ * These four topics were previously only inside collapsed FAQ accordions.
+ * Promoted to body prose per the council review (2 Oct 2026) so the page
+ * carries the substance a prospective client is actually searching for, with
+ * the FAQ entries kept as condensed signposts rather than duplicates.
+ */
+function Requirements() {
+  return (
+    <section className="py-10 lg:py-14 bg-white">
+      <div className="max-w-[1100px] mx-auto px-6 lg:px-8 space-y-12">
+
+        {/* ── Financial requirement ── */}
+        <div>
+          <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">The financial requirement</p>
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">
+            What You Actually Have to Prove
+          </h2>
+          <div className="mt-5 grid lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 space-y-4 text-base text-slate-600 leading-relaxed">
+              <p>
+                This is where most spouse visa applications are won or lost. The sponsor must show a gross annual income of at least <strong className="text-slate-900">&pound;29,000</strong>, under paragraph E-LTRP.3.1(a) of{" "}
+                <a href={GOV_APPENDIX_FM} target="_blank" rel="noopener noreferrer" className="text-brand-red font-semibold hover:underline">
+                  Appendix FM
+                </a>. That figure replaced the old &pound;18,600 threshold on 11 April 2024. Check the current figure on GOV.UK before you rely on it &mdash; the thresholds have moved twice in recent years.
+              </p>
+              <p>Two things about that rule are routinely misunderstood, and both cost people their applications.</p>
+              <p>
+                First, cash savings aren&rsquo;t a flat number. The rule is a formula: &pound;16,000, plus two and a half times the shortfall between your income and the threshold. If the sponsor has no qualifying income at all, that works out at &pound;88,500. But if the sponsor earns &pound;20,000, the shortfall is &pound;9,000 &mdash; so the savings needed are &pound;16,000 plus &pound;22,500, which is <strong className="text-slate-900">&pound;38,500, not &pound;88,500</strong>. Savings normally have to be held for at least six months and be under your control.
+              </p>
+              <p>
+                Second, if your application runs on the pre-April-2024 basis, the transitional threshold is &pound;18,600 plus &pound;3,800 for the first child and &pound;2,400 for each additional child &mdash; capped at &pound;29,000. New applications no longer carry a child uplift, but the transitional route hasn&rsquo;t disappeared. We regularly see couples talked out of applying because someone told them it had.
+              </p>
+              <p>
+                Income can come from salaried or non-salaried employment, self-employment, pension income, non-employment income such as rent or dividends, cash savings, or a combination. Each route has its own specified evidence under Appendix FM-SE, and that&rsquo;s the part that catches people out: the evidence rules are mandatory, not advisory. The right figure proved the wrong way still gets refused.
+              </p>
+            </div>
+            <aside className="bg-slate-50 border border-slate-200 rounded-2xl p-5 h-fit">
+              <div className="flex items-center gap-2">
+                <PoundSterling className="h-4 w-4 text-brand-red" />
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Savings, worked</p>
+              </div>
+              <dl className="mt-4 space-y-3 text-sm">
+                {[
+                  { k: "Sponsor income", v: "£0", s: "£88,500 savings" },
+                  { k: "Sponsor income", v: "£20,000", s: "£38,500 savings" },
+                  { k: "Sponsor income", v: "£29,000", s: "No savings needed" },
+                ].map(row => (
+                  <div key={row.v} className="flex items-baseline justify-between gap-3 border-b border-slate-200 pb-2 last:border-0">
+                    <dt className="text-slate-500">{row.k} <strong className="text-slate-900">{row.v}</strong></dt>
+                    <dd className="text-brand-red font-bold text-right shrink-0">{row.s}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="mt-4 text-xs text-slate-400 leading-relaxed">
+                &pound;16,000 + 2.5 &times; the shortfall. Illustrative only &mdash; check the current threshold and evidence rules on GOV.UK, and the figure for your own case at the scoping call.
+              </p>
+            </aside>
+          </div>
+        </div>
+
+        {/* ── Document checklist ── */}
+        <div>
+          <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">Evidence</p>
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">
+            What You Need to Send: The Document Checklist
+          </h2>
+          <p className="mt-4 text-base text-slate-600 leading-relaxed max-w-3xl">
+            Every case differs, but a partner application is built from five groups of evidence.
+          </p>
+          <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {DOCUMENT_GROUPS.map(g => (
+              <div key={g.title} className="rounded-xl border border-slate-200 p-5">
+                <div className="flex items-center gap-2">
+                  <FileCheck2 className="h-4 w-4 text-brand-red shrink-0" />
+                  <h3 className="text-sm font-bold text-slate-900">{g.title}</h3>
+                </div>
+                <p className="mt-2 text-sm text-slate-500 leading-relaxed">{g.detail}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-5 text-base text-slate-600 leading-relaxed max-w-3xl">
+            We send you a checklist built for your specific category rather than a generic list, then review every document before anything is submitted.
+          </p>
+        </div>
+
+        {/* ── Timelines ── */}
+        <div className="grid lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2">
+            <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">Timelines</p>
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">
+              How Long It Takes
+            </h2>
+            <div className="mt-5 space-y-4 text-base text-slate-600 leading-relaxed">
+              <p>
+                GOV.UK currently publishes a <strong className="text-slate-900">12-week</strong> decision time for partner and spouse applications made from outside the UK. In-country extensions and switches are usually quicker. Priority and super priority services are available at extra cost on many routes and cut the wait substantially.
+              </p>
+              <p>
+                Treat all of that as a planning assumption, not a promise. Waiting times are{" "}
+                <a href={GOV_WAIT_TIMES} target="_blank" rel="noopener noreferrer" className="text-brand-red font-semibold hover:underline">
+                  published per route on GOV.UK
+                </a>{" "}
+                and they change &mdash; check the current figure before booking a wedding, a flight or handing in a notice period around them. We give you a realistic range at the scoping call and tell you when a priority service is worth paying for and when it isn&rsquo;t.
+              </p>
+            </div>
+          </div>
+          <aside className="bg-brand-navy text-white rounded-2xl p-5 h-fit">
+            <div className="flex items-center gap-2">
+              <Hourglass className="h-4 w-4 text-white/70" />
+              <p className="text-xs font-bold text-white/60 uppercase tracking-widest">Published standard</p>
+            </div>
+            <p className="mt-3 text-4xl font-black leading-none">12 <span className="text-lg font-bold">weeks</span></p>
+            <p className="mt-2 text-sm text-white/70 leading-relaxed">
+              Partner or spouse, applied for outside the UK. Per GOV.UK at the date of our last review &mdash; confirm the current figure before planning around it.
+            </p>
+          </aside>
+        </div>
+
+        {/* ── Refusal reasons ── */}
+        <div>
+          <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">Refusals</p>
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">
+            Why Spouse Visa Applications Get Refused
+          </h2>
+          <p className="mt-4 text-base text-slate-600 leading-relaxed max-w-3xl">
+            In our experience, refusals come down to a short list. And almost all of it is evidential rather than substantive.
+          </p>
+          <ul className="mt-6 space-y-3">
+            {REFUSAL_REASONS.map(r => (
+              <li key={r.title} className="flex items-start gap-3 rounded-xl border border-slate-200 p-4">
+                <AlertTriangle className="h-4 w-4 text-brand-red shrink-0 mt-0.5" />
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900">{r.title}</h3>
+                  <p className="text-sm text-slate-500 leading-relaxed mt-1">{r.detail}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-6 rounded-2xl border-2 border-brand-red/20 bg-brand-red/5 p-5">
+            <p className="text-base text-slate-700 leading-relaxed">
+              If you&rsquo;ve already been refused, read the refusal notice before you do anything else. It sets out what you can do next and the deadline for doing it, and the route open to you depends on the decision that was made. An appeal, an administrative review, a fresh application, and a judicial review are all different things with different time limits. We review the notice free on the scoping call and tell you which one actually applies to your decision &mdash; because starting down the wrong one burns the deadline on the right one.
+            </p>
+            <Link href="/visa-refusal-appeal/" className="inline-flex items-center gap-1.5 mt-3 text-sm font-bold text-brand-red hover:underline">
+              More on visa refusals and appeals <ChevronRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+
+        {/* ── Cluster interlinks: the sibling partner routes ── */}
+        <div className="border-t border-slate-100 pt-8">
+          <p className="text-sm font-bold text-slate-900">Not married, or not married yet?</p>
+          <p className="mt-2 text-sm text-slate-500 leading-relaxed max-w-3xl">
+            Appendix FM covers four partner routes, and the evidence differs between them. Pick the right one before you apply:
+          </p>
+          <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+            <Link href="/uk-fiance-visa/" className="text-brand-red font-semibold hover:underline">Fianc&eacute;(e) visa &rarr;</Link>
+            <Link href="/uk-unmarried-partner-visa/" className="text-brand-red font-semibold hover:underline">Unmarried partner visa &rarr;</Link>
+            <Link href="/civil-partnership-visa/" className="text-brand-red font-semibold hover:underline">Civil partnership visa &rarr;</Link>
+            <Link href="/uk-partner-visa-extension/" className="text-brand-red font-semibold hover:underline">Partner visa extension &rarr;</Link>
+            <Link href="/uk-spouse-visa-solicitors/" className="text-brand-red font-semibold hover:underline">Full requirements guide &rarr;</Link>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
 
 function FaqSection({ openFaq, setOpenFaq }: {
   openFaq: number | null;
