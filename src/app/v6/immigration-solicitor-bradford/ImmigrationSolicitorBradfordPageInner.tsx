@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { TrustBadges } from "@/components/v6/trust-badges";
+import { VerifiedReviews } from "@/components/v6/verified-reviews";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
 import { GclidField, MsclkidField, UtmFields } from "@/components/v6/gclid-field";
 import { useSpamGuard } from "@/lib/spam-client";
@@ -39,6 +40,8 @@ const AUTHOR = team.find((t) => t.slug === "imran-shah")!;
 // Google Business Profile for the Bradford office (cid from the live listing).
 // Used for sameAs + hasMap so the page and the GBP resolve to one entity.
 const GBP_URL = "https://www.google.com/maps?cid=15089368944767082385";
+const REVIEW_INTRO =
+  "Both scores below are hosted by the platform that collected them, not by us. The Google score is left on this Bradford office's own listing. Follow either link and read every review yourself.";
 // BD7 1HR centroid (Ordnance Survey via postcodes.io).
 const OFFICE_LAT = 53.792899;
 const OFFICE_LON = -1.769853;
@@ -60,49 +63,31 @@ const FIXED_FEES = [
   { service: "Skilled Worker switching / extension", fee: "From £900", note: GOV_FEE_NOTE },
 ];
 
-// Independent review aggregates, each read from the platform that hosts it.
-// We do not reproduce client quotes on this page: outcome claims in immigration
-// matters are not something a prospective client can verify, and we will not
-// imply a result we cannot guarantee. Visitors can read every review at source.
-const REVIEW_SOURCES = [
-  {
-    platform: "Verified Reviews (Skeepers)",
-    rating: "4.9",
-    count: 97,
-    note: "Collected and hosted independently. We can reply to a review — we cannot edit or delete one.",
-    href: "https://www.verified-reviews.co.uk/reviews/abrahamssolicitors.co.uk",
-    cta: "Read all 97 at source",
-  },
-  {
-    platform: "Google Business Profile",
-    rating: "4.7",
-    count: 60,
-    note: "Left on the Google listing for our Bradford office at Listerhills Science Park.",
-    href: GBP_URL,
-    cta: "Read the Google reviews",
-  },
-];
+
 
 // Named, SRA-registered solicitors who run Bradford immigration files. Every
 // number below is checkable on the SRA register via the link on the card.
-const BRADFORD_SOLICITORS = [
-  {
-    name: "Imran Shah",
-    role: "Immigration & Litigation Solicitor",
-    sra: "509359",
-    sraUrl: "https://www.sra.org.uk/consumers/register/person/?sraNumber=509359",
-    admitted: "Qualified April 2012",
-    blurb: "Takes the cases that need methodical, careful preparation — spouse visa refusals, ILR appeals, judicial review, and Home Office disputes that have already gone wrong once.",
-  },
-  {
-    name: "Humaira Anjum",
-    role: "Immigration & Litigation Solicitor",
-    sra: "663190",
-    sraUrl: "https://higher-rights.sra.org.uk/consumers/register/person/?sraNumber=663190",
-    admitted: "Qualified September 2021",
-    blurb: "Works on family routes — spouse and partner visas, fiancé visas, unmarried partner applications and extensions. The person most of our Bradford families deal with day to day.",
-  },
-];
+// Named, SRA-registered solicitors who run Bradford immigration files. The
+// name, role, SRA number, register URL and admission year all come from
+// src/lib/team.ts so the regulated credentials have one source of truth; only
+// the page-specific blurb lives here.
+const BRADFORD_SOLICITOR_BLURBS: Record<string, string> = {
+  "imran-shah":
+    "Takes the cases that need methodical, careful preparation — spouse visa refusals, ILR appeals, judicial review, and Home Office disputes that have already gone wrong once.",
+  "humaira-anjum":
+    "Works on family routes — spouse and partner visas, fiancé visas, unmarried partner applications and extensions. The person most of our Bradford families deal with day to day.",
+};
+const BRADFORD_SOLICITORS = Object.keys(BRADFORD_SOLICITOR_BLURBS)
+  .map(slug => team.find(t => t.slug === slug))
+  .filter((t): t is NonNullable<typeof t> => Boolean(t))
+  .map(t => ({
+    name: t.name,
+    role: t.role,
+    sra: t.sraNumber,
+    sraUrl: t.sraUrl,
+    admitted: `Qualified ${t.admittedYear}`,
+    blurb: BRADFORD_SOLICITOR_BLURBS[t.slug],
+  }));
 
 // BD-postcode areas inside the Bradford district, then the wider patch.
 const BRADFORD_AREAS = [
@@ -682,51 +667,7 @@ export default function ImmigrationSolicitorBradfordPageInner() {
         </div>
       </section>
 
-      {/* ─── Reviews — independent sources only, no quoted outcome claims ─── */}
-      <section className="py-14 lg:py-20 bg-white">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="max-w-2xl mb-10">
-            <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">Verified reviews</p>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 leading-tight tracking-tight">
-              What Clients Say &mdash; Checkable at Source
-            </h2>
-            <p className="mt-4 text-base text-slate-500 leading-relaxed">
-              Both scores below are hosted by the platform that collected them, not by us. Follow either link and read every review yourself. We don&rsquo;t publish client quotes about case outcomes on this page &mdash; no solicitor can promise a result, and a quote implying one wouldn&rsquo;t be fair to you.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            {REVIEW_SOURCES.map(src => (
-              <div key={src.platform} className="bg-white rounded-xl border border-slate-200 p-6">
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">{src.platform}</p>
-                <div className="mt-3 flex items-center gap-3">
-                  <div className="flex gap-0.5">
-                    {[0, 1, 2, 3, 4].map(i => <Star key={i} className="h-4 w-4 fill-brand-red text-brand-red" />)}
-                  </div>
-                  <span className="text-2xl font-black text-slate-900">{src.rating}</span>
-                  <span className="text-sm text-slate-500">from <strong className="text-slate-700">{src.count} reviews</strong></span>
-                </div>
-                <p className="text-sm text-slate-500 leading-relaxed mt-3">{src.note}</p>
-                <a
-                  href={src.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 mt-4 text-sm font-bold text-brand-red hover:underline"
-                >
-                  {src.cta} <ArrowRight className="h-4 w-4" />
-                </a>
-              </div>
-            ))}
-          </div>
-          <p className="text-center mt-8">
-            <Link
-              href="/reviews/"
-              className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-red hover:underline"
-            >
-              See the full review page <ArrowRight className="h-4 w-4" />
-            </Link>
-          </p>
-        </div>
-      </section>
+      <VerifiedReviews intro={REVIEW_INTRO} />
 
       {/* ─── FAQ ─── */}
       <section className="py-14 lg:py-20 bg-slate-50/60 border-t border-slate-100">

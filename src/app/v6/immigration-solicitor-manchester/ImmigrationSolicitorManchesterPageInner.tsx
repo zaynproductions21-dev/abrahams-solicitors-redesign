@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { TrustBadges } from "@/components/v6/trust-badges";
+import { VerifiedReviews } from "@/components/v6/verified-reviews";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
 import { GclidField, MsclkidField, UtmFields } from "@/components/v6/gclid-field";
 import { useSpamGuard } from "@/lib/spam-client";
@@ -30,6 +31,10 @@ import {
 } from "lucide-react";
 
 const BASE_URL = "https://www.abrahamssolicitors.co.uk";
+const MANCHESTER_TRIBUNAL_URL =
+  "https://www.find-court-tribunal.service.gov.uk/courts/manchester-tribunal-hearing-centre";
+const REVIEW_INTRO =
+  "Both scores below are hosted by the platform that collected them, not by us — and they cover the firm as a whole, not just our Manchester caseload. Follow either link and read every review yourself.";
 const MANCHESTER_TEL = "03333396004";
 const MANCHESTER_TEL_DISPLAY = "0333 339 6004";
 
@@ -42,29 +47,18 @@ const FIXED_FEES = [
   { service: "Skilled Worker switching / extension", fee: "From £900", note: "Plus UKVI fee + IHS" },
 ];
 
-const TESTIMONIALS = [
-  {
-    name: "Daniel & Sara",
-    service: "Spouse visa appeal",
-    text: "After a brutal refusal we were close to giving up. The solicitor walked us through the grounds line by line, rebuilt the evidence pack, and won the appeal. Honest from day one — never sold us a result they couldn't deliver.",
-  },
-  {
-    name: "Priya",
-    service: "FLR(M) extension",
-    text: "Direct contact with the solicitor throughout — no call centres, no junior handlers. The £29,000 financial threshold change happened mid-way through our planning but we were guided through it perfectly. Approved in 6 weeks.",
-  },
-  {
-    name: "Marek",
-    service: "Skilled Worker → ILR",
-    text: "10 years on Skilled Worker, then a sponsor licence issue that nearly derailed everything. Abrahams got the variation through inside the grace period and then the ILR a year later. Worth every penny.",
-  },
-];
+
 
 const FAQS = [
   {
     question: "Can you handle my immigration case even though your office is in Bradford, not Manchester?",
     answer:
       "Yes — and here's the honest answer: your solicitor's office location matters far less than the quality of legal advice you receive. Immigration law is the same whether you're in Manchester, Bradford or Inverness, and we handle almost all client work remotely. We've acted for clients across Greater Manchester — Rochdale, Oldham, Bolton, Trafford, Wigan, Tameside — without a single one needing to visit Bradford for their case to progress. If you'd prefer a face-to-face meeting, Bradford is around 45 minutes away by train from Manchester Victoria. But we wouldn't expect you to make that trip.",
+  },
+  {
+    question: "Where would my immigration appeal be heard if I live in Greater Manchester?",
+    answer:
+      "Appeals against Home Office refusals go to the First-tier Tribunal (Immigration and Asylum Chamber). For a Greater Manchester case the hearing is normally listed at Manchester Tribunal Hearing Centre, 1st Floor, Piccadilly Exchange, 2 Piccadilly Plaza, Mosley Street, Manchester M1 4AH, which hears immigration and asylum appeals — you can confirm its details on the GOV.UK court and tribunal finder. We prepare the bundle and witness statements with you remotely, instruct counsel where the case needs it, and attend the hearing. We do not have a Manchester office: ours are in Bradford and London.",
   },
   {
     question: "How much does an immigration solicitor cost for a Manchester client?",
@@ -84,7 +78,7 @@ const FAQS = [
   {
     question: "I work irregular hours in Manchester — can I get an appointment outside office hours?",
     answer:
-      "Yes — and this genuinely matters to us. A significant proportion of our Manchester clients work in the NHS, in hospitality, in transport, or in logistics — sectors where a 9-to-5 appointment simply isn't realistic. We offer early-morning calls from 7:30am, evening appointments until 7:30pm, and Saturday consultations by arrangement. Simply tell us when you're available when you enquire, and we'll work around you. Immigration decisions can be time-sensitive, and missing a consultation because of shift patterns isn't something we're comfortable with. Call 0333 339 6004 or submit the form and note your availability — we'll make it work.",
+      "Often, yes. Plenty of the people who come to us work shifts — in healthcare, hospitality, transport and logistics — where a 9-to-5 appointment isn't realistic. Our published office hours are Monday to Friday, 9am to 5pm, but appointments outside those hours can usually be arranged, including early mornings, evenings and Saturdays. Tell us when you're actually free when you enquire and we'll confirm what we can do rather than promise a slot we can't keep. Immigration deadlines don't wait for a day off. Call 0333 339 6004 or submit the form and note your availability.",
   },
 ];
 
@@ -261,12 +255,10 @@ export default function ImmigrationSolicitorManchesterPageInner() {
       opens: "09:00",
       closes: "17:00",
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      bestRating: "5",
-      reviewCount: "97",
-    },
+    // No aggregateRating on this node: the firm-wide Skeepers score is not a
+    // rating of this location, and self-serving location ratings are exactly
+    // what Google's structured-data policy excludes. The real, sourced figures
+    // are published and linked in the VerifiedReviews block instead.
   };
 
   return (
@@ -312,7 +304,7 @@ export default function ImmigrationSolicitorManchesterPageInner() {
               <div className="mt-6 flex flex-wrap gap-2">
                 {[
                   { icon: Shield, text: "SRA Regulated #809071" },
-                  { icon: Star, text: "4.9 ★ from 97 reviews" },
+                  { icon: Star, text: "4.9 ★ · 97 verified reviews" },
                   { icon: PoundSterling, text: "Fixed fees from £750" },
                   { icon: Clock, text: "Appointments from 7:30am–7:30pm" },
                 ].map(p => (
@@ -464,43 +456,72 @@ export default function ImmigrationSolicitorManchesterPageInner() {
         </div>
       </section>
 
-      {/* ─── Reviews ─── */}
+      {/* ─── Honest geography ───
+          The Bradford pattern rests on a real office, a matching Google
+          Business Profile and a nearby hearing centre. There is no Manchester
+          office and no Manchester GBP, so two thirds of that pattern simply
+          are not available here and must not be faked. What IS verifiable is
+          the hearing centre, so the page leads with that and states the
+          absence of a local office plainly. */}
       <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">What Our Clients Say</h2>
-            <div className="mt-4 inline-flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-2xl px-5 py-3">
-              <div className="flex gap-0.5">
-                {[0,1,2,3,4].map(i => <Star key={i} className="h-4 w-4 fill-brand-red text-brand-red" />)}
+          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16">
+            <div className="lg:col-span-3">
+              <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">Straight about geography</p>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 leading-tight tracking-tight">
+                Where a Manchester Immigration Appeal Is Heard &mdash; and Where We Actually Are
+              </h2>
+              <div className="mt-5 space-y-4 text-base text-slate-500 leading-relaxed">
+                <p>Let&rsquo;s be straight with you about geography, because some firms aren&rsquo;t.</p>
+                <p>
+                  <strong className="text-slate-700">We don&rsquo;t have a Manchester office.</strong> Our offices are in Bradford and London, and we act for clients across Greater Manchester remotely &mdash; by phone, by video, and through secure document upload. For application work, this costs you nothing extra. No immigration route requires you to sit in a room with your solicitor, and your evidence is reviewed the same way wherever it&rsquo;s uploaded from.
+                </p>
+                <p>
+                  Where location does matter is an appeal. If the Home Office refuses your application and you have a right of appeal, the hearing for a Greater Manchester case is normally listed at <strong className="text-slate-700">Manchester Tribunal Hearing Centre, 1st Floor, Piccadilly Exchange, 2 Piccadilly Plaza, Mosley Street, Manchester M1 4AH</strong>. That centre hears immigration and asylum appeals &mdash; you can confirm its details on the{" "}
+                  <a href={MANCHESTER_TRIBUNAL_URL} target="_blank" rel="noopener noreferrer" className="text-brand-red hover:underline font-semibold">
+                    GOV.UK court and tribunal finder
+                  </a>. We prepare the bundle and the witness statements with you remotely, we instruct counsel where a case needs it, and we attend. Bradford to Manchester is a short train journey. It&rsquo;s one we make.
+                </p>
+                <p>
+                  So here&rsquo;s the honest summary. If you want a solicitor you can walk in and see on a Tuesday afternoon, a Manchester firm will suit you better &mdash; and we&rsquo;ll tell you that. But if you want the solicitor who prepares the strongest possible application and turns up to the hearing, where their desk sits matters a great deal less than whether they actually read your refusal letter properly.
+                </p>
               </div>
-              <span className="text-xl font-black text-slate-900">4.9</span>
-              <span className="text-sm text-slate-500">from <strong className="text-slate-700">97 verified reviews</strong></span>
             </div>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {TESTIMONIALS.map(t => (
-              <div key={t.name} className="bg-white rounded-xl border border-slate-200 p-6">
-                <div className="flex gap-0.5 mb-3">
-                  {[0,1,2,3,4].map(i => <Star key={i} className="h-3.5 w-3.5 fill-brand-red text-brand-red" />)}
-                </div>
-                <p className="text-sm text-slate-600 leading-relaxed mb-4">&ldquo;{t.text}&rdquo;</p>
-                <div>
-                  <p className="text-sm font-bold text-slate-900">{t.name}</p>
-                  <p className="text-xs text-slate-400">{t.service}</p>
-                </div>
+            <aside className="lg:col-span-2">
+              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Hearing centre</p>
+                <p className="mt-3 text-sm font-bold text-slate-900">Manchester Tribunal Hearing Centre</p>
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  1st Floor, Piccadilly Exchange, 2 Piccadilly Plaza, Mosley Street, Manchester M1 4AH
+                </p>
+                <dl className="mt-4 space-y-2 text-sm">
+                  <div className="flex gap-2">
+                    <dt className="text-slate-400 shrink-0">Hears:</dt>
+                    <dd className="text-slate-700 font-medium">Immigration and asylum</dd>
+                  </div>
+                  <div className="flex gap-2">
+                    <dt className="text-slate-400 shrink-0">Source:</dt>
+                    <dd>
+                      <a href={MANCHESTER_TRIBUNAL_URL} target="_blank" rel="noopener noreferrer" className="text-brand-red hover:underline font-medium">
+                        GOV.UK court finder
+                      </a>
+                    </dd>
+                  </div>
+                  <div className="flex gap-2">
+                    <dt className="text-slate-400 shrink-0">Our offices:</dt>
+                    <dd className="text-slate-700 font-medium">Bradford and London</dd>
+                  </div>
+                </dl>
+                <p className="mt-4 text-xs text-slate-400 leading-relaxed">
+                  Venue listings and contact details change. Always check the current entry on GOV.UK, and work to the deadline printed on your own decision letter.
+                </p>
               </div>
-            ))}
+            </aside>
           </div>
-          <p className="text-center mt-6">
-            <Link
-              href="/reviews/"
-              className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-red hover:underline"
-            >
-              Read all 97 verified reviews <ArrowRight className="h-4 w-4" />
-            </Link>
-          </p>
         </div>
       </section>
+
+      <VerifiedReviews intro={REVIEW_INTRO} />
 
       {/* ─── FAQ ─── */}
       <section className="py-14 lg:py-20 bg-slate-50/60 border-t border-slate-100">
@@ -583,7 +604,7 @@ export default function ImmigrationSolicitorManchesterPageInner() {
                 "Written fixed-fee quote before any work starts",
                 "Remote service across Greater Manchester + Bradford office",
                 "SRA-regulated firm #809071",
-                "4.9 ★ from 97 verified client reviews",
+                "4.9 ★ from 97 independently hosted Verified Reviews",
               ].map(point => (
                 <div key={point} className="flex items-center gap-3">
                   <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />

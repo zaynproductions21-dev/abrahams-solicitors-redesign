@@ -38,6 +38,25 @@ const nextConfig: NextConfig = {
       // slug bounces to the canonical URL.
       { source: "/housing-disrepair-claims/", destination: "/housing-disrepair/", permanent: true },
 
+      // ---- Duplicate city pages: plural template -> bespoke singular ---
+      // Each of these cities had TWO live 200-ing URLs: the bespoke
+      // file-tree page (/immigration-solicitor-<city>/) and a KV-template
+      // page at the plural slug (/immigration-solicitors-<city>/). The
+      // plural pages were canonicalising themselves to the homepage until
+      // the metadata fix shipped, so they never competed; now that they
+      // self-canonicalise they would compete with the bespoke pages for the
+      // same city terms. The bespoke pages hold the nav links, the content
+      // and (for Bradford) the Google Business Profile, so the plural slugs
+      // fold into them. Council review 2 Oct 2026.
+      //
+      // London is deliberately NOT here: it has only the plural template
+      // page and no bespoke equivalent, so there is nothing to redirect to
+      // yet. Building /immigration-solicitor-london/ is blocked on
+      // confirming which London address is operationally real — the Google
+      // Business Profile and the website disagree.
+      { source: "/immigration-solicitors-bradford/", destination: "/immigration-solicitor-bradford/", permanent: true },
+      { source: "/immigration-solicitors-manchester/", destination: "/immigration-solicitor-manchester/", permanent: true },
+
       // ---- Immigration sub-pages with no direct v6 equivalent ---------
       // /uk-dependent-child-visa/ and /uk-dependent-parent-visa/ now have
       // bespoke landing pages — they're served by the v6 file tree directly,
