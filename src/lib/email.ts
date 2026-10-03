@@ -124,7 +124,7 @@ function prospectHtml(d: EnquiryData): string {
     <hr style="border:none;border-top:1px solid #e8ecf0;margin:24px 0;" />
     <p style="margin:0;font-size:12px;color:#94a3b8;line-height:1.6;">
       <strong>Abrahams (Yorkshire) Limited</strong><br />
-      London: Suite 10, Atlas House, 1 King Street, London EC2V 8AU<br />
+      London: meetings and consultations by appointment only<br />
       Bradford: Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR<br />
       Authorised and regulated by the Solicitors Regulation Authority (firm #809071).
     </p>

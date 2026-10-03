@@ -1,4 +1,4 @@
-// Auto-generated from PublishOS page copy — last sync: 2026-10-02T21:03:02.272Z
+// Auto-generated from PublishOS page copy — last sync: 2026-10-03T08:36:42.168Z
 // Run: npx tsx scripts/sync-copy.ts
 
 export interface ServicePage {
@@ -1259,7 +1259,7 @@ export const locationPages: ServicePage[] = [
       },
       {
         "title": "Immigration Solicitors Across London",
-        "content": "We work with clients across every London borough, and our office is easy to get to when you need to meet face to face.\n\nLondon Office: we're based at EC2V 8AU, well connected by public transport from across Greater London. Prefer not to travel? We also offer secure video consultations for clients who'd rather meet remotely.\n\nServing All London Areas: whether you're in Westminster, Camden, Islington, Hackney, Tower Hamlets, Southwark, Lambeth, Croydon, Ealing, Barnet, or one of the outer boroughs — we're here to help.\n\nFlexible Meeting Options: in-person, video or phone consultations, arranged around your schedule."
+        "content": "We work with clients in every London borough. And no, you don't have to travel to instruct us.\n\nOur practising office is in Bradford — that's where your file is handled. In London, we have a meeting and consultation space we use by appointment only. It's not a practising office, and no casework is carried out there. But if you'd rather sit down with your solicitor face to face, just call us and we'll arrange a London appointment and confirm the address when we book it.\n\nMost London clients never need to come in at all. We run consultations by phone and secure video, with encrypted document upload for anything that needs signing or sharing. No immigration route requires you to attend in person. Whether you're in Westminster, Camden, Islington, Hackney, Tower Hamlets, Southwark, Lambeth, Croydon, Ealing, Barnet or one of the outer boroughs — you get the same fixed fees and the same named solicitor."
       },
       {
         "title": "How We Strengthen a London Immigration Application",
@@ -1271,7 +1271,7 @@ export const locationPages: ServicePage[] = [
       },
       {
         "title": "Book Your Free London Immigration Consultation",
-        "content": "Here's what you get with our London immigration service:\n\n✓ Free 30-minute consultation with a qualified solicitor\n✓ Fixed fees agreed in writing before any work begins\n✓ Careful preparation against the current Immigration Rules\n✓ Direct access to your solicitor throughout\n✓ In-person meetings at our London office (EC2V 8AU), plus phone and video consultations\n\nReady to get started? Call us on 0203 355 9823 or email info@abrahamssolicitors.co.uk to arrange your consultation. We'll walk you through your options, give you a clear fixed-fee quote, and make sure your case stays on track."
+        "content": "A free 30-minute consultation with a qualified solicitor. Fixed fees agreed in writing before any work begins. Careful preparation against the current Immigration Rules. Direct access to your solicitor throughout. Phone and video consultations as standard, and London meetings by appointment when you want one.\n\nCall us on 0203 355 9823 or email info@abrahamssolicitors.co.uk to arrange your consultation. We'll walk you through your options, give you a clear fixed-fee quote, and keep your case on track."
       }
     ],
     "faqs": [
@@ -1289,7 +1289,7 @@ export const locationPages: ServicePage[] = [
       },
       {
         "question": "Which London areas do your immigration solicitors serve?",
-        "answer": "We serve clients across all the London boroughs — Westminster, Camden and Hackney through to Tower Hamlets, Southwark, Croydon, Ealing and Barnet. Our London office is at EC2V 8AU. Wherever you are in Greater London, you get the same fixed fees and direct access to a solicitor. No exceptions."
+        "answer": "No. We work with clients across all the London boroughs — Westminster, Camden and Hackney through to Tower Hamlets, Southwark, Croydon, Ealing and Barnet — and almost all of that work is done by phone, video and secure document upload. Our practising office is in Bradford, and we hold meetings and consultations in London by appointment if you'd prefer to meet in person. Wherever you are in Greater London, you get the same fixed fees and direct access to a solicitor."
       },
       {
         "question": "How quickly can you help with an urgent London visa application?",
@@ -1373,7 +1373,7 @@ export const locationPages: ServicePage[] = [
     "sections": [
       {
         "title": "How We Serve Manchester Immigration Clients",
-        "content": "We don't have a physical office in Manchester. Our offices are in London (EC2V 8AU) and Bradford (BD7 1HR) — but we work with clients across Greater Manchester every day, fully remotely.\n\nHere's what that looks like in practice:\n\n**Video and phone consultations** — You speak directly with your solicitor, not a support member of staff. No commuting, no waiting rooms.\n\n**Evening and weekend slots** — We work around your schedule, not the other way around.\n\n**Secure document handling** — You can send documents to us securely online. If we need originals, we'll walk you through the safest way to get them to us.\n\n**Multi-language support** — We communicate in a range of languages, including Urdu, Arabic and Polish.\n\nAnd it doesn't matter whether you're in Manchester city centre, Salford, Stockport, or anywhere else across Greater Manchester. You get the same service, at the same fixed fees."
+        "content": "We don't have a physical office in Manchester. Our practising office is in Bradford (BD7 1HR), and we hold meetings in London by appointment — but we work with clients across Greater Manchester every day, fully remotely.\n\nHere's what that looks like in practice:\n\n**Video and phone consultations** — You speak directly with your solicitor, not a support member of staff. No commuting, no waiting rooms.\n\n**Evening and weekend slots** — We work around your schedule, not the other way around.\n\n**Secure document handling** — You can send documents to us securely online. If we need originals, we'll walk you through the safest way to get them to us.\n\n**Multi-language support** — We communicate in a range of languages, including Urdu, Arabic and Polish.\n\nAnd it doesn't matter whether you're in Manchester city centre, Salford, Stockport, or anywhere else across Greater Manchester. You get the same service, at the same fixed fees."
       },
       {
         "title": "Immigration Services for Manchester Clients",
@@ -1399,7 +1399,7 @@ export const locationPages: ServicePage[] = [
       },
       {
         "question": "Do you have an office in Manchester?",
-        "answer": "No. Our offices are in London (EC2V 8AU) and Bradford (BD7 1HR), but we work with Manchester clients across Greater Manchester by phone and video. You'll deal directly with a qualified solicitor — no travel needed."
+        "answer": "No. Our practising office is in Bradford (BD7 1HR) and we hold London meetings by appointment, but we work with Manchester clients across Greater Manchester by phone and video. You'll deal directly with a qualified solicitor — no travel needed."
       },
       {
         "question": "Can I get free advice for a Manchester immigration matter?",

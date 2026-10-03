@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Immigration Solicitor Essex — SRA Regulated | Abrahams",
     description:
-      "Essex immigration solicitors. Fixed fees, direct solicitor access. Spouse visas, ILR, citizenship, appeals. London office: Suite 10, Atlas House, 1 King Street, EC2V 8AU.",
+      "Essex immigration solicitors. Fixed fees, direct solicitor access. Spouse visas, ILR, citizenship, appeals. Served remotely UK-wide, with London meetings by appointment.",
     url: "https://www.abrahamssolicitors.co.uk/immigration-solicitor-essex/",
     type: "website",
     locale: "en_GB",

@@ -157,14 +157,13 @@ export function Footer() {
           {/* Offices — spans 3 */}
           <div className="lg:col-span-3">
             <h3 className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-5">
-              London Office
+              London — By Appointment
             </h3>
             <div className="flex items-start gap-3 text-sm text-white/50 mb-8">
               <MapPin className="h-4 w-4 shrink-0 mt-0.5 text-white/30" />
               <span>
-                Suite 10, Atlas House,
-                <br />1 King Street,
-                <br />London EC2V 8AU
+                Meetings and consultations
+                <br />by appointment only
               </span>
             </div>
 
