@@ -1,3 +1,27 @@
+// London is a meeting and consultation space used by appointment, not a
+// practising office: the client confirmed no case work is done there, and the
+// SRA register for firm 809071 records only the Bradford office. It therefore
+// appears below as a `location` Place on the organisation rather than a second
+// LocalBusiness branch with opening hours. Address taken from the firm's London
+// Google Business Profile as directed; Google records the street line as
+// "Unit 2c 9, 15 Elthorne Rd" and the lost hyphen is restored here.
+//
+// No sameAs to that profile: it rates 1.0 from one review against Bradford's
+// 4.7 from 60, and that is the client's call to make first.
+const LONDON_MEETING_PLACE = {
+  "@type": "Place",
+  name: "Abrahams Solicitors — London (meetings by appointment)",
+  description:
+    "Meeting and consultation space used by appointment only. Not a practising office; no case work is carried out here.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Unit 2c, 9-15 Elthorne Road, Archway",
+    addressLocality: "London",
+    postalCode: "N19 4AJ",
+    addressCountry: "GB",
+  },
+};
+
 import { team } from "@/lib/team";
 
 // Utility: render a JSON-LD <script> tag. Use it inside layouts or pages.
@@ -105,7 +129,7 @@ export function organisationSchema() {
           "https://www.linkedin.com/company/brahamssolicitors",
           "https://www.youtube.com/@AbrahamsSolicitors",
         ],
-        location: OFFICES,
+        location: [...OFFICES, LONDON_MEETING_PLACE],
       },
       ...OFFICES,
       {

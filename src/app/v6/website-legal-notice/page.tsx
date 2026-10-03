@@ -34,11 +34,11 @@ export default function LegalNoticesPage() {
       </p>
       <p>
         <strong>London</strong><br />
-        A meeting and consultation space used by appointment only. It is not a practising
-        office and no case work is carried out there &mdash; all files are handled from our
-        Bradford office. The Solicitors Regulation Authority register for firm 809071 records
-        the Bradford office above. Call 0203 355 9823 to arrange a London appointment and we
-        will confirm the address when we book it.
+        Unit 2c, 9-15 Elthorne Road, Archway, London N19 4AJ<br />
+        Meetings and consultations by appointment only &middot; 0203 355 9823<br />
+        This is not a practising office and no case work is carried out there &mdash; all files
+        are handled from our Bradford office. The Solicitors Regulation Authority register for
+        firm 809071 records the Bradford office above.
       </p>
 
       <h2>Regulatory information</h2>
