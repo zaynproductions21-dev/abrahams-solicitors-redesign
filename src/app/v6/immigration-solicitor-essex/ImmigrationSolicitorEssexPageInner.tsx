@@ -51,7 +51,7 @@ const FAQS = [
   {
     question: "Can an Essex-based immigration solicitor handle my case remotely?",
     answer:
-      "Yes — and that's how the vast majority of our Essex clients prefer it. We handle everything by phone, Zoom or WhatsApp video, and secure document upload. You don't need to travel. We have clients in Chelmsford, Colchester, Southend, Romford, Basildon and across the county who've never once visited our London office. Immigration law is document-based — it simply doesn't require in-person meetings unless you specifically want one. And if you do want face-to-face, our London City office is easy to reach from across Essex via Liverpool Street.",
+      "Yes — and it's how most Essex clients choose to work with us. We handle everything by phone, Zoom or WhatsApp video, and secure document upload. You don't need to travel. We have clients in Chelmsford, Colchester, Southend, Romford, Basildon and across the county who've never once visited our London office. Immigration law is document-based — it simply doesn't require in-person meetings unless you specifically want one. And if you do want face-to-face, our London City office is easy to reach from across Essex via Liverpool Street.",
   },
   {
     question: "How much does an immigration solicitor cost for Essex residents?",
@@ -235,13 +235,11 @@ export default function ImmigrationSolicitorEssexPageInner() {
       { "@type": "County", name: "Essex" },
       { "@type": "City", name: "Chelmsford" },
     ],
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Suite 10, Atlas House, 1 King Street",
-      addressLocality: "London",
-      postalCode: "EC2V 8AU",
-      addressCountry: "GB",
-    },
+    // No PostalAddress on this node. The firm's London presence is an
+    // appointment-only meeting space, not a practising office — the SRA
+    // register for firm 809071 records only the Bradford office — and the
+    // address previously published here was confirmed to be wrong. Essex is
+    // served remotely, which the copy below now says plainly.
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -298,7 +296,7 @@ export default function ImmigrationSolicitorEssexPageInner() {
                   { icon: Shield, text: "SRA Regulated #809071" },
                   { icon: Star, text: "4.9 ★ · 97 verified reviews" },
                   { icon: PoundSterling, text: "Fixed fees from £750" },
-                  { icon: MapPin, text: "London office: EC2V 8AU" },
+                  { icon: MapPin, text: "Essex served remotely UK-wide" },
                 ].map(p => (
                   <span key={p.text} className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-slate-600 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full">
                     <p.icon className="h-3.5 w-3.5 text-brand-red" />
@@ -397,14 +395,14 @@ export default function ImmigrationSolicitorEssexPageInner() {
                 Our Nearest Office to Essex
               </h2>
               <p className="mt-4 text-base text-slate-500 leading-relaxed">
-                Our nearest office to Essex is at Atlas House, 1 King Street, London EC2V 8AU — a short walk from Bank station, and easy to reach from anywhere in Essex via Liverpool Street. That said, 95% of our Essex clients never actually need to come in. We handle everything by phone, Zoom or WhatsApp video, with encrypted document upload for anything that needs signing or sharing. If you'd rather sit down face to face, we can usually arrange an appointment at our London office within 24 hours.
+                We don't have an Essex office, and we won't pretend otherwise. Our practising office is in Bradford, and we hold meetings and consultations in London by appointment. In practice most Essex clients never need to travel at all: we handle everything by phone, Zoom or WhatsApp video, with encrypted document upload for anything that needs signing or sharing. No immigration route requires you to sit in a room with your solicitor. If you would rather meet face to face, call us and we will arrange a London appointment and confirm the address when we book it.
               </p>
               <div className="mt-6 space-y-3">
                 <div className="flex items-start gap-3">
                   <MapPin className="h-4 w-4 text-brand-red shrink-0 mt-0.5" />
                   <div>
-                    <p className="text-sm font-bold text-slate-900">Suite 10, Atlas House</p>
-                    <p className="text-sm text-slate-500">1 King Street, London EC2V 8AU</p>
+                    <p className="text-sm font-bold text-slate-900">London &mdash; by appointment</p>
+                    <p className="text-sm text-slate-500">Meetings and consultations only. Case work is handled from our Bradford office.</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">

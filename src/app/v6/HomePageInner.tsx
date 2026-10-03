@@ -461,7 +461,7 @@ export default function HomePageInner() {
           <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {[
               { city: "Bradford", address: "Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR", phone: "0333 339 6004", transport: "Bradford Interchange", tag: "Registered office" },
-              { city: "London", address: "Suite 10, Atlas House, 1 King Street, London EC2V 8AU", phone: "0203 355 9823", transport: "Bank, Mansion House, Cannon Street", tag: "By appointment only" },
+              { city: "London", address: "Meetings and consultations by appointment — ask us for the address when you book", phone: "0203 355 9823", transport: "Case work is handled from Bradford", tag: "By appointment only" },
             ].map((office) => (
               <div key={office.city} className="bg-white rounded-xl border border-slate-100 p-6">
                 <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-4 flex items-center gap-2">

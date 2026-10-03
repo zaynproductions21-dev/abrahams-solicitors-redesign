@@ -34,8 +34,11 @@ export default function LegalNoticesPage() {
       </p>
       <p>
         <strong>London</strong><br />
-        Suite 10, Atlas House, 1 King Street, London EC2V 8AU<br />
-        Monday to Friday, 9.00am to 5.00pm, by appointment only &middot; 0203 355 9823
+        A meeting and consultation space used by appointment only. It is not a practising
+        office and no case work is carried out there &mdash; all files are handled from our
+        Bradford office. The Solicitors Regulation Authority register for firm 809071 records
+        the Bradford office above. Call 0203 355 9823 to arrange a London appointment and we
+        will confirm the address when we book it.
       </p>
 
       <h2>Regulatory information</h2>

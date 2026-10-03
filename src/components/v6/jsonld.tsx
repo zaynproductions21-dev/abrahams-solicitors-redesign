@@ -22,26 +22,13 @@ const BRADFORD_TELEPHONE = "+443333396004";
 const BRADFORD_GBP_URL = "https://www.google.com/maps?cid=15089368944767082385";
 
 const OFFICES = [
-  {
-    "@type": "LocalBusiness",
-    "@id": `${BASE_URL}#office-london`,
-    name: "Abrahams Solicitors — London",
-    telephone: TELEPHONE,
-    email: "info@abrahamssolicitors.co.uk",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Suite 10, Atlas House, 1 King Street",
-      addressLocality: "London",
-      postalCode: "EC2V 8AU",
-      addressCountry: "GB",
-    },
-    openingHoursSpecification: {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "09:00",
-      closes: "17:00",
-    },
-  },
+// London is a meeting and consultation space used by appointment, not a
+// practising office — the client confirmed no case work is done there, and
+// the SRA register for firm 809071 records only the Bradford office. The
+// previously published 'Suite 10, Atlas House, 1 King Street, EC2V 8AU' was
+// confirmed to be the wrong address. Publishing no London PostalAddress is
+// correct until the exact current address is confirmed: a wrong or garbled
+// NAP actively harms local signals, whereas its absence is merely neutral.
   {
     "@type": "LocalBusiness",
     "@id": `${BASE_URL}#office-bradford`,

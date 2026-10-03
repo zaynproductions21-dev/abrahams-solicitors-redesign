@@ -82,7 +82,7 @@ const socialLinks: { label: string; href: string; icon: "facebook" | "twitter" |
 
 const offices: { city: string; address: string; tag?: string }[] = [
   { city: "Bradford", address: "Unit 20, Listerhills Science Park,\nCampus Road, Bradford BD7 1HR", tag: "Registered office" },
-  { city: "London", address: "Suite 10, Atlas House,\n1 King Street,\nLondon EC2V 8AU" },
+  { city: "London", address: "Meetings and consultations\nby appointment only", tag: "Not a practising office" },
 ];
 
 function VisaLogo() {
