@@ -27,7 +27,9 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "*", allow: "/", disallow: ["/api/", "/abrahams/"] },
       ...AI_BOTS.map(bot => ({ userAgent: bot, allow: "/" })),
     ],
-    sitemap: "https://abrahamssolicitors.co.uk/sitemap.xml",
-    host: "https://abrahamssolicitors.co.uk",
+    // www is the canonical host (the apex 308-redirects to it), so point
+    // crawlers straight at it rather than through a redirect.
+    sitemap: "https://www.abrahamssolicitors.co.uk/sitemap.xml",
+    host: "https://www.abrahamssolicitors.co.uk",
   };
 }

@@ -9,6 +9,9 @@ export type BlogPost = {
   author: string;
   category?: string;
   published_at: string;
+  /** Set by the CMS when a post is edited. Drives `dateModified` in the
+   *  BlogPosting schema so freshness is machine-legible to answer engines. */
+  updated_at?: string;
   cover_image?: string;
   status: "draft" | "published";
 };

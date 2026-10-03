@@ -1,3 +1,5 @@
+import { team } from "@/lib/team";
+
 // Utility: render a JSON-LD <script> tag. Use it inside layouts or pages.
 
 export function JsonLd({ data }: { data: Record<string, unknown> }) {
@@ -150,16 +152,37 @@ export function blogPostSchema(post: {
   excerpt: string;
   author?: string;
   published_at: string;
+  updated_at?: string;
   cover_image?: string;
 }) {
+  // Where the byline matches one of the firm's SRA-registered solicitors, emit
+  // a Person author carrying the SRA number and a link to the public register,
+  // rather than a generic Organization. Named, verifiable authorship is the
+  // signal answer engines and YMYL quality raters actually look for; falling
+  // back to the Organization keeps guest or firm-authored posts honest.
+  const solicitor = team.find(t => t.name === post.author);
+  const author = solicitor
+    ? {
+        "@type": "Person",
+        name: solicitor.name,
+        jobTitle: solicitor.role,
+        url: solicitor.sraUrl,
+        identifier: { "@type": "PropertyValue", name: "SRA", value: solicitor.sraNumber },
+        worksFor: { "@id": `${BASE_URL}#organization` },
+      }
+    : { "@type": "Organization", name: post.author || "Abrahams Solicitors" };
+
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
     description: post.excerpt,
-    author: { "@type": "Organization", name: post.author || "Abrahams Solicitors" },
+    author,
     publisher: { "@type": "Organization", name: "Abrahams Solicitors", logo: { "@type": "ImageObject", url: `${BASE_URL}/abrahams-logo.png` } },
     datePublished: post.published_at,
+    // Falls back to the publish date: a post never edited was last modified
+    // when it was published, so this stays accurate rather than invented.
+    dateModified: post.updated_at || post.published_at,
     image: post.cover_image || `${BASE_URL}/abrahams-logo.png`,
     mainEntityOfPage: `${BASE_URL}/blog/${post.slug}/`,
   };
