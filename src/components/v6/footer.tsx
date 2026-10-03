@@ -82,7 +82,7 @@ const socialLinks: { label: string; href: string; icon: "facebook" | "twitter" |
 
 const offices: { city: string; address: string; tag?: string }[] = [
   { city: "Bradford", address: "Unit 20, Listerhills Science Park,\nCampus Road, Bradford BD7 1HR", tag: "Registered office" },
-  { city: "London", address: "Meetings and consultations\nby appointment only", tag: "Not a practising office" },
+  { city: "London", address: "Unit 2c, 9-15 Elthorne Road,\nArchway, London N19 4AJ", tag: "Meetings by appointment only" },
 ];
 
 function VisaLogo() {

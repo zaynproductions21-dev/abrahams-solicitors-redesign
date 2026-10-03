@@ -73,7 +73,21 @@ const FAQS: { question: string; answer: string }[] = [
   },
 ];
 
-// Named testimonials — consent on file (confirmed by client).
+// Named testimonials — genuine clients, consent on file.
+//
+// Provenance re-confirmed by the client on 3 Oct 2026 during the SEO
+// compliance sweep. Flagged at the time because none of these names, amounts
+// or locations appear in the firm's 97 independently hosted Verified Reviews,
+// and two of the first names overlapped a set of INVENTED testimonials that
+// were live on the Bradford, Manchester and Essex pages (removed in #21 and
+// #27). The client confirmed these six are real clients who gave consent, so
+// they stay.
+//
+// If you are auditing this again: do not remove these without asking, and do
+// not add to them without consent on file. Specific damages figures attached
+// to named individuals are the highest-risk form of legal marketing copy, so
+// the "past results do not guarantee future outcomes" disclaimer below the
+// statistic strip must stay with them.
 const TESTIMONIALS = [
   { name: "Aisha R.", location: "Tower Hamlets", text: "Sannah took on my case after the council ignored damp and mould reports for two years. She got the repairs done and £8,400 in compensation. She kept me in the loop the whole way." },
   { name: "Michael O.", location: "Bradford", text: "I'd reported a leaking roof six times to the housing association and nothing happened. Abrahams sent a surveyor, served notice and within four months the roof was fixed and I had £6,200 in damages." },

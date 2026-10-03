@@ -124,7 +124,7 @@ function prospectHtml(d: EnquiryData): string {
     <hr style="border:none;border-top:1px solid #e8ecf0;margin:24px 0;" />
     <p style="margin:0;font-size:12px;color:#94a3b8;line-height:1.6;">
       <strong>Abrahams (Yorkshire) Limited</strong><br />
-      London: meetings and consultations by appointment only<br />
+      London (meetings by appointment): Unit 2c, 9-15 Elthorne Road, Archway, London N19 4AJ<br />
       Bradford: Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR<br />
       Authorised and regulated by the Solicitors Regulation Authority (firm #809071).
     </p>

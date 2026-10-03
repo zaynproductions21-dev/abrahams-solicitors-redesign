@@ -162,8 +162,9 @@ export function Footer() {
             <div className="flex items-start gap-3 text-sm text-white/50 mb-8">
               <MapPin className="h-4 w-4 shrink-0 mt-0.5 text-white/30" />
               <span>
-                Meetings and consultations
-                <br />by appointment only
+                Unit 2c, 9-15 Elthorne Road,
+                <br />Archway,
+                <br />London N19 4AJ
               </span>
             </div>
 

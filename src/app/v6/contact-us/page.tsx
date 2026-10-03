@@ -138,7 +138,7 @@ export default function V1ContactPage() {
 
               {[
                 { city: "Bradford", address: "Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR", phone: "0333 339 6004", tag: "Registered office" },
-                { city: "London", address: "Meetings and consultations by appointment — ask us for the address when you book", phone: "0203 355 9823", tag: "By appointment only" },
+                { city: "London", address: "Unit 2c, 9-15 Elthorne Road, Archway, London N19 4AJ", phone: "0203 355 9823", tag: "Meetings by appointment only" },
               ].map((office) => (
                 <div key={office.city} className="bg-white rounded-2xl ring-1 ring-slate-200 overflow-hidden">
                   <div className="p-6">

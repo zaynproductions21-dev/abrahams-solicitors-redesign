@@ -80,12 +80,33 @@ const jsonLd = {
     },
   ],
   // London is a meeting and consultation space used by appointment, not a
-  // practising office — the client confirmed no case work is done there, and
-  // the SRA register for firm 809071 records only the Bradford office. The
-  // previously published 'Suite 10, Atlas House, 1 King Street, EC2V 8AU' was
-  // confirmed to be the wrong address. Publishing no London PostalAddress is
-  // correct until the exact current address is confirmed: a wrong or garbled
-  // NAP actively harms local signals, whereas its absence is merely neutral.
+  // practising office: the client confirmed no case work is done there, and the
+  // SRA register for firm 809071 records only the Bradford office. So it is
+  // marked up as a `location` Place rather than a branch in `address` (which
+  // takes PostalAddress) or a LocalBusiness with opening hours, either of which
+  // would imply a staffed office. The address is taken from the firm's London
+  // Google Business Profile, as the client directed; Google records the street
+  // line as "Unit 2c 9, 15 Elthorne Rd", and the lost hyphen is restored here
+  // because "9, 15" is not a valid UK street line.
+  //
+  // Deliberately no sameAs to that profile: it rates 1.0 from a single review
+  // against Bradford's 4.7 from 60, and the client has not yet decided what to
+  // do about it. Linking the entity to it would surface that rating.
+  location: [
+    {
+      "@type": "Place",
+      name: "Abrahams Solicitors — London (meetings by appointment)",
+      description:
+        "Meeting and consultation space used by appointment only. Not a practising office; no case work is carried out here.",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Unit 2c, 9-15 Elthorne Road, Archway",
+        addressLocality: "London",
+        postalCode: "N19 4AJ",
+        addressCountry: "GB",
+      },
+    },
+  ],
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
     dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
