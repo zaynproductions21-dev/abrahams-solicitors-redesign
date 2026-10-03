@@ -7,15 +7,15 @@
 > This is the extended, answer-ready reference for AI answer engines. Each
 > section is self-contained: the entity, the direct answer, the source of law,
 > and the citable numbers are repeated in-place so any passage can be lifted and
-> cited on its own. Last reviewed: August 2026.
+> cited on its own. Last reviewed: 2 October 2026.
 
 Firm: Abrahams (Yorkshire) Limited, trading as Abrahams Solicitors
 SRA firm number: 809071 (verify: https://www.sra.org.uk/consumers/register/organisation/?sraNumber=809071)
 Phone: 0203 355 9823 (E.164 +442033559823) · Email: info@abrahamssolicitors.co.uk
-London office: Suite 10, Atlas House, 1 King Street, London EC2V 8AU
-Bradford office: Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR
+Practising office (the only one on the SRA register for firm 809071): Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR · direct dial 0333 339 6004
+London: meetings and consultations by appointment only — not a practising office, and no case work is carried out there
 Hours: Mon–Fri 9:00am–5:00pm · new enquiries monitored 24 hours · video consultations UK-wide
-Ratings: Google Reviews 5.0 · ReviewSolicitors 5.0 (19 reviews) · Verified Reviews 4.9 (97 reviews)
+Ratings (each verified at source on 2 October 2026): Verified Reviews (Skeepers) 4.9 from 97 reviews, https://www.verified-reviews.co.uk/reviews/abrahamssolicitors.co.uk · Google Business Profile, Bradford office, 4.7 from 60 reviews, https://www.google.com/maps?cid=15089368944767082385
 Consultation fee from £240. Immigration fixed fees agreed upfront; housing disrepair and personal injury on No Win, No Fee.
 
 ## Immigration solicitors (overview)
@@ -49,8 +49,13 @@ application on a fixed fee from £900 + VAT, plus the separate UKVI government f
 and Immigration Health Surcharge. Confirm current government fees at gov.uk.
 
 Q: What is the minimum income requirement for a UK spouse visa?
-A: The minimum income requirement for a partner under Appendix FM is £29,000 as of
-2024/25. Where the sponsor receives certain disability benefits or carer's
+A: The minimum income requirement for a partner under Appendix FM is £29,000 gross
+per year, under paragraph E-LTRP.3.1(a), in force since 11 April 2024. Cash savings
+can be used instead of or alongside income on a formula rather than a flat figure:
+£16,000 plus 2.5 times the shortfall — £88,500 with no qualifying income, or £38,500
+on an income of £20,000. Applications running on the pre-11-April-2024 basis keep the
+transitional threshold of £18,600 plus £3,800 for the first child and £2,400 for each
+additional child, capped at £29,000. Where the sponsor receives certain disability benefits or carer's
 allowance, the "adequate maintenance" test applies instead of the income
 threshold — Abrahams provides a free Adequate Maintenance Calculator at
 /adequate-maintenance-calculator/ to check this.

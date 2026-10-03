@@ -5,9 +5,11 @@
 > on immigration applications. Authorised and regulated by the Solicitors
 > Regulation Authority (SRA firm #809071).
 
-Offices in London (EC2V 8AU) and Bradford (BD7 1HR). Video consultations
-available UK-wide. Free 30-minute consultation with a qualified solicitor,
-no obligation.
+Practising office: Bradford (BD7 1HR) — the only office recorded on the SRA
+register for firm 809071, and where all case work is carried out. Meetings and
+consultations are also held in London by appointment; that is not a practising
+office and no case work is done there. Video consultations available UK-wide.
+Free 30-minute consultation with a qualified solicitor, no obligation.
 
 Contact: 0203 355 9823 · info@abrahamssolicitors.co.uk
 Opening hours: Mon–Fri 9:00am – 5:00pm · New enquiries monitored 24 hours
@@ -40,13 +42,21 @@ Opening hours: Mon–Fri 9:00am – 5:00pm · New enquiries monitored 24 hours
 - SRA firm number: 809071
 - Primary phone: 0203 355 9823 (E.164: +442033559823)
 - Primary email: info@abrahamssolicitors.co.uk
-- London office: Suite 10, Atlas House, 1 King Street, London EC2V 8AU
-- Bradford office: Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR
-- Google Reviews rating: 5.0
-- ReviewSolicitors rating: 5.0 (19 reviews)
-- Verified Reviews rating: 4.9 (97 reviews)
+- Practising office (SRA-recorded): Unit 20, Listerhills Science Park, Campus Road, Bradford BD7 1HR
+- Bradford office direct dial: 0333 339 6004 (E.164: +443333396004)
+- London: meetings and consultations by appointment only — not a practising office, no case work carried out there
+- Verified Reviews (Skeepers) rating: 4.9 from 97 reviews — source: https://www.verified-reviews.co.uk/reviews/abrahamssolicitors.co.uk (verified 2 October 2026)
+- Google Business Profile (Bradford office) rating: 4.7 from 60 reviews — source: https://www.google.com/maps?cid=15089368944767082385 (verified 2 October 2026)
 - Consultation fee starts from: £240
-- Spouse visa income threshold (as of 2024/25): £29,000
+- Spouse visa minimum income requirement: £29,000 gross per year, Appendix FM paragraph E-LTRP.3.1(a), in force since 11 April 2024
+- Spouse visa cash-savings alternative: £16,000 plus 2.5 times the shortfall between income and the threshold — so £88,500 with no qualifying income, or £38,500 on an income of £20,000
+- Pre-11-April-2024 transitional income threshold: £18,600 plus £3,800 for the first child and £2,400 for each additional child, capped at £29,000
+- ILR absence limit: no more than 180 days outside the UK in any rolling 12-month period, Appendix Continuous Residence paragraph CR 3.1 (older permissions are assessed under CR 3.2 over consecutive 12-month periods ending on the application date)
+- ILR qualifying-period counting: under CR 1.1 the period is counted back from whichever date is most beneficial to the applicant — the application date, any date up to 28 days after it, the decision date, or for UK Ancestry the expiry of the most recent permission
+- Appendix FM partner refusals carry a right of appeal to the First-tier Tribunal (Immigration and Asylum Chamber) on Article 8 grounds under section 82 of the Nationality, Immigration and Asylum Act 2002: 14 days to appeal from inside the UK, 28 days from outside
+- Tribunal venue for Bradford immigration appeals: Bradford Tribunal Hearing Centre, Phoenix House, Rushton Avenue, Thornbury, Bradford BD3 7BH
+- Tribunal venue for Greater Manchester immigration appeals: Manchester Tribunal Hearing Centre, 1st Floor, Piccadilly Exchange, 2 Piccadilly Plaza, Mosley Street, Manchester M1 4AH
+- Figures above verified against GOV.UK, the Immigration Rules and the named review platforms on 2 October 2026. Government fees and thresholds change — confirm the current figure on GOV.UK before relying on it.
 
 ## Housing Disrepair Claims
 
