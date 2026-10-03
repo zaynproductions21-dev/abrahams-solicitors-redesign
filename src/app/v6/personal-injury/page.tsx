@@ -7,12 +7,14 @@ import { TrustBadges } from "@/components/v6/trust-badges";
 import { TeamStrip } from "@/components/v6/team-strip";
 import { PiQualifier } from "@/components/v6/pi-qualifier";
 import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
+import { team } from "@/lib/team";
 import {
   JsonLd,
   faqPageSchema,
   breadcrumbSchema,
   speakableSchema,
   legalServiceWithCatalogSchema,
+  personSchema,
 } from "@/components/v6/jsonld";
 import {
   Phone, ChevronRight, ChevronDown, ShieldCheck, CheckCircle2,
@@ -67,6 +69,8 @@ const STATUTES = [
   { name: "Occupiers' Liability Acts 1957 + 1984", what: "Duty of occupiers (shops, councils, landlords) to keep visitors reasonably safe — slips, trips and falls." },
 ];
 
+const PI_AUTHOR = team.find(t => t.slug === "sannah-khatoon")!;
+
 export default function PersonalInjuryPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
@@ -79,6 +83,14 @@ export default function PersonalInjuryPage() {
         catalog: ISSUE_CATALOG.map(i => ({ name: i.name, description: i.description })),
       })} />
       <JsonLd data={faqPageSchema(FAQS)} />
+      <JsonLd data={personSchema({
+        name: PI_AUTHOR.name,
+        jobTitle: PI_AUTHOR.role,
+        sraNumber: PI_AUTHOR.sraNumber,
+        sraUrl: PI_AUTHOR.sraUrl,
+        bio: PI_AUTHOR.short,
+        slug: PI_AUTHOR.slug,
+      })} />
       <JsonLd data={breadcrumbSchema([
         { name: "Home", url: "https://www.abrahamssolicitors.co.uk/" },
         { name: "Personal Injury" },
@@ -135,20 +147,30 @@ export default function PersonalInjuryPage() {
                 </a>
               </div>
 
-              {/* Author byline — firm-level (we don't have a single named PI specialist). */}
+              {/* Author byline — named solicitor.
+                  Was firm-level ("the Abrahams Solicitors litigation team")
+                  because no named PI specialist was recorded. The client
+                  confirmed personal injury sits with Sannah Khatoon, the
+                  firm's litigation solicitor, and she is verifiable on the SRA
+                  register — so this now matches the named-byline pattern used
+                  on every other money page. Credentials come from
+                  src/lib/team.ts, which is the single source for them. */}
               <div className="mt-7 flex items-center gap-3 pt-5 border-t border-slate-100">
-                <div className="w-10 h-10 rounded-full bg-brand-navy text-white flex items-center justify-center font-bold text-sm">
-                  AS
+                <div className="w-10 h-10 rounded-full bg-brand-navy text-white flex items-center justify-center font-bold text-sm shrink-0">
+                  {PI_AUTHOR.name.split(" ").map(n => n[0]).join("")}
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-sm text-slate-700">
-                    Reviewed by the <Link href="/our-team/" className="font-semibold text-slate-900 hover:text-brand-red">Abrahams Solicitors litigation team</Link>.
+                    Reviewed by <Link href="/our-team/" className="font-semibold text-slate-900 hover:text-brand-red">{PI_AUTHOR.name}</Link> &mdash; {PI_AUTHOR.role.toLowerCase()}.
                   </p>
                   <p className="text-xs text-slate-400">
-                    SRA-regulated firm #809071 ·{" "}
-                    <a href="https://www.sra.org.uk/consumers/register/organisation/?sraNumber=809071" target="_blank" rel="noopener noreferrer" className="hover:text-brand-red underline-offset-2 hover:underline">
-                      Verify on SRA register
+                    SRA #{PI_AUTHOR.sraNumber} &middot; Admitted {PI_AUTHOR.admittedYear} &middot;{" "}
+                    <a href={PI_AUTHOR.sraUrl} target="_blank" rel="noopener noreferrer" className="hover:text-brand-red underline-offset-2 hover:underline">
+                      Verify on the SRA register
                     </a>
+                  </p>
+                  <p className="text-xs text-slate-400 mt-1">
+                    Abrahams Solicitors is an SRA-regulated firm, #809071.
                   </p>
                 </div>
               </div>

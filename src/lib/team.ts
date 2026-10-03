@@ -39,7 +39,7 @@ export const team: Solicitor[] = [
     slug: "sannah-khatoon",
     name: "Sannah Khatoon",
     role: "Litigation & Housing Disrepair Solicitor",
-    specialisms: ["Housing Disrepair", "Landlord & Tenant", "Litigation"],
+    specialisms: ["Housing Disrepair", "Landlord & Tenant", "Personal Injury", "Litigation"],
     short: "Sannah recovers damages and forces repairs in housing disrepair claims — usually on no win, no fee.",
     long: "If your landlord has ignored damp, mould, broken heating, leaks, or unsafe wiring for months, Sannah is the solicitor you want. She handles housing disrepair claims and landlord-and-tenant disputes — typically on a No Win, No Fee basis — and goes after both compensation and the repairs you've been chasing.\n\nShe knows housing law from the tenant's side and isn't fazed by letting agents who think they can stall their way out. Most cases she takes settle with damages awarded and the work finally getting done.",
     sraNumber: "654258",
