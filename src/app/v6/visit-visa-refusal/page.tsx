@@ -262,6 +262,21 @@ export default function VisitVisaRefusalPage() {
 
       <TeamStrip />
 
+      {/* Spoke -> hub. /uk-visit-visa/ is the visit-cluster hub (council, 8 Oct
+          2026); this page is its refusal spoke, and the two did not link to
+          each other in either direction. */}
+      <section className="bg-slate-50/50 border-t border-slate-100">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8 py-6">
+          <p className="text-sm text-slate-500 leading-relaxed text-center">
+            Applying for the first time, rather than challenging a refusal?{" "}
+            <Link href="/uk-visit-visa/" className="text-brand-red font-semibold hover:underline">
+              Our UK visit visa page
+            </Link>{" "}
+            covers the eligibility and evidence requirements, and the mistakes that lead to the refusals described above.
+          </p>
+        </div>
+      </section>
+
       <section className="bg-white border-t border-slate-100">
         <div className="max-w-3xl mx-auto px-6 lg:px-8 py-5 space-y-2">
           <p className="text-xs text-slate-400 text-center leading-relaxed">
