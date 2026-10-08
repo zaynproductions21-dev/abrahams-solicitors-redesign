@@ -58,6 +58,12 @@ export const RELATED_GUIDANCE: Record<string, RelatedLink[]> = {
       anchor: "sponsor licence applications",
       trail: "covers eligibility, the HR systems the Home Office expects to see, and what happens at a compliance visit.",
     },
+    {
+      lead: "If a grandparent was born in the UK, there is a route most people have never heard of that leads to settlement after 5 years.",
+      href: "/uk-ancestry-visa/",
+      anchor: "the UK Ancestry visa",
+      trail: "sets out who qualifies and the work requirement that catches applicants out.",
+    },
   ],
   "uk-visa-applications": [
     {
@@ -85,6 +91,19 @@ export const RELATED_GUIDANCE: Record<string, RelatedLink[]> = {
     },
   ],
 
+  // ── Visit cluster: /uk-visit-visa/ is the hub ──────────────────────────
+  "uk-visit-visa": [
+    {
+      lead: "Refused a visit visa already? A standard visitor refusal works differently from a family-route refusal, and reapplying is often the better route than challenging it.",
+      href: "/visit-visa-refusal/",
+      anchor: "what to do after a visit visa refusal",
+      trail: "walks through the options and the deadlines that apply.",
+    },
+  ],
+
+  // ── Into /uk-ancestry-visa/ ────────────────────────────────────────────
+  // Previously an orphaned spoke: it sits in neither the partner nor the visit
+  // cluster, and nothing linked to it except the nav and the sitemap.
   // ── Into /visa-refusal-appeal/ ─────────────────────────────────────────
   "british-citizenship-solicitors": [
     {

@@ -1,4 +1,4 @@
-// Auto-generated from PublishOS page copy — last sync: 2026-10-08T08:24:07.080Z
+// Auto-generated from PublishOS page copy — last sync: 2026-10-08T08:56:36.961Z
 // Run: npx tsx scripts/sync-copy.ts
 
 export interface ServicePage {
@@ -102,7 +102,7 @@ export const SERVICE_METADATA: Record<string, {
 export const immigrationPages: ServicePage[] = [
   {
     "slug": "uk-spouse-visa-solicitors",
-    "title": "UK SPOUSE VISA REQUIREMENTS",
+    "title": "UK Spouse Visa Requirements",
     "metaTitle": "UK Spouse Visa Requirements, Documents & Timelines",
     "metaDescription": "UK spouse visa requirements under Appendix FM — the financial requirement, how cash savings are calculated, the document checklist, decision times and refusal reasons.",
     "heroTitle": "UK Spouse Visa Requirements: What You Have to Prove, and With What Evidence",
@@ -165,7 +165,7 @@ export const immigrationPages: ServicePage[] = [
   },
   {
     "slug": "british-citizenship-solicitors",
-    "title": "BRITISH CITIZENSHIP SOLICITORS",
+    "title": "British Citizenship Solicitors",
     "metaTitle": "British Citizenship Solicitors | UK Naturalisation Lawyers",
     "metaDescription": "Experienced British citizenship solicitors. Fixed fees, direct solicitor access, and careful preparation of naturalisation and registration applications against the British Nationality Act 1981. Free initial consultation.",
     "heroTitle": "British Citizenship Solicitors — Expert Naturalisation Support",
@@ -232,7 +232,7 @@ export const immigrationPages: ServicePage[] = [
   },
   {
     "slug": "sponsor-licence-applications",
-    "title": "SPONSOR LICENCE APPLICATIONS",
+    "title": "Sponsor Licence Applications",
     "metaTitle": "Sponsor Licence Applications | UK Business Immigration Lawyers",
     "metaDescription": "Expert sponsor licence solicitors for UK businesses. Worker, Student and Temporary Work licences, compliance support and reapplications. Fixed fees agreed in writing. Free consultation.",
     "heroTitle": "Sponsor Licence Applications — Expert Business Immigration Support",
@@ -295,7 +295,7 @@ export const immigrationPages: ServicePage[] = [
   },
   {
     "slug": "indefinite-leave-to-remain-ilr",
-    "title": "INDEFINITE LEAVE TO REMAIN",
+    "title": "Indefinite Leave to Remain (ILR)",
     "metaTitle": "Indefinite Leave to Remain Solicitors | UK ILR Settlement Lawyers",
     "metaDescription": "Experienced ILR solicitors covering all settlement routes. Fixed fees, direct solicitor access, and careful preparation of continuous-residence, Life in the UK and suitability evidence. Free ILR assessment.",
     "heroTitle": "Indefinite Leave to Remain (ILR) Solicitors — Specialist Settlement Support",
@@ -370,7 +370,7 @@ export const immigrationPages: ServicePage[] = [
   },
   {
     "slug": "uk-visa-applications",
-    "title": "UK VISA APPLICATIONS",
+    "title": "UK Visa Applications",
     "metaTitle": "UK Visa Applications | Expert Immigration Solicitors & Lawyers",
     "metaDescription": "Experienced UK visa application solicitors covering all visa types. Fixed fees, direct solicitor access, and careful preparation against the current Immigration Rules. Free consultation.",
     "heroTitle": "Expert Guidance for UK Visa Applications",
@@ -433,7 +433,7 @@ export const immigrationPages: ServicePage[] = [
   },
   {
     "slug": "visa-refusal-appeal",
-    "title": "VISA REFUSAL & APPEALS HUB",
+    "title": "Visa Refusal & Appeals",
     "metaTitle": "Visa Refusal Appeal Solicitors | UK Immigration Appeals Experts",
     "metaDescription": "Visa refused? Experienced immigration appeal solicitors handling administrative reviews, First-tier Tribunal appeals and fresh applications under NIAA 2002 s.82. Fixed fees, free consultation.",
     "heroTitle": "Refused a Visa? Understand Your Options",
@@ -504,7 +504,7 @@ export const immigrationPages: ServicePage[] = [
   },
   {
     "slug": "immigration",
-    "title": "immigration",
+    "title": "Immigration",
     "metaTitle": "Immigration Solicitors | Fixed Fees | Expert UK Visa Advice",
     "metaDescription": "Experienced UK immigration solicitors. Fixed fees agreed in writing, direct solicitor access, and careful preparation against the Immigration Rules. Free consultation.",
     "heroTitle": "Expert UK Immigration Solicitors",
@@ -618,7 +618,7 @@ export const immigrationPages: ServicePage[] = [
   },
   {
     "slug": "uk-visit-visa",
-    "title": "uk visit visa",
+    "title": "UK Visit Visa",
     "metaTitle": "UK Visit Visa Application Help | Experienced Immigration Solicitors",
     "metaDescription": "Expert help with UK Standard Visitor visa applications. Fixed fees, direct solicitor access, and careful preparation of sponsor, accommodation and ties evidence. Free consultation.",
     "heroTitle": "UK Visit Visa Applications Made Simple",
@@ -677,7 +677,7 @@ export const immigrationPages: ServicePage[] = [
   },
   {
     "slug": "uk-ancestry-visa",
-    "title": "uk ancestry visa",
+    "title": "UK Ancestry Visa",
     "metaTitle": "UK Ancestry Visa Applications | Fixed Fee Immigration Law",
     "metaDescription": "UK Ancestry visa applications for Commonwealth citizens. Fixed fees, direct solicitor access, and careful preparation of ancestry and intention-to-work evidence. Free consultation.",
     "heroTitle": "UK Ancestry Visa Applications Made Simple",
@@ -732,7 +732,7 @@ export const immigrationPages: ServicePage[] = [
   },
   {
     "slug": "uk-fiance-visa",
-    "title": "uk fiance visa",
+    "title": "UK Fiancé Visa",
     "metaTitle": "UK Fiancé Visa Solicitors | Fixed-Fee Immigration Lawyers",
     "metaDescription": "Experienced UK fiancé visa solicitors. Fixed fees, direct solicitor access, and careful preparation of relationship and financial evidence under Appendix FM. Free consultation.",
     "heroTitle": "UK Fiancé Visa Solicitors",
@@ -897,7 +897,7 @@ export const immigrationPages: ServicePage[] = [
   },
   {
     "slug": "civil-partnership-visa",
-    "title": "civil partnership visa",
+    "title": "Civil Partnership Visa",
     "metaTitle": "Civil Partnership Visa UK - Fixed Fee Immigration Help",
     "metaDescription": "Civil partnership visa solicitors. Fixed fees, direct solicitor access, and careful preparation of financial and relationship evidence under Appendix FM. Free consultation.",
     "heroTitle": "Civil Partnership Visa Applications Made Simple",
@@ -952,7 +952,7 @@ export const immigrationPages: ServicePage[] = [
   },
   {
     "slug": "uk-visa-extensions-renewals",
-    "title": "uk visa extensions renewals",
+    "title": "UK Visa Extensions & Renewals",
     "metaTitle": "UK Visa Extensions & Renewals | Fixed Fees from £750",
     "metaDescription": "UK visa extension and renewal solicitors — spouse, work, family and student routes. Fixed fees, direct solicitor access, careful preparation so your status never lapses. Free consultation.",
     "heroTitle": "UK Visa Extensions & Renewals Made Simple",
@@ -1015,7 +1015,7 @@ export const immigrationPages: ServicePage[] = [
   },
   {
     "slug": "asylum-applications",
-    "title": "asylum applications",
+    "title": "Asylum Applications",
     "metaTitle": "Asylum Applications UK - Expert Immigration Solicitors",
     "metaDescription": "Experienced asylum solicitors. Careful, sensitive preparation of protection claims under the 1951 Refugee Convention, interview preparation and tribunal representation. Free consultation.",
     "heroTitle": "Asylum Application Support in the UK",
@@ -1070,7 +1070,7 @@ export const immigrationPages: ServicePage[] = [
   },
   {
     "slug": "eu-settlement-scheme",
-    "title": "eu settlement scheme",
+    "title": "EU Settlement Scheme",
     "metaTitle": "EU Settlement Scheme Applications - Immigration Solicitors UK",
     "metaDescription": "EU Settlement Scheme solicitors. Late applications, pre-settled to settled status and reviews under Appendix EU. Fixed fees, direct solicitor access. Free consultation.",
     "heroTitle": "Secure Your UK Status under the EU Settlement Scheme",
@@ -1128,7 +1128,7 @@ export const immigrationPages: ServicePage[] = [
 export const housingPages: ServicePage[] = [
   {
     "slug": "housing-disrepair-claims",
-    "title": "HOUSING DISREPAIR CLAIMS",
+    "title": "Housing Disrepair Claims",
     "metaTitle": "Housing Disrepair Claims Solicitors | No Win No Fee Property Law",
     "metaDescription": "Expert housing disrepair claims solicitors. No win, no fee. Get compensation for poor housing conditions. Free claim assessment available.",
     "heroTitle": "Get Compensation For Housing Disrepair",
@@ -1183,7 +1183,7 @@ export const housingPages: ServicePage[] = [
   },
   {
     "slug": "housing-disrepair",
-    "title": "HOUSING DISREPAIR CLAIMS",
+    "title": "Housing Disrepair Claims",
     "metaTitle": "Housing Disrepair Claims Solicitors | No Win No Fee Property Law",
     "metaDescription": "Expert housing disrepair claims solicitors. No win, no fee. Get compensation for poor housing conditions. Free claim assessment available.",
     "heroTitle": "Get Compensation For Housing Disrepair",
@@ -1242,7 +1242,7 @@ export const housingPage = housingPages[0] || { slug: "housing-disrepair", title
 export const locationPages: ServicePage[] = [
   {
     "slug": "immigration-solicitors-london",
-    "title": "IMMIGRATION SOLICITORS LONDON",
+    "title": "Immigration Solicitors London",
     "metaTitle": "Immigration Solicitors London | Expert Visa & Settlement Lawyers",
     "metaDescription": "London immigration solicitors for visa, settlement, citizenship and appeals. Fixed fees, direct solicitor access, careful preparation against the Immigration Rules. Free consultation.",
     "heroTitle": "Immigration Solicitors in London — Local Expertise, Fixed Fees",
@@ -1305,7 +1305,7 @@ export const locationPages: ServicePage[] = [
   },
   {
     "slug": "immigration-solicitors-bradford",
-    "title": "IMMIGRATION SOLICITORS BRADFORD",
+    "title": "Immigration Solicitors Bradford",
     "metaTitle": "Immigration Solicitors Bradford | Local Visa & Housing Lawyers",
     "metaDescription": "Immigration solicitors in Bradford. Spouse visas, citizenship, ILR and housing disrepair. Fixed fees, direct solicitor access, careful preparation. Free consultation.",
     "heroTitle": "Immigration Solicitors Bradford — Fixed Fees, No Surprises",
@@ -1364,7 +1364,7 @@ export const locationPages: ServicePage[] = [
   },
   {
     "slug": "immigration-solicitors-manchester",
-    "title": "IMMIGRATION SOLICITORS MANCHESTER",
+    "title": "Immigration Solicitors Manchester",
     "metaTitle": "Immigration Solicitors Manchester | Expert Visa & Housing Lawyers",
     "metaDescription": "Expert immigration solicitors serving Manchester. Spouse visas, citizenship, ILR, housing disrepair. Fixed fees, video consultations available. Free consultation.",
     "heroTitle": "Manchester Immigration Solicitors: Expert UK Visa Support",

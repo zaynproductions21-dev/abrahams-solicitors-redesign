@@ -198,7 +198,9 @@ export default function ServicePageInner({ slug }: { slug: string }) {
       <JsonLd data={serviceSchema({ name: stripHeadingPrefix(page.title), description: stripHeadingPrefix(page.heroDescription), slug, priceLabel })} />
       <JsonLd data={breadcrumbSchema([
         { name: "Home", url: "https://www.abrahamssolicitors.co.uk/" },
-        ...(page.parentService && page.parentHref ? [{ name: page.parentService, url: `https://www.abrahamssolicitors.co.uk${page.parentHref}` }] : []),
+        ...(page.parentService && page.parentHref && page.parentHref !== `/${slug}/`
+          ? [{ name: page.parentService, url: `https://www.abrahamssolicitors.co.uk${page.parentHref}` }]
+          : []),
         { name: stripHeadingPrefix(page.title) },
       ])} />
       {page.faqs && page.faqs.length > 0 && (
@@ -220,9 +222,9 @@ export default function ServicePageInner({ slug }: { slug: string }) {
           <nav className="flex items-center gap-1 text-xs sm:text-sm text-slate-400 overflow-hidden">
             <Link href="/" className="hover:text-brand-red transition-colors shrink-0">Home</Link>
             <ChevronRight className="h-3 w-3 shrink-0" />
-            {page.parentService && page.parentHref && (
+            {page.parentService && page.parentHref && page.parentHref !== `/${slug}/` && (
               <>
-                <Link href={`/v6${page.parentHref}`} className="hover:text-brand-red transition-colors truncate max-w-[110px] sm:max-w-none">{page.parentService}</Link>
+                <Link href={page.parentHref} className="hover:text-brand-red transition-colors truncate max-w-[110px] sm:max-w-none">{page.parentService}</Link>
                 <ChevronRight className="h-3 w-3 shrink-0" />
               </>
             )}
