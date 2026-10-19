@@ -195,7 +195,7 @@ const CATEGORIES: FaqCategory[] = [
     items: [
       {
         q: "What happens when I call the emergency line?",
-        a: "Mon–Fri 9am–6pm calls are answered live by a qualified team member who takes instructions immediately. Out of hours (evenings, weekends, bank holidays including Christmas Day), the line takes your number through a short recorded message and triggers the on-call solicitor — we aim to call you back within 30 minutes, or by 9am the next working day at the latest. The on-call rota is structured so the person who calls back is qualified to act on the case, not just to take a message.",
+        a: "The line is answered live, 24 hours a day, by our own team — evenings, weekends and bank holidays, Christmas Day included. There's no recorded message and no queue to join: you speak to someone who can take instructions there and then. The on-call rota is staffed by immigration-qualified solicitors, not generalist duty cover, so the person who picks up can actually act on your case rather than just take a message. Our Bradford office is open Monday to Friday, 9am to 5pm. The phone doesn't close with it.",
       },
       {
         q: "What information should I have ready when I call?",
@@ -211,7 +211,7 @@ const CATEGORIES: FaqCategory[] = [
       },
       {
         q: "Is the 24-hour line answered by a solicitor or a call handler?",
-        a: "In office hours (Mon–Fri 9am–6pm) calls are answered live by a qualified team member who can take instructions. Out of hours, the line routes you to a recorded line that captures your details and triggers the on-call solicitor. We aim to call back within 30 minutes; if all duty solicitors are already on emergency calls, we will call by 9am the next working day at the latest. The on-call rota is staffed by immigration-qualified solicitors, not generalist duty cover.",
+        a: "Our own staff answer, day or night. No call centre, no recorded message, no outsourced answering service. At 3am on a bank holiday, you get a person who can take instructions — the same as you would at 11am on a Tuesday. The on-call rota is staffed by immigration-qualified solicitors, not generalist duty cover. Our Bradford office is open Monday to Friday, 9am to 5pm. The line is answered around the clock.",
       },
       {
         q: "Do I need a solicitor specifically, or is general immigration advice enough?",
@@ -261,11 +261,23 @@ function CategoryAccordion({ cat, openId, setOpenId }: { cat: FaqCategory; openI
                 <span className="text-sm sm:text-base font-bold text-slate-900">{it.q}</span>
                 <ChevronDown className={`h-4 w-4 text-slate-400 shrink-0 transition-transform ${isOpen ? "rotate-180" : ""}`} />
               </button>
-              {isOpen && (
-                <div id={`faq-${id}`} className="px-5 pb-5 text-sm text-slate-600 leading-relaxed speakable-faq-answer">
-                  {it.a}
+              {/* GEO: the answer stays in the DOM at all times, collapsed via a CSS
+                  grid rather than conditionally rendered. It used to be
+                  `{isOpen && …}`, which meant the served HTML carried all 30
+                  questions and ZERO answers — while the FAQPage JSON-LD below
+                  promised all 30 Q&As to the crawlers it was written for. Same
+                  defect #18 fixed on /faqs/. Google also expects FAQPage markup
+                  to match content visible on the page. */}
+              <div
+                id={`faq-${id}`}
+                className={`grid transition-[grid-template-rows] duration-200 ease-out ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+              >
+                <div className="overflow-hidden">
+                  <div className="px-5 pb-5 text-sm text-slate-600 leading-relaxed speakable-faq-answer">
+                    {it.a}
+                  </div>
                 </div>
-              )}
+              </div>
             </div>
           );
         })}

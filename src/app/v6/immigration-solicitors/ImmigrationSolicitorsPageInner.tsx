@@ -260,7 +260,7 @@ function HeroForm({ id = "consultation-form" }: { id?: string }) {
           {submitting ? "Sending..." : "Book Free Consultation"}
         </Button>
         <p className="text-xs text-slate-400 leading-snug">
-          Or call <DynamicPhoneText /> &mdash; Mon&ndash;Fri 9am&ndash;6pm.
+          Or call <DynamicPhoneText /> &mdash; answered live by our own team, any time.
         </p>
       </form>
     </div>
@@ -521,7 +521,7 @@ export default function ImmigrationSolicitorsPageInner() {
           </h2>
           <div className="mt-3 flex items-center gap-1 text-amber-500">
             {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-amber-500" />)}
-            <span className="ml-2 text-xs text-slate-500 font-semibold">Google 5.0 &middot; ReviewSolicitors 5.0 (19) &middot; Skeepers 4.9 (97)</span>
+            <span className="ml-2 text-xs text-slate-500 font-semibold">Google 4.7 (63) &middot; ReviewSolicitors 4.8 (22) &middot; Skeepers 4.9 (97)</span>
           </div>
 
           <div className="mt-6 grid md:grid-cols-3 gap-4">
@@ -633,7 +633,7 @@ export default function ImmigrationSolicitorsPageInner() {
           </h2>
           <ol className="mt-6 space-y-4">
             {[
-              { title: "Free 30-min scoping call", body: "You speak directly to a solicitor &mdash; same day if you call Mon–Fri 9am–6pm, otherwise we call back within one working hour. We identify the right route and flag any complications.", icon: Phone },
+              { title: "Free 30-min scoping call", body: "You speak directly to a solicitor. The line is answered live by our own team at any hour &mdash; no call centre and no recorded message &mdash; and we book your scoping call from there. We identify the right route and flag any complications.", icon: Phone },
               { title: "Fixed-fee quote in writing", body: "Within 24 hours of the call we send a written fixed-fee quote covering the scope of work and a timeline. You decide whether to instruct &mdash; no obligation, no follow-up sales calls.", icon: PoundSterling },
               { title: "We handle the case end-to-end", body: "Once instructed we build the evidence bundle, prepare the case, handle submissions to UKVI or the Tribunal, and respond to any further-information requests. You stay informed throughout; we don't disappear after instruction.", icon: Briefcase },
             ].map((s, i) => (

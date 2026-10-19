@@ -1,25 +1,50 @@
-"use client";
+/**
+ * Blog index.
+ *
+ * Previously a client component that loaded the post list in `useEffect`, so a
+ * crawler fetching this URL received a "Loading posts..." placeholder and not a
+ * single link to a post — the whole blog was undiscoverable. It is now server
+ * rendered, with its own metadata instead of the root layout's.
+ */
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import type { Metadata } from "next";
 import { ArrowRight, Calendar, User } from "lucide-react";
-import { getBlogPosts, formatDate, type BlogPost } from "@/lib/publishos";
+import { getPublishedBlogPosts, formatDate } from "@/lib/publishos";
+import { JsonLd, breadcrumbSchema } from "@/components/v6/jsonld";
 import { SlotImage } from "@/components/slot-image";
 
-export default function V6BlogPage() {
-  const [posts, setPosts] = useState<BlogPost[] | null>(null);
+const BASE_URL = "https://www.abrahamssolicitors.co.uk";
 
-  useEffect(() => {
-    getBlogPosts().then(all => {
-      const published = all
-        .filter(p => p.status === "published")
-        .sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime());
-      setPosts(published);
-    });
-  }, []);
+export const metadata: Metadata = {
+  // The root layout appends "| Abrahams Solicitors" via its title template.
+  title: "Legal Blog & Guides",
+  description:
+    "Plain-English guidance on UK immigration, housing and citizenship law, written and checked by our SRA-regulated solicitors.",
+  alternates: { canonical: `${BASE_URL}/blog/` },
+  openGraph: {
+    title: "Legal Blog & Guides | Abrahams Solicitors",
+    description:
+      "Plain-English guidance on UK immigration, housing and citizenship law, written and checked by our SRA-regulated solicitors.",
+    url: `${BASE_URL}/blog/`,
+    siteName: "Abrahams Solicitors",
+    locale: "en_GB",
+    type: "website",
+  },
+};
+
+export default async function V6BlogPage() {
+  const posts = await getPublishedBlogPosts();
 
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", url: `${BASE_URL}/` },
+          { name: "Blog", url: `${BASE_URL}/blog/` },
+        ])}
+      />
+
       <section className="bg-brand-navy py-12 lg:py-16">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">Insights</p>
@@ -32,9 +57,7 @@ export default function V6BlogPage() {
 
       <section className="py-12 lg:py-16">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          {posts === null ? (
-            <p className="text-slate-400 text-center py-12">Loading posts...</p>
-          ) : posts.length === 0 ? (
+          {posts.length === 0 ? (
             <div className="text-center py-16">
               <p className="text-slate-500 text-lg">No blog posts yet. Check back soon.</p>
             </div>
