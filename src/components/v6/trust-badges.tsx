@@ -21,18 +21,25 @@ const BADGES: Badge[] = [
     icon: "sra",
   },
   {
+    // 4.7 from 63, read off the Bradford Google Business Profile on 19 Oct 2026.
+    // Was published as "5.0 · 5-star rated" on all 29 pages that render this
+    // component — and the href below goes straight to the real listing, so a
+    // reader clicking through saw 4.7 under a claimed 5.0. An overstated rating
+    // that the linked source contradicts is worse than publishing none.
     label: "Google Reviews",
-    sublabel: "Verified client reviews",
-    rating: "5.0",
-    reviews: "5-star rated",
+    sublabel: "Bradford office listing",
+    rating: "4.7",
+    reviews: "63 reviews",
     href: "https://search.google.com/local/reviews?placeid=ChIJ8zDryFHne0gRkR-nvRs1aNE",
     icon: "google",
   },
   {
+    // 4.8 from 22, read off the linked ReviewSolicitors listing on 19 Oct 2026.
+    // Was published as "5.0 · 19 reviews".
     label: "ReviewSolicitors",
     sublabel: "Independent legal reviews",
-    rating: "5.0",
-    reviews: "19 reviews",
+    rating: "4.8",
+    reviews: "22 reviews",
     href: "https://www.reviewsolicitors.co.uk/west-yorkshire/bradford/abrahams-yorkshire-limited",
     icon: "reviewsolicitors",
   },

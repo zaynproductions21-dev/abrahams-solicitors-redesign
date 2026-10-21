@@ -243,7 +243,7 @@ function PrimaryForm({ id = "consultation-form" }: { id?: string }) {
           {submitting ? "Sending..." : "Get a Free 15-Min Scoping Call"}
         </Button>
         <p className="text-xs text-slate-400 leading-snug">
-          Or call <DynamicPhoneText /> — Mon&ndash;Fri 9am&ndash;6pm.
+          Or call <DynamicPhoneText /> — answered live by our own team, any time.
         </p>
       </form>
     </div>

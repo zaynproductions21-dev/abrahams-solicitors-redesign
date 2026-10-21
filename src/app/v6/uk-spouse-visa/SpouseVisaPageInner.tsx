@@ -358,7 +358,7 @@ function Hero() {
               <DynamicCallLink className="font-bold text-brand-red hover:underline">
                 <DynamicPhoneText />
               </DynamicCallLink>
-              {" "}— Mon-Fri 9am-6pm.
+              {" "}— answered live by our own team, any time.
             </p>
           </div>
 

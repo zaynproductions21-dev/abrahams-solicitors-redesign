@@ -65,7 +65,7 @@ const FAQS = [
   {
     question: "Is the 24-hour line answered by a solicitor or a call handler?",
     answer:
-      "Mon–Fri 9am–6pm calls are answered live by a qualified team member who takes instructions immediately. Out of hours (evenings, weekends, bank holidays), the line takes your number through a recorded message and triggers the on-call solicitor — we aim to call you back within 30 minutes, or by 9am the next working day at the latest. The on-call rota is structured so the person who calls back is qualified to act, not just to take a message.",
+      "The line is answered live, 24 hours a day, by our own team — evenings, weekends and bank holidays, Christmas Day included. There's no recorded message and no queue to join: you speak to someone who can take instructions there and then. The on-call rota is staffed by immigration-qualified solicitors, not generalist duty cover, so the person who picks up can actually act on your case rather than just take a message. Our Bradford office is open Monday to Friday, 9am to 5pm. The phone doesn't close with it.",
   },
   {
     question: "Can I get legal aid for an immigration emergency?",
@@ -641,12 +641,14 @@ export default function EmergencyImmigrationSolicitorPageInner() {
               <strong>{AUTHOR.name}</strong> leads our emergency practice. {AUTHOR.long.split("\n")[0]}
             </p>
             <p>
-              <strong>The 24-hour promise.</strong> Mon&ndash;Fri 9am&ndash;6pm calls are answered
-              live by a qualified team member who takes instructions immediately. Out of hours
-              (evenings, weekends, bank holidays including Christmas Day), the on-call rota aims
-              for a duty solicitor to call you back within 30 minutes &mdash; or by 9am the next
-              working day at the latest. The rota is structured so the person who calls back is
-              qualified to act on the case, not just to take a message.
+              <strong>The 24-hour promise.</strong> Our own solicitors and staff answer every
+              call, day or night &mdash; not a call centre, not a recorded message, not an
+              outsourced service. Most firms advertising an out-of-hours number route you to a
+              machine that takes your number. Ours routes you to a person who can act. The
+              on-call rota is staffed by immigration-qualified solicitors, not generalist duty
+              cover, so whoever picks up at 3am can take instructions there and then. Our
+              Bradford office is open Monday to Friday, 9am to 5pm; the line is answered around
+              the clock.
             </p>
             <p>
               <strong>Legal aid</strong> is available for asylum cases and for challenging the

@@ -13,6 +13,12 @@ export type BlogPost = {
    *  BlogPosting schema so freshness is machine-legible to answer engines. */
   updated_at?: string;
   cover_image?: string;
+  /** Named solicitor who checked the law in this post, where that is someone
+   *  other than the author. On a YMYL page the reviewer is the signal quality
+   *  raters and answer engines look hardest at, so it is surfaced on the page
+   *  and in schema — never implied. */
+  reviewed_by?: string;
+  reviewed_at?: string;
   status: "draft" | "published";
 };
 
@@ -68,6 +74,25 @@ async function fetchCollection<T>(name: string, revalidateSeconds?: number): Pro
 }
 
 export const getBlogPosts = () => fetchCollection<BlogPost>("abrahams_blog");
+
+/**
+ * Server-side blog read for the blog index and post pages.
+ *
+ * Both are server components, so the post list and the post body have to be in
+ * the HTML a crawler receives — the previous client-side fetch left both
+ * invisible to search and answer engines. ISR at five minutes lets a CMS edit
+ * appear quickly without calling the API on every request.
+ */
+export const getBlogPostsCached = () => fetchCollection<BlogPost>("abrahams_blog", 300);
+
+/** Published posts, newest first — the ordering both blog views rely on. */
+export async function getPublishedBlogPosts(): Promise<BlogPost[]> {
+  const all = await getBlogPostsCached();
+  return all
+    .filter(p => p.status === "published")
+    .sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime());
+}
+
 export const getPressReleases = () => fetchCollection<PressRelease>("abrahams_press");
 export const getNewsletters = () => fetchCollection<NewsletterIssue>("abrahams_newsletters");
 export const getFaqs = (revalidateSeconds?: number) =>
