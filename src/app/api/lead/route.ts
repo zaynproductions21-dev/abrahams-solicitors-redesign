@@ -123,6 +123,13 @@ export async function POST(req: NextRequest) {
   const gbraid = typeof body.gbraid === "string" ? body.gbraid : "";
   const wbraid = typeof body.wbraid === "string" ? body.wbraid : "";
   const msclkid = typeof body.msclkid === "string" ? body.msclkid : "";
+  // Meta click ID + assembled fbc. Sent to SalesHub so the Meta Conversions
+  // API for CRM sync (PublishOS /api/meta-capi/abrahams-crm/sync) can match a
+  // CRM stage change back to the ad click. Leads that came from a Meta LEAD
+  // FORM carry a `lead_id` instead — SalesHub stores that at intake, it never
+  // reaches this route.
+  const fbclid = typeof body.fbclid === "string" ? body.fbclid : "";
+  const fbc = typeof body.fbc === "string" ? body.fbc : "";
   const trafficSource = typeof body.traffic_source === "string" ? body.traffic_source : "";
   const utmSource = typeof body.utm_source === "string" ? body.utm_source : "";
   const utmMedium = typeof body.utm_medium === "string" ? body.utm_medium : "";
@@ -157,6 +164,10 @@ export async function POST(req: NextRequest) {
     ...(gbraid ? { gbraid } : {}),
     ...(wbraid ? { wbraid } : {}),
     ...(msclkid ? { msclkid } : {}),
+    // Dual-written under the SalesHub canonical column name too, matching the
+    // gclid → source_click_id pattern above.
+    ...(fbclid ? { fbclid, source_fbclid: fbclid } : {}),
+    ...(fbc ? { fbc } : {}),
     ...(trafficSource ? { traffic_source: trafficSource, source_traffic_source: trafficSource } : {}),
     ...(utmSource ? { utm_source: utmSource } : {}),
     ...(utmMedium ? { utm_medium: utmMedium } : {}),

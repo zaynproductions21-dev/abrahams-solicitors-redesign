@@ -5,6 +5,7 @@
 //   gbraid  — Google Ads (iOS, no third-party cookies)
 //   wbraid  — Google Ads (Android, no third-party cookies)
 //   msclkid — Microsoft/Bing Ads
+//   fbclid  — Meta (Facebook/Instagram) Ads
 //
 // We persist each one for 90 days in a cookie + a localStorage mirror,
 // then attach the relevant value to every lead form submission so the
@@ -15,6 +16,16 @@ export const GCLID_COOKIE = "abrahams_gclid";
 export const GBRAID_COOKIE = "abrahams_gbraid";
 export const WBRAID_COOKIE = "abrahams_wbraid";
 export const MSCLKID_COOKIE = "abrahams_msclkid";
+export const FBCLID_COOKIE = "abrahams_fbclid";
+/**
+ * The assembled Meta click identifier: `fb.1.<clickTimeMs>.<fbclid>`.
+ * Stored separately from the raw fbclid because the timestamp must be the
+ * moment of the CLICK — reconstructing it at form-submit time (or worse, at
+ * CRM-sync time, days later) degrades match quality. Meta's own pixel writes
+ * the same value to a first-party `_fbc` cookie; we read that in preference
+ * when it exists (see getStoredMetaIds).
+ */
+export const FBC_COOKIE = "abrahams_fbc";
 export const TRAFFIC_SOURCE_COOKIE = "abrahams_traffic_source";
 export const GCLID_LS_KEY = "abrahams.gclid";
 
@@ -30,13 +41,14 @@ export const UTM_TERM_COOKIE = "abrahams_utm_term";
 
 const TTL_DAYS = 90;
 
-type Identifier = "gclid" | "gbraid" | "wbraid" | "msclkid";
+type Identifier = "gclid" | "gbraid" | "wbraid" | "msclkid" | "fbclid";
 
 const COOKIE_MAP: Record<Identifier, string> = {
   gclid: GCLID_COOKIE,
   gbraid: GBRAID_COOKIE,
   wbraid: WBRAID_COOKIE,
   msclkid: MSCLKID_COOKIE,
+  fbclid: FBCLID_COOKIE,
 };
 
 function setCookie(name: string, value: string, days: number) {
@@ -88,6 +100,13 @@ export function captureGclidFromUrl(): void {
         capturedSource = "google";
       } else if (key === "msclkid") {
         capturedSource = "bing";
+      } else if (key === "fbclid") {
+        // Build fbc at click time — see FBC_COOKIE.
+        setCookie(FBC_COOKIE, `fb.1.${Date.now()}.${value}`, TTL_DAYS);
+        // Google/Bing win if both are somehow present: a paid-search click ID
+        // is the stronger attribution signal and drives the call-tracking
+        // number swap, which Meta traffic has no equivalent of.
+        if (!capturedSource) capturedSource = "meta";
       }
     }
   });
@@ -145,20 +164,43 @@ export function getStoredGclid(): {
   return { gclid, gbraid, wbraid, msclkid };
 }
 
+/**
+ * Meta click identifiers for this visitor.
+ *
+ * `fbc` prefers Meta's own first-party `_fbc` cookie (written by the Pixel when
+ * it's loaded via GTM) because that one is authoritative; ours is the fallback
+ * for visitors who landed before the Pixel fired or who block it.
+ *
+ * These travel with the lead to SalesHub so the Conversions API for CRM sync
+ * can identify the person when there's no Meta lead_id (i.e. every website
+ * form fill, as opposed to a Meta lead-ad submission).
+ */
+export function getStoredMetaIds(): { fbclid: string | null; fbc: string | null } {
+  const fbclid = readCookie(FBCLID_COOKIE);
+  const fbc = readCookie("_fbc") || readCookie(FBC_COOKIE);
+  return { fbclid, fbc };
+}
+
 /** Single best Google identifier — gclid wins, then gbraid, then wbraid. */
 export function getBestClickId(): string | null {
   const { gclid, gbraid, wbraid } = getStoredGclid();
   return gclid || gbraid || wbraid || null;
 }
 
-export type TrafficSource = "google" | "bing" | "direct";
+/**
+ * "meta" deliberately has no dedicated call-tracking number — pickVariant in
+ * dynamic-phone.tsx falls through to the default number for it. It exists so
+ * lead rows and dataLayer events can distinguish paid-social from direct.
+ */
+export type TrafficSource = "google" | "bing" | "meta" | "direct";
 
 /** Reads the traffic-source cookie; falls back to inspecting click-id cookies. */
 export function getTrafficSource(): TrafficSource {
   const stamped = readCookie(TRAFFIC_SOURCE_COOKIE);
-  if (stamped === "google" || stamped === "bing") return stamped;
+  if (stamped === "google" || stamped === "bing" || stamped === "meta") return stamped;
   const { gclid, gbraid, wbraid, msclkid } = getStoredGclid();
   if (msclkid) return "bing";
   if (gclid || gbraid || wbraid) return "google";
+  if (readCookie(FBCLID_COOKIE)) return "meta";
   return "direct";
 }
