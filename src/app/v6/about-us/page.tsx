@@ -6,7 +6,102 @@ import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone
 import { OfficeMap } from "@/components/v6/office-map";
 import { SlotImage } from "@/components/slot-image";
 import { team } from "@/lib/team";
+import { FaqDetails, type FaqEntry } from "@/components/v6/faq-details";
 import type { Metadata } from "next";
+
+// Answer-first Q&A. Paired with /reviews/ — the GEO audit flagged both pages as
+// carrying no FAQPage schema and almost no question-shaped headings.
+//
+// Anchored only to the three solicitors who appear on the SRA register for firm
+// 809071, each with their own registration number, because every claim here
+// becomes machine-readable and must survive being checked against that
+// register. Nothing in these answers asserts anyone else's status.
+const ABOUT_FAQS: FaqEntry[] = [
+  {
+    question: "Who will actually work on my case?",
+    plain:
+      "One of three solicitors, each on the SRA register in their own name: Imran Shah (SRA 509359), Humaira Anjum (SRA 663190), and Sannah Khatoon (SRA 654258). The firm is deliberately small. You deal with the person handling your file — not a junior you've been passed down to, and not a call handler.",
+    answer: (
+      <>
+        One of three solicitors, each on the SRA register in their own name:{" "}
+        {team.map((s, i) => (
+          <span key={s.slug}>
+            {i > 0 ? (i === team.length - 1 ? ", and " : ", ") : ""}
+            <a href={s.sraUrl} rel="noopener" target="_blank" className="font-semibold text-slate-700 underline">
+              {s.name}
+            </a>{" "}
+            (SRA {s.sraNumber})
+          </span>
+        ))}
+        . The firm is deliberately small. You deal with the person handling your file &mdash; not a junior
+        you&rsquo;ve been passed down to, and not a call handler.
+      </>
+    ),
+  },
+  {
+    question: "Is Abrahams Solicitors regulated, and how can I check?",
+    plain:
+      "Yes. Abrahams Solicitors is authorised and regulated by the Solicitors Regulation Authority, firm number 809071. You don't have to take our word for it. The firm and each solicitor appear on the SRA's public register, and we link to those entries from our team page so you can check for yourself.",
+    answer: (
+      <>
+        Yes. Abrahams Solicitors is authorised and regulated by the Solicitors Regulation Authority, firm number{" "}
+        <strong>809071</strong>. You don&rsquo;t have to take our word for it. The firm and each solicitor appear on
+        the{" "}
+        <a
+          href="https://www.sra.org.uk/consumers/register/organisation/?sraNumber=809071"
+          rel="noopener"
+          target="_blank"
+          className="font-semibold text-slate-700 underline"
+        >
+          SRA&rsquo;s public register
+        </a>
+        , and we link to those entries from our{" "}
+        <Link href="/our-team/" className="font-semibold text-slate-700 underline">
+          team page
+        </Link>{" "}
+        so you can check for yourself.
+      </>
+    ),
+  },
+  {
+    question: "Which offices do you have, and can I come in?",
+    plain:
+      "Two. Bradford, at Unit 20, Listerhills Science Park, Campus Road, BD7 1HR — our registered office. And London, at Unit 2c, 9-15 Elthorne Road, Archway, N19 4AJ, by appointment. Most matters are handled by phone, video and email, so you don't need to be near either office to instruct us.",
+    answer: (
+      <>
+        Two. <strong>Bradford</strong>, at Unit 20, Listerhills Science Park, Campus Road, BD7 1HR &mdash; our
+        registered office. And <strong>London</strong>, at Unit 2c, 9&ndash;15 Elthorne Road, Archway, N19 4AJ, by
+        appointment. Most matters are handled by phone, video and email, so you don&rsquo;t need to be near either
+        office to instruct us.
+      </>
+    ),
+  },
+  {
+    question: "When can I actually reach you?",
+    plain:
+      "The Bradford office is open Monday to Friday, 9am to 5pm. But the phone is answered live 24 hours a day by our own staff — no call centre, no recorded message, no outsourced answering service. Out of hours, the on-call rota is covered by immigration-qualified solicitors who can take instructions on the spot.",
+    answer: (
+      <>
+        The Bradford office is open Monday to Friday, 9am to 5pm. But the phone is answered live 24 hours a day by our
+        own staff &mdash; no call centre, no recorded message, no outsourced answering service. Out of hours, the
+        on-call rota is covered by immigration-qualified solicitors who can take instructions on the spot.
+      </>
+    ),
+  },
+  {
+    question: "How do your fees work, and do you take legal aid?",
+    plain:
+      "Most work is on a fixed fee from £750, quoted in writing before you commit to anything, and the first 30 minutes is free. Legal aid is available for asylum cases and for challenging the lawfulness of detention — both means and merits tested — though it's not generally available for the underlying immigration application. We assess eligibility on your first call.",
+    answer: (
+      <>
+        Most work is on a fixed fee from <strong>&pound;750</strong>, quoted in writing before you commit to anything,
+        and the first 30 minutes is free. Legal aid is available for asylum cases and for challenging the lawfulness of
+        detention &mdash; both means and merits tested &mdash; though it&rsquo;s not generally available for the
+        underlying immigration application. We assess eligibility on your first call.
+      </>
+    ),
+  },
+];
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://www.abrahamssolicitors.co.uk/about-us/" },
@@ -218,6 +313,12 @@ export default function V1AboutPage() {
           </div>
         </div>
       </section>
+
+      <FaqDetails
+        faqs={ABOUT_FAQS}
+        heading="Questions people ask before instructing us"
+        intro="Who does the work, who regulates us, when you can reach us, and what it costs."
+      />
 
       {/* CTA */}
       <section className="bg-brand-navy py-12 lg:py-16">

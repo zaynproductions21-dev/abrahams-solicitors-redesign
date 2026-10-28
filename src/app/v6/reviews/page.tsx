@@ -5,6 +5,7 @@ import { TrustBadges } from "@/components/v6/trust-badges";
 import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
 import { JsonLd, breadcrumbSchema } from "@/components/v6/jsonld";
 import { SkeepersListWidget } from "@/components/v6/skeepers-list-widget";
+import { FaqDetails, type FaqEntry } from "@/components/v6/faq-details";
 import type { Metadata } from "next";
 
 const PAGE_URL = "https://www.abrahamssolicitors.co.uk/reviews/";
@@ -15,6 +16,79 @@ const SKEEPERS_PUBLIC_URL = "https://www.verified-reviews.co.uk/reviews/abrahams
 // renders live data once loaded; this block is the static fallback so the
 // page reads correctly with JS disabled and so the Schema.org rich snippet
 // stays accurate).
+// Answer-first Q&A. The GEO audit's top-priority action was that this page and
+// /about-us/ both carried no FAQPage schema and almost no question-shaped
+// headings, on a site whose technical GEO score is otherwise maxed out.
+//
+// These answer the questions people actually ask before instructing a
+// solicitor, not the ones that flatter the page. The platform-variance answer
+// is deliberate: the 4.7 on Google is already public, so explaining why the
+// three numbers differ is more credible than displaying only the best one.
+// `plain` is what goes into the schema; keep it saying what `answer` says.
+const REVIEW_FAQS: FaqEntry[] = [
+  {
+    question: "Are these reviews genuine, and can Abrahams delete a bad one?",
+    plain:
+      "Reviews on this page are collected and published by Verified Reviews, an independent platform. We can't edit or delete a review once it's published — we can only reply to it. That goes for the critical ones just as much as the complimentary ones. The full listing, including our replies, sits on the Verified Reviews site, and that's where the average and the count on this page come from.",
+    answer: (
+      <>
+        Reviews on this page are collected and published by{" "}
+        <a href={SKEEPERS_PUBLIC_URL} rel="noopener nofollow" target="_blank" className="font-semibold text-slate-700 underline">
+          Verified Reviews
+        </a>
+        , an independent platform. We can&rsquo;t edit or delete a review once it&rsquo;s published &mdash; we can only
+        reply to it. That goes for the critical ones just as much as the complimentary ones. The full listing,
+        including our replies, sits on the Verified Reviews site, and that&rsquo;s where the average and the count on
+        this page come from.
+      </>
+    ),
+  },
+  {
+    question: "Why is your rating different on Verified Reviews, Google and ReviewSolicitors?",
+    plain:
+      "Because the three platforms draw on different groups of clients over different periods. Verified Reviews stands at 4.9 from 97, Google at 4.7 from 63, and ReviewSolicitors at 4.8 from 22. Verified Reviews invites clients directly once a matter ends, so it reflects people who actually instructed us. Google is open to anyone with a Google account. None of the three figures is wrong — they're measuring different samples, and a smaller sample moves further on a single review.",
+    answer: (
+      <>
+        Because the three platforms draw on different groups of clients over different periods. Verified Reviews
+        stands at <strong>4.9 from 97</strong>, Google at <strong>4.7 from 63</strong>, and ReviewSolicitors at{" "}
+        <strong>4.8 from 22</strong>. Verified Reviews invites clients directly once a matter ends, so it reflects
+        people who actually instructed us. Google is open to anyone with a Google account. None of the three figures
+        is wrong &mdash; they&rsquo;re measuring different samples, and a smaller sample moves further on a single
+        review.
+      </>
+    ),
+  },
+  {
+    question: "What if I'm not happy with the service I receive?",
+    plain:
+      "Tell us first. Complaining costs you nothing, and we don't charge for handling it. If we haven't resolved things within eight weeks, you can take the complaint to the Legal Ombudsman — it's independent of us and also free. Our full procedure, including the time limits and the Ombudsman's contact details, is on our complaints page.",
+    answer: (
+      <>
+        Tell us first. Complaining costs you nothing, and we don&rsquo;t charge for handling it. If we haven&rsquo;t
+        resolved things within eight weeks, you can take the complaint to the Legal Ombudsman &mdash; it&rsquo;s
+        independent of us and also free. Our full procedure, including the time limits and the Ombudsman&rsquo;s
+        contact details, is on our{" "}
+        <Link href="/complaints/" className="font-semibold text-slate-700 underline">
+          complaints page
+        </Link>
+        .
+      </>
+    ),
+  },
+  {
+    question: "Can I speak to a solicitor before deciding to instruct?",
+    plain:
+      "Yes. The first 30 minutes is free, and you speak to a solicitor rather than a call handler. The phone is answered live 24 hours a day by our own staff, so you're not waiting for office hours to find out whether we can help.",
+    answer: (
+      <>
+        Yes. The first 30 minutes is free, and you speak to a solicitor rather than a call handler. The phone is
+        answered live 24 hours a day by our own staff, so you&rsquo;re not waiting for office hours to find out
+        whether we can help.
+      </>
+    ),
+  },
+];
+
 const REVIEW_COUNT = 97;
 const REVIEW_AVERAGE = 4.9;
 
@@ -209,6 +283,12 @@ export default function ReviewsPage() {
           <SkeepersListWidget fallbackUrl={SKEEPERS_PUBLIC_URL} />
         </div>
       </section>
+
+      <FaqDetails
+        faqs={REVIEW_FAQS}
+        heading="Questions about these reviews"
+        intro="How the reviews are collected, why the numbers differ between platforms, and what to do if something goes wrong."
+      />
 
       {/* ─── CTA ─── */}
       <section className="py-12 lg:py-16 bg-brand-navy">
