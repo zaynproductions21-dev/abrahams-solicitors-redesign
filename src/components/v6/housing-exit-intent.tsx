@@ -76,6 +76,16 @@ export function ExitIntent({
                 e.preventDefault();
                 if (!phone) return;
                 try {
+                  // No cf-turnstile-response — the exit-intent modal
+                  // does not render a Turnstile widget (desktop-only,
+                  // armed on mouse-leave after 8s, one-shot per
+                  // session). /api/lead/route.ts falls through to
+                  // normal processing when the token field is absent;
+                  // sending a placeholder like "exit-intent-bypass"
+                  // causes Cloudflare siteverify to return invalid
+                  // and the route silently drops the lead as spam
+                  // (every popup submission since 2026-06-02 was lost
+                  // to this before 2026-10-31).
                   await fetch("/api/lead", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -84,7 +94,6 @@ export function ExitIntent({
                       phone,
                       service: "Housing Disrepair (SMS check)",
                       message: "Exit-intent SMS opt-in for free case check",
-                      "cf-turnstile-response": "exit-intent-bypass",
                     }),
                   });
                   // Fire the dedicated PostHog conversion event so this
