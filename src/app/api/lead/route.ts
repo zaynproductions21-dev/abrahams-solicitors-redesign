@@ -296,15 +296,37 @@ export async function POST(req: NextRequest) {
   const ABRAHAMS_CLIENT_ID = "cl_mnxclw6q";
   let smsPromise: Promise<boolean> = Promise.resolve(false);
   if (sourceStr === "housing-disrepair-exit-intent" && saleshubPayload.phone) {
+    // Normalise phone to E.164. Twilio's REST API accepts both
+    // national ("07…") and international ("+44…") formats at the
+    // request level — it returns a SID either way — but UK carriers
+    // routinely drop messages addressed to a non-E.164 recipient.
+    // That matches the symptom seen on 2026-10-31 where the
+    // internal lead email arrived but the SMS never did, even
+    // though publishos' /api/pipeline/sms returned {ok: true, sid}.
+    // The popup form's placeholder is "07xxx xxxxxx" so most
+    // visitors supply the national format.
+    const toE164UK = (raw: string): string => {
+      const trimmed = raw.trim();
+      if (/^\+\d{10,15}$/.test(trimmed.replace(/\s/g, ""))) {
+        return trimmed.replace(/\s/g, "");
+      }
+      const d = trimmed.replace(/\D/g, "");
+      if (!d) return raw;
+      if (d.startsWith("44") && d.length >= 11) return "+" + d;
+      if (d.startsWith("07") && d.length === 11) return "+44" + d.slice(1);
+      if (d.startsWith("0") && d.length >= 10) return "+44" + d.slice(1);
+      if (d.length === 10 && d.startsWith("7")) return "+44" + d;
+      return raw;
+    };
     smsPromise = fetch("https://publishos-eosin.vercel.app/api/pipeline/sms", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         leadData: {
           clientId: ABRAHAMS_CLIENT_ID,
-          phone: saleshubPayload.phone,
+          phone: toE164UK(saleshubPayload.phone),
           twilioPhoneNumber: SMS_FROM_NUMBER,
-          body: "Abrahams Solicitors: thanks for your housing disrepair enquiry. A specialist will call you shortly for a free case check. Reply STOP to opt out. SRA #809071",
+          body: "Abrahams Solicitors: thanks for your enquiry, we'll be in touch shortly. Free 60-sec case check: abrahamssolicitors.co.uk/housing-disrepair Reply STOP",
         },
       }),
     })
