@@ -11,7 +11,7 @@
  * it. Shipping its JS in the initial bundle for mobile = wasted LCP.
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { CheckCircle2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { captureHousingDisrepairLead } from "@/lib/housing-ab-tracking";
@@ -21,6 +21,15 @@ export function ExitIntent({
 }: { abHeroVariant?: string } = {}) {
   const [open, setOpen] = useState(false);
   const [shown, setShown] = useState(false);
+  // Spam-guard fields (matches useSpamGuard() used by the hero form).
+  // Without these /api/lead's isSpamSubmission() check short-circuits
+  // every popup submission with a silent {success:true} — the lead
+  // never reaches SalesHub, email or Twilio. This was the second
+  // silent-drop bug (first was the Turnstile bypass in PR #40):
+  // every exit-intent submit from 2026-06-02 → 2026-10-31 vanished
+  // because the popup wasn't posting _hp (honeypot) or _t (page-load
+  // timestamp, must be ≥2s before submit).
+  const loadedAt = useRef(Date.now());
   const [phone, setPhone] = useState("");
   const [done, setDone] = useState(false);
 
@@ -94,6 +103,9 @@ export function ExitIntent({
                       phone,
                       service: "Housing Disrepair (SMS check)",
                       message: "Exit-intent SMS opt-in for free case check",
+                      // Spam-guard fields — see note above the ref.
+                      _hp: "",
+                      _t: loadedAt.current,
                     }),
                   });
                   // Fire the dedicated PostHog conversion event so this
