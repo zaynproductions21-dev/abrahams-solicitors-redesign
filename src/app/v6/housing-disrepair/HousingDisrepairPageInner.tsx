@@ -684,7 +684,7 @@ export default function HousingDisrepairPageInner({
         </div>
       </section>
 
-      <ExitIntent />
+      <ExitIntent abHeroVariant={initialVariant} />
     </>
   );
 }

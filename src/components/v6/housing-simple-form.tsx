@@ -25,9 +25,9 @@ import { useSpamGuard } from "@/lib/spam-client";
 import { HoneypotInput } from "@/components/v6/honeypot-input";
 import { GclidField, MsclkidField, UtmFields } from "@/components/v6/gclid-field";
 import { submitEnquiry } from "@/lib/publishos";
+import { captureHousingDisrepairLead } from "@/lib/housing-ab-tracking";
 
 const FORM_SOURCE = "housing-disrepair-simple-form";
-const CONSENT_KEY = "abrahams-cookie-consent-v1";
 
 // Landlord-type filter. Per Imran (2026-06-02), Abrahams only takes
 // Council and Housing Association housing-disrepair cases — private
@@ -35,41 +35,6 @@ const CONSENT_KEY = "abrahams-cookie-consent-v1";
 // this at the form level (and showing a redirect for private leads)
 // gates 75% of currently-misfit traffic before it ever reaches SalesHub.
 type Landlord = "" | "council" | "ha" | "private";
-
-// Fire the dedicated conversion event PostHog's housing-disrepair hero
-// A/B test (flag housing-disrepair-hero-fill, experiment ID 108540)
-// reads from. Only fires if the visitor accepted cookies — otherwise
-// the whole block is a no-op. Variant is picked server-side by proxy.ts
-// and passed down from HousingDisrepairPageInner so it survives form
-// re-renders.
-async function captureHousingDisrepairLead(opts: {
-  variant?: string;
-  landlord: "council" | "ha";
-  postcode: string;
-}): Promise<void> {
-  if (typeof window === "undefined") return;
-  let consented = false;
-  try {
-    const raw = window.localStorage.getItem(CONSENT_KEY);
-    if (raw) consented = JSON.parse(raw)?.decision === "accepted";
-  } catch {
-    return;
-  }
-  if (!consented) return;
-  try {
-    const { default: posthog } = await import("posthog-js");
-    if (!posthog.__loaded) return;
-    posthog.capture("housing_disrepair_lead", {
-      variant: opts.variant ?? "unknown",
-      landlord: opts.landlord,
-      postcode_prefix: opts.postcode.trim().split(" ")[0]?.toUpperCase() || null,
-    });
-  } catch {
-    // posthog-js wasn't loaded yet (consent granted but init still
-    // pending) — the lead still went to SalesHub, we just don't tag it.
-    // Acceptable given the rarity of the race.
-  }
-}
 
 export function HousingSimpleForm({
   abHeroVariant,
@@ -229,6 +194,7 @@ export function HousingSimpleForm({
               variant: abHeroVariant,
               landlord: landlord as "council" | "ha",
               postcode,
+              source: "simple-form",
             });
             setSubmitted(true);
           } catch {
