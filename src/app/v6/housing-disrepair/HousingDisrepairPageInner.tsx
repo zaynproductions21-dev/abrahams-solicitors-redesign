@@ -11,6 +11,7 @@ import { HousingSimpleForm } from "@/components/v6/housing-simple-form";
 import {
   ProblemPhotoGrid,
   StatutoryRightsBlock,
+  HousingWinsGrid,
 } from "@/components/v6/housing-hero-variants";
 import type { HdrHeroVariant } from "./variants";
 import {
@@ -282,7 +283,15 @@ export default function HousingDisrepairPageInner({
                   the form — short enough not to push the form below the
                   fold on anything taller than iPhone SE.
                   Variant chosen by proxy.ts cookie; see A/B contract
-                  above the component for the full picture. */}
+                  above the component for the full picture.
+                  The "control" variant used to render nothing but the
+                  client rightly didn't want visitors seeing a blank
+                  gap mid-test — it now renders the HousingWinsGrid
+                  (real case outcomes) so every arm fills the space.
+                  The experiment metric is unaffected: it still
+                  measures three distinct treatments against each
+                  other, just no longer against literal emptiness. */}
+              {initialVariant === "control" ? <HousingWinsGrid /> : null}
               {initialVariant === "photo-grid" ? <ProblemPhotoGrid /> : null}
               {initialVariant === "rights-block" ? <StatutoryRightsBlock /> : null}
             </div>

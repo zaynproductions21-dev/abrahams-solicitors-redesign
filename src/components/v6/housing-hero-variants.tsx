@@ -1,17 +1,24 @@
 /**
  * Housing-disrepair hero A/B test — variant fill blocks.
  *
- * Both components render INSIDE Block A of the hero (below the H1 and
- * sub-head), filling the whitespace that opens up on desktop when the
- * form in Block B stretches the grid row taller than the headline
- * stack. The empty space was flagged by the client on 2026-10-31; this
- * A/B tests whether a problem-recognition grid (visceral) or a rights-
- * block (educational) converts better than the empty control.
+ * Three components render INSIDE Block A of the hero (below the H1
+ * and sub-head), filling the whitespace that opens up on desktop
+ * when the form in Block B stretches the grid row taller than the
+ * headline stack. The empty space was flagged by the client on
+ * 2026-10-31; the A/B tests three ways of filling it against each
+ * other. All three are server-renderable (pure JSX, no hooks) so
+ * the hero LCP stays intact.
  *
- * Both are server-renderable (no "use client" needed) — they are pure
- * JSX with no interactivity. That keeps the hero LCP intact.
+ * The variant key `control` historically rendered nothing (true
+ * empty-space baseline). It now renders HousingWinsGrid — four real
+ * client-outcome tiles sourced from Abrahams' Facebook — because the
+ * client (correctly) didn't want visitors seeing a blank space while
+ * the test ran. The experiment metric still works: we're measuring
+ * three filled treatments against each other rather than three
+ * against nothing.
  */
 
+import Image from "next/image";
 import {
   Droplet,
   Flame,
@@ -61,6 +68,67 @@ export function ProblemPhotoGrid() {
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+/**
+ * Variant: HousingWinsGrid.
+ *
+ * The "control" arm's new content — a 2×2 grid starting with the
+ * problem shot (one real damp/mould interior from a client case) and
+ * then three ascending outcomes (£4,200 → £12,000 → £28,000 case
+ * wins). All four images are branded Abrahams content pulled from
+ * the firm's Facebook library — pre-approved, on-brand, and show
+ * real client outcomes rather than generic stock.
+ *
+ * Grid is 2 cols on all breakpoints — the tiles are small enough
+ * that stacking into one column on mobile hurts scannability more
+ * than it helps.
+ */
+export function HousingWinsGrid() {
+  const tiles = [
+    {
+      src: "/img/housing-wins/damp-mould-interior.jpg",
+      alt: "Severe damp and mould across the walls of a client's rental home before Abrahams Solicitors took the case.",
+    },
+    {
+      src: "/img/housing-wins/case-win-4200.jpg",
+      alt: "£4,200 won for housing repairs — 5-star client review.",
+    },
+    {
+      src: "/img/housing-wins/case-win-12000.jpg",
+      alt: "£12,000 awarded for housing disrepair — our client's home, restored.",
+    },
+    {
+      src: "/img/housing-wins/case-win-28000.jpg",
+      alt: "Case won: £28,000 for housing repairs — client's home made safe.",
+    },
+  ];
+  return (
+    <div className="mt-7 bg-slate-50/70 border border-slate-200 rounded-2xl p-5 sm:p-6">
+      <p className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">
+        Recent client outcomes
+      </p>
+      <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
+        {tiles.map((t) => (
+          <div
+            key={t.src}
+            className="relative overflow-hidden rounded-xl border border-slate-100 bg-slate-100 aspect-square"
+          >
+            <Image
+              src={t.src}
+              alt={t.alt}
+              fill
+              sizes="(max-width: 640px) 45vw, 220px"
+              className="object-cover"
+            />
+          </div>
+        ))}
+      </div>
+      <p className="mt-3 text-[10px] text-slate-400 leading-snug">
+        Past results do not guarantee future outcomes. Figures are case-specific.
+      </p>
     </div>
   );
 }
