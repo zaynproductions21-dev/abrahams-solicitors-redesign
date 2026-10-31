@@ -45,9 +45,26 @@ export function ExitIntent({
       "ontouchstart" in window ||
       navigator.maxTouchPoints > 0 ||
       window.matchMedia("(pointer: coarse)").matches;
-    if (isTouch) return;
-    if (window.innerWidth < 1024) return;
+    const isMobile = isTouch || window.innerWidth < 1024;
 
+    if (isMobile) {
+      // Mobile has no mouseleave gesture — the cursor doesn't exist
+      // and tab-switching doesn't give us a reliable "about to leave"
+      // signal. Fire the same popup after 60 seconds of time on page
+      // instead: long enough that only engaged visitors see it, short
+      // enough to catch them before they bounce. One-shot per session
+      // via the `shown` guard, same as the desktop path.
+      const t = setTimeout(() => {
+        if (!shown) {
+          setOpen(true);
+          setShown(true);
+        }
+      }, 60000);
+      return () => clearTimeout(t);
+    }
+
+    // Desktop: mouseleave past the top edge, armed after 8 seconds
+    // so an impatient hover-away in the first second doesn't trigger.
     const armed = { current: false };
     const armTimer = setTimeout(() => { armed.current = true; }, 8000);
 
