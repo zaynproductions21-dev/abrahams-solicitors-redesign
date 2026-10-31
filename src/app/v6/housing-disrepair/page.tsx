@@ -26,10 +26,8 @@
 
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
-import HousingDisrepairPageInner, {
-  HDR_HERO_VARIANTS,
-  type HdrHeroVariant,
-} from "./HousingDisrepairPageInner";
+import HousingDisrepairPageInner from "./HousingDisrepairPageInner";
+import { HDR_HERO_VARIANTS, HDR_HERO_COOKIE, type HdrHeroVariant } from "./variants";
 
 // Title and description filter on TWO axes simultaneously:
 //
@@ -74,7 +72,7 @@ export default async function HousingDisrepairPage() {
   // is missing (first paint before proxy writes, cookies disabled, or
   // some scraper) we default to control — the "do nothing" arm.
   const cookieStore = await cookies();
-  const raw = cookieStore.get("ab_hdr_hero")?.value;
+  const raw = cookieStore.get(HDR_HERO_COOKIE)?.value;
   const initialVariant: HdrHeroVariant = (
     HDR_HERO_VARIANTS as readonly string[]
   ).includes(raw ?? "")
