@@ -14,8 +14,11 @@
 import { useState, useEffect } from "react";
 import { CheckCircle2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { captureHousingDisrepairLead } from "@/lib/housing-ab-tracking";
 
-export function ExitIntent() {
+export function ExitIntent({
+  abHeroVariant,
+}: { abHeroVariant?: string } = {}) {
   const [open, setOpen] = useState(false);
   const [shown, setShown] = useState(false);
   const [phone, setPhone] = useState("");
@@ -83,6 +86,17 @@ export function ExitIntent() {
                       message: "Exit-intent SMS opt-in for free case check",
                       "cf-turnstile-response": "exit-intent-bypass",
                     }),
+                  });
+                  // Fire the dedicated PostHog conversion event so this
+                  // path shows up in the hero A/B experiment metric
+                  // alongside the hero-form submissions. landlord and
+                  // postcode aren't collected here — we just tag the
+                  // variant and the lead source.
+                  captureHousingDisrepairLead({
+                    variant: abHeroVariant,
+                    landlord: null,
+                    postcode: null,
+                    source: "exit-intent",
                   });
                 } catch {}
                 setDone(true);
