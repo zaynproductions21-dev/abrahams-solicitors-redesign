@@ -25,7 +25,11 @@
  */
 
 import type { Metadata } from "next";
-import HousingDisrepairPageInner from "./HousingDisrepairPageInner";
+import { cookies } from "next/headers";
+import HousingDisrepairPageInner, {
+  HDR_HERO_VARIANTS,
+  type HdrHeroVariant,
+} from "./HousingDisrepairPageInner";
 
 // Title and description filter on TWO axes simultaneously:
 //
@@ -65,6 +69,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function HousingDisrepairPage() {
-  return <HousingDisrepairPageInner />;
+export default async function HousingDisrepairPage() {
+  // Read the server-bucketed variant written by proxy.ts. If the cookie
+  // is missing (first paint before proxy writes, cookies disabled, or
+  // some scraper) we default to control — the "do nothing" arm.
+  const cookieStore = await cookies();
+  const raw = cookieStore.get("ab_hdr_hero")?.value;
+  const initialVariant: HdrHeroVariant = (
+    HDR_HERO_VARIANTS as readonly string[]
+  ).includes(raw ?? "")
+    ? (raw as HdrHeroVariant)
+    : "control";
+  return <HousingDisrepairPageInner initialVariant={initialVariant} />;
 }

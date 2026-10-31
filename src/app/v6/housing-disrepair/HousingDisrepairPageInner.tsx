@@ -2,12 +2,16 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { TeamStrip } from "@/components/v6/team-strip";
 import { HousingQualifier } from "@/components/v6/housing-qualifier";
 import { HousingSimpleForm } from "@/components/v6/housing-simple-form";
+import {
+  ProblemPhotoGrid,
+  StatutoryRightsBlock,
+} from "@/components/v6/housing-hero-variants";
 import {
   JsonLd,
   faqPageSchema,
@@ -105,8 +109,72 @@ const STATUTES = [
   { name: "Pre-Action Protocol for Housing Conditions Claims (England)", what: "The court-set process all housing disrepair solicitors must follow before issuing proceedings — notice, surveyor inspection, response window, then settlement or court." },
 ];
 
-export default function HousingDisrepairPageInner() {
+// ─── Hero A/B test contract ─────────────────────────────────────────────
+//
+// The variant is picked server-side in src/proxy.ts (cookie: ab_hdr_hero)
+// and read in src/app/v6/housing-disrepair/page.tsx via next/headers,
+// then passed in as `initialVariant` so the first paint already has the
+// right block — no CLS, no client-side flash.
+//
+// The PostHog feature flag `housing-disrepair-hero-fill` (ID 339023)
+// uses matching variant keys. On mount we override PostHog's flag
+// evaluation with the server-set value, register it as a super-property
+// so every subsequent event gets attributed to the arm, and then call
+// getFeatureFlag(…) to fire the $feature_flag_called exposure event
+// the experiment (ID 108540) reads from.
+export const HDR_HERO_VARIANTS = ["control", "photo-grid", "rights-block"] as const;
+export type HdrHeroVariant = (typeof HDR_HERO_VARIANTS)[number];
+const HDR_HERO_FLAG = "housing-disrepair-hero-fill";
+const CONSENT_KEY = "abrahams-cookie-consent-v1";
+const CONSENT_EVENT = "abrahams:consent-changed";
+
+export default function HousingDisrepairPageInner({
+  initialVariant = "control",
+}: { initialVariant?: HdrHeroVariant } = {}) {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  // Fire the PostHog exposure event once consent is granted. If the
+  // visitor never accepts cookies the whole block is a no-op — they
+  // still see the variant (the UI change is cookie-free) but they
+  // don't contribute to the experiment metric. Matches the privacy
+  // posture of the rest of the site.
+  useEffect(() => {
+    let cancelled = false;
+    const apply = async () => {
+      if (cancelled || typeof window === "undefined") return;
+      let consented = false;
+      try {
+        const raw = window.localStorage.getItem(CONSENT_KEY);
+        if (raw) consented = JSON.parse(raw)?.decision === "accepted";
+      } catch {
+        return;
+      }
+      if (!consented) return;
+      const { default: posthog } = await import("posthog-js");
+      if (cancelled) return;
+      // The provider initialises posthog-js asynchronously — if it has
+      // not yet called posthog.init(), poll briefly before giving up.
+      for (let i = 0; i < 50 && !posthog.__loaded; i++) {
+        await new Promise((r) => setTimeout(r, 100));
+        if (cancelled) return;
+      }
+      if (!posthog.__loaded) return;
+      // Pin the flag evaluation to the server-chosen variant so this
+      // visitor's analytics and session replays are all attributed to
+      // the correct arm.
+      posthog.featureFlags.override({ [HDR_HERO_FLAG]: initialVariant });
+      posthog.register({ [`$feature/${HDR_HERO_FLAG}`]: initialVariant });
+      // Trigger the exposure event the experiment reads from.
+      posthog.getFeatureFlag(HDR_HERO_FLAG);
+    };
+    apply();
+    window.addEventListener(CONSENT_EVENT, apply);
+    return () => {
+      cancelled = true;
+      window.removeEventListener(CONSENT_EVENT, apply);
+    };
+  }, [initialVariant]);
+
   // Wizard expansion — the simple form is the default; the 5-step
   // HousingQualifier is opt-in via the "Take our 60-second case check"
   // link. Hides the wizard on first render so paid-traffic mobile users
@@ -199,13 +267,24 @@ export default function HousingDisrepairPageInner() {
               <p className="mt-3 text-base sm:text-lg font-semibold text-slate-700 tracking-tight">
                 Damp, mould, leaks, broken heating or unsafe conditions? Specialist housing disrepair solicitors for Council and Housing Association tenants. Typical settlements £1,500–£15,000.
               </p>
+
+              {/* ─── A/B variant fill ─────────────────────────────────────
+                  Renders inside Block A so it extends the headline stack
+                  down into the whitespace that the form (Block B) opens
+                  on desktop. On mobile it slots between the sub-head and
+                  the form — short enough not to push the form below the
+                  fold on anything taller than iPhone SE.
+                  Variant chosen by proxy.ts cookie; see A/B contract
+                  above the component for the full picture. */}
+              {initialVariant === "photo-grid" ? <ProblemPhotoGrid /> : null}
+              {initialVariant === "rights-block" ? <StatutoryRightsBlock /> : null}
             </div>
 
             {/* Block B — Form (mobile order 2 → appears within first viewport
                 on mobile; desktop col 4-5). Simple form is default; 5-step
                 wizard is opt-in via the "60-second case check" link below. */}
             <div className="lg:col-span-2 min-w-0 order-2 lg:order-none" id="qualifier">
-              <HousingSimpleForm />
+              <HousingSimpleForm abHeroVariant={initialVariant} />
 
               {/* Opt-in to the original 5-step qualifier for users who want
                   the pre-qualifying check. Hidden by default so paid traffic

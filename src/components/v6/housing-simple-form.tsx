@@ -27,6 +27,7 @@ import { GclidField, MsclkidField, UtmFields } from "@/components/v6/gclid-field
 import { submitEnquiry } from "@/lib/publishos";
 
 const FORM_SOURCE = "housing-disrepair-simple-form";
+const CONSENT_KEY = "abrahams-cookie-consent-v1";
 
 // Landlord-type filter. Per Imran (2026-06-02), Abrahams only takes
 // Council and Housing Association housing-disrepair cases — private
@@ -35,7 +36,44 @@ const FORM_SOURCE = "housing-disrepair-simple-form";
 // gates 75% of currently-misfit traffic before it ever reaches SalesHub.
 type Landlord = "" | "council" | "ha" | "private";
 
-export function HousingSimpleForm() {
+// Fire the dedicated conversion event PostHog's housing-disrepair hero
+// A/B test (flag housing-disrepair-hero-fill, experiment ID 108540)
+// reads from. Only fires if the visitor accepted cookies — otherwise
+// the whole block is a no-op. Variant is picked server-side by proxy.ts
+// and passed down from HousingDisrepairPageInner so it survives form
+// re-renders.
+async function captureHousingDisrepairLead(opts: {
+  variant?: string;
+  landlord: "council" | "ha";
+  postcode: string;
+}): Promise<void> {
+  if (typeof window === "undefined") return;
+  let consented = false;
+  try {
+    const raw = window.localStorage.getItem(CONSENT_KEY);
+    if (raw) consented = JSON.parse(raw)?.decision === "accepted";
+  } catch {
+    return;
+  }
+  if (!consented) return;
+  try {
+    const { default: posthog } = await import("posthog-js");
+    if (!posthog.__loaded) return;
+    posthog.capture("housing_disrepair_lead", {
+      variant: opts.variant ?? "unknown",
+      landlord: opts.landlord,
+      postcode_prefix: opts.postcode.trim().split(" ")[0]?.toUpperCase() || null,
+    });
+  } catch {
+    // posthog-js wasn't loaded yet (consent granted but init still
+    // pending) — the lead still went to SalesHub, we just don't tag it.
+    // Acceptable given the rarity of the race.
+  }
+}
+
+export function HousingSimpleForm({
+  abHeroVariant,
+}: { abHeroVariant?: string } = {}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -184,6 +222,14 @@ export function HousingSimpleForm() {
               setSubmitting(false);
               return;
             }
+            // Fire the dedicated PostHog conversion event. landlord
+            // is narrowed by the private-gate check above, so the only
+            // reachable values here are "council" or "ha".
+            captureHousingDisrepairLead({
+              variant: abHeroVariant,
+              landlord: landlord as "council" | "ha",
+              postcode,
+            });
             setSubmitted(true);
           } catch {
             setError("Something went wrong — please call us instead on 0203 355 9823.");

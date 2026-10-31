@@ -1,6 +1,53 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 /**
+ * Housing-disrepair hero A/B test — server-side cookie bucketing.
+ *
+ * Three arms (control / photo-grid / rights-block) decide which hero
+ * fill block renders below the H1 on /housing-disrepair/. The split is
+ * computed here (not client-side) so the first paint already has the
+ * variant — no CLS, no flash, no SEO duplicate-content risk (canonical
+ * URL is identical for all three).
+ *
+ * Precedence: ?v=<variant> URL param (wins — used by Google Ads
+ * Experiments to pin a visitor to one arm) → ab_hdr_hero cookie →
+ * random assignment. The cookie is written back on every hit so a
+ * returning visitor stays in their bucket for 90 days.
+ *
+ * Paired with:
+ *  - page.tsx: reads the cookie, passes variant to the inner client
+ *  - HousingDisrepairPageInner.tsx: renders the variant block + fires
+ *    PostHog $feature_flag_called with the server-set override
+ *  - PostHog flag `housing-disrepair-hero-fill` (ID 339023) + experiment
+ *    `Housing disrepair hero fill` (ID 108540) read the variant from
+ *    those exposure events.
+ */
+const HDR_AB_COOKIE = "ab_hdr_hero";
+const HDR_AB_VARIANTS = ["control", "photo-grid", "rights-block"] as const;
+type HdrAbVariant = (typeof HDR_AB_VARIANTS)[number];
+const HDR_AB_MAX_AGE = 60 * 60 * 24 * 90; // 90 days
+
+function pickHdrVariant(request: NextRequest): HdrAbVariant {
+  // 1. URL override — Google Ads Experiments pins visitors to one arm
+  //    via ?v=<variant>. Also lets us QA each variant without clearing
+  //    cookies.
+  const urlOverride = request.nextUrl.searchParams.get("v");
+  if (
+    urlOverride &&
+    (HDR_AB_VARIANTS as readonly string[]).includes(urlOverride)
+  ) {
+    return urlOverride as HdrAbVariant;
+  }
+  // 2. Existing cookie — sticky across visits.
+  const existing = request.cookies.get(HDR_AB_COOKIE)?.value;
+  if (existing && (HDR_AB_VARIANTS as readonly string[]).includes(existing)) {
+    return existing as HdrAbVariant;
+  }
+  // 3. Fresh random assignment — ~33% per arm.
+  return HDR_AB_VARIANTS[Math.floor(Math.random() * HDR_AB_VARIANTS.length)];
+}
+
+/**
  * Cutover proxy (Next.js 16 — formerly middleware.ts).
  * Runs on every incoming request to map clean URLs to the v6 file tree.
  *
@@ -89,7 +136,24 @@ export function proxy(request: NextRequest) {
   // The browser keeps the clean URL; Next renders the v6 page.
   const url = request.nextUrl.clone();
   url.pathname = pathname === "/" ? "/v6" : `/v6${pathname}`;
-  return NextResponse.rewrite(url);
+  const res = NextResponse.rewrite(url);
+
+  // Housing-disrepair hero A/B test — pin the visitor to a variant so
+  // the server component downstream (page.tsx) reads a stable value
+  // from the cookie. See pickHdrVariant() for precedence rules.
+  if (
+    pathname === "/housing-disrepair" ||
+    pathname === "/housing-disrepair/"
+  ) {
+    const variant = pickHdrVariant(request);
+    res.cookies.set(HDR_AB_COOKIE, variant, {
+      maxAge: HDR_AB_MAX_AGE,
+      sameSite: "lax",
+      path: "/",
+    });
+  }
+
+  return res;
 }
 
 export const config = {
