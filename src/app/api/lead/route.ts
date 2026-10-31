@@ -326,7 +326,7 @@ export async function POST(req: NextRequest) {
           clientId: ABRAHAMS_CLIENT_ID,
           phone: toE164UK(saleshubPayload.phone),
           twilioPhoneNumber: SMS_FROM_NUMBER,
-          body: "Abrahams Solicitors: thanks for your enquiry, we'll be in touch shortly. Free 60-sec case check: abrahamssolicitors.co.uk/housing-disrepair Reply STOP",
+          body: "Abrahams Solicitors: thanks for your enquiry, we'll be in touch shortly. Free 60-sec case check: abrahamssolicitors.co.uk/housing-check Reply STOP",
         },
       }),
     })
