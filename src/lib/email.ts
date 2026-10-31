@@ -218,6 +218,78 @@ export async function sendSyncFailureAlert(
   });
 }
 
+/**
+ * Notify the duty solicitor by email when a client WhatsApps the firm's
+ * number (+447476548311). Twilio delivers inbound WhatsApp messages to
+ * /api/webhook/whatsapp; this is the notification path from there so
+ * the firm sees the message in its NOTIFY_EMAIL inbox the same way it
+ * sees web form submissions.
+ *
+ * Photos are referenced by URL (Twilio-hosted media URLs that require
+ * Basic Auth to download) — the solicitor opens WhatsApp Business
+ * directly to view them in context, not from the email. The email is
+ * the alert; the WhatsApp inbox is the system of record.
+ */
+export async function sendWhatsAppInboundNotification(data: {
+  fromPhone: string;
+  profileName: string;
+  text: string;
+  mediaUrls: string[];
+  twilioMessageSid: string;
+}): Promise<boolean> {
+  const notify = process.env.NOTIFY_EMAIL ?? "contact@abrahamssolicitors.co.uk";
+  const leadCopy = process.env.LEAD_COPY_EMAIL ?? "kazi2570@gmail.com";
+
+  const displayName = data.profileName.trim() || "Unknown";
+  const safePhone = escapeHtml(data.fromPhone);
+  const safeName = escapeHtml(displayName);
+  const safeText = escapeHtml(data.text || "(no text — media only)");
+  const mediaCount = data.mediaUrls.length;
+
+  const mediaBlock = mediaCount > 0
+    ? `<div style="margin-top:18px;padding:14px;background:#f8fafc;border-left:3px solid #25D366;border-radius:6px;">
+        <p style="margin:0 0 6px;font-size:12px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;">
+          ${mediaCount} ${mediaCount === 1 ? "attachment" : "attachments"}
+        </p>
+        <p style="margin:0 0 10px;color:#334155;font-size:13px;line-height:1.5;">
+          View them in <strong>WhatsApp Business</strong> for the chat with ${safePhone}, or use the Twilio links below (requires Twilio Console access).
+        </p>
+        <ol style="margin:0;padding-left:20px;color:#2563eb;font-size:12px;">
+          ${data.mediaUrls.map((u) => `<li style="margin-bottom:4px;"><a href="${escapeHtml(u)}" style="color:#2563eb;word-break:break-all;">${escapeHtml(u)}</a></li>`).join("")}
+        </ol>
+      </div>`
+    : "";
+
+  const subject = `WhatsApp: ${displayName} (${data.fromPhone})${mediaCount ? ` — ${mediaCount} photo${mediaCount === 1 ? "" : "s"}` : ""}`;
+
+  const html = `<!doctype html><html><body style="margin:0;padding:0;background:#f8fafc;font-family:-apple-system,'Segoe UI',sans-serif;">
+<div style="max-width:600px;margin:40px auto;background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e2e8f0;">
+  <div style="padding:20px 28px;background:#25D366;color:#fff;">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.85;">New WhatsApp message</div>
+    <div style="margin-top:4px;font-size:17px;font-weight:700;">${safeName}</div>
+    <div style="margin-top:2px;font-size:13px;opacity:0.9;">${safePhone}</div>
+  </div>
+  <div style="padding:24px 28px;">
+    <div style="padding:14px 16px;background:#f8fafc;border-left:3px solid #0f172a;border-radius:6px;font-size:14px;color:#0f172a;line-height:1.5;white-space:pre-wrap;">${safeText}</div>
+    ${mediaBlock}
+    <p style="margin:22px 0 0;font-size:12px;color:#64748b;line-height:1.5;">
+      This message landed on <strong>+447476548311</strong> (Abrahams WhatsApp Business). Open WhatsApp Business to reply in the thread. This email is an alert only — the conversation lives in WhatsApp.
+    </p>
+    <p style="margin:12px 0 0;font-size:11px;color:#94a3b8;">
+      Twilio message SID: ${escapeHtml(data.twilioMessageSid)}
+    </p>
+  </div>
+</div>
+</body></html>`;
+
+  return sendEmail({
+    to: [{ email: notify, name: "Abrahams Solicitors — Housing intake" }],
+    bcc: leadCopy ? [{ email: leadCopy, name: "Lead Copy" }] : undefined,
+    subject,
+    htmlContent: html,
+  });
+}
+
 export async function sendEnquiryEmails(data: EnquiryData): Promise<{ internal: boolean; prospect: boolean }> {
   const notify = process.env.NOTIFY_EMAIL ?? "contact@abrahamssolicitors.co.uk";
 
