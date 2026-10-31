@@ -21,6 +21,11 @@ export function ExitIntent({
 }: { abHeroVariant?: string } = {}) {
   const [open, setOpen] = useState(false);
   const [shown, setShown] = useState(false);
+  // Submit-in-progress guard — without it a double-tap on TEXT ME
+  // fires the handler twice and the user receives two SMS. Caught in
+  // the wild on 2026-10-31 as soon as the SMS delivery path started
+  // working (one real recipient, two identical texts).
+  const [submitting, setSubmitting] = useState(false);
   // Spam-guard fields (matches useSpamGuard() used by the hero form).
   // Without these /api/lead's isSpamSubmission() check short-circuits
   // every popup submission with a silent {success:true} — the lead
@@ -83,7 +88,8 @@ export function ExitIntent({
             <form
               onSubmit={async (e) => {
                 e.preventDefault();
-                if (!phone) return;
+                if (!phone || submitting) return;
+                setSubmitting(true);
                 try {
                   // No cf-turnstile-response — the exit-intent modal
                   // does not render a Turnstile widget (desktop-only,
@@ -132,8 +138,8 @@ export function ExitIntent({
                 required
                 className="flex-1 px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-red"
               />
-              <Button type="submit" className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 px-5 text-sm font-bold uppercase tracking-wide">
-                Text me
+              <Button type="submit" disabled={submitting} className="bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 px-5 text-sm font-bold uppercase tracking-wide disabled:opacity-60 disabled:cursor-not-allowed">
+                {submitting ? "Sending…" : "Text me"}
               </Button>
             </form>
             <p className="mt-3 text-xs text-slate-400">
