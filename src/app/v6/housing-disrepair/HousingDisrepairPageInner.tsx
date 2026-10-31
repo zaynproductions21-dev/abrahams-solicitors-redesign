@@ -12,6 +12,7 @@ import {
   ProblemPhotoGrid,
   StatutoryRightsBlock,
 } from "@/components/v6/housing-hero-variants";
+import type { HdrHeroVariant } from "./variants";
 import {
   JsonLd,
   faqPageSchema,
@@ -116,14 +117,20 @@ const STATUTES = [
 // then passed in as `initialVariant` so the first paint already has the
 // right block — no CLS, no client-side flash.
 //
+// The tuple/type live in ./variants (a plain-TS module) because this
+// file carries "use client" at the top — importing a value from here
+// into page.tsx (a server component) turns it into a client reference
+// and crashes at runtime. The first ship (PR #37, commit 4edbf7f)
+// hit exactly that trap: the live /housing-disrepair/ returned 500
+// because page.tsx tried to call `.includes()` on a client-reference
+// placeholder instead of the real array.
+//
 // The PostHog feature flag `housing-disrepair-hero-fill` (ID 339023)
 // uses matching variant keys. On mount we override PostHog's flag
 // evaluation with the server-set value, register it as a super-property
 // so every subsequent event gets attributed to the arm, and then call
 // getFeatureFlag(…) to fire the $feature_flag_called exposure event
 // the experiment (ID 108540) reads from.
-export const HDR_HERO_VARIANTS = ["control", "photo-grid", "rights-block"] as const;
-export type HdrHeroVariant = (typeof HDR_HERO_VARIANTS)[number];
 const HDR_HERO_FLAG = "housing-disrepair-hero-fill";
 const CONSENT_KEY = "abrahams-cookie-consent-v1";
 const CONSENT_EVENT = "abrahams:consent-changed";

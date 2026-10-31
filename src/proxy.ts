@@ -1,4 +1,9 @@
 import { NextResponse, type NextRequest } from "next/server";
+import {
+  HDR_HERO_COOKIE,
+  HDR_HERO_VARIANTS,
+  type HdrHeroVariant,
+} from "@/app/v6/housing-disrepair/variants";
 
 /**
  * Housing-disrepair hero A/B test — server-side cookie bucketing.
@@ -22,29 +27,26 @@ import { NextResponse, type NextRequest } from "next/server";
  *    `Housing disrepair hero fill` (ID 108540) read the variant from
  *    those exposure events.
  */
-const HDR_AB_COOKIE = "ab_hdr_hero";
-const HDR_AB_VARIANTS = ["control", "photo-grid", "rights-block"] as const;
-type HdrAbVariant = (typeof HDR_AB_VARIANTS)[number];
 const HDR_AB_MAX_AGE = 60 * 60 * 24 * 90; // 90 days
 
-function pickHdrVariant(request: NextRequest): HdrAbVariant {
+function pickHdrVariant(request: NextRequest): HdrHeroVariant {
   // 1. URL override — Google Ads Experiments pins visitors to one arm
   //    via ?v=<variant>. Also lets us QA each variant without clearing
   //    cookies.
   const urlOverride = request.nextUrl.searchParams.get("v");
   if (
     urlOverride &&
-    (HDR_AB_VARIANTS as readonly string[]).includes(urlOverride)
+    (HDR_HERO_VARIANTS as readonly string[]).includes(urlOverride)
   ) {
-    return urlOverride as HdrAbVariant;
+    return urlOverride as HdrHeroVariant;
   }
   // 2. Existing cookie — sticky across visits.
-  const existing = request.cookies.get(HDR_AB_COOKIE)?.value;
-  if (existing && (HDR_AB_VARIANTS as readonly string[]).includes(existing)) {
-    return existing as HdrAbVariant;
+  const existing = request.cookies.get(HDR_HERO_COOKIE)?.value;
+  if (existing && (HDR_HERO_VARIANTS as readonly string[]).includes(existing)) {
+    return existing as HdrHeroVariant;
   }
   // 3. Fresh random assignment — ~33% per arm.
-  return HDR_AB_VARIANTS[Math.floor(Math.random() * HDR_AB_VARIANTS.length)];
+  return HDR_HERO_VARIANTS[Math.floor(Math.random() * HDR_HERO_VARIANTS.length)];
 }
 
 /**
@@ -146,7 +148,7 @@ export function proxy(request: NextRequest) {
     pathname === "/housing-disrepair/"
   ) {
     const variant = pickHdrVariant(request);
-    res.cookies.set(HDR_AB_COOKIE, variant, {
+    res.cookies.set(HDR_HERO_COOKIE, variant, {
       maxAge: HDR_AB_MAX_AGE,
       sameSite: "lax",
       path: "/",
