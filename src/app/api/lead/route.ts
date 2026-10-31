@@ -278,7 +278,41 @@ export async function POST(req: NextRequest) {
     pageUrl: saleshubPayload.pageUrl,
   }).catch(() => ({ internal: false, prospect: false }));
 
-  const emails = await emailPromise;
+  // Auto-SMS reply for the housing-disrepair exit-intent popup. The
+  // popup collects only a phone number and promises "a solicitor will
+  // text you shortly" — until this landed the only path to that text
+  // was a human watching the SalesHub inbox. We fire the SMS through
+  // publishos' existing /api/pipeline/sms endpoint (which proxies to
+  // Twilio Messages API with the right auth and logs the message
+  // body) and override the sending number per-request to
+  // +447476548311 — the Abrahams-connected SMS-capable Twilio
+  // number. Kept to one GSM-7 segment (<=160 chars, no em dashes or
+  // other UCS-2 characters) so it doesn't fragment, and carries the
+  // mandatory STOP opt-out keyword for Ofcom/ICO compliance.
+  // Fire-and-forget: the lead is already saved in SalesHub and the
+  // internal email went out, so a Twilio hiccup can't block the
+  // user's "Got it. We'll text shortly" acknowledgement.
+  const SMS_FROM_NUMBER = "+447476548311";
+  const ABRAHAMS_CLIENT_ID = "cl_mnxclw6q";
+  let smsPromise: Promise<boolean> = Promise.resolve(false);
+  if (sourceStr === "housing-disrepair-exit-intent" && saleshubPayload.phone) {
+    smsPromise = fetch("https://publishos-eosin.vercel.app/api/pipeline/sms", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        leadData: {
+          clientId: ABRAHAMS_CLIENT_ID,
+          phone: saleshubPayload.phone,
+          twilioPhoneNumber: SMS_FROM_NUMBER,
+          body: "Abrahams Solicitors: thanks for your housing disrepair enquiry. A specialist will call you shortly for a free case check. Reply STOP to opt out. SRA #809071",
+        },
+      }),
+    })
+      .then((r) => r.ok)
+      .catch(() => false);
+  }
+
+  const [emails, smsSent] = await Promise.all([emailPromise, smsPromise]);
   // Include diagnostic info if ?debug=1 is set so we can see what SalesHub returned.
   const url = new URL(req.url);
   const debug = url.searchParams.get("debug") === "1";
@@ -287,6 +321,7 @@ export async function POST(req: NextRequest) {
     ...results,
     notify: emails.internal,
     auto_responder: emails.prospect,
+    sms: smsSent,
     ...(debug ? {
       _debug: {
         saleshub: saleshubDebug,
