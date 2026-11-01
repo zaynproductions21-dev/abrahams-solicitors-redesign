@@ -4,6 +4,11 @@ import {
   HDR_HERO_VARIANTS,
   type HdrHeroVariant,
 } from "@/app/v6/housing-disrepair/variants";
+import {
+  EMERG_HERO_COOKIE,
+  EMERG_HERO_VARIANTS,
+  type EmergHeroVariant,
+} from "@/app/v6/emergency-immigration-solicitor/variants";
 
 /**
  * Housing-disrepair hero A/B test — server-side cookie bucketing.
@@ -28,6 +33,40 @@ import {
  *    those exposure events.
  */
 const HDR_AB_MAX_AGE = 60 * 60 * 24 * 90; // 90 days
+
+/**
+ * Emergency-immigration hero A/B — two arms (control / router) decide
+ * whether /emergency-immigration-solicitor/ shows the existing hero or
+ * the new situation router. Pattern mirrors the housing-disrepair
+ * cookie above: ?v= URL override → cookie → random.
+ *
+ * Paired with:
+ *   - /emergency-immigration-solicitor/page.tsx reads the cookie and
+ *     passes `initialVariant` to the inner client component
+ *   - EmergencyImmigrationSolicitorPageInner swaps the hero section
+ *     for <EmergencyRouterHero/> when the variant is "router"
+ *   - PostHog flag + experiment (new, mirror housing flag 339023 /
+ *     experiment 108540) read `emergency_immigration_lead` and the
+ *     `variant` tag written by the capture helper.
+ */
+const EMERG_AB_MAX_AGE = 60 * 60 * 24 * 90; // 90 days
+
+function pickEmergVariant(request: NextRequest): EmergHeroVariant {
+  const urlOverride = request.nextUrl.searchParams.get("v");
+  if (
+    urlOverride &&
+    (EMERG_HERO_VARIANTS as readonly string[]).includes(urlOverride)
+  ) {
+    return urlOverride as EmergHeroVariant;
+  }
+  const existing = request.cookies.get(EMERG_HERO_COOKIE)?.value;
+  if (existing && (EMERG_HERO_VARIANTS as readonly string[]).includes(existing)) {
+    return existing as EmergHeroVariant;
+  }
+  return EMERG_HERO_VARIANTS[
+    Math.floor(Math.random() * EMERG_HERO_VARIANTS.length)
+  ];
+}
 
 function pickHdrVariant(request: NextRequest): HdrHeroVariant {
   // 1. URL override — Google Ads Experiments pins visitors to one arm
@@ -150,6 +189,21 @@ export function proxy(request: NextRequest) {
     const variant = pickHdrVariant(request);
     res.cookies.set(HDR_HERO_COOKIE, variant, {
       maxAge: HDR_AB_MAX_AGE,
+      sameSite: "lax",
+      path: "/",
+    });
+  }
+
+  // Emergency-immigration hero A/B test — same server-side bucket
+  // pattern as housing. control = existing detention-led hero;
+  // router = new situation-router grid driven by real CRM taxonomy.
+  if (
+    pathname === "/emergency-immigration-solicitor" ||
+    pathname === "/emergency-immigration-solicitor/"
+  ) {
+    const variant = pickEmergVariant(request);
+    res.cookies.set(EMERG_HERO_COOKIE, variant, {
+      maxAge: EMERG_AB_MAX_AGE,
       sameSite: "lax",
       path: "/",
     });

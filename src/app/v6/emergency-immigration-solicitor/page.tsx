@@ -40,7 +40,13 @@
  */
 
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import EmergencyImmigrationSolicitorPageInner from "./EmergencyImmigrationSolicitorPageInner";
+import {
+  EMERG_HERO_COOKIE,
+  EMERG_HERO_VARIANTS,
+  type EmergHeroVariant,
+} from "./variants";
 
 export const metadata: Metadata = {
   title: "Emergency Immigration Solicitor — 24/7 UK Help | Abrahams",
@@ -65,6 +71,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function EmergencyImmigrationSolicitorPage() {
-  return <EmergencyImmigrationSolicitorPageInner />;
+export default async function EmergencyImmigrationSolicitorPage() {
+  const cookieStore = await cookies();
+  const raw = cookieStore.get(EMERG_HERO_COOKIE)?.value;
+  const initialVariant: EmergHeroVariant = (
+    EMERG_HERO_VARIANTS as readonly string[]
+  ).includes(raw ?? "")
+    ? (raw as EmergHeroVariant)
+    : "control";
+  return <EmergencyImmigrationSolicitorPageInner initialVariant={initialVariant} />;
 }
