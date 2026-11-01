@@ -165,6 +165,25 @@ UKVI government application fees and the Immigration Health Surcharge are separa
 and change periodically — confirm current rates at gov.uk before applying.
 Full list: https://www.abrahamssolicitors.co.uk/our-fees/
 
+## Emergency Immigration
+
+Urgent, time-critical immigration situations — detention, removal directions, and overstaying. The emergency hub triages the situation and routes to a scenario page; all pages are reviewed by Imran Shah (SRA #509359).
+Hub: https://www.abrahamssolicitors.co.uk/emergency-immigration-solicitor/
+
+### Emergency Immigration — answer-first Q&A
+
+Q: My UK visa has expired — what are my options?
+A: If you applied to extend or switch before your leave expired, section 3C of the Immigration Act 1971 automatically continues your existing leave and its conditions while the application — and any in-time appeal or administrative review — is pending, so you are not overstaying. If your leave has already lapsed, an application made within 14 days of expiry can still be accepted where there is a good reason beyond your control, under paragraph 39E of the Immigration Rules. Acting quickly matters: overstaying affects future applications and can trigger enforcement. Abrahams Solicitors reviews your position and regularises status.
+Page: https://www.abrahamssolicitors.co.uk/visa-expired-urgent/
+
+Q: Someone has been detained by UK Immigration — what happens now?
+A: A person can be held in immigration detention only for a period that is reasonable to carry out removal; detention must be lawful under the Hardial Singh principles and the Home Office powers in Schedule 10 of the Immigration Act 2016. Immigration bail can be applied for from the First-tier Tribunal at any time, with or without a financial condition. UK immigration removal centres include Yarl's Wood, Brook House, Harmondsworth and Colnbrook. Abrahams Solicitors acts urgently on detention and bail.
+Page: https://www.abrahamssolicitors.co.uk/immigration-detention/
+
+Q: I have been given a letter saying I have to leave the UK — what are my options?
+A: Removal directions can often be challenged. Depending on the decision you may have a right to administrative review, an appeal to the First-tier Tribunal (Immigration and Asylum Chamber), or — where no other remedy is available — judicial review, which requires a letter before claim under the Pre-Action Protocol. Deadlines are short and some challenges suspend removal. Abrahams Solicitors assesses the correct route immediately.
+Page: https://www.abrahamssolicitors.co.uk/removal-directions-urgent/
+
 ## Helpful reference
 
 - Fees: https://www.abrahamssolicitors.co.uk/our-fees/

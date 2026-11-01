@@ -42,6 +42,8 @@ type FaqCategory = {
   title: string;
   blurb: string;
   items: FaqItem[];
+  // Optional contextual link to the full scenario sub-page for this category.
+  related?: { href: string; label: string };
 };
 
 const CATEGORIES: FaqCategory[] = [
@@ -49,6 +51,7 @@ const CATEGORIES: FaqCategory[] = [
     id: "detention",
     icon: Building2,
     title: "Detention at a removal centre",
+    related: { href: "/immigration-detention/", label: "Full guide: someone has been detained — what happens now" },
     blurb:
       "Rights from the moment of detention, the IS91R form, the Detained Duty Advice Scheme, bail applications, and visits.",
     items: [
@@ -107,6 +110,7 @@ const CATEGORIES: FaqCategory[] = [
     id: "removal-injunctions",
     icon: Plane,
     title: "Removal directions & emergency injunctions",
+    related: { href: "/removal-directions-urgent/", label: "Full guide: I have a letter saying I must leave — my options" },
     blurb:
       "What removal directions are, how much notice the Home Office gives, the routes to stop a removal, and what an injunction can do.",
     items: [
@@ -136,6 +140,7 @@ const CATEGORIES: FaqCategory[] = [
     id: "overstayers",
     icon: FileWarning,
     title: "Expired visas & overstayers",
+    related: { href: "/visa-expired-urgent/", label: "Full guide: my UK visa has expired — what are my options" },
     blurb:
       "Paragraph 39E, re-entry bans, voluntary returns, and the narrow window where in-country applications are still possible.",
     items: [
@@ -233,6 +238,14 @@ function CategoryAccordion({ cat, openId, setOpenId }: { cat: FaqCategory; openI
           <div className="min-w-0">
             <h2 className="text-lg sm:text-xl font-black text-slate-900 tracking-tight">{cat.title}</h2>
             <p className="mt-1 text-sm text-slate-500 leading-snug">{cat.blurb}</p>
+            {cat.related && (
+              <Link
+                href={cat.related.href}
+                className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-brand-red hover:underline"
+              >
+                {cat.related.label} &rarr;
+              </Link>
+            )}
           </div>
         </div>
       </div>
