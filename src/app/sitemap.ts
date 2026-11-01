@@ -73,6 +73,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: p("/visa-wizard/"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: p("/visit-visa-refusal/"), lastModified: now, changeFrequency: "weekly", priority: 0.7 },
     { url: p("/housing-disrepair/"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    // Housing Disrepair scenario sub-pages (bespoke, each owns its intent head;
+    // self-canonical). Children of /housing-disrepair/.
+    { url: p("/damp-and-mould-claim/"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: p("/leaks-and-water-damage/"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: p("/pest-infestation-claim/"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: p("/immigration-solicitors/"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: p("/immigration-solicitor-bradford/"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: p("/immigration-solicitor-essex/"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },

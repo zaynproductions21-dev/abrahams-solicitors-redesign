@@ -41,13 +41,13 @@ const ExitIntent = dynamic(
 const HOUSING_AUTHOR = team.find(t => t.slug === "sannah-khatoon")!;
 const PAGE_URL = "https://www.abrahamssolicitors.co.uk/housing-disrepair/";
 
-const ISSUE_CATALOG = [
-  { name: "Damp and mould claims", description: "Compensation and repairs for prolonged damp, condensation, and black mould affecting health or property." },
+const ISSUE_CATALOG: { name: string; description: string; href?: string }[] = [
+  { name: "Damp and mould claims", description: "Compensation and repairs for prolonged damp, condensation, and black mould affecting health or property.", href: "/damp-and-mould-claim/" },
   { name: "Heating and hot water failures", description: "Claims for boilers, radiators, and hot water systems left in disrepair through winter." },
-  { name: "Roof and ceiling leaks", description: "Damage from roof leaks, missing tiles, or persistent ingress that the landlord has failed to fix." },
+  { name: "Roof and ceiling leaks", description: "Damage from roof leaks, missing tiles, or persistent ingress that the landlord has failed to fix.", href: "/leaks-and-water-damage/" },
   { name: "Faulty wiring and electrics", description: "Unsafe sockets, exposed wiring, fire risk and electrical disrepair claims." },
   { name: "Structural disrepair", description: "Cracks, subsidence, unstable plaster, and structural defects that the landlord is responsible for." },
-  { name: "Pest infestations", description: "Rats, mice, cockroaches, and bed bug infestations resulting from disrepair or unfit conditions." },
+  { name: "Pest infestations", description: "Rats, mice, cockroaches, and bed bug infestations resulting from disrepair or unfit conditions.", href: "/pest-infestation-claim/" },
 ];
 
 // 5 verbatim-lift Q&A blocks — each direct answer is ~140 words for AI citation.
@@ -512,6 +512,11 @@ export default function HousingDisrepairPageInner({
                   <p className="text-sm font-bold text-slate-900">{c.name}</p>
                 </div>
                 <p className="text-sm text-slate-500 leading-relaxed">{c.description}</p>
+                {c.href && (
+                  <Link href={c.href} className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand-red hover:underline">
+                    Read the full guide &rarr;
+                  </Link>
+                )}
               </div>
             ))}
           </div>
