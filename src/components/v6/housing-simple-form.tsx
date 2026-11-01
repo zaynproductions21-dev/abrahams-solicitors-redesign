@@ -38,7 +38,8 @@ type Landlord = "" | "council" | "ha" | "private";
 
 export function HousingSimpleForm({
   abHeroVariant,
-}: { abHeroVariant?: string } = {}) {
+  sourceOverride,
+}: { abHeroVariant?: string; sourceOverride?: string } = {}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -173,7 +174,7 @@ export function HousingSimpleForm({
             ].filter(Boolean).join("\n");
             const ok = await submitEnquiry(
               {
-                source: FORM_SOURCE,
+                source: sourceOverride ?? FORM_SOURCE,
                 name,
                 email,
                 phone,
