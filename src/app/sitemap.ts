@@ -60,6 +60,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const bespokeRoutes: MetadataRoute.Sitemap = [
     { url: p("/emergency-immigration-solicitor/"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: p("/emergency-immigration-faq/"), lastModified: now, changeFrequency: "weekly", priority: 0.7 },
+    // Emergency Immigration scenario sub-pages (bespoke, each owns its intent
+    // head; self-canonical). Children of /emergency-immigration-solicitor/.
+    { url: p("/visa-expired-urgent/"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: p("/immigration-detention/"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: p("/removal-directions-urgent/"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: p("/adequate-maintenance-calculator/"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: p("/flr-visa-extension/"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: p("/skilled-worker-wizard/"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
