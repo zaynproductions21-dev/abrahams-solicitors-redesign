@@ -136,18 +136,18 @@ export function V6Header() {
       <div className="bg-white/95 backdrop-blur-md border-b border-slate-100">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center gap-2 shrink-0">
+            <Link href="/" className="flex items-center gap-2 shrink-0 rounded-xl border border-slate-300 pl-1.5 pr-3 py-1">
               <Image
                 src="/abrahams-logo.png"
                 alt="Abrahams Solicitors"
                 width={48}
                 height={48}
                 priority
-                className="h-10 w-10 object-contain rounded-lg border border-slate-200 p-0.5"
+                className="h-10 w-10 object-contain"
               />
               <div className="leading-tight">
                 <span className="block text-xl font-bold text-brand-navy tracking-tight">Abrahams</span>
-                <span className="block text-[10px] font-semibold text-brand-gold uppercase tracking-[0.2em]">Solicitors</span>
+                <span className="block text-[10px] font-semibold text-slate-900 uppercase tracking-[0.2em]">Solicitors</span>
               </div>
             </Link>
 
@@ -177,17 +177,17 @@ export function V6Header() {
                 <SheetContent side="right" className="w-[340px] p-0 overflow-y-auto">
                   <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                   <div className="p-6 border-b border-slate-100">
-                    <Link href="/" onClick={closeMobile} className="flex items-center gap-2">
+                    <Link href="/" onClick={closeMobile} className="flex items-center gap-2 rounded-xl border border-slate-300 pl-1.5 pr-3 py-1">
                       <Image
                         src="/abrahams-logo.png"
                         alt="Abrahams Solicitors"
                         width={40}
                         height={40}
-                        className="h-10 w-10 object-contain rounded-lg border border-slate-200 p-0.5"
+                        className="h-10 w-10 object-contain"
                       />
                       <div className="leading-tight">
                         <span className="block text-lg font-bold text-brand-navy">Abrahams</span>
-                        <span className="block text-[10px] font-semibold text-brand-gold uppercase tracking-[0.2em]">Solicitors</span>
+                        <span className="block text-[10px] font-semibold text-slate-900 uppercase tracking-[0.2em]">Solicitors</span>
                       </div>
                     </Link>
                   </div>
