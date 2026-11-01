@@ -12,6 +12,7 @@ import {
 } from "@/components/v6/jsonld";
 import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
 import { EmergencyUrgentForm } from "@/components/v6/emergency-urgent-form";
+import { EmergencyWhatsAppCTA } from "@/components/v6/emergency-whatsapp-cta";
 import { team } from "@/lib/team";
 
 const PAGE_URL = "https://www.abrahamssolicitors.co.uk/removal-directions-urgent/";
@@ -52,6 +53,10 @@ export default function RemovalDirectionsPageInner() {
           "Specialist representation for people served with removal directions, a refusal decision, or a short deadline to leave the UK. Administrative review, First-tier Tribunal appeal, Pre-Action Protocol and judicial review assessed on each case. SRA-regulated firm #809071.",
         slug: "removal-directions-urgent",
         author: { name: AUTHOR.name, sraUrl: AUTHOR.sraUrl },
+        contactPoints: [
+          { telephone: "+442033559823", contactType: "customer service", availableLanguage: ["en-GB"] },
+          { telephone: "+447476548311", contactType: "customer service", availableLanguage: ["en-GB"] },
+        ],
         catalog: [
           { name: "Administrative review", description: "In-time review of eligible decisions within the 14 or 28 day window stated in the decision letter." },
           { name: "First-tier Tribunal appeal", description: "In-time appeal to the Immigration and Asylum Chamber on human-rights and protection decisions." },
@@ -137,6 +142,7 @@ export default function RemovalDirectionsPageInner() {
                 subheading="Leave a mobile number — a specialist will call back within the hour."
                 submitLabel="Request an urgent callback"
               />
+              <EmergencyWhatsAppCTA situation="removal-directions" />
             </div>
           </div>
         </div>
