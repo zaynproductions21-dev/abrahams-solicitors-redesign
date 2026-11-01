@@ -157,6 +157,39 @@ export default function HomePageInner() {
 
   return (
     <>
+      {/* ─── Emergency shortcut ───
+          Thin bar at the very top of the homepage. Added 2026-11-01 in
+          response to the pattern that LLM assistants (ChatGPT /
+          Perplexity / Google AI Overviews) often cite the firm's home
+          URL rather than the specific /emergency-immigration-solicitor/
+          landing page, even when the user's query is about an urgent
+          immigration situation. Without a visible shortcut, a panicked
+          visitor dropped on the homepage has to scan the whole page
+          before finding the Immigration menu → Emergency item. One
+          tap, one scroll, is a lot in a crisis.
+
+          Deliberately high-contrast (brand-red on white, white text) +
+          plain-English copy ("urgent immigration help"). Links to the
+          main emergency LP where the hero A/B then routes the visitor
+          to one of the three scenario sub-pages. */}
+      <Link
+        href="/emergency-immigration-solicitor/"
+        className="group block bg-brand-red text-white hover:bg-brand-red-dark transition-colors"
+      >
+        <div className="max-w-[1200px] mx-auto px-5 lg:px-8 py-2.5 flex items-center justify-center gap-2 text-center">
+          <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-widest">
+            <span className="shrink-0 w-5 h-5 rounded-full bg-white/15 inline-flex items-center justify-center">⚡</span>
+            Urgent immigration help
+          </span>
+          <span className="hidden sm:inline text-[11px] sm:text-xs text-white/90">
+            Visa expired, detention, removal notice? Speak to a solicitor today →
+          </span>
+          <span className="sm:hidden text-[11px] text-white/90 font-semibold">
+            Speak to a solicitor today →
+          </span>
+        </div>
+      </Link>
+
       {/* ─── Hero with Form ─── Porto-style split: bold heading left, form right */}
       <section className="relative bg-white overflow-hidden">
         {/* Ghost background text — hidden on mobile */}
