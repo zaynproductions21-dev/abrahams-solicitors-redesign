@@ -272,6 +272,20 @@ export function legalServiceWithCatalogSchema(args: {
   slug: string;
   catalog: { name: string; description: string }[];
   author?: { name: string; sraUrl: string };
+  /**
+   * Optional ContactPoint entries. Added 2026-11-01 for the emergency-
+   * immigration sub-pages that carry a WhatsApp CTA alongside the
+   * telephone one — the SEO advisor on the council review flagged this
+   * as the right place to signal to AI engines that WhatsApp is a
+   * supported inbound channel for regulated legal advice (not
+   * document acquisition — the copy around the button is bounded).
+   */
+  contactPoints?: {
+    telephone: string;
+    contactType: string;
+    availableLanguage?: string[];
+    contactOption?: string[];
+  }[];
 }) {
   return {
     "@context": "https://schema.org",
@@ -283,6 +297,17 @@ export function legalServiceWithCatalogSchema(args: {
     url: `${BASE_URL}/${args.slug}/`,
     ...(args.author
       ? { author: { "@type": "Person", name: args.author.name, sameAs: [args.author.sraUrl] } }
+      : {}),
+    ...(args.contactPoints && args.contactPoints.length > 0
+      ? {
+          contactPoint: args.contactPoints.map((cp) => ({
+            "@type": "ContactPoint",
+            telephone: cp.telephone,
+            contactType: cp.contactType,
+            ...(cp.availableLanguage ? { availableLanguage: cp.availableLanguage } : {}),
+            ...(cp.contactOption ? { contactOption: cp.contactOption } : {}),
+          })),
+        }
       : {}),
     hasOfferCatalog: {
       "@type": "OfferCatalog",

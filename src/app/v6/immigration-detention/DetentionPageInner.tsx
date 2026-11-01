@@ -12,6 +12,7 @@ import {
 } from "@/components/v6/jsonld";
 import { DynamicCallLink, DynamicPhoneText } from "@/components/v6/dynamic-phone";
 import { EmergencyUrgentForm } from "@/components/v6/emergency-urgent-form";
+import { EmergencyWhatsAppCTA } from "@/components/v6/emergency-whatsapp-cta";
 import { team } from "@/lib/team";
 
 const PAGE_URL = "https://www.abrahamssolicitors.co.uk/immigration-detention/";
@@ -52,6 +53,10 @@ export default function DetentionPageInner() {
           "Specialist representation for people held in UK Immigration Removal Centres, at ports of entry, or by Immigration Enforcement. Bail applications, Hardial Singh assessments, judicial review of detention. SRA-regulated firm #809071.",
         slug: "immigration-detention",
         author: { name: AUTHOR.name, sraUrl: AUTHOR.sraUrl },
+        contactPoints: [
+          { telephone: "+442033559823", contactType: "customer service", availableLanguage: ["en-GB"] },
+          { telephone: "+447476548311", contactType: "customer service", availableLanguage: ["en-GB"] },
+        ],
         catalog: [
           { name: "Immigration bail application", description: "Preparation and representation at First-tier Tribunal (Immigration and Asylum Chamber) bail hearings." },
           { name: "Hardial Singh assessment", description: "Review of whether continued detention is lawful under the Hardial Singh principles." },
@@ -137,6 +142,7 @@ export default function DetentionPageInner() {
                 subheading="A specialist will phone you back within the hour, day or night."
                 submitLabel="Request an urgent callback"
               />
+              <EmergencyWhatsAppCTA situation="detention" />
             </div>
           </div>
         </div>
