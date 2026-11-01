@@ -30,7 +30,9 @@
  */
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { EmergencyRouterHero } from "@/components/v6/emergency-router-hero";
+import type { EmergHeroVariant } from "./variants";
 import { Button } from "@/components/ui/button";
 import { TrustBadges } from "@/components/v6/trust-badges";
 import { TeamStrip } from "@/components/v6/team-strip";
@@ -260,7 +262,56 @@ function trackEmergencyPhoneTap(placement: string) {
   });
 }
 
-export default function EmergencyImmigrationSolicitorPageInner() {
+// ─── Hero A/B contract ───────────────────────────────────────────────
+//
+// Variant is picked server-side in src/proxy.ts (cookie ab_emerg_hero)
+// and read in page.tsx via next/headers, then passed in as
+// `initialVariant`. "router" renders <EmergencyRouterHero/> in place of
+// the current detention-led hero. All downstream sections (when this
+// page is for you, detention, overstayer, refused visa, FAQ, etc.)
+// render in both variants so the lower funnel is identical.
+//
+// PostHog flag `emergency-immigration-hero` (to be created) tracks
+// exposure. On mount we override its evaluation with the server-set
+// value so events are attributed to the correct arm.
+const EMERG_HERO_FLAG = "emergency-immigration-hero";
+const CONSENT_KEY = "abrahams-cookie-consent-v1";
+const CONSENT_EVENT = "abrahams:consent-changed";
+
+export default function EmergencyImmigrationSolicitorPageInner({
+  initialVariant = "control",
+}: { initialVariant?: EmergHeroVariant } = {}) {
+  useEffect(() => {
+    let cancelled = false;
+    const apply = async () => {
+      if (cancelled || typeof window === "undefined") return;
+      let consented = false;
+      try {
+        const raw = window.localStorage.getItem(CONSENT_KEY);
+        if (raw) consented = JSON.parse(raw)?.decision === "accepted";
+      } catch {
+        return;
+      }
+      if (!consented) return;
+      const { default: posthog } = await import("posthog-js");
+      if (cancelled) return;
+      for (let i = 0; i < 50 && !posthog.__loaded; i++) {
+        await new Promise((r) => setTimeout(r, 100));
+        if (cancelled) return;
+      }
+      if (!posthog.__loaded) return;
+      posthog.featureFlags.override({ [EMERG_HERO_FLAG]: initialVariant });
+      posthog.register({ [`$feature/${EMERG_HERO_FLAG}`]: initialVariant });
+      posthog.getFeatureFlag(EMERG_HERO_FLAG);
+    };
+    apply();
+    window.addEventListener(CONSENT_EVENT, apply);
+    return () => {
+      cancelled = true;
+      window.removeEventListener(CONSENT_EVENT, apply);
+    };
+  }, [initialVariant]);
+
   return (
     <>
       {/* ─── Schema markup ─── */}
@@ -313,7 +364,14 @@ export default function EmergencyImmigrationSolicitorPageInner() {
         </div>
       </section>
 
-      {/* ─── Hero ─── */}
+      {/* ─── Hero (A/B'd) ───
+          control = the existing detention-led hero below. router =
+          <EmergencyRouterHero/> which shows the 3-tile situation
+          grid driven by real CRM taxonomy. See A/B contract comment
+          above the component. */}
+      {initialVariant === "router" ? (
+        <EmergencyRouterHero abHeroVariant={initialVariant} />
+      ) : (
       <section className="relative bg-white border-b border-slate-100 overflow-hidden">
         <div className="relative max-w-[1200px] mx-auto px-6 lg:px-8 py-10 lg:py-14">
           {/* Mobile order: H1+CTAs visible first (order-1), then form
@@ -405,6 +463,7 @@ export default function EmergencyImmigrationSolicitorPageInner() {
           </div>
         </div>
       </section>
+      )}
 
       <TrustBadges />
 

@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Council Verdict — Emergency Immigration LP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
+<style>
+:root {
+  --ink: #0f172a;
+  --muted: #64748b;
+  --rule: #e2e8f0;
+  --paper: #f8f9fc;
+  --card: #ffffff;
+  --primary: #6366f1;
+  --green: #16a34a;
+  --amber: #d97706;
+  --red: #dc2626;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Plus Jakarta Sans", system-ui, sans-serif; font-size: 14px; line-height: 1.55; }
+.wrap { max-width: 980px; margin: 0 auto; padding: 48px 24px 96px; }
+header.top { margin-bottom: 36px; }
+.eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+h1 { font-weight: 800; font-size: 32px; letter-spacing: -0.01em; line-height: 1.15; margin: 0 0 10px; text-wrap: balance; }
+.subtitle { color: var(--muted); font-size: 15px; max-width: 60ch; margin: 0; }
+.verdict-pill { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; background: #fef3c7; color: #92400e; margin-top: 18px; }
+.verdict-pill::before { content: ""; width: 8px; height: 8px; background: var(--amber); border-radius: 50%; }
+.risk-pill { display: inline-flex; align-items: center; gap: 8px; padding: 5px 11px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: #fff7ed; color: var(--amber); margin-left: 10px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 28px; }
+.card { background: var(--card); border: 1px solid var(--rule); border-radius: 14px; padding: 20px 22px; }
+.card .verdict { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin-bottom: 6px; }
+.card h3 { margin: 0 0 10px; font-size: 15px; font-weight: 700; letter-spacing: -0.005em; display: flex; align-items: center; gap: 8px; }
+.card p { margin: 0 0 10px; font-size: 13px; color: #334155; line-height: 1.6; }
+.card p:last-child { margin-bottom: 0; }
+.card ul { margin: 8px 0; padding-left: 18px; font-size: 13px; color: #334155; }
+.card li { margin-bottom: 4px; }
+section.block { margin-top: 48px; }
+section.block h2 { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 16px; }
+.synth { background: var(--card); border: 1px solid var(--rule); border-radius: 14px; padding: 26px 28px; }
+.synth h3 { font-size: 14px; font-weight: 700; letter-spacing: 0.02em; margin: 20px 0 8px; color: var(--primary); }
+.synth h3:first-child { margin-top: 0; }
+.synth ol, .synth ul { padding-left: 20px; margin: 8px 0 14px; }
+.synth li { margin-bottom: 6px; font-size: 13.5px; color: #334155; }
+.synth p { font-size: 13.5px; color: #334155; margin: 0 0 10px; }
+.plan { background: linear-gradient(180deg, #eef2ff 0%, #f8f9fc 100%); border: 1px solid #c7d2fe; }
+.plan h3 { color: var(--primary); }
+.footer { margin-top: 48px; text-align: center; color: var(--muted); font-size: 12px; }
+.key-fact { background: #fef3c7; border: 1px solid #fcd34d; border-left: 4px solid var(--amber); border-radius: 10px; padding: 14px 18px; margin: 20px 0; }
+.key-fact strong { color: #92400e; }
+.data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 14px 0; }
+.data-tile { background: var(--paper); border: 1px solid var(--rule); border-radius: 10px; padding: 12px 14px; text-align: left; }
+.data-tile .n { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); }
+.data-tile .l { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 3px; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="eyebrow">LLM Council · 2026-11-01</div>
+  <h1>Emergency Immigration LP — Verdict</h1>
+  <p class="subtitle">7 advisors reviewed a proposed rework of <code>/emergency-immigration-solicitor/</code> into a situation router plus three scenario sub-pages, with a server-side A/B test mirroring the housing-disrepair hero pattern.</p>
+  <div><span class="verdict-pill">Approved with changes</span><span class="risk-pill">Risk: Medium</span></div>
+</header>
+
+<section class="block">
+  <h2>Why the rework was proposed — the data</h2>
+  <div class="data-grid">
+    <div class="data-tile"><div class="n">49</div><div class="l">LP leads (10mo)</div></div>
+    <div class="data-tile"><div class="n">8</div><div class="l">Opportunities</div></div>
+    <div class="data-tile"><div class="n">3</div><div class="l">Instructed / won</div></div>
+    <div class="data-tile"><div class="n">35%</div><div class="l">"Other" responses</div></div>
+    <div class="data-tile"><div class="n">20%</div><div class="l">Visa-expired</div></div>
+    <div class="data-tile"><div class="n">10%</div><div class="l">Detention</div></div>
+    <div class="data-tile"><div class="n">£46</div><div class="l">CPA vs £35 target</div></div>
+    <div class="data-tile"><div class="n">90%</div><div class="l">Mobile traffic</div></div>
+  </div>
+  <div class="key-fact">
+    <strong>Core finding:</strong> the page currently leads on detention/dawn-raid framing. Real conversions skew visa-expired by 2:1 (2 of 3 won cases). The biggest explicit segment — 35% "other" — is not a bug; it's an unserved intent.
+  </div>
+</section>
+
+<section class="block">
+  <h2>Advisor cards</h2>
+  <div class="cards">
+
+    <div class="card">
+      <div class="verdict">Approve with changes</div>
+      <h3>🪓 Contrarian</h3>
+      <p>Rebuilding on n=49 with 3 wins is anecdote, not dataset. Splitting equity across 3 thin sub-pages risks cannibalising rankings and re-triggers the gov-docs policy review per URL. Taxonomy may be a symptom of panicked users mashing the first option, not a tiling problem.</p>
+      <p><strong>Verdict picks:</strong> Detention first. "Something else" is a safety net ONLY if it's a form, not a tile→form. Kill "urgent" + outcome verbs.</p>
+    </div>
+
+    <div class="card">
+      <div class="verdict">Approve with changes</div>
+      <h3>🧱 First Principles</h3>
+      <p>A page at 27% CVR with 8.75% CTR isn't broken. Fix the taxonomy before touching the hero. Rewrite the situation dropdown first — if "other" drops below 15%, the hypothesis is confirmed and sub-pages become justified. If it doesn't, sub-pages won't help either.</p>
+      <p><strong>Verdict picks:</strong> Detention first. "Something else" is a LEAK — replace with "Not sure? Call now". Replace "emergency"/"urgent" with "same-day immigration advice".</p>
+    </div>
+
+    <div class="card">
+      <div class="verdict">Approve with changes</div>
+      <h3>🚀 Expansionist</h3>
+      <p>You're building a landing page when the real play is an intake <em>system</em>. 57% "other"+blank = channel problem (people in crisis at 11pm don't want a callback form). WhatsApp Business as primary CTA alongside phone could 2x conversion. Detention-centre-specific pages beat the generic.</p>
+      <p><strong>Verdict picks:</strong> Detention first (highest desperation). "Something else" = safety net, but route to WhatsApp. Name the duty solicitor or breach SRA Principle 7.</p>
+    </div>
+
+    <div class="card">
+      <div class="verdict">Approve with changes</div>
+      <h3>👀 Outsider</h3>
+      <p>A panicked person at 2am isn't reading tiles — they're scanning for a phone number. Translate every label into panic-English: "Visa expired" → "My visa has run out"; "Removal directions" → "I've got a letter saying I have to leave". Form is fallback. Big number is hero.</p>
+      <p><strong>Verdict picks:</strong> Detention first (clock literally ticking). "Something else" is a safety net — relabel. Phone number ABOVE tiles, huge, sticky.</p>
+    </div>
+
+    <div class="card">
+      <div class="verdict">Approve with changes</div>
+      <h3>🛠 Executor</h3>
+      <p>Over-scoped for one dev. Three sub-pages + harness + cookie + flag + event schema in 5 days with £300/day burning = ship nothing. Day 1: router + event. Day 3–5: /visa-expired-urgent/ only. A/B test on hero copy, not sub-page existence.</p>
+      <p><strong>Verdict picks:</strong> Visa-expired first (2/3 wins, biggest named bucket). "Something else" is primary intent — reframe to "Not sure / speak to someone" + direct call. Bound every CTA to the service act, never the result.</p>
+    </div>
+
+    <div class="card">
+      <div class="verdict">Approve with changes</div>
+      <h3>🔍 SEO Strategist</h3>
+      <p>Hub-and-spoke works IF the router owns the head term and each sub-page owns a distinct intent head. INDEXABLE, not noindex — organic is the firm's main revenue line. Each sub-page MUST ship: question-shaped H1, 150-word answer block, FAQPage + LegalService schema, named author (Imran Shah), statute citations.</p>
+      <p><strong>Verdict picks:</strong> Detention first (Hardial Singh = genuine E-E-A-T moat). "Something else" is a LEAK — replace with Call Now tap-only. Reframe outcome verbs as "challenge" / "representation".</p>
+    </div>
+
+    <div class="card">
+      <div class="verdict">Approve with changes</div>
+      <h3>📊 Ads Strategist</h3>
+      <p>Tablet is lighting £107/mo on fire at 0 conv — exclude today (-100% bid). Three sub-pages = three ad groups = QS lift 6→8 and projected CPA £46→£34–38. But: don't change URL + add event + split groups simultaneously — Smart Bidding will drift up 20–40% during the gap. Import the event FIRST.</p>
+      <p><strong>Verdict picks:</strong> Visa-expired first (fastest to 30-conv threshold, lowest YMYL compliance landmine). "Something else" is a leak unless it's a true triage form. Never "we handle your visa expiry" — legal services, not document acquisition.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="block">
+  <div class="synth">
+    <h3>Consensus</h3>
+    <ul>
+      <li>Current page's detention-first framing is misaligned with real demand — visa-expired is 2× bigger by both volume AND won cases.</li>
+      <li>The 57% "other" + unspecified bucket is the biggest conversion ceiling on this page. Fix the taxonomy, not the hero.</li>
+      <li>Universal copy risk: "urgent" + "emergency" + outcome verbs breach SRA Code + Google government-docs policy. Reframe as bounded legal services and representation.</li>
+      <li>Sub-pages must be indexable (not noindex) with LegalService + FAQPage schema, named author, speakable targets, statute citations.</li>
+      <li>Sequential ship, not parallel. Three simultaneous changes with £300/day Smart Bidding running = money fire.</li>
+    </ul>
+
+    <h3>Key disagreement — resolved</h3>
+    <p><strong>Which sub-page first?</strong> 5 advisors said <code>/immigration-detention/</code> (highest desperation + lowest competition + strongest organic E-E-A-T via Hardial Singh). 2 advisors said <code>/visa-expired-urgent/</code> (fastest to Smart Bidding 30-conv threshold + 2/3 of won cases + lowest YMYL compliance landmine).</p>
+    <p><strong>Chairman call: ship /visa-expired-urgent/ FIRST.</strong> The paid campaign is burning £300/day — the operational argument (fastest conversion signal + lowest compliance landmine) outweighs the strategic organic argument this week. Detention ships week 2 and owns the organic / SRA moat.</p>
+
+    <h3>Blind spots identified</h3>
+    <ol>
+      <li>No WhatsApp intake channel — mobile-90% visitors in crisis prefer text over call.</li>
+      <li>Tablet is burning £107/mo at 0 conv — exclude via -100% bid immediately.</li>
+      <li>No plan to import <code>emergency_immigration_lead</code> as a Google Ads conversion action — Smart Bidding will be blind for 2–4 weeks without this.</li>
+      <li>No named duty solicitor — "24/7" without naming the rota implies regulated availability (SRA Principle 7).</li>
+      <li>No panic-English translation of labels — "removal directions" / "refusal notice" are Home Office jargon.</li>
+      <li>n=49 is small — statistical significance on a 3-arm A/B needs 2–4 weeks even with £300/day traffic.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="block">
+  <div class="synth plan">
+    <h3>Recommended changes</h3>
+    <ol>
+      <li><strong>Ship /visa-expired-urgent/ FIRST</strong> (not detention). Fastest conversion-signal to the Google Ads action; 2 of 3 won cases came from this bucket; lowest YMYL compliance landmine.</li>
+      <li><strong>Fix taxonomy before router.</strong> Day 1: PostHog <code>emergency_immigration_lead</code> event + rewrite situation dropdown + sticky huge phone number ABOVE the tiles. Day 3–5: ship <code>/visa-expired-urgent/</code>. Week 2: <code>/immigration-detention/</code> once new event has ≥30 conv.</li>
+      <li><strong>Kill the "Something else" tile as proposed.</strong> Replace with "Not sure? → Call now" primary tap-to-call + free-text triage form that pre-fills "Tell us what's happened in your own words."</li>
+      <li><strong>Translate every tile label into panic-English.</strong> "Visa expired" → "My visa has run out". "Loved one in detention" → "Someone I know has been detained". "Removal or refusal notice" → "I've got a letter saying I have to leave".</li>
+      <li><strong>Copy guardrails:</strong> no "urgent" + outcome verbs. Replace with "same-day legal advice" + "representation". Name the duty solicitor with photo + SRA profile link. SRA badge. No "we obtain your visa" anywhere.</li>
+      <li><strong>Sub-pages indexable, with GEO/AI-citation structure.</strong> 150-word verbatim answer block under H1; FAQPage + LegalService schema with Imran Shah as named author; speakable CSS selectors; statute citations (section 3C IA 1971; Hardial Singh; Pre-Action Protocol).</li>
+      <li><strong>Operational hygiene before architecture.</strong> Exclude tablet (-100% bid) today. Import <code>emergency_immigration_lead</code> as a Google Ads conversion action BEFORE splitting ad groups. Add WhatsApp Business as a secondary CTA alongside phone.</li>
+    </ol>
+
+    <h3>Final action plan</h3>
+    <p><strong>Week 1 — Day 1 (ship within 48h):</strong></p>
+    <ol>
+      <li>Add PostHog <code>emergency_immigration_lead</code> event on form submit + tap-to-call.</li>
+      <li>Add sticky huge phone number above the hero.</li>
+      <li>Rewrite situation dropdown with new taxonomy + free-text "describe your situation".</li>
+      <li>Add tablet -100% bid adjustment in Google Ads.</li>
+      <li>Import new PostHog event as Google Ads conversion action.</li>
+    </ol>
+    <p><strong>Week 1 — Day 3–5:</strong></p>
+    <ol start="6">
+      <li>Build <code>/visa-expired-urgent/</code> — indexable, FAQPage + LegalService schema, Imran Shah as named author, 150-word answer block, section 3C IA 1971 citation inline.</li>
+      <li>Rework main LP as 3-tile situation router (visa-expired / detention / letter-to-leave) + "Not sure? Call now" primary tap-to-call + free-text triage fallback.</li>
+      <li>Launch server-side A/B test via <code>proxy.ts ab_emerg_hero</code> cookie + PostHog flag + experiment, mirroring housing-disrepair pattern. First read Day 12–14.</li>
+    </ol>
+    <p><strong>Week 2:</strong></p>
+    <ol start="9">
+      <li>Build <code>/immigration-detention/</code> with Hardial Singh depth + detention-centre-specific routing.</li>
+      <li>Review A/B interim data; swap control if clear signal.</li>
+    </ol>
+    <p><strong>Week 3+:</strong></p>
+    <ol start="11">
+      <li>Consider <code>/removal-directions-urgent/</code> only if the taxonomy fix shows ≥10% of leads come from this bucket.</li>
+      <li>Evaluate WhatsApp intake as paid-media channel.</li>
+    </ol>
+
+    <h3>Risk Rating: MEDIUM</h3>
+    <p>Biggest risk: Smart Bidding's reconverge window during landing-page changes could spike CPA 20–40% for 2–3 weeks before settling at a lower baseline. Mitigate by (a) sequencing changes rather than shipping in parallel, (b) importing the new conversion event into Google Ads BEFORE any URL split, (c) holding bids steady during learning phase.</p>
+  </div>
+</section>
+
+<div class="footer">Abrahams Solicitors · <code>cl_mnxclw6q</code> · SRA #809071 · Council report · 2026-11-01</div>
+
+</div>
+</body>
+</html>
