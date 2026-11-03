@@ -7,7 +7,7 @@
 // "Unit 2c 9, 15 Elthorne Rd" and the lost hyphen is restored here.
 //
 // No sameAs to that profile: it rates 1.0 from one review against Bradford's
-// 4.7 from 60, and that is the client's call to make first.
+// 4.7 from 63, and that is the client's call to make first.
 const LONDON_MEETING_PLACE = {
   "@type": "Place",
   name: "Abrahams Solicitors — London (meetings by appointment)",
@@ -98,11 +98,23 @@ export function organisationSchema() {
         url: BASE_URL,
         logo: `${BASE_URL}/abrahams-logo.png`,
         image: `${BASE_URL}/abrahams-logo.png`,
+        legalName: "ABRAHAMS (YORKSHIRE) LTD",
         description: "UK immigration, housing disrepair, and personal injury solicitors. Fixed fees, direct solicitor access, SRA regulated (firm #809071).",
+        // Three live, UNRELATED solicitor firms share a near-identical name
+        // string: this one (Bradford), S. Abraham Solicitors (London, family
+        // and conveyancing) and Abraham Solicitors (Wrexham, criminal
+        // defence). A GEO audit mistook their domains for our own variants and
+        // recommended "consolidating" them — they belong to other firms and
+        // must never be claimed or redirected. The real problem is that search
+        // engines and AI models conflate the three, which is why brand
+        // mentions were not converting into verified citations. The fix is
+        // disambiguation: bind this entity to identifiers only it can hold.
+        disambiguatingDescription:
+          "Abrahams Solicitors of Bradford, West Yorkshire — SRA-regulated firm 809071, trading as ABRAHAMS (YORKSHIRE) LTD, company 12942685. Not connected to S. Abraham Solicitors of London or Abraham Solicitors of Wrexham.",
+        foundingDate: "2020-10-12",
         telephone: TELEPHONE,
         email: "info@abrahamssolicitors.co.uk",
         areaServed: { "@type": "Country", name: "United Kingdom" },
-        founder: { "@type": "Person", name: "Abrahams Solicitors" },
         knowsAbout: [
           "Immigration Law",
           "Housing Disrepair",
@@ -111,7 +123,10 @@ export function organisationSchema() {
           "Spouse Visas",
           "Personal Injury",
         ],
-        identifier: { "@type": "PropertyValue", name: "SRA", value: "809071" },
+        identifier: [
+          { "@type": "PropertyValue", name: "SRA", value: "809071" },
+          { "@type": "PropertyValue", name: "Companies House", value: "12942685" },
+        ],
         priceRange: "££",
         aggregateRating: {
           "@type": "AggregateRating",
@@ -123,10 +138,16 @@ export function organisationSchema() {
         },
         sameAs: [
           BRADFORD_GBP_URL,
+          // Third-party records. These are the disambiguators: no other firm
+          // can appear at these URLs, so they tie the name to this entity.
+          "https://www.sra.org.uk/consumers/register/organisation/?sraNumber=809071",
+          "https://find-and-update.company-information.service.gov.uk/company/12942685",
+          "https://www.reviewsolicitors.co.uk/west-yorkshire/bradford/abrahams-yorkshire-limited",
+          "https://www.verified-reviews.co.uk/reviews/abrahamssolicitors.co.uk",
           "https://www.facebook.com/AbrahamsSolicitors/",
           "https://x.com/Abrahamssolic",
           "https://www.instagram.com/AbrahamsSolicitors/",
-          "https://www.linkedin.com/company/brahamssolicitors",
+          "https://www.linkedin.com/company/abrahamssolicitors",
           "https://www.youtube.com/@AbrahamsSolicitors",
         ],
         location: [...OFFICES, LONDON_MEETING_PLACE],
