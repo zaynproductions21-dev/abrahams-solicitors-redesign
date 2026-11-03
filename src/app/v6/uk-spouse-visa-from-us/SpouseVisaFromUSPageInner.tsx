@@ -623,11 +623,20 @@ function FaqSection({ openFaq, setOpenFaq }: {
                   <span className="text-sm sm:text-base font-bold text-slate-900 leading-snug">{f.question}</span>
                   <ChevronDown className={`h-5 w-5 text-slate-400 shrink-0 mt-0.5 transition-transform ${open ? "rotate-180" : ""}`} />
                 </button>
-                {open && (
-                  <div id={`faq-answer-${i}`} className="px-5 sm:px-6 pb-5 -mt-1 text-sm sm:text-[15px] text-slate-600 leading-relaxed">
-                    {f.answer}
+                {/* GEO: the answer stays in the DOM at all times, collapsed via a
+                    CSS grid. It used to be `{open && …}`, so the served HTML
+                    carried all 8 questions and ZERO answers while the FAQPage
+                    schema above promised all 8 to crawlers. */}
+                <div
+                  id={`faq-answer-${i}`}
+                  className={`grid transition-[grid-template-rows] duration-200 ease-out ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+                >
+                  <div className="overflow-hidden">
+                    <div className="px-5 sm:px-6 pb-5 -mt-1 text-sm sm:text-[15px] text-slate-600 leading-relaxed">
+                      {f.answer}
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
             );
           })}
