@@ -9,7 +9,7 @@
 
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, Calendar, User } from "lucide-react";
+import { ArrowRight, Calendar, ShieldCheck, User } from "lucide-react";
 import { getPublishedBlogPosts, formatDate } from "@/lib/publishos";
 import { JsonLd, breadcrumbSchema } from "@/components/v6/jsonld";
 import { SlotImage } from "@/components/slot-image";
@@ -91,6 +91,15 @@ export default async function V6BlogPage() {
                     <div className="mt-5 flex items-center gap-4 text-xs text-slate-400">
                       <span className="flex items-center gap-1.5"><User className="h-3.5 w-3.5" />{post.author}</span>
                       <span className="flex items-center gap-1.5"><Calendar className="h-3.5 w-3.5" />{formatDate(post.published_at)}</span>
+                      {/* The listing carried only a byline, which on these posts is
+                          the firm rather than a person. Surfacing the solicitor who
+                          checked the post puts the E-E-A-T signal on the index page
+                          too, not just the article. */}
+                      {post.reviewed_by ? (
+                        <span className="flex items-center gap-1.5">
+                          <ShieldCheck className="h-3.5 w-3.5" />Reviewed by {post.reviewed_by}
+                        </span>
+                      ) : null}
                     </div>
                     <div className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-red">
                       Read more <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
