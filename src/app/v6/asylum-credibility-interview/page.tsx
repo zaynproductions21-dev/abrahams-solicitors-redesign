@@ -52,7 +52,7 @@ const faqs = [
   {
     question: "What is a credibility finding?",
     answer:
-      "It is the decision-maker's assessment of whether your account is believed. It is central to most asylum decisions.",
+      "It\u2019s the decision-maker\u2019s assessment of whether your account is believed. It\u2019s central to most asylum decisions.",
   },
 ];
 

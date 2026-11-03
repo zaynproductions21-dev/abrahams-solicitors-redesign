@@ -404,9 +404,14 @@ function FaqAccordion() {
             <span className="text-sm sm:text-base font-bold text-slate-900">{q.question}</span>
             <ChevronDown className={`h-4 w-4 text-slate-400 shrink-0 transition-transform ${openIdx === i ? "rotate-180" : ""}`} />
           </button>
-          {openIdx === i && (
-            <div className="px-5 pb-5 text-sm text-slate-600 leading-relaxed speakable-faq-answer">{q.answer}</div>
-          )}
+          {/* GEO: answer always in the DOM, collapsed via CSS grid. Was
+              `{openIdx === i && …}`, which kept 5 of 6 answers out of the
+              served HTML while the FAQPage schema promised all 6. */}
+          <div className={`grid transition-[grid-template-rows] duration-200 ease-out ${openIdx === i ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+            <div className="overflow-hidden">
+              <div className="px-5 pb-5 text-sm text-slate-600 leading-relaxed speakable-faq-answer">{q.answer}</div>
+            </div>
+          </div>
         </div>
       ))}
     </div>

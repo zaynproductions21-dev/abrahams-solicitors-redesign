@@ -38,7 +38,7 @@ const faqs = [
   {
     question: "Can I add new reasons after I've replied?",
     answer:
-      "Possibly, but later grounds can be treated as a 'new matter' that needs Home Office consent. It is far safer to include everything in your first response.",
+      "Possibly, but later grounds can be treated as a \u201cnew matter\u201d that needs Home Office consent. It\u2019s far safer to include everything in your first response.",
   },
   {
     question: "What is section 96 and how can it lose me an appeal right?",
@@ -48,7 +48,7 @@ const faqs = [
   {
     question: "Is a Section 120 notice the same as a refusal?",
     answer:
-      "No. It is a request for your full grounds to remain, often issued alongside or before a decision.",
+      "No. It\u2019s a request for your full grounds to remain, often issued alongside or before a decision.",
   },
   {
     question: "How long do I have to respond to a Section 120 notice?",
