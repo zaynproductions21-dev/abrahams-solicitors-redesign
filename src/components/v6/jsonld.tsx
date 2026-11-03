@@ -196,6 +196,7 @@ export function blogPostSchema(post: {
   slug: string;
   excerpt: string;
   author?: string;
+  reviewed_by?: string;
   published_at: string;
   updated_at?: string;
   cover_image?: string;
@@ -217,12 +218,31 @@ export function blogPostSchema(post: {
       }
     : { "@type": "Organization", name: post.author || "Abrahams Solicitors" };
 
+  // The posts are written by the firm, so `author` stays an Organization. The
+  // E-E-A-T signal on YMYL legal content comes from the named, SRA-registered
+  // solicitor who CHECKED it — which the page already shows to readers but the
+  // markup did not report. A reviewer who is not on the register is omitted
+  // rather than asserted, so this can never claim a credential that the SRA
+  // register would contradict.
+  const checker = post.reviewed_by ? team.find(t => t.name === post.reviewed_by) : undefined;
+  const reviewedBy = checker
+    ? {
+        "@type": "Person",
+        name: checker.name,
+        jobTitle: checker.role,
+        url: checker.sraUrl,
+        identifier: { "@type": "PropertyValue", name: "SRA", value: checker.sraNumber },
+        worksFor: { "@id": `${BASE_URL}#organization` },
+      }
+    : undefined;
+
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
     description: post.excerpt,
     author,
+    ...(reviewedBy ? { reviewedBy } : {}),
     publisher: { "@type": "Organization", name: "Abrahams Solicitors", logo: { "@type": "ImageObject", url: `${BASE_URL}/abrahams-logo.png` } },
     datePublished: post.published_at,
     // Falls back to the publish date: a post never edited was last modified
