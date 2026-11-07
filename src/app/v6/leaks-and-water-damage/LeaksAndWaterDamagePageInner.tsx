@@ -140,7 +140,21 @@ export default function LeaksAndWaterDamagePageInner() {
             </div>
 
             <div className="lg:col-span-2 min-w-0 order-2 lg:order-none" id="qualifier">
-              <HousingSimpleForm sourceOverride="housing-leaks-form" />
+              <div className="hidden lg:block">
+                <HousingSimpleForm sourceOverride="housing-leaks-form" />
+              </div>
+              <div className="lg:hidden rounded-2xl bg-white shadow-xl border border-slate-100 p-5">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
+                  Think you have a claim?
+                </p>
+                <p className="text-sm text-slate-700 leading-relaxed mb-4">
+                  Free 60-second check with a specialist housing solicitor — no obligation, no win no fee for most clients.
+                </p>
+                <DynamicCallLink className="w-full inline-flex items-center justify-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 text-sm font-bold">
+                  Call <DynamicPhoneText />
+                </DynamicCallLink>
+                <p className="mt-3 text-center text-[11px] text-slate-400">SRA #809071 · Mon–Fri 9am–5pm</p>
+              </div>
               <HousingWhatsAppCTA scenario="leaks" />
             </div>
           </div>
@@ -200,6 +214,15 @@ export default function LeaksAndWaterDamagePageInner() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ─── Mobile-only form ─── Council 2026-11-07: form moved off the
+          top of the mobile hero to the earned-trust position. Desktop
+          unchanged — hero still carries the form on lg+. */}
+      <section className="lg:hidden py-10 bg-white">
+        <div className="max-w-md mx-auto px-6">
+          <HousingSimpleForm sourceOverride="housing-leaks-form" />
         </div>
       </section>
 

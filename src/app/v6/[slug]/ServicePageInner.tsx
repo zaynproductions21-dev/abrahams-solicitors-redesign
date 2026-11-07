@@ -318,15 +318,33 @@ export default function ServicePageInner({ slug }: { slug: string }) {
 
             {/* Right: 2 cols — consultation form */}
             <div className="lg:col-span-2 min-w-0" id="consultation-form">
-              {isSpouseVisa
-                ? <VisaWizardWidget compact source={`visa-wizard-embed:${slug}`} />
-                : isVisaRefusalAppeal
-                ? <VisitVisaRefusalWidget compact source={`visit-visa-refusal-embed:${slug}`} />
-                : isIlrPage
-                ? <WizardWidget config={ILR_WIZARD_CONFIG} compact source={`ilr-wizard-embed:${slug}`} />
-                : isCitizenshipPage
-                ? <WizardWidget config={CITIZENSHIP_WIZARD_CONFIG} compact source={`citizenship-wizard-embed:${slug}`} />
-                : <ConsultationForm serviceName={page.title} />}
+              {/* Desktop/tablet: hero form (or slug-specific wizard card) unchanged. */}
+              <div className="hidden lg:block">
+                {isSpouseVisa
+                  ? <VisaWizardWidget compact source={`visa-wizard-embed:${slug}`} />
+                  : isVisaRefusalAppeal
+                  ? <VisitVisaRefusalWidget compact source={`visit-visa-refusal-embed:${slug}`} />
+                  : isIlrPage
+                  ? <WizardWidget config={ILR_WIZARD_CONFIG} compact source={`ilr-wizard-embed:${slug}`} />
+                  : isCitizenshipPage
+                  ? <WizardWidget config={CITIZENSHIP_WIZARD_CONFIG} compact source={`citizenship-wizard-embed:${slug}`} />
+                  : <ConsultationForm serviceName={page.title} />}
+              </div>
+              {/* Mobile-only reassurance block — Council 2026-11-07: form
+                  removed from top of mobile hero; replaced with a trust-first
+                  call CTA. Form re-appears further down the page. */}
+              <div className="lg:hidden rounded-2xl bg-white shadow-xl border border-slate-100 p-5">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
+                  Free case assessment
+                </p>
+                <p className="text-sm text-slate-700 leading-relaxed mb-4">
+                  Speak to an SRA-regulated solicitor today — fixed fees, direct solicitor access, no call centres.
+                </p>
+                <DynamicCallLink className="w-full inline-flex items-center justify-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 text-sm font-bold">
+                  Call <DynamicPhoneText />
+                </DynamicCallLink>
+                <p className="mt-3 text-center text-[11px] text-slate-400">SRA #809071 · 4.9★ from 97 reviews</p>
+              </div>
             </div>
           </div>
         </div>
@@ -604,6 +622,15 @@ export default function ServicePageInner({ slug }: { slug: string }) {
             <p className="mt-4 text-sm font-bold text-slate-900">Sarah M.</p>
             <p className="text-xs text-slate-400">Immigration Client</p>
           </div>
+        </div>
+      </section>
+
+      {/* ─── Mobile-only form ─── Council 2026-11-07: form moved off the
+          top of the mobile hero to the earned-trust position. Desktop
+          unchanged — hero still carries the form on lg+. */}
+      <section className="lg:hidden py-10 bg-white">
+        <div className="max-w-md mx-auto px-6">
+          <ConsultationForm serviceName={page.title} />
         </div>
       </section>
 
