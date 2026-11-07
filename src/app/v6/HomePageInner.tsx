@@ -152,6 +152,50 @@ function ConsultationForm({ dark = false }: { dark?: boolean }) {
   );
 }
 
+/**
+ * MobileHeroServicePicker — replaces <ConsultationForm /> in the mobile
+ * hero (lg:hidden). 4 tiles route visitors into the matching LP, each of
+ * which already has form-in-hero. Labels are legal-services framed per
+ * Ads Strategist guidance (Google "government documents" policy, SRA
+ * Code Rule 8.6) — "Visa help", not "get your visa"; "Emergency help",
+ * not "stop your deportation".
+ */
+function MobileHeroServicePicker() {
+  const tiles = [
+    { label: "Visa help", sub: "UK immigration", href: "/immigration-solicitors/", icon: Scale },
+    { label: "Housing disrepair", sub: "Damp · leaks · pests", href: "/housing-disrepair/", icon: Home },
+    { label: "Emergency help", sub: "Detention · removal · visa expired", href: "/emergency-immigration-solicitor/", icon: AlertCircle },
+    { label: "Not sure?", sub: "Speak to a solicitor", href: "/contact-us/", icon: MessageCircle },
+  ] as const;
+  return (
+    <div className="rounded-2xl bg-white shadow-xl border border-slate-100 p-5">
+      <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
+        What do you need help with?
+      </p>
+      <div className="grid grid-cols-2 gap-2.5">
+        {tiles.map((t) => (
+          <Link
+            key={t.href}
+            href={t.href}
+            className="group rounded-xl border border-slate-200 bg-white hover:border-brand-red active:border-brand-red transition-colors p-3.5 flex flex-col gap-1.5 min-h-[88px]"
+          >
+            <div className="flex items-center gap-2">
+              <t.icon className="h-4 w-4 text-brand-red shrink-0" />
+              <span className="text-sm font-bold text-slate-900 leading-tight">{t.label}</span>
+            </div>
+            <span className="text-[11px] text-slate-500 leading-snug">{t.sub}</span>
+          </Link>
+        ))}
+      </div>
+      <DynamicCallLink className="mt-4 w-full inline-flex items-center justify-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-11 text-sm font-bold">
+        <Phone className="h-4 w-4" />
+        <DynamicPhoneText />
+      </DynamicCallLink>
+      <p className="mt-2 text-center text-[11px] text-slate-400">SRA regulated · 4.9★ from 97 reviews</p>
+    </div>
+  );
+}
+
 export default function HomePageInner() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -265,9 +309,18 @@ export default function HomePageInner() {
               </div>
             </div>
 
-            {/* Right: consultation form */}
+            {/* Right: consultation form on desktop; 4-tile service picker on
+                mobile (council 2026-11-07 — form off the top of the mobile
+                hero, lands between testimonials and FAQ instead; hero becomes
+                a router so brand-search clickers reach a message-matched LP
+                that still has form-in-hero). Desktop is unchanged. */}
             <div className="relative">
-              <ConsultationForm />
+              <div className="hidden lg:block">
+                <ConsultationForm />
+              </div>
+              <div className="lg:hidden">
+                <MobileHeroServicePicker />
+              </div>
             </div>
           </div>
         </div>
@@ -441,6 +494,20 @@ export default function HomePageInner() {
             >
               Read all 97 verified reviews <ArrowRight className="h-4 w-4" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Mobile-only consultation form ───
+          Sits between testimonials (slot 7) and FAQ (slot 8). Council
+          2026-11-07 chose this slot over the form-in-hero position: earned
+          trust (SRA + reviews + wizards + services + testimonials) comes
+          before the ask on mobile. Desktop keeps the form in the hero and
+          in the pre-footer; this section is hidden on desktop. */}
+      <section className="lg:hidden py-10 bg-white">
+        <div className="max-w-[1200px] mx-auto px-6">
+          <div className="max-w-md mx-auto">
+            <ConsultationForm />
           </div>
         </div>
       </section>
