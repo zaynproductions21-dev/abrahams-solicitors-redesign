@@ -430,7 +430,21 @@ export default function FlrVisaExtensionPageInner() {
 
             {/* Right: 2 cols — capture form */}
             <div className="lg:col-span-2 min-w-0">
-              <PrimaryForm />
+              <div className="hidden lg:block">
+                <PrimaryForm />
+              </div>
+              <div className="lg:hidden rounded-2xl bg-white shadow-xl border border-slate-100 p-5">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
+                  Free case assessment
+                </p>
+                <p className="text-sm text-slate-700 leading-relaxed mb-4">
+                  Speak to an immigration solicitor today — fixed fees, direct solicitor access, no call centres.
+                </p>
+                <DynamicCallLink className="w-full inline-flex items-center justify-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 text-sm font-bold">
+                  Call <DynamicPhoneText />
+                </DynamicCallLink>
+                <p className="mt-3 text-center text-[11px] text-slate-400">SRA #809071 · 4.9★ from 97 reviews</p>
+              </div>
             </div>
           </div>
         </div>
@@ -722,6 +736,13 @@ export default function FlrVisaExtensionPageInner() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ─── Mobile-only form ─── Council 2026-11-07. */}
+      <section className="lg:hidden py-10 bg-white">
+        <div className="max-w-md mx-auto px-6">
+          <PrimaryForm id="mobile-consultation-form" />
         </div>
       </section>
 

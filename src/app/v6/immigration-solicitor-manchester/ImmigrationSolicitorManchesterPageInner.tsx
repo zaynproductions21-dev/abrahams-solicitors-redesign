@@ -331,7 +331,24 @@ export default function ImmigrationSolicitorManchesterPageInner() {
             </div>
 
             <div id="form" className="relative">
-              <HeroForm />
+              <div className="hidden lg:block">
+                <HeroForm />
+              </div>
+              <div className="lg:hidden rounded-2xl bg-white shadow-xl border border-slate-100 p-5">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
+                  Book a free consultation
+                </p>
+                <p className="text-sm text-slate-700 leading-relaxed mb-4">
+                  Speak to an immigration solicitor today. Fixed fees. Direct solicitor access &mdash; no call centres.
+                </p>
+                <DynamicCallLink
+                  className="w-full inline-flex items-center justify-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white rounded-lg h-12 text-sm font-bold"
+                  onClick={() => pushWizardEvent("manchester_lp_phone_tap", { source: "hero", placement: "mobile-reassurance" })}
+                >
+                  Call <DynamicPhoneText />
+                </DynamicCallLink>
+                <p className="mt-3 text-center text-[11px] text-slate-400">SRA #809071 &middot; 4.9&#9733; from 97 reviews</p>
+              </div>
             </div>
           </div>
         </div>
@@ -522,6 +539,15 @@ export default function ImmigrationSolicitorManchesterPageInner() {
       </section>
 
       <VerifiedReviews intro={REVIEW_INTRO} />
+
+      {/* ─── Mobile-only form ─── Council 2026-11-07: form moved off the
+          top of the mobile hero to the earned-trust position. Desktop
+          unchanged — hero still carries the form on lg+. */}
+      <section className="lg:hidden py-10 bg-white">
+        <div className="max-w-md mx-auto px-6">
+          <HeroForm />
+        </div>
+      </section>
 
       {/* ─── FAQ ─── */}
       <section className="py-14 lg:py-20 bg-slate-50/60 border-t border-slate-100">
