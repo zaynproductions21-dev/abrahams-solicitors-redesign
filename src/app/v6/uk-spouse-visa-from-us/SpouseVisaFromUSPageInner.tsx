@@ -259,7 +259,7 @@ function Hero() {
               </span>
               <span className="text-slate-300">·</span>
               <span className="inline-flex items-center gap-1 text-amber-600 font-semibold">
-                ★★★★★ <span className="text-slate-600">5.0 Google · 97 reviews</span>
+                ★★★★★ <span className="text-slate-600">4.9 · 97 verified reviews</span>
               </span>
             </div>
 
