@@ -21,7 +21,7 @@ import { sendWhatsAppInboundNotification } from "@/lib/email";
  *   method:  POST
  *
  * Fields Twilio sends (we read):
- *   From         — e.g. "whatsapp:+447123456789"
+ *   From         — e.g. "whatsapp:+447700900123"
  *   To           — e.g. "whatsapp:+447476548311"
  *   Body         — the text content (may be empty for media-only msgs)
  *   ProfileName  — the sender's display name on WhatsApp (may be blank)
