@@ -126,3 +126,57 @@
 .animate-hero-fade {
   animation: hero-fade-in 400ms ease-out both;
 }
+
+/*
+  info@abrahamssolicitors.co.uk is 247px wide and has no space, hyphen or other
+  break opportunity in it, so it is treated as a single word. It sits in a grid
+  item on /contact-us, and a grid item's automatic minimum is its content's
+  min-content — the track did not overflow, it stretched to 295px inside the
+  272px a 320px phone leaves, and the page could be dragged sideways.
+
+  Matched by protocol rather than by class: any long address lands in the same
+  trap, wherever it is printed. `anywhere`, not `break-word` — both break the
+  line identically, but only `anywhere` reduces min-content, which is what the
+  track is sized from.
+*/
+a[href^="mailto:"] { overflow-wrap: anywhere; }
+
+/*
+  ── Narrow-screen overflow guards ─────────────────────────────────────────
+  Everything below exists because a grid or flex item's automatic minimum is
+  its content's min-content: an item that cannot shrink does not overflow its
+  track, it stretches the track, and the whole document goes with it. At 320px
+  this made /cookie-policy 173px draggable, /careers 102px, /flr-visa-extension
+  74px and /complaints 48px, and opened a gap down the right edge of each.
+
+  1. The legal pages print full URLs and addresses — www.sra.org.uk/consumers/
+     problems/..., the SRA number line, the "Last reviewed by …" byline. A URL
+     has no space or hyphen to break on, so it is one 300px+ word. `anywhere`,
+     not `break-word`: both break the line identically, but only `anywhere`
+     reduces min-content, which is what the track is sized from.
+  2. /cookie-policy's three-column table needs 493px before any content. A
+     fixed layout makes the columns share what there is, and the cells wrap.
+  3. Several call-to-action labels are long enough that a nowrap pill is wider
+     than the column it sits in — "Check Your Income Position — Free
+     Calculator" is 370px against 272px. They wrap below 480px and keep their
+     nowrap behaviour everywhere there is room for it.
+*/
+/*
+  Not only inside .prose: the "Last reviewed … Page URL: https://…" byline and
+  the "Abrahams Solicitors · SRA #809071 · info@…" line are plain paragraphs,
+  and both are flex rows, so the URL is an unbreakable flex item ~300px wide in
+  a 272px column. Applying this to every paragraph and list item costs nothing
+  where the text already fits — the rule only does anything to a word that
+  cannot — and it stops the next page that prints a URL reopening this.
+*/
+p, li { overflow-wrap: anywhere; }
+.prose td, .prose th, .prose a { overflow-wrap: anywhere; }
+.prose table { table-layout: fixed; width: 100%; }
+
+@media (max-width: 480px) {
+  a.inline-flex, button.inline-flex,
+  a.whitespace-nowrap, button.whitespace-nowrap {
+    white-space: normal;
+    max-width: 100%;
+  }
+}

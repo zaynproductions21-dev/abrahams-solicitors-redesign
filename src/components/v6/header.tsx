@@ -117,7 +117,7 @@ export function V6Header() {
     <header className="md:sticky md:top-0 z-50">
       {/* Announcement bar */}
       <div className="bg-brand-navy">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center gap-3 py-2.5">
             <span className="text-xs font-medium text-white/80 tracking-wide">
               Free Immigration Consultation — Book Now
@@ -134,20 +134,20 @@ export function V6Header() {
 
       {/* Main header */}
       <div className="bg-white/95 backdrop-blur-md border-b border-slate-100">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center gap-2 shrink-0 rounded-xl border border-slate-300 pl-1.5 pr-3 py-1">
+            <Link href="/" className="flex items-center gap-1.5 sm:gap-2 shrink-0 rounded-xl border border-slate-300 pl-1 pr-2 sm:pl-1.5 sm:pr-3 py-1">
               <Image
                 src="/abrahams-logo.png"
                 alt="Abrahams Solicitors"
                 width={48}
                 height={48}
                 priority
-                className="h-10 w-10 object-contain"
+                className="h-9 w-9 sm:h-10 sm:w-10 object-contain"
               />
               <div className="leading-tight">
-                <span className="block text-xl font-bold text-brand-navy tracking-tight">Abrahams</span>
-                <span className="block text-[10px] font-semibold text-slate-900 uppercase tracking-[0.2em]">Solicitors</span>
+                <span className="block text-lg sm:text-xl font-bold text-brand-navy tracking-tight">Abrahams</span>
+                <span className="block text-[9px] sm:text-[10px] font-semibold text-slate-900 uppercase tracking-[0.14em] sm:tracking-[0.2em]">Solicitors</span>
               </div>
             </Link>
 
@@ -165,7 +165,7 @@ export function V6Header() {
               </DynamicCallLink>
             </div>
 
-            <div className="flex xl:hidden items-center gap-2">
+            <div className="flex xl:hidden items-center gap-1.5 sm:gap-2 shrink-0">
               <HeaderSearch />
               <DynamicCallLink className="inline-flex items-center justify-center rounded-xl p-2.5 text-brand-red hover:bg-brand-red/5 transition-colors" ariaLabel="Call us">
                 <Phone className="h-5 w-5" />
@@ -187,7 +187,7 @@ export function V6Header() {
                       />
                       <div className="leading-tight">
                         <span className="block text-lg font-bold text-brand-navy">Abrahams</span>
-                        <span className="block text-[10px] font-semibold text-slate-900 uppercase tracking-[0.2em]">Solicitors</span>
+                        <span className="block text-[9px] sm:text-[10px] font-semibold text-slate-900 uppercase tracking-[0.14em] sm:tracking-[0.2em]">Solicitors</span>
                       </div>
                     </Link>
                   </div>

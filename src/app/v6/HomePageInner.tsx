@@ -445,7 +445,7 @@ export default function HomePageInner() {
           {/* Aggregate score bar */}
           <div className="text-center mb-10">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">What Our Clients Say</h2>
-            <div className="mt-4 inline-flex items-center gap-3 bg-white border border-slate-200 rounded-2xl px-5 py-3 shadow-sm">
+            <div className="mt-4 inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 max-w-full bg-white border border-slate-200 rounded-2xl px-4 sm:px-5 py-3 shadow-sm">
               <div className="flex gap-0.5">
                 {[0,1,2,3,4].map(i => (
                   <Star key={i} className="h-5 w-5 fill-brand-red text-brand-red" />
