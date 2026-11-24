@@ -138,6 +138,15 @@ export async function POST(req: NextRequest) {
     ? wizardTypeRaw
     : "";
 
+  // Landlord-type tag: set by the housing-disrepair step-0 qualifier gate
+  // (2026-11-24). Only "social" and "unknown" ever reach this endpoint —
+  // "private" is short-circuited client-side with a Shelter redirect. The
+  // allowlist here is a defensive second line against a hostile client.
+  const landlordTypeRaw = typeof body.landlord_type === "string" ? body.landlord_type : "";
+  const landlordType = ["social", "unknown"].includes(landlordTypeRaw)
+    ? landlordTypeRaw
+    : "";
+
   const saleshubPayload = {
     firstName: body.firstName ?? body.name?.split(" ")[0] ?? "",
     lastName: body.lastName ?? body.name?.split(" ").slice(1).join(" ") ?? "",
@@ -167,6 +176,11 @@ export async function POST(req: NextRequest) {
     // alias, matching the GCLID dual-write pattern — whichever column name
     // the SalesHub webhook handler reads, the value lands.
     ...(wizardType ? { wizard_type: wizardType, source_wizard_type: wizardType } : {}),
+    // Landlord tag (housing-disrepair step-0 gate, 2026-11-24). Same
+    // dual-write pattern as wizard_type / gclid — short name + a
+    // `source_landlord_type` alias so SalesHub routing / reporting can
+    // pick up whichever column is wired.
+    ...(landlordType ? { landlord_type: landlordType, source_landlord_type: landlordType } : {}),
   };
 
   const results = { saleshub: false, backup: false };
