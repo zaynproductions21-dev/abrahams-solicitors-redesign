@@ -12,6 +12,7 @@
  */
 
 import Link from "next/link";
+import { VERIFIED_REVIEWS } from "@/lib/review-stats";
 import { useEffect, useRef, useState } from "react";
 import {
   ShieldCheck, CheckCircle2, ChevronRight, Phone, Clock,
@@ -348,7 +349,7 @@ function Hero() {
               </span>
               <span className="text-slate-300">·</span>
               <span className="inline-flex items-center gap-1 text-amber-600 font-semibold">
-                ★★★★★ <span className="text-slate-600">5.0 Google · 97 reviews</span>
+                ★★★★★ <span className="text-slate-600">{VERIFIED_REVIEWS.rating} {VERIFIED_REVIEWS.platform} · {VERIFIED_REVIEWS.count} reviews</span>
               </span>
             </div>
 

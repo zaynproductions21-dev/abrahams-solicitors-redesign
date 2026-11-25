@@ -90,7 +90,7 @@ const jsonLd = {
   // because "9, 15" is not a valid UK street line.
   //
   // Deliberately no sameAs to that profile: it rates 1.0 from a single review
-  // against Bradford's 4.7 from 60, and the client has not yet decided what to
+  // against Bradford's 4.7 from 73, and the client has not yet decided what to
   // do about it. Linking the entity to it would surface that rating.
   location: [
     {

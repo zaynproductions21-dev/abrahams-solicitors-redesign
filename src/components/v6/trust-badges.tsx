@@ -21,7 +21,9 @@ const BADGES: Badge[] = [
     icon: "sra",
   },
   {
-    // 4.7 from 63, read off the Bradford Google Business Profile on 19 Oct 2026.
+    // 4.7 from 73, read from the Google Business Profile API on 25 Nov 2026
+    // (4.7 from 63 when first corrected on 19 Oct — the count keeps moving,
+    // which is why the figures now live in src/lib/review-stats.ts).
     // Was published as "5.0 · 5-star rated" on all 29 pages that render this
     // component — and the href below goes straight to the real listing, so a
     // reader clicking through saw 4.7 under a claimed 5.0. An overstated rating
@@ -29,7 +31,7 @@ const BADGES: Badge[] = [
     label: "Google Reviews",
     sublabel: "Bradford office listing",
     rating: "4.7",
-    reviews: "63 reviews",
+    reviews: "73 reviews",
     href: "https://search.google.com/local/reviews?placeid=ChIJ8zDryFHne0gRkR-nvRs1aNE",
     icon: "google",
   },

@@ -7,7 +7,7 @@
 // "Unit 2c 9, 15 Elthorne Rd" and the lost hyphen is restored here.
 //
 // No sameAs to that profile: it rates 1.0 from one review against Bradford's
-// 4.7 from 63, and that is the client's call to make first.
+// 4.7 from 73, and that is the client's call to make first.
 const LONDON_MEETING_PLACE = {
   "@type": "Place",
   name: "Abrahams Solicitors — London (meetings by appointment)",

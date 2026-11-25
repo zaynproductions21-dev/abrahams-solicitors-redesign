@@ -46,11 +46,11 @@ const REVIEW_FAQS: FaqEntry[] = [
   {
     question: "Why is your rating different on Verified Reviews, Google and ReviewSolicitors?",
     plain:
-      "Because the three platforms draw on different groups of clients over different periods. Verified Reviews stands at 4.9 from 97, Google at 4.7 from 63, and ReviewSolicitors at 4.8 from 22. Verified Reviews invites clients directly once a matter ends, so it reflects people who actually instructed us. Google is open to anyone with a Google account. None of the three figures is wrong — they're measuring different samples, and a smaller sample moves further on a single review.",
+      "Because the three platforms draw on different groups of clients over different periods. Verified Reviews stands at 4.9 from 97, Google at 4.7 from 73, and ReviewSolicitors at 4.8 from 22. Verified Reviews invites clients directly once a matter ends, so it reflects people who actually instructed us. Google is open to anyone with a Google account. None of the three figures is wrong — they're measuring different samples, and a smaller sample moves further on a single review.",
     answer: (
       <>
         Because the three platforms draw on different groups of clients over different periods. Verified Reviews
-        stands at <strong>4.9 from 97</strong>, Google at <strong>4.7 from 63</strong>, and ReviewSolicitors at{" "}
+        stands at <strong>4.9 from 97</strong>, Google at <strong>4.7 from 73</strong>, and ReviewSolicitors at{" "}
         <strong>4.8 from 22</strong>. Verified Reviews invites clients directly once a matter ends, so it reflects
         people who actually instructed us. Google is open to anyone with a Google account. None of the three figures
         is wrong &mdash; they&rsquo;re measuring different samples, and a smaller sample moves further on a single
