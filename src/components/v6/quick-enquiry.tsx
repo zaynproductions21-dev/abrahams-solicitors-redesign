@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { MessageSquarePlus } from "lucide-react";
 import {
   Sheet,
@@ -46,7 +47,13 @@ import { pushFormSubmit } from "@/lib/tracking";
  *      conversions. Omitting it would fix conversion while breaking conversion
  *      TRACKING — the failure mode that made the original drop hard to see.
  *   2. submitEnquiry() carries a distinct `source` so this route can be
- *      measured on its own rather than blurring into the other forms.
+ *      measured on its own, AND a `service` so the lead routes to the right
+ *      team. Without `service` the API falls back to
+ *      `serviceLine: body.serviceLine ?? body.service ?? ""`, SalesHub
+ *      receives "Website enquiry", and the lead never appears in the
+ *      service-filtered CRM views. The first test submission did exactly
+ *      that — it reached the lead mirror with an empty serviceLine and was
+ *      invisible to the immigration queue.
  *   3. useSpamGuard() + HoneypotInput. A new unprotected endpoint reachable
  *      from every page is a spam magnet.
  *
@@ -54,7 +61,30 @@ import { pushFormSubmit } from "@/lib/tracking";
  * "get your visa"), per the Google "government documents" policy guardrail and
  * SRA Code Rule 8.6 that the rest of the mobile copy already follows.
  */
+/**
+ * The sheet is mounted site-wide, so the service line has to come from the
+ * page rather than from a field — asking a visitor to classify their own
+ * matter is friction, and getting it wrong sends the lead to the wrong team.
+ * The API routes to housing when this contains "housing", so the housing
+ * scenario pages must resolve to it explicitly.
+ */
+function serviceForPath(pathname: string | null): string {
+  const p = (pathname || "").toLowerCase();
+  if (
+    p.includes("housing") ||
+    p.includes("damp-and-mould") ||
+    p.includes("leaks-and-water") ||
+    p.includes("pest-infestation") ||
+    p.includes("disrepair")
+  ) {
+    return "housing disrepair";
+  }
+  if (p.includes("personal-injury") || p.includes("accident")) return "personal injury";
+  return "immigration";
+}
+
 export function QuickEnquiry({ className = "" }: { className?: string }) {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -99,7 +129,14 @@ export function QuickEnquiry({ className = "" }: { className?: string }) {
             // fires even if the navigation below races the network call.
             pushFormSubmit({ email, phone });
             await submitEnquiry(
-              { source: "quick-enquiry-mobile", name, email, phone, case: query },
+              {
+                source: "quick-enquiry-mobile",
+                service: serviceForPath(pathname),
+                name,
+                email,
+                phone,
+                case: query,
+              },
               spam.payload(),
             );
             window.location.href = `/thank-you/`;
