@@ -521,7 +521,7 @@ export default function ImmigrationSolicitorsPageInner() {
           </h2>
           <div className="mt-3 flex items-center gap-1 text-amber-500">
             {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-amber-500" />)}
-            <span className="ml-2 text-xs text-slate-500 font-semibold">Google 4.7 (63) &middot; ReviewSolicitors 4.8 (22) &middot; Skeepers 4.9 (97)</span>
+            <span className="ml-2 text-xs text-slate-500 font-semibold">Google 4.7 (73) &middot; ReviewSolicitors 4.8 (22) &middot; Skeepers 4.9 (97)</span>
           </div>
 
           <div className="mt-6 grid md:grid-cols-3 gap-4">
