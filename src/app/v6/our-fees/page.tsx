@@ -45,12 +45,114 @@ export const metadata: Metadata = {
 // commits the firm to annual review — update BOTH mirrors together,
 // file a new schedule_id, and run `npm run check:fees`.
 
+// ── Answer-first Q&A ────────────────────────────────────────────────────────
+// Added 25 Nov 2026 for AI-search citability. This page had no FAQPage schema,
+// no authority signal and no question-shaped heading, while "how much does a
+// spouse visa cost" is among the highest-intent questions people put to an
+// answer engine — and this is the firm with the only proven AI referral
+// history in the portfolio.
+//
+// COMPLIANCE: every answer below is VERBATIM approved copy already on this
+// page (WEB-PRICE-IMM v1.1, Imran Shah COLP, 30 September 2026). Nothing is
+// paraphrased and no new claim, figure, rate or VAT position is introduced.
+// If you need to change an answer, change the approved paragraph it quotes
+// and copy it across — do not rewrite it here.
+//
+// WHY THIS LIVES IN page.tsx AND NOT ITS OWN MODULE: scripts/check-fees-
+// currency.mjs greps THIS FILE for the literal fee strings and fails the
+// build if a superseded figure reappears. A figure quoted from another module
+// would sit outside that drift guard. Any answer that states money must stay
+// in this file.
+//
+// One array drives both the visible Q&A and the JSON-LD, so the schema can
+// never promise an answer the page does not render — the exact defect found
+// across this portfolio.
+const FEES_FAQ: { q: string; a: string }[] = [
+  {
+    q: "How much does a spouse or partner visa application cost?",
+    a: "Our fee starts at £900 excluding VAT, which is £1,080 including VAT at 20% for a client living in the UK. We work on an agreed fee basis for most immigration applications. An agreed fee cannot be increased, and it is agreed with you in writing before we start.",
+  },
+  {
+    q: "Can your fee go up after I instruct you?",
+    a: "An agreed fee cannot be increased, and it is agreed with you in writing before we start. Where a matter is more complex than the description above — for example where there is a previous refusal, a criminal record, a gap in immigration history, or an unusual financial position — we will tell you before we start, and we will agree a different fee with you in writing.",
+  },
+  {
+    q: "Do I have to pay VAT on your fees?",
+    a: "Whether VAT is charged on our fees depends on where you are treated as living for VAT purposes. This is a rule about the place of supply of legal services, not a discount or an exemption — and it means the same application can cost different amounts for different clients. If no UK VAT applies to you, you pay the fee in the “our fee” column and nothing more — there is no VAT to add. We will confirm in writing which applies to you before you commit to anything.",
+  },
+  {
+    q: "Are Home Office fees included in your fee?",
+    a: "No. Our fee does not include Home Office fees, the Immigration Health Surcharge, or other disbursements. Disbursements are payments we make to others on your behalf. They are in addition to our fees. Home Office fees and the Immigration Health Surcharge are set by the Government, not by us.",
+  },
+  {
+    q: "How much is the Immigration Health Surcharge?",
+    a: "The Immigration Health Surcharge is £1,035 per year, per adult, and £776 per year for a child under 18. The figures above are those in force from 8 April 2026, and are due for review by 1 April 2027. The amount you pay is the amount in force on the day your application is submitted.",
+  },
+  {
+    q: "How long does a partner visa application take?",
+    a: "Around 12 weeks applying from outside the UK, and around 8 weeks from inside the UK. These are Home Office processing times, not ours. They are targets and not guarantees, and complex cases take longer. There is no next-working-day super priority service for family or settlement applications made from outside the UK.",
+  },
+  {
+    q: "Will a solicitor handle my case, or a caseworker?",
+    a: "Depending on the type and complexity of your matter, your day-to-day contact may be a solicitor or a paralegal caseworker. Your Client Care Letter tells you exactly who is handling your matter, what their role is, and which solicitor supervises them. Where a paralegal caseworker is dealing with your matter day to day, a solicitor supervises the file and remains responsible for the work. There is no separate charge for supervision.",
+  },
+];
+
+// Authority signal. The gate accepts a named Person used as reviewedBy; this
+// page carries a real COLP approval, so the honest signal is the approver
+// himself, with the SRA number already published further down the page.
+const REVIEWER_ID = "https://www.abrahamssolicitors.co.uk/#imran-shah";
+
+const FEES_SCHEMA = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": REVIEWER_ID,
+      name: "Imran Shah",
+      jobTitle: "Solicitor and Director, Immigration & Litigation",
+      identifier: {
+        "@type": "PropertyValue",
+        propertyID: "SRA",
+        name: "SRA number",
+        value: "509359",
+      },
+      worksFor: {
+        "@type": "Organization",
+        name: "Abrahams Solicitors",
+        identifier: {
+          "@type": "PropertyValue",
+          propertyID: "GB-COH",
+          name: "Companies House company number",
+          value: "12942685",
+        },
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.abrahamssolicitors.co.uk/our-fees/#faq",
+      name: "Immigration fees — common questions",
+      dateModified: "2026-09-30",
+      reviewedBy: { "@id": REVIEWER_ID },
+      mainEntity: FEES_FAQ.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    },
+  ],
+};
+
 const th = "py-2.5 px-3 text-left font-semibold text-slate-900 border-b border-slate-200 text-sm";
 const td = "py-2.5 px-3 align-top text-sm text-slate-700 border-b border-slate-100";
 
 export default function OurFeesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(FEES_SCHEMA) }}
+      />
       <section className="bg-brand-navy py-12 lg:py-16">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <p className="text-xs font-semibold text-brand-gold uppercase tracking-[0.15em] mb-4">Our Fees</p>
@@ -72,6 +174,15 @@ export default function OurFeesPage() {
           </p>
           <p className="mt-4 text-base text-slate-600 leading-relaxed">
             If your matter is not listed here, or you would like a quote for something more complex, please call us on <DynamicCallLink className="text-brand-red font-semibold hover:underline"><DynamicPhoneText /></DynamicCallLink> and we will give you a figure before you commit to anything.
+          </p>
+
+          {/* Named reviewer. This page already carried a COLP approval in its
+              metadata and source header but said so nowhere a reader or an
+              extractor could see it. YMYL content should name who stands
+              behind it; the SRA number is published under "Who will do your
+              work" below and is checkable on the SRA register. */}
+          <p className="mt-6 text-sm text-slate-500 leading-relaxed border-t border-slate-200 pt-4">
+            Reviewed by <strong className="text-slate-700">Imran Shah</strong>, Solicitor and Director, Immigration &amp; Litigation (SRA number 509359). Last reviewed 30 September 2026.
           </p>
 
           <h2 className="mt-12 text-2xl font-bold text-slate-900">Our fees</h2>
@@ -340,6 +451,20 @@ export default function OurFeesPage() {
           <p className="mt-3 text-base text-slate-600 leading-relaxed">
             Depending on the type and complexity of your matter, your day-to-day contact may be a solicitor or a paralegal caseworker. <strong>Your Client Care Letter tells you exactly who is handling your matter, what their role is, and which solicitor supervises them.</strong> If you would prefer a solicitor to handle your matter throughout, please tell us at the outset and we will confirm whether that is possible and what it would cost.
           </p>
+
+          {/* Rendered from FEES_FAQ, the same array that builds the JSON-LD, so
+              the schema and the visible text cannot drift apart. Answers are
+              always in the DOM — never behind a mount-gated accordion, which
+              is what made FAQ schema worthless elsewhere in this portfolio. */}
+          <h2 className="mt-12 text-2xl font-bold text-slate-900">Common questions about our fees</h2>
+          <div className="mt-6 space-y-7">
+            {FEES_FAQ.map((f) => (
+              <div key={f.q}>
+                <h3 className="text-lg font-bold text-slate-900">{f.q}</h3>
+                <p className="mt-2 text-base text-slate-600 leading-relaxed">{f.a}</p>
+              </div>
+            ))}
+          </div>
 
           <h2 className="mt-12 text-2xl font-bold text-slate-900">Complaints</h2>
           <p className="mt-3 text-base text-slate-600 leading-relaxed">

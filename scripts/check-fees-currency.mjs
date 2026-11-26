@@ -75,6 +75,38 @@ for (const old of SUPERSEDED) {
   if (page.includes(old)) failures.push(`SUPERSEDED FEE PRESENT: ${old} — copied back in from an old document?`);
 }
 
+// Answer-first Q&A drift check (added 25 Nov 2026).
+//
+// The "Common questions" block quotes the spouse/partner fee a SECOND time,
+// in prose, so an uprating that touches only the table would leave the Q&A
+// stating last year's price — and it is the Q&A that answer engines quote.
+// This is precisely the duplication this whole guard exists to catch, so the
+// new copy gets the same treatment: pull the figures out of the table row and
+// out of the Q&A answer, and insist they match.
+{
+  const row = page.match(/Spouse \/ partner visa application<\/td>\s*<td className=\{td\}>([^<]*)<\/td>\s*<td className=\{td\}>([^<]*)<\/td>\s*<td className=\{td\}><strong>([^<]*)<\/strong>/);
+  const answer = page.match(/q: "How much does a spouse or partner visa application cost\?",\s*\n\s*a: "([^"]*)"/);
+
+  if (!row) {
+    failures.push("faq-drift: could not find the spouse/partner row in the fee table — did the table markup change?");
+  } else if (!answer) {
+    failures.push("faq-drift: could not find the spouse/partner fee answer in FEES_FAQ — was the question reworded?");
+  } else {
+    // Table cells are like "From \u00a3900" and "From \u00a31,080"; the answer
+    // states the bare amounts. Compare the numbers, not the wording.
+    const nums = (t) => (t.match(/\u00a3[\d,]+/g) || []).map((x) => x.replace(/[\u00a3,]/g, ""));
+    const [exVat] = nums(row[1]);
+    const [incVat] = nums(row[3]);
+    const inAnswer = nums(answer[1]);
+    if (exVat && !inAnswer.includes(exVat)) {
+      failures.push(`faq-drift: fee table says \u00a3${exVat} ex VAT for a spouse/partner application, but the Q&A answer does not state it (answer has: ${inAnswer.join(", ") || "no figure"})`);
+    }
+    if (incVat && !inAnswer.includes(incVat)) {
+      failures.push(`faq-drift: fee table totals \u00a3${incVat} inc VAT for a spouse/partner application, but the Q&A answer does not state it (answer has: ${inAnswer.join(", ") || "no figure"})`);
+    }
+  }
+}
+
 // Hourly-rate drift check.
 //
 // The rate figures themselves are rendered at runtime from
