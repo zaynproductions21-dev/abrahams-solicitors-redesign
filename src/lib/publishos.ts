@@ -114,11 +114,20 @@ export async function submitEnquiry(
   spam?: { _hp: string; _t: number },
   turnstileToken?: string,
   /**
-   * Optional wizard metadata. When set, the API route tags the SalesHub
-   * lead with `wizard_type` so the offline conversion pipeline can join
-   * wizard leads back to the right ad campaign.
+   * Optional lead metadata forwarded to the SalesHub webhook.
+   * - `wizardType` lets the offline-conversion pipeline join wizard
+   *   leads back to the right ad campaign.
+   * - `landlordType` is set by the housing-disrepair step-0 qualifier
+   *   gate (2026-11-24). Only "social" and "unknown" ever reach this
+   *   path — "private" is short-circuited client-side with a Shelter/
+   *   Citizens Advice/Gov.uk redirect and never POSTs. Promoted to a
+   *   top-level field (instead of being packed into `case`) so the CRM
+   *   can filter + report on it without parsing free text.
    */
-  meta?: { wizardType?: "ilr" | "citizenship" | "spouse" | "skilled-worker" },
+  meta?: {
+    wizardType?: "ilr" | "citizenship" | "spouse" | "skilled-worker";
+    landlordType?: "social" | "unknown";
+  },
 ): Promise<boolean> {
   try {
     // Pull captured click IDs (Google + Bing) so the API route can forward
@@ -169,6 +178,7 @@ export async function submitEnquiry(
         ...(utm_content ? { utm_content } : {}),
         ...(utm_term ? { utm_term } : {}),
         ...(meta?.wizardType ? { wizard_type: meta.wizardType } : {}),
+        ...(meta?.landlordType ? { landlord_type: meta.landlordType } : {}),
         ...(spam ?? {}),
         ...(turnstileToken ? { "cf-turnstile-response": turnstileToken } : {}),
       }),
