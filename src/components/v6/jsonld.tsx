@@ -183,6 +183,26 @@ export function faqPageSchema(faqs: { question: string; answer: string }[]) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    // Attribution to the FIRM, deliberately not to an individual.
+    //
+    // About 15 [slug]-served pages had no authority signal at all, because the
+    // named-reviewer byline is gated on an `authorSlug` in SERVICE_METADATA and
+    // only eight entries exist. The quick fix would have been to add the
+    // missing entries — but that publishes "Reviewed by Imran Shah, SRA 509359"
+    // on pages he may never have read. /our-fees/ can name him because it
+    // carries a dated COLP approval; these pages carry no such record, and a
+    // false review attribution on YMYL content is worse than none.
+    //
+    // The firm authoring and standing behind its own site is true without
+    // claiming individual review, and it is checkable: the #organization node
+    // carries SRA 809071 and Companies House 12942685. Where a page DOES have
+    // a named reviewer, the Person node is still emitted alongside this, so
+    // nothing is lost.
+    //
+    // Replace this with a named reviewer per page as and when the firm confirms
+    // who stands behind which page. That is a better signal; it just has to be
+    // true first.
+    author: { "@id": `${BASE_URL}#organization` },
     mainEntity: faqs.map(f => ({
       "@type": "Question",
       name: f.question,
