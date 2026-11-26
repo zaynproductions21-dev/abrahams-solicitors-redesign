@@ -121,7 +121,7 @@ export default function CookiePolicyPage() {
           <tr>
             <td className="pr-4"><code>abrahams_traffic_source</code></td>
             <td className="pr-4">Abrahams Solicitors</td>
-            <td className="pr-4">Records which network brought you to the site</td>
+            <td className="pr-4">Records which search engine, advertising network or AI assistant brought you to the site</td>
             <td>90 days</td>
           </tr>
         </tbody>

@@ -92,6 +92,20 @@ export function captureGclidFromUrl(): void {
     }
   });
 
+  // An answer engine never sends a click ID, so it is only identifiable from
+  // the referrer (or the utm_source some of them tag). Checked only when no
+  // paid click was captured, so advertising attribution is never overwritten,
+  // and only stamped once so the first touch wins for the cookie's lifetime.
+  if (!capturedSource && !readCookie(TRAFFIC_SOURCE_COOKIE)) {
+    const ai =
+      classifyAiUtmSource(params.get("utm_source")) ??
+      classifyAiReferrer(
+        typeof document !== "undefined" ? document.referrer : "",
+        typeof window !== "undefined" ? window.location.hostname : undefined,
+      );
+    if (ai) capturedSource = ai;
+  }
+
   if (capturedSource) {
     setCookie(TRAFFIC_SOURCE_COOKIE, capturedSource, TTL_DAYS);
   }
@@ -151,12 +165,96 @@ export function getBestClickId(): string | null {
   return gclid || gbraid || wbraid || null;
 }
 
-export type TrafficSource = "google" | "bing" | "direct";
+/**
+ * Answer engines do not pass a click ID, so before this existed every visit
+ * arriving from ChatGPT, Perplexity, Gemini, Copilot or Claude was recorded as
+ * "direct" — indistinguishable from someone typing the URL. The GEO audit
+ * counted 104 AI sessions and attributed 100% of them to ChatGPT, which is not
+ * a finding about ChatGPT so much as a finding about the only engine anything
+ * was managing to name.
+ */
+export type AiReferrer =
+  | "chatgpt"
+  | "perplexity"
+  | "gemini"
+  | "copilot"
+  | "claude"
+  | "ai-other";
+
+export type TrafficSource = "google" | "bing" | AiReferrer | "direct";
+
+/**
+ * Host → source. Matched against the referrer's hostname with an exact or
+ * suffix match, so "www.perplexity.ai" and "perplexity.ai" both resolve and a
+ * lookalike domain ending in something else does not.
+ *
+ * Microsoft is the awkward one: copilot.microsoft.com is Copilot, but Copilot
+ * also answers at bing.com/chat, which shares a host with Bing search. That
+ * case is separated by path below rather than by host.
+ */
+const AI_REFERRER_HOSTS: ReadonlyArray<readonly [string, AiReferrer]> = [
+  ["chatgpt.com", "chatgpt"],
+  ["chat.openai.com", "chatgpt"],
+  ["openai.com", "chatgpt"],
+  ["perplexity.ai", "perplexity"],
+  ["gemini.google.com", "gemini"],
+  ["bard.google.com", "gemini"],
+  ["copilot.microsoft.com", "copilot"],
+  ["claude.ai", "claude"],
+];
+
+/**
+ * Resolve an answer engine from a referrer URL. Exported so the classification
+ * can be unit-tested and reused server-side without duplicating the list.
+ * Returns null when the referrer is absent, same-origin, or not an AI engine —
+ * never a guess.
+ */
+export function classifyAiReferrer(referrer: string, currentHost?: string): AiReferrer | null {
+  if (!referrer) return null;
+  let url: URL;
+  try {
+    url = new URL(referrer);
+  } catch {
+    return null;
+  }
+  const host = url.hostname.toLowerCase().replace(/^www\./, "");
+  if (currentHost && host === currentHost.toLowerCase().replace(/^www\./, "")) return null;
+
+  // Copilot shares bing.com with Bing search; only the chat path is Copilot.
+  if (host === "bing.com") {
+    return url.pathname.toLowerCase().startsWith("/chat") ? "copilot" : null;
+  }
+
+  for (const [needle, source] of AI_REFERRER_HOSTS) {
+    if (host === needle || host.endsWith("." + needle)) return source;
+  }
+  return null;
+}
+
+/**
+ * Some engines also tag the outbound link (ChatGPT sends utm_source=chatgpt.com).
+ * That survives a referrer-stripping browser, so it is checked as well.
+ */
+function classifyAiUtmSource(utmSource: string | null): AiReferrer | null {
+  if (!utmSource) return null;
+  const v = utmSource.toLowerCase();
+  for (const [needle, source] of AI_REFERRER_HOSTS) {
+    if (v === needle || v === needle.split(".")[0]) return source;
+  }
+  if (v === "bing.com/chat" || v === "copilot") return "copilot";
+  return null;
+}
 
 /** Reads the traffic-source cookie; falls back to inspecting click-id cookies. */
+const VALID_SOURCES: ReadonlySet<string> = new Set<TrafficSource>([
+  "google", "bing", "chatgpt", "perplexity", "gemini", "copilot", "claude", "ai-other", "direct",
+]);
+
 export function getTrafficSource(): TrafficSource {
   const stamped = readCookie(TRAFFIC_SOURCE_COOKIE);
-  if (stamped === "google" || stamped === "bing") return stamped;
+  if (stamped && stamped !== "direct" && VALID_SOURCES.has(stamped)) return stamped as TrafficSource;
+  // A paid click still outranks anything stamped from a referrer: the click ID
+  // is explicit, the referrer is inferred.
   const { gclid, gbraid, wbraid, msclkid } = getStoredGclid();
   if (msclkid) return "bing";
   if (gclid || gbraid || wbraid) return "google";
