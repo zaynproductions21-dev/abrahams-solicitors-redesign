@@ -255,25 +255,39 @@ function CategoryAccordion({ cat, openId, setOpenId }: { cat: FaqCategory; openI
           const isOpen = openId === id;
           return (
             <div key={id}>
-              <button
-                type="button"
-                onClick={() => {
-                  if (!isOpen) {
-                    pushWizardEvent("emergency_faq_expanded", {
-                      category: cat.id,
-                      question_id: id,
-                      question: it.q,
-                    });
-                  }
-                  setOpenId(isOpen ? null : id);
-                }}
-                className="w-full flex items-center justify-between gap-3 px-5 py-4 text-left hover:bg-slate-50/60"
-                aria-expanded={isOpen}
-                aria-controls={`faq-${id}`}
-              >
-                <span className="text-sm sm:text-base font-bold text-slate-900">{it.q}</span>
-                <ChevronDown className={`h-4 w-4 text-slate-400 shrink-0 transition-transform ${isOpen ? "rotate-180" : ""}`} />
-              </button>
+              {/* The question is a real h3, not a bold <span>.
+                  This page carries 30 Q&As and 21,851 characters, and every
+                  answer is correctly kept in the DOM (see the grid below) —
+                  but none of the questions was a heading, so the page had no
+                  question structure for an extractor to follow. It was the
+                  only page across all 31 Abrahams immigration and housing
+                  URLs where that was genuinely true.
+                  The h3 WRAPS the button rather than sitting inside it:
+                  <h3> takes phrasing content and <button> is phrasing
+                  content, so this is valid, whereas <button><h3> is not —
+                  button does not take heading content. Same shape as
+                  [slug]/ServicePageInner and components/v6/faq-details. */}
+              <h3 className="m-0">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (!isOpen) {
+                      pushWizardEvent("emergency_faq_expanded", {
+                        category: cat.id,
+                        question_id: id,
+                        question: it.q,
+                      });
+                    }
+                    setOpenId(isOpen ? null : id);
+                  }}
+                  className="w-full flex items-center justify-between gap-3 px-5 py-4 text-left hover:bg-slate-50/60"
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-${id}`}
+                >
+                  <span className="text-sm sm:text-base font-bold text-slate-900">{it.q}</span>
+                  <ChevronDown className={`h-4 w-4 text-slate-400 shrink-0 transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                </button>
+              </h3>
               {/* GEO: the answer stays in the DOM at all times, collapsed via a CSS
                   grid rather than conditionally rendered. It used to be
                   `{isOpen && …}`, which meant the served HTML carried all 30
